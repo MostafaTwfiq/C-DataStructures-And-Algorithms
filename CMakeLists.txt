@@ -3,4 +3,4 @@ project(C_DataStructures C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(C_DataStructures main.c Sources/LinkedList.c Headers/LinkedList.h)
+add_executable(C_DataStructures main.c Sources/LinkedList.c Headers/LinkedList.h Sources/DoublyLinkedList.c Headers/DoublyLinkedList.h Sources/String.c Headers/String.h)

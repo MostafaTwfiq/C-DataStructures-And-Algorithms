@@ -1,10 +1,12 @@
-#include "../Headers/LinkedList.h"
+#include "../Headers/DoublyLinkedList.h"
+
 
 
 
 typedef struct Node {
     void *item; //void pointer so the node be generic.
     struct Node *next; // a pointer to the next node.
+    struct Node *prevNode; // a pointer to the previous node.
 } Node;
 
 
@@ -13,8 +15,8 @@ typedef struct Node {
 /** This function will allocate a new linked list in the memory, setup it's fields and return it.
  * @param sizeOfType */
 
-LinkedList *linkedListInitialization(int sizeOfType) {
-    LinkedList *linkedList = (LinkedList *) malloc(sizeof(LinkedList));
+DoublyLinkedList *doublyLinkedListInitialization(int sizeOfType) {
+    DoublyLinkedList *linkedList = (DoublyLinkedList *) malloc(sizeof(DoublyLinkedList));
     linkedList->head = linkedList->tail = NULL;
     linkedList->sizeOfType = sizeOfType;
     linkedList->length = 0;
@@ -24,13 +26,12 @@ LinkedList *linkedListInitialization(int sizeOfType) {
 
 
 
-
 /** This function will take the linked list address and the item address as a parameters,
     then it will add the item in the start of the linked list.
   * @param linkedList
   * @param item */
 
-void linkedListAddFirst(LinkedList *linkedList, void *item) {
+void doublyLinkedListAddFirst(DoublyLinkedList *linkedList, void *item) {
     if (linkedList == NULL) {
         printf("Illegal argument, the linked list is NULL.");
         exit(-1);
@@ -40,9 +41,12 @@ void linkedListAddFirst(LinkedList *linkedList, void *item) {
     newNode->item = item;
 
     newNode->next = linkedList->head;
+    newNode->prevNode = NULL;
 
-    if (linkedListIsEmpty(linkedList))
+    if (doublyLinkedListIsEmpty(linkedList))
         linkedList->tail = newNode;
+    else
+        linkedList->head->prevNode = newNode;
 
     linkedList->head = newNode;
     linkedList->length++;
@@ -56,7 +60,7 @@ void linkedListAddFirst(LinkedList *linkedList, void *item) {
  * @param linkedList
  * @param item */
 
-void linkedListAddLast(LinkedList *linkedList, void *item) {
+void doublyLinkedListAddLast(DoublyLinkedList *linkedList, void *item) {
     if (linkedList == NULL) {
         printf("Illegal argument, the linked list is NULL.");
         exit(-1);
@@ -67,11 +71,12 @@ void linkedListAddLast(LinkedList *linkedList, void *item) {
 
     newNode->next = NULL;
 
-    if (linkedListIsEmpty(linkedList))
+    if (doublyLinkedListIsEmpty(linkedList))
         linkedList->head = newNode;
     else
         linkedList->tail->next = newNode;
 
+    newNode->prevNode = linkedList->tail;
     linkedList->tail = newNode;
     linkedList->length++;
 }
@@ -86,11 +91,11 @@ void linkedListAddLast(LinkedList *linkedList, void *item) {
  * @param item
  */
 
-void linkedListAddAtIndex(LinkedList *linkedList, int index, void *item) {
+void doublyLinkedListAddAtIndex(DoublyLinkedList *linkedList, int index, void *item) {
     if (linkedList == NULL) {
         printf("Illegal argument, the linked list is NULL.");
         exit(-1);
-    } else if (index < 0 || index >= linkedListGetLength(linkedList)) {
+    } else if (index < 0 || index >= doublyLinkedListGetLength(linkedList)) {
         printf("index is out range of the linked list.");
         exit(-1);
     }
@@ -99,18 +104,20 @@ void linkedListAddAtIndex(LinkedList *linkedList, int index, void *item) {
     newNode->item = item;
 
     Node *currentNode = linkedList->head;
-    Node *prevNode = NULL;
-    while (index-- != 0) {
-        prevNode = currentNode;
+    while (index-- != 0)
         currentNode = currentNode->next;
-    }
 
-    if (prevNode == NULL) {
+
+    if (currentNode->prevNode == NULL) {
         newNode->next = currentNode;
+        newNode->prevNode = NULL;
+        currentNode->prevNode = newNode;
         linkedList->head = newNode;
     } else {
-        prevNode->next = newNode;
         newNode->next = currentNode;
+        newNode->prevNode = currentNode->prevNode;
+        currentNode->prevNode->next = newNode;
+        currentNode->prevNode = newNode;
     }
 
     linkedList->length++;
@@ -126,7 +133,7 @@ void linkedListAddAtIndex(LinkedList *linkedList, int index, void *item) {
  * @param itemsLength
  */
 
-void linkedListAddAll(LinkedList *linkedList, void *items, int itemsLength) {
+void doublyLinkedListAddAll(DoublyLinkedList *linkedList, void *items, int itemsLength) {
     if (linkedList == NULL) {
         printf("Illegal argument, the linked list is NULL.");
         exit(-1);
@@ -136,7 +143,7 @@ void linkedListAddAll(LinkedList *linkedList, void *items, int itemsLength) {
         void *item = (void *) malloc(linkedList->sizeOfType);
         memcpy(item, (items + i * linkedList->sizeOfType), linkedList->sizeOfType);
 
-        linkedListAddLast(linkedList, item);
+        doublyLinkedListAddLast(linkedList, item);
     }
 
 }
@@ -149,22 +156,23 @@ void linkedListAddAll(LinkedList *linkedList, void *items, int itemsLength) {
  * @param linkedList
  */
 
-void linkedListDeleteFirst(LinkedList *linkedList) {
+void doublyLinkedListDeleteFirst(DoublyLinkedList *linkedList) {
 
     if (linkedList == NULL) {
         printf("Illegal argument, the linked list is NULL.");
         exit(-1);
-    } else if (linkedListIsEmpty(linkedList)) {
+    } else if (doublyLinkedListIsEmpty(linkedList)) {
         printf("linked list is empty.");
         exit(-1);
     }
 
     Node *nodeToFree = linkedList->head;
     if (linkedList->head == linkedList->tail) {
-        linkedList->tail = NULL;
+        linkedList->head = linkedList->tail = NULL;
+    } else {
+        linkedList->head = linkedList->head->next;
+        linkedList->head->prevNode = NULL;
     }
-
-    linkedList->head = linkedList->head->next;
 
     linkedList->length--;
     free(nodeToFree->item);
@@ -179,33 +187,27 @@ void linkedListDeleteFirst(LinkedList *linkedList) {
  * @param linkedList
  */
 
-void linkedListDeleteLast(LinkedList *linkedList) {
+void doublyLinkedListDeleteLast(DoublyLinkedList *linkedList) {
 
     if (linkedList == NULL) {
         printf("Illegal argument, the linked list is NULL.");
         exit(-1);
-    } else if (linkedListIsEmpty(linkedList)) {
+    } else if (doublyLinkedListIsEmpty(linkedList)) {
         printf("linked list is empty.");
         exit(-1);
     }
 
-    Node *currentNode = linkedList->head;
-    Node *prevNode = NULL;
-    while (currentNode->next != NULL) {
-        prevNode = currentNode;
-        currentNode = currentNode->next;
+    Node *nodeToFree = linkedList->tail;
+    if (linkedList->head == linkedList->tail)
+        linkedList->head = linkedList->tail = NULL;
+    else {
+        linkedList->tail = nodeToFree->prevNode;
+        linkedList->tail->next = NULL;
     }
 
-    if (prevNode == NULL)
-        linkedList->head = NULL;
-    else
-        prevNode->next = NULL;
-
-    linkedList->tail = prevNode;
-
     linkedList->length--;
-    free(currentNode->item);
-    free(currentNode);
+    free(nodeToFree->item);
+    free(nodeToFree);
 }
 
 
@@ -218,28 +220,26 @@ void linkedListDeleteLast(LinkedList *linkedList) {
  * @param index
  */
 
-void linkedListDeleteAtIndex(LinkedList *linkedList, int index) {
+void doublyLinkedListDeleteAtIndex(DoublyLinkedList *linkedList, int index) {
     if (linkedList == NULL) {
         printf("Illegal argument, the linked list is NULL.");
         exit(-1);
-    } else if (index < 0 || index >= linkedListGetLength(linkedList)) {
+    } else if (index < 0 || index >= doublyLinkedListGetLength(linkedList)) {
         printf("index is out range of the linked list.");
         exit(-1);
     }
 
     Node *currentNode = linkedList->head;
-    Node *prevNode = NULL;
-    for (int i = 0; i < index; i++) {
-        prevNode = currentNode;
+    for (int i = 0; i < index; i++)
         currentNode = currentNode->next;
-    }
 
-    if (currentNode == linkedList->head)
-        linkedListDeleteFirst(linkedList);
-    else if (currentNode == linkedList->tail)
-        linkedListDeleteLast(linkedList);
+    if (currentNode == linkedList->head) //if the index == 0.
+        doublyLinkedListDeleteFirst(linkedList);
+    else if (currentNode == linkedList->tail) //if the index = length - 1.
+        doublyLinkedListDeleteLast(linkedList);
     else {
-        prevNode->next = currentNode->next;
+        currentNode->prevNode->next = currentNode->next;
+        currentNode->next->prevNode = currentNode->prevNode;
 
         linkedList->length--;
         free(currentNode->item);
@@ -260,8 +260,8 @@ void linkedListDeleteAtIndex(LinkedList *linkedList, int index) {
  * @return
  */
 
-int linkedListContains(LinkedList *linkedList, void *item,
-                       int (*comparator)(const void *, const void *)) {
+int doublyLinkedListContains(DoublyLinkedList *linkedList, void *item,
+                             int (*comparator)(const void *, const void *)) {
 
     if (linkedList == NULL) {
         printf("Illegal argument, the linked list is NULL.");
@@ -296,8 +296,8 @@ int linkedListContains(LinkedList *linkedList, void *item,
  * @return
  */
 
-int linkedListGetIndex(LinkedList *linkedList, void *item,
-                       int (*comparator)(const void *, const void *)) {
+int doublyLinkedListGetIndex(DoublyLinkedList *linkedList, void *item,
+                             int (*comparator)(const void *, const void *)) {
 
     if (linkedList == NULL) {
         printf("Illegal argument, the linked list is NULL.");
@@ -329,7 +329,7 @@ int linkedListGetIndex(LinkedList *linkedList, void *item,
  * @return
  */
 
-void *linkedListGetFirst(LinkedList *linkedList) {
+void *doublyLinkedListGetFirst(DoublyLinkedList *linkedList) {
 
     if (linkedList == NULL) {
         printf("Illegal argument, the linked list is NULL.");
@@ -349,7 +349,7 @@ void *linkedListGetFirst(LinkedList *linkedList) {
  * @return
  */
 
-void *linkedListGetLast(LinkedList *linkedList) {
+void *doublyLinkedListGetLast(DoublyLinkedList *linkedList) {
 
     if (linkedList == NULL) {
         printf("Illegal argument, the linked list is NULL.");
@@ -371,8 +371,8 @@ void *linkedListGetLast(LinkedList *linkedList) {
  * @return
  */
 
-void *linkedListGetItem(LinkedList *linkedList, void *item,
-                        int (*comparator)(const void *, const void *)) {
+void *doublyLinkedListGetItem(DoublyLinkedList *linkedList, void *item,
+                              int (*comparator)(const void *, const void *)) {
 
     if (linkedList == NULL) {
         printf("Illegal argument, the linked list is NULL.");
@@ -406,12 +406,12 @@ void *linkedListGetItem(LinkedList *linkedList, void *item,
  * @return
  */
 
-void *linkedListGet(LinkedList *linkedList, int index) {
+void *doublyLinkedListGet(DoublyLinkedList *linkedList, int index) {
 
     if (linkedList == NULL) {
         printf("Illegal argument, the linked list is NULL.");
         exit(-1);
-    } else if (index < 0 || index >= linkedListGetLength(linkedList)) {
+    } else if (index < 0 || index >= doublyLinkedListGetLength(linkedList)) {
         printf("index is out range of the linked list.");
         exit(-1);
     }
@@ -433,16 +433,16 @@ void *linkedListGet(LinkedList *linkedList, int index) {
  * @return
  */
 
-void *linkedListToArray(LinkedList *linkedList) {
+void *doublyLinkedListToArray(DoublyLinkedList *linkedList) {
     if (linkedList == NULL) {
         printf("Illegal argument, the linked list is NULL.");
         exit(-1);
     }
 
-    void *array = (void *) malloc(linkedList->sizeOfType * linkedListGetLength(linkedList));
+    void *array = (void *) malloc(linkedList->sizeOfType * doublyLinkedListGetLength(linkedList));
 
     Node *currentNode = linkedList->head;
-    for (int i = 0; i < linkedListGetLength(linkedList); i++) {
+    for (int i = 0; i < doublyLinkedListGetLength(linkedList); i++) {
         memcpy(array + i * linkedList->sizeOfType, currentNode->item, linkedList->sizeOfType);
 
         currentNode = currentNode->next;
@@ -460,7 +460,7 @@ void *linkedListToArray(LinkedList *linkedList) {
  * @return
  */
 
-int linkedListGetLength(LinkedList *linkedList) {
+int doublyLinkedListGetLength(DoublyLinkedList *linkedList) {
 
     if (linkedList == NULL) {
         printf("Illegal argument, the linked list is NULL.");
@@ -479,7 +479,7 @@ int linkedListGetLength(LinkedList *linkedList) {
  * @return
  */
 
-int linkedListIsEmpty(LinkedList *linkedList) {
+int doublyLinkedListIsEmpty(DoublyLinkedList *linkedList) {
 
     if (linkedList == NULL) {
         printf("Illegal argument, the linked list is NULL.");
@@ -497,7 +497,7 @@ int linkedListIsEmpty(LinkedList *linkedList) {
  * @param linkedList
  */
 
-void linkedListClear(LinkedList *linkedList) {
+void doublyLinkedListClear(DoublyLinkedList *linkedList) {
 
     if (linkedList == NULL) {
         printf("Illegal argument, the linked list is NULL.");
@@ -527,7 +527,7 @@ void linkedListClear(LinkedList *linkedList) {
  * @param linkedList
  */
 
-void destroyLinkedList(LinkedList *linkedList) {
+void destroyDoublyLinkedList(DoublyLinkedList *linkedList) {
 
     if (linkedList == NULL) {
         printf("Illegal argument, the linked list is NULL.");

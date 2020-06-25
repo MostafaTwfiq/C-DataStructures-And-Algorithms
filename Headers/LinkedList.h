@@ -1,7 +1,3 @@
-//
-// Created by mosta on 6/25/2020.
-//
-
 #ifndef C_DATASTRUCTURES_LINKEDLIST_H
 #define C_DATASTRUCTURES_LINKEDLIST_H
 
@@ -16,6 +12,7 @@ typedef struct LinkedList {
     int sizeOfType; //this field will be useful to know the size of the items in the linked list.
     int length;
 } LinkedList;
+
 
 LinkedList *linkedListInitialization(int sizeOfType);
 
