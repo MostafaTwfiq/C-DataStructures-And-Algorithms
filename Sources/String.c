@@ -56,10 +56,16 @@ void stringAddCharAtLast(String *myString, char c) {
  */
 
 void stringAddCharAtIndex(String *myString, int index, char c) {
-    if (myString == NULL || myString->count <= index || index < 0)
+    if (myString == NULL) {
+        printf("Illegal argument, the string is NULL.");
         exit(-2);
+    } else if (myString->count <= index || index < 0) {
+        printf("index is out of the string range.");
+        exit(-2);
+    }
 
     myString->string[index] = c;
+
 }
 
 
@@ -73,8 +79,13 @@ void stringAddCharAtIndex(String *myString, int index, char c) {
  */
 
 void stringRemoveCharAtIndex(String *myString, int index) {
-    if (myString == NULL || myString->count <= index || index < 0)
+    if (myString == NULL) {
+        printf("Illegal argument, the string is NULL.");
         exit(-2);
+    } else if (myString->count <= index || index < 0) {
+        printf("index is out of the string range.");
+        exit(-2);
+    }
 
     for (int i = index; i < myString->count; i++)
         myString->string[i] = myString->string[i + 1];
@@ -92,8 +103,10 @@ void stringRemoveCharAtIndex(String *myString, int index) {
  */
 
 void stringAddStringAtLast(String *myString, char *newString) {
-    if (myString == NULL || newString == NULL)
+    if (myString == NULL || newString == NULL) {
+        printf("Illegal argument, the string is NULL.");
         exit(-2);
+    }
 
     int newStringLength = strlen(newString);
     if (newStringLength > myString->length - myString->count) {
@@ -118,8 +131,10 @@ void stringAddStringAtLast(String *myString, char *newString) {
  */
 
 void stringChangeStringByCharArray(String *string, char *newString) {
-    if (string == NULL || newString == NULL)
+    if (string == NULL || newString == NULL) {
+        printf("Illegal argument, the string is NULL.");
         exit(-2);
+    }
 
     string->count = 0;
 
@@ -137,8 +152,10 @@ void stringChangeStringByCharArray(String *string, char *newString) {
  */
 
 void stringChangeStringByString(String *string, String *newString) {
-    if (string == NULL || newString == NULL)
+    if (string == NULL || newString == NULL) {
+        printf("Illegal argument, the string is NULL.");
         exit(-2);
+    }
 
     string->count = 0;
     string->string[string->count] = '\0';
@@ -161,8 +178,10 @@ void stringChangeStringByString(String *string, String *newString) {
  */
 
 int stringFindCharIndex(String *myString, char c) {
-    if (myString == NULL)
+    if (myString == NULL) {
+        printf("Illegal argument, the string is NULL.");
         exit(-2);
+    }
 
     for (int i = 0; i < myString->count; i++) {
         if (myString->string[i] == c)
@@ -185,8 +204,13 @@ int stringFindCharIndex(String *myString, char c) {
  */
 
 char stringGetCharAtIndex(String *myString, int index) {
-    if (myString == NULL || myString->count <= index || index < 0)
+    if (myString == NULL) {
+        printf("Illegal argument, the string is NULL.");
         exit(-2);
+    } else if (myString->count <= index || index < 0) {
+        printf("index is out of the string range.");
+        exit(-2);
+    }
 
     return myString->string[index];
 }
@@ -203,8 +227,10 @@ char stringGetCharAtIndex(String *myString, int index) {
  */
 
 int stringSubString(String *myString, char *string) {
-    if (myString == NULL || string == NULL)
+    if (myString == NULL || string == NULL) {
+        printf("Illegal argument, the string is NULL.");
         exit(-2);
+    }
 
     int stringLength = strlen(string);
 
@@ -235,8 +261,10 @@ int stringSubString(String *myString, char *string) {
  */
 
 char *stringToArrayOfCharacters(String *myString) {
-    if (myString == NULL)
+    if (myString == NULL) {
+        printf("Illegal argument, the string is NULL.");
         exit(-2);
+    }
 
     char *arrayOfCharacters = (char *) malloc(sizeof(char) * (myString->count + 1) );
 
@@ -259,8 +287,10 @@ char *stringToArrayOfCharacters(String *myString) {
  */
 
 char *stringGetStringBetweenTwoIndices(String *myString, int startIndex, int endIndex) {
-    if (myString == NULL)
+    if (myString == NULL) {
+        printf("Illegal argument, the string is NULL.");
         exit(-2);
+    }
 
     if (startIndex > endIndex
         || startIndex < 0 || startIndex >= myString->count
@@ -288,8 +318,10 @@ char *stringGetStringBetweenTwoIndices(String *myString, int startIndex, int end
  */
 
 int stringGetLength(String *myString) {
-    if (myString == NULL)
+    if (myString == NULL) {
+        printf("Illegal argument, the string is NULL.");
         exit(-2);
+    }
 
     return myString->count;
 }
@@ -306,8 +338,10 @@ int stringGetLength(String *myString) {
  */
 
 int stringIsEqualsToCharArray(String *myString, char *string) {
-    if (string == NULL)
-        return 0;
+    if (myString == NULL) {
+        printf("Illegal argument, the string is NULL.");
+        exit(-2);
+    }
 
     int stringLength = strlen(string);
     if (myString->count != stringLength)
@@ -335,8 +369,10 @@ int stringIsEqualsToCharArray(String *myString, char *string) {
  */
 
 int stringIsEqualsToMyString(String *myString, String *string) {
-    if (myString == NULL || string == NULL)
+    if (myString == NULL || string == NULL) {
+        printf("Illegal argument, the string is NULL.");
         exit(-2);
+    }
 
     int stringLength = stringGetLength(string);
     if (string == NULL || myString->count != stringLength)
@@ -400,8 +436,10 @@ void stringTrim(String *myString) {
  */
 
 void stringFGetS(String *myString) {
-    if (myString == NULL)
+    if (myString == NULL) {
+        printf("Illegal argument, the string is NULL.");
         exit(-2);
+    }
 
 
     char c;
@@ -427,8 +465,10 @@ void stringFGetS(String *myString) {
  */
 
 void destroyString(String *myString) {
-    if (myString == NULL)
+    if (myString == NULL) {
+        printf("Illegal argument, the string is NULL.");
         exit(-2);
+    }
 
     free(myString->string);
     free(myString);
