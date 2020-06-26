@@ -491,6 +491,22 @@ int doublyLinkedListIsEmpty(DoublyLinkedList *linkedList) {
 
 
 
+/** This method will take the linked list address, and the print function address, as a parameter,
+    then it will call thr print function and pass to it an item pointer to be printed.
+ * @param linkedList
+ * @param printFun
+ */
+
+void printDoublyLinkedList(DoublyLinkedList *linkedList, void (*printFun) (const void *)) {
+    Node *currentNode = linkedList->head;
+    while (currentNode != NULL) {
+        printFun(currentNode->item);
+        currentNode = currentNode->next;
+    }
+
+}
+
+
 
 /** This function will take the linked list address as a parameter,
     then it will delete and free all the items from the linked list.

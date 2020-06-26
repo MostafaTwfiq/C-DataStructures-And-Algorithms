@@ -63,6 +63,9 @@ int doublyLinkedListGetLength(DoublyLinkedList *linkedList);
 int doublyLinkedListIsEmpty(DoublyLinkedList *linkedList);
 
 
+void printDoublyLinkedList(DoublyLinkedList *linkedList, void (*printFun) (const void *));
+
+
 void doublyLinkedListClear(DoublyLinkedList *linkedList);
 
 

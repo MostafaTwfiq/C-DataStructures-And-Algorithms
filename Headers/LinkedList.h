@@ -62,6 +62,9 @@ int linkedListGetLength(LinkedList *linkedList);
 int linkedListIsEmpty(LinkedList *linkedList);
 
 
+void printLinkedList(LinkedList *linkedList, void (*printFun) (const void *));
+
+
 void linkedListClear(LinkedList *linkedList);
 
 
