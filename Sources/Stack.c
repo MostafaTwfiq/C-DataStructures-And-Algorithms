@@ -53,6 +53,7 @@ void pushStack(Stack* stack, void * data){
     }
 
     memcpy((stack->memory + ++stack->used*stack->sizeOfTypeOf),data,stack->sizeOfTypeOf);
+
     if(memcmp(stack->memory + stack->used*stack->sizeOfTypeOf,data,stack->sizeOfTypeOf)) {
         fprintf(stderr,"Failed at Copying data");
         exit(FAILED_COPY);
@@ -68,7 +69,7 @@ void* popStack(Stack* stack){
         fprintf(stderr,"Stack Param Cannot be Null");
         exit(NULL_POINTER);
     }
-    stack->used-=1;
+    stack->used--;
     return stack->memory+(stack->used+1)*stack->sizeOfTypeOf;
 }
 
