@@ -108,16 +108,11 @@ void stringAddStringAtLast(String *myString, char *newString) {
         exit(-2);
     }
 
-    int newStringLength = strlen(newString);
-    if (newStringLength > myString->length - myString->count) {
-        myString->length = ( myString->length + ( newStringLength - (myString->length - myString->count) ) ) * 2;
-        myString->string = realloc(myString->string, sizeof(char) * (myString->length + 1));
+    char *currentChar = newString;
+    while (*currentChar != '\0') {
+        stringAddCharAtLast(myString, *currentChar);
+        currentChar++;
     }
-
-    for (int i = 0; i < newStringLength; i++)
-        myString->string[myString->count++] = newString[i];
-
-    myString->string[myString->count] = '\0';
 
 }
 
