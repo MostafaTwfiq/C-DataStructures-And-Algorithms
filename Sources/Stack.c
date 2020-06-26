@@ -101,7 +101,7 @@ void StackClear(Stack* stack){
     }
     while(!isEmptyStack(stack)){
         void * res = popStack(stack);
-        res = NULL;
+        memset(res,0,stack->sizeOfTypeOf);
     }
 };
 
