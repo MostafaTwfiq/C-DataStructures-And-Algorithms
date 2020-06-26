@@ -24,4 +24,8 @@ add_executable(C_DataStructures main.c
         Headers/Vector.h
 
         Sources/DLinkedListStack.c
-        Headers/DLinkedListStack.h)
+        Headers/DLinkedListStack.h
+
+        Sources/LinkedListQueue.c
+        Headers/LinkedListQueue.h
+        )
