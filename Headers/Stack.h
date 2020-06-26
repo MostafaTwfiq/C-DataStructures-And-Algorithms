@@ -17,7 +17,7 @@ typedef enum ERROR {
  *  @var Stack:: memory
  *  Member 'memory' is a pointer to the the stacks memory.
  *  @var Stack::allocated
- *  Member 'allocated' holds the current max allocated size forr the stack.
+ *  Member 'allocated' holds the current max allocated size for the stack.
  *  @var Stack::top
  *  Member 'top' holds the index to the top most stored value.
  *  @var Stack::sizeOfType
