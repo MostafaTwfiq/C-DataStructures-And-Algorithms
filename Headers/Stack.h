@@ -12,6 +12,17 @@ typedef enum ERROR {
     NULL_POINTER          = -5
 }ERROR;
 
+/** @struct Stack
+ *  @brief This structure blah blah blah...
+ *  @var Stack:: memory
+ *  Member 'memory' is a pointer to the the stacks memory.
+ *  @var Stack::allocated
+ *  Member 'allocated' holds the current max allocated size forr the stack.
+ *  @var Stack::top
+ *  Member 'top' holds the index to the top most stored value.
+ *  @var Stack::sizeOfType
+ *  Member 'sizeOfType' the size of the data stored in the stack.
+ */
 typedef struct Stack {
     void* memory;
     int allocated;

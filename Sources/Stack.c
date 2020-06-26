@@ -1,8 +1,9 @@
 #include "../Headers/Stack.h"
 
-/// Allocates space for the stack on the heap.
-/// \param size Size of the daata to be stored on to the stack.
-/// \return Pointer to the stack dtored on the heap.
+/* Allocates space for the stack on the heap.
+ * @param size Size of the daata to be stored on to the stack.
+ * @return Pointer to the stack dtored on the heap.
+ **/
 Stack* StackInitalization( int size ) {
 
     if( !size ) {
@@ -29,9 +30,10 @@ Stack* StackInitalization( int size ) {
     return s;
 }
 
-/// Pushes data on top of the stack.
-/// \param stack Pointer to the stack on the heap.
-/// \param data pointer to data to be stored on top of the stack.
+/* Pushes data on top of the stack.
+ * @param stack Pointer to the stack on the heap.
+ * @param data pointer to data to be stored on top of the stack.
+ **/
 void pushStack( Stack* stack ,  void * data ) {
     if( !stack || !data ) {
         fprintf( stderr , "Param Cannot be Null" );
@@ -58,10 +60,11 @@ void pushStack( Stack* stack ,  void * data ) {
 
 }
 
-/// Pops data off the stack and returns a pointer refrence to it.
-/// \param stack  Pointer to the stack on the heap.
-/// \return Pointer to data that was stored on top of the stack.
-void* popStack( Stack* stack ) {
+/* Pops data off the stack and returns a pointer refrence to it.
+ *  @param stack  Pointer to the stack on the heap.
+ *  @return Pointer to data that was stored on top of the stack.
+ **/
+ void* popStack( Stack* stack ) {
     if( !stack ) {
         fprintf( stderr , "Stack Param Cannot be Null" );
         exit( NULL_POINTER );
@@ -70,9 +73,10 @@ void* popStack( Stack* stack ) {
     return stack->memory+ (stack->top + 1 ) * stack->sizeOfType;
 }
 
-/// Takes a reference to a stack and returns whether the stack is Empty or not.
-/// \param stack  Pointer to the stack on the heap.
-/// \return 1 if Empty else 0.
+/* Takes a reference to a stack and returns whether the stack is Empty or not.
+ * @param stack  Pointer to the stack on the heap.
+ * @return 1 if Empty else 0.
+ **/
 short isEmptyStack( Stack* stack ) {
     if( !stack ) {
         fprintf( stderr , "Stack Param Cannot be Null" );
@@ -81,9 +85,10 @@ short isEmptyStack( Stack* stack ) {
     return (stack->top == -1 );
 }
 
-/// Takes a reference to a stack and returns the top most stored value.
-/// \param stack  Pointer to the stack on the heap.
-/// \return Returns a pointer to the top stored value on top of the stack.
+/* Takes a reference to a stack and returns the top most stored value.
+ * @param stack  Pointer to the stack on the heap.
+ * @return Returns a pointer to the top stored value on top of the stack.
+ **/
 void* peekStack( Stack* stack ) {
     if( !stack ) {
         fprintf( stderr , "Stack Param Cannot be Null" );
@@ -92,8 +97,9 @@ void* peekStack( Stack* stack ) {
     return (stack->top == -1 ) ? NULL : stack->memory + stack->top * stack->sizeOfType;
 }
 
-/// Clear the Stack from it's stored values popping them continuously. Stack can be later top after clear.
-/// \param stack Reference pointer to a Stack.
+/* Clear the Stack from it's stored values popping them continuously. Stack can be later top after clear.
+ * @param stack Reference pointer to a Stack.
+ **/
 void StackClear( Stack* stack ) {
     if( !stack ) {
         fprintf( stderr , "Stack Param Cannot be Null" );
@@ -105,8 +111,9 @@ void StackClear( Stack* stack ) {
     }
 };
 
-/// Clears and Destroys the Stack. StacK cannot be top after being destroyed.
-/// \param stack Reference pointer to a Stack.
+/* Clears and Destroys the Stack. StacK cannot be top after being destroyed.
+ * @param stack Reference pointer to a Stack.
+ **/
 void StackDestroy( Stack* stack ) {
     if( !stack ) {
         fprintf( stderr , "Stack Param Cannot be Null" );
