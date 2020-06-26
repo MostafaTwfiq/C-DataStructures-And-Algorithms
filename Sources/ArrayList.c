@@ -32,7 +32,7 @@ ArrayList *arrayListInitialization(int initialLength, int sizeOfType) {
 void arrayListAdd(ArrayList *list, void *item) {
 
     if (list == NULL) {
-        printf("Illegal argument, the array list is NULL.");
+         fprintf(stderr,"Illegal argument, the array list is NULL.");
         exit(-3);
     }
 
@@ -57,7 +57,7 @@ void arrayListAdd(ArrayList *list, void *item) {
 
 void arrayListAddAll(ArrayList *list, void *array, int arrayLength) {
     if (list == NULL || array == NULL) {
-        printf("Illegal argument, the array list is NULL.");
+         fprintf(stderr,"Illegal argument, the array list is NULL.");
         exit(-3);
     }
 
@@ -86,10 +86,10 @@ void arrayListAddAll(ArrayList *list, void *array, int arrayLength) {
 
 void arrayListRemove(ArrayList *list) {
     if (list == NULL) {
-        printf("Illegal argument, the array list is NULL.");
+         fprintf(stderr,"Illegal argument, the array list is NULL.");
         exit(-3);
     } else if (arrayListIsEmpty(list)) {
-        printf("Array list out of range.");
+         fprintf(stderr,"Array list out of range.");
         exit(-3);
     }
 
@@ -110,10 +110,10 @@ void arrayListRemove(ArrayList *list) {
 
 void arrayListRemoveAtIndex(ArrayList *list, int index) {
     if (list == NULL) {
-        printf("Illegal argument, the array list is NULL.");
+         fprintf(stderr,"Illegal argument, the array list is NULL.");
         exit(-3);
     } else if (index < 0 || index >= arrayListGetLength(list)) {
-        printf("Index out of array list range.");
+         fprintf(stderr,"Index out of array list range.");
         exit(-3);
     }
 
@@ -144,7 +144,7 @@ int arrayListContains(ArrayList *list, void *item,
         int (*comparator)(const void *, const void *)) {
 
     if (list == NULL) {
-        printf("Illegal argument, the array list is NULL.");
+         fprintf(stderr,"Illegal argument, the array list is NULL.");
         exit(-3);
     }
 
@@ -176,7 +176,7 @@ int arrayListGetIndex(ArrayList *list, void *item,
                       int (*comparator)(const void *, const void *)) {
 
     if (list == NULL) {
-        printf("Illegal argument, the array list is NULL.");
+         fprintf(stderr,"Illegal argument, the array list is NULL.");
         exit(-3);
     }
 
@@ -208,7 +208,7 @@ int arrayListGetLastIndex(ArrayList *list, void *item,
                       int (*comparator)(const void *, const void *)) {
 
     if (list == NULL) {
-        printf("Illegal argument, the array list is NULL.");
+         fprintf(stderr,"Illegal argument, the array list is NULL.");
         exit(-3);
     }
 
@@ -237,10 +237,10 @@ int arrayListGetLastIndex(ArrayList *list, void *item,
 
 void *arrayListGet(ArrayList *list, int index) {
     if (list == NULL) {
-        printf("Illegal argument, the array list is NULL.");
+         fprintf(stderr,"Illegal argument, the array list is NULL.");
         exit(-3);
     } else if (index < 0 || index >= arrayListGetLength(list)) {
-        printf("Index out of array list range.");
+         fprintf(stderr,"Index out of array list range.");
         exit(-3);
     }
 
@@ -260,7 +260,7 @@ void *arrayListGet(ArrayList *list, int index) {
 void *arrayListToArray(ArrayList *list) {
 
     if (list == NULL) {
-        printf("Illegal argument, the array list is NULL.");
+         fprintf(stderr,"Illegal argument, the array list is NULL.");
         exit(-3);
     }
 
@@ -288,10 +288,10 @@ void *arrayListToArray(ArrayList *list) {
 void *arrayListToSubArray(ArrayList *list, int start, int end) {
 
     if (list == NULL) {
-        printf("Illegal argument, the array list is NULL.");
+         fprintf(stderr,"Illegal argument, the array list is NULL.");
         exit(-3);
     } else if (start < 0 || end > arrayListGetLength(list) || start > end) {
-        printf("Index out of array list range.");
+         fprintf(stderr,"Index out of array list range.");
         exit(-3);
     }
 
@@ -331,7 +331,7 @@ void arrayListSort(ArrayList *list, int (*comparator)(const void *, const void *
 int arrayListGetLength(ArrayList *list) {
 
     if (list == NULL) {
-        printf("Illegal argument, the array list is NULL.");
+         fprintf(stderr,"Illegal argument, the array list is NULL.");
         exit(-3);
     }
 
@@ -351,7 +351,7 @@ int arrayListGetLength(ArrayList *list) {
 int arrayListIsEmpty(ArrayList *list) {
 
     if (list == NULL) {
-        printf("Illegal argument, the array list is NULL.");
+         fprintf(stderr,"Illegal argument, the array list is NULL.");
         exit(-3);
     }
 
@@ -369,7 +369,7 @@ int arrayListIsEmpty(ArrayList *list) {
 
 void printArrayList(ArrayList *list, void (*printFun) (const void *)) {
     if (list == NULL) {
-        printf("Illegal argument, the array list is NULL.");
+         fprintf(stderr,"Illegal argument, the array list is NULL.");
         exit(-3);
     }
 
@@ -391,7 +391,7 @@ void printArrayList(ArrayList *list, void (*printFun) (const void *)) {
 void clearArrayList(ArrayList *list) {
 
     if (list == NULL) {
-        printf("Illegal argument, the array list is NULL.");
+         fprintf(stderr,"Illegal argument, the array list is NULL.");
         exit(-3);
     }
 
@@ -413,7 +413,7 @@ void clearArrayList(ArrayList *list) {
 void destroyArrayList(ArrayList *list) {
 
     if (list == NULL) {
-        printf("Illegal argument, the array list is NULL.");
+         fprintf(stderr,"Illegal argument, the array list is NULL.");
         exit(-3);
     }
 

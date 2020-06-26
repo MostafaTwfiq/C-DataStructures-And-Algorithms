@@ -23,14 +23,14 @@ DLinkedListStack *dlStackInitialization(int sizeOfType) {
 
 
 /** This function will take the stack address, and the item address a a parameters,
-    then it will push the item into the stack.
+    then it will pushStack the item into the stack.
  * @param stack
  * @param item
  */
 
 void dlStackPush(DLinkedListStack *stack, void *item) {
     if (stack == NULL) {
-        printf("Illegal argument, the stack is NULL.");
+         fprintf(stderr,"Illegal argument, the stack is NULL.");
         exit(-4);
     }
 
@@ -52,10 +52,10 @@ void dlStackPush(DLinkedListStack *stack, void *item) {
 void *dlStackPop(DLinkedListStack *stack) {
 
     if (stack == NULL) {
-        printf("Illegal argument, the stack is NULL.");
+         fprintf(stderr,"Illegal argument, the stack is NULL.");
         exit(-4);
     } else if (dlStackIsEmpty(stack)) {
-        printf("Illegal state, the stack is empty.");
+         fprintf(stderr,"Illegal state, the stack is empty.");
         exit(-4);
     }
 
@@ -79,10 +79,10 @@ void *dlStackPop(DLinkedListStack *stack) {
 void *dlStackPeek(DLinkedListStack *stack) {
 
     if (stack == NULL) {
-        printf("Illegal argument, the stack is NULL.");
+         fprintf(stderr,"Illegal argument, the stack is NULL.");
         exit(-4);
     } else if (dlStackIsEmpty(stack)) {
-        printf("Illegal state, the stack is empty.");
+         fprintf(stderr,"Illegal state, the stack is empty.");
         exit(-4);
     }
 

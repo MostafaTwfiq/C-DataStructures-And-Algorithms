@@ -32,7 +32,7 @@ LinkedList *linkedListInitialization(int sizeOfType) {
 
 void linkedListAddFirst(LinkedList *linkedList, void *item) {
     if (linkedList == NULL) {
-        printf("Illegal argument, the linked list is NULL.");
+         fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
     }
 
@@ -58,7 +58,7 @@ void linkedListAddFirst(LinkedList *linkedList, void *item) {
 
 void linkedListAddLast(LinkedList *linkedList, void *item) {
     if (linkedList == NULL) {
-        printf("Illegal argument, the linked list is NULL.");
+         fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
     }
 
@@ -88,10 +88,10 @@ void linkedListAddLast(LinkedList *linkedList, void *item) {
 
 void linkedListAddAtIndex(LinkedList *linkedList, int index, void *item) {
     if (linkedList == NULL) {
-        printf("Illegal argument, the linked list is NULL.");
+         fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
     } else if (index < 0 || index >= linkedListGetLength(linkedList)) {
-        printf("index is out range of the linked list.");
+         fprintf(stderr,"index is out range of the linked list.");
         exit(-1);
     }
 
@@ -128,7 +128,7 @@ void linkedListAddAtIndex(LinkedList *linkedList, int index, void *item) {
 
 void linkedListAddAll(LinkedList *linkedList, void *items, int itemsLength) {
     if (linkedList == NULL) {
-        printf("Illegal argument, the linked list is NULL.");
+         fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
     }
 
@@ -152,10 +152,10 @@ void linkedListAddAll(LinkedList *linkedList, void *items, int itemsLength) {
 void linkedListDeleteFirst(LinkedList *linkedList) {
 
     if (linkedList == NULL) {
-        printf("Illegal argument, the linked list is NULL.");
+         fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
     } else if (linkedListIsEmpty(linkedList)) {
-        printf("linked list is empty.");
+         fprintf(stderr,"linked list is empty.");
         exit(-1);
     }
 
@@ -182,10 +182,10 @@ void linkedListDeleteFirst(LinkedList *linkedList) {
 void linkedListDeleteFirstWtFr(LinkedList *linkedList) {
 
     if (linkedList == NULL) {
-        printf("Illegal argument, the linked list is NULL.");
+         fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
     } else if (linkedListIsEmpty(linkedList)) {
-        printf("linked list is empty.");
+         fprintf(stderr,"linked list is empty.");
         exit(-1);
     }
 
@@ -211,10 +211,10 @@ void linkedListDeleteFirstWtFr(LinkedList *linkedList) {
 void linkedListDeleteLast(LinkedList *linkedList) {
 
     if (linkedList == NULL) {
-        printf("Illegal argument, the linked list is NULL.");
+         fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
     } else if (linkedListIsEmpty(linkedList)) {
-        printf("linked list is empty.");
+         fprintf(stderr,"linked list is empty.");
         exit(-1);
     }
 
@@ -248,10 +248,10 @@ void linkedListDeleteLast(LinkedList *linkedList) {
 void linkedListDeleteLastWtFr(LinkedList *linkedList) {
 
     if (linkedList == NULL) {
-        printf("Illegal argument, the linked list is NULL.");
+         fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
     } else if (linkedListIsEmpty(linkedList)) {
-        printf("linked list is empty.");
+         fprintf(stderr,"linked list is empty.");
         exit(-1);
     }
 
@@ -286,10 +286,10 @@ void linkedListDeleteLastWtFr(LinkedList *linkedList) {
 
 void linkedListDeleteAtIndex(LinkedList *linkedList, int index) {
     if (linkedList == NULL) {
-        printf("Illegal argument, the linked list is NULL.");
+         fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
     } else if (index < 0 || index >= linkedListGetLength(linkedList)) {
-        printf("index is out range of the linked list.");
+         fprintf(stderr,"index is out range of the linked list.");
         exit(-1);
     }
 
@@ -326,10 +326,10 @@ void linkedListDeleteAtIndex(LinkedList *linkedList, int index) {
 
 void linkedListDeleteAtIndexWtFr(LinkedList *linkedList, int index) {
     if (linkedList == NULL) {
-        printf("Illegal argument, the linked list is NULL.");
+         fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
     } else if (index < 0 || index >= linkedListGetLength(linkedList)) {
-        printf("index is out range of the linked list.");
+         fprintf(stderr,"index is out range of the linked list.");
         exit(-1);
     }
 
@@ -371,10 +371,10 @@ int linkedListContains(LinkedList *linkedList, void *item,
                        int (*comparator)(const void *, const void *)) {
 
     if (linkedList == NULL) {
-        printf("Illegal argument, the linked list is NULL.");
+         fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
     } else if (comparator == NULL) {
-        printf("Illegal argument, the comparator function is NULL.");
+         fprintf(stderr,"Illegal argument, the comparator function is NULL.");
         exit(-1);
     }
 
@@ -407,10 +407,10 @@ int linkedListGetIndex(LinkedList *linkedList, void *item,
                        int (*comparator)(const void *, const void *)) {
 
     if (linkedList == NULL) {
-        printf("Illegal argument, the linked list is NULL.");
+         fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
     } else if (comparator == NULL) {
-        printf("Illegal argument, the comparator function is NULL.");
+         fprintf(stderr,"Illegal argument, the comparator function is NULL.");
         exit(-1);
     }
 
@@ -439,7 +439,7 @@ int linkedListGetIndex(LinkedList *linkedList, void *item,
 void *linkedListGetFirst(LinkedList *linkedList) {
 
     if (linkedList == NULL) {
-        printf("Illegal argument, the linked list is NULL.");
+         fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
     }
 
@@ -459,7 +459,7 @@ void *linkedListGetFirst(LinkedList *linkedList) {
 void *linkedListGetLast(LinkedList *linkedList) {
 
     if (linkedList == NULL) {
-        printf("Illegal argument, the linked list is NULL.");
+         fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
     }
 
@@ -482,10 +482,10 @@ void *linkedListGetItem(LinkedList *linkedList, void *item,
                         int (*comparator)(const void *, const void *)) {
 
     if (linkedList == NULL) {
-        printf("Illegal argument, the linked list is NULL.");
+         fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
     } else if (comparator == NULL) {
-        printf("Illegal argument, the comparator function is NULL.");
+         fprintf(stderr,"Illegal argument, the comparator function is NULL.");
         exit(-1);
     }
 
@@ -516,10 +516,10 @@ void *linkedListGetItem(LinkedList *linkedList, void *item,
 void *linkedListGet(LinkedList *linkedList, int index) {
 
     if (linkedList == NULL) {
-        printf("Illegal argument, the linked list is NULL.");
+         fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
     } else if (index < 0 || index >= linkedListGetLength(linkedList)) {
-        printf("index is out range of the linked list.");
+         fprintf(stderr,"index is out range of the linked list.");
         exit(-1);
     }
 
@@ -542,7 +542,7 @@ void *linkedListGet(LinkedList *linkedList, int index) {
 
 void *linkedListToArray(LinkedList *linkedList) {
     if (linkedList == NULL) {
-        printf("Illegal argument, the linked list is NULL.");
+         fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
     }
 
@@ -570,7 +570,7 @@ void *linkedListToArray(LinkedList *linkedList) {
 int linkedListGetLength(LinkedList *linkedList) {
 
     if (linkedList == NULL) {
-        printf("Illegal argument, the linked list is NULL.");
+         fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
     }
 
@@ -589,7 +589,7 @@ int linkedListGetLength(LinkedList *linkedList) {
 int linkedListIsEmpty(LinkedList *linkedList) {
 
     if (linkedList == NULL) {
-        printf("Illegal argument, the linked list is NULL.");
+         fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
     }
 
@@ -625,7 +625,7 @@ void printLinkedList(LinkedList *linkedList, void (*printFun) (const void *)) {
 void linkedListClear(LinkedList *linkedList) {
 
     if (linkedList == NULL) {
-        printf("Illegal argument, the linked list is NULL.");
+         fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
     }
 
@@ -655,7 +655,7 @@ void linkedListClear(LinkedList *linkedList) {
 void destroyLinkedList(LinkedList *linkedList) {
 
     if (linkedList == NULL) {
-        printf("Illegal argument, the linked list is NULL.");
+         fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
     }
 

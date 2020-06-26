@@ -32,7 +32,7 @@ Vector *vectorInitialization(int initialLength, int sizeOfType) {
 void vectorAdd(Vector *list, void *item) {
 
     if (list == NULL) {
-        printf("Illegal argument, the vector is NULL.");
+         fprintf(stderr,"Illegal argument, the vector is NULL.");
         exit(-3);
     }
 
@@ -57,7 +57,7 @@ void vectorAdd(Vector *list, void *item) {
 
 void vectorAddAll(Vector *list, void *array, int arrayLength) {
     if (list == NULL || array == NULL) {
-        printf("Illegal argument, the vector is NULL.");
+         fprintf(stderr,"Illegal argument, the vector is NULL.");
         exit(-3);
     }
 
@@ -86,10 +86,10 @@ void vectorAddAll(Vector *list, void *array, int arrayLength) {
 
 void vectorRemove(Vector *list) {
     if (list == NULL) {
-        printf("Illegal argument, the vector is NULL.");
+         fprintf(stderr,"Illegal argument, the vector is NULL.");
         exit(-3);
     } else if (vectorGetLength(list)) {
-        printf("Vector out of range.");
+         fprintf(stderr,"Vector out of range.");
         exit(-3);
     }
 
@@ -110,10 +110,10 @@ void vectorRemove(Vector *list) {
 
 void vectorRemoveAtIndex(Vector *list, int index) {
     if (list == NULL) {
-        printf("Illegal argument, the vector is NULL.");
+         fprintf(stderr,"Illegal argument, the vector is NULL.");
         exit(-3);
     } else if (index < 0 || index >= vectorGetLength(list)) {
-        printf("Index out of vector range.");
+         fprintf(stderr,"Index out of vector range.");
         exit(-3);
     }
 
@@ -144,7 +144,7 @@ int vectorContains(Vector *list, void *item,
                       int (*comparator)(const void *, const void *)) {
 
     if (list == NULL) {
-        printf("Illegal argument, the vector is NULL.");
+         fprintf(stderr,"Illegal argument, the vector is NULL.");
         exit(-3);
     }
 
@@ -176,7 +176,7 @@ int vectorGetIndex(Vector *list, void *item,
                       int (*comparator)(const void *, const void *)) {
 
     if (list == NULL) {
-        printf("Illegal argument, the vector is NULL.");
+         fprintf(stderr,"Illegal argument, the vector is NULL.");
         exit(-3);
     }
 
@@ -208,7 +208,7 @@ int vectorGetLastIndex(Vector *list, void *item,
                           int (*comparator)(const void *, const void *)) {
 
     if (list == NULL) {
-        printf("Illegal argument, the vector is NULL.");
+         fprintf(stderr,"Illegal argument, the vector is NULL.");
         exit(-3);
     }
 
@@ -237,10 +237,10 @@ int vectorGetLastIndex(Vector *list, void *item,
 
 void *vectorGet(Vector *list, int index) {
     if (list == NULL) {
-        printf("Illegal argument, the vector is NULL.");
+         fprintf(stderr,"Illegal argument, the vector is NULL.");
         exit(-3);
     } else if (index < 0 || index >= vectorGetLength(list)) {
-        printf("Index out of vector range.");
+         fprintf(stderr,"Index out of vector range.");
         exit(-3);
     }
 
@@ -260,7 +260,7 @@ void *vectorGet(Vector *list, int index) {
 void *vectorToArray(Vector *list) {
 
     if (list == NULL) {
-        printf("Illegal argument, the vector is NULL.");
+         fprintf(stderr,"Illegal argument, the vector is NULL.");
         exit(-3);
     }
 
@@ -288,10 +288,10 @@ void *vectorToArray(Vector *list) {
 void *vectorToSubArray(Vector *list, int start, int end) {
 
     if (list == NULL) {
-        printf("Illegal argument, the vector is NULL.");
+         fprintf(stderr,"Illegal argument, the vector is NULL.");
         exit(-3);
     } else if (start < 0 || end > vectorGetLength(list) || start > end) {
-        printf("Index out of vector range.");
+         fprintf(stderr,"Index out of vector range.");
         exit(-3);
     }
 
@@ -331,7 +331,7 @@ void vectorSort(Vector *list, int (*comparator)(const void *, const void *)) {
 int vectorGetLength(Vector *list) {
 
     if (list == NULL) {
-        printf("Illegal argument, the vector is NULL.");
+         fprintf(stderr,"Illegal argument, the vector is NULL.");
         exit(-3);
     }
 
@@ -351,7 +351,7 @@ int vectorGetLength(Vector *list) {
 int vectorIsEmpty(Vector *list) {
 
     if (list == NULL) {
-        printf("Illegal argument, the vector is NULL.");
+         fprintf(stderr,"Illegal argument, the vector is NULL.");
         exit(-3);
     }
 
@@ -369,7 +369,7 @@ int vectorIsEmpty(Vector *list) {
 
 void printVector(Vector *list, void (*printFun) (const void *)) {
     if (list == NULL) {
-        printf("Illegal argument, the vector is NULL.");
+         fprintf(stderr,"Illegal argument, the vector is NULL.");
         exit(-3);
     }
 
@@ -391,7 +391,7 @@ void printVector(Vector *list, void (*printFun) (const void *)) {
 void clearVector(Vector *list) {
 
     if (list == NULL) {
-        printf("Illegal argument, the vector is NULL.");
+         fprintf(stderr,"Illegal argument, the vector is NULL.");
         exit(-3);
     }
 
@@ -413,7 +413,7 @@ void clearVector(Vector *list) {
 void destroyVector(Vector *list) {
 
     if (list == NULL) {
-        printf("Illegal argument, the vector is NULL.");
+         fprintf(stderr,"Illegal argument, the vector is NULL.");
         exit(-3);
     }
 
