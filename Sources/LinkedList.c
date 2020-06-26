@@ -175,6 +175,35 @@ void linkedListDeleteFirst(LinkedList *linkedList) {
 
 
 /** This function will take the linked list address as a parameter,
+ * then it will delete and free only the node without the item of the first element from the linked list.
+ * @param linkedList
+ */
+
+void linkedListDeleteFirstWtFr(LinkedList *linkedList) {
+
+    if (linkedList == NULL) {
+        printf("Illegal argument, the linked list is NULL.");
+        exit(-1);
+    } else if (linkedListIsEmpty(linkedList)) {
+        printf("linked list is empty.");
+        exit(-1);
+    }
+
+    Node *nodeToFree = linkedList->head;
+    if (linkedList->head == linkedList->tail) {
+        linkedList->tail = NULL;
+    }
+
+    linkedList->head = linkedList->head->next;
+
+    linkedList->length--;
+    free(nodeToFree);
+}
+
+
+
+
+/** This function will take the linked list address as a parameter,
     then it will delete and free the last element from the linked list.
  * @param linkedList
  */
@@ -207,6 +236,43 @@ void linkedListDeleteLast(LinkedList *linkedList) {
     free(currentNode->item);
     free(currentNode);
 }
+
+
+
+
+/** This function will take the linked list address as a parameter,
+    then it will delete and free only the node without the item of the last element from the linked list.
+ * @param linkedList
+ */
+
+void linkedListDeleteLastWtFr(LinkedList *linkedList) {
+
+    if (linkedList == NULL) {
+        printf("Illegal argument, the linked list is NULL.");
+        exit(-1);
+    } else if (linkedListIsEmpty(linkedList)) {
+        printf("linked list is empty.");
+        exit(-1);
+    }
+
+    Node *currentNode = linkedList->head;
+    Node *prevNode = NULL;
+    while (currentNode->next != NULL) {
+        prevNode = currentNode;
+        currentNode = currentNode->next;
+    }
+
+    if (prevNode == NULL)
+        linkedList->head = NULL;
+    else
+        prevNode->next = NULL;
+
+    linkedList->tail = prevNode;
+
+    linkedList->length--;
+    free(currentNode);
+}
+
 
 
 
@@ -247,6 +313,47 @@ void linkedListDeleteAtIndex(LinkedList *linkedList, int index) {
     }
 
 }
+
+
+
+
+/** This function will take the linked list address, and the index as parameters,
+    then it will delete and free only the node without the item of the item in this index.
+ * If the index is out of the linked list rang then the program will be terminated.
+ * @param linkedList
+ * @param index
+ */
+
+void linkedListDeleteAtIndexWtFr(LinkedList *linkedList, int index) {
+    if (linkedList == NULL) {
+        printf("Illegal argument, the linked list is NULL.");
+        exit(-1);
+    } else if (index < 0 || index >= linkedListGetLength(linkedList)) {
+        printf("index is out range of the linked list.");
+        exit(-1);
+    }
+
+    Node *currentNode = linkedList->head;
+    Node *prevNode = NULL;
+    for (int i = 0; i < index; i++) {
+        prevNode = currentNode;
+        currentNode = currentNode->next;
+    }
+
+    if (currentNode == linkedList->head)
+        linkedListDeleteFirstWtFr(linkedList);
+    else if (currentNode == linkedList->tail)
+        linkedListDeleteLastWtFr(linkedList);
+    else {
+        prevNode->next = currentNode->next;
+
+        linkedList->length--;
+        free(currentNode);
+    }
+
+}
+
+
 
 
 
@@ -336,7 +443,7 @@ void *linkedListGetFirst(LinkedList *linkedList) {
         exit(-1);
     }
 
-    return linkedList->head;
+    return linkedList->head->item;
 }
 
 
@@ -356,7 +463,7 @@ void *linkedListGetLast(LinkedList *linkedList) {
         exit(-1);
     }
 
-    return linkedList->tail;
+    return linkedList->tail->item;
 }
 
 
@@ -564,4 +671,5 @@ void destroyLinkedList(LinkedList *linkedList) {
     }
 
     free(linkedList);
+
 }

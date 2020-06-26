@@ -29,10 +29,19 @@ void linkedListAddAtIndex(LinkedList *linkedList, int index, void *item);
 void linkedListDeleteFirst(LinkedList *linkedList);
 
 
+void linkedListDeleteFirstWtFr(LinkedList *linkedList);
+
+
 void linkedListDeleteLast(LinkedList *linkedList);
 
 
+void linkedListDeleteLastWtFr(LinkedList *linkedList);
+
+
 void linkedListDeleteAtIndex(LinkedList *linkedList, int index);
+
+
+void linkedListDeleteAtIndexWtFr(LinkedList *linkedList, int index);
 
 
 int linkedListContains(LinkedList *linkedList, void *item, int (*comparator)(const void *, const void *));

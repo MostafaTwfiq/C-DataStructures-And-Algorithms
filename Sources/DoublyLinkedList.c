@@ -183,6 +183,36 @@ void doublyLinkedListDeleteFirst(DoublyLinkedList *linkedList) {
 
 
 /** This function will take the linked list address as a parameter,
+ * then it will delete and free only the node without the item of the first element from the linked list.
+ * @param linkedList
+ */
+
+void doublyLinkedListDeleteFirstWtFr(DoublyLinkedList *linkedList) {
+
+    if (linkedList == NULL) {
+        printf("Illegal argument, the linked list is NULL.");
+        exit(-1);
+    } else if (doublyLinkedListIsEmpty(linkedList)) {
+        printf("linked list is empty.");
+        exit(-1);
+    }
+
+    Node *nodeToFree = linkedList->head;
+    if (linkedList->head == linkedList->tail) {
+        linkedList->head = linkedList->tail = NULL;
+    } else {
+        linkedList->head = linkedList->head->next;
+        linkedList->head->prevNode = NULL;
+    }
+
+    linkedList->length--;
+    free(nodeToFree);
+}
+
+
+
+
+/** This function will take the linked list address as a parameter,
     then it will delete and free the last element from the linked list.
  * @param linkedList
  */
@@ -207,6 +237,36 @@ void doublyLinkedListDeleteLast(DoublyLinkedList *linkedList) {
 
     linkedList->length--;
     free(nodeToFree->item);
+    free(nodeToFree);
+}
+
+
+
+
+/** This function will take the linked list address as a parameter,
+    then it will delete and free only the node without the item of the last element from the linked list.
+ * @param linkedList
+ */
+
+void doublyLinkedListDeleteLastWtFr(DoublyLinkedList *linkedList) {
+
+    if (linkedList == NULL) {
+        printf("Illegal argument, the linked list is NULL.");
+        exit(-1);
+    } else if (doublyLinkedListIsEmpty(linkedList)) {
+        printf("linked list is empty.");
+        exit(-1);
+    }
+
+    Node *nodeToFree = linkedList->tail;
+    if (linkedList->head == linkedList->tail)
+        linkedList->head = linkedList->tail = NULL;
+    else {
+        linkedList->tail = nodeToFree->prevNode;
+        linkedList->tail->next = NULL;
+    }
+
+    linkedList->length--;
     free(nodeToFree);
 }
 
@@ -247,6 +307,44 @@ void doublyLinkedListDeleteAtIndex(DoublyLinkedList *linkedList, int index) {
     }
 
 }
+
+
+
+
+/** This function will take the linked list address, and the index as parameters,
+    then it will delete and free only the node without the item of the item in this index.
+ * If the index is out of the linked list rang then the program will be terminated.
+ * @param linkedList
+ * @param index
+ */
+
+void doublyLinkedListDeleteAtIndexWtFr(DoublyLinkedList *linkedList, int index) {
+    if (linkedList == NULL) {
+        printf("Illegal argument, the linked list is NULL.");
+        exit(-1);
+    } else if (index < 0 || index >= doublyLinkedListGetLength(linkedList)) {
+        printf("index is out range of the linked list.");
+        exit(-1);
+    }
+
+    Node *currentNode = linkedList->head;
+    for (int i = 0; i < index; i++)
+        currentNode = currentNode->next;
+
+    if (currentNode == linkedList->head) //if the index == 0.
+        doublyLinkedListDeleteFirstWtFr(linkedList);
+    else if (currentNode == linkedList->tail) //if the index = length - 1.
+        doublyLinkedListDeleteLastWtFr(linkedList);
+    else {
+        currentNode->prevNode->next = currentNode->next;
+        currentNode->next->prevNode = currentNode->prevNode;
+
+        linkedList->length--;
+        free(currentNode);
+    }
+
+}
+
 
 
 
@@ -336,7 +434,7 @@ void *doublyLinkedListGetFirst(DoublyLinkedList *linkedList) {
         exit(-1);
     }
 
-    return linkedList->head;
+    return linkedList->head->item;
 }
 
 
@@ -356,7 +454,7 @@ void *doublyLinkedListGetLast(DoublyLinkedList *linkedList) {
         exit(-1);
     }
 
-    return linkedList->tail;
+    return linkedList->tail->item;
 }
 
 

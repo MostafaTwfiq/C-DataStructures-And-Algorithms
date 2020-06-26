@@ -30,10 +30,19 @@ void doublyLinkedListAddAtIndex(DoublyLinkedList *linkedList, int index, void *i
 void doublyLinkedListDeleteFirst(DoublyLinkedList *linkedList);
 
 
+void doublyLinkedListDeleteFirstWtFr(DoublyLinkedList *linkedList);
+
+
 void doublyLinkedListDeleteLast(DoublyLinkedList *linkedList);
 
 
+void doublyLinkedListDeleteLastWtFr(DoublyLinkedList *linkedList);
+
+
 void doublyLinkedListDeleteAtIndex(DoublyLinkedList *linkedList, int index);
+
+
+void doublyLinkedListDeleteAtIndexWtFr(DoublyLinkedList *linkedList, int index);
 
 
 int doublyLinkedListContains(DoublyLinkedList *linkedList, void *item, int (*comparator)(const void *, const void *));
