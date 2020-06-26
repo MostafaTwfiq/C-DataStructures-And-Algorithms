@@ -17,7 +17,7 @@ Stack* StackInitalization( int size ) {
         exit( FAILED_ALLOCATION );
     }
 
-    s->sizeOfTypeOf =  size;
+    s->sizeOfType =  size;
     s->allocated = 10;
     s->memory = malloc( size*s->allocated );
 
@@ -25,7 +25,7 @@ Stack* StackInitalization( int size ) {
         fprintf( stderr , "Failed At allocating memory for Stack" );
         exit( FAILED_ALLOCATION );
     }
-    s->used = -1;
+    s->top = -1;
     return s;
 }
 
@@ -38,9 +38,9 @@ void pushStack( Stack* stack ,  void * data ) {
         exit( NULL_POINTER );
     }
 
-    if( stack->used ==  stack->allocated-1 ) {
+    if(stack->top == stack->allocated - 1 ) {
         stack->allocated *= 2;
-        stack->memory =  realloc( stack->memory  ,  stack->sizeOfTypeOf * stack->allocated );
+        stack->memory =  realloc( stack->memory  , stack->sizeOfType * stack->allocated );
 
         if ( !stack->memory ) {
             fprintf( stderr , "Failed at reallocating the Stack" );
@@ -48,10 +48,10 @@ void pushStack( Stack* stack ,  void * data ) {
         }
     }
 
-    stack->used++;
-    memcpy( ( stack->memory + stack->used*stack->sizeOfTypeOf ) , data , stack->sizeOfTypeOf );
+    stack->top++;
+    memcpy(( stack->memory + stack->top * stack->sizeOfType ) , data , stack->sizeOfType );
 
-    if( memcmp( stack->memory + stack->used*stack->sizeOfTypeOf , data , stack->sizeOfTypeOf ) ) {
+    if( memcmp( stack->memory + stack->top * stack->sizeOfType , data , stack->sizeOfType ) ) {
         fprintf( stderr , "Failed at Copying data" );
         exit( FAILED_COPY );
     }
@@ -66,8 +66,8 @@ void* popStack( Stack* stack ) {
         fprintf( stderr , "Stack Param Cannot be Null" );
         exit( NULL_POINTER );
     }
-    stack->used--;
-    return stack->memory+( stack->used+1 )*stack->sizeOfTypeOf;
+    stack->top--;
+    return stack->memory+ (stack->top + 1 ) * stack->sizeOfType;
 }
 
 /// Takes a reference to a stack and returns whether the stack is Empty or not.
@@ -78,7 +78,7 @@ short isEmptyStack( Stack* stack ) {
         fprintf( stderr , "Stack Param Cannot be Null" );
         exit( NULL_POINTER );
     }
-    return ( stack->used ==  -1 );
+    return (stack->top == -1 );
 }
 
 /// Takes a reference to a stack and returns the top most stored value.
@@ -89,10 +89,10 @@ void* peekStack( Stack* stack ) {
         fprintf( stderr , "Stack Param Cannot be Null" );
         exit( NULL_POINTER );
     }
-    return ( stack->used ==  -1 ) ?NULL: stack->memory+stack->used*stack->sizeOfTypeOf;
+    return (stack->top == -1 ) ? NULL : stack->memory + stack->top * stack->sizeOfType;
 }
 
-/// Clear the Stack from it's stored values popping them continuously. Stack can be later used after clear.
+/// Clear the Stack from it's stored values popping them continuously. Stack can be later top after clear.
 /// \param stack Reference pointer to a Stack.
 void StackClear( Stack* stack ) {
     if( !stack ) {
@@ -101,11 +101,11 @@ void StackClear( Stack* stack ) {
     }
     while( !isEmptyStack( stack ) ) {
         void * res = popStack( stack );
-        memset( res , 0 , stack->sizeOfTypeOf );
+        memset( res , 0 , stack->sizeOfType );
     }
 };
 
-/// Clears and Destroys the Stack. StacK cannot be used after being destroyed.
+/// Clears and Destroys the Stack. StacK cannot be top after being destroyed.
 /// \param stack Reference pointer to a Stack.
 void StackDestroy( Stack* stack ) {
     if( !stack ) {

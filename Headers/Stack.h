@@ -15,8 +15,8 @@ typedef enum ERROR {
 typedef struct Stack {
     void* memory;
     int allocated;
-    int used;
-    int sizeOfTypeOf;
+    int top;
+    int sizeOfType;
 }Stack;
 
 Stack* StackInitalization(int size);
