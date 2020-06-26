@@ -37,14 +37,10 @@ void pushStack(Stack* stack, void * data){
         fprintf(stderr,"Param Cannot be Null");
         exit(NULL_POINTER);
     }
-    if(stack->used == stack->allocated) {
+
+    if(stack->used == stack->allocated-1) {
         stack->allocated*=2;
-        void *new_mem =  malloc(stack->sizeOfTypeOf*stack->allocated);
-        memcpy(new_mem,stack->memory,stack->sizeOfTypeOf*stack->allocated/2);
-
-        StackClear(stack);
-
-        stack->memory = new_mem;
+        stack->memory =  realloc(stack->memory,stack->sizeOfTypeOf*stack->allocated);
 
         if (!stack->memory) {
             fprintf(stderr,"Failed at reallocating the Stack");
@@ -52,7 +48,8 @@ void pushStack(Stack* stack, void * data){
         }
     }
 
-    memcpy((stack->memory + ++stack->used*stack->sizeOfTypeOf),data,stack->sizeOfTypeOf);
+    stack->used++;
+    memcpy((stack->memory + stack->used*stack->sizeOfTypeOf),data,stack->sizeOfTypeOf);
 
     if(memcmp(stack->memory + stack->used*stack->sizeOfTypeOf,data,stack->sizeOfTypeOf)) {
         fprintf(stderr,"Failed at Copying data");

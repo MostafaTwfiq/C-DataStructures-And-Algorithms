@@ -6,7 +6,7 @@ int main() {
     Stack  *s = StackInitalization(sizeof(float));
     float *p,j=0.5;
     p=&j;
-    for(int i=0;i<=50;i++,j+=i){
+    for(int i=0;i<=50;i++,j=i){
         pushStack(s,p);
     }
 
