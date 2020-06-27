@@ -4,14 +4,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef enum ERROR {
-    FAILED_ALLOCATION     = -1,
-    FAILED_REALLOCATION   = -2,
-    FAILED_COPY           = -3,
-    INVALID_ARG           = -4,
-    NULL_POINTER          = -5
-}ERROR;
-
 /** @struct Stack
  *  @brief This structure blah blah blah...
  *  @var Stack:: memory
@@ -24,7 +16,7 @@ typedef enum ERROR {
  *  Member 'sizeOfType' the size of the data stored in the stack.
  */
 typedef struct Stack {
-    void* memory;
+    void **memory;
     int allocated;
     int top;
     int sizeOfType;
@@ -34,11 +26,17 @@ Stack* StackInitalization(int size);
 
 void pushStack(Stack *stack, void *data);
 
+void stackAddAll(Stack *stack, void *arr, int arrLength);
+
 void *popStack(Stack *stack);
 
 short isEmptyStack(Stack *stack);
 
 void *peekStack(Stack *stack);
+
+void *stackToArray(Stack *stack);
+
+int getStackLength(Stack *stack);
 
 void StackClear(Stack* stack);
 

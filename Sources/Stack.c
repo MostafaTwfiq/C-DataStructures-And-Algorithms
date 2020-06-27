@@ -1,5 +1,16 @@
 #include "../Headers/Stack.h"
 
+
+typedef enum ERROR {
+    FAILED_ALLOCATION     = -1,
+    FAILED_REALLOCATION   = -2,
+    FAILED_COPY           = -3,
+    INVALID_ARG           = -4,
+    NULL_POINTER          = -5,
+    EMPTY_STACK           = -6
+}ERROR;
+
+
 /* Allocates space for the stack on the heap.
  * @param size Size of the daata to be stored on to the stack.
  * @return Pointer to the stack dtored on the heap.
@@ -20,7 +31,7 @@ Stack* StackInitalization( int size ) {
 
     s->sizeOfType =  size;
     s->allocated = 10;
-    s->memory = malloc( size*s->allocated );
+    s->memory = (void **) malloc( sizeof(void *) * s->allocated);
 
     if( !s->memory ) {
         fprintf( stderr , "Failed At allocating memory for Stack" );
@@ -42,7 +53,7 @@ void pushStack( Stack* stack ,  void * data ) {
 
     if(stack->top == stack->allocated - 1 ) {
         stack->allocated *= 2;
-        stack->memory =  realloc( stack->memory  , stack->sizeOfType * stack->allocated );
+        stack->memory =  (void **) realloc( stack->memory  , sizeof(void *) * stack->allocated );
 
         if ( !stack->memory ) {
             fprintf( stderr , "Failed at reallocating the Stack" );
@@ -51,13 +62,38 @@ void pushStack( Stack* stack ,  void * data ) {
     }
 
     stack->top++;
-    memcpy(( stack->memory + stack->top * stack->sizeOfType ) , data , stack->sizeOfType );
+    stack->memory[stack->top] = data;
 
-    if( memcmp( stack->memory + stack->top * stack->sizeOfType , data , stack->sizeOfType ) ) {
-        fprintf( stderr , "Failed at Copying data" );
-        exit( FAILED_COPY );
+}
+
+void stackAddAll(Stack *stack, void *arr, int arrLength) {
+    if (stack == NULL) {
+        fprintf( stderr , "Param Cannot be Null" );
+        exit( NULL_POINTER );
     }
 
+    void *item;
+    for (int i = 0; i < arrLength; i++) {
+        item = (void *) malloc(stack->sizeOfType);
+        memcpy(item, arr + stack->sizeOfType * i, stack->sizeOfType);
+        pushStack(stack, item);
+    }
+
+
+}
+
+void *stackToArray(Stack *stack) {
+    if( !stack ) {
+        fprintf( stderr , "Stack Param Cannot be Null" );
+        exit( NULL_POINTER );
+    }
+
+    void *arr = (void *) malloc(stack->sizeOfType * stack->top + 1);
+
+    for (int i = 0; i < stack->top + 1; i++)
+        memcpy(arr + stack->sizeOfType * i, stack->memory[i], stack->sizeOfType);
+
+    return arr;
 }
 
 /* Pops data off the stack and returns a pointer refrence to it.
@@ -69,8 +105,8 @@ void pushStack( Stack* stack ,  void * data ) {
         fprintf( stderr , "Stack Param Cannot be Null" );
         exit( NULL_POINTER );
     }
-    stack->top--;
-    return stack->memory+ (stack->top + 1 ) * stack->sizeOfType;
+
+    return stack->memory[stack->top--];
 }
 
 /* Takes a reference to a stack and returns whether the stack is Empty or not.
@@ -85,6 +121,16 @@ short isEmptyStack( Stack* stack ) {
     return (stack->top == -1 );
 }
 
+int getStackLength(Stack *stack) {
+
+    if( !stack ) {
+        fprintf( stderr , "Stack Param Cannot be Null" );
+        exit( NULL_POINTER );
+    }
+
+    return stack->top + 1;
+}
+
 /* Takes a reference to a stack and returns the top most stored value.
  * @param stack  Pointer to the stack on the heap.
  * @return Returns a pointer to the top stored value on top of the stack.
@@ -94,7 +140,12 @@ void* peekStack( Stack* stack ) {
         fprintf( stderr , "Stack Param Cannot be Null" );
         exit( NULL_POINTER );
     }
-    return (stack->top == -1 ) ? NULL : stack->memory + stack->top * stack->sizeOfType;
+    if (isEmptyStack(stack)) {
+        fprintf( stderr , "Stack is empty." );
+        exit( EMPTY_STACK );
+    }
+
+    return stack->memory[stack->top];
 }
 
 /* Clear the Stack from it's stored values popping them continuously. Stack can be later top after clear.
@@ -105,11 +156,11 @@ void StackClear( Stack* stack ) {
         fprintf( stderr , "Stack Param Cannot be Null" );
         exit( NULL_POINTER );
     }
-    while( !isEmptyStack( stack ) ) {
-        void * res = popStack( stack );
-        memset( res , 0 , stack->sizeOfType );
-    }
-};
+
+    while( !isEmptyStack( stack ) )
+        popStack( stack );
+
+}
 
 /* Clears and Destroys the Stack. StacK cannot be top after being destroyed.
  * @param stack Reference pointer to a Stack.
@@ -119,8 +170,9 @@ void StackDestroy( Stack* stack ) {
         fprintf( stderr , "Stack Param Cannot be Null" );
         exit( NULL_POINTER );
     }
+
     StackClear( stack );
     free( stack->memory );
     stack->memory = NULL;
     free( stack );
-};
+}
