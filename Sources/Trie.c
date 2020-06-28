@@ -74,7 +74,7 @@ Trie *trieInitialization() {
 void trieAddWord(Trie *trie, char *word) {
 
     if (trie == NULL) {
-        fprintf(stderr, "Null pointer exception, the trie is null.");
+        fprintf(stderr, "Illegal argument, the trie is null.");
         exit(-3);
     } else if (word == NULL)
         return;
@@ -114,11 +114,10 @@ void trieAddWord(Trie *trie, char *word) {
  * @return
  */
 
-
 int trieContains(Trie *trie, char *word) {
 
     if (trie == NULL) {
-        fprintf(stderr, "Null pointer exception, the trie is null.");
+        fprintf(stderr, "Illegal argument, the trie is null.");
         exit(-3);
     } else if (word == NULL)
         return 0;
@@ -155,7 +154,7 @@ int trieContains(Trie *trie, char *word) {
 void trieRemoveWord(Trie *trie, char *word) {
 
     if (trie == NULL) {
-        fprintf(stderr, "Null pointer exception, the trie is null.");
+        fprintf(stderr, "Illegal argument, the trie is null.");
         exit(-3);
     } else if (word == NULL)
         return;
@@ -225,6 +224,13 @@ Node *trieRemoveWordR(Node *root, const char *currentChar) {
  */
 
 ArrayList *trieAutoCompletion(Trie *trie, char *word, int numOfSuggestion) {
+
+    if (trie == NULL) {
+        fprintf(stderr, "Illegal argument, the trie is null.");
+        exit(-3);
+    } else if (word == NULL)
+        return NULL;
+
     ArrayList *wordsList = arrayListInitialization(numOfSuggestion, sizeof(char *));
     String *string = stringInitialization(10);
     trieAutoCompletionR(trie->root, word, numOfSuggestion, string, wordsList);
@@ -290,6 +296,13 @@ void trieAutoCompletionR(Node *root, char *currentChar, int numOfSuggestion, Str
  */
 
 ArrayList *trieSuggestion(Trie *trie, char *word, int numOfSuggestion) {
+
+    if (trie == NULL) {
+        fprintf(stderr, "Illegal argument, the trie is null.");
+        exit(-3);
+    } else if (word == NULL)
+        return NULL;
+
     String *string = stringInitialization(10);
     ArrayList *wordsList = arrayListInitialization(numOfSuggestion, sizeof(char *));
 
@@ -356,6 +369,12 @@ void trieSuggestionR(Node *root, char *word, String *string, ArrayList *wordsLis
  */
 
 void triePrintAllWords(Trie *trie) {
+
+    if (trie == NULL) {
+        fprintf(stderr, "Illegal argument, the trie is null.");
+        exit(-3);
+    }
+
     String *string = stringInitialization(10);
 
     for (int i = 0; i < 26; i++) {
@@ -409,6 +428,12 @@ void triePrintAllWordsR(Node *root, String *string) {
  */
 
 void clearTrie(Trie *trie) {
+
+    if (trie == NULL) {
+        fprintf(stderr, "Illegal argument, the trie is null.");
+        exit(-3);
+    }
+
     for (int i = 0; i < 26; i++) {
         if (trie->root->characters[i] != NULL)
             trie->root->characters[i] = destroyTrieNodes(trie->root->characters[i]);
@@ -427,6 +452,12 @@ void clearTrie(Trie *trie) {
  */
 
 void destroyTrie(Trie *trie) {
+
+    if (trie == NULL) {
+        fprintf(stderr, "Illegal argument, the trie is null.");
+        exit(-3);
+    }
+
     trie->root = destroyTrieNodes(trie->root);
     free(trie);
 }
