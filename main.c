@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <math.h>
-#include "Trie.h"
+#include "Headers/Trie.h"
 #include "Headers/ArrayList.h"
 int main() {
 

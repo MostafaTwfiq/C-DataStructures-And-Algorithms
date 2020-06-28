@@ -1,6 +1,6 @@
-#include "Trie.h"
-#include "Headers/ArrayList.h"
-#include "Headers/String.h"
+#include "../Headers/Trie.h"
+#include "../Headers/ArrayList.h"
+#include "../Headers/String.h"
 #include <math.h>
 
 char toLowerCase(char c);

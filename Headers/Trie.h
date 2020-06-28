@@ -1,9 +1,7 @@
 #ifndef C_DATASTRUCTURES_TRIE_H
 #define C_DATASTRUCTURES_TRIE_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "Headers/ArrayList.h"
+#include "../Headers/ArrayList.h"
 
 typedef struct Node {
 
