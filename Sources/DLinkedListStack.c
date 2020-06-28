@@ -22,6 +22,7 @@ DLinkedListStack *dlStackInitialization(int sizeOfType) {
 
 
 
+
 /** This function will take the stack address, and the item address a a parameters,
     then it will pushStack the item into the stack.
  * @param stack
@@ -37,6 +38,33 @@ void dlStackPush(DLinkedListStack *stack, void *item) {
     doublyLinkedListAddLast(stack->linkedList, item);
 
 }
+
+
+
+
+
+/** This function will take the stack address, the array address, and the array length as a parameters,
+    then it will add all the array items into the stack in order.
+ * @param stack
+ * @param arr
+ * @param arrLength
+ */
+
+void dlStackAddAll(DLinkedListStack *stack, void *arr, int arrLength) {
+    if (stack == NULL) {
+        fprintf(stderr,"Illegal argument, the stack is NULL.");
+        exit(-4);
+    }
+
+    void *item;
+    for (int i = 0; i < arrLength; i++) {
+        item = (void *) malloc(stack->linkedList->sizeOfType);
+        memcpy(item, arr + stack->linkedList->sizeOfType * i, stack->linkedList->sizeOfType);
+        doublyLinkedListAddLast(stack->linkedList, item);
+    }
+
+}
+
 
 
 
@@ -68,6 +96,29 @@ void *dlStackPop(DLinkedListStack *stack) {
 
 
 
+
+
+/** This function will take the stack address as a parameter,
+    then it will return a void array pointer that contains all the stack items.
+ * @param stack
+ * @return
+ */
+
+void *dlStackToArray(DLinkedListStack *stack) {
+
+    if (stack == NULL) {
+        fprintf(stderr,"Illegal argument, the stack is NULL.");
+        exit(-4);
+    }
+
+    return doublyLinkedListToArray(stack->linkedList);
+}
+
+
+
+
+
+
 /** This function will take the stack address as a parameter,
     then it will return the last item that pushed to the stack,
     without removing the item from the stack.
@@ -93,6 +144,17 @@ void *dlStackPeek(DLinkedListStack *stack) {
 
 
 
+
+
+/** This function will take the stack address as a parameter,
+    then it will return the number of the items in the stack.
+ * @param stack
+ * @return
+ */
+
+int dlStackGetLength(DLinkedListStack *stack) {
+    return stack->linkedList->length;
+}
 
 
 /** This function will take the stack address as a parameter,
