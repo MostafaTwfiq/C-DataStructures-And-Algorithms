@@ -607,5 +607,4 @@ int *generateIndexes(char c) {
 
     return arr;
 
-
 }
