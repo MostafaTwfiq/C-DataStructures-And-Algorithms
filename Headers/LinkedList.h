@@ -1,9 +1,6 @@
 #ifndef C_DATASTRUCTURES_LINKEDLIST_H
 #define C_DATASTRUCTURES_LINKEDLIST_H
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "Utils.h"
 
 
 typedef struct LinkedList {

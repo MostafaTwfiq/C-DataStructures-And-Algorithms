@@ -1,9 +1,6 @@
 #ifndef C_DATASTRUCTURES_DOUBLYLINKEDLIST_H
 #define C_DATASTRUCTURES_DOUBLYLINKEDLIST_H
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "Utils.h"
 
 
 typedef struct DoublyLinkedList {

@@ -1,4 +1,4 @@
-#include  "../Headers/Queue.h"
+#include  "../Headers/ArrayQueue.h"
 
 /* Function Initializes Queue on Heap using malloc and returns pointer to it.
  * @param size Size of the data to be stored by the Queue.
