@@ -1,16 +1,6 @@
 #include "../Headers/Stack.h"
 
 
-typedef enum ERROR {
-    FAILED_ALLOCATION     = -1,
-    FAILED_REALLOCATION   = -2,
-    FAILED_COPY           = -3,
-    INVALID_ARG           = -4,
-    NULL_POINTER          = -5,
-    EMPTY_STACK           = -6
-}ERROR;
-
-
 /* Allocates space for the stack on the heap.
  * @param size Size of the daata to be stored on to the stack.
  * @return Pointer to the stack dtored on the heap.

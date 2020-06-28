@@ -1,0 +1,386 @@
+\hypertarget{_linked_list_8c}{}\doxysection{Sources/\+Linked\+List.c File Reference}
+\label{_linked_list_8c}\index{Sources/LinkedList.c@{Sources/LinkedList.c}}
+{\ttfamily \#include \char`\"{}../\+Headers/\+Linked\+List.\+h\char`\"{}}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_node}{Node}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct_node}{Node}} \mbox{\hyperlink{_linked_list_8c_a3b09f37e675bcd48a01bf22155996872}{Node}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$ \mbox{\hyperlink{_linked_list_8c_a63030b08bfb629c815521e806247c958}{linked\+List\+Initialization}} (\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} size\+Of\+Type)
+\item 
+void \mbox{\hyperlink{_linked_list_8c_a9329643a4e5a17611da5cd573de56e77}{linked\+List\+Add\+First}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List, void $\ast$item)
+\item 
+void \mbox{\hyperlink{_linked_list_8c_acdab1cb34903370c25ea08359e1cf591}{linked\+List\+Add\+Last}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List, void $\ast$item)
+\item 
+void \mbox{\hyperlink{_linked_list_8c_a9dc81715fb5f76c7596754041802cc81}{linked\+List\+Add\+At\+Index}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} index, void $\ast$item)
+\item 
+void \mbox{\hyperlink{_linked_list_8c_a2c9945bec36f46f59d119000ec4a5953}{linked\+List\+Add\+All}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List, void $\ast$items, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} items\+Length)
+\item 
+void \mbox{\hyperlink{_linked_list_8c_aac92a8a4a0d35ba4750abaa1cf09aa2d}{linked\+List\+Delete\+First}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List)
+\item 
+void \mbox{\hyperlink{_linked_list_8c_acd851e26cfb25a4a368746981dc179e3}{linked\+List\+Delete\+First\+Wt\+Fr}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List)
+\item 
+void \mbox{\hyperlink{_linked_list_8c_ad5b8afcc89417bacdc99156d15cff0fd}{linked\+List\+Delete\+Last}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List)
+\item 
+void \mbox{\hyperlink{_linked_list_8c_aaa60e6a8fce5f92550f8f460a15500a8}{linked\+List\+Delete\+Last\+Wt\+Fr}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List)
+\item 
+void \mbox{\hyperlink{_linked_list_8c_a60c0e872f82605c9b09b3f070ffbca06}{linked\+List\+Delete\+At\+Index}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} index)
+\item 
+void \mbox{\hyperlink{_linked_list_8c_afe66f6f3d91c03c85df217ac82a8574b}{linked\+List\+Delete\+At\+Index\+Wt\+Fr}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} index)
+\item 
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_linked_list_8c_a5fcfa415b4ad9483eb6b6d255a0e8c09}{linked\+List\+Contains}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List, void $\ast$item, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$comparator)(const void $\ast$, const void $\ast$))
+\item 
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_linked_list_8c_a17ab61d31c209a4fac0dba0ea94f1091}{linked\+List\+Get\+Index}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List, void $\ast$item, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$comparator)(const void $\ast$, const void $\ast$))
+\item 
+void $\ast$ \mbox{\hyperlink{_linked_list_8c_ae4076814526fcdf953e50f39511e03ba}{linked\+List\+Get\+First}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List)
+\item 
+void $\ast$ \mbox{\hyperlink{_linked_list_8c_af1f2a54a8916d4bd6d9b507f2a20ca9e}{linked\+List\+Get\+Last}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List)
+\item 
+void $\ast$ \mbox{\hyperlink{_linked_list_8c_a582144735ceba15f68a12692afd99cc5}{linked\+List\+Get\+Item}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List, void $\ast$item, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$comparator)(const void $\ast$, const void $\ast$))
+\item 
+void $\ast$ \mbox{\hyperlink{_linked_list_8c_ac94cb5cc42b93d5079454f56637c4e29}{linked\+List\+Get}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} index)
+\item 
+void $\ast$ \mbox{\hyperlink{_linked_list_8c_ac97b942ca91b1e3a1e76ab01c62ef455}{linked\+List\+To\+Array}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List)
+\item 
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_linked_list_8c_a6625f24d3dc106a7db1435eeb5159444}{linked\+List\+Get\+Length}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List)
+\item 
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_linked_list_8c_ad9b29734784c4a4a70c71e7b424bf9b3}{linked\+List\+Is\+Empty}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List)
+\item 
+void \mbox{\hyperlink{_linked_list_8c_a36e96bba5af2251b88323c20b6bbc6fd}{print\+Linked\+List}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List, void($\ast$print\+Fun)(const void $\ast$))
+\item 
+void \mbox{\hyperlink{_linked_list_8c_a114712bceed272318d807944bda2abd3}{linked\+List\+Clear}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List)
+\item 
+void \mbox{\hyperlink{_linked_list_8c_aef821dd248dc9c50ad236b9a7c9062fc}{destroy\+Linked\+List}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{_linked_list_8c_a3b09f37e675bcd48a01bf22155996872}\label{_linked_list_8c_a3b09f37e675bcd48a01bf22155996872}} 
+\index{LinkedList.c@{LinkedList.c}!Node@{Node}}
+\index{Node@{Node}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{Node}{Node}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct_node}{Node}} \mbox{\hyperlink{struct_node}{Node}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_linked_list_8c_aef821dd248dc9c50ad236b9a7c9062fc}\label{_linked_list_8c_aef821dd248dc9c50ad236b9a7c9062fc}} 
+\index{LinkedList.c@{LinkedList.c}!destroyLinkedList@{destroyLinkedList}}
+\index{destroyLinkedList@{destroyLinkedList}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{destroyLinkedList()}{destroyLinkedList()}}
+{\footnotesize\ttfamily void destroy\+Linked\+List (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$}]{linked\+List }\end{DoxyParamCaption})}
+
+This function will take the linked list address as a parameter, then it will destroy and free the linked list and all it\textquotesingle{}s nodes. 
+\begin{DoxyParams}{Parameters}
+{\em linked\+List} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_linked_list_8c_a2c9945bec36f46f59d119000ec4a5953}\label{_linked_list_8c_a2c9945bec36f46f59d119000ec4a5953}} 
+\index{LinkedList.c@{LinkedList.c}!linkedListAddAll@{linkedListAddAll}}
+\index{linkedListAddAll@{linkedListAddAll}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{linkedListAddAll()}{linkedListAddAll()}}
+{\footnotesize\ttfamily void linked\+List\+Add\+All (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$}]{linked\+List,  }\item[{void $\ast$}]{items,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{items\+Length }\end{DoxyParamCaption})}
+
+This function will take the linked list address, items array, and the length of the array as parameters, then it will copy the array item if the linked list in a new items addresses. 
+\begin{DoxyParams}{Parameters}
+{\em linked\+List} & \\
+\hline
+{\em items} & \\
+\hline
+{\em items\+Length} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_linked_list_8c_a9dc81715fb5f76c7596754041802cc81}\label{_linked_list_8c_a9dc81715fb5f76c7596754041802cc81}} 
+\index{LinkedList.c@{LinkedList.c}!linkedListAddAtIndex@{linkedListAddAtIndex}}
+\index{linkedListAddAtIndex@{linkedListAddAtIndex}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{linkedListAddAtIndex()}{linkedListAddAtIndex()}}
+{\footnotesize\ttfamily void linked\+List\+Add\+At\+Index (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$}]{linked\+List,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{index,  }\item[{void $\ast$}]{item }\end{DoxyParamCaption})}
+
+This function will take the linked list address, item index, and the item address the a parameters, then it will add the item in the passed index. 
+\begin{DoxyParams}{Parameters}
+{\em linked\+List} & \\
+\hline
+{\em index} & \\
+\hline
+{\em item} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_linked_list_8c_a9329643a4e5a17611da5cd573de56e77}\label{_linked_list_8c_a9329643a4e5a17611da5cd573de56e77}} 
+\index{LinkedList.c@{LinkedList.c}!linkedListAddFirst@{linkedListAddFirst}}
+\index{linkedListAddFirst@{linkedListAddFirst}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{linkedListAddFirst()}{linkedListAddFirst()}}
+{\footnotesize\ttfamily void linked\+List\+Add\+First (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$}]{linked\+List,  }\item[{void $\ast$}]{item }\end{DoxyParamCaption})}
+
+This function will take the linked list address and the item address as a parameters, then it will add the item in the start of the linked list. 
+\begin{DoxyParams}{Parameters}
+{\em linked\+List} & \\
+\hline
+{\em item} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_linked_list_8c_acdab1cb34903370c25ea08359e1cf591}\label{_linked_list_8c_acdab1cb34903370c25ea08359e1cf591}} 
+\index{LinkedList.c@{LinkedList.c}!linkedListAddLast@{linkedListAddLast}}
+\index{linkedListAddLast@{linkedListAddLast}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{linkedListAddLast()}{linkedListAddLast()}}
+{\footnotesize\ttfamily void linked\+List\+Add\+Last (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$}]{linked\+List,  }\item[{void $\ast$}]{item }\end{DoxyParamCaption})}
+
+This function will take the linked list address and the item address as a parameters, then it will add the item in the end of the linked list. 
+\begin{DoxyParams}{Parameters}
+{\em linked\+List} & \\
+\hline
+{\em item} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_linked_list_8c_a114712bceed272318d807944bda2abd3}\label{_linked_list_8c_a114712bceed272318d807944bda2abd3}} 
+\index{LinkedList.c@{LinkedList.c}!linkedListClear@{linkedListClear}}
+\index{linkedListClear@{linkedListClear}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{linkedListClear()}{linkedListClear()}}
+{\footnotesize\ttfamily void linked\+List\+Clear (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$}]{linked\+List }\end{DoxyParamCaption})}
+
+This function will take the linked list address as a parameter, then it will delete and free all the items from the linked list. 
+\begin{DoxyParams}{Parameters}
+{\em linked\+List} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_linked_list_8c_a5fcfa415b4ad9483eb6b6d255a0e8c09}\label{_linked_list_8c_a5fcfa415b4ad9483eb6b6d255a0e8c09}} 
+\index{LinkedList.c@{LinkedList.c}!linkedListContains@{linkedListContains}}
+\index{linkedListContains@{linkedListContains}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{linkedListContains()}{linkedListContains()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} linked\+List\+Contains (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$}]{linked\+List,  }\item[{void $\ast$}]{item,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$)(const void $\ast$, const void $\ast$)}]{comparator }\end{DoxyParamCaption})}
+
+This function will take the linked list address, the item address, and the comparator function as parameters, then then it will return 1 if the item is in the list other wise it will return zero (0). The function will use the comparator function to know if the two items are equivalent or not. 
+\begin{DoxyParams}{Parameters}
+{\em linked\+List} & \\
+\hline
+{\em item} & \\
+\hline
+{\em comparator} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_linked_list_8c_a60c0e872f82605c9b09b3f070ffbca06}\label{_linked_list_8c_a60c0e872f82605c9b09b3f070ffbca06}} 
+\index{LinkedList.c@{LinkedList.c}!linkedListDeleteAtIndex@{linkedListDeleteAtIndex}}
+\index{linkedListDeleteAtIndex@{linkedListDeleteAtIndex}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{linkedListDeleteAtIndex()}{linkedListDeleteAtIndex()}}
+{\footnotesize\ttfamily void linked\+List\+Delete\+At\+Index (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$}]{linked\+List,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{index }\end{DoxyParamCaption})}
+
+This function will take the linked list address, and the index as parameters, then it will delete the item in this index. If the index is out of the linked list rang then the program will be terminated. 
+\begin{DoxyParams}{Parameters}
+{\em linked\+List} & \\
+\hline
+{\em index} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_linked_list_8c_afe66f6f3d91c03c85df217ac82a8574b}\label{_linked_list_8c_afe66f6f3d91c03c85df217ac82a8574b}} 
+\index{LinkedList.c@{LinkedList.c}!linkedListDeleteAtIndexWtFr@{linkedListDeleteAtIndexWtFr}}
+\index{linkedListDeleteAtIndexWtFr@{linkedListDeleteAtIndexWtFr}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{linkedListDeleteAtIndexWtFr()}{linkedListDeleteAtIndexWtFr()}}
+{\footnotesize\ttfamily void linked\+List\+Delete\+At\+Index\+Wt\+Fr (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$}]{linked\+List,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{index }\end{DoxyParamCaption})}
+
+This function will take the linked list address, and the index as parameters, then it will delete and free only the node without the item of the item in this index. If the index is out of the linked list rang then the program will be terminated. 
+\begin{DoxyParams}{Parameters}
+{\em linked\+List} & \\
+\hline
+{\em index} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_linked_list_8c_aac92a8a4a0d35ba4750abaa1cf09aa2d}\label{_linked_list_8c_aac92a8a4a0d35ba4750abaa1cf09aa2d}} 
+\index{LinkedList.c@{LinkedList.c}!linkedListDeleteFirst@{linkedListDeleteFirst}}
+\index{linkedListDeleteFirst@{linkedListDeleteFirst}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{linkedListDeleteFirst()}{linkedListDeleteFirst()}}
+{\footnotesize\ttfamily void linked\+List\+Delete\+First (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$}]{linked\+List }\end{DoxyParamCaption})}
+
+This function will take the linked list address as a parameter, then it will delete and free the first element from the linked list. 
+\begin{DoxyParams}{Parameters}
+{\em linked\+List} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_linked_list_8c_acd851e26cfb25a4a368746981dc179e3}\label{_linked_list_8c_acd851e26cfb25a4a368746981dc179e3}} 
+\index{LinkedList.c@{LinkedList.c}!linkedListDeleteFirstWtFr@{linkedListDeleteFirstWtFr}}
+\index{linkedListDeleteFirstWtFr@{linkedListDeleteFirstWtFr}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{linkedListDeleteFirstWtFr()}{linkedListDeleteFirstWtFr()}}
+{\footnotesize\ttfamily void linked\+List\+Delete\+First\+Wt\+Fr (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$}]{linked\+List }\end{DoxyParamCaption})}
+
+This function will take the linked list address as a parameter, then it will delete and free only the node without the item of the first element from the linked list. 
+\begin{DoxyParams}{Parameters}
+{\em linked\+List} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_linked_list_8c_ad5b8afcc89417bacdc99156d15cff0fd}\label{_linked_list_8c_ad5b8afcc89417bacdc99156d15cff0fd}} 
+\index{LinkedList.c@{LinkedList.c}!linkedListDeleteLast@{linkedListDeleteLast}}
+\index{linkedListDeleteLast@{linkedListDeleteLast}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{linkedListDeleteLast()}{linkedListDeleteLast()}}
+{\footnotesize\ttfamily void linked\+List\+Delete\+Last (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$}]{linked\+List }\end{DoxyParamCaption})}
+
+This function will take the linked list address as a parameter, then it will delete and free the last element from the linked list. 
+\begin{DoxyParams}{Parameters}
+{\em linked\+List} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_linked_list_8c_aaa60e6a8fce5f92550f8f460a15500a8}\label{_linked_list_8c_aaa60e6a8fce5f92550f8f460a15500a8}} 
+\index{LinkedList.c@{LinkedList.c}!linkedListDeleteLastWtFr@{linkedListDeleteLastWtFr}}
+\index{linkedListDeleteLastWtFr@{linkedListDeleteLastWtFr}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{linkedListDeleteLastWtFr()}{linkedListDeleteLastWtFr()}}
+{\footnotesize\ttfamily void linked\+List\+Delete\+Last\+Wt\+Fr (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$}]{linked\+List }\end{DoxyParamCaption})}
+
+This function will take the linked list address as a parameter, then it will delete and free only the node without the item of the last element from the linked list. 
+\begin{DoxyParams}{Parameters}
+{\em linked\+List} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_linked_list_8c_ac94cb5cc42b93d5079454f56637c4e29}\label{_linked_list_8c_ac94cb5cc42b93d5079454f56637c4e29}} 
+\index{LinkedList.c@{LinkedList.c}!linkedListGet@{linkedListGet}}
+\index{linkedListGet@{linkedListGet}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{linkedListGet()}{linkedListGet()}}
+{\footnotesize\ttfamily void$\ast$ linked\+List\+Get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$}]{linked\+List,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{index }\end{DoxyParamCaption})}
+
+This function will take the linked list address, and the index as parameters, then it will return the item in the given index. If the index is out of the linked list range the program will terminate. 
+\begin{DoxyParams}{Parameters}
+{\em linked\+List} & \\
+\hline
+{\em index} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_linked_list_8c_ae4076814526fcdf953e50f39511e03ba}\label{_linked_list_8c_ae4076814526fcdf953e50f39511e03ba}} 
+\index{LinkedList.c@{LinkedList.c}!linkedListGetFirst@{linkedListGetFirst}}
+\index{linkedListGetFirst@{linkedListGetFirst}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{linkedListGetFirst()}{linkedListGetFirst()}}
+{\footnotesize\ttfamily void$\ast$ linked\+List\+Get\+First (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$}]{linked\+List }\end{DoxyParamCaption})}
+
+This function will take the linked list address as a parameter, then it will return the first item in the list. Note\+: if the linked list is empty the function will return N\+U\+LL. 
+\begin{DoxyParams}{Parameters}
+{\em linked\+List} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_linked_list_8c_a17ab61d31c209a4fac0dba0ea94f1091}\label{_linked_list_8c_a17ab61d31c209a4fac0dba0ea94f1091}} 
+\index{LinkedList.c@{LinkedList.c}!linkedListGetIndex@{linkedListGetIndex}}
+\index{linkedListGetIndex@{linkedListGetIndex}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{linkedListGetIndex()}{linkedListGetIndex()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} linked\+List\+Get\+Index (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$}]{linked\+List,  }\item[{void $\ast$}]{item,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$)(const void $\ast$, const void $\ast$)}]{comparator }\end{DoxyParamCaption})}
+
+This function will take the linked list address, the item address, adn the comparator function as a parameters, then it will return the index of the given item, other wise it will return minus one (-\/1) . The function will use the comparator function to know if the two items are equivalent or not. 
+\begin{DoxyParams}{Parameters}
+{\em linked\+List} & \\
+\hline
+{\em item} & \\
+\hline
+{\em comparator} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_linked_list_8c_a582144735ceba15f68a12692afd99cc5}\label{_linked_list_8c_a582144735ceba15f68a12692afd99cc5}} 
+\index{LinkedList.c@{LinkedList.c}!linkedListGetItem@{linkedListGetItem}}
+\index{linkedListGetItem@{linkedListGetItem}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{linkedListGetItem()}{linkedListGetItem()}}
+{\footnotesize\ttfamily void$\ast$ linked\+List\+Get\+Item (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$}]{linked\+List,  }\item[{void $\ast$}]{item,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$)(const void $\ast$, const void $\ast$)}]{comparator }\end{DoxyParamCaption})}
+
+This function will take the linked list address, the item address, and the comparator function as a parameters, then it will return the item from the list if found, other wise it will return N\+U\+LL. The function will use the comparator function to know if the two items are equivalent or not. 
+\begin{DoxyParams}{Parameters}
+{\em linked\+List} & \\
+\hline
+{\em item} & \\
+\hline
+{\em comparator} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_linked_list_8c_af1f2a54a8916d4bd6d9b507f2a20ca9e}\label{_linked_list_8c_af1f2a54a8916d4bd6d9b507f2a20ca9e}} 
+\index{LinkedList.c@{LinkedList.c}!linkedListGetLast@{linkedListGetLast}}
+\index{linkedListGetLast@{linkedListGetLast}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{linkedListGetLast()}{linkedListGetLast()}}
+{\footnotesize\ttfamily void$\ast$ linked\+List\+Get\+Last (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$}]{linked\+List }\end{DoxyParamCaption})}
+
+This function will take the linked list address as a parameter, then it will return the last item in the list. Note\+: if the linked list is empty the function will return N\+U\+LL. 
+\begin{DoxyParams}{Parameters}
+{\em linked\+List} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_linked_list_8c_a6625f24d3dc106a7db1435eeb5159444}\label{_linked_list_8c_a6625f24d3dc106a7db1435eeb5159444}} 
+\index{LinkedList.c@{LinkedList.c}!linkedListGetLength@{linkedListGetLength}}
+\index{linkedListGetLength@{linkedListGetLength}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{linkedListGetLength()}{linkedListGetLength()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} linked\+List\+Get\+Length (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$}]{linked\+List }\end{DoxyParamCaption})}
+
+This function will take the linked list address as a parameter, the it will return the number of items in the linked list. 
+\begin{DoxyParams}{Parameters}
+{\em linked\+List} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_linked_list_8c_a63030b08bfb629c815521e806247c958}\label{_linked_list_8c_a63030b08bfb629c815521e806247c958}} 
+\index{LinkedList.c@{LinkedList.c}!linkedListInitialization@{linkedListInitialization}}
+\index{linkedListInitialization@{linkedListInitialization}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{linkedListInitialization()}{linkedListInitialization()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_linked_list}{Linked\+List}}$\ast$ linked\+List\+Initialization (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{size\+Of\+Type }\end{DoxyParamCaption})}
+
+This function will allocate a new linked list in the memory, setup it\textquotesingle{}s fields and return it. 
+\begin{DoxyParams}{Parameters}
+{\em size\+Of\+Type} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_linked_list_8c_ad9b29734784c4a4a70c71e7b424bf9b3}\label{_linked_list_8c_ad9b29734784c4a4a70c71e7b424bf9b3}} 
+\index{LinkedList.c@{LinkedList.c}!linkedListIsEmpty@{linkedListIsEmpty}}
+\index{linkedListIsEmpty@{linkedListIsEmpty}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{linkedListIsEmpty()}{linkedListIsEmpty()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} linked\+List\+Is\+Empty (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$}]{linked\+List }\end{DoxyParamCaption})}
+
+This function will take the linked list address as a parameter, then it will return one (1) if the linked list is empty, other wise it will return 0. 
+\begin{DoxyParams}{Parameters}
+{\em linked\+List} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_linked_list_8c_ac97b942ca91b1e3a1e76ab01c62ef455}\label{_linked_list_8c_ac97b942ca91b1e3a1e76ab01c62ef455}} 
+\index{LinkedList.c@{LinkedList.c}!linkedListToArray@{linkedListToArray}}
+\index{linkedListToArray@{linkedListToArray}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{linkedListToArray()}{linkedListToArray()}}
+{\footnotesize\ttfamily void$\ast$ linked\+List\+To\+Array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$}]{linked\+List }\end{DoxyParamCaption})}
+
+This function will take the linked list address as a parameter, then it will return a void pointer to an array consist of the items in the linked list. The items in the array doesn\textquotesingle{}t share the same address in the linked list items. 
+\begin{DoxyParams}{Parameters}
+{\em linked\+List} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_linked_list_8c_a36e96bba5af2251b88323c20b6bbc6fd}\label{_linked_list_8c_a36e96bba5af2251b88323c20b6bbc6fd}} 
+\index{LinkedList.c@{LinkedList.c}!printLinkedList@{printLinkedList}}
+\index{printLinkedList@{printLinkedList}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{printLinkedList()}{printLinkedList()}}
+{\footnotesize\ttfamily void print\+Linked\+List (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$}]{linked\+List,  }\item[{void($\ast$)(const void $\ast$)}]{print\+Fun }\end{DoxyParamCaption})}
+
+This method will take the linked list address, and the print function address, as a parameter, then it will call thr print function and pass to it an item pointer to be printed. 
+\begin{DoxyParams}{Parameters}
+{\em linked\+List} & \\
+\hline
+{\em print\+Fun} & \\
+\hline
+\end{DoxyParams}

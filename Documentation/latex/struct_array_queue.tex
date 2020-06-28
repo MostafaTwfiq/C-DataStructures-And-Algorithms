@@ -1,0 +1,65 @@
+\hypertarget{struct_array_queue}{}\doxysection{Array\+Queue Struct Reference}
+\label{struct_array_queue}\index{ArrayQueue@{ArrayQueue}}
+
+
+This structure implements a basic generic Queue where memory is laid out sequentially.  
+
+
+
+
+{\ttfamily \#include $<$Queue.\+h$>$}
+
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$$\ast$ \mbox{\hyperlink{struct_array_queue_a61a963e6e2f81b884bc6d17c72777b42}{memory}}
+\item 
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{struct_array_queue_af501f90be2a73c64b3b80cd90f54aa4c}{allocated}}
+\item 
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{struct_array_queue_ae97b43d7057bc2ef3c3d92b9f72fb42b}{front}}
+\item 
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{struct_array_queue_ae9dba3dbee9a2730bb04f152da1be21a}{rear}}
+\item 
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{struct_array_queue_abe1e9c96c82aa5db00dfde5ca4f3f5b6}{size\+Of\+Type}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This structure implements a basic generic Queue where memory is laid out sequentially. 
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{struct_array_queue_af501f90be2a73c64b3b80cd90f54aa4c}\label{struct_array_queue_af501f90be2a73c64b3b80cd90f54aa4c}} 
+\index{ArrayQueue@{ArrayQueue}!allocated@{allocated}}
+\index{allocated@{allocated}!ArrayQueue@{ArrayQueue}}
+\doxysubsubsection{\texorpdfstring{allocated}{allocated}}
+{\footnotesize\ttfamily allocated}
+
+Member \textquotesingle{}allocated\textquotesingle{} holds the current max allocated size for the Queue. \mbox{\Hypertarget{struct_array_queue_ae97b43d7057bc2ef3c3d92b9f72fb42b}\label{struct_array_queue_ae97b43d7057bc2ef3c3d92b9f72fb42b}} 
+\index{ArrayQueue@{ArrayQueue}!front@{front}}
+\index{front@{front}!ArrayQueue@{ArrayQueue}}
+\doxysubsubsection{\texorpdfstring{front}{front}}
+{\footnotesize\ttfamily front}
+
+Member \textquotesingle{}front\textquotesingle{} holds the index to the front of the Queue Element. \mbox{\Hypertarget{struct_array_queue_a61a963e6e2f81b884bc6d17c72777b42}\label{struct_array_queue_a61a963e6e2f81b884bc6d17c72777b42}} 
+\index{ArrayQueue@{ArrayQueue}!memory@{memory}}
+\index{memory@{memory}!ArrayQueue@{ArrayQueue}}
+\doxysubsubsection{\texorpdfstring{memory}{memory}}
+{\footnotesize\ttfamily memory}
+
+Member \textquotesingle{}memory\textquotesingle{} is a pointer to the the Queue\textquotesingle{}s memory. \mbox{\Hypertarget{struct_array_queue_ae9dba3dbee9a2730bb04f152da1be21a}\label{struct_array_queue_ae9dba3dbee9a2730bb04f152da1be21a}} 
+\index{ArrayQueue@{ArrayQueue}!rear@{rear}}
+\index{rear@{rear}!ArrayQueue@{ArrayQueue}}
+\doxysubsubsection{\texorpdfstring{rear}{rear}}
+{\footnotesize\ttfamily rear}
+
+Member \textquotesingle{}rear\textquotesingle{} holds the index to the last Queue Element. \mbox{\Hypertarget{struct_array_queue_abe1e9c96c82aa5db00dfde5ca4f3f5b6}\label{struct_array_queue_abe1e9c96c82aa5db00dfde5ca4f3f5b6}} 
+\index{ArrayQueue@{ArrayQueue}!sizeOfType@{sizeOfType}}
+\index{sizeOfType@{sizeOfType}!ArrayQueue@{ArrayQueue}}
+\doxysubsubsection{\texorpdfstring{sizeOfType}{sizeOfType}}
+{\footnotesize\ttfamily size\+Of\+Type}
+
+Member \textquotesingle{}size\+Of\+Type\textquotesingle{} the size of the data stored in the Queue. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Headers/\mbox{\hyperlink{_queue_8h}{Queue.\+h}}\end{DoxyCompactItemize}

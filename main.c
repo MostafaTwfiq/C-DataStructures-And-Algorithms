@@ -4,9 +4,8 @@
 #include <math.h>
 #include "Trie.h"
 #include "Headers/ArrayList.h"
-
-
 int main() {
+
 
     Trie *trie = trieInitialization();
 
@@ -22,6 +21,5 @@ int main() {
         char *word = arrayListGet(list, i);
         printf("%s\n", word);
     }
-
 
 }
