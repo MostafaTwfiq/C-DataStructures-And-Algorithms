@@ -1,6 +1,6 @@
-#include "Trie.h"
-#include "Headers/ArrayList.h"
-#include "Headers/String.h"
+#include "../Headers/Trie.h"
+#include "../Headers/ArrayList.h"
+#include "../Headers/String.h"
 #include <math.h>
 
 char toLowerCase(char c);
@@ -10,8 +10,9 @@ int nodeHasChildren(Node *node);
 Node *trieRemoveWordR(Node *root, const char *currentChar);
 void trieAutoCompletionR(Node *root, String *string, ArrayList *wordsList, int numOfSuggestion);
 void trieSuggestionR(Node *root, char *word, String *string, ArrayList *wordsList, int numOfSuggestion);
+void triePrintAllWordsR(Node *root, String *string);
 int *generateIndexes(char c);
-
+Node *destroyTrieNodes(Node *root);
 
 Trie *trieInitialization() {
     Trie *trie = (Trie *) malloc(sizeof(Trie));
@@ -93,7 +94,7 @@ void trieRemoveWord(Trie *trie, char *word) {
     int index = toLowerCase(*word) - 'a';
 
     if (root->characters[index] != NULL)
-        trieRemoveWordR(root->characters[index], word + 1);
+        trie->root->characters[index] = trieRemoveWordR(root->characters[index], word + 1);
 
 }
 
@@ -203,7 +204,10 @@ ArrayList *trieSuggestion(Trie *trie, char *word, int numOfSuggestion) {
     String *string = stringInitialization(10);
     ArrayList *wordsList = arrayListInitialization(numOfSuggestion, sizeof(char *));
 
+
     trieSuggestionR(trie->root, word, string, wordsList, numOfSuggestion);
+
+
     destroyString(string);
 
     return wordsList;
@@ -211,41 +215,22 @@ ArrayList *trieSuggestion(Trie *trie, char *word, int numOfSuggestion) {
 }
 
 void trieSuggestionR(Node *root, char *word, String *string, ArrayList *wordsList, int numOfSuggestion) {
-    stringAddCharAtLast(string, root->value);
+    if (root->value != '\0')
+        stringAddCharAtLast(string, root->value);
 
     if (*word == '\0') {
-
         if (arrayListGetLength(wordsList) == numOfSuggestion)
             return;
-
         else if (root->EOW) {
-            if (stringGetCharAtIndex(string, 0) == '\0')
-                stringRemoveCharAtIndex(string, 0);
-
             char *finalWord = stringToArrayOfCharacters(string);
             arrayListAdd(wordsList, finalWord);
         }
+    }
 
-        for (int i = 0; i < 26; i++) {
-            if (root->characters[i] != NULL)
-                trieSuggestionR(root->characters[i], word, string, wordsList, numOfSuggestion);
-
-        }
-
-    } else {
-        int index = toLowerCase(*word) - 'a';
-        if (root->characters[index] != NULL) {
-            trieSuggestionR(root->characters[index], word + 1, string, wordsList, numOfSuggestion);
-        } else {
-            int *indices = generateIndexes(toLowerCase(*word));
-
-            for (int i = 0; i < 26; i++) {
-                if (root->characters[indices[i]] != NULL)
-                    trieSuggestionR(root->characters[indices[i]], word + 1, string, wordsList, numOfSuggestion);
-
-            }
-
-        }
+    int *indices = generateIndexes(toLowerCase(*word));
+    for (int i = 0; i < 26; i++) {
+        if (root->characters[indices[i]] != NULL)
+            trieSuggestionR(root->characters[indices[i]], word + (*word == '\0' ? 0 : 1) , string, wordsList, numOfSuggestion);
 
     }
 
@@ -255,6 +240,55 @@ void trieSuggestionR(Node *root, char *word, String *string, ArrayList *wordsLis
 }
 
 
+void triePrintAllWords(Trie *trie) {
+    String *string = stringInitialization(10);
+
+    for (int i = 0; i < 26; i++) {
+
+        if (trie->root->characters[i] != NULL)
+            triePrintAllWordsR(trie->root->characters[i], string);
+
+    }
+
+    destroyString(string);
+}
+
+void triePrintAllWordsR(Node *root, String *string) {
+    stringAddCharAtLast(string, root->value);
+
+    if (root->EOW) {
+        printString(string);
+        printf("\n");
+    }
+
+    for (int i = 0; i < 26; i++) {
+        if (root->characters[i] != NULL)
+            triePrintAllWordsR(root->characters[i], string);
+
+    }
+
+    stringRemoveCharAtIndex(string, stringGetLength(string) - 1);
+
+}
+
+
+
+void destroyTrie(Trie *trie) {
+    trie->root = destroyTrieNodes(trie->root);
+    free(trie);
+}
+
+Node *destroyTrieNodes(Node *root) {
+    for (int i = 0; i < 26; i++) {
+        if (root->characters[i] != NULL)
+            root->characters[i] = destroyTrieNodes(root->characters[i]);
+
+    }
+
+    freeNode(root);
+
+    return NULL;
+}
 
 
 char toLowerCase(char c) {
@@ -304,6 +338,15 @@ int comparator(const void *p1, const void *p2) {
 }
 
 int *generateIndexes(char c) {
+    int *arr = (int *) malloc(sizeof(int) * 26);
+
+    if (c == '\0') {
+        for (int i = 0; i < 26; i++)
+            arr[i] = i;
+
+        return arr;
+    }
+
     char matrix[3][10] = {
             {'q' , 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'},
             {'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', '\0'},
@@ -326,7 +369,6 @@ int *generateIndexes(char c) {
 
     int keyIndex = 0;
     KeyHolder keys[26];
-    int *arr = (int *) malloc(sizeof(int) * 26);
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 10; j++) {
             if (matrix[i][j] == '\0')

@@ -84,5 +84,7 @@ void destroyString(String *myString);
 void stringFGetS(String *myString);
 
 
+void printString(String *string);
+
 
 #endif //C_DATASTRUCTURES_STRING_H
