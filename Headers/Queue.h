@@ -13,9 +13,9 @@
  *  @var ArrayQueue::allocated
  *  Member 'allocated' holds the current max allocated size for the Queue.
  *  @var ArrayQueue::front
- *  Member 'top' holds the index to the front of the Queue Element.
+ *  Member 'front' holds the index to the front of the Queue Element.
   *  @var ArrayQueue::rear
- *  Member 'top' holds the index to the last Queue Element.
+ *  Member 'rear' holds the index to the last Queue Element.
  *  @var ArrayQueue::sizeOfType
  *  Member 'sizeOfType' the size of the data stored in the Queue.
  */
