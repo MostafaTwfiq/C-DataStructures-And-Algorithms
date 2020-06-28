@@ -1,11 +1,10 @@
-#ifndef C_DATASTRUCTURES_QUEUE_H
-#define C_DATASTRUCTURES_QUEUE_H
+#ifndef C_DATASTRUCTURES_ARRAYQUEUE_H
+#define C_DATASTRUCTURES_ARRAYQUEUE_H
 
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
-#include "ErrorCode.h"
+#include "Utils.h"
 
+#ifndef ARRAY_QUEUE_STRUCT_
+#define ARRAY_QUEUE_STRUCT_
 /** @struct ArrayQueue
  *  @brief This structure implements a basic generic Queue where memory is laid out sequentially.
  *  @var ArrayQueue:: memory
@@ -26,6 +25,7 @@ typedef struct ArrayQueue{
     int rear;
     int sizeOfType;
 }ArrayQueue;
+#endif
 
 ArrayQueue *QueueInitialize(int size);
 
@@ -49,4 +49,4 @@ void *ArrayQueuePeek(ArrayQueue * arrayQueue);
 
 void *ArrayQueueToArray(ArrayQueue * arrayQueue);
 
-#endif //C_DATASTRUCTURES_QUEUE_H
+#endif //C_DATASTRUCTURES_ARRAYQUEUE_H

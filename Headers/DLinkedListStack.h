@@ -1,6 +1,6 @@
 #ifndef C_DATASTRUCTURES_DLINKEDLISTSTACK_H
 #define C_DATASTRUCTURES_DLINKEDLISTSTACK_H
-
+#include "Utils.h"
 #include "DoublyLinkedList.h"
 
 typedef struct DLinkedListStack {

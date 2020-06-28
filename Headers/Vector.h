@@ -2,10 +2,7 @@
 #define C_DATASTRUCTURES_VECTOR_H
 
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
+#include "Utils.h"
 
 
 typedef struct Vector {

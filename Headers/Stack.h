@@ -1,9 +1,6 @@
 #ifndef C_DATASTRUCTURES_STACK_H
 #define C_DATASTRUCTURES_STACK_H
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "ErrorCode.h"
+#include "Utils.h"
 
 /** @struct Stack
  *  @brief This structure implements a basic generic stack.

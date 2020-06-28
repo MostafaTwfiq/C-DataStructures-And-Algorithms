@@ -29,8 +29,22 @@ add_executable(C_DataStructures main.c
         Sources/LinkedListQueue.c
         Headers/LinkedListQueue.h
 
-        Trie.c Trie.h
+        Sources/ArrayQueue.c
+        Headers/ArrayQueue.h
 
-        Sources/Queue.c
-        Headers/Queue.h
+        Sources/BinaryTree.c
+        Headers/BinaryTree.h
+
+        Sources/AVLTree.c
+        Headers/AVLTree.h
+
+        Sources/SplayTree.c
+        Headers/SplayTree.h
+
+        Sources/Heap.c
+        Headers/Heap.h
+
+        Headers/Utils.h
+
+        Trie.c Trie.h
         )
