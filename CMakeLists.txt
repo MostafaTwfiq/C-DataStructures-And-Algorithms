@@ -46,4 +46,5 @@ add_executable(C_DataStructures main.c
 
         Headers/Utils.h
 
+        Trie.c Trie.h
         )
