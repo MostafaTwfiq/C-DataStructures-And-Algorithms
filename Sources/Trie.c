@@ -3,16 +3,52 @@
 #include "../Headers/String.h"
 #include <math.h>
 
+typedef struct Node {
+
+    struct Node **characters;
+    char value;
+    int EOW;
+
+} Node;
+
+
+/** This struct will be useful in generating the best sequence in suggesting the words.*/
+typedef struct KeyHolder {
+
+    char c;
+    float weight;
+} KeyHolder;
+
+
 char toLowerCase(char c);
+
 Node *createNode(char value, int EOW);
+
 void freeNode(Node *node);
+
 int nodeHasChildren(Node *node);
+
 Node *trieRemoveWordR(Node *root, const char *currentChar);
-void trieAutoCompletionR(Node *root, String *string, ArrayList *wordsList, int numOfSuggestion);
+
+void trieAutoCompletionR(Node *root, char *currentChar, int numOfSuggestion, String *string, ArrayList *wordsList);
+
 void trieSuggestionR(Node *root, char *word, String *string, ArrayList *wordsList, int numOfSuggestion);
+
 void triePrintAllWordsR(Node *root, String *string);
+
 int *generateIndexes(char c);
+
 Node *destroyTrieNodes(Node *root);
+
+
+
+
+
+
+/** This function will initialize a new trie in the memory, and initialize it's fields then,
+    the function will return it's address.
+ * @return
+ */
 
 Trie *trieInitialization() {
     Trie *trie = (Trie *) malloc(sizeof(Trie));
@@ -23,6 +59,17 @@ Trie *trieInitialization() {
 
 }
 
+
+
+
+
+
+
+/** This function will take the trie address, and the word  address as a parameters,
+ * then it will add the word into the trie.
+ * @param trie
+ * @param word
+ */
 
 void trieAddWord(Trie *trie, char *word) {
 
@@ -55,6 +102,19 @@ void trieAddWord(Trie *trie, char *word) {
 
 }
 
+
+
+
+
+/** This function will take the trie address, and the word address as a parameter,
+    then it  will return one (1) if the word is in the trie,
+    other wise it will return zero (0).
+ * @param trie
+ * @param word
+ * @return
+ */
+
+
 int trieContains(Trie *trie, char *word) {
 
     if (trie == NULL) {
@@ -82,6 +142,16 @@ int trieContains(Trie *trie, char *word) {
 }
 
 
+
+
+
+
+/** This function will take the trie address, and the word address as a parameters,
+    then it will remove the given word from the trie.
+ * @param trie
+ * @param word
+ */
+
 void trieRemoveWord(Trie *trie, char *word) {
 
     if (trie == NULL) {
@@ -97,6 +167,18 @@ void trieRemoveWord(Trie *trie, char *word) {
         trie->root->characters[index] = trieRemoveWordR(root->characters[index], word + 1);
 
 }
+
+
+
+
+
+/** This function takes the root node address, and the current char address as a parameters,
+    then it will remove the given word from the trie recursively.
+ * Note: this function will be only called from the trieRemoveWord function only.
+ * @param root
+ * @param currentChar
+ * @return
+ */
 
 Node *trieRemoveWordR(Node *root, const char *currentChar) {
     if (*currentChar == '\0') {
@@ -131,74 +213,81 @@ Node *trieRemoveWordR(Node *root, const char *currentChar) {
 
 
 
+
+/** This function will take the trie address, the word address, and the number of suggestion needed as a parameters,
+    then it will return and array list pointer that contains all the words.
+ * Note: if the given word is wrong Linguistically then,
+   the function will start to complete starts from the first wrong character.
+ * @param trie
+ * @param word
+ * @param numOfSuggestion
+ * @return
+ */
+
 ArrayList *trieAutoCompletion(Trie *trie, char *word, int numOfSuggestion) {
-
-    if (trie == NULL) {
-        fprintf(stderr, "Null pointer exception, the trie is null.");
-        exit(-3);
-    } else if (word == NULL)
-        return NULL;
-
-    char *currentChar = word;
-    Node *root = trie->root;
-    int index;
-
-    String *string = stringInitialization(10);
-
-    while (*currentChar != '\0') {
-        index = toLowerCase(*currentChar) - 'a';
-
-        if (root->characters[index] != NULL)
-            root = root->characters[index];
-
-        else
-            break;
-
-        stringAddCharAtLast(string, *currentChar);
-        currentChar++;
-
-    }
-
     ArrayList *wordsList = arrayListInitialization(numOfSuggestion, sizeof(char *));
-
-    if (stringGetLength(string) != 0) {
-        stringRemoveCharAtIndex(string, stringGetLength(string) - 1);
-        trieAutoCompletionR(root, string, wordsList, numOfSuggestion);
-    } else {
-        for (int i = 0; i < 26; i++) {
-            if (root->characters[i] != NULL)
-                trieAutoCompletionR(root->characters[i], string, wordsList, numOfSuggestion);
-
-        }
-    }
+    String *string = stringInitialization(10);
+    trieAutoCompletionR(trie->root, word, numOfSuggestion, string, wordsList);
 
     destroyString(string);
     return wordsList;
-
 }
 
-void trieAutoCompletionR(Node *root, String *string, ArrayList *wordsList, int numOfSuggestion) {
-    stringAddCharAtLast(string, root->value);
+
+
+
+
+
+
+/** This function will take the the root node, the current char address,
+    the number of needed suggestion words,
+    a string address, and an array list to put the words in it, as a parameters,
+    then it will fill the array list with the words.
+ * Note: this function should be  called by the trieAutoCompletion function only.
+ * @param root
+ * @param currentChar
+ * @param numOfSuggestion
+ * @param string
+ * @param wordsList
+ */
+
+void trieAutoCompletionR(Node *root, char *currentChar, int numOfSuggestion, String *string, ArrayList *wordsList) {
+    if (root->value != '\0')
+        stringAddCharAtLast(string, root->value);
 
     if (arrayListGetLength(wordsList) == numOfSuggestion)
         return;
-
-    else if (root->EOW) {
+    else if (root->EOW && *currentChar == '\0') {
         char *word = stringToArrayOfCharacters(string);
         arrayListAdd(wordsList, word);
     }
 
-    for (int i = 0; i < 26; i++) {
-        if (root->characters[i] != NULL)
-            trieAutoCompletionR(root->characters[i], string, wordsList, numOfSuggestion);
-
+    int index = toLowerCase(*currentChar) - 'a';
+    if (*currentChar!= '\0' && root->characters[index] != NULL) {
+        trieAutoCompletionR(root->characters[index], currentChar + 1, numOfSuggestion, string, wordsList);
+    } else {
+        for (int i = 0; i < 26; i++) {
+            if (root->characters[i] != NULL) { trieAutoCompletionR(root->characters[i], "\0", numOfSuggestion, string, wordsList); }
+        }
     }
 
-    stringRemoveCharAtIndex(string, stringGetLength(string) - 1);
+    if (stringGetLength(string) != 0)
+        stringRemoveCharAtIndex(string, stringGetLength(string) - 1);
 
 }
 
 
+
+
+
+
+/** This function will take the trie address, the word address, the number of needed words to be suggested as a parameters,
+ * then it will return an array list that contains the suggested words.
+ * @param trie
+ * @param word
+ * @param numOfSuggestion
+ * @return
+ */
 
 ArrayList *trieSuggestion(Trie *trie, char *word, int numOfSuggestion) {
     String *string = stringInitialization(10);
@@ -213,6 +302,22 @@ ArrayList *trieSuggestion(Trie *trie, char *word, int numOfSuggestion) {
     return wordsList;
 
 }
+
+
+
+
+
+
+/** This function will take the root node addres, the words address, string address, array list address,
+    and the number of words thar needed to be suggested as a parameter,
+    then it will fill the array list with the words.
+ * Note: this function should only be called by the trieSuggestion function.
+ * @param root
+ * @param word
+ * @param string
+ * @param wordsList
+ * @param numOfSuggestion
+ */
 
 void trieSuggestionR(Node *root, char *word, String *string, ArrayList *wordsList, int numOfSuggestion) {
     if (root->value != '\0')
@@ -234,11 +339,21 @@ void trieSuggestionR(Node *root, char *word, String *string, ArrayList *wordsLis
 
     }
 
+    free(indices);
     if (stringGetLength(string) != 0)
         stringRemoveCharAtIndex(string, stringGetLength(string) - 1);
 
 }
 
+
+
+
+
+
+/** This function will take the trie address as a parameter,
+ * then it will print all the words in the trie.
+ * @param trie
+ */
 
 void triePrintAllWords(Trie *trie) {
     String *string = stringInitialization(10);
@@ -252,6 +367,18 @@ void triePrintAllWords(Trie *trie) {
 
     destroyString(string);
 }
+
+
+
+
+
+
+/** This function will take the root node address, and a string address as a parameter,
+ * then it will print all the words in the trie.
+ * Note: this function should only be called from the triePrintAllWords function.
+ * @param root
+ * @param string
+ */
 
 void triePrintAllWordsR(Node *root, String *string) {
     stringAddCharAtLast(string, root->value);
@@ -273,10 +400,49 @@ void triePrintAllWordsR(Node *root, String *string) {
 
 
 
+
+
+/** This function will take the trie address as a parameter,
+    then it will clear and free all the trie nodes,
+    without destroying the trie.
+ * @param trie
+ */
+
+void clearTrie(Trie *trie) {
+    for (int i = 0; i < 26; i++) {
+        if (trie->root->characters[i] != NULL)
+            trie->root->characters[i] = destroyTrieNodes(trie->root->characters[i]);
+
+    }
+
+}
+
+
+
+
+
+/** This function will take the trie address as a parameter,
+    then it will destroy and free the trie and all it's nodes.
+ * @param trie
+ */
+
 void destroyTrie(Trie *trie) {
     trie->root = destroyTrieNodes(trie->root);
     free(trie);
 }
+
+
+
+
+
+
+
+/** This function takes the root node address as a parameter,
+    then it will destroy and free all the nodes.
+ * Note: This should only be called from the clearTrie and destroyTrie functions.
+ * @param root
+ * @return
+ */
 
 Node *destroyTrieNodes(Node *root) {
     for (int i = 0; i < 26; i++) {
@@ -291,6 +457,14 @@ Node *destroyTrieNodes(Node *root) {
 }
 
 
+
+/** This function takes a character as a parameter,
+    then it will return the lower case of the of the character if it's an alphabet.
+    Note: this function private to be used by the tries function only.
+ * @param c
+ * @return
+ */
+
 char toLowerCase(char c) {
     if (c >= 'A' && c <= 'Z')
         return (char) ((int) c + 32);
@@ -298,6 +472,17 @@ char toLowerCase(char c) {
 
     return c;
 }
+
+
+
+
+/** This function will take a node address as a parameter,
+    then it will return one (1) if the node has al least one child,
+    other wise it will return zero (0).
+ * Note: This function is private to be used by the trie functions only.
+ * @param node
+ * @return
+ */
 
 int nodeHasChildren(Node *node) {
     for (int i = 0; i < 26; i++) {
@@ -308,6 +493,19 @@ int nodeHasChildren(Node *node) {
 
     return 0;
 }
+
+
+
+
+
+
+/** This function will take a character, and an end of word boolean as a parameters,
+    then it will return a new node address that has been initialized with the passed values.
+ * Note: this function should be only called from the inside of the trie.
+ * @param value
+ * @param EOW
+ * @return
+ */
 
 Node *createNode(char value, int EOW) {
     Node *node = (Node *) malloc(sizeof(Node));
@@ -320,22 +518,40 @@ Node *createNode(char value, int EOW) {
     node->EOW = EOW;
 }
 
+
+
+
+
+/** This function will take a node address as a parameter,
+    then it will destroy and free that node.
+ * Note: this function should be only called from the inside if the trie.
+ * @param node
+ */
+
 void freeNode(Node *node) {
     free(node->characters);
     free(node);
 }
 
 
-typedef struct KeyHolder {
-
-    char c;
-    float weight;
-} KeyHolder;
 
 
+/** This function is useful for the generateIndexes function, to sort the keyHolder array*/
 int comparator(const void *p1, const void *p2) {
-    return (int) ceil(((KeyHolder *)p1)->weight - ((KeyHolder *)p2)->weight);
+    float subVal = ((KeyHolder *)p1)->weight - ((KeyHolder *)p2)->weight;
+    return subVal >= 0 ? (int) ceilf(subVal) : (int) floorf(subVal);
 }
+
+
+
+
+
+/** This function will take a character as a parameter,
+ * then it will generate a list of indices that depends on the distance between keys in the keyboard,
+ * and return it as an integer array.
+ * @param c
+ * @return
+ */
 
 int *generateIndexes(char c) {
     int *arr = (int *) malloc(sizeof(int) * 26);

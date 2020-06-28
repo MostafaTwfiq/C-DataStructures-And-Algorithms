@@ -7,18 +7,19 @@
 int main() {
 
 
+    printf("%d", ceil(-0.5));
 
     Trie *trie = trieInitialization();
 
-    trieAddWord(trie, "moStafa");
+    trieAddWord(trie, "mostafa");
 
-    trieRemoveWord(trie, "mostafa");
+    //trieRemoveWord(trie, "mostafa");
 
     trieAddWord(trie, "mohammad");
 
-    triePrintAllWords(trie);
+    //triePrintAllWords(trie);
 
-    /*ArrayList *list = trieSuggestion(trie, "", 10);
+    /*ArrayList *list = try(trie, "", 10);
 
     for (int i = 0; i < arrayListGetLength(list); i++) {
         char *word = arrayListGet(list, i);
