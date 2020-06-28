@@ -336,7 +336,7 @@ int *generateIndexes(char c) {
             float pow1 = pow(i - row, 2);
             float pow2 = pow(j - col, 2);
             float root = sqrtf(pow1 + pow2);
-            keys[keyIndex].weight = root;
+            keys[keyIndex++].weight = root;
 
         }
     }
