@@ -3,9 +3,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "ErrorCode.h"
 
 /** @struct Stack
- *  @brief This structure blah blah blah...
+ *  @brief This structure implements a basic generic stack.
  *  @var Stack:: memory
  *  Member 'memory' is a pointer to the the stacks memory.
  *  @var Stack::allocated

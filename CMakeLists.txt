@@ -28,4 +28,7 @@ add_executable(C_DataStructures main.c
 
         Sources/LinkedListQueue.c
         Headers/LinkedListQueue.h
+
+        Sources/Queue.c
+        Headers/Queue.h
         )

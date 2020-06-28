@@ -1,0 +1,179 @@
+\hypertarget{_linked_list_queue_8h}{}\doxysection{Headers/\+Linked\+List\+Queue.h File Reference}
+\label{_linked_list_queue_8h}\index{Headers/LinkedListQueue.h@{Headers/LinkedListQueue.h}}
+{\ttfamily \#include \char`\"{}Linked\+List.\+h\char`\"{}}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_linked_list_queue}{Linked\+List\+Queue}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct_linked_list_queue}{Linked\+List\+Queue}} \mbox{\hyperlink{_linked_list_queue_8h_adb9e1ed0d57b3d1c62d4d7d03474359a}{Linked\+List\+Queue}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_linked_list_queue}{Linked\+List\+Queue}} $\ast$ \mbox{\hyperlink{_linked_list_queue_8h_aed6cbcab3beb2881285105f1d8063d14}{linked\+List\+Queue\+Initialization}} (\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} size\+Of\+Type)
+\item 
+void \mbox{\hyperlink{_linked_list_queue_8h_adba0e40b5884fc8d55874e86d3993d44}{l\+L\+Queue\+Enqueue}} (\mbox{\hyperlink{struct_linked_list_queue}{Linked\+List\+Queue}} $\ast$queue, void $\ast$item)
+\item 
+void \mbox{\hyperlink{_linked_list_queue_8h_a8767796d1053a1e8707fcf554a32f9c2}{l\+L\+Queue\+Enqueue\+All}} (\mbox{\hyperlink{struct_linked_list_queue}{Linked\+List\+Queue}} $\ast$queue, void $\ast$arr, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} arr\+Length)
+\item 
+void $\ast$ \mbox{\hyperlink{_linked_list_queue_8h_aa2bdd61ec62f0a5b07609d058d0a6e9b}{l\+L\+Queue\+Dequeue}} (\mbox{\hyperlink{struct_linked_list_queue}{Linked\+List\+Queue}} $\ast$queue)
+\item 
+void $\ast$ \mbox{\hyperlink{_linked_list_queue_8h_acec969b2a744dfb24e11581a80d76783}{l\+L\+Queue\+Peek}} (\mbox{\hyperlink{struct_linked_list_queue}{Linked\+List\+Queue}} $\ast$queue)
+\item 
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_linked_list_queue_8h_a18a749b1308e3e20b4a5fb6ebadbc443}{l\+L\+Queue\+Get\+Length}} (\mbox{\hyperlink{struct_linked_list_queue}{Linked\+List\+Queue}} $\ast$queue)
+\item 
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_linked_list_queue_8h_a72aacf7559b7fde2b9c17f6480fef8ea}{l\+L\+Queue\+Is\+Empty}} (\mbox{\hyperlink{struct_linked_list_queue}{Linked\+List\+Queue}} $\ast$queue)
+\item 
+void $\ast$ \mbox{\hyperlink{_linked_list_queue_8h_a9cba32d660dc37d5f10ac6b8cae3652f}{l\+L\+Queue\+To\+Array}} (\mbox{\hyperlink{struct_linked_list_queue}{Linked\+List\+Queue}} $\ast$queue)
+\item 
+void \mbox{\hyperlink{_linked_list_queue_8h_af4fb28b43c78a06b1127624f0e1b03e4}{clear\+L\+L\+Queue}} (\mbox{\hyperlink{struct_linked_list_queue}{Linked\+List\+Queue}} $\ast$queue)
+\item 
+void \mbox{\hyperlink{_linked_list_queue_8h_a36376eb8c7694258a44540abf56e91b6}{destroy\+L\+L\+Queue}} (\mbox{\hyperlink{struct_linked_list_queue}{Linked\+List\+Queue}} $\ast$queue)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{_linked_list_queue_8h_adb9e1ed0d57b3d1c62d4d7d03474359a}\label{_linked_list_queue_8h_adb9e1ed0d57b3d1c62d4d7d03474359a}} 
+\index{LinkedListQueue.h@{LinkedListQueue.h}!LinkedListQueue@{LinkedListQueue}}
+\index{LinkedListQueue@{LinkedListQueue}!LinkedListQueue.h@{LinkedListQueue.h}}
+\doxysubsubsection{\texorpdfstring{LinkedListQueue}{LinkedListQueue}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct_linked_list_queue}{Linked\+List\+Queue}} \mbox{\hyperlink{struct_linked_list_queue}{Linked\+List\+Queue}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_linked_list_queue_8h_af4fb28b43c78a06b1127624f0e1b03e4}\label{_linked_list_queue_8h_af4fb28b43c78a06b1127624f0e1b03e4}} 
+\index{LinkedListQueue.h@{LinkedListQueue.h}!clearLLQueue@{clearLLQueue}}
+\index{clearLLQueue@{clearLLQueue}!LinkedListQueue.h@{LinkedListQueue.h}}
+\doxysubsubsection{\texorpdfstring{clearLLQueue()}{clearLLQueue()}}
+{\footnotesize\ttfamily void clear\+L\+L\+Queue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list_queue}{Linked\+List\+Queue}} $\ast$}]{queue }\end{DoxyParamCaption})}
+
+This function will take the queue address as a parameter, then it will delete and free all the items in the queue without destroying the queue. 
+\begin{DoxyParams}{Parameters}
+{\em queue} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_linked_list_queue_8h_a36376eb8c7694258a44540abf56e91b6}\label{_linked_list_queue_8h_a36376eb8c7694258a44540abf56e91b6}} 
+\index{LinkedListQueue.h@{LinkedListQueue.h}!destroyLLQueue@{destroyLLQueue}}
+\index{destroyLLQueue@{destroyLLQueue}!LinkedListQueue.h@{LinkedListQueue.h}}
+\doxysubsubsection{\texorpdfstring{destroyLLQueue()}{destroyLLQueue()}}
+{\footnotesize\ttfamily void destroy\+L\+L\+Queue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list_queue}{Linked\+List\+Queue}} $\ast$}]{queue }\end{DoxyParamCaption})}
+
+This function will take the queue address as a parameter, then it will destroy and free all the item in the queue then it will also free the queue. 
+\begin{DoxyParams}{Parameters}
+{\em queue} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_linked_list_queue_8h_aed6cbcab3beb2881285105f1d8063d14}\label{_linked_list_queue_8h_aed6cbcab3beb2881285105f1d8063d14}} 
+\index{LinkedListQueue.h@{LinkedListQueue.h}!linkedListQueueInitialization@{linkedListQueueInitialization}}
+\index{linkedListQueueInitialization@{linkedListQueueInitialization}!LinkedListQueue.h@{LinkedListQueue.h}}
+\doxysubsubsection{\texorpdfstring{linkedListQueueInitialization()}{linkedListQueueInitialization()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_linked_list_queue}{Linked\+List\+Queue}}$\ast$ linked\+List\+Queue\+Initialization (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{size\+Of\+Type }\end{DoxyParamCaption})}
+
+This function will take the size of the items type as a parameter, then it will initialize a new linked list queue, and return it\textquotesingle{}s address. 
+\begin{DoxyParams}{Parameters}
+{\em size\+Of\+Type} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_linked_list_queue_8h_aa2bdd61ec62f0a5b07609d058d0a6e9b}\label{_linked_list_queue_8h_aa2bdd61ec62f0a5b07609d058d0a6e9b}} 
+\index{LinkedListQueue.h@{LinkedListQueue.h}!lLQueueDequeue@{lLQueueDequeue}}
+\index{lLQueueDequeue@{lLQueueDequeue}!LinkedListQueue.h@{LinkedListQueue.h}}
+\doxysubsubsection{\texorpdfstring{lLQueueDequeue()}{lLQueueDequeue()}}
+{\footnotesize\ttfamily void$\ast$ l\+L\+Queue\+Dequeue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list_queue}{Linked\+List\+Queue}} $\ast$}]{queue }\end{DoxyParamCaption})}
+
+This function will take the queue address as a parameter, then it will return the first item in the queue, then the item will be deleted from the queue. Note\+: if the queue i empty the program will be terminated. 
+\begin{DoxyParams}{Parameters}
+{\em queue} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_linked_list_queue_8h_adba0e40b5884fc8d55874e86d3993d44}\label{_linked_list_queue_8h_adba0e40b5884fc8d55874e86d3993d44}} 
+\index{LinkedListQueue.h@{LinkedListQueue.h}!lLQueueEnqueue@{lLQueueEnqueue}}
+\index{lLQueueEnqueue@{lLQueueEnqueue}!LinkedListQueue.h@{LinkedListQueue.h}}
+\doxysubsubsection{\texorpdfstring{lLQueueEnqueue()}{lLQueueEnqueue()}}
+{\footnotesize\ttfamily void l\+L\+Queue\+Enqueue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list_queue}{Linked\+List\+Queue}} $\ast$}]{queue,  }\item[{void $\ast$}]{item }\end{DoxyParamCaption})}
+
+This function will take the queue address, and the item address as a parameter, then it will push the item into the queue. 
+\begin{DoxyParams}{Parameters}
+{\em queue} & \\
+\hline
+{\em item} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_linked_list_queue_8h_a8767796d1053a1e8707fcf554a32f9c2}\label{_linked_list_queue_8h_a8767796d1053a1e8707fcf554a32f9c2}} 
+\index{LinkedListQueue.h@{LinkedListQueue.h}!lLQueueEnqueueAll@{lLQueueEnqueueAll}}
+\index{lLQueueEnqueueAll@{lLQueueEnqueueAll}!LinkedListQueue.h@{LinkedListQueue.h}}
+\doxysubsubsection{\texorpdfstring{lLQueueEnqueueAll()}{lLQueueEnqueueAll()}}
+{\footnotesize\ttfamily void l\+L\+Queue\+Enqueue\+All (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list_queue}{Linked\+List\+Queue}} $\ast$}]{queue,  }\item[{void $\ast$}]{arr,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{arr\+Length }\end{DoxyParamCaption})}
+
+This function will take the queue address, the array address, and the array length as a parameter, then it will add all the items in the array to the queue in order. 
+\begin{DoxyParams}{Parameters}
+{\em queue} & \\
+\hline
+{\em arr} & \\
+\hline
+{\em arr\+Length} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_linked_list_queue_8h_a18a749b1308e3e20b4a5fb6ebadbc443}\label{_linked_list_queue_8h_a18a749b1308e3e20b4a5fb6ebadbc443}} 
+\index{LinkedListQueue.h@{LinkedListQueue.h}!lLQueueGetLength@{lLQueueGetLength}}
+\index{lLQueueGetLength@{lLQueueGetLength}!LinkedListQueue.h@{LinkedListQueue.h}}
+\doxysubsubsection{\texorpdfstring{lLQueueGetLength()}{lLQueueGetLength()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} l\+L\+Queue\+Get\+Length (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list_queue}{Linked\+List\+Queue}} $\ast$}]{queue }\end{DoxyParamCaption})}
+
+This function will take the queue address as a parameter, then it will return the number of the elements in the array. 
+\begin{DoxyParams}{Parameters}
+{\em queue} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_linked_list_queue_8h_a72aacf7559b7fde2b9c17f6480fef8ea}\label{_linked_list_queue_8h_a72aacf7559b7fde2b9c17f6480fef8ea}} 
+\index{LinkedListQueue.h@{LinkedListQueue.h}!lLQueueIsEmpty@{lLQueueIsEmpty}}
+\index{lLQueueIsEmpty@{lLQueueIsEmpty}!LinkedListQueue.h@{LinkedListQueue.h}}
+\doxysubsubsection{\texorpdfstring{lLQueueIsEmpty()}{lLQueueIsEmpty()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} l\+L\+Queue\+Is\+Empty (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list_queue}{Linked\+List\+Queue}} $\ast$}]{queue }\end{DoxyParamCaption})}
+
+This function will take the queue address as a parameter, then it will return one (1) if the queue is empty, other wise it will return zero (0). 
+\begin{DoxyParams}{Parameters}
+{\em queue} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_linked_list_queue_8h_acec969b2a744dfb24e11581a80d76783}\label{_linked_list_queue_8h_acec969b2a744dfb24e11581a80d76783}} 
+\index{LinkedListQueue.h@{LinkedListQueue.h}!lLQueuePeek@{lLQueuePeek}}
+\index{lLQueuePeek@{lLQueuePeek}!LinkedListQueue.h@{LinkedListQueue.h}}
+\doxysubsubsection{\texorpdfstring{lLQueuePeek()}{lLQueuePeek()}}
+{\footnotesize\ttfamily void$\ast$ l\+L\+Queue\+Peek (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list_queue}{Linked\+List\+Queue}} $\ast$}]{queue }\end{DoxyParamCaption})}
+
+This function will take the queue address as a parameter, then it will return the first item in the queue without removing the item from the queue. Note\+: if the queue i empty the program will be terminated. 
+\begin{DoxyParams}{Parameters}
+{\em queue} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_linked_list_queue_8h_a9cba32d660dc37d5f10ac6b8cae3652f}\label{_linked_list_queue_8h_a9cba32d660dc37d5f10ac6b8cae3652f}} 
+\index{LinkedListQueue.h@{LinkedListQueue.h}!lLQueueToArray@{lLQueueToArray}}
+\index{lLQueueToArray@{lLQueueToArray}!LinkedListQueue.h@{LinkedListQueue.h}}
+\doxysubsubsection{\texorpdfstring{lLQueueToArray()}{lLQueueToArray()}}
+{\footnotesize\ttfamily void$\ast$ l\+L\+Queue\+To\+Array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list_queue}{Linked\+List\+Queue}} $\ast$}]{queue }\end{DoxyParamCaption})}
+
+This function will take the queue address as a parameter, then it will return a void array that contains all the items in the queue. 
+\begin{DoxyParams}{Parameters}
+{\em queue} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
