@@ -6,7 +6,7 @@ void isPresentRecurs(AVLTree *avlTree,AVLTNode *root, void *searchedValue, int* 
 int max(int a,int b);
 void treeToArrayRecurs(AVLTNode* node , void **arr, int *i);
 void freeAVLTNode(AVLTNode **node);
-AVLTNode* newNode( void* key);
+AVLTNode* newBinaryTreeNode(void* key);
 int height(AVLTNode *node);
 void getMaxStepsRecurs(AVLTNode * node, int * steps);
 void getMinStepsRecurs(AVLTNode * node, int * steps);
@@ -70,7 +70,7 @@ void printTreeStats(AVLTree *tree){
 ///
 /// \param cmp
 /// \return
-AVLTree* createNewTree(int size,int(*cmp)(void*,void*)){
+AVLTree* AVLTreeInitialize(int size, int(*cmp)(void*, void*)){
     AVLTree *t = (AVLTree *) malloc(sizeof(AVLTree));
     if(!t){
         fprintf(stderr,"Failed at allocating tree\n");
@@ -85,7 +85,7 @@ AVLTree* createNewTree(int size,int(*cmp)(void*,void*)){
 ///
 /// \param key
 /// \return
-AVLTNode* newNode( void* key){
+AVLTNode* newAVLTreeNode(void* key){
     AVLTNode *p =  (AVLTNode*)malloc(sizeof(AVLTNode));
     if(!p){
         printf("Failed at allocating node\n");
@@ -123,7 +123,7 @@ void freeAVLTNode(AVLTNode **node){
 /// \param key
 /// \return
 AVLTNode* insert(AVLTree * avlTree,AVLTNode *node, void *key) {
-    if (node == NULL) return newNode(key);
+    if (node == NULL) return newAVLTreeNode(key);
     if ( (avlTree->cmp)(key ,node->key)<0) node->left = insert(avlTree,node->left, key);
     else if ((avlTree->cmp)(key ,node->key)>0) node->right = insert(avlTree,node->right, key);
 
@@ -301,8 +301,8 @@ void isPresentRecurs(AVLTree *avlTree,AVLTNode *root, void *searchedValue, int* 
 ///
 /// \param root
 /// \return
-int getSizeBinaryTree(AVLTNode* root){
-    if (root) return 1 +getSizeBinaryTree( root->left ) + getSizeBinaryTree( root->right );
+int getSizeAVLTree(AVLTNode* root){
+    if (root) return 1 +getSizeAVLTree( root->left ) + getSizeAVLTree( root->right );
     else return 0;
 }
 
