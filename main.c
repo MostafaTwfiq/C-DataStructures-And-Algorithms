@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+<<<<<<< HEAD
 #include <stdbool.h>
 #include <math.h>
 #include "Headers/Trie.h"
@@ -81,5 +82,9 @@ int main() {
 
 
 
+=======
+
+int main() {
+>>>>>>> 344775dfc91690f862d3314e5d2a9cccbc4a1fd6
 
 }

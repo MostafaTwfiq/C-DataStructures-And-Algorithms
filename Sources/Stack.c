@@ -2,10 +2,10 @@
 
 
 /* Allocates space for the stack on the heap.
- * @param size Size of the daata to be stored on to the stack.
- * @return Pointer to the stack dtored on the heap.
+ * @param size Size of the data to be stored on to the stack.
+ * @return Pointer to the stack stored on the heap.
  **/
-Stack* StackInitalization( int size ) {
+Stack* stackInitialization(int size ) {
 
     if( !size ) {
         fprintf( stderr , "Size Param Cannot be Zero( 0 )" );
@@ -152,7 +152,7 @@ void StackClear( Stack* stack ) {
 
 }
 
-/* Clears and Destroys the Stack. StacK cannot be top after being destroyed.
+/* Clears and Destroys the Stack. Stack cannot be top after being destroyed.
  * @param stack Reference pointer to a Stack.
  **/
 void StackDestroy( Stack* stack ) {

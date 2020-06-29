@@ -20,7 +20,7 @@ typedef struct Stack {
     int sizeOfType;
 }Stack;
 
-Stack* StackInitalization(int size);
+Stack* stackInitialization(int size);
 
 void pushStack(Stack *stack, void *data);
 

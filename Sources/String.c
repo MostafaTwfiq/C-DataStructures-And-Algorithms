@@ -386,7 +386,7 @@ int stringIsEqualsToMyString(String *myString, String *string) {
 
 
 
-/** This function will take the string address as a paramter,
+/** This function will take the string address as a parameter,
     then it will trim this string (remove spaces and tabs).
  * @param myString
  */
@@ -450,6 +450,21 @@ void stringFGetS(String *myString) {
 
     fseek(stdin, 0, SEEK_END);
 }
+
+
+
+
+
+
+/** This function will take the string address as a parameter,
+ * then it will print the string in the stdout file.
+ * @param string
+ */
+
+void printString(String *string) {
+    fprintf(stdout, "%s", string->string);
+}
+
 
 
 

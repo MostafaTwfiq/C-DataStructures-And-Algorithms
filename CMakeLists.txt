@@ -48,4 +48,7 @@ add_executable(C_DataStructures main2.c
 
         Sources/Trie.c
         Headers/Trie.h
+
+        Sources/StackQueue.c
+        Headers/StackQueue.h
         )
