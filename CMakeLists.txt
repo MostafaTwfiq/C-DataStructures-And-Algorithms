@@ -3,7 +3,7 @@ project(C_DataStructures C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(C_DataStructures main.c
+add_executable(C_DataStructures main2.c
 
         Sources/Stack.c
         Headers/Stack.h
@@ -46,5 +46,6 @@ add_executable(C_DataStructures main.c
 
         Headers/Utils.h
 
-        Trie.c Trie.h
+        Sources/Trie.c
+        Headers/Trie.h
         )

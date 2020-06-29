@@ -132,7 +132,7 @@ void* peekStack( Stack* stack ) {
     }
     if (isEmptyStack(stack)) {
         fprintf( stderr , "Stack is empty." );
-        exit( EMPTY_STACK );
+        exit(EMPTY_DATASTRUCTURE );
     }
 
     return stack->memory[stack->top];
