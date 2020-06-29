@@ -1,11 +1,17 @@
 #ifndef C_DATASTRUCTURES_TRIE_H
 #define C_DATASTRUCTURES_TRIE_H
 
-#include "../Headers/ArrayList.h"
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "ArrayList.h"
+
 
 
 typedef struct Trie {
     struct Node *root;
+
 } Trie;
 
 
