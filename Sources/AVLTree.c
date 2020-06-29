@@ -70,7 +70,7 @@ void printAVLTreeStats(AVLTree *tree){
 ///
 /// \param cmp
 /// \return
-AVLTree* AVLTreeInitialize(int size, int(*cmp)(void*, void*)){
+AVLTree* AVLTreeInitialize(int size, int(*cmp)(const void*, const void*)){
     AVLTree *t = (AVLTree *) malloc(sizeof(AVLTree));
     if(!t){
         fprintf(stderr,"Failed at allocating tree\n");
@@ -430,6 +430,7 @@ AVLTNode* DeleteAVLTreeNode(AVLTree *avlTree, AVLTNode* root, void *key) {
             root->key= temp->key;
             root->right = DeleteAVLTreeNode(avlTree, root->right, temp->key);
         }
+        avlTree->nodeCount--;
     }
     if(root==NULL) return root;
     root->height = 1 + max(height(root->left),height(root->right));

@@ -300,7 +300,7 @@ BTreeNode *searchBinaryTree(BinaryTree *binaryTree,BTreeNode *node, char *key){
 /// \return
 BTreeNode* DeleteBinaryTreeNode(BinaryTree *binaryTree, BTreeNode* root, void *key) {
     if(root==NULL) return root;
-    if ((binaryTree->cmp)(key ,root->key)<0) 		    root->left = DeleteBinaryTreeNode(binaryTree, root->left, key);
+    if ((binaryTree->cmp)(key ,root->key)<0) 		root->left = DeleteBinaryTreeNode(binaryTree, root->left, key);
     else if ((binaryTree->cmp)(key ,root->key)>0)  	root->right = DeleteBinaryTreeNode(binaryTree, root->right, key);
     else {
         if( (root->left == NULL) ||(root->right == NULL) ){
@@ -315,6 +315,7 @@ BTreeNode* DeleteBinaryTreeNode(BinaryTree *binaryTree, BTreeNode* root, void *k
             root->key= temp->key;
             root->right = DeleteBinaryTreeNode(binaryTree, root->right, temp->key);
         }
+        binaryTree->nodeCount--;
     }
     return root;
 }/**/

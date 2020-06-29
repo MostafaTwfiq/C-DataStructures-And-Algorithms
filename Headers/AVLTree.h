@@ -4,8 +4,8 @@
 #include <math.h>
 #define COUNT 10
 
-#ifndef BINTREE_STRUCT_
-#define BINTREE_STRUCT_
+#ifndef AVL_BINTREE_STRUCT_
+#define AVL_BINTREE_STRUCT_
 
 typedef struct AVLTNode{
     void * key;
@@ -24,18 +24,15 @@ typedef struct AVLTree{
 #endif
 
 
-
 AVLTNode* DeleteAVLTreeNode(AVLTree *avlTree, AVLTNode* root, void *key);
 
 int getMinStepsAVLTree(AVLTNode* node);
 
-
 int getMaxStepsAVLTree(AVLTNode* node);
+
 int getSizeAVLTree(AVLTNode *root);
 
-
 int isPresentInAVLTree(AVLTree *avlTree, AVLTNode *root, void *searchKey);
-
 
 void printAVLTree(AVLTNode *root, void (printFn)(void *));
 
@@ -51,11 +48,12 @@ void** AVLTreeToArray(AVLTree *avlTree);
 
 void freeAVLTree(AVLTNode **node);
 
-AVLTree* AVLTreeInitialize(int size, int(*cmp)(void*, void*));
+AVLTree* AVLTreeInitialize(int size, int (*cmp)(const void*, const void*));
 
 void printAVLTreeStats(AVLTree *tree);
 
 AVLTNode * maxValueNodeAVLTree(AVLTNode* node);
+
 AVLTNode * minValueNodeAVLTree(AVLTNode* node);
 
 void printInOrderAVLTree(AVLTNode* node, void (printFn)(void *));

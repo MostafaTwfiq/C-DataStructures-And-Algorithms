@@ -30,5 +30,13 @@ int main(void){
     for (int i = 0; i < btree->nodeCount; i++)
         printf("%d\n", arr[i]);
 
+    DeleteBinaryTreeNode(btree,btree->root,item);
+
+
+     arr = BinarytreeToArray(btree);
+
+    for (int i = 0; i < btree->nodeCount; i++)
+        printf("%d\n", arr[i]);
+
     return 0;
 }
