@@ -609,7 +609,7 @@ int *generateIndexes(char c) {
                 break;
             }
         }
-        if (row && col)
+        if (row && col || (!row && !col && c == 'q') )
             break;
 
     }

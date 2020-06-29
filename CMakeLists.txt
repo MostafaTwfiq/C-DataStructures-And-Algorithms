@@ -3,7 +3,7 @@ project(C_DataStructures C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(C_DataStructures main2.c
+add_executable(C_DataStructures main.c
 
         Sources/Stack.c
         Headers/Stack.h
@@ -51,4 +51,4 @@ add_executable(C_DataStructures main2.c
 
         Sources/StackQueue.c
         Headers/StackQueue.h
-        )
+        Sources/HashMap.c Headers/HashMap.h)
