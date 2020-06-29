@@ -3,7 +3,7 @@
 
 void printBinaryTreeHelper(BTreeNode *root, int space, void (printFn)(void *));
 void isPresentInBinaryTreeRecurs(BinaryTree *binaryTree, BTreeNode *root, void *searchedValue, int* found );
-void BinaryTreeToArrayRecurs(BTreeNode* node , void **arr, int *i);
+void BinaryTreeToArrayRecurs(BTreeNode* node , int sizeOfType, void *arr, int *i);
 void freeBinaryTreeNode(BTreeNode **node);
 BTreeNode* newBinaryTreeNode(void* key);
 void getMaxStepsBinaryTreeRecurs(BTreeNode * node, int * steps);
@@ -29,7 +29,7 @@ void printBinaryTreeStats(BinaryTree *tree){
 ///
 /// \param cmp
 /// \return
-BinaryTree* BinaryTreeInitialize(int size, int(*cmp)(void*, void*)){
+BinaryTree* BinaryTreeInitialize(int size, int(*cmp)(const void*, const void*)){
     BinaryTree *t = (BinaryTree *) malloc(sizeof(BinaryTree));
     if(!t){
         fprintf(stderr,"Failed at allocating tree\n");
@@ -37,6 +37,7 @@ BinaryTree* BinaryTreeInitialize(int size, int(*cmp)(void*, void*)){
     }
     t->root = NULL;
     t->cmp = cmp;
+    t->nodeCount =0;
     t->sizeOfType = size;
     return t;
 }
@@ -70,8 +71,8 @@ void freeBinaryTree(BTreeNode** node){
 /// \param node
 void freeBinaryTreeNode(BTreeNode **node){
     if(*node) return;
-    free(*(*node)->key);
-    *(*node)->key = NULL;
+    free((*node)->key);
+    (*node)->key = NULL;
     free(*node);
 }
 
@@ -81,9 +82,13 @@ void freeBinaryTreeNode(BTreeNode **node){
 /// \param key
 /// \return
 BTreeNode* insertBinaryTree(BinaryTree * binaryTree, BTreeNode *node, void *key) {
-    if (node == NULL) return newBinaryTreeNode(key);
+    if (node == NULL) {
+        binaryTree->nodeCount++;
+        return newBinaryTreeNode(key);
+    }
     if ( (binaryTree->cmp)(key ,node->key)<0) node->left = insertBinaryTree(binaryTree, node->left, key);
     else if ((binaryTree->cmp)(key ,node->key)>0) node->right = insertBinaryTree(binaryTree, node->right, key);
+
     return node;
 }
 
@@ -177,6 +182,7 @@ void isPresentInBinaryTreeRecurs(BinaryTree *binaryTree, BTreeNode *root, void *
             isPresentInBinaryTreeRecurs(binaryTree, root->left, searchedValue, found);
             if (!(*found))
                 isPresentInBinaryTreeRecurs(binaryTree, root->right, searchedValue, found);
+
         }
     }
 }
@@ -254,12 +260,12 @@ void printInOrderBinaryTree(BTreeNode* node, void (printFn)(void *)){
 }
 
 ///
-/// \param avlTree
+/// \param binaryTree
 /// \return
-void** BinarytreeToArray(BinaryTree *avlTree){
-    void **array = malloc(sizeof(void *) * avlTree->nodeCount);
-    int i =0;
-    BinaryTreeToArrayRecurs(avlTree->root, array, &i);
+void** BinarytreeToArray(BinaryTree *binaryTree){
+    void *array = malloc(binaryTree->sizeOfType * binaryTree->nodeCount);
+    int i = 0;
+    BinaryTreeToArrayRecurs(binaryTree->root, binaryTree->sizeOfType, array, &i);
     return array;
 }
 
@@ -267,12 +273,12 @@ void** BinarytreeToArray(BinaryTree *avlTree){
 /// \param node
 /// \param arr
 /// \param i
-void BinaryTreeToArrayRecurs(BTreeNode* node , void **arr, int *i){
+void BinaryTreeToArrayRecurs(BTreeNode* node , int sizeOfType, void *arr, int *i){
     if(!node) return;
-    BinaryTreeToArrayRecurs(node->left, arr, i);
-    arr[*i] = node->key;
-    ++*i;
-    BinaryTreeToArrayRecurs(node->right, arr, i);
+    BinaryTreeToArrayRecurs(node->left, sizeOfType, arr, i);
+    memcpy(arr + sizeOfType * *i, node->key, sizeOfType);
+    *i += 1;
+    BinaryTreeToArrayRecurs(node->right, sizeOfType, arr, i);
 }
 
 ///
@@ -307,7 +313,7 @@ BTreeNode* DeleteBinaryTreeNode(BinaryTree *binaryTree, BTreeNode* root, void *k
         else {
             BTreeNode* temp = minValueBinaryTreeNode(root->right);
             root->key= temp->key;
-            root->right = DeleteBinaryTreeNode(binaryTree, root->right, *temp->key);
+            root->right = DeleteBinaryTreeNode(binaryTree, root->right, temp->key);
         }
     }
     return root;

@@ -17,12 +17,13 @@ Heap *HeapInitialize(uint8_t type, uint16_t size,int16_t (*cmp)(void*,void*)){
     return h;
 };
 
+
 void heapifyUP(Heap* h, int index){
     if(index){
         int p = PARENT(index);
-        if (h->type == MAX_HEAP){
-            if (((h->cmpFn)(h->memory[p], h->memory[index])) == -1){
-                swap(&h->memory[p], &h->memory[index]);
+       if (h->type == MAX_HEAP){
+            if (((h->cmpFn)(h->memory[p], h->memory[index])) < 0){
+                swap(h->memory + p, h->memory + index);
                 heapifyUP(h,p);
             }
         } else if (h->type == MIN_HEAP) {
@@ -34,6 +35,14 @@ void heapifyUP(Heap* h, int index){
     }
 }
 
+void insertInHeap(Heap* h,void* value){
+    if(h->size == h->capacity){
+        h->capacity *=2;
+        h->memory = realloc(h->memory, sizeof(void*)*h->capacity);
+    }
+    h->memory[h->size] = value;
+    heapifyUP(h,h->size++);
+}
 
 
 void heapifyDown(Heap* h, int index){
@@ -54,12 +63,6 @@ void heapifyDown(Heap* h, int index){
         swap( &h->memory[index], &h->memory[smaller] );
         heapifyDown( h, smaller );
     }
-}
-
-void insertInHeap(Heap* h,void* value){
-    h->memory[h->size] = value;
-    //heapifyDown(h,h->size++);
-    heapifyUP(h,h->size++);
 }
 
 Heap *heapify(void *arr,uint16_t size, uint8_t type){

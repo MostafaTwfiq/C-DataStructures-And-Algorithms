@@ -1,10 +1,10 @@
 #include "Headers/AVLTree.h"
 #define TRACE 0
-#define MAX_SEARCH_ITEMS 20
+#define MAX_SEARCH_ITEMS 10
 
 void fillTree(AVLTree **tree);
-void fillSearchValues( int **valArray);
-int mycmp(void * v1, void*v2);
+void fillSearchValues( int *valArray);
+int mycmp(const void * v1, const void*v2);
 
 
 void myPrint(void * var){
@@ -15,67 +15,58 @@ void myPrint(void * var){
 void fillTree(AVLTree** tree){
     printf( "Constructing tree\n\n" );
     int* key2Insert;
-    for(int i=0; i<300; i++){
+    for(int i=0; i<10; i++){
         key2Insert=calloc(1,sizeof(int));
         *key2Insert =i;
-        (*tree)->root= insert(*tree,(*tree)->root,key2Insert);
-        if(TRACE) printf("key: %d,",*(int*)*(*tree)->root->key);
+        (*tree)->root= insertAVLTree(*tree, (*tree)->root, key2Insert);
+        if(TRACE) printf("key: %d,",*(int*)(*tree)->root->key);
     }
 
-    (*tree)->nodeCount = getSizeBinaryTree((*tree)->root);
+    (*tree)->nodeCount = getSizeAVLTree((*tree)->root);
     printf( "\n\nTree constructed\n\n" );
 }
 
-void fillSearchValues( int **valArray){
-    int* key2Insert;
-    key2Insert=calloc(1,sizeof(int));
-    for(int i=0; i<300; i++){
+void fillSearchValues( int *valArray){
+    for(int i=0; i<10; i++){
         if(i>MAX_SEARCH_ITEMS) break;
-        *key2Insert=i;
-        valArray[i]= key2Insert;
-        if (TRACE)printf ("%d read; %d inserted\n", key2Insert, valArray[i] );
+        valArray[i]= i;
+        if (TRACE)printf ("%d read; inserted\n", valArray[i] );
 
     }
 }
-int mycmp(void * v1, void*v2){
-    if(*(int*)(v1)>*(int*)(v2)){
-        return 1;
-    }
-    else if(*(int*)(v1)<*(int*)(v2)) {
-        return -1;
-    }
-    return 0;
+int comp(const void *p1, const void *p2) {
+    return *((int *)p1) - *((int *)p2);
 }
 
 
 int main(){
-    AVLTree *tree = createNewTree(sizeof(int),mycmp);
+    AVLTree *tree = AVLTreeInitialize(sizeof(int), comp);
     fillTree(&tree);
-    printTree(tree->root,myPrint);
+    printAVLTree(tree->root, myPrint);
 
     //some Tree stats
     printf( "\nSummary of AVL tree\n=============================\n" );
-    printTreeStats(tree);
+    printAVLTreeStats(tree);
     printf( "=============================\n\n\n" );
 
     printf( "TreeDump (inOrder)\n=============================\n" );
-    printInOrder(tree->root,myPrint);
+    printInOrderAVLTree(tree->root, myPrint);
     printf( "\n=============================\n\n" );
 
-    int *values[MAX_SEARCH_ITEMS+1];
-    fillSearchValues(&values[0]);
+    int values[MAX_SEARCH_ITEMS+1];
+    fillSearchValues(values);
 
 
     printf( "\n search and replace\n=============================\n" );
     for(int o=0;o<MAX_SEARCH_ITEMS;o++) {
-        tree->root = insert(tree,tree->root,(void *)&values[o]);
+        tree->root = insertAVLTree(tree, tree->root, values + o);
     }
 
 
     int found =0, lost =0;
     for(int i=0;i<MAX_SEARCH_ITEMS;i++){
         if(tree->nodeCount-1<i)  break;
-        if(isPresent(tree,tree->root, (void *)values[i]) ){
+        if(isPresentInAVLTree(tree, tree->root, (void *) (values + i))){
             if (TRACE)printf("found search value %d\n",values[i]);
             found++;
         }else{
@@ -83,45 +74,33 @@ int main(){
             if(TRACE)printf("didnot find search value %s\n",values[i]);
         }
     }
+
     printf( "\nSummary of search\n=============================\n" );
     printf("found %d of %d while lost %d\n\n\n", found,MAX_SEARCH_ITEMS,lost);
 
     printf("\nConverting Tree to array: \n=================================\n");
-    void** array = treeToArray(tree);
+    int* array = AVLTreeToArray(tree);
     printf("global node count: %d\n",tree->nodeCount);
     printf("data: ");
     for(unsigned int p=0;p<tree->nodeCount;p++){
-        printf("[key:%d ] ", *(int*)array[p]);
+        printf("[key:%d ] ", *((int*)(array+p)));
     }
     printf("\n\n\n");
 
 
-
-    for(int i=0;i<MAX_SEARCH_ITEMS;i++){
-        if(tree->nodeCount-1<i)  break;
-        if(isPresent(tree,tree->root,values[i])){
-            if (1){
-                tree->root = Delete(tree,tree->root,values[i]);
-                tree->nodeCount--;
-                printf("Deleting search value %d\n",values[i]);
-            }
-        }else{
-            if(TRACE)printf("didnot find search value %d\n",values[i]);
-        }
-    }
-    printTreeStats(tree);
+    printAVLTreeStats(tree);
 
 
 
 
     printf("\nFreeing Tree: \n=================================\n");
-    freeTree(&tree->root);
+    freeAVLTree(&tree->root);
 
     if(tree->root==NULL) printf("Tree has been freed successfully\n");
     else printf("Failed to free tree \n");
     found =0, lost =0;
     for(int i=0;i<MAX_SEARCH_ITEMS;i++){
-        if(isPresent(tree,tree->root,values[i])){
+        if(isPresentInAVLTree(tree, tree->root, values[i])){
             if (TRACE)printf("found search value %d\n",values[i]);
             found++;
         }else{

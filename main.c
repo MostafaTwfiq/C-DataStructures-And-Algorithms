@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-<<<<<<< HEAD
+
 #include <stdbool.h>
 #include <math.h>
 #include "Headers/Trie.h"
@@ -21,48 +21,48 @@ void myPrint(void * var){
 }
 
 int main() {
-    Heap* h = HeapInitialize(MAX_HEAP,sizeof(int),mycmp);
+    Heap *h = HeapInitialize(MAX_HEAP, sizeof(int), mycmp);
 
     int a = 1,
-     b =    2,
-     c =    3,
-     d =    4,
-     e =    5,
-     f =    6,
-     g =    7,
-     hi =   8,
-     j =    9,
-     k =   10;
+            b = 2,
+            c = 3,
+            d = 4,
+            e = 5,
+            f = 6,
+            g = 7,
+            hi = 8,
+            j = 9,
+            k = 10;
 
 
-    void    *p1=&a,
-            *p2=&b,
-            *p3=&c,
-            *p4=&d,
-            *p5=&e,
-            *p6=&f,
-            *p7=&g,
-            *p8=&hi,
-            *p9=&j,
-            *p10=&k;
+    void *p1 = &a,
+            *p2 = &b,
+            *p3 = &c,
+            *p4 = &d,
+            *p5 = &e,
+            *p6 = &f,
+            *p7 = &g,
+            *p8 = &hi,
+            *p9 = &j,
+            *p10 = &k;
 
 
-    insertInHeap(h,p1);
-    insertInHeap(h,p3);
-    insertInHeap(h,p5);
-    insertInHeap(h,p7);
-    insertInHeap(h,p9);
+    insertInHeap(h, p1);
+    insertInHeap(h, p3);
+    insertInHeap(h, p5);
+    insertInHeap(h, p7);
+    insertInHeap(h, p9);
 
-    insertInHeap(h,p2);
-    insertInHeap(h,p4);
-    insertInHeap(h,p6);
-    insertInHeap(h,p8);
-    insertInHeap(h,p10);
+    insertInHeap(h, p2);
+    insertInHeap(h, p4);
+    insertInHeap(h, p6);
+    insertInHeap(h, p8);
+    insertInHeap(h, p10);
 
 
 
     //printf("%d",(h->cmp)(&p5,&p4));
-    printHeap(h,myPrint);
+    printHeap(h, myPrint);
 
 /*
     Trie *trie = trieInitialization();
@@ -79,12 +79,5 @@ int main() {
         char *word = arrayListGet(list, i);
         printf("%s\n", word);
     }*/
-
-
-
-=======
-
-int main() {
->>>>>>> 344775dfc91690f862d3314e5d2a9cccbc4a1fd6
 
 }

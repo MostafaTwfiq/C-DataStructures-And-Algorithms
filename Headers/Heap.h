@@ -5,9 +5,9 @@
 #define MAX_HEAP 0
 #define MIN_HEAP 1
 
-#define PARENT(i)      (i/2)
-#define LCHILD(i)      (2*i)
-#define RCHILD(i)      (2*i+1)
+#define PARENT(i)      (int) (i - 1)/2
+#define LCHILD(i)      (2*i) + 1
+#define RCHILD(i)      (2*i+1) + 1
 #define HAS_LEFT(h,i)  (LCHILD(i) < h->size)
 #define HAS_RIGHT(h,i) (RCHILD(i) < h->size)
 
