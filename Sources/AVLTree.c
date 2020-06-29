@@ -4,7 +4,7 @@
 void printAVLTreeHelper(AVLTNode *root, int space, void (printFn)(void *));
 void isPresentInAVLTreeRecurs(AVLTree *avlTree, AVLTNode *root, void *searchedValue, int* found );
 int max(int a,int b);
-void AVLTreeToArrayRecurs(AVLTNode* node, int sizeOfType , void **arr, int *i);
+void AVLTreeToArrayRecurs(AVLTNode* node, int sizeOfType , void *arr, int *i);
 void freeAVLTreeNode(AVLTNode **node);
 AVLTNode* newBinaryTreeNode(void* key);
 int height(AVLTNode *node);
@@ -78,6 +78,7 @@ AVLTree* AVLTreeInitialize(int size, int(*cmp)(void*, void*)){
     }
     t->root = NULL;
     t->cmp = cmp;
+    t->nodeCount=0;
     t->sizeOfType = size;
     return t;
 }
@@ -123,7 +124,10 @@ void freeAVLTreeNode(AVLTNode **node){
 /// \param key
 /// \return
 AVLTNode* insertAVLTree(AVLTree * avlTree, AVLTNode *node, void *key) {
-    if (node == NULL) return newAVLTreeNode(key);
+    if (node == NULL) {
+        avlTree->nodeCount++;
+        return newAVLTreeNode(key);
+    }
     if ( (avlTree->cmp)(key ,node->key)<0) node->left = insertAVLTree(avlTree, node->left, key);
     else if ((avlTree->cmp)(key ,node->key)>0) node->right = insertAVLTree(avlTree, node->right, key);
 
@@ -384,7 +388,7 @@ void** AVLTreeToArray(AVLTree *avlTree){
 /// \param node
 /// \param arr
 /// \param i
-void AVLTreeToArrayRecurs(AVLTNode* node, int sizeOfType , void **arr, int *i){
+void AVLTreeToArrayRecurs(AVLTNode* node, int sizeOfType , void *arr, int *i){
     if(!node) return;
     AVLTreeToArrayRecurs(node->left, sizeOfType, arr, i);
     memcpy(arr + sizeOfType * *i, node->key, sizeOfType);

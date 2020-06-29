@@ -15,7 +15,7 @@ void myPrint(void * var){
 void fillTree(AVLTree** tree){
     printf( "Constructing tree\n\n" );
     int* key2Insert;
-    for(int i=0; i<10; i++){
+    for(int i=0; i<300 ; i++){
         key2Insert=calloc(1,sizeof(int));
         *key2Insert =i;
         (*tree)->root= insertAVLTree(*tree, (*tree)->root, key2Insert);

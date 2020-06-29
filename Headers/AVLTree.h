@@ -44,6 +44,7 @@ void inOrderPredecessorAVLTree(AVLTree *avlTree, AVLTNode *root, AVLTNode *targe
 void inOrderSuccessorAVLTree(AVLTree *avlTree, AVLTNode* root, AVLTNode* targetNode, AVLTNode **leftMost);
 
 AVLTNode* insertAVLTree(AVLTree * avlTree, AVLTNode *node, void *key);
+
 AVLTNode *searchAVLTree(AVLTree *avlTree,AVLTNode *node, char *key);
 
 void** AVLTreeToArray(AVLTree *avlTree);
