@@ -1,7 +1,8 @@
 #include "../Headers/BinaryMaxHeap.h"
 
-
-
+///
+/// \param h
+/// \param index
 void MaxHeapifyUP(BinaryMaxHeap* h, int index){
     if(!index) return;
     int p = PARENT(index);
@@ -14,6 +15,9 @@ void MaxHeapifyUP(BinaryMaxHeap* h, int index){
 
 }
 
+///
+/// \param heap
+/// \param index
 void MaxHeapifyDown(BinaryMaxHeap *heap, int index) {
     if (index < 0) return;
     if(index > heap->size) return;
@@ -46,8 +50,10 @@ void MaxHeapifyDown(BinaryMaxHeap *heap, int index) {
     MaxHeapifyDown(heap,index);
 }
 
-
-
+///
+/// \param size
+/// \param cmp
+/// \return
 BinaryMaxHeap *MaxHeapInitialize(uint16_t size, int16_t (*cmp)(const void*, const void*)) {
     BinaryMaxHeap *h = malloc(sizeof(*h));
     h->capacity = 10;
@@ -58,6 +64,9 @@ BinaryMaxHeap *MaxHeapInitialize(uint16_t size, int16_t (*cmp)(const void*, cons
     return h;
 }
 
+///
+/// \param h
+/// \param value
 void MaxHeapInsert(BinaryMaxHeap* h, void* value) {
     if(h->size == h->capacity){
         h->capacity *=2;
@@ -67,6 +76,9 @@ void MaxHeapInsert(BinaryMaxHeap* h, void* value) {
     MaxHeapifyUP(h,h->size++);
 }
 
+///
+/// \param heap
+/// \param res
 void MaxHeapDelete(BinaryMaxHeap* heap, void ** res) {
     *res = heap->memory[0];
     heap->memory[0] = heap->memory[heap->size - 1];
@@ -76,6 +88,11 @@ void MaxHeapDelete(BinaryMaxHeap* heap, void ** res) {
     //MaxHeapFloatDown(heap,0);
 }
 
+///
+/// \param arr
+/// \param size
+/// \param cmp
+/// \return
 BinaryMaxHeap *MaxHeapify(void **arr, uint16_t size,int16_t (*cmp)(const void*, const void*)) {
     BinaryMaxHeap *h = malloc(sizeof(*h));
     h->capacity = 10;
@@ -89,17 +106,27 @@ BinaryMaxHeap *MaxHeapify(void **arr, uint16_t size,int16_t (*cmp)(const void*, 
     return h;
 }
 
+///
+/// \param binaryMaxHeap
+/// \param arr
+/// \param size
+/// \return
 void * MaxHeapAddAll(BinaryMaxHeap *binaryMaxHeap,void **arr, uint16_t size){
     for(int i=0;i<size;i++){
         MaxHeapInsert(binaryMaxHeap,arr[i]);
     }
 }
 
+///
+/// \param heap
 void destroyMaxHeap(BinaryMaxHeap * heap) {
     free(heap->memory);
     free(heap);
 }
 
+///
+/// \param h
+/// \param printfn
 void printMaxHeap(BinaryMaxHeap *h, void (*printfn)(void *)) {
     for (int i = 0; i < h->size; ++i) {
         (printfn)(h->memory[i]);

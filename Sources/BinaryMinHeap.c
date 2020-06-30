@@ -1,11 +1,9 @@
 #include "../Headers/BinaryMinHeap.h"
 
-void swap(void** x, void** y) {
-    void* temp = *x;
-    *x = *y;
-    *y = temp;
-}
-
+///
+/// \param size
+/// \param cmp
+/// \return
 BinaryMinHeap *MinHeapInitialize(uint16_t size, int16_t (*cmp)(const void*, const void*)){
     BinaryMinHeap *h = malloc(sizeof(*h));
     h->capacity = 50;
@@ -16,6 +14,9 @@ BinaryMinHeap *MinHeapInitialize(uint16_t size, int16_t (*cmp)(const void*, cons
     return h;
 };
 
+///
+/// \param heap
+/// \param res
 void MinHeapDelete(BinaryMinHeap* heap, void ** res) {
     *res = heap->memory[0];
     heap->memory[0] = heap->memory[heap->size - 1];
@@ -24,16 +25,24 @@ void MinHeapDelete(BinaryMinHeap* heap, void ** res) {
     MinHeapifyDown(heap, 0);
 }
 
+///
+/// \param h
+/// \param index
 void MinHeapifyUP(BinaryMinHeap* h, int index) {
     if(index){
         int p = PARENT(index);
         if (((h->cmpFn)(h->memory[p], h->memory[index])) >0) {
-            swap(&h->memory[p], &h->memory[index]);
+            void* temp = h->memory[p];
+            h->memory[p] = h->memory[index];
+            h->memory[index]= temp;
         }
         MinHeapifyUP(h, p);
     }
 }
 
+///
+/// \param h
+/// \param value
 void insertInMinHeap(BinaryMinHeap* h, void* value){
     if(h->size == h->capacity){
         h->capacity *= 2;
@@ -43,6 +52,9 @@ void insertInMinHeap(BinaryMinHeap* h, void* value){
     MinHeapifyUP(h,h->size++);
 }
 
+///
+/// \param heap
+/// \param index
 void MinHeapifyDown(BinaryMinHeap *heap, int index) {
     if (index < 0) return;
     if(index > heap->size) return;
@@ -61,8 +73,9 @@ void MinHeapifyDown(BinaryMinHeap *heap, int index) {
     }
 
     if (CurrentIndex != index){
-        swap(heap->memory + index, heap->memory + CurrentIndex);
-
+        void* temp  = heap->memory[index];
+        heap->memory[index]=heap->memory[CurrentIndex];
+        heap->memory[CurrentIndex] = temp;
         index = CurrentIndex;
     }
     else
@@ -70,7 +83,11 @@ void MinHeapifyDown(BinaryMinHeap *heap, int index) {
     MinHeapifyDown(heap,index);
 }
 
-
+///
+/// \param arr
+/// \param size
+/// \param type
+/// \return
 BinaryMinHeap *MinHeapify(void *arr, uint16_t size, uint8_t type){
     BinaryMinHeap *h = malloc(sizeof(BinaryMinHeap));
     h->capacity = size;
@@ -83,6 +100,9 @@ BinaryMinHeap *MinHeapify(void *arr, uint16_t size, uint8_t type){
     return h;
 }
 
+///
+/// \param h
+/// \param printfn
 void printMinHeap(BinaryMinHeap *h, void (*printfn)(void *)){
     for (int i = 0; i < h->size; ++i) {
         (printfn)(h->memory[i]);
@@ -90,13 +110,19 @@ void printMinHeap(BinaryMinHeap *h, void (*printfn)(void *)){
     puts("\n");
 }
 
+///
+/// \param binaryMaxHeap
+/// \param arr
+/// \param size
+/// \return
 void * MinHeapAddAll(BinaryMinHeap *binaryMaxHeap,void **arr, uint16_t size){
     for(int i=0;i<size;i++){
         insertInMinHeap(binaryMaxHeap,arr[i]);
     }
 }
 
-
+///
+/// \param h
 void destroyMinHeap(BinaryMinHeap * h) {
     free(h->memory);
     free(h);

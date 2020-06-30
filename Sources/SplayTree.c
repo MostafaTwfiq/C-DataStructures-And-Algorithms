@@ -115,7 +115,10 @@ SplayNode* SplayTreeSearch(SplayTree* splayTree,void *key){
 /// \param key
 /// \return
 void SplayTreeInsert(SplayTree* splayTree, void *key){
-    if(splayTree->root==NULL) splayTree->root= newSplayNode(key);
+    if(splayTree->root==NULL) {
+        splayTree->root= newSplayNode(key);
+        splayTree->nodeCount++;
+    }
     if((splayTree->cmp)(splayTree->root->key,key)==0) return;
     SplayNode* splayNode = newSplayNode(key);
     if((splayTree->cmp)(splayTree->root->key,key)>0){

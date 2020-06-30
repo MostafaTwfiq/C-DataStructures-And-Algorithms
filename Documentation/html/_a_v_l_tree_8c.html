@@ -110,11 +110,11 @@ Functions</h2></td></tr>
 <tr class="separator:a68589ab016d89cec96f5c69c1e873940"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac72956d20b910d3f2d69cdf6a41c68b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_a_v_l_tree_8c.html#ac72956d20b910d3f2d69cdf6a41c68b7">getMinStepsAVLTreeRecurs</a> (<a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> *node, <a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a> *steps)</td></tr>
 <tr class="separator:ac72956d20b910d3f2d69cdf6a41c68b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a10d50679c6260e9a64ac0a6d684f01e4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_a_v_l_tree_8c.html#a10d50679c6260e9a64ac0a6d684f01e4">leftRotate</a> (<a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> *n)</td></tr>
+<tr class="memitem:a10d50679c6260e9a64ac0a6d684f01e4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_a_v_l_tree_8c.html#a10d50679c6260e9a64ac0a6d684f01e4">AVLLeftRotate</a> (<a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> *n)</td></tr>
 <tr class="separator:a10d50679c6260e9a64ac0a6d684f01e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab94c0eaea520e0441671d6410e617f9a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_a_v_l_tree_8c.html#ab94c0eaea520e0441671d6410e617f9a">rightRotate</a> (<a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> *n)</td></tr>
+<tr class="memitem:ab94c0eaea520e0441671d6410e617f9a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_a_v_l_tree_8c.html#ab94c0eaea520e0441671d6410e617f9a">AVLRightRotate</a> (<a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> *n)</td></tr>
 <tr class="separator:ab94c0eaea520e0441671d6410e617f9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1eec0333074e616f37977525f5e56cf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_a_v_l_tree_8c.html#af1eec0333074e616f37977525f5e56cf">getBalance</a> (<a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> *N)</td></tr>
+<tr class="memitem:af1eec0333074e616f37977525f5e56cf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_a_v_l_tree_8c.html#af1eec0333074e616f37977525f5e56cf">AVLGetBalance</a> (<a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> *N)</td></tr>
 <tr class="separator:af1eec0333074e616f37977525f5e56cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1723feee292afda6a6f39aa0136d2354"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_a_v_l_tree_8c.html#a1723feee292afda6a6f39aa0136d2354">AVLTreePrintStats</a> (<a class="el" href="struct_a_v_l_tree.html">AVLTree</a> *tree)</td></tr>
 <tr class="separator:a1723feee292afda6a6f39aa0136d2354"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -354,13 +354,13 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="af1eec0333074e616f37977525f5e56cf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af1eec0333074e616f37977525f5e56cf">&#9670;&nbsp;</a></span>getBalance()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#af1eec0333074e616f37977525f5e56cf">&#9670;&nbsp;</a></span>AVLGetBalance()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a> getBalance </td>
+          <td class="memname"><a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a> AVLGetBalance </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> *&#160;</td>
           <td class="paramname"><em>N</em></td><td>)</td>
@@ -782,13 +782,13 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a10d50679c6260e9a64ac0a6d684f01e4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a10d50679c6260e9a64ac0a6d684f01e4">&#9670;&nbsp;</a></span>leftRotate()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a10d50679c6260e9a64ac0a6d684f01e4">&#9670;&nbsp;</a></span>AVLLeftRotate()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> * leftRotate </td>
+          <td class="memname"><a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> * AVLLeftRotate </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> *&#160;</td>
           <td class="paramname"><em>n</em></td><td>)</td>
@@ -1079,13 +1079,13 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="ab94c0eaea520e0441671d6410e617f9a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab94c0eaea520e0441671d6410e617f9a">&#9670;&nbsp;</a></span>rightRotate()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab94c0eaea520e0441671d6410e617f9a">&#9670;&nbsp;</a></span>AVLRightRotate()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> * rightRotate </td>
+          <td class="memname"><a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> * AVLRightRotate </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> *&#160;</td>
           <td class="paramname"><em>n</em></td><td>)</td>

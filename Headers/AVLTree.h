@@ -4,9 +4,17 @@
 #include <math.h>
 #define COUNT 10
 
-#ifndef AVL_BINTREE_STRUCT_
-#define AVL_BINTREE_STRUCT_
-
+/** @struct AVLTNode
+ *  @brief This structure describes n AVL Tree Node.
+ *  @var AVLTNode:: key
+ *  Member 'key' is a pointer a pre-allocated object.
+ *  @var AVLTNode::height
+ *  Member 'height' holds the current height of the node.
+ *  @var AVLTNode::left
+ *  Member 'left' holds a reference to the left Node if present else it is Null.
+ *  @var AVLTNode::right
+ *  Member 'right' holds a reference to the right Node if present else it is Null.
+ */
 typedef struct AVLTNode{
     void * key;
     int height;
@@ -14,14 +22,22 @@ typedef struct AVLTNode{
     struct AVLTNode *right;
 }AVLTNode;
 
+/** @struct AVLTree
+ *  @brief This structure implements a basic generic stack.
+ *  @var AVLTree:: root
+ *  Member 'root' is a pointer to the root Node of the tree.
+ *  @var AVLTree::nodeCount
+ *  Member 'nodeCount' holds the number of nodes currently present in the tree.
+ *  @var AVLTree::cmp
+ *  Member 'cmp' is a pointer to the comparision function that is going to be used throughout the tree.
+ */
 typedef struct AVLTree{
     AVLTNode *root;
-    int sizeOfType;
     unsigned int nodeCount;
     int(*cmp)(const void*,const void*);
 }AVLTree;
 
-#endif
+
 
 
 AVLTNode* AVLTreeDeleteNode(AVLTree *avlTree, AVLTNode* root, void *key);
@@ -48,7 +64,7 @@ void **AVLTreeToArray(AVLTree *avlTree);
 
 void AVLTreeFree(AVLTNode **node);
 
-AVLTree* AVLTreeInitialize(int size, int (*cmp)(const void*, const void*));
+AVLTree* AVLTreeInitialize( int (*cmp)(const void*, const void*));
 
 void AVLTreePrintStats(AVLTree *tree);
 
