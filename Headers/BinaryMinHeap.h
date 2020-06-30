@@ -9,6 +9,15 @@
 #define HAS_LEFT(h,i)  (LCHILD(i) < h->size)
 #define HAS_RIGHT(h,i) (RCHILD(i) < h->size)
 
+/** @struct BinaryMinHeap
+ *  @brief This structure implements a basic generic minimum binary heap.
+ *  @var BinaryMinHeap::capacity
+ *  Member 'capacity' is the total allocated space by the memory of the heap.
+ *  @var BinaryMinHeap::size
+ *  Member 'size' holds the number of nodes currently present in the heap.
+ *  @var BinaryMinHeap::cmp
+ *  Member 'cmp' is a pointer to the comparision function that is going to be used throughout the tree.
+ */
 typedef struct BinaryMinHeap {
     void **  memory;
     uint32_t capacity;

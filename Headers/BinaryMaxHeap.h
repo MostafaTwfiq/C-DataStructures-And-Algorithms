@@ -10,6 +10,15 @@
     #define HAS_RIGHT(h,i) (RCHILD(i) < h->size)
 #endif
 
+/** @struct BinaryMaxHeap
+ *  @brief This structure implements a basic generic maximum binary heap.
+ *  @var BinaryMaxHeap::capacity
+ *  Member 'capacity' is the total allocated space by the memory of the heap.
+ *  @var BinaryMaxHeap::size
+ *  Member 'size' holds the number of nodes currently present in the heap.
+ *  @var BinaryMaxHeap::cmp
+ *  Member 'cmp' is a pointer to the comparision function that is going to be used throughout the tree.
+ */
 typedef struct BinaryMaxHeap{
     void **  memory;
     uint32_t capacity;

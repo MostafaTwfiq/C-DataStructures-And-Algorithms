@@ -89,31 +89,37 @@ $(document).ready(function(){initNavTree('struct_binary_min_heap.html',''); init
 </div><!--header-->
 <div class="contents">
 
+<p>This structure implements a basic generic minimum binary heap.  
+ <a href="struct_binary_min_heap.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_binary_min_heap_8h_source.html">BinaryMinHeap.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
 <tr class="memitem:a4556e1e93ecab520cee7ed63b9ea4968"><td class="memItemLeft" align="right" valign="top">void **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_binary_min_heap.html#a4556e1e93ecab520cee7ed63b9ea4968">memory</a></td></tr>
 <tr class="separator:a4556e1e93ecab520cee7ed63b9ea4968"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a391c992c66c3e5540265a85ec2b9216a"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_binary_min_heap.html#a391c992c66c3e5540265a85ec2b9216a">capacity</a></td></tr>
-<tr class="separator:a391c992c66c3e5540265a85ec2b9216a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2c6b258f02add8fdf4cfc7c371dd772"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_binary_min_heap.html#ab2c6b258f02add8fdf4cfc7c371dd772">size</a></td></tr>
-<tr class="separator:ab2c6b258f02add8fdf4cfc7c371dd772"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7b4dc45978c59dabf3b1cb6d130bcca"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_binary_min_heap.html#ae7b4dc45978c59dabf3b1cb6d130bcca">capacity</a></td></tr>
+<tr class="separator:ae7b4dc45978c59dabf3b1cb6d130bcca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3d6656320f1a7278c0c2c7fdf07617c"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_binary_min_heap.html#aa3d6656320f1a7278c0c2c7fdf07617c">size</a></td></tr>
+<tr class="separator:aa3d6656320f1a7278c0c2c7fdf07617c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2b538d94e1b5b351a473bd05796768e"><td class="memItemLeft" align="right" valign="top">int32_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_binary_min_heap.html#ae2b538d94e1b5b351a473bd05796768e">cmpFn</a> )(const void *, const void *)</td></tr>
 <tr class="separator:ae2b538d94e1b5b351a473bd05796768e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Field Documentation</h2>
-<a id="a391c992c66c3e5540265a85ec2b9216a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a391c992c66c3e5540265a85ec2b9216a">&#9670;&nbsp;</a></span>capacity</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This structure implements a basic generic minimum binary heap. </p>
+</div><h2 class="groupheader">Field Documentation</h2>
+<a id="ae7b4dc45978c59dabf3b1cb6d130bcca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7b4dc45978c59dabf3b1cb6d130bcca">&#9670;&nbsp;</a></span>capacity</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint32_t capacity</td>
+          <td class="memname">capacity</td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Member 'capacity' is the total allocated space by the memory of the heap. </p>
 
 </div>
 </div>
@@ -145,17 +151,18 @@ Data Fields</h2></td></tr>
 
 </div>
 </div>
-<a id="ab2c6b258f02add8fdf4cfc7c371dd772"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab2c6b258f02add8fdf4cfc7c371dd772">&#9670;&nbsp;</a></span>size</h2>
+<a id="aa3d6656320f1a7278c0c2c7fdf07617c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3d6656320f1a7278c0c2c7fdf07617c">&#9670;&nbsp;</a></span>size</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint32_t size</td>
+          <td class="memname">size</td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Member 'size' holds the number of nodes currently present in the heap. </p>
 
 </div>
 </div>

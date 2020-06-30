@@ -2,6 +2,11 @@
 \label{struct_binary_min_heap}\index{BinaryMinHeap@{BinaryMinHeap}}
 
 
+This structure implements a basic generic minimum binary heap.  
+
+
+
+
 {\ttfamily \#include $<$Binary\+Min\+Heap.\+h$>$}
 
 \doxysubsection*{Data Fields}
@@ -9,22 +14,25 @@
 \item 
 void $\ast$$\ast$ \mbox{\hyperlink{struct_binary_min_heap_a4556e1e93ecab520cee7ed63b9ea4968}{memory}}
 \item 
-uint32\+\_\+t \mbox{\hyperlink{struct_binary_min_heap_a391c992c66c3e5540265a85ec2b9216a}{capacity}}
+uint32\+\_\+t \mbox{\hyperlink{struct_binary_min_heap_ae7b4dc45978c59dabf3b1cb6d130bcca}{capacity}}
 \item 
-uint32\+\_\+t \mbox{\hyperlink{struct_binary_min_heap_ab2c6b258f02add8fdf4cfc7c371dd772}{size}}
+uint32\+\_\+t \mbox{\hyperlink{struct_binary_min_heap_aa3d6656320f1a7278c0c2c7fdf07617c}{size}}
 \item 
 int32\+\_\+t($\ast$ \mbox{\hyperlink{struct_binary_min_heap_ae2b538d94e1b5b351a473bd05796768e}{cmp\+Fn}} )(const void $\ast$, const void $\ast$)
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+This structure implements a basic generic minimum binary heap. 
+
 \doxysubsection{Field Documentation}
-\mbox{\Hypertarget{struct_binary_min_heap_a391c992c66c3e5540265a85ec2b9216a}\label{struct_binary_min_heap_a391c992c66c3e5540265a85ec2b9216a}} 
+\mbox{\Hypertarget{struct_binary_min_heap_ae7b4dc45978c59dabf3b1cb6d130bcca}\label{struct_binary_min_heap_ae7b4dc45978c59dabf3b1cb6d130bcca}} 
 \index{BinaryMinHeap@{BinaryMinHeap}!capacity@{capacity}}
 \index{capacity@{capacity}!BinaryMinHeap@{BinaryMinHeap}}
 \doxysubsubsection{\texorpdfstring{capacity}{capacity}}
-{\footnotesize\ttfamily uint32\+\_\+t capacity}
+{\footnotesize\ttfamily capacity}
 
-\mbox{\Hypertarget{struct_binary_min_heap_ae2b538d94e1b5b351a473bd05796768e}\label{struct_binary_min_heap_ae2b538d94e1b5b351a473bd05796768e}} 
+Member \textquotesingle{}capacity\textquotesingle{} is the total allocated space by the memory of the heap. \mbox{\Hypertarget{struct_binary_min_heap_ae2b538d94e1b5b351a473bd05796768e}\label{struct_binary_min_heap_ae2b538d94e1b5b351a473bd05796768e}} 
 \index{BinaryMinHeap@{BinaryMinHeap}!cmpFn@{cmpFn}}
 \index{cmpFn@{cmpFn}!BinaryMinHeap@{BinaryMinHeap}}
 \doxysubsubsection{\texorpdfstring{cmpFn}{cmpFn}}
@@ -36,13 +44,13 @@ int32\+\_\+t($\ast$ \mbox{\hyperlink{struct_binary_min_heap_ae2b538d94e1b5b351a4
 \doxysubsubsection{\texorpdfstring{memory}{memory}}
 {\footnotesize\ttfamily void$\ast$$\ast$ memory}
 
-\mbox{\Hypertarget{struct_binary_min_heap_ab2c6b258f02add8fdf4cfc7c371dd772}\label{struct_binary_min_heap_ab2c6b258f02add8fdf4cfc7c371dd772}} 
+\mbox{\Hypertarget{struct_binary_min_heap_aa3d6656320f1a7278c0c2c7fdf07617c}\label{struct_binary_min_heap_aa3d6656320f1a7278c0c2c7fdf07617c}} 
 \index{BinaryMinHeap@{BinaryMinHeap}!size@{size}}
 \index{size@{size}!BinaryMinHeap@{BinaryMinHeap}}
 \doxysubsubsection{\texorpdfstring{size}{size}}
-{\footnotesize\ttfamily uint32\+\_\+t size}
+{\footnotesize\ttfamily size}
 
-
+Member \textquotesingle{}size\textquotesingle{} holds the number of nodes currently present in the heap. 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
