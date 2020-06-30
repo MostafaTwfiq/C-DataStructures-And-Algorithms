@@ -1,9 +1,12 @@
 #include "../Headers/SplayTree.h"
 
+void printSplayTreeHelper(SplayNode *root, int space, void (printFn)(void *));
+void SplayTreeToArrayRecurs(SplayNode* node , void **arr, int *i);
+
 ///
 /// \param key
 /// \return
-SplayNode* newSplayTreeNode(void* key){
+SplayNode* newSplayNode(void* key){
     SplayNode *p =  (SplayNode*)malloc(sizeof(SplayNode));
     if(!p){
         printf("Failed at allocating node\n");
@@ -13,6 +16,23 @@ SplayNode* newSplayTreeNode(void* key){
     p->left=NULL;
     p->right=NULL;
     return p;
+}
+
+///
+/// \param size
+/// \param cmp
+/// \return
+SplayTree* SplayTreeInitialize(int size, int16_t (*cmp)(const void*, const void*)){
+    SplayTree *t = (SplayTree *) malloc(sizeof(SplayTree));
+    if(!t){
+        fprintf(stderr,"Failed at allocating tree\n");
+        exit(-1);
+    }
+    t->root = NULL;
+    t->cmp = cmp;
+    t->nodeCount =0;
+    t->sizeOfType = size;
+    return t;
 }
 
 ///
@@ -95,19 +115,124 @@ SplayNode* SplayTreeSearch(SplayTree* splayTree,void *key){
 /// \param root
 /// \param key
 /// \return
-SplayNode* SplayTreeInsert(SplayTree* splayTree,SplayNode* root, void *key){
-    if(root==NULL) return newSplayTreeNode(key);
-    if((splayTree->cmp)(root->key,key)==0) return root;
-    SplayNode* newSplayNode = newSplayTreeNode(key);
-    if((splayTree->cmp)(root->key,key)>0){
-        newSplayNode->right = root;
-        newSplayNode->left =root->left;
-        root->left = NULL;
+void SplayTreeInsert(SplayTree* splayTree, void *key){
+    if(splayTree->root==NULL) splayTree->root= newSplayNode(key);
+    if((splayTree->cmp)(splayTree->root->key,key)==0) return;
+    SplayNode* splayNode = newSplayNode(key);
+    if((splayTree->cmp)(splayTree->root->key,key)>0){
+        splayNode->right = splayTree->root;
+        splayNode->left =splayTree->root->left;
+        splayTree->root->left = NULL;
     } else{
-        newSplayNode->left = root;
-        newSplayNode->right =root->right;
-        root->right = NULL;
+        splayNode->left = splayTree->root;
+        splayNode->right =splayTree->root->right;
+        splayTree->root->right = NULL;
     }
-    return newSplayNode;
+    splayTree->nodeCount++;
+    splayTree->root = splayNode;
+}
+
+///
+/// \param splayTree
+/// \param key
+void  SplayTreeDelete(SplayTree* splayTree, void *key){
+    if (splayTree->root==NULL) return;
+    splayTree->root = splay(splayTree,splayTree->root,key);
+    if((splayTree->cmp)(splayTree->root->key,key)!=0) return;
+    SplayNode* temp;
+    if (splayTree->root->left==NULL){
+        temp = splayTree->root;
+        splayTree->root = splayTree->root->right;
+    }else{
+        temp = splayTree->root;
+        splayTree->root = splay(splayTree,splayTree->root->left, key);
+        splayTree->root->right = temp->right;
+    }
+    freeSplayNode(&temp);
+    splayTree->nodeCount--;
+}
+
+///
+/// \param node
+void freeSplayNode(SplayNode **node){
+    if(*node) return;
+    free((*node)->key);
+    (*node)->key = NULL;
+    free(*node);
+}
+
+///
+/// \param root
+void freeSplayTree(SplayNode** root){
+    if (*root == NULL) return;
+    freeSplayTree(&(*root)->left);
+    freeSplayTree(&(*root)->right);
+    freeSplayNode(root);
+    *root=NULL;
+}
+
+///
+/// \param node
+/// \param printFn
+void printInOrderSplayTree(SplayNode* node, void (printFn)(void *)){
+    if(node==NULL)return;
+    printInOrderSplayTree(node->left, printFn);
+    (printFn)(node->key);
+    printInOrderSplayTree(node->right, printFn);
+}
+
+
+///
+/// \param root
+/// \param printFn
+void printSplayTree(SplayNode *root, void (printFn)(void *)){
+    printSplayTreeHelper(root, 0, printFn);
+}
+
+///
+/// \param root
+/// \param space
+/// \param printFn
+void printSplayTreeHelper(SplayNode *root, int space, void (printFn)(void *)){
+    if (root == NULL)
+        return;
+    space += COUNT;
+    printSplayTreeHelper(root->right, space, printFn);
+    printf("\n");
+    for (int i = COUNT; i < space; i++) printf(" ");
+    (printFn)(root->key);
+    printSplayTreeHelper(root->left, space, printFn);
+}
+
+/// 
+/// \param splayTree 
+/// \param array 
+/// \param length 
+void SplayTreeInsertAll(SplayTree* splayTree, void** array, int length){
+    for(int i=0;i<length;i++){
+        SplayTreeInsert(splayTree,array[i]);
+    }
+}
+
+///
+/// \param binaryTree
+/// \return
+void **SplayTreeToArray(SplayTree *splayTree){
+    void **array = (void **) malloc(sizeof(void *) * splayTree->nodeCount);
+    int i = 0;
+    SplayTreeToArrayRecurs(splayTree->root, array, &i);
+    return array;
+}
+
+///
+/// \param node
+/// \param arr
+/// \param i
+void SplayTreeToArrayRecurs(SplayNode* node , void **arr, int *i){
+    if(!node) return;
+    SplayTreeToArrayRecurs(node->left, arr, i);
+    arr[*i] = node->key;
+    *i += 1;
+    SplayTreeToArrayRecurs(node->right, arr, i);
 }
 

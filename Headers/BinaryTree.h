@@ -26,7 +26,7 @@ int getMaxBinaryTreeSteps(BinaryTreeNode* node);
 
 int getSizeBinaryTree(BinaryTreeNode *root);
 
-int isPresentInBinaryTree(BinaryTree *binaryTree, BinaryTreeNode *root, void *searchKey);
+int isPresentInBinaryTree(BinaryTree *binaryTree, void *searchKey);
 
 void printBinaryTree(BinaryTreeNode *root, void (printFn)(void *));
 

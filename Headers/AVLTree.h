@@ -32,7 +32,7 @@ int AVLTreeGetMaxSteps(AVLTNode* node);
 
 int AVLTreeGetSize(AVLTNode *root);
 
-int AVLTreeIsPresent(AVLTree *avlTree, AVLTNode *root, void *searchKey);
+int AVLTreeIsPresent(AVLTree *avlTree, void* searchKey);
 
 void AVLTreePrint(AVLTNode *root, void (printFn)(void *));
 

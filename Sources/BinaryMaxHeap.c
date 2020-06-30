@@ -1,16 +1,14 @@
 #include "../Headers/BinaryMaxHeap.h"
 
-void swap1(void** x, void** y) {
-    void* temp = *x;
-    *x = *y;
-    *y = temp;
-}
+
 
 void MaxHeapifyUP(BinaryMaxHeap* h, int index){
     if(!index) return;
     int p = PARENT(index);
     if (((h->cmpFn)(h->memory[p], h->memory[index])) < 0){
-        swap1(h->memory + p, h->memory + index);
+        void* temp = h->memory[p];
+        h->memory[p] = h->memory[index];
+        h->memory[index] = temp;
         MaxHeapifyUP(h,p);
     }
 
@@ -19,6 +17,7 @@ void MaxHeapifyUP(BinaryMaxHeap* h, int index){
 void MaxHeapifyDown(BinaryMaxHeap *heap, int index) {
     if (index < 0) return;
     if(index > heap->size) return;
+
     int LeftChildIndex = LCHILD(index);
     int RightChildIndex = RCHILD(index);
     int CurrentIndex = index;

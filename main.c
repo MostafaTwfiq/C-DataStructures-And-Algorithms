@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Headers/BinaryMinHeap.h"
+#include "Headers/SplayTree.h"
 
 int16_t mycmp(const void * v1,const void * v2){
     return  *(int *)v1 - *(int*)v2;
@@ -10,7 +10,7 @@ void myPrint(void *val){
     printf("%d, ",*(int*)val );
 }
 int main() {
-    BinaryMinHeap *h = MinHeapInitialize(sizeof(int), mycmp);
+    SplayTree* st = SplayTreeInitialize(sizeof(int),mycmp);
 
     int a = 1,
             b = 2,
@@ -35,36 +35,21 @@ int main() {
             *p9 = &j,
             *p10 = &k;
 
-//3, 5, 6, 8, 2, 4, 7, 9, 10,
-    insertInMinHeap(h, p1);
-    insertInMinHeap(h, p3);
-    insertInMinHeap(h, p5);
-    insertInMinHeap(h, p7);
-    insertInMinHeap(h, p9);
 
-    insertInMinHeap(h, p2);
-    insertInMinHeap(h, p4);
-    insertInMinHeap(h, p6);
-    insertInMinHeap(h, p8);
-    insertInMinHeap(h, p10);
+    SplayTreeInsert(st,p1);
+    SplayTreeInsert(st,p2);
+    SplayTreeInsert(st,p3);
+    SplayTreeInsert(st,p4);
+    SplayTreeInsert(st,p5);
+    SplayTreeInsert(st,p6);
+    SplayTreeInsert(st,p7);
+    SplayTreeInsert(st,p8);
+    SplayTreeInsert(st,p9);
+    SplayTreeInsert(st,p10);
 
-    int   array[10];
-    void *varray[10];
-
-    void *item;
-    for(int o=0;o<10;o++){
-        array[o] = 20+o;
-        varray[o]= &array[o];
-    }
-
-    MinHeapAddAll(h,varray,10);
-
-    //printf("%d",(h->cmp)(&p5,&p4));
-    printMinHeap(h, myPrint);
-    void * res;
-    MinHeapDelete(h,&res);
-    printMinHeap(h, myPrint);
-
+    printInOrderSplayTree(st->root,myPrint);
+    puts("\n");
+    printSplayTree(st->root,myPrint);
 /*
     Trie *trie = trieInitialization();
 
