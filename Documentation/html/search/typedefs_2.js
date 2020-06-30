@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['error_605',['ERROR',['../_error_code_8h.html#ae78fd568f61762d7af322f0bb612e64e',1,'ErrorCode.h']]]
+  ['dlinkedliststack_895',['DLinkedListStack',['../_d_linked_list_stack_8h.html#ae43e5d11df2ea4b7265822381d1c623b',1,'DLinkedListStack.h']]],
+  ['doublylinkedlist_896',['DoublyLinkedList',['../_doubly_linked_list_8h.html#a468f1ffcd4155963c9da5399c86ff2fb',1,'DoublyLinkedList.h']]]
 ];

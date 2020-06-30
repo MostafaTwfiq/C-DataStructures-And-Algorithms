@@ -43,7 +43,7 @@ short isArrayQueueEmpty(ArrayQueue *arrayQueue);
 
 int ArrayQueueLength(ArrayQueue * arrayQueue);
 
-void ArrayQueueEnqueueAll(ArrayQueue * arrayQueue,void *arr, int arrLength);
+void ArrayQueueEnqueueAll(ArrayQueue * arrayQueue,void **arr, int arrLength);
 
 void *ArrayQueuePeek(ArrayQueue * arrayQueue);
 

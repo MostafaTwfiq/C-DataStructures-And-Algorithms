@@ -16,7 +16,7 @@ DLinkedListStack *dlStackInitialization(int sizeOfType);
 void dlStackPush(DLinkedListStack *stack, void *item);
 
 
-void dlStackAddAll(DLinkedListStack *stack, void *arr, int arrLength);
+void dlStackAddAll(DLinkedListStack *stack, void **arr, int arrLength);
 
 
 void *dlStackPop(DLinkedListStack *stack);

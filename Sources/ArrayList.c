@@ -55,24 +55,14 @@ void arrayListAdd(ArrayList *list, void *item) {
  * @param arrayLength
  */
 
-void arrayListAddAll(ArrayList *list, void *array, int arrayLength) {
+void arrayListAddAll(ArrayList *list, void **array, int arrayLength) {
     if (list == NULL || array == NULL) {
          fprintf(stderr,"Illegal argument, the array list is NULL.");
         exit(-3);
     }
-
-    if (list->length - list->count < arrayLength) {
-        list->length = (int) (( list->length + (arrayLength - (list->length - list->count)) ) * 1.5);
-        list->arr = (void **) realloc(list->arr, sizeof(void *) * list->length);
-    }
-
-    void *item;
     for (int i = 0; i < arrayLength; i++) {
-        item = (void *) malloc(list->sizeOfType);
-        memcpy(item, (array + list->sizeOfType * i), list->sizeOfType);
-        arrayListAdd(list, item);
+        arrayListAdd(list,array[i]);
     }
-
 }
 
 

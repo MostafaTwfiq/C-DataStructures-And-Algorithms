@@ -1,8 +1,6 @@
 \hypertarget{_doubly_linked_list_8h}{}\doxysection{Headers/\+Doubly\+Linked\+List.h File Reference}
 \label{_doubly_linked_list_8h}\index{Headers/DoublyLinkedList.h@{Headers/DoublyLinkedList.h}}
-{\ttfamily \#include $<$stdio.\+h$>$}\newline
-{\ttfamily \#include $<$stdlib.\+h$>$}\newline
-{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Utils.\+h\char`\"{}}\newline
 \doxysubsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
@@ -36,11 +34,11 @@ void \mbox{\hyperlink{_doubly_linked_list_8h_a063049686d615a7d97e4445beb72d018}{
 \item 
 void \mbox{\hyperlink{_doubly_linked_list_8h_a8a156dca430c524e90a87934da29cc70}{doubly\+Linked\+List\+Delete\+At\+Index\+Wt\+Fr}} (\mbox{\hyperlink{struct_doubly_linked_list}{Doubly\+Linked\+List}} $\ast$linked\+List, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} index)
 \item 
-\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_doubly_linked_list_8h_a42ce608c7e6188908fea3a90b6556665}{doubly\+Linked\+List\+Contains}} (\mbox{\hyperlink{struct_doubly_linked_list}{Doubly\+Linked\+List}} $\ast$linked\+List, void $\ast$item, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$comparator)(const void $\ast$, const void $\ast$))
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_doubly_linked_list_8h_a42ce608c7e6188908fea3a90b6556665}{doubly\+Linked\+List\+Contains}} (\mbox{\hyperlink{struct_doubly_linked_list}{Doubly\+Linked\+List}} $\ast$linked\+List, void $\ast$item, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$\mbox{\hyperlink{_trie_8c_a1640ed6646f0dbc0b4ee3cdd8adff7d9}{comparator}})(const void $\ast$, const void $\ast$))
 \item 
-\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_doubly_linked_list_8h_ab362ab57f60793af14b2cbe4c7c30886}{doubly\+Linked\+List\+Get\+Index}} (\mbox{\hyperlink{struct_doubly_linked_list}{Doubly\+Linked\+List}} $\ast$linked\+List, void $\ast$item, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$comparator)(const void $\ast$, const void $\ast$))
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_doubly_linked_list_8h_ab362ab57f60793af14b2cbe4c7c30886}{doubly\+Linked\+List\+Get\+Index}} (\mbox{\hyperlink{struct_doubly_linked_list}{Doubly\+Linked\+List}} $\ast$linked\+List, void $\ast$item, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$\mbox{\hyperlink{_trie_8c_a1640ed6646f0dbc0b4ee3cdd8adff7d9}{comparator}})(const void $\ast$, const void $\ast$))
 \item 
-void $\ast$ \mbox{\hyperlink{_doubly_linked_list_8h_ab7662a6a97b126279a18c37e6a1f7e2d}{doubly\+Linked\+List\+Get\+Item}} (\mbox{\hyperlink{struct_doubly_linked_list}{Doubly\+Linked\+List}} $\ast$linked\+List, void $\ast$item, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$comparator)(const void $\ast$, const void $\ast$))
+void $\ast$ \mbox{\hyperlink{_doubly_linked_list_8h_ab7662a6a97b126279a18c37e6a1f7e2d}{doubly\+Linked\+List\+Get\+Item}} (\mbox{\hyperlink{struct_doubly_linked_list}{Doubly\+Linked\+List}} $\ast$linked\+List, void $\ast$item, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$\mbox{\hyperlink{_trie_8c_a1640ed6646f0dbc0b4ee3cdd8adff7d9}{comparator}})(const void $\ast$, const void $\ast$))
 \item 
 void $\ast$ \mbox{\hyperlink{_doubly_linked_list_8h_a69f797812161e0919f839b3eda857f90}{doubly\+Linked\+List\+Get\+First}} (\mbox{\hyperlink{struct_doubly_linked_list}{Doubly\+Linked\+List}} $\ast$linked\+List)
 \item 
@@ -205,7 +203,7 @@ This function will take the linked list address as a parameter, then it will del
 \index{DoublyLinkedList.h@{DoublyLinkedList.h}!doublyLinkedListDeleteLast@{doublyLinkedListDeleteLast}}
 \index{doublyLinkedListDeleteLast@{doublyLinkedListDeleteLast}!DoublyLinkedList.h@{DoublyLinkedList.h}}
 \doxysubsubsection{\texorpdfstring{doublyLinkedListDeleteLast()}{doublyLinkedListDeleteLast()}}
-{\footnotesize\ttfamily void doubly\+Linked\+List\+DeleteBinaryTreeNode\+Last (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_doubly_linked_list}{Doubly\+Linked\+List}} $\ast$}]{linked\+List }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void doubly\+Linked\+List\+Delete\+Last (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_doubly_linked_list}{Doubly\+Linked\+List}} $\ast$}]{linked\+List }\end{DoxyParamCaption})}
 
 This function will take the linked list address as a parameter, then it will delete and free the last element from the linked list. 
 \begin{DoxyParams}{Parameters}
@@ -216,7 +214,7 @@ This function will take the linked list address as a parameter, then it will del
 \index{DoublyLinkedList.h@{DoublyLinkedList.h}!doublyLinkedListDeleteLastWtFr@{doublyLinkedListDeleteLastWtFr}}
 \index{doublyLinkedListDeleteLastWtFr@{doublyLinkedListDeleteLastWtFr}!DoublyLinkedList.h@{DoublyLinkedList.h}}
 \doxysubsubsection{\texorpdfstring{doublyLinkedListDeleteLastWtFr()}{doublyLinkedListDeleteLastWtFr()}}
-{\footnotesize\ttfamily void doubly\+Linked\+List\+DeleteAVLTreeNode\+Last\+Wt\+Fr (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_doubly_linked_list}{Doubly\+Linked\+List}} $\ast$}]{linked\+List }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void doubly\+Linked\+List\+Delete\+Last\+Wt\+Fr (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_doubly_linked_list}{Doubly\+Linked\+List}} $\ast$}]{linked\+List }\end{DoxyParamCaption})}
 
 This function will take the linked list address as a parameter, then it will delete and free only the node without the item of the last element from the linked list. 
 \begin{DoxyParams}{Parameters}

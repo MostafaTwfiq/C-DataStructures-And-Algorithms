@@ -20,7 +20,7 @@ Vector *vectorListInitialization(int initialLength, int sizeOfType);
 void vectorListAdd(Vector *list, void *item);
 
 
-void vectorAddAll(Vector *list, void *array, int arrayLength);
+void vectorAddAll(Vector *list, void **array, int arrayLength);
 
 
 void vectorRemove(Vector *list);

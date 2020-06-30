@@ -173,3 +173,6 @@ dkms.conf
 *.out
 *.app
 
+
+main.c
+

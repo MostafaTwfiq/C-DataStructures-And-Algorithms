@@ -19,7 +19,7 @@ ArrayList *arrayListInitialization(int initialLength, int sizeOfType);
 void arrayListAdd(ArrayList *list, void *item);
 
 
-void arrayListAddAll(ArrayList *list, void *array, int arrayLength);
+void arrayListAddAll(ArrayList *list, void **array, int arrayLength);
 
 
 void arrayListRemove(ArrayList *list);

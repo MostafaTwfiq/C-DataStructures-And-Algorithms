@@ -55,22 +55,14 @@ void vectorAdd(Vector *list, void *item) {
  * @param arrayLength
  */
 
-void vectorAddAll(Vector *list, void *array, int arrayLength) {
+void vectorAddAll(Vector *list, void **array, int arrayLength) {
     if (list == NULL || array == NULL) {
          fprintf(stderr,"Illegal argument, the vector is NULL.");
         exit(-3);
     }
 
-    if (list->length - list->count < arrayLength) {
-        list->length = (int) (( list->length + (arrayLength - (list->length - list->count)) ) * 2);
-        list->arr = (void **) realloc(list->arr, sizeof(void *) * list->length);
-    }
-
-    void *item;
     for (int i = 0; i < arrayLength; i++) {
-        item = (void *) malloc(list->sizeOfType);
-        memcpy(item, (array + list->sizeOfType * i), list->sizeOfType);
-        vectorAdd(list, item);
+        vectorAdd(list, array[i]);
     }
 
 }

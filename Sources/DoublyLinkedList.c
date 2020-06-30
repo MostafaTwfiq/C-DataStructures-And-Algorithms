@@ -133,17 +133,14 @@ void doublyLinkedListAddAtIndex(DoublyLinkedList *linkedList, int index, void *i
  * @param itemsLength
  */
 
-void doublyLinkedListAddAll(DoublyLinkedList *linkedList, void *items, int itemsLength) {
+void doublyLinkedListAddAll(DoublyLinkedList *linkedList, void **items, int itemsLength) {
     if (linkedList == NULL) {
          fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
     }
 
     for (int i = 0; i < itemsLength; i++) {
-        void *item = (void *) malloc(linkedList->sizeOfType);
-        memcpy(item, (items + i * linkedList->sizeOfType), linkedList->sizeOfType);
-
-        doublyLinkedListAddLast(linkedList, item);
+        doublyLinkedListAddLast(linkedList, items[i]);
     }
 
 }

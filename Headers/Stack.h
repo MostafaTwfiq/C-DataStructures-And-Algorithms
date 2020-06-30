@@ -24,7 +24,7 @@ Stack* stackInitialization(int size);
 
 void pushStack(Stack *stack, void *data);
 
-void stackAddAll(Stack *stack, void *arr, int arrLength);
+void stackAddAll(Stack *stack, void **array, int arrLength);
 
 void *popStack(Stack *stack);
 

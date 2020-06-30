@@ -11,6 +11,7 @@ typedef struct DoublyLinkedList {
 } DoublyLinkedList;
 
 
+void doublyLinkedListAddAll(DoublyLinkedList *linkedList, void **items, int itemsLength);
 
 DoublyLinkedList *doublyLinkedListInitialization(int sizeOfType);
 

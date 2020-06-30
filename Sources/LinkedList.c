@@ -126,17 +126,13 @@ void linkedListAddAtIndex(LinkedList *linkedList, int index, void *item) {
  * @param itemsLength
  */
 
-void linkedListAddAll(LinkedList *linkedList, void *items, int itemsLength) {
+void linkedListAddAll(LinkedList *linkedList, void **items, int itemsLength) {
     if (linkedList == NULL) {
          fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
     }
-
     for (int i = 0; i < itemsLength; i++) {
-        void *item = (void *) malloc(linkedList->sizeOfType);
-        memcpy(item, (items + i * linkedList->sizeOfType), linkedList->sizeOfType);
-
-        linkedListAddLast(linkedList, item);
+        linkedListAddLast(linkedList, items[i]);
     }
 
 }

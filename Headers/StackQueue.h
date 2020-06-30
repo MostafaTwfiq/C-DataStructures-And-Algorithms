@@ -17,7 +17,7 @@ SQueue *stackQueueInitialization(int sizeOfType);
 void sQueueEnqueue(SQueue *queue, void *item);
 
 
-void sQueueAddAll(SQueue *queue, void *items, int itemsLength);
+void sQueueAddAll(SQueue *queue, void **items, int itemsLength);
 
 
 void *sQueueDequeue(SQueue *queue);

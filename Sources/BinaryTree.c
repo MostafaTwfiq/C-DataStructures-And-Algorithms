@@ -1,13 +1,13 @@
 #include "../Headers/BinaryTree.h"
 
 
-void printBinaryTreeHelper(BTreeNode *root, int space, void (printFn)(void *));
-void isPresentInBinaryTreeRecurs(BinaryTree *binaryTree, BTreeNode *root, void *searchedValue, int* found );
-void BinaryTreeToArrayRecurs(BTreeNode* node , int sizeOfType, void **arr, int *i);
-void freeBinaryTreeNode(BTreeNode **node);
-BTreeNode* newBinaryTreeNode(void* key);
-void getMaxStepsBinaryTreeRecurs(BTreeNode * node, int * steps);
-void getMinStepsBinaryTreeRecurs(BTreeNode * node, int * steps);
+void printBinaryTreeHelper(BinaryTreeNode *root, int space, void (printFn)(void *));
+void isPresentInBinaryTreeRecurs(BinaryTree *binaryTree, BinaryTreeNode *root, void *searchedValue, int* found );
+void BinaryTreeToArrayRecurs(BinaryTreeNode* node , int sizeOfType, void **arr, int *i);
+void freeBinaryTreeNode(BinaryTreeNode **node);
+BinaryTreeNode* newBinaryTreeNode(void* key);
+void getMaxStepsBinaryTreeRecurs(BinaryTreeNode * node, int * steps);
+void getMinStepsBinaryTreeRecurs(BinaryTreeNode * node, int * steps);
 
 ///
 /// \param tree
@@ -45,8 +45,8 @@ BinaryTree* BinaryTreeInitialize(int size, int(*cmp)(const void*, const void*)){
 ///
 /// \param key
 /// \return
-BTreeNode* newBinaryTreeNode(void* key){
-    BTreeNode *p =  (BTreeNode*)malloc(sizeof(BTreeNode));
+BinaryTreeNode* newBinaryTreeNode(void* key){
+    BinaryTreeNode *p =  (BinaryTreeNode*)malloc(sizeof(BinaryTreeNode));
     if(!p){
         printf("Failed at allocating node\n");
         exit(-1);
@@ -59,7 +59,7 @@ BTreeNode* newBinaryTreeNode(void* key){
 
 ///
 /// \param node
-void freeBinaryTree(BTreeNode** node){
+void freeBinaryTree(BinaryTreeNode** node){
     if (*node==NULL) return;
     freeBinaryTree(&(*node)->left);
     freeBinaryTree(&(*node)->right);
@@ -69,7 +69,7 @@ void freeBinaryTree(BTreeNode** node){
 
 ///
 /// \param node
-void freeBinaryTreeNode(BTreeNode **node){
+void freeBinaryTreeNode(BinaryTreeNode **node){
     if(*node) return;
     free((*node)->key);
     (*node)->key = NULL;
@@ -81,7 +81,7 @@ void freeBinaryTreeNode(BTreeNode **node){
 /// \param node
 /// \param key
 /// \return
-BTreeNode* insertBinaryTree(BinaryTree * binaryTree, BTreeNode *node, void *key) {
+BinaryTreeNode* insertBinaryTree(BinaryTree * binaryTree, BinaryTreeNode *node, void *key) {
     if (node == NULL) {
         binaryTree->nodeCount++;
         return newBinaryTreeNode(key);
@@ -97,7 +97,7 @@ BTreeNode* insertBinaryTree(BinaryTree * binaryTree, BTreeNode *node, void *key)
 /// \param root
 /// \param targetNode
 /// \param leftMost
-void inOrderSuccessorBinaryTree(BinaryTree *binaryTree, BTreeNode* root, BTreeNode* targetNode, BTreeNode **leftMost) {
+void inOrderSuccessorBinaryTree(BinaryTree *binaryTree, BinaryTreeNode* root, BinaryTreeNode* targetNode, BinaryTreeNode **leftMost) {
     if (root == NULL) {
         leftMost = NULL;
         return;}
@@ -119,7 +119,7 @@ void inOrderSuccessorBinaryTree(BinaryTree *binaryTree, BTreeNode* root, BTreeNo
 /// \param root
 /// \param targetNode
 /// \param rightMost
-void inOrderPredecessorBinaryTree(BinaryTree *binaryTree, BTreeNode *root, BTreeNode *targetNode, BTreeNode **rightMost){
+void inOrderPredecessorBinaryTree(BinaryTree *binaryTree, BinaryTreeNode *root, BinaryTreeNode *targetNode, BinaryTreeNode **rightMost){
     if (root == NULL) {
         rightMost = NULL;
         return;}
@@ -139,7 +139,7 @@ void inOrderPredecessorBinaryTree(BinaryTree *binaryTree, BTreeNode *root, BTree
 ///
 /// \param root
 /// \param printFn
-void printBinaryTree(BTreeNode *root, void (printFn)(void *)){
+void printBinaryTree(BinaryTreeNode *root, void (printFn)(void *)){
     printBinaryTreeHelper(root, 0, printFn);
 }
 
@@ -147,7 +147,7 @@ void printBinaryTree(BTreeNode *root, void (printFn)(void *)){
 /// \param root
 /// \param space
 /// \param printFn
-void printBinaryTreeHelper(BTreeNode *root, int space, void (printFn)(void *)){
+void printBinaryTreeHelper(BinaryTreeNode *root, int space, void (printFn)(void *)){
     if (root == NULL)
         return;
     space += COUNT;
@@ -163,7 +163,7 @@ void printBinaryTreeHelper(BTreeNode *root, int space, void (printFn)(void *)){
 /// \param root
 /// \param searchKey
 /// \return
-int isPresentInBinaryTree(BinaryTree *binaryTree, BTreeNode* root, void* searchKey){
+int isPresentInBinaryTree(BinaryTree *binaryTree, BinaryTreeNode* root, void* searchKey){
     int found = 0;
     isPresentInBinaryTreeRecurs(binaryTree, root, searchKey, &found);
     return found;
@@ -174,7 +174,7 @@ int isPresentInBinaryTree(BinaryTree *binaryTree, BTreeNode* root, void* searchK
 /// \param root
 /// \param searchedValue
 /// \param found
-void isPresentInBinaryTreeRecurs(BinaryTree *binaryTree, BTreeNode *root, void *searchedValue, int* found ){
+void isPresentInBinaryTreeRecurs(BinaryTree *binaryTree, BinaryTreeNode *root, void *searchedValue, int* found ){
     if (root) {
         if ((binaryTree->cmp)(root->key,searchedValue)==0)
             *found = 1;
@@ -190,7 +190,7 @@ void isPresentInBinaryTreeRecurs(BinaryTree *binaryTree, BTreeNode *root, void *
 ///
 /// \param root
 /// \return
-int getSizeBinaryTree(BTreeNode* root){
+int getSizeBinaryTree(BinaryTreeNode* root){
     if (root) return 1 +getSizeBinaryTree( root->left ) + getSizeBinaryTree( root->right );
     else return 0;
 }
@@ -198,7 +198,7 @@ int getSizeBinaryTree(BTreeNode* root){
 ///
 /// \param node
 /// \return
-BTreeNode * minValueBinaryTreeNode(BTreeNode* node){
+BinaryTreeNode * minValueBinaryTreeNode(BinaryTreeNode* node){
     if(!node) return NULL;
     if(node->left )return minValueBinaryTreeNode(node->left);
     return node;
@@ -207,7 +207,7 @@ BTreeNode * minValueBinaryTreeNode(BTreeNode* node){
 ///
 /// \param node
 /// \return
-BTreeNode * maxValueBinaryTreeNode(BTreeNode* node){
+BinaryTreeNode * maxValueBinaryTreeNode(BinaryTreeNode* node){
     if (!node) return NULL;
     if (node->right) return maxValueBinaryTreeNode(node->right);
     return node;
@@ -216,7 +216,7 @@ BTreeNode * maxValueBinaryTreeNode(BTreeNode* node){
 ///
 /// \param node
 /// \return
-int getMinStepsBinaryTree(BTreeNode* node){
+int getMinStepsBinaryTree(BinaryTreeNode* node){
     int steps=0;
     getMinStepsBinaryTreeRecurs(node, &steps);
     return steps;
@@ -225,7 +225,7 @@ int getMinStepsBinaryTree(BTreeNode* node){
 ///
 /// \param node
 /// \param steps
-void getMinStepsBinaryTreeRecurs(BTreeNode *node, int *steps){
+void getMinStepsBinaryTreeRecurs(BinaryTreeNode *node, int *steps){
     if(!node) return;
     *steps = *steps +1;
     if(node->left )getMinStepsBinaryTreeRecurs(node->left, steps);
@@ -234,7 +234,7 @@ void getMinStepsBinaryTreeRecurs(BTreeNode *node, int *steps){
 ///
 /// \param node
 /// \return
-int getMaxBinaryTreeSteps(BTreeNode* node ){
+int getMaxBinaryTreeSteps(BinaryTreeNode* node ){
     int steps = 0;
     getMaxStepsBinaryTreeRecurs(node, &steps);
     return steps;
@@ -243,7 +243,7 @@ int getMaxBinaryTreeSteps(BTreeNode* node ){
 ///
 /// \param node
 /// \param steps
-void getMaxStepsBinaryTreeRecurs(BTreeNode* node, int *steps){
+void getMaxStepsBinaryTreeRecurs(BinaryTreeNode* node, int *steps){
     if (!node) return;
     *steps = *steps+1;
     if (node->right) getMaxStepsBinaryTreeRecurs(node->right, steps);
@@ -252,7 +252,7 @@ void getMaxStepsBinaryTreeRecurs(BTreeNode* node, int *steps){
 ///
 /// \param node
 /// \param printFn
-void printInOrderBinaryTree(BTreeNode* node, void (printFn)(void *)){
+void printInOrderBinaryTree(BinaryTreeNode* node, void (printFn)(void *)){
     if(!node)return;
     printInOrderBinaryTree(node->left, printFn);
     (printFn)(node->key);
@@ -273,7 +273,7 @@ void **BinaryTreeToArray(BinaryTree *binaryTree){
 /// \param node
 /// \param arr
 /// \param i
-void BinaryTreeToArrayRecurs(BTreeNode* node , int sizeOfType, void **arr, int *i){
+void BinaryTreeToArrayRecurs(BinaryTreeNode* node , int sizeOfType, void **arr, int *i){
     if(!node) return;
     BinaryTreeToArrayRecurs(node->left, sizeOfType, arr, i);
     arr[*i] = (void *) malloc(sizeOfType);
@@ -287,7 +287,7 @@ void BinaryTreeToArrayRecurs(BTreeNode* node , int sizeOfType, void **arr, int *
 /// \param node
 /// \param key
 /// \return
-BTreeNode *searchBinaryTree(BinaryTree *binaryTree,BTreeNode *node, char *key){
+BinaryTreeNode *searchBinaryTree(BinaryTree *binaryTree, BinaryTreeNode *node, char *key){
     if(!node) return NULL;
     if (((binaryTree->cmp)(key,node->key)==0))return node;
     if ((binaryTree->cmp)(key,node->key)<0) return searchBinaryTree(binaryTree,node->left, key);
@@ -299,24 +299,31 @@ BTreeNode *searchBinaryTree(BinaryTree *binaryTree,BTreeNode *node, char *key){
 /// \param root
 /// \param key
 /// \return
-BTreeNode* DeleteBinaryTreeNode(BinaryTree *binaryTree, BTreeNode* root, void *key) {
+BinaryTreeNode* DeleteBinaryTreeNode(BinaryTree *binaryTree, BinaryTreeNode* root, void *key) {
     if(root==NULL) return root;
     if ((binaryTree->cmp)(key ,root->key)<0) 		root->left = DeleteBinaryTreeNode(binaryTree, root->left, key);
     else if ((binaryTree->cmp)(key ,root->key)>0)  	root->right = DeleteBinaryTreeNode(binaryTree, root->right, key);
     else {
         if( (root->left == NULL) ||(root->right == NULL) ){
-            BTreeNode *temp = root->left ? root->left : root->right;
+            BinaryTreeNode *temp = root->left ? root->left : root->right;
             if (temp == NULL) {
                 temp =root;
                 root=NULL;
             }else {*root = *temp;}
         }
         else {
-            BTreeNode* temp = minValueBinaryTreeNode(root->right);
+            BinaryTreeNode* temp = minValueBinaryTreeNode(root->right);
             root->key= temp->key;
             root->right = DeleteBinaryTreeNode(binaryTree, root->right, temp->key);
         }
         binaryTree->nodeCount--;
     }
     return root;
-}/**/
+}
+
+BinaryTreeNode * BinaryTreeInsertAll(BinaryTree* binaryTree, void** array, int length){
+    for(int i=0;i<length;i++){
+        binaryTree->root = insertBinaryTree(binaryTree,binaryTree->root,array[i]);
+    }
+    return binaryTree->root;
+}

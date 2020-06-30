@@ -41,8 +41,11 @@ add_executable(C_DataStructures main.c
         Sources/SplayTree.c
         Headers/SplayTree.h
 
-        Sources/Heap.c
-        Headers/Heap.h
+        Sources/BinaryMinHeap.c
+        Headers/BinaryMinHeap.h
+
+        Sources/BinaryMaxHeap.c
+        Headers/BinaryMaxHeap.h
 
         Headers/Utils.h
 
@@ -51,4 +54,9 @@ add_executable(C_DataStructures main.c
 
         Sources/StackQueue.c
         Headers/StackQueue.h
-        Sources/HashMap.c Headers/HashMap.h Sources/PriorityQueue.c Headers/PriorityQueue.h)
+        Sources/HashMap.c
+        Headers/HashMap.h
+
+        Sources/PriorityQueue.c
+        Headers/PriorityQueue.h
+        )

@@ -56,17 +56,13 @@ void pushStack( Stack* stack ,  void * data ) {
 
 }
 
-void stackAddAll(Stack *stack, void *arr, int arrLength) {
+void stackAddAll(Stack *stack, void **array, int arrLength) {
     if (stack == NULL) {
         fprintf( stderr , "Param Cannot be Null" );
         exit( NULL_POINTER );
     }
-
-    void *item;
     for (int i = 0; i < arrLength; i++) {
-        item = (void *) malloc(stack->sizeOfType);
-        memcpy(item, arr + stack->sizeOfType * i, stack->sizeOfType);
-        pushStack(stack, item);
+        pushStack(stack, array[i]);
     }
 
 

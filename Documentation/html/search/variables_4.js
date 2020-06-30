@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['head_581',['head',['../struct_doubly_linked_list.html#ae959b310460c42ab25a11f7680421d52',1,'DoublyLinkedList::head()'],['../struct_linked_list.html#ae959b310460c42ab25a11f7680421d52',1,'LinkedList::head()']]]
+  ['front_856',['front',['../struct_array_queue.html#ae97b43d7057bc2ef3c3d92b9f72fb42b',1,'ArrayQueue']]],
+  ['fstack_857',['fStack',['../struct_s_queue.html#a4be3c727445470a1870b4e5003a55900',1,'SQueue']]]
 ];

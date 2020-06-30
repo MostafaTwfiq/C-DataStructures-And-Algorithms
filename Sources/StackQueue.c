@@ -55,7 +55,7 @@ void sQueueEnqueue(SQueue *queue, void *item) {
  * @param itemsLength
  */
 
-void sQueueAddAll(SQueue *queue, void *items, int itemsLength) {
+void sQueueAddAll(SQueue *queue, void **items, int itemsLength) {
     if(queue == NULL) {
         fprintf( stderr , "Illegal argument, queue is null." );
         exit( NULL_POINTER );
@@ -63,9 +63,7 @@ void sQueueAddAll(SQueue *queue, void *items, int itemsLength) {
         return;
 
     for (int i = 0; i < itemsLength; i++) {
-        void *item = (void *) malloc(queue->fStack->sizeOfType);
-        memcpy(item, items + queue->fStack->sizeOfType * i, queue->fStack->sizeOfType);
-        pushStack(queue->fStack, item);
+        pushStack(queue->fStack, items[i]);
     }
 
 }
