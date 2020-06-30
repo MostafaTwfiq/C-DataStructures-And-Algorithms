@@ -658,4 +658,5 @@ void destroyDoublyLinkedList(DoublyLinkedList *linkedList) {
     }
 
     free(linkedList);
+
 }
