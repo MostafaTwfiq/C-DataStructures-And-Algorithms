@@ -163,9 +163,9 @@ void printBinaryTreeHelper(BinaryTreeNode *root, int space, void (printFn)(void 
 /// \param root
 /// \param searchKey
 /// \return
-int isPresentInBinaryTree(BinaryTree *binaryTree, BinaryTreeNode* root, void* searchKey){
+int isPresentInBinaryTree(BinaryTree *binaryTree, void* searchKey){
     int found = 0;
-    isPresentInBinaryTreeRecurs(binaryTree, root, searchKey, &found);
+    isPresentInBinaryTreeRecurs(binaryTree, binaryTree->root, searchKey, &found);
     return found;
 }
 
@@ -276,8 +276,7 @@ void **BinaryTreeToArray(BinaryTree *binaryTree){
 void BinaryTreeToArrayRecurs(BinaryTreeNode* node , int sizeOfType, void **arr, int *i){
     if(!node) return;
     BinaryTreeToArrayRecurs(node->left, sizeOfType, arr, i);
-    arr[*i] = (void *) malloc(sizeOfType);
-    memcpy(arr[*i], node->key, sizeOfType);
+    arr[*i] = node->key;
     *i += 1;
     BinaryTreeToArrayRecurs(node->right, sizeOfType, arr, i);
 }
