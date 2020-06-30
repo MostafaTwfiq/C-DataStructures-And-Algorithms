@@ -56,7 +56,7 @@ void *linkedListGetFirst(LinkedList *linkedList);
 void *linkedListGetLast(LinkedList *linkedList);
 
 
-void *linkedListToArray(LinkedList *linkedList);
+void **linkedListToArray(LinkedList *linkedList);
 
 
 void *linkedListGet(LinkedList *linkedList, int index);

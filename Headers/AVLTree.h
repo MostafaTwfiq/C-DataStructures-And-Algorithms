@@ -24,39 +24,40 @@ typedef struct AVLTree{
 #endif
 
 
-AVLTNode* DeleteAVLTreeNode(AVLTree *avlTree, AVLTNode* root, void *key);
+AVLTNode* AVLTreeDeleteNode(AVLTree *avlTree, AVLTNode* root, void *key);
 
-int getMinStepsAVLTree(AVLTNode* node);
+int AVLTreeGetMinSteps(AVLTNode* node);
 
-int getMaxStepsAVLTree(AVLTNode* node);
+int AVLTreeGetMaxSteps(AVLTNode* node);
 
-int getSizeAVLTree(AVLTNode *root);
+int AVLTreeGetSize(AVLTNode *root);
 
-int isPresentInAVLTree(AVLTree *avlTree, AVLTNode *root, void *searchKey);
+int AVLTreeIsPresent(AVLTree *avlTree, AVLTNode *root, void *searchKey);
 
-void printAVLTree(AVLTNode *root, void (printFn)(void *));
+void AVLTreePrint(AVLTNode *root, void (printFn)(void *));
 
 void inOrderPredecessorAVLTree(AVLTree *avlTree, AVLTNode *root, AVLTNode *referenceNode, AVLTNode **rightMost);
 
-void inOrderSuccessorAVLTree(AVLTree *avlTree, AVLTNode* root, AVLTNode* referenceNode, AVLTNode **leftMost);
+void AVLTreeInOrderSuccessor(AVLTree *avlTree, AVLTNode* root, AVLTNode* referenceNode, AVLTNode **leftMost);
 
-AVLTNode* insertAVLTree(AVLTree * avlTree, AVLTNode *node, void *key);
+AVLTNode* AVLTreeInsert(AVLTree * avlTree, AVLTNode *node, void *key);
 
-AVLTNode *searchAVLTree(AVLTree *avlTree,AVLTNode *node, char *key);
+AVLTNode *AVLTreeSearch(AVLTree *avlTree, AVLTNode *node, char *key);
 
-void** AVLTreeToArray(AVLTree *avlTree);
+void **AVLTreeToArray(AVLTree *avlTree);
 
-void freeAVLTree(AVLTNode **node);
+void AVLTreeFree(AVLTNode **node);
 
 AVLTree* AVLTreeInitialize(int size, int (*cmp)(const void*, const void*));
 
 void printAVLTreeStats(AVLTree *tree);
 
-AVLTNode * maxValueNodeAVLTree(AVLTNode* node);
+AVLTNode * AVLTreeMaxValueNode(AVLTNode* node);
 
-AVLTNode * minValueNodeAVLTree(AVLTNode* node);
+AVLTNode * AVLTreeMinValueNode(AVLTNode* node);
 
-void printInOrderAVLTree(AVLTNode* node, void (printFn)(void *));
+void AVLTreePrintInOrder(AVLTNode* node, void (printFn)(void *));
 
+AVLTNode * AVLTreeAddAll(AVLTree* avlTree,void **array, int length);
 
 #endif //C_DATASTRUCTURES_AVLTREE_H

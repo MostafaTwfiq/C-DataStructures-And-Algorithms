@@ -55,22 +55,14 @@ void vectorAdd(Vector *list, void *item) {
  * @param arrayLength
  */
 
-void vectorAddAll(Vector *list, void *array, int arrayLength) {
+void vectorAddAll(Vector *list, void **array, int arrayLength) {
     if (list == NULL || array == NULL) {
          fprintf(stderr,"Illegal argument, the vector is NULL.");
         exit(-3);
     }
 
-    if (list->length - list->count < arrayLength) {
-        list->length = (int) (( list->length + (arrayLength - (list->length - list->count)) ) * 2);
-        list->arr = (void **) realloc(list->arr, sizeof(void *) * list->length);
-    }
-
-    void *item;
     for (int i = 0; i < arrayLength; i++) {
-        item = (void *) malloc(list->sizeOfType);
-        memcpy(item, (array + list->sizeOfType * i), list->sizeOfType);
-        vectorAdd(list, item);
+        vectorAdd(list, array[i]);
     }
 
 }
@@ -257,17 +249,19 @@ void *vectorGet(Vector *list, int index) {
  * @return
  */
 
-void *vectorToArray(Vector *list) {
+void **vectorToArray(Vector *list) {
 
     if (list == NULL) {
          fprintf(stderr,"Illegal argument, the vector is NULL.");
         exit(-3);
     }
 
-    void *array = (void *) malloc(list->sizeOfType * vectorGetLength(list));
+    void **array = (void **) malloc(sizeof(void *) * vectorGetLength(list));
 
-    for (int i = 0; i < vectorGetLength(list); i++)
-        memcpy(array + list->sizeOfType * i, list->arr[i], list->sizeOfType);
+    for (int i = 0; i < vectorGetLength(list); i++) {
+        array[i] = (void *) malloc(list->sizeOfType);
+        memcpy(array[i], list->arr[i], list->sizeOfType);
+    }
 
 
     return array;
@@ -285,7 +279,7 @@ void *vectorToArray(Vector *list) {
  * @return
  */
 
-void *vectorToSubArray(Vector *list, int start, int end) {
+void **vectorToSubArray(Vector *list, int start, int end) {
 
     if (list == NULL) {
          fprintf(stderr,"Illegal argument, the vector is NULL.");
@@ -295,11 +289,12 @@ void *vectorToSubArray(Vector *list, int start, int end) {
         exit(-3);
     }
 
-    void *array = (void *) malloc(list->sizeOfType * (end - start) );
+    void **array = (void **) malloc(sizeof(void *) * (end - start) );
 
-    for (int i = start; i < end; i++)
-        memcpy(array + list->sizeOfType * (i - start), list->arr[i], list->sizeOfType);
-
+    for (int i = start; i < end; i++) {
+        array[i] = (void *) malloc(list->sizeOfType);
+        memcpy(array[i - start], list->arr[i], list->sizeOfType);
+    }
 
     return array;
 

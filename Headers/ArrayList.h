@@ -19,7 +19,7 @@ ArrayList *arrayListInitialization(int initialLength, int sizeOfType);
 void arrayListAdd(ArrayList *list, void *item);
 
 
-void arrayListAddAll(ArrayList *list, void *array, int arrayLength);
+void arrayListAddAll(ArrayList *list, void **array, int arrayLength);
 
 
 void arrayListRemove(ArrayList *list);
@@ -40,10 +40,10 @@ int arrayListGetLastIndex(ArrayList *list, void *item, int (*comparator)(const v
 void *arrayListGet(ArrayList *list, int index);
 
 
-void *arrayListToArray(ArrayList *list);
+void **arrayListToArray(ArrayList *list);
 
 
-void *arrayListToSubArray(ArrayList *list, int start, int end);
+void **arrayListToSubArray(ArrayList *list, int start, int end);
 
 
 void arrayListSort(ArrayList *list, int (*comparator)(const void *, const void *));

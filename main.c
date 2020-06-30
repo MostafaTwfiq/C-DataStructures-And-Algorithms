@@ -1,27 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "Headers/BinaryMinHeap.h"
 
-#include <stdbool.h>
-#include <math.h>
-#include "Headers/Trie.h"
-#include "Headers/ArrayList.h"
-#include "Headers/Heap.h"
+int16_t mycmp(const void * v1,const void * v2){
+    return  *(int *)v1 - *(int*)v2;
+} 
 
-int16_t mycmp(void * v1, void*v2){
-    if(*(int*)(v1)>*(int*)(v2)){
-        return 1;
-    }
-    else if(*(int*)(v1)<*(int*)(v2)) {
-        return -1;
-    }
+void myPrint(void *val){
+    printf("%d, ",*(int*)val );
 }
-
-void myPrint(void * var){
-    printf("%d , ",*(int*)var);
-}
-
 int main() {
-    Heap *h = HeapInitialize(MIN_HEAP, sizeof(int), mycmp);
+    BinaryMinHeap *h = MinHeapInitialize(sizeof(int), mycmp);
 
     int a = 1,
             b = 2,
@@ -46,24 +35,35 @@ int main() {
             *p9 = &j,
             *p10 = &k;
 
+//3, 5, 6, 8, 2, 4, 7, 9, 10,
+    insertInMinHeap(h, p1);
+    insertInMinHeap(h, p3);
+    insertInMinHeap(h, p5);
+    insertInMinHeap(h, p7);
+    insertInMinHeap(h, p9);
 
-    insertInHeap(h, p1);
-    insertInHeap(h, p3);
-    insertInHeap(h, p5);
-    insertInHeap(h, p7);
-    insertInHeap(h, p9);
+    insertInMinHeap(h, p2);
+    insertInMinHeap(h, p4);
+    insertInMinHeap(h, p6);
+    insertInMinHeap(h, p8);
+    insertInMinHeap(h, p10);
 
-    insertInHeap(h, p2);
-    insertInHeap(h, p4);
-    insertInHeap(h, p6);
-    insertInHeap(h, p8);
-    insertInHeap(h, p10);
+    int   array[10];
+    void *varray[10];
 
+    void *item;
+    for(int o=0;o<10;o++){
+        array[o] = 20+o;
+        varray[o]= &array[o];
+    }
 
+    MinHeapAddAll(h,varray,10);
 
     //printf("%d",(h->cmp)(&p5,&p4));
-    //printHeap(h, myPrint);
-    heapPrint(h,0,myPrint);
+    printMinHeap(h, myPrint);
+    void * res;
+    MinHeapDelete(h,&res);
+    printMinHeap(h, myPrint);
 
 /*
     Trie *trie = trieInitialization();

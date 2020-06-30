@@ -321,7 +321,7 @@ ArrayList *trieSuggestion(Trie *trie, char *word, int numOfSuggestion) {
 
 
 
-/** This function will take the root node addres, the words address, string address, array list address,
+/** This function will take the root node address, the words address, string address, array list address,
     and the number of words thar needed to be suggested as a parameter,
     then it will fill the array list with the words.
  * Note: this function should only be called by the trieSuggestion function.
@@ -609,7 +609,7 @@ int *generateIndexes(char c) {
                 break;
             }
         }
-        if (row && col)
+        if (row && col || (!row && !col && c == 'q') )
             break;
 
     }

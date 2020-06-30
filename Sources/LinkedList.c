@@ -126,17 +126,13 @@ void linkedListAddAtIndex(LinkedList *linkedList, int index, void *item) {
  * @param itemsLength
  */
 
-void linkedListAddAll(LinkedList *linkedList, void *items, int itemsLength) {
+void linkedListAddAll(LinkedList *linkedList, void **items, int itemsLength) {
     if (linkedList == NULL) {
          fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
     }
-
     for (int i = 0; i < itemsLength; i++) {
-        void *item = (void *) malloc(linkedList->sizeOfType);
-        memcpy(item, (items + i * linkedList->sizeOfType), linkedList->sizeOfType);
-
-        linkedListAddLast(linkedList, item);
+        linkedListAddLast(linkedList, items[i]);
     }
 
 }
@@ -540,17 +536,18 @@ void *linkedListGet(LinkedList *linkedList, int index) {
  * @return
  */
 
-void *linkedListToArray(LinkedList *linkedList) {
+void **linkedListToArray(LinkedList *linkedList) {
     if (linkedList == NULL) {
          fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
     }
 
-    void *array = (void *) malloc(linkedList->sizeOfType * linkedListGetLength(linkedList));
+    void **array = (void **) malloc(sizeof(void *) * linkedListGetLength(linkedList));
 
     Node *currentNode = linkedList->head;
     for (int i = 0; i < linkedListGetLength(linkedList); i++) {
-        memcpy(array + i * linkedList->sizeOfType, currentNode->item, linkedList->sizeOfType);
+        array[i] = (void *) malloc(linkedList->sizeOfType);
+        memcpy(array[i], currentNode->item, linkedList->sizeOfType);
 
         currentNode = currentNode->next;
     }

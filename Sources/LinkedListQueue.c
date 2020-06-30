@@ -48,17 +48,14 @@ void lLQueueEnqueue(LinkedListQueue *queue, void *item) {
  * @param arrLength
  */
 
-void lLQueueEnqueueAll(LinkedListQueue *queue, void *arr, int arrLength) {
+void lLQueueEnqueueAll(LinkedListQueue *queue, void **arr, int arrLength) {
     if (queue == NULL) {
         fprintf(stderr,"Illegal argument, the queue is NULL.");
         exit(-4);
     }
 
-    void *item;
     for (int i = 0; i < arrLength; i++) {
-        item = (void *) malloc(queue->linkedList->sizeOfType);
-        memcpy(item, arr + queue->linkedList->sizeOfType * i, queue->linkedList->sizeOfType);
-        linkedListAddLast(queue->linkedList, item);
+        linkedListAddLast(queue->linkedList, arr[i]);
     }
 
 }
@@ -170,7 +167,7 @@ int lLQueueIsEmpty(LinkedListQueue *queue) {
  * @return
  */
 
-void *lLQueueToArray(LinkedListQueue *queue) {
+void **lLQueueToArray(LinkedListQueue *queue) {
 
     if (queue == NULL) {
         fprintf(stderr,"Illegal argument, the queue is NULL.");

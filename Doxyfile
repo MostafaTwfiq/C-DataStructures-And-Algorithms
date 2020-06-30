@@ -255,7 +255,7 @@ TAB_SIZE               = 4
 # documentation, which will result in a user-defined paragraph with heading
 # "Side Effects:". You can put \n's in the value part of an alias to insert
 # newlines (in the resulting output). You can put ^^ in the value part of an
-# alias to insertAVLTree a newline as if a physical newline was in the original file.
+# alias to AVLTreeInsert a newline as if a physical newline was in the original file.
 # When you need a literal { or } or , in the value part of an alias you have to
 # escape them by means of a backslash (\), this can lead to conflicts with the
 # commands \{ and \} for these it is advised to use the version @{ and @} or use

@@ -162,7 +162,7 @@ int ArrayQueueLength(ArrayQueue * arrayQueue){
 * @param arr Pointer to an Externally defined array on the heap.
 * @param arrLength Number of elements of the Externally Defined Array.
 **/
-void ArrayQueueEnqueueAll(ArrayQueue * arrayQueue,void *arr, int arrLength){
+void ArrayQueueEnqueueAll(ArrayQueue * arrayQueue,void **arr, int arrLength){
     if(arrayQueue ==NULL ) {
         fprintf(stderr,"Invalid Param, Queue Cannot be NULL.\n");
         exit(INVALID_ARG);
@@ -178,11 +178,8 @@ void ArrayQueueEnqueueAll(ArrayQueue * arrayQueue,void *arr, int arrLength){
         exit(INVALID_ARG);
     }
 
-    void *item;
     for(int i = 0;i<arrLength;i++ ){
-        item = (void *) malloc(arrayQueue->sizeOfType);
-        memcpy(item, arr + arrayQueue->sizeOfType * i, arrayQueue->sizeOfType);
-        ArrayQueueEnqueue(arrayQueue,item);
+        ArrayQueueEnqueue(arrayQueue,arr[i]);
     }
 }
 
@@ -203,12 +200,14 @@ void *ArrayQueuePeek(ArrayQueue * arrayQueue) {
 * @param arrayQueue Pointer to the Queue on the heap.
 * @return Pointer to an allocated array on the heap.
  * */
-void *ArrayQueueToArray(ArrayQueue * arrayQueue){
-    void *array = (void *) malloc(arrayQueue->sizeOfType * ArrayQueueLength(arrayQueue));
+void **ArrayQueueToArray(ArrayQueue * arrayQueue){
+    void **array = (void **) malloc(sizeof(void *) * ArrayQueueLength(arrayQueue));
 
     for (int i = 0; i <  ArrayQueueLength(arrayQueue); i++) {
-        memcpy(array + i * arrayQueue->sizeOfType,arrayQueue->memory[i] , arrayQueue->sizeOfType);
+        array[i] = (void *) malloc(arrayQueue->sizeOfType);
+        memcpy(array[i], arrayQueue->memory[i], arrayQueue->sizeOfType);
     }
+
     return array;
 
 }

@@ -50,7 +50,7 @@ void dlStackPush(DLinkedListStack *stack, void *item) {
  * @param arrLength
  */
 
-void dlStackAddAll(DLinkedListStack *stack, void *arr, int arrLength) {
+void dlStackAddAll(DLinkedListStack *stack, void **arr, int arrLength) {
     if (stack == NULL) {
         fprintf(stderr,"Illegal argument, the stack is NULL.");
         exit(-4);
@@ -58,9 +58,7 @@ void dlStackAddAll(DLinkedListStack *stack, void *arr, int arrLength) {
 
     void *item;
     for (int i = 0; i < arrLength; i++) {
-        item = (void *) malloc(stack->linkedList->sizeOfType);
-        memcpy(item, arr + stack->linkedList->sizeOfType * i, stack->linkedList->sizeOfType);
-        doublyLinkedListAddLast(stack->linkedList, item);
+        dlStackPush(stack,arr[i]);
     }
 
 }
@@ -104,7 +102,7 @@ void *dlStackPop(DLinkedListStack *stack) {
  * @return
  */
 
-void *dlStackToArray(DLinkedListStack *stack) {
+void **dlStackToArray(DLinkedListStack *stack) {
 
     if (stack == NULL) {
         fprintf(stderr,"Illegal argument, the stack is NULL.");

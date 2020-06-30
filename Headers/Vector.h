@@ -20,7 +20,7 @@ Vector *vectorListInitialization(int initialLength, int sizeOfType);
 void vectorListAdd(Vector *list, void *item);
 
 
-void vectorAddAll(Vector *list, void *array, int arrayLength);
+void vectorAddAll(Vector *list, void **array, int arrayLength);
 
 
 void vectorRemove(Vector *list);
@@ -41,10 +41,10 @@ int vectorGetLastIndex(Vector *list, void *item, int (*comparator)(const void *,
 void *vectorGet(Vector *list, int index);
 
 
-void *vectorToArray(Vector *list);
+void **vectorToArray(Vector *list);
 
 
-void *vectorToSubArray(Vector *list, int start, int end);
+void **vectorToSubArray(Vector *list, int start, int end);
 
 
 void vectorSort(Vector *list, int (*comparator)(const void *, const void *));

@@ -15,6 +15,6 @@ typedef struct SplayTree{
     uint16_t (*cmp)(const void *,const void *);
 }SplayTree;
 
-
+SplayNode* newSplayTreeNode(void* key);
 
 #endif //C_DATASTRUCTURES_SPLAYTREE_H

@@ -21,7 +21,7 @@ LinkedListQueue *linkedListQueueInitialization(int sizeOfType);
 void lLQueueEnqueue(LinkedListQueue *queue, void *item);
 
 
-void lLQueueEnqueueAll(LinkedListQueue *queue, void *arr, int arrLength);
+void lLQueueEnqueueAll(LinkedListQueue *queue, void **arr, int arrLength);
 
 
 void *lLQueueDequeue(LinkedListQueue *queue);
@@ -36,7 +36,7 @@ int lLQueueGetLength(LinkedListQueue *queue);
 int lLQueueIsEmpty(LinkedListQueue *queue);
 
 
-void *lLQueueToArray(LinkedListQueue *queue);
+void **lLQueueToArray(LinkedListQueue *queue);
 
 
 void clearLLQueue(LinkedListQueue *queue);
