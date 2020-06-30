@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['trie_472',['Trie',['../struct_trie.html',1,'']]]
+  ['priorityqueue_552',['PriorityQueue',['../struct_priority_queue.html',1,'']]]
 ];

@@ -18,7 +18,7 @@ typedef struct \mbox{\hyperlink{struct_stack}{Stack}} \mbox{\hyperlink{_stack_8h
 \item 
 void \mbox{\hyperlink{_stack_8h_a3a7d6f060063d9fb421d2f5d230511a6}{push\+Stack}} (\mbox{\hyperlink{struct_stack}{Stack}} $\ast$stack, void $\ast$data)
 \item 
-void \mbox{\hyperlink{_stack_8h_ae8d8ca0921e982f303c5ca25eaca4ede}{stack\+Add\+All}} (\mbox{\hyperlink{struct_stack}{Stack}} $\ast$stack, void $\ast$arr, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} arr\+Length)
+void \mbox{\hyperlink{_stack_8h_af69cc5e878f15b5671c7f6a166d8761f}{stack\+Add\+All}} (\mbox{\hyperlink{struct_stack}{Stack}} $\ast$stack, void $\ast$$\ast$array, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} arr\+Length)
 \item 
 void $\ast$ \mbox{\hyperlink{_stack_8h_a74d6e48a39dd898a321ff632c314a2bb}{pop\+Stack}} (\mbox{\hyperlink{struct_stack}{Stack}} $\ast$stack)
 \item 
@@ -26,7 +26,7 @@ short \mbox{\hyperlink{_stack_8h_aa9b851427b965f504aab0dc4cc8ab467}{is\+Empty\+S
 \item 
 void $\ast$ \mbox{\hyperlink{_stack_8h_ad069cb8f20e9506bd2e1194c8939ddd0}{peek\+Stack}} (\mbox{\hyperlink{struct_stack}{Stack}} $\ast$stack)
 \item 
-void $\ast$ \mbox{\hyperlink{_stack_8h_a45d98424fbb7d3fde82f6ea22d3e1b8f}{stack\+To\+Array}} (\mbox{\hyperlink{struct_stack}{Stack}} $\ast$stack)
+void $\ast$$\ast$ \mbox{\hyperlink{_stack_8h_a61856b6ba80128bace37d00b3074c931}{stack\+To\+Array}} (\mbox{\hyperlink{struct_stack}{Stack}} $\ast$stack)
 \item 
 \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_stack_8h_aa0898dfe5a281c6670165aed3265f542}{get\+Stack\+Length}} (\mbox{\hyperlink{struct_stack}{Stack}} $\ast$stack)
 \item 
@@ -76,11 +76,11 @@ void \mbox{\hyperlink{_stack_8h_a77fe71415a828c5f972ff6defe05f319}{Stack\+Destro
 \doxysubsubsection{\texorpdfstring{pushStack()}{pushStack()}}
 {\footnotesize\ttfamily void push\+Stack (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_stack}{Stack}} $\ast$}]{stack,  }\item[{void $\ast$}]{data }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{_stack_8h_ae8d8ca0921e982f303c5ca25eaca4ede}\label{_stack_8h_ae8d8ca0921e982f303c5ca25eaca4ede}} 
+\mbox{\Hypertarget{_stack_8h_af69cc5e878f15b5671c7f6a166d8761f}\label{_stack_8h_af69cc5e878f15b5671c7f6a166d8761f}} 
 \index{Stack.h@{Stack.h}!stackAddAll@{stackAddAll}}
 \index{stackAddAll@{stackAddAll}!Stack.h@{Stack.h}}
 \doxysubsubsection{\texorpdfstring{stackAddAll()}{stackAddAll()}}
-{\footnotesize\ttfamily void stack\+Add\+All (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_stack}{Stack}} $\ast$}]{stack,  }\item[{void $\ast$}]{arr,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{arr\+Length }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void stack\+Add\+All (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_stack}{Stack}} $\ast$}]{stack,  }\item[{void $\ast$$\ast$}]{array,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{arr\+Length }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{_stack_8h_a3c65dd24f3cb90697103754b7577cb3f}\label{_stack_8h_a3c65dd24f3cb90697103754b7577cb3f}} 
 \index{Stack.h@{Stack.h}!StackClear@{StackClear}}
@@ -100,9 +100,9 @@ void \mbox{\hyperlink{_stack_8h_a77fe71415a828c5f972ff6defe05f319}{Stack\+Destro
 \doxysubsubsection{\texorpdfstring{stackInitialization()}{stackInitialization()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{struct_stack}{Stack}}$\ast$ stack\+Initialization (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{size }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{_stack_8h_a45d98424fbb7d3fde82f6ea22d3e1b8f}\label{_stack_8h_a45d98424fbb7d3fde82f6ea22d3e1b8f}} 
+\mbox{\Hypertarget{_stack_8h_a61856b6ba80128bace37d00b3074c931}\label{_stack_8h_a61856b6ba80128bace37d00b3074c931}} 
 \index{Stack.h@{Stack.h}!stackToArray@{stackToArray}}
 \index{stackToArray@{stackToArray}!Stack.h@{Stack.h}}
 \doxysubsubsection{\texorpdfstring{stackToArray()}{stackToArray()}}
-{\footnotesize\ttfamily void$\ast$ stack\+To\+Array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_stack}{Stack}} $\ast$}]{stack }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void$\ast$$\ast$ stack\+To\+Array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_stack}{Stack}} $\ast$}]{stack }\end{DoxyParamCaption})}
 

@@ -7,9 +7,9 @@ var _stack_8h =
     [ "peekStack", "_stack_8h.html#ad069cb8f20e9506bd2e1194c8939ddd0", null ],
     [ "popStack", "_stack_8h.html#a74d6e48a39dd898a321ff632c314a2bb", null ],
     [ "pushStack", "_stack_8h.html#a3a7d6f060063d9fb421d2f5d230511a6", null ],
-    [ "stackAddAll", "_stack_8h.html#ae8d8ca0921e982f303c5ca25eaca4ede", null ],
+    [ "stackAddAll", "_stack_8h.html#af69cc5e878f15b5671c7f6a166d8761f", null ],
     [ "StackClear", "_stack_8h.html#a3c65dd24f3cb90697103754b7577cb3f", null ],
     [ "StackDestroy", "_stack_8h.html#a77fe71415a828c5f972ff6defe05f319", null ],
     [ "stackInitialization", "_stack_8h.html#a500f366dd65434fe0bd1580ea9201fed", null ],
-    [ "stackToArray", "_stack_8h.html#a45d98424fbb7d3fde82f6ea22d3e1b8f", null ]
+    [ "stackToArray", "_stack_8h.html#a61856b6ba80128bace37d00b3074c931", null ]
 ];

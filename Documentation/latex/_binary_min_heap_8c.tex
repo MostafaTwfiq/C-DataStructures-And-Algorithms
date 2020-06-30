@@ -1,0 +1,155 @@
+\hypertarget{_binary_min_heap_8c}{}\doxysection{Sources/\+Binary\+Min\+Heap.c File Reference}
+\label{_binary_min_heap_8c}\index{Sources/BinaryMinHeap.c@{Sources/BinaryMinHeap.c}}
+{\ttfamily \#include \char`\"{}../\+Headers/\+Binary\+Min\+Heap.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_binary_min_heap}{Binary\+Min\+Heap}} $\ast$ \mbox{\hyperlink{_binary_min_heap_8c_a24e4fa8db84be2123570cc6b371bc8e0}{Min\+Heap\+Initialize}} (uint16\+\_\+t size, int16\+\_\+t($\ast$cmp)(const void $\ast$, const void $\ast$))
+\item 
+void \mbox{\hyperlink{_binary_min_heap_8c_af9659ab6a5ed268ee6e46ad7374099d8}{Min\+Heap\+Delete}} (\mbox{\hyperlink{struct_binary_min_heap}{Binary\+Min\+Heap}} $\ast$heap, void $\ast$$\ast$res)
+\item 
+void \mbox{\hyperlink{_binary_min_heap_8c_a1f04c0a1b03d31345e864772c5ad8d3b}{Min\+Heapify\+UP}} (\mbox{\hyperlink{struct_binary_min_heap}{Binary\+Min\+Heap}} $\ast$h, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} index)
+\item 
+void \mbox{\hyperlink{_binary_min_heap_8c_a1fa31f2dd8c03b1203f86238806c01a7}{insert\+In\+Min\+Heap}} (\mbox{\hyperlink{struct_binary_min_heap}{Binary\+Min\+Heap}} $\ast$h, void $\ast$value)
+\item 
+void \mbox{\hyperlink{_binary_min_heap_8c_afcc542d9ad59f646c97524e011e46f43}{Min\+Heapify\+Down}} (\mbox{\hyperlink{struct_binary_min_heap}{Binary\+Min\+Heap}} $\ast$heap, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} index)
+\item 
+\mbox{\hyperlink{struct_binary_min_heap}{Binary\+Min\+Heap}} $\ast$ \mbox{\hyperlink{_binary_min_heap_8c_a5512f4164d64dbff0582bf70d346e437}{Min\+Heapify}} (void $\ast$arr, uint16\+\_\+t size, uint8\+\_\+t type)
+\item 
+void \mbox{\hyperlink{_binary_min_heap_8c_adf3bc6996f1baec9a3b63c0c8be3b248}{print\+Min\+Heap}} (\mbox{\hyperlink{struct_binary_min_heap}{Binary\+Min\+Heap}} $\ast$h, void($\ast$printfn)(void $\ast$))
+\item 
+void $\ast$ \mbox{\hyperlink{_binary_min_heap_8c_a1b0da4c9b0bdb290a7cf7da8ee735ebb}{Min\+Heap\+Add\+All}} (\mbox{\hyperlink{struct_binary_min_heap}{Binary\+Min\+Heap}} $\ast$binary\+Max\+Heap, void $\ast$$\ast$arr, uint16\+\_\+t size)
+\item 
+void \mbox{\hyperlink{_binary_min_heap_8c_ab3179deb1964864aae297bdf21ba6e09}{destroy\+Min\+Heap}} (\mbox{\hyperlink{struct_binary_min_heap}{Binary\+Min\+Heap}} $\ast$h)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_binary_min_heap_8c_ab3179deb1964864aae297bdf21ba6e09}\label{_binary_min_heap_8c_ab3179deb1964864aae297bdf21ba6e09}} 
+\index{BinaryMinHeap.c@{BinaryMinHeap.c}!destroyMinHeap@{destroyMinHeap}}
+\index{destroyMinHeap@{destroyMinHeap}!BinaryMinHeap.c@{BinaryMinHeap.c}}
+\doxysubsubsection{\texorpdfstring{destroyMinHeap()}{destroyMinHeap()}}
+{\footnotesize\ttfamily void destroy\+Min\+Heap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_min_heap}{Binary\+Min\+Heap}} $\ast$}]{h }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em h} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_binary_min_heap_8c_a1fa31f2dd8c03b1203f86238806c01a7}\label{_binary_min_heap_8c_a1fa31f2dd8c03b1203f86238806c01a7}} 
+\index{BinaryMinHeap.c@{BinaryMinHeap.c}!insertInMinHeap@{insertInMinHeap}}
+\index{insertInMinHeap@{insertInMinHeap}!BinaryMinHeap.c@{BinaryMinHeap.c}}
+\doxysubsubsection{\texorpdfstring{insertInMinHeap()}{insertInMinHeap()}}
+{\footnotesize\ttfamily void insert\+In\+Min\+Heap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_min_heap}{Binary\+Min\+Heap}} $\ast$}]{h,  }\item[{void $\ast$}]{value }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em h} & \\
+\hline
+{\em value} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_binary_min_heap_8c_a1b0da4c9b0bdb290a7cf7da8ee735ebb}\label{_binary_min_heap_8c_a1b0da4c9b0bdb290a7cf7da8ee735ebb}} 
+\index{BinaryMinHeap.c@{BinaryMinHeap.c}!MinHeapAddAll@{MinHeapAddAll}}
+\index{MinHeapAddAll@{MinHeapAddAll}!BinaryMinHeap.c@{BinaryMinHeap.c}}
+\doxysubsubsection{\texorpdfstring{MinHeapAddAll()}{MinHeapAddAll()}}
+{\footnotesize\ttfamily void$\ast$ Min\+Heap\+Add\+All (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_min_heap}{Binary\+Min\+Heap}} $\ast$}]{binary\+Max\+Heap,  }\item[{void $\ast$$\ast$}]{arr,  }\item[{uint16\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em binary\+Max\+Heap} & \\
+\hline
+{\em arr} & \\
+\hline
+{\em size} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_binary_min_heap_8c_af9659ab6a5ed268ee6e46ad7374099d8}\label{_binary_min_heap_8c_af9659ab6a5ed268ee6e46ad7374099d8}} 
+\index{BinaryMinHeap.c@{BinaryMinHeap.c}!MinHeapDelete@{MinHeapDelete}}
+\index{MinHeapDelete@{MinHeapDelete}!BinaryMinHeap.c@{BinaryMinHeap.c}}
+\doxysubsubsection{\texorpdfstring{MinHeapDelete()}{MinHeapDelete()}}
+{\footnotesize\ttfamily void Min\+Heap\+Delete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_min_heap}{Binary\+Min\+Heap}} $\ast$}]{heap,  }\item[{void $\ast$$\ast$}]{res }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em heap} & \\
+\hline
+{\em res} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_binary_min_heap_8c_a5512f4164d64dbff0582bf70d346e437}\label{_binary_min_heap_8c_a5512f4164d64dbff0582bf70d346e437}} 
+\index{BinaryMinHeap.c@{BinaryMinHeap.c}!MinHeapify@{MinHeapify}}
+\index{MinHeapify@{MinHeapify}!BinaryMinHeap.c@{BinaryMinHeap.c}}
+\doxysubsubsection{\texorpdfstring{MinHeapify()}{MinHeapify()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_binary_min_heap}{Binary\+Min\+Heap}}$\ast$ Min\+Heapify (\begin{DoxyParamCaption}\item[{void $\ast$}]{arr,  }\item[{uint16\+\_\+t}]{size,  }\item[{uint8\+\_\+t}]{type }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em arr} & \\
+\hline
+{\em size} & \\
+\hline
+{\em type} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_binary_min_heap_8c_afcc542d9ad59f646c97524e011e46f43}\label{_binary_min_heap_8c_afcc542d9ad59f646c97524e011e46f43}} 
+\index{BinaryMinHeap.c@{BinaryMinHeap.c}!MinHeapifyDown@{MinHeapifyDown}}
+\index{MinHeapifyDown@{MinHeapifyDown}!BinaryMinHeap.c@{BinaryMinHeap.c}}
+\doxysubsubsection{\texorpdfstring{MinHeapifyDown()}{MinHeapifyDown()}}
+{\footnotesize\ttfamily void Min\+Heapify\+Down (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_min_heap}{Binary\+Min\+Heap}} $\ast$}]{heap,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{index }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em heap} & \\
+\hline
+{\em index} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_binary_min_heap_8c_a1f04c0a1b03d31345e864772c5ad8d3b}\label{_binary_min_heap_8c_a1f04c0a1b03d31345e864772c5ad8d3b}} 
+\index{BinaryMinHeap.c@{BinaryMinHeap.c}!MinHeapifyUP@{MinHeapifyUP}}
+\index{MinHeapifyUP@{MinHeapifyUP}!BinaryMinHeap.c@{BinaryMinHeap.c}}
+\doxysubsubsection{\texorpdfstring{MinHeapifyUP()}{MinHeapifyUP()}}
+{\footnotesize\ttfamily void Min\+Heapify\+UP (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_min_heap}{Binary\+Min\+Heap}} $\ast$}]{h,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{index }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em h} & \\
+\hline
+{\em index} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_binary_min_heap_8c_a24e4fa8db84be2123570cc6b371bc8e0}\label{_binary_min_heap_8c_a24e4fa8db84be2123570cc6b371bc8e0}} 
+\index{BinaryMinHeap.c@{BinaryMinHeap.c}!MinHeapInitialize@{MinHeapInitialize}}
+\index{MinHeapInitialize@{MinHeapInitialize}!BinaryMinHeap.c@{BinaryMinHeap.c}}
+\doxysubsubsection{\texorpdfstring{MinHeapInitialize()}{MinHeapInitialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_binary_min_heap}{Binary\+Min\+Heap}}$\ast$ Min\+Heap\+Initialize (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{size,  }\item[{int16\+\_\+t($\ast$)(const void $\ast$, const void $\ast$)}]{cmp }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & \\
+\hline
+{\em cmp} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_binary_min_heap_8c_adf3bc6996f1baec9a3b63c0c8be3b248}\label{_binary_min_heap_8c_adf3bc6996f1baec9a3b63c0c8be3b248}} 
+\index{BinaryMinHeap.c@{BinaryMinHeap.c}!printMinHeap@{printMinHeap}}
+\index{printMinHeap@{printMinHeap}!BinaryMinHeap.c@{BinaryMinHeap.c}}
+\doxysubsubsection{\texorpdfstring{printMinHeap()}{printMinHeap()}}
+{\footnotesize\ttfamily void print\+Min\+Heap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_min_heap}{Binary\+Min\+Heap}} $\ast$}]{h,  }\item[{void($\ast$)(void $\ast$)}]{printfn }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em h} & \\
+\hline
+{\em printfn} & \\
+\hline
+\end{DoxyParams}

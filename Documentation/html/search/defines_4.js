@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lchild_924',['LCHILD',['../_heap_8h.html#a933a38bc359080513cbdacebe417043e',1,'Heap.h']]]
+  ['lchild_1093',['LCHILD',['../_binary_max_heap_8h.html#a933a38bc359080513cbdacebe417043e',1,'LCHILD():&#160;BinaryMaxHeap.h'],['../_binary_min_heap_8h.html#a933a38bc359080513cbdacebe417043e',1,'LCHILD():&#160;BinaryMinHeap.h']]]
 ];

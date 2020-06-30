@@ -25,6 +25,7 @@
 var NAVTREE =
 [
   [ "Data Structures Implemented in C", "index.html", [
+    [ "C-Data-structures", "md__r_e_a_d_m_e.html", null ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Structure Index", "classes.html", null ],
@@ -51,8 +52,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_a_v_l_tree_8c.html",
-"_doubly_linked_list_8h.html#aea315d1ac9b380acda829d09796b6c07",
-"_vector_8c.html#a5531d7c83fa20e517a1a83d188c0125e"
+"_d_linked_list_stack_8h.html#a63ec09cdd488958eb29e9ade2d54d21d",
+"_splay_tree_8h.html#a248cc0cdbf421e365d755c4188285226",
+"struct_a_v_l_t_node.html#ab0d96f9d852c2058c2546a1338e87544"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

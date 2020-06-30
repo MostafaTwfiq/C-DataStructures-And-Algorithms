@@ -90,18 +90,14 @@ $(document).ready(function(){initNavTree('main_8c.html',''); initResizable(); })
 <div class="contents">
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
-<code>#include &lt;stdbool.h&gt;</code><br />
-<code>#include &lt;math.h&gt;</code><br />
-<code>#include &quot;<a class="el" href="_trie_8h_source.html">Headers/Trie.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_array_list_8h_source.html">Headers/ArrayList.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_heap_8h_source.html">Headers/Heap.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_splay_tree_8h_source.html">Headers/SplayTree.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ad7491a34483486b6499b535b24ddfb0d"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ad7491a34483486b6499b535b24ddfb0d">mycmp</a> (void *v1, void *v2)</td></tr>
-<tr class="separator:ad7491a34483486b6499b535b24ddfb0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af006ba07fc782b1d86e05d7bf67c9641"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#af006ba07fc782b1d86e05d7bf67c9641">myPrint</a> (void *var)</td></tr>
-<tr class="separator:af006ba07fc782b1d86e05d7bf67c9641"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1af769f02d59906f56552ef31fac774f"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a1af769f02d59906f56552ef31fac774f">mycmp</a> (const void *v1, const void *v2)</td></tr>
+<tr class="separator:a1af769f02d59906f56552ef31fac774f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8293baf366a32487e1cc847a9dac9a93"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a8293baf366a32487e1cc847a9dac9a93">myPrint</a> (void *val)</td></tr>
+<tr class="separator:a8293baf366a32487e1cc847a9dac9a93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
 <tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -123,8 +119,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad7491a34483486b6499b535b24ddfb0d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad7491a34483486b6499b535b24ddfb0d">&#9670;&nbsp;</a></span>mycmp()</h2>
+<a id="a1af769f02d59906f56552ef31fac774f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1af769f02d59906f56552ef31fac774f">&#9670;&nbsp;</a></span>mycmp()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -132,13 +128,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int16_t mycmp </td>
           <td>(</td>
-          <td class="paramtype">void *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>v1</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">void *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>v2</em>&#160;</td>
         </tr>
         <tr>
@@ -151,8 +147,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="af006ba07fc782b1d86e05d7bf67c9641"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af006ba07fc782b1d86e05d7bf67c9641">&#9670;&nbsp;</a></span>myPrint()</h2>
+<a id="a8293baf366a32487e1cc847a9dac9a93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8293baf366a32487e1cc847a9dac9a93">&#9670;&nbsp;</a></span>myPrint()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -161,7 +157,7 @@ Functions</h2></td></tr>
           <td class="memname">void myPrint </td>
           <td>(</td>
           <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>var</em></td><td>)</td>
+          <td class="paramname"><em>val</em></td><td>)</td>
           <td></td>
         </tr>
       </table>

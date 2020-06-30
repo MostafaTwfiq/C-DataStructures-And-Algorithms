@@ -22,6 +22,6 @@ var _linked_list_8h =
     [ "linkedListGetLength", "_linked_list_8h.html#a6625f24d3dc106a7db1435eeb5159444", null ],
     [ "linkedListInitialization", "_linked_list_8h.html#a63030b08bfb629c815521e806247c958", null ],
     [ "linkedListIsEmpty", "_linked_list_8h.html#ad9b29734784c4a4a70c71e7b424bf9b3", null ],
-    [ "linkedListToArray", "_linked_list_8h.html#ac97b942ca91b1e3a1e76ab01c62ef455", null ],
+    [ "linkedListToArray", "_linked_list_8h.html#a609934d79448e884b272efed1188046d", null ],
     [ "printLinkedList", "_linked_list_8h.html#a36e96bba5af2251b88323c20b6bbc6fd", null ]
 ];

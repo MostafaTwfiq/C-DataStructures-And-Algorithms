@@ -1,0 +1,155 @@
+\hypertarget{_binary_max_heap_8c}{}\doxysection{Sources/\+Binary\+Max\+Heap.c File Reference}
+\label{_binary_max_heap_8c}\index{Sources/BinaryMaxHeap.c@{Sources/BinaryMaxHeap.c}}
+{\ttfamily \#include \char`\"{}../\+Headers/\+Binary\+Max\+Heap.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_binary_max_heap_8c_a366dddec8f8a4afd373183d1bee32799}{Max\+Heapify\+UP}} (\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$h, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} index)
+\item 
+void \mbox{\hyperlink{_binary_max_heap_8c_a546b63813f17ed0940637c762129b969}{Max\+Heapify\+Down}} (\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$heap, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} index)
+\item 
+\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$ \mbox{\hyperlink{_binary_max_heap_8c_aa230273e670cd4c24bfeaf648b9134a0}{Max\+Heap\+Initialize}} (uint16\+\_\+t size, int16\+\_\+t($\ast$cmp)(const void $\ast$, const void $\ast$))
+\item 
+void \mbox{\hyperlink{_binary_max_heap_8c_a98db9f37a5fb6716f08d19fa743251b2}{Max\+Heap\+Insert}} (\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$h, void $\ast$value)
+\item 
+void \mbox{\hyperlink{_binary_max_heap_8c_a7435e4bdaa80aec6c780754eeac1dc67}{Max\+Heap\+Delete}} (\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$heap, void $\ast$$\ast$res)
+\item 
+\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$ \mbox{\hyperlink{_binary_max_heap_8c_a8716132a6c2071f4113b67ce877a704e}{Max\+Heapify}} (void $\ast$$\ast$arr, uint16\+\_\+t size, int16\+\_\+t($\ast$cmp)(const void $\ast$, const void $\ast$))
+\item 
+void $\ast$ \mbox{\hyperlink{_binary_max_heap_8c_a99617a781b5e529344da58d008cb0b45}{Max\+Heap\+Add\+All}} (\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$binary\+Max\+Heap, void $\ast$$\ast$arr, uint16\+\_\+t size)
+\item 
+void \mbox{\hyperlink{_binary_max_heap_8c_a6f1b61dca4e494015e73cddb7173ddc3}{destroy\+Max\+Heap}} (\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$heap)
+\item 
+void \mbox{\hyperlink{_binary_max_heap_8c_a6f756ea2f3c9b28dd4cf0053d7a731f4}{print\+Max\+Heap}} (\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$h, void($\ast$printfn)(void $\ast$))
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_binary_max_heap_8c_a6f1b61dca4e494015e73cddb7173ddc3}\label{_binary_max_heap_8c_a6f1b61dca4e494015e73cddb7173ddc3}} 
+\index{BinaryMaxHeap.c@{BinaryMaxHeap.c}!destroyMaxHeap@{destroyMaxHeap}}
+\index{destroyMaxHeap@{destroyMaxHeap}!BinaryMaxHeap.c@{BinaryMaxHeap.c}}
+\doxysubsubsection{\texorpdfstring{destroyMaxHeap()}{destroyMaxHeap()}}
+{\footnotesize\ttfamily void destroy\+Max\+Heap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$}]{heap }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em heap} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_binary_max_heap_8c_a99617a781b5e529344da58d008cb0b45}\label{_binary_max_heap_8c_a99617a781b5e529344da58d008cb0b45}} 
+\index{BinaryMaxHeap.c@{BinaryMaxHeap.c}!MaxHeapAddAll@{MaxHeapAddAll}}
+\index{MaxHeapAddAll@{MaxHeapAddAll}!BinaryMaxHeap.c@{BinaryMaxHeap.c}}
+\doxysubsubsection{\texorpdfstring{MaxHeapAddAll()}{MaxHeapAddAll()}}
+{\footnotesize\ttfamily void$\ast$ Max\+Heap\+Add\+All (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$}]{binary\+Max\+Heap,  }\item[{void $\ast$$\ast$}]{arr,  }\item[{uint16\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em binary\+Max\+Heap} & \\
+\hline
+{\em arr} & \\
+\hline
+{\em size} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_binary_max_heap_8c_a7435e4bdaa80aec6c780754eeac1dc67}\label{_binary_max_heap_8c_a7435e4bdaa80aec6c780754eeac1dc67}} 
+\index{BinaryMaxHeap.c@{BinaryMaxHeap.c}!MaxHeapDelete@{MaxHeapDelete}}
+\index{MaxHeapDelete@{MaxHeapDelete}!BinaryMaxHeap.c@{BinaryMaxHeap.c}}
+\doxysubsubsection{\texorpdfstring{MaxHeapDelete()}{MaxHeapDelete()}}
+{\footnotesize\ttfamily void Max\+Heap\+Delete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$}]{heap,  }\item[{void $\ast$$\ast$}]{res }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em heap} & \\
+\hline
+{\em res} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_binary_max_heap_8c_a8716132a6c2071f4113b67ce877a704e}\label{_binary_max_heap_8c_a8716132a6c2071f4113b67ce877a704e}} 
+\index{BinaryMaxHeap.c@{BinaryMaxHeap.c}!MaxHeapify@{MaxHeapify}}
+\index{MaxHeapify@{MaxHeapify}!BinaryMaxHeap.c@{BinaryMaxHeap.c}}
+\doxysubsubsection{\texorpdfstring{MaxHeapify()}{MaxHeapify()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}}$\ast$ Max\+Heapify (\begin{DoxyParamCaption}\item[{void $\ast$$\ast$}]{arr,  }\item[{uint16\+\_\+t}]{size,  }\item[{int16\+\_\+t($\ast$)(const void $\ast$, const void $\ast$)}]{cmp }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em arr} & \\
+\hline
+{\em size} & \\
+\hline
+{\em cmp} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_binary_max_heap_8c_a546b63813f17ed0940637c762129b969}\label{_binary_max_heap_8c_a546b63813f17ed0940637c762129b969}} 
+\index{BinaryMaxHeap.c@{BinaryMaxHeap.c}!MaxHeapifyDown@{MaxHeapifyDown}}
+\index{MaxHeapifyDown@{MaxHeapifyDown}!BinaryMaxHeap.c@{BinaryMaxHeap.c}}
+\doxysubsubsection{\texorpdfstring{MaxHeapifyDown()}{MaxHeapifyDown()}}
+{\footnotesize\ttfamily void Max\+Heapify\+Down (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$}]{heap,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{index }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em heap} & \\
+\hline
+{\em index} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_binary_max_heap_8c_a366dddec8f8a4afd373183d1bee32799}\label{_binary_max_heap_8c_a366dddec8f8a4afd373183d1bee32799}} 
+\index{BinaryMaxHeap.c@{BinaryMaxHeap.c}!MaxHeapifyUP@{MaxHeapifyUP}}
+\index{MaxHeapifyUP@{MaxHeapifyUP}!BinaryMaxHeap.c@{BinaryMaxHeap.c}}
+\doxysubsubsection{\texorpdfstring{MaxHeapifyUP()}{MaxHeapifyUP()}}
+{\footnotesize\ttfamily void Max\+Heapify\+UP (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$}]{h,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{index }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em h} & \\
+\hline
+{\em index} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_binary_max_heap_8c_aa230273e670cd4c24bfeaf648b9134a0}\label{_binary_max_heap_8c_aa230273e670cd4c24bfeaf648b9134a0}} 
+\index{BinaryMaxHeap.c@{BinaryMaxHeap.c}!MaxHeapInitialize@{MaxHeapInitialize}}
+\index{MaxHeapInitialize@{MaxHeapInitialize}!BinaryMaxHeap.c@{BinaryMaxHeap.c}}
+\doxysubsubsection{\texorpdfstring{MaxHeapInitialize()}{MaxHeapInitialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}}$\ast$ Max\+Heap\+Initialize (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{size,  }\item[{int16\+\_\+t($\ast$)(const void $\ast$, const void $\ast$)}]{cmp }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & \\
+\hline
+{\em cmp} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_binary_max_heap_8c_a98db9f37a5fb6716f08d19fa743251b2}\label{_binary_max_heap_8c_a98db9f37a5fb6716f08d19fa743251b2}} 
+\index{BinaryMaxHeap.c@{BinaryMaxHeap.c}!MaxHeapInsert@{MaxHeapInsert}}
+\index{MaxHeapInsert@{MaxHeapInsert}!BinaryMaxHeap.c@{BinaryMaxHeap.c}}
+\doxysubsubsection{\texorpdfstring{MaxHeapInsert()}{MaxHeapInsert()}}
+{\footnotesize\ttfamily void Max\+Heap\+Insert (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$}]{h,  }\item[{void $\ast$}]{value }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em h} & \\
+\hline
+{\em value} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_binary_max_heap_8c_a6f756ea2f3c9b28dd4cf0053d7a731f4}\label{_binary_max_heap_8c_a6f756ea2f3c9b28dd4cf0053d7a731f4}} 
+\index{BinaryMaxHeap.c@{BinaryMaxHeap.c}!printMaxHeap@{printMaxHeap}}
+\index{printMaxHeap@{printMaxHeap}!BinaryMaxHeap.c@{BinaryMaxHeap.c}}
+\doxysubsubsection{\texorpdfstring{printMaxHeap()}{printMaxHeap()}}
+{\footnotesize\ttfamily void print\+Max\+Heap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$}]{h,  }\item[{void($\ast$)(void $\ast$)}]{printfn }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em h} & \\
+\hline
+{\em printfn} & \\
+\hline
+\end{DoxyParams}

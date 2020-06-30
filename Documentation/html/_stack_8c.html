@@ -96,10 +96,10 @@ Functions</h2></td></tr>
 <tr class="separator:a500f366dd65434fe0bd1580ea9201fed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a7d6f060063d9fb421d2f5d230511a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_stack_8c.html#a3a7d6f060063d9fb421d2f5d230511a6">pushStack</a> (<a class="el" href="struct_stack.html">Stack</a> *stack, void *data)</td></tr>
 <tr class="separator:a3a7d6f060063d9fb421d2f5d230511a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8d8ca0921e982f303c5ca25eaca4ede"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_stack_8c.html#ae8d8ca0921e982f303c5ca25eaca4ede">stackAddAll</a> (<a class="el" href="struct_stack.html">Stack</a> *stack, void *arr, <a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a> arrLength)</td></tr>
-<tr class="separator:ae8d8ca0921e982f303c5ca25eaca4ede"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45d98424fbb7d3fde82f6ea22d3e1b8f"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_stack_8c.html#a45d98424fbb7d3fde82f6ea22d3e1b8f">stackToArray</a> (<a class="el" href="struct_stack.html">Stack</a> *stack)</td></tr>
-<tr class="separator:a45d98424fbb7d3fde82f6ea22d3e1b8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af69cc5e878f15b5671c7f6a166d8761f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_stack_8c.html#af69cc5e878f15b5671c7f6a166d8761f">stackAddAll</a> (<a class="el" href="struct_stack.html">Stack</a> *stack, void **array, <a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a> arrLength)</td></tr>
+<tr class="separator:af69cc5e878f15b5671c7f6a166d8761f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61856b6ba80128bace37d00b3074c931"><td class="memItemLeft" align="right" valign="top">void **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_stack_8c.html#a61856b6ba80128bace37d00b3074c931">stackToArray</a> (<a class="el" href="struct_stack.html">Stack</a> *stack)</td></tr>
+<tr class="separator:a61856b6ba80128bace37d00b3074c931"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74d6e48a39dd898a321ff632c314a2bb"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_stack_8c.html#a74d6e48a39dd898a321ff632c314a2bb">popStack</a> (<a class="el" href="struct_stack.html">Stack</a> *stack)</td></tr>
 <tr class="separator:a74d6e48a39dd898a321ff632c314a2bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9b851427b965f504aab0dc4cc8ab467"><td class="memItemLeft" align="right" valign="top">short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_stack_8c.html#aa9b851427b965f504aab0dc4cc8ab467">isEmptyStack</a> (<a class="el" href="struct_stack.html">Stack</a> *stack)</td></tr>
@@ -214,8 +214,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ae8d8ca0921e982f303c5ca25eaca4ede"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae8d8ca0921e982f303c5ca25eaca4ede">&#9670;&nbsp;</a></span>stackAddAll()</h2>
+<a id="af69cc5e878f15b5671c7f6a166d8761f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af69cc5e878f15b5671c7f6a166d8761f">&#9670;&nbsp;</a></span>stackAddAll()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -229,8 +229,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>arr</em>, </td>
+          <td class="paramtype">void **&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -302,14 +302,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a45d98424fbb7d3fde82f6ea22d3e1b8f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a45d98424fbb7d3fde82f6ea22d3e1b8f">&#9670;&nbsp;</a></span>stackToArray()</h2>
+<a id="a61856b6ba80128bace37d00b3074c931"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61856b6ba80128bace37d00b3074c931">&#9670;&nbsp;</a></span>stackToArray()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void* stackToArray </td>
+          <td class="memname">void** stackToArray </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_stack.html">Stack</a> *&#160;</td>
           <td class="paramname"><em>stack</em></td><td>)</td>

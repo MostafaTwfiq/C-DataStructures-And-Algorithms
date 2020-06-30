@@ -3,7 +3,7 @@ var _doubly_linked_list_8c =
     [ "Node", "struct_node.html", "struct_node" ],
     [ "Node", "_doubly_linked_list_8c.html#a3b09f37e675bcd48a01bf22155996872", null ],
     [ "destroyDoublyLinkedList", "_doubly_linked_list_8c.html#afda10ad9b2359269b25182f61f815265", null ],
-    [ "doublyLinkedListAddAll", "_doubly_linked_list_8c.html#a2c1b766a4500bd8d923201e7ab70bde0", null ],
+    [ "doublyLinkedListAddAll", "_doubly_linked_list_8c.html#ab66b007eeed34c5f4e78e9301751f813", null ],
     [ "doublyLinkedListAddAtIndex", "_doubly_linked_list_8c.html#a17f7103584742c285d75f3adbb9c99a5", null ],
     [ "doublyLinkedListAddFirst", "_doubly_linked_list_8c.html#a14dc49cb34aa77169d40f86f691f2113", null ],
     [ "doublyLinkedListAddLast", "_doubly_linked_list_8c.html#ab2fff2c3ed082b600958d4cbb49dcd4c", null ],
@@ -23,6 +23,6 @@ var _doubly_linked_list_8c =
     [ "doublyLinkedListGetLength", "_doubly_linked_list_8c.html#a155d49378379c034217a89bd7ccb0bf2", null ],
     [ "doublyLinkedListInitialization", "_doubly_linked_list_8c.html#a3b790542fcaf878a16b5750441741b9a", null ],
     [ "doublyLinkedListIsEmpty", "_doubly_linked_list_8c.html#aea315d1ac9b380acda829d09796b6c07", null ],
-    [ "doublyLinkedListToArray", "_doubly_linked_list_8c.html#ac862aeb4580b3e15499b80b14c7446cd", null ],
+    [ "doublyLinkedListToArray", "_doubly_linked_list_8c.html#aac38bcda00b79750275329f296decc50", null ],
     [ "printDoublyLinkedList", "_doubly_linked_list_8c.html#a8a1fde9f5658313e33796b00773a6e10", null ]
 ];

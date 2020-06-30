@@ -3,7 +3,7 @@ var _linked_list_8c =
     [ "Node", "struct_node.html", "struct_node" ],
     [ "Node", "_linked_list_8c.html#a3b09f37e675bcd48a01bf22155996872", null ],
     [ "destroyLinkedList", "_linked_list_8c.html#aef821dd248dc9c50ad236b9a7c9062fc", null ],
-    [ "linkedListAddAll", "_linked_list_8c.html#a2c9945bec36f46f59d119000ec4a5953", null ],
+    [ "linkedListAddAll", "_linked_list_8c.html#a6c6eb00967352f9c1ad3ec8295a6d316", null ],
     [ "linkedListAddAtIndex", "_linked_list_8c.html#a9dc81715fb5f76c7596754041802cc81", null ],
     [ "linkedListAddFirst", "_linked_list_8c.html#a9329643a4e5a17611da5cd573de56e77", null ],
     [ "linkedListAddLast", "_linked_list_8c.html#acdab1cb34903370c25ea08359e1cf591", null ],
@@ -23,6 +23,6 @@ var _linked_list_8c =
     [ "linkedListGetLength", "_linked_list_8c.html#a6625f24d3dc106a7db1435eeb5159444", null ],
     [ "linkedListInitialization", "_linked_list_8c.html#a63030b08bfb629c815521e806247c958", null ],
     [ "linkedListIsEmpty", "_linked_list_8c.html#ad9b29734784c4a4a70c71e7b424bf9b3", null ],
-    [ "linkedListToArray", "_linked_list_8c.html#ac97b942ca91b1e3a1e76ab01c62ef455", null ],
+    [ "linkedListToArray", "_linked_list_8c.html#a609934d79448e884b272efed1188046d", null ],
     [ "printLinkedList", "_linked_list_8c.html#a36e96bba5af2251b88323c20b6bbc6fd", null ]
 ];

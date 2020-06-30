@@ -14,6 +14,8 @@ typedef struct \mbox{\hyperlink{struct_doubly_linked_list}{Doubly\+Linked\+List}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+void \mbox{\hyperlink{_doubly_linked_list_8h_ab66b007eeed34c5f4e78e9301751f813}{doubly\+Linked\+List\+Add\+All}} (\mbox{\hyperlink{struct_doubly_linked_list}{Doubly\+Linked\+List}} $\ast$linked\+List, void $\ast$$\ast$items, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} items\+Length)
+\item 
 \mbox{\hyperlink{struct_doubly_linked_list}{Doubly\+Linked\+List}} $\ast$ \mbox{\hyperlink{_doubly_linked_list_8h_a3b790542fcaf878a16b5750441741b9a}{doubly\+Linked\+List\+Initialization}} (\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} size\+Of\+Type)
 \item 
 void \mbox{\hyperlink{_doubly_linked_list_8h_a14dc49cb34aa77169d40f86f691f2113}{doubly\+Linked\+List\+Add\+First}} (\mbox{\hyperlink{struct_doubly_linked_list}{Doubly\+Linked\+List}} $\ast$linked\+List, void $\ast$item)
@@ -44,7 +46,7 @@ void $\ast$ \mbox{\hyperlink{_doubly_linked_list_8h_a69f797812161e0919f839b3eda8
 \item 
 void $\ast$ \mbox{\hyperlink{_doubly_linked_list_8h_af86c5f0b0cf324c195c76d529c9ab4ff}{doubly\+Linked\+List\+Get\+Last}} (\mbox{\hyperlink{struct_doubly_linked_list}{Doubly\+Linked\+List}} $\ast$linked\+List)
 \item 
-void $\ast$ \mbox{\hyperlink{_doubly_linked_list_8h_ac862aeb4580b3e15499b80b14c7446cd}{doubly\+Linked\+List\+To\+Array}} (\mbox{\hyperlink{struct_doubly_linked_list}{Doubly\+Linked\+List}} $\ast$linked\+List)
+void $\ast$$\ast$ \mbox{\hyperlink{_doubly_linked_list_8h_aac38bcda00b79750275329f296decc50}{doubly\+Linked\+List\+To\+Array}} (\mbox{\hyperlink{struct_doubly_linked_list}{Doubly\+Linked\+List}} $\ast$linked\+List)
 \item 
 void $\ast$ \mbox{\hyperlink{_doubly_linked_list_8h_a2c0df9b593402ec55e13fbbcb6f174b6}{doubly\+Linked\+List\+Get}} (\mbox{\hyperlink{struct_doubly_linked_list}{Doubly\+Linked\+List}} $\ast$linked\+List, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} index)
 \item 
@@ -79,6 +81,21 @@ void \mbox{\hyperlink{_doubly_linked_list_8h_afda10ad9b2359269b25182f61f815265}{
 This function will take the linked list address as a parameter, then it will destroy and free the linked list and all it\textquotesingle{}s nodes. 
 \begin{DoxyParams}{Parameters}
 {\em linked\+List} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_doubly_linked_list_8h_ab66b007eeed34c5f4e78e9301751f813}\label{_doubly_linked_list_8h_ab66b007eeed34c5f4e78e9301751f813}} 
+\index{DoublyLinkedList.h@{DoublyLinkedList.h}!doublyLinkedListAddAll@{doublyLinkedListAddAll}}
+\index{doublyLinkedListAddAll@{doublyLinkedListAddAll}!DoublyLinkedList.h@{DoublyLinkedList.h}}
+\doxysubsubsection{\texorpdfstring{doublyLinkedListAddAll()}{doublyLinkedListAddAll()}}
+{\footnotesize\ttfamily void doubly\+Linked\+List\+Add\+All (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_doubly_linked_list}{Doubly\+Linked\+List}} $\ast$}]{linked\+List,  }\item[{void $\ast$$\ast$}]{items,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{items\+Length }\end{DoxyParamCaption})}
+
+This function will take the linked list address, items array, and the length of the array as parameters, then it will copy the array item if the linked list in a new items addresses. 
+\begin{DoxyParams}{Parameters}
+{\em linked\+List} & \\
+\hline
+{\em items} & \\
+\hline
+{\em items\+Length} & \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{_doubly_linked_list_8h_a17f7103584742c285d75f3adbb9c99a5}\label{_doubly_linked_list_8h_a17f7103584742c285d75f3adbb9c99a5}} 
@@ -340,11 +357,11 @@ This function will take the linked list address as a parameter, then it will ret
 \begin{DoxyReturn}{Returns}
 
 \end{DoxyReturn}
-\mbox{\Hypertarget{_doubly_linked_list_8h_ac862aeb4580b3e15499b80b14c7446cd}\label{_doubly_linked_list_8h_ac862aeb4580b3e15499b80b14c7446cd}} 
+\mbox{\Hypertarget{_doubly_linked_list_8h_aac38bcda00b79750275329f296decc50}\label{_doubly_linked_list_8h_aac38bcda00b79750275329f296decc50}} 
 \index{DoublyLinkedList.h@{DoublyLinkedList.h}!doublyLinkedListToArray@{doublyLinkedListToArray}}
 \index{doublyLinkedListToArray@{doublyLinkedListToArray}!DoublyLinkedList.h@{DoublyLinkedList.h}}
 \doxysubsubsection{\texorpdfstring{doublyLinkedListToArray()}{doublyLinkedListToArray()}}
-{\footnotesize\ttfamily void$\ast$ doubly\+Linked\+List\+To\+Array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_doubly_linked_list}{Doubly\+Linked\+List}} $\ast$}]{linked\+List }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void$\ast$$\ast$ doubly\+Linked\+List\+To\+Array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_doubly_linked_list}{Doubly\+Linked\+List}} $\ast$}]{linked\+List }\end{DoxyParamCaption})}
 
 This function will take the linked list address as a parameter, then it will return a void pointer to an array consist of the items in the linked list. The items in the array doesn\textquotesingle{}t share the same address in the linked list items. 
 \begin{DoxyParams}{Parameters}

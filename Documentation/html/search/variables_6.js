@@ -1,10 +1,5 @@
 var searchData=
 [
-  ['implib_860',['implib',['../link_8txt.html#affb709db8fbf0bf497b5adae7d44addc',1,'link.txt']]],
-  ['info_5farch_861',['info_arch',['../_c_make_c_compiler_id_8c.html#a59647e99d304ed33b15cb284c27ed391',1,'CMakeCCompilerId.c']]],
-  ['info_5fcompiler_862',['info_compiler',['../_c_make_c_compiler_id_8c.html#a4b0efeb7a5d59313986b3a0390f050f6',1,'CMakeCCompilerId.c']]],
-  ['info_5flanguage_5fdialect_5fdefault_863',['info_language_dialect_default',['../_c_make_c_compiler_id_8c.html#a1ce162bad2fe6966ac8b33cc19e120b8',1,'CMakeCCompilerId.c']]],
-  ['info_5fplatform_864',['info_platform',['../_c_make_c_compiler_id_8c.html#a2321403dee54ee23f0c2fa849c60f7d4',1,'CMakeCCompilerId.c']]],
-  ['int_865',['int',['../_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372',1,'CMakeCache.txt']]],
-  ['item_866',['item',['../struct_node.html#a5b5dbba166dbc18ced640f718c071f44',1,'Node']]]
+  ['head_1020',['head',['../struct_doubly_linked_list.html#ae959b310460c42ab25a11f7680421d52',1,'DoublyLinkedList::head()'],['../struct_linked_list.html#ae959b310460c42ab25a11f7680421d52',1,'LinkedList::head()']]],
+  ['height_1021',['height',['../struct_a_v_l_t_node.html#a509290c21d570ff479c1b9d9b1fe8810',1,'AVLTNode']]]
 ];

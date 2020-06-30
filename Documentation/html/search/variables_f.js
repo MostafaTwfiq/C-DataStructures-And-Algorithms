@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['value_885',['value',['../struct_node.html#a1de5cca0fbfc376f5a6997b84006e25e',1,'Node']]],
-  ['version_886',['version',['../link_8txt.html#a9d906d4be925e18a41f78960e0964b65',1,'link.txt']]]
+  ['tail_1045',['tail',['../struct_doubly_linked_list.html#a6590ad67c0c33ebb4f59a9e3540aa970',1,'DoublyLinkedList::tail()'],['../struct_linked_list.html#a6590ad67c0c33ebb4f59a9e3540aa970',1,'LinkedList::tail()']]],
+  ['top_1046',['top',['../struct_stack.html#a8aab264665f2085687d9eeca4c67a691',1,'Stack']]]
 ];

@@ -5,7 +5,7 @@ var _vector_8h =
     [ "clearVector", "_vector_8h.html#a09991e12429e3133b52233a7298d62ce", null ],
     [ "destroyVector", "_vector_8h.html#a2c3eacb11d4a03433a593671889bcbf2", null ],
     [ "printVector", "_vector_8h.html#a6eef4ecbaec7b84fa80e9e411ee77187", null ],
-    [ "vectorAddAll", "_vector_8h.html#a58653e890a0ea1d35f5af010d06a8256", null ],
+    [ "vectorAddAll", "_vector_8h.html#a2549607e06af13c7d50d22b8ab7a6d18", null ],
     [ "vectorContains", "_vector_8h.html#a5531d7c83fa20e517a1a83d188c0125e", null ],
     [ "vectorGet", "_vector_8h.html#af2160a5766632a30aa16d9501efbdaca", null ],
     [ "vectorGetIndex", "_vector_8h.html#a131c97eda0f24a8b531c8fd699d103bd", null ],
@@ -17,6 +17,6 @@ var _vector_8h =
     [ "vectorRemove", "_vector_8h.html#ae71bc84035c007591b5e16b8a3dff85b", null ],
     [ "vectorRemoveAtIndex", "_vector_8h.html#ac77534ef7ce6018e918ff324cc77ce45", null ],
     [ "vectorSort", "_vector_8h.html#a4ba3873fadc8c08f98567f9628558474", null ],
-    [ "vectorToArray", "_vector_8h.html#ab221ef4626cbd33b6b17117357d83e3c", null ],
-    [ "vectorToSubArray", "_vector_8h.html#a6f6b1b23c65236e76444cb2f1718437a", null ]
+    [ "vectorToArray", "_vector_8h.html#aaa0d0f96fde805ad0f5845ca75f54b89", null ],
+    [ "vectorToSubArray", "_vector_8h.html#abf79f91d66d165c4a334a21b88a0aaf9", null ]
 ];

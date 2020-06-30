@@ -96,12 +96,12 @@ Functions</h2></td></tr>
 <tr class="separator:a23a9f20d43e5f8d9bb73c21cf3969bfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63ec09cdd488958eb29e9ade2d54d21d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_linked_list_stack_8c.html#a63ec09cdd488958eb29e9ade2d54d21d">dlStackPush</a> (<a class="el" href="struct_d_linked_list_stack.html">DLinkedListStack</a> *stack, void *item)</td></tr>
 <tr class="separator:a63ec09cdd488958eb29e9ade2d54d21d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47d5a4cdbfe4579434ab56bb5391febb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_linked_list_stack_8c.html#a47d5a4cdbfe4579434ab56bb5391febb">dlStackAddAll</a> (<a class="el" href="struct_d_linked_list_stack.html">DLinkedListStack</a> *stack, void *arr, <a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a> arrLength)</td></tr>
-<tr class="separator:a47d5a4cdbfe4579434ab56bb5391febb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af20308157427f9825136630ed8401e78"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_linked_list_stack_8c.html#af20308157427f9825136630ed8401e78">dlStackAddAll</a> (<a class="el" href="struct_d_linked_list_stack.html">DLinkedListStack</a> *stack, void **arr, <a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a> arrLength)</td></tr>
+<tr class="separator:af20308157427f9825136630ed8401e78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46a6a3f3e6b7f9aa0ec6a9096a5aa56f"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_linked_list_stack_8c.html#a46a6a3f3e6b7f9aa0ec6a9096a5aa56f">dlStackPop</a> (<a class="el" href="struct_d_linked_list_stack.html">DLinkedListStack</a> *stack)</td></tr>
 <tr class="separator:a46a6a3f3e6b7f9aa0ec6a9096a5aa56f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab174c787ff3f3759fb66c7f686b7722c"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_linked_list_stack_8c.html#ab174c787ff3f3759fb66c7f686b7722c">dlStackToArray</a> (<a class="el" href="struct_d_linked_list_stack.html">DLinkedListStack</a> *stack)</td></tr>
-<tr class="separator:ab174c787ff3f3759fb66c7f686b7722c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae003a3c79f13633f0fb67d4883bd3428"><td class="memItemLeft" align="right" valign="top">void **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_linked_list_stack_8c.html#ae003a3c79f13633f0fb67d4883bd3428">dlStackToArray</a> (<a class="el" href="struct_d_linked_list_stack.html">DLinkedListStack</a> *stack)</td></tr>
+<tr class="separator:ae003a3c79f13633f0fb67d4883bd3428"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03d046151fccc965ca62be56065e29f0"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_linked_list_stack_8c.html#a03d046151fccc965ca62be56065e29f0">dlStackPeek</a> (<a class="el" href="struct_d_linked_list_stack.html">DLinkedListStack</a> *stack)</td></tr>
 <tr class="separator:a03d046151fccc965ca62be56065e29f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a039950c49df7ac90410e18bb1bec2683"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_linked_list_stack_8c.html#a039950c49df7ac90410e18bb1bec2683">dlStackGetLength</a> (<a class="el" href="struct_d_linked_list_stack.html">DLinkedListStack</a> *stack)</td></tr>
@@ -162,8 +162,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a47d5a4cdbfe4579434ab56bb5391febb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a47d5a4cdbfe4579434ab56bb5391febb">&#9670;&nbsp;</a></span>dlStackAddAll()</h2>
+<a id="af20308157427f9825136630ed8401e78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af20308157427f9825136630ed8401e78">&#9670;&nbsp;</a></span>dlStackAddAll()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -177,7 +177,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">void *&#160;</td>
+          <td class="paramtype">void **&#160;</td>
           <td class="paramname"><em>arr</em>, </td>
         </tr>
         <tr>
@@ -364,14 +364,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ab174c787ff3f3759fb66c7f686b7722c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab174c787ff3f3759fb66c7f686b7722c">&#9670;&nbsp;</a></span>dlStackToArray()</h2>
+<a id="ae003a3c79f13633f0fb67d4883bd3428"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae003a3c79f13633f0fb67d4883bd3428">&#9670;&nbsp;</a></span>dlStackToArray()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void* dlStackToArray </td>
+          <td class="memname">void** dlStackToArray </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_d_linked_list_stack.html">DLinkedListStack</a> *&#160;</td>
           <td class="paramname"><em>stack</em></td><td>)</td>

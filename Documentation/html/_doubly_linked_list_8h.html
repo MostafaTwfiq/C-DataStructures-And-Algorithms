@@ -106,6 +106,8 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:ab66b007eeed34c5f4e78e9301751f813"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_doubly_linked_list_8h.html#ab66b007eeed34c5f4e78e9301751f813">doublyLinkedListAddAll</a> (<a class="el" href="struct_doubly_linked_list.html">DoublyLinkedList</a> *linkedList, void **items, <a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a> itemsLength)</td></tr>
+<tr class="separator:ab66b007eeed34c5f4e78e9301751f813"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b790542fcaf878a16b5750441741b9a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_doubly_linked_list.html">DoublyLinkedList</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_doubly_linked_list_8h.html#a3b790542fcaf878a16b5750441741b9a">doublyLinkedListInitialization</a> (<a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a> sizeOfType)</td></tr>
 <tr class="separator:a3b790542fcaf878a16b5750441741b9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14dc49cb34aa77169d40f86f691f2113"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_doubly_linked_list_8h.html#a14dc49cb34aa77169d40f86f691f2113">doublyLinkedListAddFirst</a> (<a class="el" href="struct_doubly_linked_list.html">DoublyLinkedList</a> *linkedList, void *item)</td></tr>
@@ -136,8 +138,8 @@ Functions</h2></td></tr>
 <tr class="separator:a69f797812161e0919f839b3eda857f90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af86c5f0b0cf324c195c76d529c9ab4ff"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_doubly_linked_list_8h.html#af86c5f0b0cf324c195c76d529c9ab4ff">doublyLinkedListGetLast</a> (<a class="el" href="struct_doubly_linked_list.html">DoublyLinkedList</a> *linkedList)</td></tr>
 <tr class="separator:af86c5f0b0cf324c195c76d529c9ab4ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac862aeb4580b3e15499b80b14c7446cd"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_doubly_linked_list_8h.html#ac862aeb4580b3e15499b80b14c7446cd">doublyLinkedListToArray</a> (<a class="el" href="struct_doubly_linked_list.html">DoublyLinkedList</a> *linkedList)</td></tr>
-<tr class="separator:ac862aeb4580b3e15499b80b14c7446cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac38bcda00b79750275329f296decc50"><td class="memItemLeft" align="right" valign="top">void **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_doubly_linked_list_8h.html#aac38bcda00b79750275329f296decc50">doublyLinkedListToArray</a> (<a class="el" href="struct_doubly_linked_list.html">DoublyLinkedList</a> *linkedList)</td></tr>
+<tr class="separator:aac38bcda00b79750275329f296decc50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c0df9b593402ec55e13fbbcb6f174b6"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_doubly_linked_list_8h.html#a2c0df9b593402ec55e13fbbcb6f174b6">doublyLinkedListGet</a> (<a class="el" href="struct_doubly_linked_list.html">DoublyLinkedList</a> *linkedList, <a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a> index)</td></tr>
 <tr class="separator:a2c0df9b593402ec55e13fbbcb6f174b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a155d49378379c034217a89bd7ccb0bf2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_doubly_linked_list_8h.html#a155d49378379c034217a89bd7ccb0bf2">doublyLinkedListGetLength</a> (<a class="el" href="struct_doubly_linked_list.html">DoublyLinkedList</a> *linkedList)</td></tr>
@@ -185,6 +187,48 @@ Functions</h2></td></tr>
 <p>This function will take the linked list address as a parameter, then it will destroy and free the linked list and all it's nodes. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">linkedList</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab66b007eeed34c5f4e78e9301751f813"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab66b007eeed34c5f4e78e9301751f813">&#9670;&nbsp;</a></span>doublyLinkedListAddAll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void doublyLinkedListAddAll </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_doubly_linked_list.html">DoublyLinkedList</a> *&#160;</td>
+          <td class="paramname"><em>linkedList</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void **&#160;</td>
+          <td class="paramname"><em>items</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a>&#160;</td>
+          <td class="paramname"><em>itemsLength</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function will take the linked list address, items array, and the length of the array as parameters, then it will copy the array item if the linked list in a new items addresses. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">linkedList</td><td></td></tr>
+    <tr><td class="paramname">items</td><td></td></tr>
+    <tr><td class="paramname">itemsLength</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -782,14 +826,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ac862aeb4580b3e15499b80b14c7446cd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac862aeb4580b3e15499b80b14c7446cd">&#9670;&nbsp;</a></span>doublyLinkedListToArray()</h2>
+<a id="aac38bcda00b79750275329f296decc50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac38bcda00b79750275329f296decc50">&#9670;&nbsp;</a></span>doublyLinkedListToArray()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void* doublyLinkedListToArray </td>
+          <td class="memname">void** doublyLinkedListToArray </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_doubly_linked_list.html">DoublyLinkedList</a> *&#160;</td>
           <td class="paramname"><em>linkedList</em></td><td>)</td>

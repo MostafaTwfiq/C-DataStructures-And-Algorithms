@@ -18,7 +18,7 @@ typedef struct \mbox{\hyperlink{struct_vector}{Vector}} \mbox{\hyperlink{_vector
 \item 
 void \mbox{\hyperlink{_vector_8h_a47b3a420bab6dd36eca22880cc8ba31f}{vector\+List\+Add}} (\mbox{\hyperlink{struct_vector}{Vector}} $\ast$list, void $\ast$item)
 \item 
-void \mbox{\hyperlink{_vector_8h_a58653e890a0ea1d35f5af010d06a8256}{vector\+Add\+All}} (\mbox{\hyperlink{struct_vector}{Vector}} $\ast$list, void $\ast$array, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} array\+Length)
+void \mbox{\hyperlink{_vector_8h_a2549607e06af13c7d50d22b8ab7a6d18}{vector\+Add\+All}} (\mbox{\hyperlink{struct_vector}{Vector}} $\ast$list, void $\ast$$\ast$array, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} array\+Length)
 \item 
 void \mbox{\hyperlink{_vector_8h_ae71bc84035c007591b5e16b8a3dff85b}{vector\+Remove}} (\mbox{\hyperlink{struct_vector}{Vector}} $\ast$list)
 \item 
@@ -32,9 +32,9 @@ void \mbox{\hyperlink{_vector_8h_ac77534ef7ce6018e918ff324cc77ce45}{vector\+Remo
 \item 
 void $\ast$ \mbox{\hyperlink{_vector_8h_af2160a5766632a30aa16d9501efbdaca}{vector\+Get}} (\mbox{\hyperlink{struct_vector}{Vector}} $\ast$list, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} index)
 \item 
-void $\ast$ \mbox{\hyperlink{_vector_8h_ab221ef4626cbd33b6b17117357d83e3c}{vector\+To\+Array}} (\mbox{\hyperlink{struct_vector}{Vector}} $\ast$list)
+void $\ast$$\ast$ \mbox{\hyperlink{_vector_8h_aaa0d0f96fde805ad0f5845ca75f54b89}{vector\+To\+Array}} (\mbox{\hyperlink{struct_vector}{Vector}} $\ast$list)
 \item 
-void $\ast$ \mbox{\hyperlink{_vector_8h_a6f6b1b23c65236e76444cb2f1718437a}{vector\+To\+Sub\+Array}} (\mbox{\hyperlink{struct_vector}{Vector}} $\ast$list, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} start, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} end)
+void $\ast$$\ast$ \mbox{\hyperlink{_vector_8h_abf79f91d66d165c4a334a21b88a0aaf9}{vector\+To\+Sub\+Array}} (\mbox{\hyperlink{struct_vector}{Vector}} $\ast$list, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} start, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} end)
 \item 
 void \mbox{\hyperlink{_vector_8h_a4ba3873fadc8c08f98567f9628558474}{vector\+Sort}} (\mbox{\hyperlink{struct_vector}{Vector}} $\ast$list, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$\mbox{\hyperlink{_trie_8c_a1640ed6646f0dbc0b4ee3cdd8adff7d9}{comparator}})(const void $\ast$, const void $\ast$))
 \item 
@@ -95,11 +95,11 @@ This function will take the vector address, and the print function address as a 
 {\em print\+Fun} & \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{_vector_8h_a58653e890a0ea1d35f5af010d06a8256}\label{_vector_8h_a58653e890a0ea1d35f5af010d06a8256}} 
+\mbox{\Hypertarget{_vector_8h_a2549607e06af13c7d50d22b8ab7a6d18}\label{_vector_8h_a2549607e06af13c7d50d22b8ab7a6d18}} 
 \index{Vector.h@{Vector.h}!vectorAddAll@{vectorAddAll}}
 \index{vectorAddAll@{vectorAddAll}!Vector.h@{Vector.h}}
 \doxysubsubsection{\texorpdfstring{vectorAddAll()}{vectorAddAll()}}
-{\footnotesize\ttfamily void vector\+Add\+All (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_vector}{Vector}} $\ast$}]{list,  }\item[{void $\ast$}]{array,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{array\+Length }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void vector\+Add\+All (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_vector}{Vector}} $\ast$}]{list,  }\item[{void $\ast$$\ast$}]{array,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{array\+Length }\end{DoxyParamCaption})}
 
 This function will take the vector address, the items array, and the length of items array as a parameters, then it will copy the items array into the vector. 
 \begin{DoxyParams}{Parameters}
@@ -257,11 +257,11 @@ This function will take the vector address, and the sort comparator function as 
 {\em comparator} & \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{_vector_8h_ab221ef4626cbd33b6b17117357d83e3c}\label{_vector_8h_ab221ef4626cbd33b6b17117357d83e3c}} 
+\mbox{\Hypertarget{_vector_8h_aaa0d0f96fde805ad0f5845ca75f54b89}\label{_vector_8h_aaa0d0f96fde805ad0f5845ca75f54b89}} 
 \index{Vector.h@{Vector.h}!vectorToArray@{vectorToArray}}
 \index{vectorToArray@{vectorToArray}!Vector.h@{Vector.h}}
 \doxysubsubsection{\texorpdfstring{vectorToArray()}{vectorToArray()}}
-{\footnotesize\ttfamily void$\ast$ vector\+To\+Array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_vector}{Vector}} $\ast$}]{list }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void$\ast$$\ast$ vector\+To\+Array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_vector}{Vector}} $\ast$}]{list }\end{DoxyParamCaption})}
 
 This function will take the vector address as a parameter, then it will return a void pointer array that consist of the vector elements. 
 \begin{DoxyParams}{Parameters}
@@ -271,11 +271,11 @@ This function will take the vector address as a parameter, then it will return a
 \begin{DoxyReturn}{Returns}
 
 \end{DoxyReturn}
-\mbox{\Hypertarget{_vector_8h_a6f6b1b23c65236e76444cb2f1718437a}\label{_vector_8h_a6f6b1b23c65236e76444cb2f1718437a}} 
+\mbox{\Hypertarget{_vector_8h_abf79f91d66d165c4a334a21b88a0aaf9}\label{_vector_8h_abf79f91d66d165c4a334a21b88a0aaf9}} 
 \index{Vector.h@{Vector.h}!vectorToSubArray@{vectorToSubArray}}
 \index{vectorToSubArray@{vectorToSubArray}!Vector.h@{Vector.h}}
 \doxysubsubsection{\texorpdfstring{vectorToSubArray()}{vectorToSubArray()}}
-{\footnotesize\ttfamily void$\ast$ vector\+To\+Sub\+Array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_vector}{Vector}} $\ast$}]{list,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{start,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{end }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void$\ast$$\ast$ vector\+To\+Sub\+Array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_vector}{Vector}} $\ast$}]{list,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{start,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{end }\end{DoxyParamCaption})}
 
 This function will take the vector address, the start index, and the end index as a parameters, then it will return a void pointer array that consist of the items at the start index to end index -\/ 1. 
 \begin{DoxyParams}{Parameters}

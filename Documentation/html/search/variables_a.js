@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['next_872',['next',['../struct_node.html#a5617d1617c7d18c7fec2a0e52dc0d451',1,'Node']]],
-  ['nodecount_873',['nodeCount',['../struct_a_v_l_tree.html#a7578e99b45e73434314682f5e67771c8',1,'AVLTree::nodeCount()'],['../struct_binary_tree.html#a7578e99b45e73434314682f5e67771c8',1,'BinaryTree::nodeCount()']]]
+  ['memory_1033',['memory',['../struct_array_queue.html#a61a963e6e2f81b884bc6d17c72777b42',1,'ArrayQueue::memory()'],['../struct_binary_max_heap.html#a4556e1e93ecab520cee7ed63b9ea4968',1,'BinaryMaxHeap::memory()'],['../struct_binary_min_heap.html#a4556e1e93ecab520cee7ed63b9ea4968',1,'BinaryMinHeap::memory()'],['../struct_stack.html#a61a963e6e2f81b884bc6d17c72777b42',1,'Stack::memory()']]]
 ];

@@ -82,10 +82,572 @@ $(document).ready(function(){initNavTree('_splay_tree_8c.html',''); initResizabl
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">SplayTree.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="_splay_tree_8h_source.html">../Headers/SplayTree.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a26b347f372958c73bd596b71b40b85b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_splay_tree_8c.html#a26b347f372958c73bd596b71b40b85b7">printSplayTreeHelper</a> (<a class="el" href="struct_splay_node.html">SplayNode</a> *root, <a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a> space, void(printFn)(void *))</td></tr>
+<tr class="separator:a26b347f372958c73bd596b71b40b85b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae291f79a6079241d8f0df81718a5c836"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_splay_tree_8c.html#ae291f79a6079241d8f0df81718a5c836">SplayTreeToArrayRecurs</a> (<a class="el" href="struct_splay_node.html">SplayNode</a> *node, void **arr, <a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a> *i)</td></tr>
+<tr class="separator:ae291f79a6079241d8f0df81718a5c836"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2cf76c825dd285e34696bc058a39e36"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_splay_node.html">SplayNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_splay_tree_8c.html#ad2cf76c825dd285e34696bc058a39e36">newSplayNode</a> (void *key)</td></tr>
+<tr class="separator:ad2cf76c825dd285e34696bc058a39e36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a740f25a7422ff48cc7acc32204fa96"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_splay_tree.html">SplayTree</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_splay_tree_8c.html#a4a740f25a7422ff48cc7acc32204fa96">SplayTreeInitialize</a> (int16_t(*cmp)(const void *, const void *))</td></tr>
+<tr class="separator:a4a740f25a7422ff48cc7acc32204fa96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3d6f5006a72f85e5c6304ecc953d4da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_splay_node.html">SplayNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_splay_tree_8c.html#ab3d6f5006a72f85e5c6304ecc953d4da">rightRotateSplay</a> (<a class="el" href="struct_splay_node.html">SplayNode</a> *x)</td></tr>
+<tr class="separator:ab3d6f5006a72f85e5c6304ecc953d4da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06c1341c21ab73b5122ffe1d1dee83dc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_splay_node.html">SplayNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_splay_tree_8c.html#a06c1341c21ab73b5122ffe1d1dee83dc">leftRotateSplay</a> (<a class="el" href="struct_splay_node.html">SplayNode</a> *x)</td></tr>
+<tr class="separator:a06c1341c21ab73b5122ffe1d1dee83dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7bb63495a1efc73a5523986e7d383bce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_splay_node.html">SplayNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_splay_tree_8c.html#a7bb63495a1efc73a5523986e7d383bce">splay</a> (<a class="el" href="struct_splay_tree.html">SplayTree</a> *splayTree, <a class="el" href="struct_splay_node.html">SplayNode</a> *root, void *key)</td></tr>
+<tr class="separator:a7bb63495a1efc73a5523986e7d383bce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a248cc0cdbf421e365d755c4188285226"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_splay_node.html">SplayNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_splay_tree_8c.html#a248cc0cdbf421e365d755c4188285226">SplayTreeSearch</a> (<a class="el" href="struct_splay_tree.html">SplayTree</a> *splayTree, void *key)</td></tr>
+<tr class="separator:a248cc0cdbf421e365d755c4188285226"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a201b6cecb2ba15049c38ca47bb9fc39b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_splay_tree_8c.html#a201b6cecb2ba15049c38ca47bb9fc39b">SplayTreeInsert</a> (<a class="el" href="struct_splay_tree.html">SplayTree</a> *splayTree, void *key)</td></tr>
+<tr class="separator:a201b6cecb2ba15049c38ca47bb9fc39b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a029c068f95888d30671fac6ba933be75"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_splay_tree_8c.html#a029c068f95888d30671fac6ba933be75">SplayTreeDelete</a> (<a class="el" href="struct_splay_tree.html">SplayTree</a> *splayTree, void *key)</td></tr>
+<tr class="separator:a029c068f95888d30671fac6ba933be75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0ec599f35d4237c96d98cc305783f94"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_splay_tree_8c.html#aa0ec599f35d4237c96d98cc305783f94">freeSplayNode</a> (<a class="el" href="struct_splay_node.html">SplayNode</a> **node)</td></tr>
+<tr class="separator:aa0ec599f35d4237c96d98cc305783f94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfcc02bc8116ab9cb87dab08b263c79d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_splay_tree_8c.html#acfcc02bc8116ab9cb87dab08b263c79d">freeSplayTree</a> (<a class="el" href="struct_splay_node.html">SplayNode</a> **root)</td></tr>
+<tr class="separator:acfcc02bc8116ab9cb87dab08b263c79d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2b8f2320944a9a4af681ba3de43d0d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_splay_tree_8c.html#ac2b8f2320944a9a4af681ba3de43d0d4">printInOrderSplayTree</a> (<a class="el" href="struct_splay_node.html">SplayNode</a> *node, void(printFn)(void *))</td></tr>
+<tr class="separator:ac2b8f2320944a9a4af681ba3de43d0d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f2d3a1b9402e602f83f7e39332e4e4a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_splay_tree_8c.html#a5f2d3a1b9402e602f83f7e39332e4e4a">printSplayTree</a> (<a class="el" href="struct_splay_node.html">SplayNode</a> *root, void(printFn)(void *))</td></tr>
+<tr class="separator:a5f2d3a1b9402e602f83f7e39332e4e4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafa7d63340e5245005869897f7215ab1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_splay_tree_8c.html#aafa7d63340e5245005869897f7215ab1">SplayTreeInsertAll</a> (<a class="el" href="struct_splay_tree.html">SplayTree</a> *splayTree, void **array, <a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a> length)</td></tr>
+<tr class="separator:aafa7d63340e5245005869897f7215ab1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac805de09473db93a0626d88562ce529d"><td class="memItemLeft" align="right" valign="top">void **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_splay_tree_8c.html#ac805de09473db93a0626d88562ce529d">SplayTreeToArray</a> (<a class="el" href="struct_splay_tree.html">SplayTree</a> *splayTree)</td></tr>
+<tr class="separator:ac805de09473db93a0626d88562ce529d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="aa0ec599f35d4237c96d98cc305783f94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0ec599f35d4237c96d98cc305783f94">&#9670;&nbsp;</a></span>freeSplayNode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void freeSplayNode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_splay_node.html">SplayNode</a> **&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">node</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acfcc02bc8116ab9cb87dab08b263c79d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfcc02bc8116ab9cb87dab08b263c79d">&#9670;&nbsp;</a></span>freeSplayTree()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void freeSplayTree </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_splay_node.html">SplayNode</a> **&#160;</td>
+          <td class="paramname"><em>root</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">root</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a06c1341c21ab73b5122ffe1d1dee83dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06c1341c21ab73b5122ffe1d1dee83dc">&#9670;&nbsp;</a></span>leftRotateSplay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_splay_node.html">SplayNode</a>* leftRotateSplay </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_splay_node.html">SplayNode</a> *&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="ad2cf76c825dd285e34696bc058a39e36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2cf76c825dd285e34696bc058a39e36">&#9670;&nbsp;</a></span>newSplayNode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_splay_node.html">SplayNode</a>* newSplayNode </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="ac2b8f2320944a9a4af681ba3de43d0d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2b8f2320944a9a4af681ba3de43d0d4">&#9670;&nbsp;</a></span>printInOrderSplayTree()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printInOrderSplayTree </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_splay_node.html">SplayNode</a> *&#160;</td>
+          <td class="paramname"><em>node</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void(printFn)(void *)&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">node</td><td></td></tr>
+    <tr><td class="paramname">printFn</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5f2d3a1b9402e602f83f7e39332e4e4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f2d3a1b9402e602f83f7e39332e4e4a">&#9670;&nbsp;</a></span>printSplayTree()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printSplayTree </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_splay_node.html">SplayNode</a> *&#160;</td>
+          <td class="paramname"><em>root</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void(printFn)(void *)&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">root</td><td></td></tr>
+    <tr><td class="paramname">printFn</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a26b347f372958c73bd596b71b40b85b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26b347f372958c73bd596b71b40b85b7">&#9670;&nbsp;</a></span>printSplayTreeHelper()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printSplayTreeHelper </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_splay_node.html">SplayNode</a> *&#160;</td>
+          <td class="paramname"><em>root</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a>&#160;</td>
+          <td class="paramname"><em>space</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void(printFn)(void *)&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">root</td><td></td></tr>
+    <tr><td class="paramname">space</td><td></td></tr>
+    <tr><td class="paramname">printFn</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab3d6f5006a72f85e5c6304ecc953d4da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3d6f5006a72f85e5c6304ecc953d4da">&#9670;&nbsp;</a></span>rightRotateSplay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_splay_node.html">SplayNode</a>* rightRotateSplay </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_splay_node.html">SplayNode</a> *&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a7bb63495a1efc73a5523986e7d383bce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7bb63495a1efc73a5523986e7d383bce">&#9670;&nbsp;</a></span>splay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_splay_node.html">SplayNode</a>* splay </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_splay_tree.html">SplayTree</a> *&#160;</td>
+          <td class="paramname"><em>splayTree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_splay_node.html">SplayNode</a> *&#160;</td>
+          <td class="paramname"><em>root</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>key</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">splayTree</td><td></td></tr>
+    <tr><td class="paramname">root</td><td></td></tr>
+    <tr><td class="paramname">key</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a029c068f95888d30671fac6ba933be75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a029c068f95888d30671fac6ba933be75">&#9670;&nbsp;</a></span>SplayTreeDelete()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SplayTreeDelete </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_splay_tree.html">SplayTree</a> *&#160;</td>
+          <td class="paramname"><em>splayTree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>key</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">splayTree</td><td></td></tr>
+    <tr><td class="paramname">key</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4a740f25a7422ff48cc7acc32204fa96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a740f25a7422ff48cc7acc32204fa96">&#9670;&nbsp;</a></span>SplayTreeInitialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_splay_tree.html">SplayTree</a>* SplayTreeInitialize </td>
+          <td>(</td>
+          <td class="paramtype">int16_t(*)(const void *, const void *)&#160;</td>
+          <td class="paramname"><em>cmp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td></td></tr>
+    <tr><td class="paramname">cmp</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a201b6cecb2ba15049c38ca47bb9fc39b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a201b6cecb2ba15049c38ca47bb9fc39b">&#9670;&nbsp;</a></span>SplayTreeInsert()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SplayTreeInsert </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_splay_tree.html">SplayTree</a> *&#160;</td>
+          <td class="paramname"><em>splayTree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>key</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">splayTree</td><td></td></tr>
+    <tr><td class="paramname">root</td><td></td></tr>
+    <tr><td class="paramname">key</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="aafa7d63340e5245005869897f7215ab1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aafa7d63340e5245005869897f7215ab1">&#9670;&nbsp;</a></span>SplayTreeInsertAll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SplayTreeInsertAll </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_splay_tree.html">SplayTree</a> *&#160;</td>
+          <td class="paramname"><em>splayTree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void **&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a>&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">splayTree</td><td></td></tr>
+    <tr><td class="paramname">array</td><td></td></tr>
+    <tr><td class="paramname">length</td><td><br  />
+ </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a248cc0cdbf421e365d755c4188285226"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a248cc0cdbf421e365d755c4188285226">&#9670;&nbsp;</a></span>SplayTreeSearch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_splay_node.html">SplayNode</a>* SplayTreeSearch </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_splay_tree.html">SplayTree</a> *&#160;</td>
+          <td class="paramname"><em>splayTree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>key</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">splayTree</td><td></td></tr>
+    <tr><td class="paramname">key</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="ac805de09473db93a0626d88562ce529d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac805de09473db93a0626d88562ce529d">&#9670;&nbsp;</a></span>SplayTreeToArray()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void** SplayTreeToArray </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_splay_tree.html">SplayTree</a> *&#160;</td>
+          <td class="paramname"><em>splayTree</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">binaryTree</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="ae291f79a6079241d8f0df81718a5c836"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae291f79a6079241d8f0df81718a5c836">&#9670;&nbsp;</a></span>SplayTreeToArrayRecurs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SplayTreeToArrayRecurs </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_splay_node.html">SplayNode</a> *&#160;</td>
+          <td class="paramname"><em>node</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void **&#160;</td>
+          <td class="paramname"><em>arr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a> *&#160;</td>
+          <td class="paramname"><em>i</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">node</td><td></td></tr>
+    <tr><td class="paramname">arr</td><td></td></tr>
+    <tr><td class="paramname">i</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

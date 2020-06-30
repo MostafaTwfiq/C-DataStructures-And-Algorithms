@@ -6,15 +6,15 @@
 \item 
 void \mbox{\hyperlink{_a_v_l_tree_8c_aa56a477a6152577d93fa55d684325fb5}{print\+A\+V\+L\+Tree\+Helper}} (\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$root, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} space, void(print\+Fn)(void $\ast$))
 \item 
-void \mbox{\hyperlink{_a_v_l_tree_8c_a896e18abba8ce6e4c4c8550155d1cfa5}{is\+Present\+In\+A\+V\+L\+Tree\+Recurs}} (\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$avl\+Tree, \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$root, void $\ast$searched\+Value, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} $\ast$found)
+void \mbox{\hyperlink{_a_v_l_tree_8c_a7410822d8bcbd56c28ce5af63d85d746}{is\+Present\+In\+A\+V\+L\+Tree\+Recurs}} (\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$avl\+Tree, \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$root, void $\ast$search\+Value, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} $\ast$found)
 \item 
 \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_a_v_l_tree_8c_af082905f7eac6d03e92015146bbc1925}{max}} (\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} a, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} b)
 \item 
-void \mbox{\hyperlink{_a_v_l_tree_8c_a6fe34b6c5c11ed8fc0c1157d0810378e}{A\+V\+L\+Tree\+To\+Array\+Recurs}} (\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$node, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} size\+Of\+Type, void $\ast$arr, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} $\ast$i)
+void \mbox{\hyperlink{_a_v_l_tree_8c_a36f46ea0bfb9c2651ef6fc35406bf404}{A\+V\+L\+Tree\+To\+Array\+Recurs}} (\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$node, void $\ast$$\ast$arr, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} $\ast$i)
 \item 
 void \mbox{\hyperlink{_a_v_l_tree_8c_a0e2aa39a22dd609bb4119ecaac84d3b9}{free\+A\+V\+L\+Tree\+Node}} (\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$$\ast$node)
 \item 
-\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$ \mbox{\hyperlink{_a_v_l_tree_8c_a2b9d7f760994144abd9852e79c29c9b6}{new\+Binary\+Tree\+Node}} (void $\ast$key)
+\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$ \mbox{\hyperlink{_a_v_l_tree_8c_ad54b67e86c90ffc0c2d77ffed0a145ef}{new\+Binary\+Tree\+Node}} (void $\ast$key)
 \item 
 \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_a_v_l_tree_8c_a6a2bdf3e15804243ea15aeb903efffce}{height}} (\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$node)
 \item 
@@ -22,64 +22,344 @@ void \mbox{\hyperlink{_a_v_l_tree_8c_a68589ab016d89cec96f5c69c1e873940}{get\+Max
 \item 
 void \mbox{\hyperlink{_a_v_l_tree_8c_ac72956d20b910d3f2d69cdf6a41c68b7}{get\+Min\+Steps\+A\+V\+L\+Tree\+Recurs}} (\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$node, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} $\ast$steps)
 \item 
-\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$ \mbox{\hyperlink{_a_v_l_tree_8c_a10d50679c6260e9a64ac0a6d684f01e4}{left\+Rotate}} (\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$n)
+\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$ \mbox{\hyperlink{_a_v_l_tree_8c_a2f7a891c99d248bf24b9a80cd508f156}{A\+V\+L\+Left\+Rotate}} (\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$n)
 \item 
-\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$ \mbox{\hyperlink{_a_v_l_tree_8c_ab94c0eaea520e0441671d6410e617f9a}{right\+Rotate}} (\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$n)
+\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$ \mbox{\hyperlink{_a_v_l_tree_8c_a1bbe023ebbc7d6f942aae89e14aa3e3e}{A\+V\+L\+Right\+Rotate}} (\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$n)
 \item 
-\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_a_v_l_tree_8c_af1eec0333074e616f37977525f5e56cf}{get\+Balance}} (\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$N)
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_a_v_l_tree_8c_ab67f208a3bb59bfe055538b1a351c9e6}{A\+V\+L\+Get\+Balance}} (\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$n)
 \item 
-void \mbox{\hyperlink{_a_v_l_tree_8c_a1723feee292afda6a6f39aa0136d2354}{print\+A\+V\+L\+Tree\+Stats}} (\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$tree)
+void \mbox{\hyperlink{_a_v_l_tree_8c_aa28256979c1111ae717b835935c000e5}{A\+V\+L\+Tree\+Print\+Stats}} (\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$tree)
 \item 
-\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$ \mbox{\hyperlink{_a_v_l_tree_8c_a011be86d7b4eed7323a9669c18431db6}{A\+V\+L\+Tree\+Initialize}} (\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} size, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$cmp)(const void $\ast$, const void $\ast$))
+\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$ \mbox{\hyperlink{_a_v_l_tree_8c_a4a6b19f3dba7f99ac0244d2e1140361c}{A\+V\+L\+Tree\+Initialize}} (\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$cmp)(const void $\ast$, const void $\ast$))
 \item 
 \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$ \mbox{\hyperlink{_a_v_l_tree_8c_a5d0c5d9d9c9853562f701011c771bd41}{new\+A\+V\+L\+Tree\+Node}} (void $\ast$key)
 \item 
-void \mbox{\hyperlink{_a_v_l_tree_8c_a45390934a80be7221353c7997007415a}{free\+A\+V\+L\+Tree}} (\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$$\ast$node)
+void \mbox{\hyperlink{_a_v_l_tree_8c_ae41925b7a3cde9288b3c40ab4d543d54}{A\+V\+L\+Tree\+Free}} (\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$$\ast$node)
 \item 
-\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$ \mbox{\hyperlink{_a_v_l_tree_8c_a1ff57cf98d89dedd403ab60a583c8266}{insert\+A\+V\+L\+Tree}} (\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$avl\+Tree, \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$node, void $\ast$key)
+\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$ \mbox{\hyperlink{_a_v_l_tree_8c_a3f3f3f0fd3c7d6071843974fcc40e10a}{A\+V\+L\+Tree\+Insert}} (\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$avl\+Tree, \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$node, void $\ast$key)
 \item 
-void \mbox{\hyperlink{_a_v_l_tree_8c_acef0694c884065276d78250658d56caa}{in\+Order\+Successor\+A\+V\+L\+Tree}} (\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$avl\+Tree, \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$root, \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$target\+Node, \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$$\ast$left\+Most)
+void \mbox{\hyperlink{_a_v_l_tree_8c_ad7fd70e00cde3134777341034e675bb9}{A\+V\+L\+Tree\+In\+Order\+Successor}} (\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$avl\+Tree, \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$root, \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$reference\+Node, \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$$\ast$left\+Most)
 \item 
-void \mbox{\hyperlink{_a_v_l_tree_8c_a1d9ab211e0349a9ead12c0e28c46ee2a}{in\+Order\+Predecessor\+A\+V\+L\+Tree}} (\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$avl\+Tree, \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$root, \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$target\+Node, \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$$\ast$right\+Most)
+void \mbox{\hyperlink{_a_v_l_tree_8c_a48c7a5dea010485092c5d93049875866}{in\+Order\+Predecessor\+A\+V\+L\+Tree}} (\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$avl\+Tree, \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$root, \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$reference\+Node, \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$$\ast$right\+Most)
 \item 
-void \mbox{\hyperlink{_a_v_l_tree_8c_ae3317d70db5be82a7f13deb2d6e36e96}{print\+A\+V\+L\+Tree}} (\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$root, void(print\+Fn)(void $\ast$))
+void \mbox{\hyperlink{_a_v_l_tree_8c_a408cd50366ab2eae29808bc74b8cf384}{A\+V\+L\+Tree\+Print}} (\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$root, void(print\+Fn)(void $\ast$))
 \item 
-\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_a_v_l_tree_8c_add860c6b6d4f9ed3b21233dbfaced7a0}{is\+Present\+In\+A\+V\+L\+Tree}} (\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$avl\+Tree, \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$root, void $\ast$search\+Key)
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_a_v_l_tree_8c_a8e91708b0bddf3e46eee2309a1ad0634}{A\+V\+L\+Tree\+Is\+Present}} (\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$avl\+Tree, void $\ast$search\+Key)
 \item 
-\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_a_v_l_tree_8c_ad3ea7aa83ae64e9c41d078fdc3737187}{get\+Size\+A\+V\+L\+Tree}} (\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$root)
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_a_v_l_tree_8c_a3736f4614cb91a152fbbdeb6657a21c4}{A\+V\+L\+Tree\+Get\+Size}} (\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$root)
 \item 
-\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$ \mbox{\hyperlink{_a_v_l_tree_8c_aeaa0a1b78f650d777e53e8cc75dbd7c0}{min\+Value\+Node\+A\+V\+L\+Tree}} (\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$node)
+\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$ \mbox{\hyperlink{_a_v_l_tree_8c_a5ff85501038d31bbee6ff73eb05369bc}{A\+V\+L\+Tree\+Min\+Value\+Node}} (\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$node)
 \item 
-\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$ \mbox{\hyperlink{_a_v_l_tree_8c_ac83bf2a350cf6c5ed3a8399e47ba9dea}{max\+Value\+Node\+A\+V\+L\+Tree}} (\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$node)
+\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$ \mbox{\hyperlink{_a_v_l_tree_8c_a58289cf88d29ac8f9757c5c2389c66ad}{A\+V\+L\+Tree\+Max\+Value\+Node}} (\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$node)
 \item 
-\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_a_v_l_tree_8c_a819db519d5909d310c2190676ec917b0}{get\+Min\+Steps\+A\+V\+L\+Tree}} (\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$node)
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_a_v_l_tree_8c_a7d5dbb5d9703807f7b103519a7be440f}{A\+V\+L\+Tree\+Get\+Min\+Steps}} (\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$node)
 \item 
-\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_a_v_l_tree_8c_a6ef3d4813dffbe6c8a14082ad41db1c5}{get\+Max\+Steps\+A\+V\+L\+Tree}} (\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$node)
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_a_v_l_tree_8c_a662d4cd6de9c087427d56ac515dca25e}{A\+V\+L\+Tree\+Get\+Max\+Steps}} (\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$node)
 \item 
-void \mbox{\hyperlink{_a_v_l_tree_8c_a3e8cf57070a72164e7b57d5f7647df3d}{print\+In\+Order\+A\+V\+L\+Tree}} (\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$node, void(print\+Fn)(void $\ast$))
+void \mbox{\hyperlink{_a_v_l_tree_8c_a5b5a8294de8b83dcc103617a053f2432}{A\+V\+L\+Tree\+Print\+In\+Order}} (\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$node, void(print\+Fn)(void $\ast$))
 \item 
 void $\ast$$\ast$ \mbox{\hyperlink{_a_v_l_tree_8c_a467121bd8538ce81992035b604d6a697}{A\+V\+L\+Tree\+To\+Array}} (\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$avl\+Tree)
 \item 
-\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$ \mbox{\hyperlink{_a_v_l_tree_8c_a009c2cfbc2c9dd28729150243ea71521}{search\+A\+V\+L\+Tree}} (\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$avl\+Tree, \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$node, \mbox{\hyperlink{_c_make_cache_8txt_afe71f11dacb15682cdc012f7208e6e09}{char}} $\ast$key)
+\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$ \mbox{\hyperlink{_a_v_l_tree_8c_aa333f496dc1cb2579d7d797fc4dfde78}{A\+V\+L\+Tree\+Search}} (\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$avl\+Tree, \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$node, \mbox{\hyperlink{_c_make_cache_8txt_afe71f11dacb15682cdc012f7208e6e09}{char}} $\ast$key)
 \item 
-\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$ \mbox{\hyperlink{_a_v_l_tree_8c_a414b852aa413a90f5fac7653c413ca62}{Delete\+A\+V\+L\+Tree\+Node}} (\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$avl\+Tree, \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$root, void $\ast$key)
+\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$ \mbox{\hyperlink{_a_v_l_tree_8c_a099c8fda981b0ca607eacc7edbf61799}{A\+V\+L\+Tree\+Delete\+Node}} (\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$avl\+Tree, \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$root, void $\ast$key)
+\item 
+\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$ \mbox{\hyperlink{_a_v_l_tree_8c_a9095ac1dc9d9d993fc4eda3a1fffc64f}{A\+V\+L\+Tree\+Add\+All}} (\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$avl\+Tree, void $\ast$$\ast$array, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} length)
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{_a_v_l_tree_8c_a011be86d7b4eed7323a9669c18431db6}\label{_a_v_l_tree_8c_a011be86d7b4eed7323a9669c18431db6}} 
-\index{AVLTree.c@{AVLTree.c}!AVLTreeInitialize@{AVLTreeInitialize}}
-\index{AVLTreeInitialize@{AVLTreeInitialize}!AVLTree.c@{AVLTree.c}}
-\doxysubsubsection{\texorpdfstring{AVLTreeInitialize()}{AVLTreeInitialize()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}}$\ast$ A\+V\+L\+Tree\+Initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{size,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$)(const void $\ast$, const void $\ast$)}]{cmp }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{_a_v_l_tree_8c_ab67f208a3bb59bfe055538b1a351c9e6}\label{_a_v_l_tree_8c_ab67f208a3bb59bfe055538b1a351c9e6}} 
+\index{AVLTree.c@{AVLTree.c}!AVLGetBalance@{AVLGetBalance}}
+\index{AVLGetBalance@{AVLGetBalance}!AVLTree.c@{AVLTree.c}}
+\doxysubsubsection{\texorpdfstring{AVLGetBalance()}{AVLGetBalance()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} A\+V\+L\+Get\+Balance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{n }\end{DoxyParamCaption})}
 
-
+Gets the balance at a certain \mbox{\hyperlink{struct_node}{Node}} n. 
 \begin{DoxyParams}{Parameters}
-{\em cmp} & \\
+{\em n} & \mbox{\hyperlink{struct_node}{Node}} to get the balance at \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns the int balance at node n 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_a_v_l_tree_8c_a2f7a891c99d248bf24b9a80cd508f156}\label{_a_v_l_tree_8c_a2f7a891c99d248bf24b9a80cd508f156}} 
+\index{AVLTree.c@{AVLTree.c}!AVLLeftRotate@{AVLLeftRotate}}
+\index{AVLLeftRotate@{AVLLeftRotate}!AVLTree.c@{AVLTree.c}}
+\doxysubsubsection{\texorpdfstring{AVLLeftRotate()}{AVLLeftRotate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$ A\+V\+L\+Left\+Rotate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{n }\end{DoxyParamCaption})}
+
+Function that Left Rotates a Tree at a certain \mbox{\hyperlink{struct_node}{Node}}. 
+\begin{DoxyParams}{Parameters}
+{\em n} & \mbox{\hyperlink{struct_node}{Node}} to rotate at. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the rotated sub-\/\+Tree. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_a_v_l_tree_8c_a1bbe023ebbc7d6f942aae89e14aa3e3e}\label{_a_v_l_tree_8c_a1bbe023ebbc7d6f942aae89e14aa3e3e}} 
+\index{AVLTree.c@{AVLTree.c}!AVLRightRotate@{AVLRightRotate}}
+\index{AVLRightRotate@{AVLRightRotate}!AVLTree.c@{AVLTree.c}}
+\doxysubsubsection{\texorpdfstring{AVLRightRotate()}{AVLRightRotate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$ A\+V\+L\+Right\+Rotate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{n }\end{DoxyParamCaption})}
+
+Function that Right rotates a Tree at a certain \mbox{\hyperlink{struct_node}{Node}}. 
+\begin{DoxyParams}{Parameters}
+{\em n} & \mbox{\hyperlink{struct_node}{Node}} to rotate at. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_a_v_l_tree_8c_a9095ac1dc9d9d993fc4eda3a1fffc64f}\label{_a_v_l_tree_8c_a9095ac1dc9d9d993fc4eda3a1fffc64f}} 
+\index{AVLTree.c@{AVLTree.c}!AVLTreeAddAll@{AVLTreeAddAll}}
+\index{AVLTreeAddAll@{AVLTreeAddAll}!AVLTree.c@{AVLTree.c}}
+\doxysubsubsection{\texorpdfstring{AVLTreeAddAll()}{AVLTreeAddAll()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}}$\ast$ A\+V\+L\+Tree\+Add\+All (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$}]{avl\+Tree,  }\item[{void $\ast$$\ast$}]{array,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{length }\end{DoxyParamCaption})}
+
+Adds an array of void pointers to elements of the same type as the nodes of the tree. 
+\begin{DoxyParams}{Parameters}
+{\em avl\+Tree} & Reference to the A\+VL tree. \\
+\hline
+{\em array} & Array to add data from. \\
+\hline
+{\em length} & The Length of the array to add from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the new root \mbox{\hyperlink{struct_node}{Node}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_a_v_l_tree_8c_a099c8fda981b0ca607eacc7edbf61799}\label{_a_v_l_tree_8c_a099c8fda981b0ca607eacc7edbf61799}} 
+\index{AVLTree.c@{AVLTree.c}!AVLTreeDeleteNode@{AVLTreeDeleteNode}}
+\index{AVLTreeDeleteNode@{AVLTreeDeleteNode}!AVLTree.c@{AVLTree.c}}
+\doxysubsubsection{\texorpdfstring{AVLTreeDeleteNode()}{AVLTreeDeleteNode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}}$\ast$ A\+V\+L\+Tree\+Delete\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$}]{avl\+Tree,  }\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{root,  }\item[{void $\ast$}]{key }\end{DoxyParamCaption})}
+
+Given a Tree and it\textquotesingle{}s root deletes a key with the same key and restores the tree order then returns the new \mbox{\hyperlink{struct_node}{Node}}. 
+\begin{DoxyParams}{Parameters}
+{\em avl\+Tree} & Reference to the A\+VL tree. Reference to the A\+VL tree. \\
+\hline
+{\em root} & Reference to the root \mbox{\hyperlink{struct_node}{Node}}. \\
+\hline
+{\em key} & Key object to add to the \mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the new root \mbox{\hyperlink{struct_node}{Node}} of the A\+VL Tree. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_a_v_l_tree_8c_ae41925b7a3cde9288b3c40ab4d543d54}\label{_a_v_l_tree_8c_ae41925b7a3cde9288b3c40ab4d543d54}} 
+\index{AVLTree.c@{AVLTree.c}!AVLTreeFree@{AVLTreeFree}}
+\index{AVLTreeFree@{AVLTreeFree}!AVLTree.c@{AVLTree.c}}
+\doxysubsubsection{\texorpdfstring{AVLTreeFree()}{AVLTreeFree()}}
+{\footnotesize\ttfamily void A\+V\+L\+Tree\+Free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$$\ast$}]{node }\end{DoxyParamCaption})}
+
+Given an A\+VL Tree\textquotesingle{}s root node it frees it\textquotesingle{}s elements recursively.\+Setting the root node to Null. 
+\begin{DoxyParams}{Parameters}
+{\em node} & Eact Reference to root \mbox{\hyperlink{struct_node}{Node}} to start freeing at. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_a_v_l_tree_8c_a662d4cd6de9c087427d56ac515dca25e}\label{_a_v_l_tree_8c_a662d4cd6de9c087427d56ac515dca25e}} 
+\index{AVLTree.c@{AVLTree.c}!AVLTreeGetMaxSteps@{AVLTreeGetMaxSteps}}
+\index{AVLTreeGetMaxSteps@{AVLTreeGetMaxSteps}!AVLTree.c@{AVLTree.c}}
+\doxysubsubsection{\texorpdfstring{AVLTreeGetMaxSteps()}{AVLTreeGetMaxSteps()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} A\+V\+L\+Tree\+Get\+Max\+Steps (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_a_v_l_tree_8c_a7d5dbb5d9703807f7b103519a7be440f}\label{_a_v_l_tree_8c_a7d5dbb5d9703807f7b103519a7be440f}} 
+\index{AVLTree.c@{AVLTree.c}!AVLTreeGetMinSteps@{AVLTreeGetMinSteps}}
+\index{AVLTreeGetMinSteps@{AVLTreeGetMinSteps}!AVLTree.c@{AVLTree.c}}
+\doxysubsubsection{\texorpdfstring{AVLTreeGetMinSteps()}{AVLTreeGetMinSteps()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} A\+V\+L\+Tree\+Get\+Min\+Steps (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_a_v_l_tree_8c_a3736f4614cb91a152fbbdeb6657a21c4}\label{_a_v_l_tree_8c_a3736f4614cb91a152fbbdeb6657a21c4}} 
+\index{AVLTree.c@{AVLTree.c}!AVLTreeGetSize@{AVLTreeGetSize}}
+\index{AVLTreeGetSize@{AVLTreeGetSize}!AVLTree.c@{AVLTree.c}}
+\doxysubsubsection{\texorpdfstring{AVLTreeGetSize()}{AVLTreeGetSize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} A\+V\+L\+Tree\+Get\+Size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{root }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & Reference to the root \mbox{\hyperlink{struct_node}{Node}}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_a_v_l_tree_8c_a4a6b19f3dba7f99ac0244d2e1140361c}\label{_a_v_l_tree_8c_a4a6b19f3dba7f99ac0244d2e1140361c}} 
+\index{AVLTree.c@{AVLTree.c}!AVLTreeInitialize@{AVLTreeInitialize}}
+\index{AVLTreeInitialize@{AVLTreeInitialize}!AVLTree.c@{AVLTree.c}}
+\doxysubsubsection{\texorpdfstring{AVLTreeInitialize()}{AVLTreeInitialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}}$\ast$ A\+V\+L\+Tree\+Initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$)(const void $\ast$, const void $\ast$)}]{cmp }\end{DoxyParamCaption})}
+
+Initialization Function for A\+VL Tree. A comparison function must be provided for the tree to be able to level its Nodes. Returns a reference to an allocated \mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} pointer on the heap. 
+\begin{DoxyParams}{Parameters}
+{\em cmp} & Reference to the comparator function. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the allocated A\+VL tree on the heap. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_a_v_l_tree_8c_ad7fd70e00cde3134777341034e675bb9}\label{_a_v_l_tree_8c_ad7fd70e00cde3134777341034e675bb9}} 
+\index{AVLTree.c@{AVLTree.c}!AVLTreeInOrderSuccessor@{AVLTreeInOrderSuccessor}}
+\index{AVLTreeInOrderSuccessor@{AVLTreeInOrderSuccessor}!AVLTree.c@{AVLTree.c}}
+\doxysubsubsection{\texorpdfstring{AVLTreeInOrderSuccessor()}{AVLTreeInOrderSuccessor()}}
+{\footnotesize\ttfamily void A\+V\+L\+Tree\+In\+Order\+Successor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$}]{avl\+Tree,  }\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{root,  }\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{reference\+Node,  }\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$$\ast$}]{left\+Most }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em avl\+Tree} & Reference to the A\+VL tree. \\
+\hline
+{\em root} & Reference to the root \mbox{\hyperlink{struct_node}{Node}}. \\
+\hline
+{\em reference\+Node} & Reference \mbox{\hyperlink{struct_node}{Node}} to get the in-\/order successor for. \\
+\hline
+{\em left\+Most} & Pointer to store the inorder successor for that \mbox{\hyperlink{struct_node}{Node}}. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_a_v_l_tree_8c_a3f3f3f0fd3c7d6071843974fcc40e10a}\label{_a_v_l_tree_8c_a3f3f3f0fd3c7d6071843974fcc40e10a}} 
+\index{AVLTree.c@{AVLTree.c}!AVLTreeInsert@{AVLTreeInsert}}
+\index{AVLTreeInsert@{AVLTreeInsert}!AVLTree.c@{AVLTree.c}}
+\doxysubsubsection{\texorpdfstring{AVLTreeInsert()}{AVLTreeInsert()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}}$\ast$ A\+V\+L\+Tree\+Insert (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$}]{avl\+Tree,  }\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{node,  }\item[{void $\ast$}]{key }\end{DoxyParamCaption})}
+
+inserts a \mbox{\hyperlink{struct_node}{Node}} at the a reference \mbox{\hyperlink{struct_node}{Node}} (preferably the root) with the provided key if not present in the tree and returns a reference to the new \mbox{\hyperlink{struct_node}{Node}}. 
+\begin{DoxyParams}{Parameters}
+{\em avl\+Tree} & Reference to the A\+VL tree. \\
+\hline
+{\em node} & reference for node to start inserting at preferably the root. \\
+\hline
+{\em key} & Reference to key to inset in the Tree. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns reference to the new root. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_a_v_l_tree_8c_a8e91708b0bddf3e46eee2309a1ad0634}\label{_a_v_l_tree_8c_a8e91708b0bddf3e46eee2309a1ad0634}} 
+\index{AVLTree.c@{AVLTree.c}!AVLTreeIsPresent@{AVLTreeIsPresent}}
+\index{AVLTreeIsPresent@{AVLTreeIsPresent}!AVLTree.c@{AVLTree.c}}
+\doxysubsubsection{\texorpdfstring{AVLTreeIsPresent()}{AVLTreeIsPresent()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} A\+V\+L\+Tree\+Is\+Present (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$}]{avl\+Tree,  }\item[{void $\ast$}]{search\+Key }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em avl\+Tree} & Reference to the A\+VL tree. \\
+\hline
+{\em root} & Reference to the root \mbox{\hyperlink{struct_node}{Node}}. \\
+\hline
+{\em search\+Key} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_a_v_l_tree_8c_a58289cf88d29ac8f9757c5c2389c66ad}\label{_a_v_l_tree_8c_a58289cf88d29ac8f9757c5c2389c66ad}} 
+\index{AVLTree.c@{AVLTree.c}!AVLTreeMaxValueNode@{AVLTreeMaxValueNode}}
+\index{AVLTreeMaxValueNode@{AVLTreeMaxValueNode}!AVLTree.c@{AVLTree.c}}
+\doxysubsubsection{\texorpdfstring{AVLTreeMaxValueNode()}{AVLTreeMaxValueNode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}}$\ast$ A\+V\+L\+Tree\+Max\+Value\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_a_v_l_tree_8c_a5ff85501038d31bbee6ff73eb05369bc}\label{_a_v_l_tree_8c_a5ff85501038d31bbee6ff73eb05369bc}} 
+\index{AVLTree.c@{AVLTree.c}!AVLTreeMinValueNode@{AVLTreeMinValueNode}}
+\index{AVLTreeMinValueNode@{AVLTreeMinValueNode}!AVLTree.c@{AVLTree.c}}
+\doxysubsubsection{\texorpdfstring{AVLTreeMinValueNode()}{AVLTreeMinValueNode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}}$\ast$ A\+V\+L\+Tree\+Min\+Value\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_a_v_l_tree_8c_a408cd50366ab2eae29808bc74b8cf384}\label{_a_v_l_tree_8c_a408cd50366ab2eae29808bc74b8cf384}} 
+\index{AVLTree.c@{AVLTree.c}!AVLTreePrint@{AVLTreePrint}}
+\index{AVLTreePrint@{AVLTreePrint}!AVLTree.c@{AVLTree.c}}
+\doxysubsubsection{\texorpdfstring{AVLTreePrint()}{AVLTreePrint()}}
+{\footnotesize\ttfamily void A\+V\+L\+Tree\+Print (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{root,  }\item[{void(print\+Fn)(void $\ast$)}]{ }\end{DoxyParamCaption})}
+
+Prints a tree in 2 space of the console. 
+\begin{DoxyParams}{Parameters}
+{\em root} & Reference to the root \mbox{\hyperlink{struct_node}{Node}}. \\
+\hline
+{\em print\+Fn} & Pointer to the print function. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_a_v_l_tree_8c_a5b5a8294de8b83dcc103617a053f2432}\label{_a_v_l_tree_8c_a5b5a8294de8b83dcc103617a053f2432}} 
+\index{AVLTree.c@{AVLTree.c}!AVLTreePrintInOrder@{AVLTreePrintInOrder}}
+\index{AVLTreePrintInOrder@{AVLTreePrintInOrder}!AVLTree.c@{AVLTree.c}}
+\doxysubsubsection{\texorpdfstring{AVLTreePrintInOrder()}{AVLTreePrintInOrder()}}
+{\footnotesize\ttfamily void A\+V\+L\+Tree\+Print\+In\+Order (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{node,  }\item[{void(print\+Fn)(void $\ast$)}]{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & \\
+\hline
+{\em print\+Fn} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_a_v_l_tree_8c_aa28256979c1111ae717b835935c000e5}\label{_a_v_l_tree_8c_aa28256979c1111ae717b835935c000e5}} 
+\index{AVLTree.c@{AVLTree.c}!AVLTreePrintStats@{AVLTreePrintStats}}
+\index{AVLTreePrintStats@{AVLTreePrintStats}!AVLTree.c@{AVLTree.c}}
+\doxysubsubsection{\texorpdfstring{AVLTreePrintStats()}{AVLTreePrintStats()}}
+{\footnotesize\ttfamily void A\+V\+L\+Tree\+Print\+Stats (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$}]{tree }\end{DoxyParamCaption})}
+
+Prints the Tree Statistics\+:
+\begin{DoxyItemize}
+\item Number of Nodes,
+\item Height,
+\item Minimum Steps to the minimum \mbox{\hyperlink{struct_node}{Node}},
+\item Maximum Steps to the max \mbox{\hyperlink{struct_node}{Node}}.
+\item Rule Satisfaction\+:
+\begin{DoxyItemize}
+\item Maximum node Rule(2$^\wedge$(h+1)-\/1)
+\item Minimum node Rule(2$\ast$1.6$^\wedge$h) where h is the height of the tree. 
+\begin{DoxyParams}{Parameters}
+{\em tree} & Reference to the A\+VL tree. \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}
+\end{DoxyItemize}\mbox{\Hypertarget{_a_v_l_tree_8c_aa333f496dc1cb2579d7d797fc4dfde78}\label{_a_v_l_tree_8c_aa333f496dc1cb2579d7d797fc4dfde78}} 
+\index{AVLTree.c@{AVLTree.c}!AVLTreeSearch@{AVLTreeSearch}}
+\index{AVLTreeSearch@{AVLTreeSearch}!AVLTree.c@{AVLTree.c}}
+\doxysubsubsection{\texorpdfstring{AVLTreeSearch()}{AVLTreeSearch()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}}$\ast$ A\+V\+L\+Tree\+Search (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$}]{avl\+Tree,  }\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{node,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_afe71f11dacb15682cdc012f7208e6e09}{char}} $\ast$}]{key }\end{DoxyParamCaption})}
+
+Given a tree and a reference node to start searching at (preferably the root) searchs for node with the same key and return it. 
+\begin{DoxyParams}{Parameters}
+{\em avl\+Tree} & Reference to the A\+VL tree. \\
+\hline
+{\em node} & \mbox{\hyperlink{struct_node}{Node}} to start searching from preferably the root. \\
+\hline
+{\em key} & Key object to search for in the \mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the Found \mbox{\hyperlink{struct_node}{Node}}. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{_a_v_l_tree_8c_a467121bd8538ce81992035b604d6a697}\label{_a_v_l_tree_8c_a467121bd8538ce81992035b604d6a697}} 
 \index{AVLTree.c@{AVLTree.c}!AVLTreeToArray@{AVLTreeToArray}}
@@ -89,19 +369,19 @@ void $\ast$$\ast$ \mbox{\hyperlink{_a_v_l_tree_8c_a467121bd8538ce81992035b604d6a
 
 
 \begin{DoxyParams}{Parameters}
-{\em avl\+Tree} & \\
+{\em avl\+Tree} & Reference to the A\+VL tree. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 
 \end{DoxyReturn}
-\mbox{\Hypertarget{_a_v_l_tree_8c_a6fe34b6c5c11ed8fc0c1157d0810378e}\label{_a_v_l_tree_8c_a6fe34b6c5c11ed8fc0c1157d0810378e}} 
+\mbox{\Hypertarget{_a_v_l_tree_8c_a36f46ea0bfb9c2651ef6fc35406bf404}\label{_a_v_l_tree_8c_a36f46ea0bfb9c2651ef6fc35406bf404}} 
 \index{AVLTree.c@{AVLTree.c}!AVLTreeToArrayRecurs@{AVLTreeToArrayRecurs}}
 \index{AVLTreeToArrayRecurs@{AVLTreeToArrayRecurs}!AVLTree.c@{AVLTree.c}}
 \doxysubsubsection{\texorpdfstring{AVLTreeToArrayRecurs()}{AVLTreeToArrayRecurs()}}
-{\footnotesize\ttfamily void A\+V\+L\+Tree\+To\+Array\+Recurs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{node,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{size\+Of\+Type,  }\item[{void $\ast$}]{arr,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} $\ast$}]{i }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void A\+V\+L\+Tree\+To\+Array\+Recurs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{node,  }\item[{void $\ast$$\ast$}]{arr,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} $\ast$}]{i }\end{DoxyParamCaption})}
 
-
+Recursively traverses the tree in order and adds elements to an allocated array by \mbox{\hyperlink{_a_v_l_tree_8c_a467121bd8538ce81992035b604d6a697}{A\+V\+L\+Tree\+To\+Array}} 
 \begin{DoxyParams}{Parameters}
 {\em node} & \\
 \hline
@@ -110,74 +390,17 @@ void $\ast$$\ast$ \mbox{\hyperlink{_a_v_l_tree_8c_a467121bd8538ce81992035b604d6a
 {\em i} & \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{_a_v_l_tree_8c_a414b852aa413a90f5fac7653c413ca62}\label{_a_v_l_tree_8c_a414b852aa413a90f5fac7653c413ca62}} 
-\index{AVLTree.c@{AVLTree.c}!DeleteAVLTreeNode@{DeleteAVLTreeNode}}
-\index{DeleteAVLTreeNode@{DeleteAVLTreeNode}!AVLTree.c@{AVLTree.c}}
-\doxysubsubsection{\texorpdfstring{DeleteAVLTreeNode()}{AVLTreeDeleteNode()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}}$\ast$ Delete\+A\+V\+L\+Tree\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$}]{avl\+Tree,  }\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{root,  }\item[{void $\ast$}]{key }\end{DoxyParamCaption})}
-
-
-\begin{DoxyParams}{Parameters}
-{\em avl\+Tree} & \\
-\hline
-{\em root} & \\
-\hline
-{\em key} & \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-
-\end{DoxyReturn}
-\mbox{\Hypertarget{_a_v_l_tree_8c_a45390934a80be7221353c7997007415a}\label{_a_v_l_tree_8c_a45390934a80be7221353c7997007415a}} 
-\index{AVLTree.c@{AVLTree.c}!freeAVLTree@{freeAVLTree}}
-\index{freeAVLTree@{freeAVLTree}!AVLTree.c@{AVLTree.c}}
-\doxysubsubsection{\texorpdfstring{freeAVLTree()}{AVLTreeFree()}}
-{\footnotesize\ttfamily void free\+A\+V\+L\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$$\ast$}]{node }\end{DoxyParamCaption})}
-
-
-\begin{DoxyParams}{Parameters}
-{\em node} & \\
-\hline
-\end{DoxyParams}
 \mbox{\Hypertarget{_a_v_l_tree_8c_a0e2aa39a22dd609bb4119ecaac84d3b9}\label{_a_v_l_tree_8c_a0e2aa39a22dd609bb4119ecaac84d3b9}} 
 \index{AVLTree.c@{AVLTree.c}!freeAVLTreeNode@{freeAVLTreeNode}}
 \index{freeAVLTreeNode@{freeAVLTreeNode}!AVLTree.c@{AVLTree.c}}
 \doxysubsubsection{\texorpdfstring{freeAVLTreeNode()}{freeAVLTreeNode()}}
 {\footnotesize\ttfamily void free\+A\+V\+L\+Tree\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$$\ast$}]{node }\end{DoxyParamCaption})}
 
-
+Given a \mbox{\hyperlink{struct_node}{Node}} it frees it\textquotesingle{}s Key and the \mbox{\hyperlink{struct_node}{Node}}. Setting both to Null. 
 \begin{DoxyParams}{Parameters}
-{\em node} & \\
+{\em node} & Exact Reference for \mbox{\hyperlink{struct_node}{Node}} to Free. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{_a_v_l_tree_8c_af1eec0333074e616f37977525f5e56cf}\label{_a_v_l_tree_8c_af1eec0333074e616f37977525f5e56cf}} 
-\index{AVLTree.c@{AVLTree.c}!getBalance@{getBalance}}
-\index{getBalance@{getBalance}!AVLTree.c@{AVLTree.c}}
-\doxysubsubsection{\texorpdfstring{getBalance()}{AVLGetBalance()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} get\+Balance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{N }\end{DoxyParamCaption})}
-
-
-\begin{DoxyParams}{Parameters}
-{\em N} & \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-
-\end{DoxyReturn}
-\mbox{\Hypertarget{_a_v_l_tree_8c_a6ef3d4813dffbe6c8a14082ad41db1c5}\label{_a_v_l_tree_8c_a6ef3d4813dffbe6c8a14082ad41db1c5}} 
-\index{AVLTree.c@{AVLTree.c}!getMaxStepsAVLTree@{getMaxStepsAVLTree}}
-\index{getMaxStepsAVLTree@{getMaxStepsAVLTree}!AVLTree.c@{AVLTree.c}}
-\doxysubsubsection{\texorpdfstring{getMaxStepsAVLTree()}{AVLTreeGetMaxSteps()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} get\+Max\+Steps\+A\+V\+L\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
-
-
-\begin{DoxyParams}{Parameters}
-{\em node} & \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-
-\end{DoxyReturn}
 \mbox{\Hypertarget{_a_v_l_tree_8c_a68589ab016d89cec96f5c69c1e873940}\label{_a_v_l_tree_8c_a68589ab016d89cec96f5c69c1e873940}} 
 \index{AVLTree.c@{AVLTree.c}!getMaxStepsAVLTreeRecurs@{getMaxStepsAVLTreeRecurs}}
 \index{getMaxStepsAVLTreeRecurs@{getMaxStepsAVLTreeRecurs}!AVLTree.c@{AVLTree.c}}
@@ -191,20 +414,6 @@ void $\ast$$\ast$ \mbox{\hyperlink{_a_v_l_tree_8c_a467121bd8538ce81992035b604d6a
 {\em steps} & \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{_a_v_l_tree_8c_a819db519d5909d310c2190676ec917b0}\label{_a_v_l_tree_8c_a819db519d5909d310c2190676ec917b0}} 
-\index{AVLTree.c@{AVLTree.c}!getMinStepsAVLTree@{getMinStepsAVLTree}}
-\index{getMinStepsAVLTree@{getMinStepsAVLTree}!AVLTree.c@{AVLTree.c}}
-\doxysubsubsection{\texorpdfstring{getMinStepsAVLTree()}{AVLTreeGetMinSteps()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} get\+Min\+Steps\+A\+V\+L\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
-
-
-\begin{DoxyParams}{Parameters}
-{\em node} & \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-
-\end{DoxyReturn}
 \mbox{\Hypertarget{_a_v_l_tree_8c_ac72956d20b910d3f2d69cdf6a41c68b7}\label{_a_v_l_tree_8c_ac72956d20b910d3f2d69cdf6a41c68b7}} 
 \index{AVLTree.c@{AVLTree.c}!getMinStepsAVLTreeRecurs@{getMinStepsAVLTreeRecurs}}
 \index{getMinStepsAVLTreeRecurs@{getMinStepsAVLTreeRecurs}!AVLTree.c@{AVLTree.c}}
@@ -218,178 +427,69 @@ void $\ast$$\ast$ \mbox{\hyperlink{_a_v_l_tree_8c_a467121bd8538ce81992035b604d6a
 {\em steps} & \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{_a_v_l_tree_8c_ad3ea7aa83ae64e9c41d078fdc3737187}\label{_a_v_l_tree_8c_ad3ea7aa83ae64e9c41d078fdc3737187}} 
-\index{AVLTree.c@{AVLTree.c}!getSizeAVLTree@{getSizeAVLTree}}
-\index{getSizeAVLTree@{getSizeAVLTree}!AVLTree.c@{AVLTree.c}}
-\doxysubsubsection{\texorpdfstring{getSizeAVLTree()}{AVLTreeGetSize()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} get\+Size\+A\+V\+L\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{root }\end{DoxyParamCaption})}
-
-
-\begin{DoxyParams}{Parameters}
-{\em root} & \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-
-\end{DoxyReturn}
 \mbox{\Hypertarget{_a_v_l_tree_8c_a6a2bdf3e15804243ea15aeb903efffce}\label{_a_v_l_tree_8c_a6a2bdf3e15804243ea15aeb903efffce}} 
 \index{AVLTree.c@{AVLTree.c}!height@{height}}
 \index{height@{height}!AVLTree.c@{AVLTree.c}}
 \doxysubsubsection{\texorpdfstring{height()}{height()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} height (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
 
-
+Given a \mbox{\hyperlink{struct_node}{Node}} get the height at the reference \mbox{\hyperlink{struct_node}{Node}} node. 
 \begin{DoxyParams}{Parameters}
-{\em node} & \\
+{\em node} & Gets the height at a reference node n. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-
+Returns int height of the tree. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{_a_v_l_tree_8c_a1d9ab211e0349a9ead12c0e28c46ee2a}\label{_a_v_l_tree_8c_a1d9ab211e0349a9ead12c0e28c46ee2a}} 
+\mbox{\Hypertarget{_a_v_l_tree_8c_a48c7a5dea010485092c5d93049875866}\label{_a_v_l_tree_8c_a48c7a5dea010485092c5d93049875866}} 
 \index{AVLTree.c@{AVLTree.c}!inOrderPredecessorAVLTree@{inOrderPredecessorAVLTree}}
 \index{inOrderPredecessorAVLTree@{inOrderPredecessorAVLTree}!AVLTree.c@{AVLTree.c}}
 \doxysubsubsection{\texorpdfstring{inOrderPredecessorAVLTree()}{inOrderPredecessorAVLTree()}}
-{\footnotesize\ttfamily void in\+Order\+Predecessor\+A\+V\+L\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$}]{avl\+Tree,  }\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{root,  }\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{target\+Node,  }\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$$\ast$}]{right\+Most }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void in\+Order\+Predecessor\+A\+V\+L\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$}]{avl\+Tree,  }\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{root,  }\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{reference\+Node,  }\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$$\ast$}]{right\+Most }\end{DoxyParamCaption})}
 
-
+Given a root node (i.\+e a to start search at for the reference \mbox{\hyperlink{struct_node}{Node}} n) find the reference node and stores to inorder Predecessor for that \mbox{\hyperlink{struct_node}{Node}} in the right\+Most param. 
 \begin{DoxyParams}{Parameters}
-{\em avl\+Tree} & \\
+{\em avl\+Tree} & Reference to the A\+VL tree. \\
 \hline
-{\em root} & \\
+{\em root} & Reference to the root \mbox{\hyperlink{struct_node}{Node}}. \\
 \hline
-{\em target\+Node} & \\
+{\em reference\+Node} & Reference \mbox{\hyperlink{struct_node}{Node}} to get the in-\/order Predecessor for. \\
 \hline
-{\em right\+Most} & \\
+{\em right\+Most} & Pointer to store the inorder Predecessor for that \mbox{\hyperlink{struct_node}{Node}}. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{_a_v_l_tree_8c_acef0694c884065276d78250658d56caa}\label{_a_v_l_tree_8c_acef0694c884065276d78250658d56caa}} 
-\index{AVLTree.c@{AVLTree.c}!inOrderSuccessorAVLTree@{inOrderSuccessorAVLTree}}
-\index{inOrderSuccessorAVLTree@{inOrderSuccessorAVLTree}!AVLTree.c@{AVLTree.c}}
-\doxysubsubsection{\texorpdfstring{inOrderSuccessorAVLTree()}{AVLTreeInOrderSuccessor()}}
-{\footnotesize\ttfamily void in\+Order\+Successor\+A\+V\+L\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$}]{avl\+Tree,  }\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{root,  }\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{target\+Node,  }\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$$\ast$}]{left\+Most }\end{DoxyParamCaption})}
-
-
-\begin{DoxyParams}{Parameters}
-{\em avl\+Tree} & \\
-\hline
-{\em root} & \\
-\hline
-{\em target\+Node} & \\
-\hline
-{\em left\+Most} & \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{_a_v_l_tree_8c_a1ff57cf98d89dedd403ab60a583c8266}\label{_a_v_l_tree_8c_a1ff57cf98d89dedd403ab60a583c8266}} 
-\index{AVLTree.c@{AVLTree.c}!insertAVLTree@{insertAVLTree}}
-\index{insertAVLTree@{insertAVLTree}!AVLTree.c@{AVLTree.c}}
-\doxysubsubsection{\texorpdfstring{insertAVLTree()}{AVLTreeInsert()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}}$\ast$ insert\+A\+V\+L\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$}]{avl\+Tree,  }\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{node,  }\item[{void $\ast$}]{key }\end{DoxyParamCaption})}
-
-
-\begin{DoxyParams}{Parameters}
-{\em avl\+Tree} & \\
-\hline
-{\em node} & \\
-\hline
-{\em key} & \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-
-\end{DoxyReturn}
-\mbox{\Hypertarget{_a_v_l_tree_8c_add860c6b6d4f9ed3b21233dbfaced7a0}\label{_a_v_l_tree_8c_add860c6b6d4f9ed3b21233dbfaced7a0}} 
-\index{AVLTree.c@{AVLTree.c}!isPresentInAVLTree@{isPresentInAVLTree}}
-\index{isPresentInAVLTree@{isPresentInAVLTree}!AVLTree.c@{AVLTree.c}}
-\doxysubsubsection{\texorpdfstring{isPresentInAVLTree()}{AVLTreeIsPresent()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} is\+Present\+In\+A\+V\+L\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$}]{avl\+Tree,  }\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{root,  }\item[{void $\ast$}]{search\+Key }\end{DoxyParamCaption})}
-
-
-\begin{DoxyParams}{Parameters}
-{\em avl\+Tree} & \\
-\hline
-{\em root} & \\
-\hline
-{\em search\+Key} & \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-
-\end{DoxyReturn}
-\mbox{\Hypertarget{_a_v_l_tree_8c_a896e18abba8ce6e4c4c8550155d1cfa5}\label{_a_v_l_tree_8c_a896e18abba8ce6e4c4c8550155d1cfa5}} 
+\mbox{\Hypertarget{_a_v_l_tree_8c_a7410822d8bcbd56c28ce5af63d85d746}\label{_a_v_l_tree_8c_a7410822d8bcbd56c28ce5af63d85d746}} 
 \index{AVLTree.c@{AVLTree.c}!isPresentInAVLTreeRecurs@{isPresentInAVLTreeRecurs}}
 \index{isPresentInAVLTreeRecurs@{isPresentInAVLTreeRecurs}!AVLTree.c@{AVLTree.c}}
 \doxysubsubsection{\texorpdfstring{isPresentInAVLTreeRecurs()}{isPresentInAVLTreeRecurs()}}
-{\footnotesize\ttfamily void is\+Present\+In\+A\+V\+L\+Tree\+Recurs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$}]{avl\+Tree,  }\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{root,  }\item[{void $\ast$}]{searched\+Value,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} $\ast$}]{found }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void is\+Present\+In\+A\+V\+L\+Tree\+Recurs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$}]{avl\+Tree,  }\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{root,  }\item[{void $\ast$}]{search\+Value,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} $\ast$}]{found }\end{DoxyParamCaption})}
 
 
 \begin{DoxyParams}{Parameters}
-{\em avl\+Tree} & \\
+{\em avl\+Tree} & Reference to the A\+VL tree. \\
 \hline
-{\em root} & \\
+{\em root} & Reference to the root \mbox{\hyperlink{struct_node}{Node}}. \\
 \hline
-{\em searched\+Value} & \\
+{\em search\+Value} & Value to search for. \\
 \hline
-{\em found} & \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{_a_v_l_tree_8c_a10d50679c6260e9a64ac0a6d684f01e4}\label{_a_v_l_tree_8c_a10d50679c6260e9a64ac0a6d684f01e4}} 
-\index{AVLTree.c@{AVLTree.c}!leftRotate@{leftRotate}}
-\index{leftRotate@{leftRotate}!AVLTree.c@{AVLTree.c}}
-\doxysubsubsection{\texorpdfstring{leftRotate()}{AVLLeftRotate()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$ left\+Rotate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{n }\end{DoxyParamCaption})}
-
-
-\begin{DoxyParams}{Parameters}
-{\em n} & \\
+{\em found} & Int to act as boolean. If found it is 1 else set to 0. \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-
-\end{DoxyReturn}
 \mbox{\Hypertarget{_a_v_l_tree_8c_af082905f7eac6d03e92015146bbc1925}\label{_a_v_l_tree_8c_af082905f7eac6d03e92015146bbc1925}} 
 \index{AVLTree.c@{AVLTree.c}!max@{max}}
 \index{max@{max}!AVLTree.c@{AVLTree.c}}
 \doxysubsubsection{\texorpdfstring{max()}{max()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} max (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{a,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{b }\end{DoxyParamCaption})}
 
-
+This function calculates the max between two integers. 
 \begin{DoxyParams}{Parameters}
-{\em a} & \\
+{\em a} & Reference int of comparision. \\
 \hline
-{\em b} & \\
+{\em b} & int to compare against. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-
-\end{DoxyReturn}
-\mbox{\Hypertarget{_a_v_l_tree_8c_ac83bf2a350cf6c5ed3a8399e47ba9dea}\label{_a_v_l_tree_8c_ac83bf2a350cf6c5ed3a8399e47ba9dea}} 
-\index{AVLTree.c@{AVLTree.c}!maxValueNodeAVLTree@{maxValueNodeAVLTree}}
-\index{maxValueNodeAVLTree@{maxValueNodeAVLTree}!AVLTree.c@{AVLTree.c}}
-\doxysubsubsection{\texorpdfstring{maxValueNodeAVLTree()}{AVLTreeMaxValueNode()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}}$\ast$ max\+Value\+Node\+A\+V\+L\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
-
-
-\begin{DoxyParams}{Parameters}
-{\em node} & \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-
-\end{DoxyReturn}
-\mbox{\Hypertarget{_a_v_l_tree_8c_aeaa0a1b78f650d777e53e8cc75dbd7c0}\label{_a_v_l_tree_8c_aeaa0a1b78f650d777e53e8cc75dbd7c0}} 
-\index{AVLTree.c@{AVLTree.c}!minValueNodeAVLTree@{minValueNodeAVLTree}}
-\index{minValueNodeAVLTree@{minValueNodeAVLTree}!AVLTree.c@{AVLTree.c}}
-\doxysubsubsection{\texorpdfstring{minValueNodeAVLTree()}{AVLTreeMinValueNode()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}}$\ast$ min\+Value\+Node\+A\+V\+L\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
-
-
-\begin{DoxyParams}{Parameters}
-{\em node} & \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-
+Returns which ever is the greater of the two. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{_a_v_l_tree_8c_a5d0c5d9d9c9853562f701011c771bd41}\label{_a_v_l_tree_8c_a5d0c5d9d9c9853562f701011c771bd41}} 
 \index{AVLTree.c@{AVLTree.c}!newAVLTreeNode@{newAVLTreeNode}}
@@ -397,19 +497,19 @@ void $\ast$$\ast$ \mbox{\hyperlink{_a_v_l_tree_8c_a467121bd8538ce81992035b604d6a
 \doxysubsubsection{\texorpdfstring{newAVLTreeNode()}{newAVLTreeNode()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}}$\ast$ new\+A\+V\+L\+Tree\+Node (\begin{DoxyParamCaption}\item[{void $\ast$}]{key }\end{DoxyParamCaption})}
 
-
+Creates a new Avl Tree\+Node for a given key. 
 \begin{DoxyParams}{Parameters}
-{\em key} & \\
+{\em key} & Reference pointer to preallocated key. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-
+Returns a pointer to an allocated \mbox{\hyperlink{struct_node}{Node}} on the \mbox{\hyperlink{struct_stack}{Stack}}. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{_a_v_l_tree_8c_a2b9d7f760994144abd9852e79c29c9b6}\label{_a_v_l_tree_8c_a2b9d7f760994144abd9852e79c29c9b6}} 
+\mbox{\Hypertarget{_a_v_l_tree_8c_ad54b67e86c90ffc0c2d77ffed0a145ef}\label{_a_v_l_tree_8c_ad54b67e86c90ffc0c2d77ffed0a145ef}} 
 \index{AVLTree.c@{AVLTree.c}!newBinaryTreeNode@{newBinaryTreeNode}}
 \index{newBinaryTreeNode@{newBinaryTreeNode}!AVLTree.c@{AVLTree.c}}
 \doxysubsubsection{\texorpdfstring{newBinaryTreeNode()}{newBinaryTreeNode()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$ new\+Binary\+Tree\+Node (\begin{DoxyParamCaption}\item[{void $\ast$}]{key }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$ new\+Binary\+Tree\+Node (\begin{DoxyParamCaption}\item[{void $\ast$}]{key }\end{DoxyParamCaption})}
 
 
 \begin{DoxyParams}{Parameters}
@@ -419,87 +519,18 @@ void $\ast$$\ast$ \mbox{\hyperlink{_a_v_l_tree_8c_a467121bd8538ce81992035b604d6a
 \begin{DoxyReturn}{Returns}
 
 \end{DoxyReturn}
-\mbox{\Hypertarget{_a_v_l_tree_8c_ae3317d70db5be82a7f13deb2d6e36e96}\label{_a_v_l_tree_8c_ae3317d70db5be82a7f13deb2d6e36e96}} 
-\index{AVLTree.c@{AVLTree.c}!printAVLTree@{printAVLTree}}
-\index{printAVLTree@{printAVLTree}!AVLTree.c@{AVLTree.c}}
-\doxysubsubsection{\texorpdfstring{printAVLTree()}{AVLTreePrint()}}
-{\footnotesize\ttfamily void print\+A\+V\+L\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{root,  }\item[{void(print\+Fn)(void $\ast$)}]{ }\end{DoxyParamCaption})}
-
-
-\begin{DoxyParams}{Parameters}
-{\em root} & \\
-\hline
-{\em print\+Fn} & \\
-\hline
-\end{DoxyParams}
 \mbox{\Hypertarget{_a_v_l_tree_8c_aa56a477a6152577d93fa55d684325fb5}\label{_a_v_l_tree_8c_aa56a477a6152577d93fa55d684325fb5}} 
 \index{AVLTree.c@{AVLTree.c}!printAVLTreeHelper@{printAVLTreeHelper}}
 \index{printAVLTreeHelper@{printAVLTreeHelper}!AVLTree.c@{AVLTree.c}}
 \doxysubsubsection{\texorpdfstring{printAVLTreeHelper()}{printAVLTreeHelper()}}
 {\footnotesize\ttfamily void print\+A\+V\+L\+Tree\+Helper (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{root,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{space,  }\item[{void(print\+Fn)(void $\ast$)}]{ }\end{DoxyParamCaption})}
 
-
+Helper function for printing the tree in 2d space. 
 \begin{DoxyParams}{Parameters}
-{\em root} & \\
+{\em root} & Reference to the root \mbox{\hyperlink{struct_node}{Node}}. \\
 \hline
-{\em space} & \\
+{\em space} & Number of spaces to print at the current level. \\
 \hline
-{\em print\+Fn} & \\
+{\em print\+Fn} & Pointer to the print function. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{_a_v_l_tree_8c_a1723feee292afda6a6f39aa0136d2354}\label{_a_v_l_tree_8c_a1723feee292afda6a6f39aa0136d2354}} 
-\index{AVLTree.c@{AVLTree.c}!printAVLTreeStats@{printAVLTreeStats}}
-\index{printAVLTreeStats@{printAVLTreeStats}!AVLTree.c@{AVLTree.c}}
-\doxysubsubsection{\texorpdfstring{printAVLTreeStats()}{AVLTreePrintStats()}}
-{\footnotesize\ttfamily void print\+A\+V\+L\+Tree\+Stats (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$}]{tree }\end{DoxyParamCaption})}
-
-
-\begin{DoxyParams}{Parameters}
-{\em tree} & \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{_a_v_l_tree_8c_a3e8cf57070a72164e7b57d5f7647df3d}\label{_a_v_l_tree_8c_a3e8cf57070a72164e7b57d5f7647df3d}} 
-\index{AVLTree.c@{AVLTree.c}!printInOrderAVLTree@{printInOrderAVLTree}}
-\index{printInOrderAVLTree@{printInOrderAVLTree}!AVLTree.c@{AVLTree.c}}
-\doxysubsubsection{\texorpdfstring{printInOrderAVLTree()}{AVLTreePrintInOrder()}}
-{\footnotesize\ttfamily void print\+In\+Order\+A\+V\+L\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{node,  }\item[{void(print\+Fn)(void $\ast$)}]{ }\end{DoxyParamCaption})}
-
-
-\begin{DoxyParams}{Parameters}
-{\em node} & \\
-\hline
-{\em print\+Fn} & \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{_a_v_l_tree_8c_ab94c0eaea520e0441671d6410e617f9a}\label{_a_v_l_tree_8c_ab94c0eaea520e0441671d6410e617f9a}} 
-\index{AVLTree.c@{AVLTree.c}!rightRotate@{rightRotate}}
-\index{rightRotate@{rightRotate}!AVLTree.c@{AVLTree.c}}
-\doxysubsubsection{\texorpdfstring{rightRotate()}{AVLRightRotate()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$ right\+Rotate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{n }\end{DoxyParamCaption})}
-
-
-\begin{DoxyParams}{Parameters}
-{\em n} & \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-
-\end{DoxyReturn}
-\mbox{\Hypertarget{_a_v_l_tree_8c_a009c2cfbc2c9dd28729150243ea71521}\label{_a_v_l_tree_8c_a009c2cfbc2c9dd28729150243ea71521}} 
-\index{AVLTree.c@{AVLTree.c}!searchAVLTree@{searchAVLTree}}
-\index{searchAVLTree@{searchAVLTree}!AVLTree.c@{AVLTree.c}}
-\doxysubsubsection{\texorpdfstring{searchAVLTree()}{AVLTreeSearch()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}}$\ast$ search\+A\+V\+L\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_v_l_tree}{A\+V\+L\+Tree}} $\ast$}]{avl\+Tree,  }\item[{\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$}]{node,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_afe71f11dacb15682cdc012f7208e6e09}{char}} $\ast$}]{key }\end{DoxyParamCaption})}
-
-
-\begin{DoxyParams}{Parameters}
-{\em avl\+Tree} & \\
-\hline
-{\em node} & \\
-\hline
-{\em key} & \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-
-\end{DoxyReturn}

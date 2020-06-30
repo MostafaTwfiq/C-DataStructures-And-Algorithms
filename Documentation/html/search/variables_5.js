@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['head_858',['head',['../struct_doubly_linked_list.html#ae959b310460c42ab25a11f7680421d52',1,'DoublyLinkedList::head()'],['../struct_linked_list.html#ae959b310460c42ab25a11f7680421d52',1,'LinkedList::head()']]],
-  ['height_859',['height',['../struct_a_v_l_t_node.html#ad12fc34ce789bce6c8a05d8a17138534',1,'AVLTNode']]]
+  ['fpointer_1017',['fPointer',['../struct_priority_queue.html#a0b77775b036eb98e79e1d74ff0ccbab4',1,'PriorityQueue']]],
+  ['front_1018',['front',['../struct_array_queue.html#ae97b43d7057bc2ef3c3d92b9f72fb42b',1,'ArrayQueue']]],
+  ['fstack_1019',['fStack',['../struct_s_queue.html#a4be3c727445470a1870b4e5003a55900',1,'SQueue']]]
 ];

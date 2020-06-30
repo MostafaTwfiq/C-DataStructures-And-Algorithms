@@ -2,47 +2,47 @@
 \label{struct_a_v_l_tree}\index{AVLTree@{AVLTree}}
 
 
+This structure implements a basic generic stack.  
+
+
+
+
 {\ttfamily \#include $<$A\+V\+L\+Tree.\+h$>$}
 
 \doxysubsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$ \mbox{\hyperlink{struct_a_v_l_tree_a1e816f37708bdce1891fdec097f3055f}{root}}
+\mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$ \mbox{\hyperlink{struct_a_v_l_tree_ab4b8daf4b8ea9d39568719e1e320076f}{root}}
 \item 
-\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{struct_a_v_l_tree_a61eebd6fd9bd90eeb538a8ebfb00322b}{size\+Of\+Type}}
+unsigned \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{struct_a_v_l_tree_ab38cbcec9c19f57dfbf84b7de112c8e5}{node\+Count}}
 \item 
-unsigned \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{struct_a_v_l_tree_a7578e99b45e73434314682f5e67771c8}{node\+Count}}
-\item 
-\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$ \mbox{\hyperlink{struct_a_v_l_tree_ad3392e9d3e55a0a36b34730e92b44fd0}{cmp}} )(const void $\ast$, const void $\ast$)
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$ \mbox{\hyperlink{struct_a_v_l_tree_a1d33f9a800f1f7181c58f3cd60a96958}{cmp}} )(const void $\ast$, const void $\ast$)
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+This structure implements a basic generic stack. 
+
 \doxysubsection{Field Documentation}
-\mbox{\Hypertarget{struct_a_v_l_tree_ad3392e9d3e55a0a36b34730e92b44fd0}\label{struct_a_v_l_tree_ad3392e9d3e55a0a36b34730e92b44fd0}} 
+\mbox{\Hypertarget{struct_a_v_l_tree_a1d33f9a800f1f7181c58f3cd60a96958}\label{struct_a_v_l_tree_a1d33f9a800f1f7181c58f3cd60a96958}} 
 \index{AVLTree@{AVLTree}!cmp@{cmp}}
 \index{cmp@{cmp}!AVLTree@{AVLTree}}
 \doxysubsubsection{\texorpdfstring{cmp}{cmp}}
-{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$ cmp) (const void $\ast$, const void $\ast$)}
+{\footnotesize\ttfamily cmp}
 
-\mbox{\Hypertarget{struct_a_v_l_tree_a7578e99b45e73434314682f5e67771c8}\label{struct_a_v_l_tree_a7578e99b45e73434314682f5e67771c8}} 
+Member \textquotesingle{}cmp\textquotesingle{} is a pointer to the comparision function that is going to be used throughout the tree. \mbox{\Hypertarget{struct_a_v_l_tree_ab38cbcec9c19f57dfbf84b7de112c8e5}\label{struct_a_v_l_tree_ab38cbcec9c19f57dfbf84b7de112c8e5}} 
 \index{AVLTree@{AVLTree}!nodeCount@{nodeCount}}
 \index{nodeCount@{nodeCount}!AVLTree@{AVLTree}}
 \doxysubsubsection{\texorpdfstring{nodeCount}{nodeCount}}
-{\footnotesize\ttfamily unsigned \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} node\+Count}
+{\footnotesize\ttfamily node\+Count}
 
-\mbox{\Hypertarget{struct_a_v_l_tree_a1e816f37708bdce1891fdec097f3055f}\label{struct_a_v_l_tree_a1e816f37708bdce1891fdec097f3055f}} 
+Member \textquotesingle{}node\+Count\textquotesingle{} holds the number of nodes currently present in the tree. \mbox{\Hypertarget{struct_a_v_l_tree_ab4b8daf4b8ea9d39568719e1e320076f}\label{struct_a_v_l_tree_ab4b8daf4b8ea9d39568719e1e320076f}} 
 \index{AVLTree@{AVLTree}!root@{root}}
 \index{root@{root}!AVLTree@{AVLTree}}
 \doxysubsubsection{\texorpdfstring{root}{root}}
-{\footnotesize\ttfamily \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}}$\ast$ root}
+{\footnotesize\ttfamily root}
 
-\mbox{\Hypertarget{struct_a_v_l_tree_a61eebd6fd9bd90eeb538a8ebfb00322b}\label{struct_a_v_l_tree_a61eebd6fd9bd90eeb538a8ebfb00322b}} 
-\index{AVLTree@{AVLTree}!sizeOfType@{sizeOfType}}
-\index{sizeOfType@{sizeOfType}!AVLTree@{AVLTree}}
-\doxysubsubsection{\texorpdfstring{sizeOfType}{sizeOfType}}
-{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} size\+Of\+Type}
-
-
+Member \textquotesingle{}root\textquotesingle{} is a pointer to the root \mbox{\hyperlink{struct_node}{Node}} of the tree. 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

@@ -18,7 +18,7 @@ typedef struct \mbox{\hyperlink{struct_s_queue}{S\+Queue}} \mbox{\hyperlink{_sta
 \item 
 void \mbox{\hyperlink{_stack_queue_8h_a6a89700dd5a4e59f0fd8d122902a4b88}{s\+Queue\+Enqueue}} (\mbox{\hyperlink{struct_s_queue}{S\+Queue}} $\ast$queue, void $\ast$item)
 \item 
-void \mbox{\hyperlink{_stack_queue_8h_a5e5803632ba4dd60f86fecd61d6b8767}{s\+Queue\+Add\+All}} (\mbox{\hyperlink{struct_s_queue}{S\+Queue}} $\ast$queue, void $\ast$items, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} items\+Length)
+void \mbox{\hyperlink{_stack_queue_8h_a00f8942e60fdf9e87098ab2eb1596d61}{s\+Queue\+Add\+All}} (\mbox{\hyperlink{struct_s_queue}{S\+Queue}} $\ast$queue, void $\ast$$\ast$items, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} items\+Length)
 \item 
 void $\ast$ \mbox{\hyperlink{_stack_queue_8h_a61cb3080375aa899d33f2b6dab354bff}{s\+Queue\+Dequeue}} (\mbox{\hyperlink{struct_s_queue}{S\+Queue}} $\ast$queue)
 \item 
@@ -28,7 +28,7 @@ void $\ast$ \mbox{\hyperlink{_stack_queue_8h_a0b55d7d9774123a6e9ac28e1e270b072}{
 \item 
 \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_stack_queue_8h_aab2a056d72de759c94cd08c948d57293}{s\+Queue\+Is\+Empty}} (\mbox{\hyperlink{struct_s_queue}{S\+Queue}} $\ast$queue)
 \item 
-void $\ast$ \mbox{\hyperlink{_stack_queue_8h_adb93dc897303078b2dbd923194b7ccfa}{s\+Queue\+To\+Array}} (\mbox{\hyperlink{struct_s_queue}{S\+Queue}} $\ast$queue)
+void $\ast$$\ast$ \mbox{\hyperlink{_stack_queue_8h_ab133614fdbcf80fdf2f585e6254fec1f}{s\+Queue\+To\+Array}} (\mbox{\hyperlink{struct_s_queue}{S\+Queue}} $\ast$queue)
 \item 
 void \mbox{\hyperlink{_stack_queue_8h_a00501d53a177f940d5c385db802b206b}{clear\+S\+Queue}} (\mbox{\hyperlink{struct_s_queue}{S\+Queue}} $\ast$queue)
 \item 
@@ -68,11 +68,11 @@ This function will take the queue address as a parameter, then it will destroy a
 {\em queue} & \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{_stack_queue_8h_a5e5803632ba4dd60f86fecd61d6b8767}\label{_stack_queue_8h_a5e5803632ba4dd60f86fecd61d6b8767}} 
+\mbox{\Hypertarget{_stack_queue_8h_a00f8942e60fdf9e87098ab2eb1596d61}\label{_stack_queue_8h_a00f8942e60fdf9e87098ab2eb1596d61}} 
 \index{StackQueue.h@{StackQueue.h}!sQueueAddAll@{sQueueAddAll}}
 \index{sQueueAddAll@{sQueueAddAll}!StackQueue.h@{StackQueue.h}}
 \doxysubsubsection{\texorpdfstring{sQueueAddAll()}{sQueueAddAll()}}
-{\footnotesize\ttfamily void s\+Queue\+Add\+All (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_s_queue}{S\+Queue}} $\ast$}]{queue,  }\item[{void $\ast$}]{items,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{items\+Length }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void s\+Queue\+Add\+All (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_s_queue}{S\+Queue}} $\ast$}]{queue,  }\item[{void $\ast$$\ast$}]{items,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{items\+Length }\end{DoxyParamCaption})}
 
 This function will take the queue address, the items array pointer, and the length of the array as a parameters, then it will push all the items in the array into the queue. 
 \begin{DoxyParams}{Parameters}
@@ -152,11 +152,11 @@ This function will take the queue address as a parameter, then it will return th
 \begin{DoxyReturn}{Returns}
 
 \end{DoxyReturn}
-\mbox{\Hypertarget{_stack_queue_8h_adb93dc897303078b2dbd923194b7ccfa}\label{_stack_queue_8h_adb93dc897303078b2dbd923194b7ccfa}} 
+\mbox{\Hypertarget{_stack_queue_8h_ab133614fdbcf80fdf2f585e6254fec1f}\label{_stack_queue_8h_ab133614fdbcf80fdf2f585e6254fec1f}} 
 \index{StackQueue.h@{StackQueue.h}!sQueueToArray@{sQueueToArray}}
 \index{sQueueToArray@{sQueueToArray}!StackQueue.h@{StackQueue.h}}
 \doxysubsubsection{\texorpdfstring{sQueueToArray()}{sQueueToArray()}}
-{\footnotesize\ttfamily void$\ast$ s\+Queue\+To\+Array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_s_queue}{S\+Queue}} $\ast$}]{queue }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void$\ast$$\ast$ s\+Queue\+To\+Array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_s_queue}{S\+Queue}} $\ast$}]{queue }\end{DoxyParamCaption})}
 
 This function will take the queue address as a parameter, then it will copy all the items of the queue in order into a void array, then it will return the array address. 
 \begin{DoxyParams}{Parameters}

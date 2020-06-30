@@ -8,7 +8,7 @@
 \item 
 void \mbox{\hyperlink{_array_list_8c_a46bfac67bc4aee1493e13892db7d783b}{array\+List\+Add}} (\mbox{\hyperlink{struct_array_list}{Array\+List}} $\ast$list, void $\ast$item)
 \item 
-void \mbox{\hyperlink{_array_list_8c_a6cfcd6f671ae1212d91de4e8e3038baf}{array\+List\+Add\+All}} (\mbox{\hyperlink{struct_array_list}{Array\+List}} $\ast$list, void $\ast$array, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} array\+Length)
+void \mbox{\hyperlink{_array_list_8c_ab154e71d5d51bbf979b3cba74d88515a}{array\+List\+Add\+All}} (\mbox{\hyperlink{struct_array_list}{Array\+List}} $\ast$list, void $\ast$$\ast$array, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} array\+Length)
 \item 
 void \mbox{\hyperlink{_array_list_8c_aab410a5f4af3013b2b8c60f3f02f90a1}{array\+List\+Remove}} (\mbox{\hyperlink{struct_array_list}{Array\+List}} $\ast$list)
 \item 
@@ -22,9 +22,9 @@ void \mbox{\hyperlink{_array_list_8c_ac00fec6b17374c275f022daec41f7ed3}{array\+L
 \item 
 void $\ast$ \mbox{\hyperlink{_array_list_8c_af8105cf9b36302d32988f7859675d731}{array\+List\+Get}} (\mbox{\hyperlink{struct_array_list}{Array\+List}} $\ast$list, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} index)
 \item 
-void $\ast$ \mbox{\hyperlink{_array_list_8c_a96a110fd41e2798b8acb206f54b1cc4a}{array\+List\+To\+Array}} (\mbox{\hyperlink{struct_array_list}{Array\+List}} $\ast$list)
+void $\ast$$\ast$ \mbox{\hyperlink{_array_list_8c_af8df97d141bf87dfc46bb38a9e8d5bd9}{array\+List\+To\+Array}} (\mbox{\hyperlink{struct_array_list}{Array\+List}} $\ast$list)
 \item 
-void $\ast$ \mbox{\hyperlink{_array_list_8c_a3fd9bd0e7bb066fc5cda7232c0c1b16d}{array\+List\+To\+Sub\+Array}} (\mbox{\hyperlink{struct_array_list}{Array\+List}} $\ast$list, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} start, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} end)
+void $\ast$$\ast$ \mbox{\hyperlink{_array_list_8c_a2fcb2840720f614b66d4f1b7cabe37dd}{array\+List\+To\+Sub\+Array}} (\mbox{\hyperlink{struct_array_list}{Array\+List}} $\ast$list, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} start, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} end)
 \item 
 void \mbox{\hyperlink{_array_list_8c_a168c1351243181d4b79f7909ce836a6d}{array\+List\+Sort}} (\mbox{\hyperlink{struct_array_list}{Array\+List}} $\ast$list, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$\mbox{\hyperlink{_trie_8c_a1640ed6646f0dbc0b4ee3cdd8adff7d9}{comparator}})(const void $\ast$, const void $\ast$))
 \item 
@@ -54,11 +54,11 @@ This function will take the array list address, and the item address as a parame
 {\em item} & \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{_array_list_8c_a6cfcd6f671ae1212d91de4e8e3038baf}\label{_array_list_8c_a6cfcd6f671ae1212d91de4e8e3038baf}} 
+\mbox{\Hypertarget{_array_list_8c_ab154e71d5d51bbf979b3cba74d88515a}\label{_array_list_8c_ab154e71d5d51bbf979b3cba74d88515a}} 
 \index{ArrayList.c@{ArrayList.c}!arrayListAddAll@{arrayListAddAll}}
 \index{arrayListAddAll@{arrayListAddAll}!ArrayList.c@{ArrayList.c}}
 \doxysubsubsection{\texorpdfstring{arrayListAddAll()}{arrayListAddAll()}}
-{\footnotesize\ttfamily void array\+List\+Add\+All (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_array_list}{Array\+List}} $\ast$}]{list,  }\item[{void $\ast$}]{array,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{array\+Length }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void array\+List\+Add\+All (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_array_list}{Array\+List}} $\ast$}]{list,  }\item[{void $\ast$$\ast$}]{array,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{array\+Length }\end{DoxyParamCaption})}
 
 This function will take the array list address, the items array, and the length of items array as a parameters, then it will copy the items array into the array list. 
 \begin{DoxyParams}{Parameters}
@@ -220,11 +220,11 @@ This function will take the array list address, and the sort comparator function
 {\em comparator} & \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{_array_list_8c_a96a110fd41e2798b8acb206f54b1cc4a}\label{_array_list_8c_a96a110fd41e2798b8acb206f54b1cc4a}} 
+\mbox{\Hypertarget{_array_list_8c_af8df97d141bf87dfc46bb38a9e8d5bd9}\label{_array_list_8c_af8df97d141bf87dfc46bb38a9e8d5bd9}} 
 \index{ArrayList.c@{ArrayList.c}!arrayListToArray@{arrayListToArray}}
 \index{arrayListToArray@{arrayListToArray}!ArrayList.c@{ArrayList.c}}
 \doxysubsubsection{\texorpdfstring{arrayListToArray()}{arrayListToArray()}}
-{\footnotesize\ttfamily void$\ast$ array\+List\+To\+Array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_array_list}{Array\+List}} $\ast$}]{list }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void$\ast$$\ast$ array\+List\+To\+Array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_array_list}{Array\+List}} $\ast$}]{list }\end{DoxyParamCaption})}
 
 This function will take the array list address as a parameter, then it will return a void pointer array that consist of the array list elements. 
 \begin{DoxyParams}{Parameters}
@@ -234,11 +234,11 @@ This function will take the array list address as a parameter, then it will retu
 \begin{DoxyReturn}{Returns}
 
 \end{DoxyReturn}
-\mbox{\Hypertarget{_array_list_8c_a3fd9bd0e7bb066fc5cda7232c0c1b16d}\label{_array_list_8c_a3fd9bd0e7bb066fc5cda7232c0c1b16d}} 
+\mbox{\Hypertarget{_array_list_8c_a2fcb2840720f614b66d4f1b7cabe37dd}\label{_array_list_8c_a2fcb2840720f614b66d4f1b7cabe37dd}} 
 \index{ArrayList.c@{ArrayList.c}!arrayListToSubArray@{arrayListToSubArray}}
 \index{arrayListToSubArray@{arrayListToSubArray}!ArrayList.c@{ArrayList.c}}
 \doxysubsubsection{\texorpdfstring{arrayListToSubArray()}{arrayListToSubArray()}}
-{\footnotesize\ttfamily void$\ast$ array\+List\+To\+Sub\+Array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_array_list}{Array\+List}} $\ast$}]{list,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{start,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{end }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void$\ast$$\ast$ array\+List\+To\+Sub\+Array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_array_list}{Array\+List}} $\ast$}]{list,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{start,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{end }\end{DoxyParamCaption})}
 
 This function will take the array list address, the start index, and the end index as a parameters, then it will return a void pointer array that consist of the items at the start index to end index -\/ 1. 
 \begin{DoxyParams}{Parameters}

@@ -4,7 +4,7 @@
 \doxysubsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
-struct \mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}}
+struct \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}}
 \item 
 struct \mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}}
 \end{DoxyCompactItemize}
@@ -16,46 +16,48 @@ struct \mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}}
 \doxysubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-typedef struct \mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} \mbox{\hyperlink{_binary_tree_8h_ae73166f8ff3470108608b4e0c6533ae8}{B\+Tree\+Node}}
+typedef struct \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} \mbox{\hyperlink{_binary_tree_8h_a47ea08d677e3c04e1f22de36edff6376}{Binary\+Tree\+Node}}
 \item 
 typedef struct \mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} \mbox{\hyperlink{_binary_tree_8h_ad06777af06d193b303b9d45a5b13144f}{Binary\+Tree}}
 \end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$ \mbox{\hyperlink{_binary_tree_8h_a4d0d091e897d572040fc03d51f62f606}{Delete\+Binary\+Tree\+Node}} (\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$binary\+Tree, \mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$root, void $\ast$key)
+\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$ \mbox{\hyperlink{_binary_tree_8h_a4a300432c953778ad6600cd5450c623b}{Delete\+Binary\+Tree\+Node}} (\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$binary\+Tree, \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$root, void $\ast$key)
 \item 
-\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_binary_tree_8h_af3597ba1320145cc3251b5f727827392}{get\+Min\+Steps\+Binary\+Tree}} (\mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$node)
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_binary_tree_8h_a810c1b3c5d4afe8554c9674e94d08112}{get\+Min\+Steps\+Binary\+Tree}} (\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$node)
 \item 
-\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_binary_tree_8h_a795277c482b636078e72c33c63d67415}{get\+Max\+Binary\+Tree\+Steps}} (\mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$node)
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_binary_tree_8h_aea1c2cb05740b01ee9ccc86d6f2f4ecd}{get\+Max\+Binary\+Tree\+Steps}} (\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$node)
 \item 
-\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_binary_tree_8h_abf77e86c8902b062515fa139aee47c8e}{get\+Size\+Binary\+Tree}} (\mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$root)
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_binary_tree_8h_a7947e852b2cd7b7716f181277a7c4563}{get\+Size\+Binary\+Tree}} (\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$root)
 \item 
-\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_binary_tree_8h_a0bc1dad9036a9c49df5354c8519ac550}{is\+Present\+In\+Binary\+Tree}} (\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$binary\+Tree, \mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$root, void $\ast$search\+Key)
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_binary_tree_8h_a22da9a1184cf7874d2df3d2ac0265eb4}{is\+Present\+In\+Binary\+Tree}} (\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$binary\+Tree, void $\ast$search\+Key)
 \item 
-void \mbox{\hyperlink{_binary_tree_8h_a32e8f36b292d66fc9fb9433a82d11c47}{print\+Binary\+Tree}} (\mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$root, void(print\+Fn)(void $\ast$))
+void \mbox{\hyperlink{_binary_tree_8h_aa25bab9f18a6cbdba444f2e6a0272b1d}{print\+Binary\+Tree}} (\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$root, void(print\+Fn)(void $\ast$))
 \item 
-void \mbox{\hyperlink{_binary_tree_8h_ab1bab23454f25f01abbc9437059dd731}{in\+Order\+Predecessor\+Binary\+Tree}} (\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$binary\+Tree, \mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$root, \mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$target\+Node, \mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$$\ast$right\+Most)
+void \mbox{\hyperlink{_binary_tree_8h_a210a714469efcd329c85b1c6d3426aa4}{in\+Order\+Predecessor\+Binary\+Tree}} (\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$binary\+Tree, \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$root, \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$target\+Node, \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$$\ast$right\+Most)
 \item 
-void \mbox{\hyperlink{_binary_tree_8h_adc87bde7b8c342fd6e5475da57670379}{in\+Order\+Successor\+Binary\+Tree}} (\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$binary\+Tree, \mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$root, \mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$target\+Node, \mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$$\ast$left\+Most)
+void \mbox{\hyperlink{_binary_tree_8h_a9ca8c3022c3d2b0bf1159173cc754cff}{in\+Order\+Successor\+Binary\+Tree}} (\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$binary\+Tree, \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$root, \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$target\+Node, \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$$\ast$left\+Most)
 \item 
-\mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$ \mbox{\hyperlink{_binary_tree_8h_adf3276b5d9bc551713c312cfe40949ed}{insert\+Binary\+Tree}} (\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$binary\+Tree, \mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$node, void $\ast$key)
+\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$ \mbox{\hyperlink{_binary_tree_8h_a0775db4a8df6ae7f77a92372d99ed12e}{insert\+Binary\+Tree}} (\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$binary\+Tree, \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$node, void $\ast$key)
 \item 
-\mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$ \mbox{\hyperlink{_binary_tree_8h_aa6ed8e95e12b9ec3c8b1adb765d65e88}{search\+Binary\+Tree}} (\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$avl\+Tree, \mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$node, \mbox{\hyperlink{_c_make_cache_8txt_afe71f11dacb15682cdc012f7208e6e09}{char}} $\ast$key)
+\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$ \mbox{\hyperlink{_binary_tree_8h_a872451120c65f64f87745837555aa2ed}{search\+Binary\+Tree}} (\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$avl\+Tree, \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$node, \mbox{\hyperlink{_c_make_cache_8txt_afe71f11dacb15682cdc012f7208e6e09}{char}} $\ast$key)
 \item 
-void $\ast$$\ast$ \mbox{\hyperlink{_binary_tree_8h_a9a6e3a7c7a3718bf53a937ba3f9168d1}{Binarytree\+To\+Array}} (\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$binary\+Tree)
+void $\ast$$\ast$ \mbox{\hyperlink{_binary_tree_8h_a8db6666c4006cfd7895194caba77b9fd}{Binary\+Tree\+To\+Array}} (\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$binary\+Tree)
 \item 
-void \mbox{\hyperlink{_binary_tree_8h_ad411f3494e6a72c1fb4b06d8c3278200}{free\+Binary\+Tree}} (\mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$$\ast$node)
+void \mbox{\hyperlink{_binary_tree_8h_a4682cfaea0bd0c2b469f5240407ea5cb}{free\+Binary\+Tree}} (\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$$\ast$node)
 \item 
 \mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$ \mbox{\hyperlink{_binary_tree_8h_a22d5287545f03067f443a93f432be2f1}{Binary\+Tree\+Initialize}} (\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} size, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$cmp)(const void $\ast$, const void $\ast$))
 \item 
 void \mbox{\hyperlink{_binary_tree_8h_a8e2d543d42366644908d2a95c6fe328b}{print\+Binary\+Tree\+Stats}} (\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$tree)
 \item 
-\mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$ \mbox{\hyperlink{_binary_tree_8h_aea0d253ba31cd5f5df72343fd4f4b230}{max\+Value\+Binary\+Tree\+Node}} (\mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$node)
+\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$ \mbox{\hyperlink{_binary_tree_8h_a23c3390a47c730efd5a1b93498709c2f}{max\+Value\+Binary\+Tree\+Node}} (\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$node)
 \item 
-\mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$ \mbox{\hyperlink{_binary_tree_8h_a95874eb40f3e94d75ae1f057f1d8a39a}{min\+Value\+Binary\+Tree\+Node}} (\mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$node)
+\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$ \mbox{\hyperlink{_binary_tree_8h_aa986c4d101723d1d1ac1378034bbde98}{min\+Value\+Binary\+Tree\+Node}} (\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$node)
 \item 
-void \mbox{\hyperlink{_binary_tree_8h_a797249fdff2f1c35c56bd5b6c2dd1548}{print\+In\+Order\+Binary\+Tree}} (\mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$node, void(print\+Fn)(void $\ast$))
+void \mbox{\hyperlink{_binary_tree_8h_a42981174a03e116233e5c361430916e1}{print\+In\+Order\+Binary\+Tree}} (\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$node, void(print\+Fn)(void $\ast$))
+\item 
+\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$ \mbox{\hyperlink{_binary_tree_8h_a1e00eb46ff6256e7cbf77b6179c9cd03}{Binary\+Tree\+Insert\+All}} (\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$binary\+Tree, void $\ast$$\ast$array, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} length)
 \end{DoxyCompactItemize}
 
 
@@ -75,11 +77,11 @@ void \mbox{\hyperlink{_binary_tree_8h_a797249fdff2f1c35c56bd5b6c2dd1548}{print\+
 \doxysubsubsection{\texorpdfstring{BinaryTree}{BinaryTree}}
 {\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} \mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}}}
 
-\mbox{\Hypertarget{_binary_tree_8h_ae73166f8ff3470108608b4e0c6533ae8}\label{_binary_tree_8h_ae73166f8ff3470108608b4e0c6533ae8}} 
+\mbox{\Hypertarget{_binary_tree_8h_a47ea08d677e3c04e1f22de36edff6376}\label{_binary_tree_8h_a47ea08d677e3c04e1f22de36edff6376}} 
 \index{BinaryTree.h@{BinaryTree.h}!BinaryTreeNode@{BinaryTreeNode}}
 \index{BinaryTreeNode@{BinaryTreeNode}!BinaryTree.h@{BinaryTree.h}}
 \doxysubsubsection{\texorpdfstring{BinaryTreeNode}{BinaryTreeNode}}
-{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} \mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}}}
 
 
 
@@ -98,11 +100,17 @@ void \mbox{\hyperlink{_binary_tree_8h_a797249fdff2f1c35c56bd5b6c2dd1548}{print\+
 \begin{DoxyReturn}{Returns}
 
 \end{DoxyReturn}
-\mbox{\Hypertarget{_binary_tree_8h_a9a6e3a7c7a3718bf53a937ba3f9168d1}\label{_binary_tree_8h_a9a6e3a7c7a3718bf53a937ba3f9168d1}} 
-\index{BinaryTree.h@{BinaryTree.h}!BinarytreeToArray@{BinarytreeToArray}}
-\index{BinarytreeToArray@{BinarytreeToArray}!BinaryTree.h@{BinaryTree.h}}
-\doxysubsubsection{\texorpdfstring{BinarytreeToArray()}{BinarytreeToArray()}}
-{\footnotesize\ttfamily void$\ast$$\ast$ Binarytree\+To\+Array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$}]{binary\+Tree }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{_binary_tree_8h_a1e00eb46ff6256e7cbf77b6179c9cd03}\label{_binary_tree_8h_a1e00eb46ff6256e7cbf77b6179c9cd03}} 
+\index{BinaryTree.h@{BinaryTree.h}!BinaryTreeInsertAll@{BinaryTreeInsertAll}}
+\index{BinaryTreeInsertAll@{BinaryTreeInsertAll}!BinaryTree.h@{BinaryTree.h}}
+\doxysubsubsection{\texorpdfstring{BinaryTreeInsertAll()}{BinaryTreeInsertAll()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}}$\ast$ Binary\+Tree\+Insert\+All (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$}]{binary\+Tree,  }\item[{void $\ast$$\ast$}]{array,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{length }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_binary_tree_8h_a8db6666c4006cfd7895194caba77b9fd}\label{_binary_tree_8h_a8db6666c4006cfd7895194caba77b9fd}} 
+\index{BinaryTree.h@{BinaryTree.h}!BinaryTreeToArray@{BinaryTreeToArray}}
+\index{BinaryTreeToArray@{BinaryTreeToArray}!BinaryTree.h@{BinaryTree.h}}
+\doxysubsubsection{\texorpdfstring{BinaryTreeToArray()}{BinaryTreeToArray()}}
+{\footnotesize\ttfamily void$\ast$$\ast$ Binary\+Tree\+To\+Array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$}]{binary\+Tree }\end{DoxyParamCaption})}
 
 
 \begin{DoxyParams}{Parameters}
@@ -112,11 +120,11 @@ void \mbox{\hyperlink{_binary_tree_8h_a797249fdff2f1c35c56bd5b6c2dd1548}{print\+
 \begin{DoxyReturn}{Returns}
 
 \end{DoxyReturn}
-\mbox{\Hypertarget{_binary_tree_8h_a4d0d091e897d572040fc03d51f62f606}\label{_binary_tree_8h_a4d0d091e897d572040fc03d51f62f606}} 
+\mbox{\Hypertarget{_binary_tree_8h_a4a300432c953778ad6600cd5450c623b}\label{_binary_tree_8h_a4a300432c953778ad6600cd5450c623b}} 
 \index{BinaryTree.h@{BinaryTree.h}!DeleteBinaryTreeNode@{DeleteBinaryTreeNode}}
 \index{DeleteBinaryTreeNode@{DeleteBinaryTreeNode}!BinaryTree.h@{BinaryTree.h}}
 \doxysubsubsection{\texorpdfstring{DeleteBinaryTreeNode()}{DeleteBinaryTreeNode()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}}$\ast$ Delete\+Binary\+Tree\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$}]{binary\+Tree,  }\item[{\mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$}]{root,  }\item[{void $\ast$}]{key }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}}$\ast$ Delete\+Binary\+Tree\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$}]{binary\+Tree,  }\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{root,  }\item[{void $\ast$}]{key }\end{DoxyParamCaption})}
 
 
 \begin{DoxyParams}{Parameters}
@@ -130,22 +138,22 @@ void \mbox{\hyperlink{_binary_tree_8h_a797249fdff2f1c35c56bd5b6c2dd1548}{print\+
 \begin{DoxyReturn}{Returns}
 
 \end{DoxyReturn}
-\mbox{\Hypertarget{_binary_tree_8h_ad411f3494e6a72c1fb4b06d8c3278200}\label{_binary_tree_8h_ad411f3494e6a72c1fb4b06d8c3278200}} 
+\mbox{\Hypertarget{_binary_tree_8h_a4682cfaea0bd0c2b469f5240407ea5cb}\label{_binary_tree_8h_a4682cfaea0bd0c2b469f5240407ea5cb}} 
 \index{BinaryTree.h@{BinaryTree.h}!freeBinaryTree@{freeBinaryTree}}
 \index{freeBinaryTree@{freeBinaryTree}!BinaryTree.h@{BinaryTree.h}}
 \doxysubsubsection{\texorpdfstring{freeBinaryTree()}{freeBinaryTree()}}
-{\footnotesize\ttfamily void free\+Binary\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$$\ast$}]{node }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void free\+Binary\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$$\ast$}]{node }\end{DoxyParamCaption})}
 
 
 \begin{DoxyParams}{Parameters}
 {\em node} & \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{_binary_tree_8h_a795277c482b636078e72c33c63d67415}\label{_binary_tree_8h_a795277c482b636078e72c33c63d67415}} 
+\mbox{\Hypertarget{_binary_tree_8h_aea1c2cb05740b01ee9ccc86d6f2f4ecd}\label{_binary_tree_8h_aea1c2cb05740b01ee9ccc86d6f2f4ecd}} 
 \index{BinaryTree.h@{BinaryTree.h}!getMaxBinaryTreeSteps@{getMaxBinaryTreeSteps}}
 \index{getMaxBinaryTreeSteps@{getMaxBinaryTreeSteps}!BinaryTree.h@{BinaryTree.h}}
 \doxysubsubsection{\texorpdfstring{getMaxBinaryTreeSteps()}{getMaxBinaryTreeSteps()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} get\+Max\+Binary\+Tree\+Steps (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} get\+Max\+Binary\+Tree\+Steps (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
 
 
 \begin{DoxyParams}{Parameters}
@@ -155,11 +163,11 @@ void \mbox{\hyperlink{_binary_tree_8h_a797249fdff2f1c35c56bd5b6c2dd1548}{print\+
 \begin{DoxyReturn}{Returns}
 
 \end{DoxyReturn}
-\mbox{\Hypertarget{_binary_tree_8h_af3597ba1320145cc3251b5f727827392}\label{_binary_tree_8h_af3597ba1320145cc3251b5f727827392}} 
+\mbox{\Hypertarget{_binary_tree_8h_a810c1b3c5d4afe8554c9674e94d08112}\label{_binary_tree_8h_a810c1b3c5d4afe8554c9674e94d08112}} 
 \index{BinaryTree.h@{BinaryTree.h}!getMinStepsBinaryTree@{getMinStepsBinaryTree}}
 \index{getMinStepsBinaryTree@{getMinStepsBinaryTree}!BinaryTree.h@{BinaryTree.h}}
 \doxysubsubsection{\texorpdfstring{getMinStepsBinaryTree()}{getMinStepsBinaryTree()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} get\+Min\+Steps\+Binary\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} get\+Min\+Steps\+Binary\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
 
 
 \begin{DoxyParams}{Parameters}
@@ -169,11 +177,11 @@ void \mbox{\hyperlink{_binary_tree_8h_a797249fdff2f1c35c56bd5b6c2dd1548}{print\+
 \begin{DoxyReturn}{Returns}
 
 \end{DoxyReturn}
-\mbox{\Hypertarget{_binary_tree_8h_abf77e86c8902b062515fa139aee47c8e}\label{_binary_tree_8h_abf77e86c8902b062515fa139aee47c8e}} 
+\mbox{\Hypertarget{_binary_tree_8h_a7947e852b2cd7b7716f181277a7c4563}\label{_binary_tree_8h_a7947e852b2cd7b7716f181277a7c4563}} 
 \index{BinaryTree.h@{BinaryTree.h}!getSizeBinaryTree@{getSizeBinaryTree}}
 \index{getSizeBinaryTree@{getSizeBinaryTree}!BinaryTree.h@{BinaryTree.h}}
 \doxysubsubsection{\texorpdfstring{getSizeBinaryTree()}{getSizeBinaryTree()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} get\+Size\+Binary\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$}]{root }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} get\+Size\+Binary\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{root }\end{DoxyParamCaption})}
 
 
 \begin{DoxyParams}{Parameters}
@@ -183,11 +191,11 @@ void \mbox{\hyperlink{_binary_tree_8h_a797249fdff2f1c35c56bd5b6c2dd1548}{print\+
 \begin{DoxyReturn}{Returns}
 
 \end{DoxyReturn}
-\mbox{\Hypertarget{_binary_tree_8h_ab1bab23454f25f01abbc9437059dd731}\label{_binary_tree_8h_ab1bab23454f25f01abbc9437059dd731}} 
+\mbox{\Hypertarget{_binary_tree_8h_a210a714469efcd329c85b1c6d3426aa4}\label{_binary_tree_8h_a210a714469efcd329c85b1c6d3426aa4}} 
 \index{BinaryTree.h@{BinaryTree.h}!inOrderPredecessorBinaryTree@{inOrderPredecessorBinaryTree}}
 \index{inOrderPredecessorBinaryTree@{inOrderPredecessorBinaryTree}!BinaryTree.h@{BinaryTree.h}}
 \doxysubsubsection{\texorpdfstring{inOrderPredecessorBinaryTree()}{inOrderPredecessorBinaryTree()}}
-{\footnotesize\ttfamily void in\+Order\+Predecessor\+Binary\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$}]{binary\+Tree,  }\item[{\mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$}]{root,  }\item[{\mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$}]{target\+Node,  }\item[{\mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$$\ast$}]{right\+Most }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void in\+Order\+Predecessor\+Binary\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$}]{binary\+Tree,  }\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{root,  }\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{target\+Node,  }\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$$\ast$}]{right\+Most }\end{DoxyParamCaption})}
 
 
 \begin{DoxyParams}{Parameters}
@@ -200,11 +208,11 @@ void \mbox{\hyperlink{_binary_tree_8h_a797249fdff2f1c35c56bd5b6c2dd1548}{print\+
 {\em right\+Most} & \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{_binary_tree_8h_adc87bde7b8c342fd6e5475da57670379}\label{_binary_tree_8h_adc87bde7b8c342fd6e5475da57670379}} 
+\mbox{\Hypertarget{_binary_tree_8h_a9ca8c3022c3d2b0bf1159173cc754cff}\label{_binary_tree_8h_a9ca8c3022c3d2b0bf1159173cc754cff}} 
 \index{BinaryTree.h@{BinaryTree.h}!inOrderSuccessorBinaryTree@{inOrderSuccessorBinaryTree}}
 \index{inOrderSuccessorBinaryTree@{inOrderSuccessorBinaryTree}!BinaryTree.h@{BinaryTree.h}}
 \doxysubsubsection{\texorpdfstring{inOrderSuccessorBinaryTree()}{inOrderSuccessorBinaryTree()}}
-{\footnotesize\ttfamily void in\+Order\+Successor\+Binary\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$}]{binary\+Tree,  }\item[{\mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$}]{root,  }\item[{\mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$}]{target\+Node,  }\item[{\mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$$\ast$}]{left\+Most }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void in\+Order\+Successor\+Binary\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$}]{binary\+Tree,  }\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{root,  }\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{target\+Node,  }\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$$\ast$}]{left\+Most }\end{DoxyParamCaption})}
 
 
 \begin{DoxyParams}{Parameters}
@@ -217,11 +225,11 @@ void \mbox{\hyperlink{_binary_tree_8h_a797249fdff2f1c35c56bd5b6c2dd1548}{print\+
 {\em left\+Most} & \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{_binary_tree_8h_adf3276b5d9bc551713c312cfe40949ed}\label{_binary_tree_8h_adf3276b5d9bc551713c312cfe40949ed}} 
+\mbox{\Hypertarget{_binary_tree_8h_a0775db4a8df6ae7f77a92372d99ed12e}\label{_binary_tree_8h_a0775db4a8df6ae7f77a92372d99ed12e}} 
 \index{BinaryTree.h@{BinaryTree.h}!insertBinaryTree@{insertBinaryTree}}
 \index{insertBinaryTree@{insertBinaryTree}!BinaryTree.h@{BinaryTree.h}}
 \doxysubsubsection{\texorpdfstring{insertBinaryTree()}{insertBinaryTree()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}}$\ast$ insert\+Binary\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$}]{binary\+Tree,  }\item[{\mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$}]{node,  }\item[{void $\ast$}]{key }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}}$\ast$ insert\+Binary\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$}]{binary\+Tree,  }\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{node,  }\item[{void $\ast$}]{key }\end{DoxyParamCaption})}
 
 
 \begin{DoxyParams}{Parameters}
@@ -235,11 +243,11 @@ void \mbox{\hyperlink{_binary_tree_8h_a797249fdff2f1c35c56bd5b6c2dd1548}{print\+
 \begin{DoxyReturn}{Returns}
 
 \end{DoxyReturn}
-\mbox{\Hypertarget{_binary_tree_8h_a0bc1dad9036a9c49df5354c8519ac550}\label{_binary_tree_8h_a0bc1dad9036a9c49df5354c8519ac550}} 
+\mbox{\Hypertarget{_binary_tree_8h_a22da9a1184cf7874d2df3d2ac0265eb4}\label{_binary_tree_8h_a22da9a1184cf7874d2df3d2ac0265eb4}} 
 \index{BinaryTree.h@{BinaryTree.h}!isPresentInBinaryTree@{isPresentInBinaryTree}}
 \index{isPresentInBinaryTree@{isPresentInBinaryTree}!BinaryTree.h@{BinaryTree.h}}
 \doxysubsubsection{\texorpdfstring{isPresentInBinaryTree()}{isPresentInBinaryTree()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} is\+Present\+In\+Binary\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$}]{binary\+Tree,  }\item[{\mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$}]{root,  }\item[{void $\ast$}]{search\+Key }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} is\+Present\+In\+Binary\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$}]{binary\+Tree,  }\item[{void $\ast$}]{search\+Key }\end{DoxyParamCaption})}
 
 
 \begin{DoxyParams}{Parameters}
@@ -253,11 +261,11 @@ void \mbox{\hyperlink{_binary_tree_8h_a797249fdff2f1c35c56bd5b6c2dd1548}{print\+
 \begin{DoxyReturn}{Returns}
 
 \end{DoxyReturn}
-\mbox{\Hypertarget{_binary_tree_8h_aea0d253ba31cd5f5df72343fd4f4b230}\label{_binary_tree_8h_aea0d253ba31cd5f5df72343fd4f4b230}} 
+\mbox{\Hypertarget{_binary_tree_8h_a23c3390a47c730efd5a1b93498709c2f}\label{_binary_tree_8h_a23c3390a47c730efd5a1b93498709c2f}} 
 \index{BinaryTree.h@{BinaryTree.h}!maxValueBinaryTreeNode@{maxValueBinaryTreeNode}}
 \index{maxValueBinaryTreeNode@{maxValueBinaryTreeNode}!BinaryTree.h@{BinaryTree.h}}
 \doxysubsubsection{\texorpdfstring{maxValueBinaryTreeNode()}{maxValueBinaryTreeNode()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}}$\ast$ max\+Value\+Binary\+Tree\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}}$\ast$ max\+Value\+Binary\+Tree\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
 
 
 \begin{DoxyParams}{Parameters}
@@ -267,11 +275,11 @@ void \mbox{\hyperlink{_binary_tree_8h_a797249fdff2f1c35c56bd5b6c2dd1548}{print\+
 \begin{DoxyReturn}{Returns}
 
 \end{DoxyReturn}
-\mbox{\Hypertarget{_binary_tree_8h_a95874eb40f3e94d75ae1f057f1d8a39a}\label{_binary_tree_8h_a95874eb40f3e94d75ae1f057f1d8a39a}} 
+\mbox{\Hypertarget{_binary_tree_8h_aa986c4d101723d1d1ac1378034bbde98}\label{_binary_tree_8h_aa986c4d101723d1d1ac1378034bbde98}} 
 \index{BinaryTree.h@{BinaryTree.h}!minValueBinaryTreeNode@{minValueBinaryTreeNode}}
 \index{minValueBinaryTreeNode@{minValueBinaryTreeNode}!BinaryTree.h@{BinaryTree.h}}
 \doxysubsubsection{\texorpdfstring{minValueBinaryTreeNode()}{minValueBinaryTreeNode()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}}$\ast$ min\+Value\+Binary\+Tree\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}}$\ast$ min\+Value\+Binary\+Tree\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
 
 
 \begin{DoxyParams}{Parameters}
@@ -281,11 +289,11 @@ void \mbox{\hyperlink{_binary_tree_8h_a797249fdff2f1c35c56bd5b6c2dd1548}{print\+
 \begin{DoxyReturn}{Returns}
 
 \end{DoxyReturn}
-\mbox{\Hypertarget{_binary_tree_8h_a32e8f36b292d66fc9fb9433a82d11c47}\label{_binary_tree_8h_a32e8f36b292d66fc9fb9433a82d11c47}} 
+\mbox{\Hypertarget{_binary_tree_8h_aa25bab9f18a6cbdba444f2e6a0272b1d}\label{_binary_tree_8h_aa25bab9f18a6cbdba444f2e6a0272b1d}} 
 \index{BinaryTree.h@{BinaryTree.h}!printBinaryTree@{printBinaryTree}}
 \index{printBinaryTree@{printBinaryTree}!BinaryTree.h@{BinaryTree.h}}
 \doxysubsubsection{\texorpdfstring{printBinaryTree()}{printBinaryTree()}}
-{\footnotesize\ttfamily void print\+Binary\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$}]{root,  }\item[{void(print\+Fn)(void $\ast$)}]{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void print\+Binary\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{root,  }\item[{void(print\+Fn)(void $\ast$)}]{ }\end{DoxyParamCaption})}
 
 
 \begin{DoxyParams}{Parameters}
@@ -305,11 +313,11 @@ void \mbox{\hyperlink{_binary_tree_8h_a797249fdff2f1c35c56bd5b6c2dd1548}{print\+
 {\em tree} & \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{_binary_tree_8h_a797249fdff2f1c35c56bd5b6c2dd1548}\label{_binary_tree_8h_a797249fdff2f1c35c56bd5b6c2dd1548}} 
+\mbox{\Hypertarget{_binary_tree_8h_a42981174a03e116233e5c361430916e1}\label{_binary_tree_8h_a42981174a03e116233e5c361430916e1}} 
 \index{BinaryTree.h@{BinaryTree.h}!printInOrderBinaryTree@{printInOrderBinaryTree}}
 \index{printInOrderBinaryTree@{printInOrderBinaryTree}!BinaryTree.h@{BinaryTree.h}}
 \doxysubsubsection{\texorpdfstring{printInOrderBinaryTree()}{printInOrderBinaryTree()}}
-{\footnotesize\ttfamily void print\+In\+Order\+Binary\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$}]{node,  }\item[{void(print\+Fn)(void $\ast$)}]{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void print\+In\+Order\+Binary\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{node,  }\item[{void(print\+Fn)(void $\ast$)}]{ }\end{DoxyParamCaption})}
 
 
 \begin{DoxyParams}{Parameters}
@@ -318,11 +326,11 @@ void \mbox{\hyperlink{_binary_tree_8h_a797249fdff2f1c35c56bd5b6c2dd1548}{print\+
 {\em print\+Fn} & \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{_binary_tree_8h_aa6ed8e95e12b9ec3c8b1adb765d65e88}\label{_binary_tree_8h_aa6ed8e95e12b9ec3c8b1adb765d65e88}} 
+\mbox{\Hypertarget{_binary_tree_8h_a872451120c65f64f87745837555aa2ed}\label{_binary_tree_8h_a872451120c65f64f87745837555aa2ed}} 
 \index{BinaryTree.h@{BinaryTree.h}!searchBinaryTree@{searchBinaryTree}}
 \index{searchBinaryTree@{searchBinaryTree}!BinaryTree.h@{BinaryTree.h}}
 \doxysubsubsection{\texorpdfstring{searchBinaryTree()}{searchBinaryTree()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}}$\ast$ search\+Binary\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$}]{binary\+Tree,  }\item[{\mbox{\hyperlink{struct_b_tree_node}{B\+Tree\+Node}} $\ast$}]{node,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_afe71f11dacb15682cdc012f7208e6e09}{char}} $\ast$}]{key }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}}$\ast$ search\+Binary\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$}]{binary\+Tree,  }\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{node,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_afe71f11dacb15682cdc012f7208e6e09}{char}} $\ast$}]{key }\end{DoxyParamCaption})}
 
 
 \begin{DoxyParams}{Parameters}

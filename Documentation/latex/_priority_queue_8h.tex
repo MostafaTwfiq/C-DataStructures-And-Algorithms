@@ -1,0 +1,186 @@
+\hypertarget{_priority_queue_8h}{}\doxysection{Headers/\+Priority\+Queue.h File Reference}
+\label{_priority_queue_8h}\index{Headers/PriorityQueue.h@{Headers/PriorityQueue.h}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_priority_queue}{Priority\+Queue}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct_priority_queue}{Priority\+Queue}} \mbox{\hyperlink{_priority_queue_8h_a9909a4143c78addfa84d0fb39fc3ba87}{Priority\+Queue}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_priority_queue}{Priority\+Queue}} $\ast$ \mbox{\hyperlink{_priority_queue_8h_a13c4c93548d6e164d9656d4a2355ae74}{priority\+Queue\+Initialization}} (\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} size\+Of\+Type, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$comp)(const void $\ast$, const void $\ast$))
+\item 
+void \mbox{\hyperlink{_priority_queue_8h_a7e2d03623f41b555478c9897d091ee8e}{p\+Queue\+Enqueue}} (\mbox{\hyperlink{struct_priority_queue}{Priority\+Queue}} $\ast$queue, void $\ast$item)
+\item 
+void \mbox{\hyperlink{_priority_queue_8h_a4065da2ae5f82e4ad6a81d40dbb93d27}{p\+Queue\+Enqueue\+All}} (\mbox{\hyperlink{struct_priority_queue}{Priority\+Queue}} $\ast$queue, void $\ast$$\ast$items, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} arr\+Length)
+\item 
+void $\ast$ \mbox{\hyperlink{_priority_queue_8h_aa999edaac37c7d5429d154b51aa6919e}{p\+Queue\+Dequeue}} (\mbox{\hyperlink{struct_priority_queue}{Priority\+Queue}} $\ast$queue)
+\item 
+void $\ast$ \mbox{\hyperlink{_priority_queue_8h_a8529bf5fe5bd87a3055b528d3d19e026}{p\+Queue\+Peek}} (\mbox{\hyperlink{struct_priority_queue}{Priority\+Queue}} $\ast$queue)
+\item 
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_priority_queue_8h_a0573c1d3f02515278a45c21952cc39f7}{p\+Queue\+Get\+Length}} (\mbox{\hyperlink{struct_priority_queue}{Priority\+Queue}} $\ast$queue)
+\item 
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_priority_queue_8h_a84c6757a507e1735bd3c085e593ad64f}{p\+Queue\+Is\+Empty}} (\mbox{\hyperlink{struct_priority_queue}{Priority\+Queue}} $\ast$queue)
+\item 
+void $\ast$$\ast$ \mbox{\hyperlink{_priority_queue_8h_a75db5411fcbf2a1f7c9de30ec9aab78e}{p\+Queue\+To\+Array}} (\mbox{\hyperlink{struct_priority_queue}{Priority\+Queue}} $\ast$queue)
+\item 
+void \mbox{\hyperlink{_priority_queue_8h_aef42987066a18d23393aeb9b4f8f0bd5}{clear\+P\+Queue}} (\mbox{\hyperlink{struct_priority_queue}{Priority\+Queue}} $\ast$queue)
+\item 
+void \mbox{\hyperlink{_priority_queue_8h_aa90e70c9462d55a3fc7866705507f031}{destroy\+P\+Queue}} (\mbox{\hyperlink{struct_priority_queue}{Priority\+Queue}} $\ast$queue)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{_priority_queue_8h_a9909a4143c78addfa84d0fb39fc3ba87}\label{_priority_queue_8h_a9909a4143c78addfa84d0fb39fc3ba87}} 
+\index{PriorityQueue.h@{PriorityQueue.h}!PriorityQueue@{PriorityQueue}}
+\index{PriorityQueue@{PriorityQueue}!PriorityQueue.h@{PriorityQueue.h}}
+\doxysubsubsection{\texorpdfstring{PriorityQueue}{PriorityQueue}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct_priority_queue}{Priority\+Queue}} \mbox{\hyperlink{struct_priority_queue}{Priority\+Queue}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_priority_queue_8h_aef42987066a18d23393aeb9b4f8f0bd5}\label{_priority_queue_8h_aef42987066a18d23393aeb9b4f8f0bd5}} 
+\index{PriorityQueue.h@{PriorityQueue.h}!clearPQueue@{clearPQueue}}
+\index{clearPQueue@{clearPQueue}!PriorityQueue.h@{PriorityQueue.h}}
+\doxysubsubsection{\texorpdfstring{clearPQueue()}{clearPQueue()}}
+{\footnotesize\ttfamily void clear\+P\+Queue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_priority_queue}{Priority\+Queue}} $\ast$}]{queue }\end{DoxyParamCaption})}
+
+This function will take the queue address as a parameter, then it will destroy and free all the items in the queue, without destroying the queue it self. 
+\begin{DoxyParams}{Parameters}
+{\em queue} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_priority_queue_8h_aa90e70c9462d55a3fc7866705507f031}\label{_priority_queue_8h_aa90e70c9462d55a3fc7866705507f031}} 
+\index{PriorityQueue.h@{PriorityQueue.h}!destroyPQueue@{destroyPQueue}}
+\index{destroyPQueue@{destroyPQueue}!PriorityQueue.h@{PriorityQueue.h}}
+\doxysubsubsection{\texorpdfstring{destroyPQueue()}{destroyPQueue()}}
+{\footnotesize\ttfamily void destroy\+P\+Queue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_priority_queue}{Priority\+Queue}} $\ast$}]{queue }\end{DoxyParamCaption})}
+
+This function will take the queue address as a parameter, then it will destroy and free the queue and all it\textquotesingle{}s items. 
+\begin{DoxyParams}{Parameters}
+{\em queue} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_priority_queue_8h_aa999edaac37c7d5429d154b51aa6919e}\label{_priority_queue_8h_aa999edaac37c7d5429d154b51aa6919e}} 
+\index{PriorityQueue.h@{PriorityQueue.h}!pQueueDequeue@{pQueueDequeue}}
+\index{pQueueDequeue@{pQueueDequeue}!PriorityQueue.h@{PriorityQueue.h}}
+\doxysubsubsection{\texorpdfstring{pQueueDequeue()}{pQueueDequeue()}}
+{\footnotesize\ttfamily void$\ast$ p\+Queue\+Dequeue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_priority_queue}{Priority\+Queue}} $\ast$}]{queue }\end{DoxyParamCaption})}
+
+This function will take the queue address as a parameter, then it will return the rear item address in the queue. 
+\begin{DoxyParams}{Parameters}
+{\em queue} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_priority_queue_8h_a7e2d03623f41b555478c9897d091ee8e}\label{_priority_queue_8h_a7e2d03623f41b555478c9897d091ee8e}} 
+\index{PriorityQueue.h@{PriorityQueue.h}!pQueueEnqueue@{pQueueEnqueue}}
+\index{pQueueEnqueue@{pQueueEnqueue}!PriorityQueue.h@{PriorityQueue.h}}
+\doxysubsubsection{\texorpdfstring{pQueueEnqueue()}{pQueueEnqueue()}}
+{\footnotesize\ttfamily void p\+Queue\+Enqueue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_priority_queue}{Priority\+Queue}} $\ast$}]{queue,  }\item[{void $\ast$}]{item }\end{DoxyParamCaption})}
+
+This function will take the queue address, and the item address as a parameters, then it will push the new item in it\textquotesingle{}s right place in the queue. Note\+: if the compare function returned a positive number, that means to swap. 
+\begin{DoxyParams}{Parameters}
+{\em queue} & \\
+\hline
+{\em item} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_priority_queue_8h_a4065da2ae5f82e4ad6a81d40dbb93d27}\label{_priority_queue_8h_a4065da2ae5f82e4ad6a81d40dbb93d27}} 
+\index{PriorityQueue.h@{PriorityQueue.h}!pQueueEnqueueAll@{pQueueEnqueueAll}}
+\index{pQueueEnqueueAll@{pQueueEnqueueAll}!PriorityQueue.h@{PriorityQueue.h}}
+\doxysubsubsection{\texorpdfstring{pQueueEnqueueAll()}{pQueueEnqueueAll()}}
+{\footnotesize\ttfamily void p\+Queue\+Enqueue\+All (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_priority_queue}{Priority\+Queue}} $\ast$}]{queue,  }\item[{void $\ast$$\ast$}]{items,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{arr\+Length }\end{DoxyParamCaption})}
+
+This function will take the queue address, the items array of pointers, and the length of the array as a parameters, then it will push all the items in the array to the queue. 
+\begin{DoxyParams}{Parameters}
+{\em queue} & \\
+\hline
+{\em items} & \\
+\hline
+{\em arr\+Length} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_priority_queue_8h_a0573c1d3f02515278a45c21952cc39f7}\label{_priority_queue_8h_a0573c1d3f02515278a45c21952cc39f7}} 
+\index{PriorityQueue.h@{PriorityQueue.h}!pQueueGetLength@{pQueueGetLength}}
+\index{pQueueGetLength@{pQueueGetLength}!PriorityQueue.h@{PriorityQueue.h}}
+\doxysubsubsection{\texorpdfstring{pQueueGetLength()}{pQueueGetLength()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} p\+Queue\+Get\+Length (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_priority_queue}{Priority\+Queue}} $\ast$}]{queue }\end{DoxyParamCaption})}
+
+This function will take the queue address as a parameter, then it will return the number of the items in the queue. 
+\begin{DoxyParams}{Parameters}
+{\em queue} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_priority_queue_8h_a84c6757a507e1735bd3c085e593ad64f}\label{_priority_queue_8h_a84c6757a507e1735bd3c085e593ad64f}} 
+\index{PriorityQueue.h@{PriorityQueue.h}!pQueueIsEmpty@{pQueueIsEmpty}}
+\index{pQueueIsEmpty@{pQueueIsEmpty}!PriorityQueue.h@{PriorityQueue.h}}
+\doxysubsubsection{\texorpdfstring{pQueueIsEmpty()}{pQueueIsEmpty()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} p\+Queue\+Is\+Empty (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_priority_queue}{Priority\+Queue}} $\ast$}]{queue }\end{DoxyParamCaption})}
+
+This function will take the queue address as a parameter, then it will return one (1) if the queue is empty, other wise it will return zero (0). 
+\begin{DoxyParams}{Parameters}
+{\em queue} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_priority_queue_8h_a8529bf5fe5bd87a3055b528d3d19e026}\label{_priority_queue_8h_a8529bf5fe5bd87a3055b528d3d19e026}} 
+\index{PriorityQueue.h@{PriorityQueue.h}!pQueuePeek@{pQueuePeek}}
+\index{pQueuePeek@{pQueuePeek}!PriorityQueue.h@{PriorityQueue.h}}
+\doxysubsubsection{\texorpdfstring{pQueuePeek()}{pQueuePeek()}}
+{\footnotesize\ttfamily void$\ast$ p\+Queue\+Peek (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_priority_queue}{Priority\+Queue}} $\ast$}]{queue }\end{DoxyParamCaption})}
+
+This function will take the queue address as a parameter, then it will return the rear item address in the queue, without removing the item from the queue. 
+\begin{DoxyParams}{Parameters}
+{\em queue} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_priority_queue_8h_a75db5411fcbf2a1f7c9de30ec9aab78e}\label{_priority_queue_8h_a75db5411fcbf2a1f7c9de30ec9aab78e}} 
+\index{PriorityQueue.h@{PriorityQueue.h}!pQueueToArray@{pQueueToArray}}
+\index{pQueueToArray@{pQueueToArray}!PriorityQueue.h@{PriorityQueue.h}}
+\doxysubsubsection{\texorpdfstring{pQueueToArray()}{pQueueToArray()}}
+{\footnotesize\ttfamily void$\ast$$\ast$ p\+Queue\+To\+Array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_priority_queue}{Priority\+Queue}} $\ast$}]{queue }\end{DoxyParamCaption})}
+
+This function will take the queue address as a parameter, then it will return a double void pointer array that contains a copy of all the queue items. 
+\begin{DoxyParams}{Parameters}
+{\em queue} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_priority_queue_8h_a13c4c93548d6e164d9656d4a2355ae74}\label{_priority_queue_8h_a13c4c93548d6e164d9656d4a2355ae74}} 
+\index{PriorityQueue.h@{PriorityQueue.h}!priorityQueueInitialization@{priorityQueueInitialization}}
+\index{priorityQueueInitialization@{priorityQueueInitialization}!PriorityQueue.h@{PriorityQueue.h}}
+\doxysubsubsection{\texorpdfstring{priorityQueueInitialization()}{priorityQueueInitialization()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_priority_queue}{Priority\+Queue}}$\ast$ priority\+Queue\+Initialization (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{size\+Of\+Type,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$)(const void $\ast$, const void $\ast$)}]{comp }\end{DoxyParamCaption})}
+
+This function will take the size of the type, and the compare function address as a parameters, then it will initialize a new priority queue in the memory, then the function will return the queue address. 
+\begin{DoxyParams}{Parameters}
+{\em size\+Of\+Type} & \\
+\hline
+{\em comp} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}

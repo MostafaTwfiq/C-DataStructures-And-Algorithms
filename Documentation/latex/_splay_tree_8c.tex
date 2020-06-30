@@ -1,2 +1,272 @@
 \hypertarget{_splay_tree_8c}{}\doxysection{Sources/\+Splay\+Tree.c File Reference}
 \label{_splay_tree_8c}\index{Sources/SplayTree.c@{Sources/SplayTree.c}}
+{\ttfamily \#include \char`\"{}../\+Headers/\+Splay\+Tree.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_splay_tree_8c_a26b347f372958c73bd596b71b40b85b7}{print\+Splay\+Tree\+Helper}} (\mbox{\hyperlink{struct_splay_node}{Splay\+Node}} $\ast$root, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} space, void(print\+Fn)(void $\ast$))
+\item 
+void \mbox{\hyperlink{_splay_tree_8c_ae291f79a6079241d8f0df81718a5c836}{Splay\+Tree\+To\+Array\+Recurs}} (\mbox{\hyperlink{struct_splay_node}{Splay\+Node}} $\ast$node, void $\ast$$\ast$arr, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} $\ast$i)
+\item 
+\mbox{\hyperlink{struct_splay_node}{Splay\+Node}} $\ast$ \mbox{\hyperlink{_splay_tree_8c_ad2cf76c825dd285e34696bc058a39e36}{new\+Splay\+Node}} (void $\ast$key)
+\item 
+\mbox{\hyperlink{struct_splay_tree}{Splay\+Tree}} $\ast$ \mbox{\hyperlink{_splay_tree_8c_a4a740f25a7422ff48cc7acc32204fa96}{Splay\+Tree\+Initialize}} (int16\+\_\+t($\ast$cmp)(const void $\ast$, const void $\ast$))
+\item 
+\mbox{\hyperlink{struct_splay_node}{Splay\+Node}} $\ast$ \mbox{\hyperlink{_splay_tree_8c_ab3d6f5006a72f85e5c6304ecc953d4da}{right\+Rotate\+Splay}} (\mbox{\hyperlink{struct_splay_node}{Splay\+Node}} $\ast$x)
+\item 
+\mbox{\hyperlink{struct_splay_node}{Splay\+Node}} $\ast$ \mbox{\hyperlink{_splay_tree_8c_a06c1341c21ab73b5122ffe1d1dee83dc}{left\+Rotate\+Splay}} (\mbox{\hyperlink{struct_splay_node}{Splay\+Node}} $\ast$x)
+\item 
+\mbox{\hyperlink{struct_splay_node}{Splay\+Node}} $\ast$ \mbox{\hyperlink{_splay_tree_8c_a7bb63495a1efc73a5523986e7d383bce}{splay}} (\mbox{\hyperlink{struct_splay_tree}{Splay\+Tree}} $\ast$splay\+Tree, \mbox{\hyperlink{struct_splay_node}{Splay\+Node}} $\ast$root, void $\ast$key)
+\item 
+\mbox{\hyperlink{struct_splay_node}{Splay\+Node}} $\ast$ \mbox{\hyperlink{_splay_tree_8c_a248cc0cdbf421e365d755c4188285226}{Splay\+Tree\+Search}} (\mbox{\hyperlink{struct_splay_tree}{Splay\+Tree}} $\ast$splay\+Tree, void $\ast$key)
+\item 
+void \mbox{\hyperlink{_splay_tree_8c_a201b6cecb2ba15049c38ca47bb9fc39b}{Splay\+Tree\+Insert}} (\mbox{\hyperlink{struct_splay_tree}{Splay\+Tree}} $\ast$splay\+Tree, void $\ast$key)
+\item 
+void \mbox{\hyperlink{_splay_tree_8c_a029c068f95888d30671fac6ba933be75}{Splay\+Tree\+Delete}} (\mbox{\hyperlink{struct_splay_tree}{Splay\+Tree}} $\ast$splay\+Tree, void $\ast$key)
+\item 
+void \mbox{\hyperlink{_splay_tree_8c_aa0ec599f35d4237c96d98cc305783f94}{free\+Splay\+Node}} (\mbox{\hyperlink{struct_splay_node}{Splay\+Node}} $\ast$$\ast$node)
+\item 
+void \mbox{\hyperlink{_splay_tree_8c_acfcc02bc8116ab9cb87dab08b263c79d}{free\+Splay\+Tree}} (\mbox{\hyperlink{struct_splay_node}{Splay\+Node}} $\ast$$\ast$root)
+\item 
+void \mbox{\hyperlink{_splay_tree_8c_ac2b8f2320944a9a4af681ba3de43d0d4}{print\+In\+Order\+Splay\+Tree}} (\mbox{\hyperlink{struct_splay_node}{Splay\+Node}} $\ast$node, void(print\+Fn)(void $\ast$))
+\item 
+void \mbox{\hyperlink{_splay_tree_8c_a5f2d3a1b9402e602f83f7e39332e4e4a}{print\+Splay\+Tree}} (\mbox{\hyperlink{struct_splay_node}{Splay\+Node}} $\ast$root, void(print\+Fn)(void $\ast$))
+\item 
+void \mbox{\hyperlink{_splay_tree_8c_aafa7d63340e5245005869897f7215ab1}{Splay\+Tree\+Insert\+All}} (\mbox{\hyperlink{struct_splay_tree}{Splay\+Tree}} $\ast$splay\+Tree, void $\ast$$\ast$array, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} length)
+\item 
+void $\ast$$\ast$ \mbox{\hyperlink{_splay_tree_8c_ac805de09473db93a0626d88562ce529d}{Splay\+Tree\+To\+Array}} (\mbox{\hyperlink{struct_splay_tree}{Splay\+Tree}} $\ast$splay\+Tree)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_splay_tree_8c_aa0ec599f35d4237c96d98cc305783f94}\label{_splay_tree_8c_aa0ec599f35d4237c96d98cc305783f94}} 
+\index{SplayTree.c@{SplayTree.c}!freeSplayNode@{freeSplayNode}}
+\index{freeSplayNode@{freeSplayNode}!SplayTree.c@{SplayTree.c}}
+\doxysubsubsection{\texorpdfstring{freeSplayNode()}{freeSplayNode()}}
+{\footnotesize\ttfamily void free\+Splay\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_splay_node}{Splay\+Node}} $\ast$$\ast$}]{node }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_splay_tree_8c_acfcc02bc8116ab9cb87dab08b263c79d}\label{_splay_tree_8c_acfcc02bc8116ab9cb87dab08b263c79d}} 
+\index{SplayTree.c@{SplayTree.c}!freeSplayTree@{freeSplayTree}}
+\index{freeSplayTree@{freeSplayTree}!SplayTree.c@{SplayTree.c}}
+\doxysubsubsection{\texorpdfstring{freeSplayTree()}{freeSplayTree()}}
+{\footnotesize\ttfamily void free\+Splay\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_splay_node}{Splay\+Node}} $\ast$$\ast$}]{root }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_splay_tree_8c_a06c1341c21ab73b5122ffe1d1dee83dc}\label{_splay_tree_8c_a06c1341c21ab73b5122ffe1d1dee83dc}} 
+\index{SplayTree.c@{SplayTree.c}!leftRotateSplay@{leftRotateSplay}}
+\index{leftRotateSplay@{leftRotateSplay}!SplayTree.c@{SplayTree.c}}
+\doxysubsubsection{\texorpdfstring{leftRotateSplay()}{leftRotateSplay()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_splay_node}{Splay\+Node}}$\ast$ left\+Rotate\+Splay (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_splay_node}{Splay\+Node}} $\ast$}]{x }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_splay_tree_8c_ad2cf76c825dd285e34696bc058a39e36}\label{_splay_tree_8c_ad2cf76c825dd285e34696bc058a39e36}} 
+\index{SplayTree.c@{SplayTree.c}!newSplayNode@{newSplayNode}}
+\index{newSplayNode@{newSplayNode}!SplayTree.c@{SplayTree.c}}
+\doxysubsubsection{\texorpdfstring{newSplayNode()}{newSplayNode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_splay_node}{Splay\+Node}}$\ast$ new\+Splay\+Node (\begin{DoxyParamCaption}\item[{void $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_splay_tree_8c_ac2b8f2320944a9a4af681ba3de43d0d4}\label{_splay_tree_8c_ac2b8f2320944a9a4af681ba3de43d0d4}} 
+\index{SplayTree.c@{SplayTree.c}!printInOrderSplayTree@{printInOrderSplayTree}}
+\index{printInOrderSplayTree@{printInOrderSplayTree}!SplayTree.c@{SplayTree.c}}
+\doxysubsubsection{\texorpdfstring{printInOrderSplayTree()}{printInOrderSplayTree()}}
+{\footnotesize\ttfamily void print\+In\+Order\+Splay\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_splay_node}{Splay\+Node}} $\ast$}]{node,  }\item[{void(print\+Fn)(void $\ast$)}]{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & \\
+\hline
+{\em print\+Fn} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_splay_tree_8c_a5f2d3a1b9402e602f83f7e39332e4e4a}\label{_splay_tree_8c_a5f2d3a1b9402e602f83f7e39332e4e4a}} 
+\index{SplayTree.c@{SplayTree.c}!printSplayTree@{printSplayTree}}
+\index{printSplayTree@{printSplayTree}!SplayTree.c@{SplayTree.c}}
+\doxysubsubsection{\texorpdfstring{printSplayTree()}{printSplayTree()}}
+{\footnotesize\ttfamily void print\+Splay\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_splay_node}{Splay\+Node}} $\ast$}]{root,  }\item[{void(print\+Fn)(void $\ast$)}]{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & \\
+\hline
+{\em print\+Fn} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_splay_tree_8c_a26b347f372958c73bd596b71b40b85b7}\label{_splay_tree_8c_a26b347f372958c73bd596b71b40b85b7}} 
+\index{SplayTree.c@{SplayTree.c}!printSplayTreeHelper@{printSplayTreeHelper}}
+\index{printSplayTreeHelper@{printSplayTreeHelper}!SplayTree.c@{SplayTree.c}}
+\doxysubsubsection{\texorpdfstring{printSplayTreeHelper()}{printSplayTreeHelper()}}
+{\footnotesize\ttfamily void print\+Splay\+Tree\+Helper (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_splay_node}{Splay\+Node}} $\ast$}]{root,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{space,  }\item[{void(print\+Fn)(void $\ast$)}]{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & \\
+\hline
+{\em space} & \\
+\hline
+{\em print\+Fn} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_splay_tree_8c_ab3d6f5006a72f85e5c6304ecc953d4da}\label{_splay_tree_8c_ab3d6f5006a72f85e5c6304ecc953d4da}} 
+\index{SplayTree.c@{SplayTree.c}!rightRotateSplay@{rightRotateSplay}}
+\index{rightRotateSplay@{rightRotateSplay}!SplayTree.c@{SplayTree.c}}
+\doxysubsubsection{\texorpdfstring{rightRotateSplay()}{rightRotateSplay()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_splay_node}{Splay\+Node}}$\ast$ right\+Rotate\+Splay (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_splay_node}{Splay\+Node}} $\ast$}]{x }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_splay_tree_8c_a7bb63495a1efc73a5523986e7d383bce}\label{_splay_tree_8c_a7bb63495a1efc73a5523986e7d383bce}} 
+\index{SplayTree.c@{SplayTree.c}!splay@{splay}}
+\index{splay@{splay}!SplayTree.c@{SplayTree.c}}
+\doxysubsubsection{\texorpdfstring{splay()}{splay()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_splay_node}{Splay\+Node}}$\ast$ splay (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_splay_tree}{Splay\+Tree}} $\ast$}]{splay\+Tree,  }\item[{\mbox{\hyperlink{struct_splay_node}{Splay\+Node}} $\ast$}]{root,  }\item[{void $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em splay\+Tree} & \\
+\hline
+{\em root} & \\
+\hline
+{\em key} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_splay_tree_8c_a029c068f95888d30671fac6ba933be75}\label{_splay_tree_8c_a029c068f95888d30671fac6ba933be75}} 
+\index{SplayTree.c@{SplayTree.c}!SplayTreeDelete@{SplayTreeDelete}}
+\index{SplayTreeDelete@{SplayTreeDelete}!SplayTree.c@{SplayTree.c}}
+\doxysubsubsection{\texorpdfstring{SplayTreeDelete()}{SplayTreeDelete()}}
+{\footnotesize\ttfamily void Splay\+Tree\+Delete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_splay_tree}{Splay\+Tree}} $\ast$}]{splay\+Tree,  }\item[{void $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em splay\+Tree} & \\
+\hline
+{\em key} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_splay_tree_8c_a4a740f25a7422ff48cc7acc32204fa96}\label{_splay_tree_8c_a4a740f25a7422ff48cc7acc32204fa96}} 
+\index{SplayTree.c@{SplayTree.c}!SplayTreeInitialize@{SplayTreeInitialize}}
+\index{SplayTreeInitialize@{SplayTreeInitialize}!SplayTree.c@{SplayTree.c}}
+\doxysubsubsection{\texorpdfstring{SplayTreeInitialize()}{SplayTreeInitialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_splay_tree}{Splay\+Tree}}$\ast$ Splay\+Tree\+Initialize (\begin{DoxyParamCaption}\item[{int16\+\_\+t($\ast$)(const void $\ast$, const void $\ast$)}]{cmp }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & \\
+\hline
+{\em cmp} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_splay_tree_8c_a201b6cecb2ba15049c38ca47bb9fc39b}\label{_splay_tree_8c_a201b6cecb2ba15049c38ca47bb9fc39b}} 
+\index{SplayTree.c@{SplayTree.c}!SplayTreeInsert@{SplayTreeInsert}}
+\index{SplayTreeInsert@{SplayTreeInsert}!SplayTree.c@{SplayTree.c}}
+\doxysubsubsection{\texorpdfstring{SplayTreeInsert()}{SplayTreeInsert()}}
+{\footnotesize\ttfamily void Splay\+Tree\+Insert (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_splay_tree}{Splay\+Tree}} $\ast$}]{splay\+Tree,  }\item[{void $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em splay\+Tree} & \\
+\hline
+{\em root} & \\
+\hline
+{\em key} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_splay_tree_8c_aafa7d63340e5245005869897f7215ab1}\label{_splay_tree_8c_aafa7d63340e5245005869897f7215ab1}} 
+\index{SplayTree.c@{SplayTree.c}!SplayTreeInsertAll@{SplayTreeInsertAll}}
+\index{SplayTreeInsertAll@{SplayTreeInsertAll}!SplayTree.c@{SplayTree.c}}
+\doxysubsubsection{\texorpdfstring{SplayTreeInsertAll()}{SplayTreeInsertAll()}}
+{\footnotesize\ttfamily void Splay\+Tree\+Insert\+All (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_splay_tree}{Splay\+Tree}} $\ast$}]{splay\+Tree,  }\item[{void $\ast$$\ast$}]{array,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{length }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em splay\+Tree} & \\
+\hline
+{\em array} & \\
+\hline
+{\em length} & ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_splay_tree_8c_a248cc0cdbf421e365d755c4188285226}\label{_splay_tree_8c_a248cc0cdbf421e365d755c4188285226}} 
+\index{SplayTree.c@{SplayTree.c}!SplayTreeSearch@{SplayTreeSearch}}
+\index{SplayTreeSearch@{SplayTreeSearch}!SplayTree.c@{SplayTree.c}}
+\doxysubsubsection{\texorpdfstring{SplayTreeSearch()}{SplayTreeSearch()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_splay_node}{Splay\+Node}}$\ast$ Splay\+Tree\+Search (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_splay_tree}{Splay\+Tree}} $\ast$}]{splay\+Tree,  }\item[{void $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em splay\+Tree} & \\
+\hline
+{\em key} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_splay_tree_8c_ac805de09473db93a0626d88562ce529d}\label{_splay_tree_8c_ac805de09473db93a0626d88562ce529d}} 
+\index{SplayTree.c@{SplayTree.c}!SplayTreeToArray@{SplayTreeToArray}}
+\index{SplayTreeToArray@{SplayTreeToArray}!SplayTree.c@{SplayTree.c}}
+\doxysubsubsection{\texorpdfstring{SplayTreeToArray()}{SplayTreeToArray()}}
+{\footnotesize\ttfamily void$\ast$$\ast$ Splay\+Tree\+To\+Array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_splay_tree}{Splay\+Tree}} $\ast$}]{splay\+Tree }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em binary\+Tree} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_splay_tree_8c_ae291f79a6079241d8f0df81718a5c836}\label{_splay_tree_8c_ae291f79a6079241d8f0df81718a5c836}} 
+\index{SplayTree.c@{SplayTree.c}!SplayTreeToArrayRecurs@{SplayTreeToArrayRecurs}}
+\index{SplayTreeToArrayRecurs@{SplayTreeToArrayRecurs}!SplayTree.c@{SplayTree.c}}
+\doxysubsubsection{\texorpdfstring{SplayTreeToArrayRecurs()}{SplayTreeToArrayRecurs()}}
+{\footnotesize\ttfamily void Splay\+Tree\+To\+Array\+Recurs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_splay_node}{Splay\+Node}} $\ast$}]{node,  }\item[{void $\ast$$\ast$}]{arr,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} $\ast$}]{i }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & \\
+\hline
+{\em arr} & \\
+\hline
+{\em i} & \\
+\hline
+\end{DoxyParams}

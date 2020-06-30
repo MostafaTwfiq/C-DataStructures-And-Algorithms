@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['trie_905',['Trie',['../_trie_8h.html#ac539c2f1d9c08086c130fedc98bc6990',1,'Trie.h']]]
+  ['priorityqueue_1069',['PriorityQueue',['../_priority_queue_8h.html#a9909a4143c78addfa84d0fb39fc3ba87',1,'PriorityQueue.h']]]
 ];

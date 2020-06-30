@@ -22,7 +22,7 @@ void \mbox{\hyperlink{_linked_list_8c_acdab1cb34903370c25ea08359e1cf591}{linked\
 \item 
 void \mbox{\hyperlink{_linked_list_8c_a9dc81715fb5f76c7596754041802cc81}{linked\+List\+Add\+At\+Index}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} index, void $\ast$item)
 \item 
-void \mbox{\hyperlink{_linked_list_8c_a2c9945bec36f46f59d119000ec4a5953}{linked\+List\+Add\+All}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List, void $\ast$items, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} items\+Length)
+void \mbox{\hyperlink{_linked_list_8c_a6c6eb00967352f9c1ad3ec8295a6d316}{linked\+List\+Add\+All}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List, void $\ast$$\ast$items, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} items\+Length)
 \item 
 void \mbox{\hyperlink{_linked_list_8c_aac92a8a4a0d35ba4750abaa1cf09aa2d}{linked\+List\+Delete\+First}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List)
 \item 
@@ -48,7 +48,7 @@ void $\ast$ \mbox{\hyperlink{_linked_list_8c_a582144735ceba15f68a12692afd99cc5}{
 \item 
 void $\ast$ \mbox{\hyperlink{_linked_list_8c_ac94cb5cc42b93d5079454f56637c4e29}{linked\+List\+Get}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} index)
 \item 
-void $\ast$ \mbox{\hyperlink{_linked_list_8c_ac97b942ca91b1e3a1e76ab01c62ef455}{linked\+List\+To\+Array}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List)
+void $\ast$$\ast$ \mbox{\hyperlink{_linked_list_8c_a609934d79448e884b272efed1188046d}{linked\+List\+To\+Array}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List)
 \item 
 \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_linked_list_8c_a6625f24d3dc106a7db1435eeb5159444}{linked\+List\+Get\+Length}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List)
 \item 
@@ -83,11 +83,11 @@ This function will take the linked list address as a parameter, then it will des
 {\em linked\+List} & \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{_linked_list_8c_a2c9945bec36f46f59d119000ec4a5953}\label{_linked_list_8c_a2c9945bec36f46f59d119000ec4a5953}} 
+\mbox{\Hypertarget{_linked_list_8c_a6c6eb00967352f9c1ad3ec8295a6d316}\label{_linked_list_8c_a6c6eb00967352f9c1ad3ec8295a6d316}} 
 \index{LinkedList.c@{LinkedList.c}!linkedListAddAll@{linkedListAddAll}}
 \index{linkedListAddAll@{linkedListAddAll}!LinkedList.c@{LinkedList.c}}
 \doxysubsubsection{\texorpdfstring{linkedListAddAll()}{linkedListAddAll()}}
-{\footnotesize\ttfamily void linked\+List\+Add\+All (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$}]{linked\+List,  }\item[{void $\ast$}]{items,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{items\+Length }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void linked\+List\+Add\+All (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$}]{linked\+List,  }\item[{void $\ast$$\ast$}]{items,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{items\+Length }\end{DoxyParamCaption})}
 
 This function will take the linked list address, items array, and the length of the array as parameters, then it will copy the array item if the linked list in a new items addresses. 
 \begin{DoxyParams}{Parameters}
@@ -357,11 +357,11 @@ This function will take the linked list address as a parameter, then it will ret
 \begin{DoxyReturn}{Returns}
 
 \end{DoxyReturn}
-\mbox{\Hypertarget{_linked_list_8c_ac97b942ca91b1e3a1e76ab01c62ef455}\label{_linked_list_8c_ac97b942ca91b1e3a1e76ab01c62ef455}} 
+\mbox{\Hypertarget{_linked_list_8c_a609934d79448e884b272efed1188046d}\label{_linked_list_8c_a609934d79448e884b272efed1188046d}} 
 \index{LinkedList.c@{LinkedList.c}!linkedListToArray@{linkedListToArray}}
 \index{linkedListToArray@{linkedListToArray}!LinkedList.c@{LinkedList.c}}
 \doxysubsubsection{\texorpdfstring{linkedListToArray()}{linkedListToArray()}}
-{\footnotesize\ttfamily void$\ast$ linked\+List\+To\+Array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$}]{linked\+List }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void$\ast$$\ast$ linked\+List\+To\+Array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$}]{linked\+List }\end{DoxyParamCaption})}
 
 This function will take the linked list address as a parameter, then it will return a void pointer to an array consist of the items in the linked list. The items in the array doesn\textquotesingle{}t share the same address in the linked list items. 
 \begin{DoxyParams}{Parameters}

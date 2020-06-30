@@ -5,10 +5,10 @@ var _array_queue_8c =
     [ "ArrayQueueDestroy", "_array_queue_8c.html#a1fe1cec8acdafd5f094866c34232d896", null ],
     [ "ArrayQueueDisplay", "_array_queue_8c.html#a6d3ee894e89d96673c11efbcced958aa", null ],
     [ "ArrayQueueEnqueue", "_array_queue_8c.html#afa145462a1d1c837b505bbfe45bb382d", null ],
-    [ "ArrayQueueEnqueueAll", "_array_queue_8c.html#a01b1ef9c7c2b466c26ca8cb4d56aafcb", null ],
+    [ "ArrayQueueEnqueueAll", "_array_queue_8c.html#a46467abb7bc4b34a03270a609b8bf719", null ],
     [ "ArrayQueueLength", "_array_queue_8c.html#a4573c26eb55a2293f24cadb78a0bb92e", null ],
     [ "ArrayQueuePeek", "_array_queue_8c.html#aa28a769694a2ec0aa1e99c03c19d267f", null ],
-    [ "ArrayQueueToArray", "_array_queue_8c.html#a06b4d8a31eb0ed14387e2fd51b71ff2c", null ],
+    [ "ArrayQueueToArray", "_array_queue_8c.html#a96986750d476cd9abfe22b6d64a05038", null ],
     [ "isArrayQueueEmpty", "_array_queue_8c.html#a672427fa4961cb2289825b12dfc7d7d0", null ],
     [ "QueueInitialize", "_array_queue_8c.html#aef020fbfc4f42e685a1f2bffd35f1a1e", null ]
 ];

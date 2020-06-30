@@ -12,7 +12,7 @@ void getMaxStepsAVLTreeRecurs(AVLTNode * node, int * steps);
 void getMinStepsAVLTreeRecurs(AVLTNode * node, int * steps);
 
 
-/* This function calculates the max between two integers. 
+/** This function calculates the max between two integers. 
  * @param a Reference int of comparision.
  * @param b  int to compare against.
  * @return Returns which ever is the greater of the two.
@@ -21,34 +21,34 @@ int max(int a, int b){
     return (a > b)? a : b;
 }
 
-/* Function that Left Rotates a Tree at a certain Node.
-* @param n Node to rotate at.
+/** Function that Left Rotates a Tree at a certain node.
+* @param n node to rotate at.
 * @return Returns the rotated sub-Tree.
 **/
 AVLTNode *AVLLeftRotate(AVLTNode *n);
 
-/* Function that Right rotates a Tree at a certain Node.
-* @param n  Node to rotate at.
+/** Function that Right rotates a Tree at a certain node.
+* @param n  node to rotate at.
 * @return
 **/
 AVLTNode *AVLRightRotate(AVLTNode *n);
 
-/* Gets the balance at a certain Node n.
-* @param n Node to get the balance at
-* @return
+/** Gets the balance at a certain node n.
+* @param n node to get the balance at
+* @return returns the int balance at node n
 **/
 int AVLGetBalance(AVLTNode *n);
 
-/* Prints the Tree Statistics:
+/** Prints the Tree Statistics:
   - Number of Nodes,
   - Height,
-  - Minimum Steps to the minimum Node,
-  - Maximum Steps to the max Node.
+  - Minimum Steps to the minimum node,
+  - Maximum Steps to the max node.
   - Rule Satisfaction:
         - Maximum node Rule(2^(h+1)-1)
         - Minimum node Rule(2*1.6^h)
             where h is the height of the tree.
-* @param tree
+* @param tree Reference to the AVL tree.
 **/
 void AVLTreePrintStats(AVLTree *tree){
     if(tree&&tree->root){
@@ -80,7 +80,7 @@ void AVLTreePrintStats(AVLTree *tree){
     }
 }
 
-/* Initialization Function for AVL Tree. A comparison function must be provided
+/** Initialization Function for AVL Tree. A comparison function must be provided
   for the tree to be able to level its Nodes. Returns a reference to an allocated AVLTree pointer on the heap.
 * @param cmp Reference to the comparator function.
 * @return Pointer to the allocated AVL tree on the heap.
@@ -97,9 +97,9 @@ AVLTree* AVLTreeInitialize(int(*cmp)(const void*, const void*)){
     return t;
 }
 
-/* Creates a new Avl TreeNode for a given key.
+/** Creates a new Avl TreeNode for a given key.
 * @param key Reference pointer to preallocated key.
-* @return Returns a pointer to an allocated Node on the Stack. 
+* @return Returns a pointer to an allocated node on the Stack. 
 **/
 AVLTNode* newAVLTreeNode(void* key){
     AVLTNode *p =  (AVLTNode*)malloc(sizeof(AVLTNode));
@@ -114,8 +114,8 @@ AVLTNode* newAVLTreeNode(void* key){
     return p;
 }
 
-/* Given an AVL Tree's root node it frees it's elements recursively.Setting the root node to Null. 
-* @param node root Node to start freeing at.
+/** Given an AVL Tree's root node it frees it's elements recursively.Setting the root node to Null. 
+* @param node Eact Reference to root node to start freeing at.
 **/
 void AVLTreeFree(AVLTNode** node){
     if (*node==NULL) return;
@@ -125,8 +125,8 @@ void AVLTreeFree(AVLTNode** node){
     *node=NULL;
 }
 
-/* Given a Node it frees it's Key and the Node. Setting both to Null.
-* @param node
+/** Given a node it frees it's Key and the node. Setting both to Null.
+* @param node Exact Reference for node to Free.
 **/
 void freeAVLTreeNode(AVLTNode **node){
     if(*node) return;
@@ -135,11 +135,11 @@ void freeAVLTreeNode(AVLTNode **node){
     free(*node);
 }
 
-/*
+/** inserts a node at the a reference node (preferably the root) with the provided key if not present in the tree and returns a reference to the new node.
 * @param avlTree Reference to the AVL tree.
-* @param node
-* @param key
-* @return
+* @param node reference for node to start inserting at preferably the root.
+* @param key Reference to key to inset in the Tree.
+* @return Returns reference to the new root.
 **/
 AVLTNode* AVLTreeInsert(AVLTree * avlTree, AVLTNode *node, void *key) {
     if (node == NULL) {
@@ -193,7 +193,7 @@ AVLTNode *AVLRightRotate(AVLTNode *n){
 
 AVLTNode *AVLLeftRotate(AVLTNode *n){
     AVLTNode *rightNode =(AVLTNode*) n->right;
-    //   if(!rightNode) return n;
+    if(!rightNode) return n;
     AVLTNode *leftOfright = (AVLTNode*)rightNode->left;
 
     rightNode->left = n;
@@ -205,7 +205,7 @@ AVLTNode *AVLLeftRotate(AVLTNode *n){
     return rightNode;
 }
 
-/*
+/** Given a node get the height at the reference node node.
 * @param node Gets the height at a reference node n.
 * @return Returns int height of the tree.
 **/
@@ -219,11 +219,11 @@ int AVLGetBalance(AVLTNode *n){
     return height(n->left) - height(n->right);
 }
 
-/*
+/**
 * @param avlTree Reference to the AVL tree.
-* @param root Reference to the root Node.
-* @param referenceNode  Reference Node to get the in-order successor for.
-* @param leftMost Pointer to store the inorder successor for that Node.
+* @param root Reference to the root node.
+* @param referenceNode  Reference node to get the in-order successor for.
+* @param leftMost Pointer to store the inorder successor for that node.
 **/
 void AVLTreeInOrderSuccessor(AVLTree *avlTree, AVLTNode* root, AVLTNode* referenceNode, AVLTNode **leftMost) {
     if (root == NULL) {
@@ -242,11 +242,11 @@ void AVLTreeInOrderSuccessor(AVLTree *avlTree, AVLTNode* root, AVLTNode* referen
     }
 }
 
-/*
+/** Given a root node (i.e a to start search at for the reference node n) find the reference node and stores to inorder Predecessor for that node in the rightMost param.
 * @param avlTree Reference to the AVL tree.
-* @param root Reference to the root Node.
-* @param referenceNode Reference Node to get the in-order Predecessor for.
-* @param rightMost Pointer to store the inorder Predecessor for that Node.
+* @param root Reference to the root node.
+* @param referenceNode Reference node to get the in-order Predecessor for.
+* @param rightMost Pointer to store the inorder Predecessor for that node.
 **/
 void inOrderPredecessorAVLTree(AVLTree *avlTree, AVLTNode *root, AVLTNode *referenceNode, AVLTNode **rightMost){
     if (root == NULL) {
@@ -266,18 +266,18 @@ void inOrderPredecessorAVLTree(AVLTree *avlTree, AVLTNode *root, AVLTNode *refer
     }
 }
 
-/*
-* @param root Reference to the root Node.
-* @param printFn
+/** Prints a tree in 2 space of the console.
+* @param root Reference to the root node.
+* @param printFn Pointer to the print function.
 **/
 void AVLTreePrint(AVLTNode *root, void (printFn)(void *)){
     printAVLTreeHelper(root, 0, printFn);
 }
 
-/*
-* @param root Reference to the root Node.
-* @param space
-* @param printFn
+/** Helper function for printing the tree in 2d space.
+* @param root Reference to the root node.
+* @param space Number of spaces to print at the current level.
+* @param printFn Pointer to the print function.
 **/
 void printAVLTreeHelper(AVLTNode *root, int space, void (printFn)(void *)){
     if (root == NULL)
@@ -290,11 +290,11 @@ void printAVLTreeHelper(AVLTNode *root, int space, void (printFn)(void *)){
     printAVLTreeHelper(root->left, space, printFn);
 }
 
-/*
+/** Given a key, and a tree to search in determines whethr a key is present in the tree or not.
 * @param avlTree Reference to the AVL tree.
-* @param root Reference to the root Node.
+* @param root Reference to the root node.
 * @param searchKey
-* @return
+* @return returns int as bool. Returns 1 if is found else returns 0.
 **/
 int AVLTreeIsPresent(AVLTree *avlTree, void* searchKey){
     int found = 0;
@@ -302,9 +302,9 @@ int AVLTreeIsPresent(AVLTree *avlTree, void* searchKey){
     return found;
 }
 
-/*
+/**
 * @param avlTree Reference to the AVL tree.
-* @param root Reference to the root Node.
+* @param root Reference to the root node.
 * @param searchValue Value to search for.
 * @param found Int to act as boolean. If found it is 1 else set to 0.
 **/
@@ -320,16 +320,16 @@ void isPresentInAVLTreeRecurs(AVLTree *avlTree, AVLTNode *root, void *searchValu
     }
 }
 
-/*
-* @param root Reference to the root Node.
-* @return
+/** Reference to the root node to start calculating the size of tree.
+* @param root Reference to the root node.
+* @return the number of nodes in the tree.
 **/
 int AVLTreeGetSize(AVLTNode* root){
     if (root) return 1 + AVLTreeGetSize(root->left) + AVLTreeGetSize(root->right);
     else return 0;
 }
 
-/*
+/** Gets the right most node whch should be the minimum value node of the AVLTree.
 * @param node
 * @return
 **/
@@ -339,7 +339,7 @@ AVLTNode * AVLTreeMinValueNode(AVLTNode* node){
     return node;
 }
 
-/*
+/**
 * @param node
 * @return
 **/
@@ -349,7 +349,7 @@ AVLTNode * AVLTreeMaxValueNode(AVLTNode* node){
     return node;
 }
 
-/*
+/**
 * @param node
 * @return
 * */
@@ -359,7 +359,7 @@ int AVLTreeGetMinSteps(AVLTNode* node){
     return steps;
 }
 
-/*
+/**
 * @param node
 * @param steps
 **/
@@ -369,7 +369,7 @@ void getMinStepsAVLTreeRecurs(AVLTNode *node, int *steps){
     if(node->left )getMinStepsAVLTreeRecurs(node->left, steps);
 }
 
-/*
+/**
 * @param node
 * @return
 **/
@@ -379,7 +379,7 @@ int AVLTreeGetMaxSteps(AVLTNode* node ){
     return steps;
 }
 
-/*
+/**
 * @param node
 * @param steps
 **/
@@ -389,9 +389,9 @@ void getMaxStepsAVLTreeRecurs(AVLTNode* node, int *steps){
     if (node->right) getMaxStepsAVLTreeRecurs(node->right, steps);
 }
 
-/*
-* @param node
-* @param printFn
+/** Takes a print function and starts printing from using the provided print function.
+* @param node Reference node to start printing from.
+* @param printFn print function to use for printing node keys.
 **/
 void AVLTreePrintInOrder(AVLTNode* node, void (printFn)(void *)){
     if(!node)return;
@@ -400,9 +400,9 @@ void AVLTreePrintInOrder(AVLTNode* node, void (printFn)(void *)){
     AVLTreePrintInOrder(node->right, printFn);
 }
 
-/*
+/**Given a Tree converts it to an array in-order
 * @param avlTree Reference to the AVL tree.
-* @return
+* @return returns an array of pointer references to keys that were stored in the tree.
 **/
 void **AVLTreeToArray(AVLTree *avlTree){
     void **array = (void **) malloc(sizeof(void *) * avlTree->nodeCount);
@@ -411,10 +411,10 @@ void **AVLTreeToArray(AVLTree *avlTree){
     return array;
 }
 
-/*
-* @param node
-* @param arr
-* @param i
+/** Recursively traverses the tree in order and adds elements to an allocated array by @link AVLTreeToArray @endlink .
+* @param node Node reference node to start converting from.
+* @param arr Preallocated array to start storing at.
+* @param i index to insert at in the array.
 **/
 void AVLTreeToArrayRecurs(AVLTNode* node, void **arr, int *i){
     if(!node) return;
@@ -424,11 +424,11 @@ void AVLTreeToArrayRecurs(AVLTNode* node, void **arr, int *i){
     AVLTreeToArrayRecurs(node->right, arr, i);
 }
 
-/*
+/** Given a tree and a reference node to start searching at (preferably the root) searches for node with the same key and return it.
 * @param avlTree Reference to the AVL tree.
-* @param node Node to start searching from preferably the root.
+* @param node node to start searching from preferably the root.
 * @param key Key object to search for in the AVLTree.
-* @return Returns the Found Node.
+* @return Returns the Found node.
 **/
 AVLTNode *AVLTreeSearch(AVLTree *avlTree, AVLTNode *node, char *key){
     if(!node) return NULL;
@@ -437,11 +437,11 @@ AVLTNode *AVLTreeSearch(AVLTree *avlTree, AVLTNode *node, char *key){
     if ((avlTree->cmp)(key,node->key)>0) return AVLTreeSearch(avlTree, node->right, key);
 }
 
-/*
+/** Given a Tree and it's root deletes a key with the same key and restores the tree order then returns the new node.
 * @param avlTree Reference to the AVL tree. Reference to the AVL tree.
-* @param root Reference to the root Node.
+* @param root Reference to the root node.
 * @param key Key object to add to the AVLTree.
-* @return Returns the new root Node of the AVL Tree.
+* @return Returns the new root node of the AVL Tree.
 **/
 AVLTNode* AVLTreeDeleteNode(AVLTree *avlTree, AVLTNode* root, void *key) {
     if(root==NULL) return root;
@@ -486,11 +486,11 @@ AVLTNode* AVLTreeDeleteNode(AVLTree *avlTree, AVLTNode* root, void *key) {
     return root;
 }
 
-/* Adds an array of void pointers to elements of the same type as the nodes of the tree.
+/** Adds an array of void pointers to elements of the same type as the nodes of the tree.
 * @param avlTree Reference to the AVL tree.
 * @param array Array to add data from.
 * @param length The Length of the array to add from.
-* @return Returns the new root Node.
+* @return Returns the new root node.
 **/
 AVLTNode * AVLTreeAddAll(AVLTree* avlTree,void **array, int length){
     for(int i =0; i<length;i++){

@@ -2,47 +2,55 @@
 \label{struct_a_v_l_t_node}\index{AVLTNode@{AVLTNode}}
 
 
+This structure describes n A\+VL Tree \mbox{\hyperlink{struct_node}{Node}}.  
+
+
+
+
 {\ttfamily \#include $<$A\+V\+L\+Tree.\+h$>$}
 
 \doxysubsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
-void $\ast$ \mbox{\hyperlink{struct_a_v_l_t_node_ab5c000aec752f2206131e183daf5efbf}{key}}
+void $\ast$ \mbox{\hyperlink{struct_a_v_l_t_node_ab0d96f9d852c2058c2546a1338e87544}{key}}
 \item 
-\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{struct_a_v_l_t_node_ad12fc34ce789bce6c8a05d8a17138534}{height}}
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{struct_a_v_l_t_node_a509290c21d570ff479c1b9d9b1fe8810}{height}}
 \item 
-struct \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$ \mbox{\hyperlink{struct_a_v_l_t_node_a882279243d7572b8270132298dd71aaf}{left}}
+struct \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$ \mbox{\hyperlink{struct_a_v_l_t_node_a58c76f848f15df202254c1daec468567}{left}}
 \item 
-struct \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$ \mbox{\hyperlink{struct_a_v_l_t_node_a197a55f1315770e3f773891436a30cc6}{right}}
+struct \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}} $\ast$ \mbox{\hyperlink{struct_a_v_l_t_node_a25331d5f9601b8cb1ce57490930d7c01}{right}}
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+This structure describes n A\+VL Tree \mbox{\hyperlink{struct_node}{Node}}. 
+
 \doxysubsection{Field Documentation}
-\mbox{\Hypertarget{struct_a_v_l_t_node_ad12fc34ce789bce6c8a05d8a17138534}\label{struct_a_v_l_t_node_ad12fc34ce789bce6c8a05d8a17138534}} 
+\mbox{\Hypertarget{struct_a_v_l_t_node_a509290c21d570ff479c1b9d9b1fe8810}\label{struct_a_v_l_t_node_a509290c21d570ff479c1b9d9b1fe8810}} 
 \index{AVLTNode@{AVLTNode}!height@{height}}
 \index{height@{height}!AVLTNode@{AVLTNode}}
 \doxysubsubsection{\texorpdfstring{height}{height}}
-{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} height}
+{\footnotesize\ttfamily height}
 
-\mbox{\Hypertarget{struct_a_v_l_t_node_ab5c000aec752f2206131e183daf5efbf}\label{struct_a_v_l_t_node_ab5c000aec752f2206131e183daf5efbf}} 
+Member \textquotesingle{}height\textquotesingle{} holds the current height of the node. \mbox{\Hypertarget{struct_a_v_l_t_node_ab0d96f9d852c2058c2546a1338e87544}\label{struct_a_v_l_t_node_ab0d96f9d852c2058c2546a1338e87544}} 
 \index{AVLTNode@{AVLTNode}!key@{key}}
 \index{key@{key}!AVLTNode@{AVLTNode}}
 \doxysubsubsection{\texorpdfstring{key}{key}}
-{\footnotesize\ttfamily void$\ast$ key}
+{\footnotesize\ttfamily key}
 
-\mbox{\Hypertarget{struct_a_v_l_t_node_a882279243d7572b8270132298dd71aaf}\label{struct_a_v_l_t_node_a882279243d7572b8270132298dd71aaf}} 
+Member \textquotesingle{}key\textquotesingle{} is a pointer a pre-\/allocated object. \mbox{\Hypertarget{struct_a_v_l_t_node_a58c76f848f15df202254c1daec468567}\label{struct_a_v_l_t_node_a58c76f848f15df202254c1daec468567}} 
 \index{AVLTNode@{AVLTNode}!left@{left}}
 \index{left@{left}!AVLTNode@{AVLTNode}}
 \doxysubsubsection{\texorpdfstring{left}{left}}
-{\footnotesize\ttfamily struct \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}}$\ast$ left}
+{\footnotesize\ttfamily left}
 
-\mbox{\Hypertarget{struct_a_v_l_t_node_a197a55f1315770e3f773891436a30cc6}\label{struct_a_v_l_t_node_a197a55f1315770e3f773891436a30cc6}} 
+Member \textquotesingle{}left\textquotesingle{} holds a reference to the left \mbox{\hyperlink{struct_node}{Node}} if present else it is Null. \mbox{\Hypertarget{struct_a_v_l_t_node_a25331d5f9601b8cb1ce57490930d7c01}\label{struct_a_v_l_t_node_a25331d5f9601b8cb1ce57490930d7c01}} 
 \index{AVLTNode@{AVLTNode}!right@{right}}
 \index{right@{right}!AVLTNode@{AVLTNode}}
 \doxysubsubsection{\texorpdfstring{right}{right}}
-{\footnotesize\ttfamily struct \mbox{\hyperlink{struct_a_v_l_t_node}{A\+V\+L\+T\+Node}}$\ast$ right}
+{\footnotesize\ttfamily right}
 
-
+Member \textquotesingle{}right\textquotesingle{} holds a reference to the right \mbox{\hyperlink{struct_node}{Node}} if present else it is Null. 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

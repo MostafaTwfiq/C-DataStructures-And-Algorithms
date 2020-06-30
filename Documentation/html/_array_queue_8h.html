@@ -129,12 +129,12 @@ Functions</h2></td></tr>
 <tr class="separator:a672427fa4961cb2289825b12dfc7d7d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4573c26eb55a2293f24cadb78a0bb92e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_array_queue_8h.html#a4573c26eb55a2293f24cadb78a0bb92e">ArrayQueueLength</a> (<a class="el" href="struct_array_queue.html">ArrayQueue</a> *arrayQueue)</td></tr>
 <tr class="separator:a4573c26eb55a2293f24cadb78a0bb92e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01b1ef9c7c2b466c26ca8cb4d56aafcb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_array_queue_8h.html#a01b1ef9c7c2b466c26ca8cb4d56aafcb">ArrayQueueEnqueueAll</a> (<a class="el" href="struct_array_queue.html">ArrayQueue</a> *arrayQueue, void *arr, <a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a> arrLength)</td></tr>
-<tr class="separator:a01b1ef9c7c2b466c26ca8cb4d56aafcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46467abb7bc4b34a03270a609b8bf719"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_array_queue_8h.html#a46467abb7bc4b34a03270a609b8bf719">ArrayQueueEnqueueAll</a> (<a class="el" href="struct_array_queue.html">ArrayQueue</a> *arrayQueue, void **arr, <a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a> arrLength)</td></tr>
+<tr class="separator:a46467abb7bc4b34a03270a609b8bf719"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa28a769694a2ec0aa1e99c03c19d267f"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_array_queue_8h.html#aa28a769694a2ec0aa1e99c03c19d267f">ArrayQueuePeek</a> (<a class="el" href="struct_array_queue.html">ArrayQueue</a> *arrayQueue)</td></tr>
 <tr class="separator:aa28a769694a2ec0aa1e99c03c19d267f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06b4d8a31eb0ed14387e2fd51b71ff2c"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_array_queue_8h.html#a06b4d8a31eb0ed14387e2fd51b71ff2c">ArrayQueueToArray</a> (<a class="el" href="struct_array_queue.html">ArrayQueue</a> *arrayQueue)</td></tr>
-<tr class="separator:a06b4d8a31eb0ed14387e2fd51b71ff2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96986750d476cd9abfe22b6d64a05038"><td class="memItemLeft" align="right" valign="top">void **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_array_queue_8h.html#a96986750d476cd9abfe22b6d64a05038">ArrayQueueToArray</a> (<a class="el" href="struct_array_queue.html">ArrayQueue</a> *arrayQueue)</td></tr>
+<tr class="separator:a96986750d476cd9abfe22b6d64a05038"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a127b9832fe5a70bfc9cff0b18132f6a1"></a>
@@ -304,8 +304,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a01b1ef9c7c2b466c26ca8cb4d56aafcb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a01b1ef9c7c2b466c26ca8cb4d56aafcb">&#9670;&nbsp;</a></span>ArrayQueueEnqueueAll()</h2>
+<a id="a46467abb7bc4b34a03270a609b8bf719"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46467abb7bc4b34a03270a609b8bf719">&#9670;&nbsp;</a></span>ArrayQueueEnqueueAll()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -319,7 +319,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">void *&#160;</td>
+          <td class="paramtype">void **&#160;</td>
           <td class="paramname"><em>arr</em>, </td>
         </tr>
         <tr>
@@ -374,14 +374,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a06b4d8a31eb0ed14387e2fd51b71ff2c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a06b4d8a31eb0ed14387e2fd51b71ff2c">&#9670;&nbsp;</a></span>ArrayQueueToArray()</h2>
+<a id="a96986750d476cd9abfe22b6d64a05038"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96986750d476cd9abfe22b6d64a05038">&#9670;&nbsp;</a></span>ArrayQueueToArray()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void* ArrayQueueToArray </td>
+          <td class="memname">void** ArrayQueueToArray </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_array_queue.html">ArrayQueue</a> *&#160;</td>
           <td class="paramname"><em>arrayQueue</em></td><td>)</td>
