@@ -1,12 +1,12 @@
 var dir_692516b589a32b3bfce781ca9f6d1534 =
 [
+    [ "ArrayDeque.h", "_array_deque_8h.html", "_array_deque_8h" ],
     [ "ArrayList.h", "_array_list_8h.html", "_array_list_8h" ],
     [ "ArrayQueue.h", "_array_queue_8h.html", "_array_queue_8h" ],
     [ "AVLTree.h", "_a_v_l_tree_8h.html", "_a_v_l_tree_8h" ],
     [ "BinaryMaxHeap.h", "_binary_max_heap_8h.html", "_binary_max_heap_8h" ],
     [ "BinaryMinHeap.h", "_binary_min_heap_8h.html", "_binary_min_heap_8h" ],
     [ "BinaryTree.h", "_binary_tree_8h.html", "_binary_tree_8h" ],
-    [ "Deque.h", "_deque_8h.html", null ],
     [ "DLinkedListStack.h", "_d_linked_list_stack_8h.html", "_d_linked_list_stack_8h" ],
     [ "DoublyLinkedList.h", "_doubly_linked_list_8h.html", "_doubly_linked_list_8h" ],
     [ "ErrorCode.h", "_error_code_8h.html", "_error_code_8h" ],

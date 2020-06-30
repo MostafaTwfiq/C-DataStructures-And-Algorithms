@@ -1,5 +1,6 @@
 var annotated_dup =
 [
+    [ "ArrayDeque", "struct_array_deque.html", "struct_array_deque" ],
     [ "ArrayList", "struct_array_list.html", "struct_array_list" ],
     [ "ArrayQueue", "struct_array_queue.html", "struct_array_queue" ],
     [ "AVLTNode", "struct_a_v_l_t_node.html", "struct_a_v_l_t_node" ],

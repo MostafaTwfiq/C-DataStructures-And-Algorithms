@@ -1,12 +1,12 @@
 var dir_937900b87e0c7a5fa01190c395fb83f7 =
 [
+    [ "ArrayDeque.c", "_array_deque_8c.html", "_array_deque_8c" ],
     [ "ArrayList.c", "_array_list_8c.html", "_array_list_8c" ],
     [ "ArrayQueue.c", "_array_queue_8c.html", "_array_queue_8c" ],
     [ "AVLTree.c", "_a_v_l_tree_8c.html", "_a_v_l_tree_8c" ],
     [ "BinaryMaxHeap.c", "_binary_max_heap_8c.html", "_binary_max_heap_8c" ],
     [ "BinaryMinHeap.c", "_binary_min_heap_8c.html", "_binary_min_heap_8c" ],
     [ "BinaryTree.c", "_binary_tree_8c.html", "_binary_tree_8c" ],
-    [ "Deque.c", "_deque_8c.html", null ],
     [ "DLinkedListStack.c", "_d_linked_list_stack_8c.html", "_d_linked_list_stack_8c" ],
     [ "DoublyLinkedList.c", "_doubly_linked_list_8c.html", "_doubly_linked_list_8c" ],
     [ "HashMap.c", "_hash_map_8c.html", "_hash_map_8c" ],

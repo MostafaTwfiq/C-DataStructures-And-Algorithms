@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Headers/SplayTree.h"
+#include "Headers/ArrayDeque.h"
 
 int16_t mycmp(const void * v1,const void * v2){
     return  *(int *)v1 - *(int*)v2;
@@ -10,7 +10,7 @@ void myPrint(void *val){
     printf("%d, ",*(int*)val );
 }
 int main() {
-    SplayTree* st = SplayTreeInitialize(mycmp);
+
 
     int a = 1,
             b = 2,
@@ -35,45 +35,23 @@ int main() {
             *p9 = &j,
             *p10 = &k;
 
+    ArrayDeque *dq = ArrayDequeInitialize(12);
+    ArrayDequeInsertRear(dq,p1);
+    ArrayDequeInsertRear(dq,p3);
+    ArrayDequeInsertRear(dq,p5);
+    ArrayDequeInsertRear(dq,p7);
+    ArrayDequeInsertRear(dq,p9);
 
-    SplayTreeInsert(st,p1);
-    SplayTreeInsert(st,p2);
-    SplayTreeInsert(st,p3);
-    SplayTreeInsert(st,p4);
-    SplayTreeInsert(st,p5);
-    SplayTreeInsert(st,p6);
-    SplayTreeInsert(st,p7);
-    SplayTreeInsert(st,p8);
-    SplayTreeInsert(st,p9);
-    SplayTreeInsert(st,p10);
+    ArrayDequeInsertFront(dq,p2);
+    ArrayDequeInsertFront(dq,p4);
+    ArrayDequeInsertFront(dq,p6);
+    ArrayDequeInsertFront(dq,p8);
+    ArrayDequeInsertFront(dq,p10);
+    //ArrayDequeDeleteRear(dq);
+    ArrayDequeInsertFront(dq,p8);
+    //ArrayDequeDeleteFront(dq);
 
+    ArrayDequePrint(dq,myPrint);
 
-    printInOrderSplayTree(st->root,myPrint);
-    puts("\n");
-    //printSplayTree(st->root,myPrint);
-
-    SplayTreeDelete(st,p9);
-    SplayTreeDelete(st,p1);
-    SplayTreeDelete(st,p5);
-
-    printInOrderSplayTree(st->root,myPrint);
-    puts("\n");
-
-    printSplayTree(st->root,myPrint);
-/*
-    Trie *trie = trieInitialization();
-
-    trieAddWord(trie, "mostafa");
-
-    //trieRemoveWord(trie, "mostafa");
-
-    trieAddWord(trie, "mohammad");
-
-    ArrayList *list = trieSuggestion(trie, "moytafa", 1);
-
-    for (int i = 0; i < arrayListGetLength(list); i++) {
-        char *word = arrayListGet(list, i);
-        printf("%s\n", word);
-    }*/
-
+    return 0;
 }

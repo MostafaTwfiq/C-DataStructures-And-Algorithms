@@ -1,0 +1,163 @@
+\hypertarget{_array_deque_8h}{}\doxysection{Headers/\+Array\+Deque.h File Reference}
+\label{_array_deque_8h}\index{Headers/ArrayDeque.h@{Headers/ArrayDeque.h}}
+{\ttfamily \#include \char`\"{}Utils.\+h\char`\"{}}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_array_deque}{Array\+Deque}}
+\begin{DoxyCompactList}\small\item\em This structure implements a basic generic Deque. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct_array_deque}{Array\+Deque}} \mbox{\hyperlink{_array_deque_8h_adb56068e86b12e36514b4bed4fdea515}{Array\+Deque}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_array_deque}{Array\+Deque}} $\ast$ \mbox{\hyperlink{_array_deque_8h_a30e87a40c1be00fda18f9111d7bed0d1}{Array\+Deque\+Initialize}} (uint32\+\_\+t initial\+Size)
+\item 
+void \mbox{\hyperlink{_array_deque_8h_a09fb8cf7f754d802a6651f43b28826d2}{Array\+Deque\+Insert\+Front}} (\mbox{\hyperlink{struct_array_deque}{Array\+Deque}} $\ast$array\+Deque, void $\ast$key)
+\item 
+void \mbox{\hyperlink{_array_deque_8h_aefbf412d5543ad5723b917e668603b1a}{Array\+Deque\+Insert\+Rear}} (\mbox{\hyperlink{struct_array_deque}{Array\+Deque}} $\ast$array\+Deque, void $\ast$key)
+\item 
+void \mbox{\hyperlink{_array_deque_8h_a7d5556acca6d4fff2a7c01eed1f48c8b}{Array\+Deque\+Delete\+Front}} (\mbox{\hyperlink{struct_array_deque}{Array\+Deque}} $\ast$array\+Deque)
+\item 
+void \mbox{\hyperlink{_array_deque_8h_ab61c9b1d72648ba067fa6fd417c30541}{Array\+Deque\+Delete\+Rear}} (\mbox{\hyperlink{struct_array_deque}{Array\+Deque}} $\ast$array\+Deque)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{_array_deque_8h_a1d44e0015289636a54e0eca93794a291}{Array\+Deque\+Is\+Empty}} (\mbox{\hyperlink{struct_array_deque}{Array\+Deque}} $\ast$array\+Deque)
+\item 
+void $\ast$ \mbox{\hyperlink{_array_deque_8h_a4f7bcef906aa288f8a184e22ca62b0af}{Array\+Deque\+Get\+Front}} (\mbox{\hyperlink{struct_array_deque}{Array\+Deque}} $\ast$array\+Deque)
+\item 
+void $\ast$ \mbox{\hyperlink{_array_deque_8h_a081aeb61192666c2fe587bbe82143b7f}{Array\+Deque\+Get\+Rear}} (\mbox{\hyperlink{struct_array_deque}{Array\+Deque}} $\ast$array\+Deque)
+\item 
+void \mbox{\hyperlink{_array_deque_8h_ae81ca2a9fd32792a9ddac2169078942f}{Array\+Deque\+Print}} (\mbox{\hyperlink{struct_array_deque}{Array\+Deque}} $\ast$array\+Deque, void($\ast$print\+Fn)(void $\ast$))
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{_array_deque_8h_adb56068e86b12e36514b4bed4fdea515}\label{_array_deque_8h_adb56068e86b12e36514b4bed4fdea515}} 
+\index{ArrayDeque.h@{ArrayDeque.h}!ArrayDeque@{ArrayDeque}}
+\index{ArrayDeque@{ArrayDeque}!ArrayDeque.h@{ArrayDeque.h}}
+\doxysubsubsection{\texorpdfstring{ArrayDeque}{ArrayDeque}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct_array_deque}{Array\+Deque}} \mbox{\hyperlink{struct_array_deque}{Array\+Deque}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_array_deque_8h_a7d5556acca6d4fff2a7c01eed1f48c8b}\label{_array_deque_8h_a7d5556acca6d4fff2a7c01eed1f48c8b}} 
+\index{ArrayDeque.h@{ArrayDeque.h}!ArrayDequeDeleteFront@{ArrayDequeDeleteFront}}
+\index{ArrayDequeDeleteFront@{ArrayDequeDeleteFront}!ArrayDeque.h@{ArrayDeque.h}}
+\doxysubsubsection{\texorpdfstring{ArrayDequeDeleteFront()}{ArrayDequeDeleteFront()}}
+{\footnotesize\ttfamily void Array\+Deque\+Delete\+Front (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_array_deque}{Array\+Deque}} $\ast$}]{array\+Deque }\end{DoxyParamCaption})}
+
+Decrements the Front pointer to the object. 
+\begin{DoxyParams}{Parameters}
+{\em array\+Deque} & Reference to preallocated Deque. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_array_deque_8h_ab61c9b1d72648ba067fa6fd417c30541}\label{_array_deque_8h_ab61c9b1d72648ba067fa6fd417c30541}} 
+\index{ArrayDeque.h@{ArrayDeque.h}!ArrayDequeDeleteRear@{ArrayDequeDeleteRear}}
+\index{ArrayDequeDeleteRear@{ArrayDequeDeleteRear}!ArrayDeque.h@{ArrayDeque.h}}
+\doxysubsubsection{\texorpdfstring{ArrayDequeDeleteRear()}{ArrayDequeDeleteRear()}}
+{\footnotesize\ttfamily void Array\+Deque\+Delete\+Rear (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_array_deque}{Array\+Deque}} $\ast$}]{array\+Deque }\end{DoxyParamCaption})}
+
+Decrements the Rear pointer to the object. 
+\begin{DoxyParams}{Parameters}
+{\em array\+Deque} & Reference to preallocated Deque. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_array_deque_8h_a4f7bcef906aa288f8a184e22ca62b0af}\label{_array_deque_8h_a4f7bcef906aa288f8a184e22ca62b0af}} 
+\index{ArrayDeque.h@{ArrayDeque.h}!ArrayDequeGetFront@{ArrayDequeGetFront}}
+\index{ArrayDequeGetFront@{ArrayDequeGetFront}!ArrayDeque.h@{ArrayDeque.h}}
+\doxysubsubsection{\texorpdfstring{ArrayDequeGetFront()}{ArrayDequeGetFront()}}
+{\footnotesize\ttfamily void$\ast$ Array\+Deque\+Get\+Front (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_array_deque}{Array\+Deque}} $\ast$}]{array\+Deque }\end{DoxyParamCaption})}
+
+Returns stored reference pointer to the previously added element. Does Not decrement the front. 
+\begin{DoxyParams}{Parameters}
+{\em array\+Deque} & Reference to preallocated Deque. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns pointer to the data in front. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_array_deque_8h_a081aeb61192666c2fe587bbe82143b7f}\label{_array_deque_8h_a081aeb61192666c2fe587bbe82143b7f}} 
+\index{ArrayDeque.h@{ArrayDeque.h}!ArrayDequeGetRear@{ArrayDequeGetRear}}
+\index{ArrayDequeGetRear@{ArrayDequeGetRear}!ArrayDeque.h@{ArrayDeque.h}}
+\doxysubsubsection{\texorpdfstring{ArrayDequeGetRear()}{ArrayDequeGetRear()}}
+{\footnotesize\ttfamily void$\ast$ Array\+Deque\+Get\+Rear (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_array_deque}{Array\+Deque}} $\ast$}]{array\+Deque }\end{DoxyParamCaption})}
+
+Returns stored reference pointer to the previously added element. Does Not decrement the rear. 
+\begin{DoxyParams}{Parameters}
+{\em array\+Deque} & Reference to preallocated Deque. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns pointer to the data in rear. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_array_deque_8h_a30e87a40c1be00fda18f9111d7bed0d1}\label{_array_deque_8h_a30e87a40c1be00fda18f9111d7bed0d1}} 
+\index{ArrayDeque.h@{ArrayDeque.h}!ArrayDequeInitialize@{ArrayDequeInitialize}}
+\index{ArrayDequeInitialize@{ArrayDequeInitialize}!ArrayDeque.h@{ArrayDeque.h}}
+\doxysubsubsection{\texorpdfstring{ArrayDequeInitialize()}{ArrayDequeInitialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_array_deque}{Array\+Deque}}$\ast$ Array\+Deque\+Initialize (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{initial\+Size }\end{DoxyParamCaption})}
+
+Allocates space for a deque with an array of size set by the initial\+Size param on the heap and returns a pointer to the deque structure. 
+\begin{DoxyParams}{Parameters}
+{\em initial\+Size} & Size of the intial deque array. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the newly allocated deque on the heap. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_array_deque_8h_a09fb8cf7f754d802a6651f43b28826d2}\label{_array_deque_8h_a09fb8cf7f754d802a6651f43b28826d2}} 
+\index{ArrayDeque.h@{ArrayDeque.h}!ArrayDequeInsertFront@{ArrayDequeInsertFront}}
+\index{ArrayDequeInsertFront@{ArrayDequeInsertFront}!ArrayDeque.h@{ArrayDeque.h}}
+\doxysubsubsection{\texorpdfstring{ArrayDequeInsertFront()}{ArrayDequeInsertFront()}}
+{\footnotesize\ttfamily void Array\+Deque\+Insert\+Front (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_array_deque}{Array\+Deque}} $\ast$}]{array\+Deque,  }\item[{void $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em array\+Deque} & Reference to preallocated Deque. \\
+\hline
+{\em key} & Pointer to key to stored in the deque. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_array_deque_8h_aefbf412d5543ad5723b917e668603b1a}\label{_array_deque_8h_aefbf412d5543ad5723b917e668603b1a}} 
+\index{ArrayDeque.h@{ArrayDeque.h}!ArrayDequeInsertRear@{ArrayDequeInsertRear}}
+\index{ArrayDequeInsertRear@{ArrayDequeInsertRear}!ArrayDeque.h@{ArrayDeque.h}}
+\doxysubsubsection{\texorpdfstring{ArrayDequeInsertRear()}{ArrayDequeInsertRear()}}
+{\footnotesize\ttfamily void Array\+Deque\+Insert\+Rear (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_array_deque}{Array\+Deque}} $\ast$}]{array\+Deque,  }\item[{void $\ast$}]{key }\end{DoxyParamCaption})}
+
+Inserts At the Rear of the deque. 
+\begin{DoxyParams}{Parameters}
+{\em array\+Deque} & Reference to preallocated Deque. Reference to preallocated Deque. \\
+\hline
+{\em key} & Pointer to key to stored in the deque. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_array_deque_8h_a1d44e0015289636a54e0eca93794a291}\label{_array_deque_8h_a1d44e0015289636a54e0eca93794a291}} 
+\index{ArrayDeque.h@{ArrayDeque.h}!ArrayDequeIsEmpty@{ArrayDequeIsEmpty}}
+\index{ArrayDequeIsEmpty@{ArrayDequeIsEmpty}!ArrayDeque.h@{ArrayDeque.h}}
+\doxysubsubsection{\texorpdfstring{ArrayDequeIsEmpty()}{ArrayDequeIsEmpty()}}
+{\footnotesize\ttfamily uint16\+\_\+t Array\+Deque\+Is\+Empty (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_array_deque}{Array\+Deque}} $\ast$}]{array\+Deque }\end{DoxyParamCaption})}
+
+If array Deque is emtpy then return 1 else returns 0. 
+\begin{DoxyParams}{Parameters}
+{\em array\+Deque} & Reference to preallocated Deque. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Return 1 if empty else return 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_array_deque_8h_ae81ca2a9fd32792a9ddac2169078942f}\label{_array_deque_8h_ae81ca2a9fd32792a9ddac2169078942f}} 
+\index{ArrayDeque.h@{ArrayDeque.h}!ArrayDequePrint@{ArrayDequePrint}}
+\index{ArrayDequePrint@{ArrayDequePrint}!ArrayDeque.h@{ArrayDeque.h}}
+\doxysubsubsection{\texorpdfstring{ArrayDequePrint()}{ArrayDequePrint()}}
+{\footnotesize\ttfamily void Array\+Deque\+Print (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_array_deque}{Array\+Deque}} $\ast$}]{array\+Deque,  }\item[{void($\ast$)(void $\ast$)}]{print\+Fn }\end{DoxyParamCaption})}
+
+Function that print the deque. First the head then the tail then the head. 
+\begin{DoxyParams}{Parameters}
+{\em array\+Deque} & Reference to preallocated Deque. \\
+\hline
+{\em print\+Fn} & Function pointer used for printing the deque. \\
+\hline
+\end{DoxyParams}
