@@ -59,4 +59,4 @@ add_executable(C_DataStructures main.c
 
         Sources/PriorityQueue.c
         Headers/PriorityQueue.h
-        )
+        Sources/LinekdListHashMap.c Headers/LinekdListHashMap.h)

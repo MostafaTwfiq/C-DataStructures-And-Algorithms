@@ -39,10 +39,10 @@ void *hashMapGet(HashMap *map, void *key, int sizeOfKey);
 void hashMapDelete(HashMap *map, void *key, int sizeOfKey);
 
 
-void *hashMapToArray(HashMap *map);
+void **hashMapToArray(HashMap *map);
 
 
-Entry *hashMapToEntryArray(HashMap *map);
+Entry **hashMapToEntryArray(HashMap *map);
 
 
 int hashMapGetLength(HashMap *map);
