@@ -7,12 +7,13 @@ var _binary_min_heap_8h =
     [ "PARENT", "_binary_min_heap_8h.html#a91004761621b8ef1c66f3601988fde7c", null ],
     [ "RCHILD", "_binary_min_heap_8h.html#afaa389bc86c49bcdf1bb6599d6c14388", null ],
     [ "BinaryMinHeap", "_binary_min_heap_8h.html#af441416b000e0418d8ec511772c48f0e", null ],
-    [ "destroyMinHeap", "_binary_min_heap_8h.html#ad64b08f2476bea1cde107f37a294ac6c", null ],
-    [ "insertInMinHeap", "_binary_min_heap_8h.html#a1fa31f2dd8c03b1203f86238806c01a7", null ],
-    [ "MinHeapAddAll", "_binary_min_heap_8h.html#a1b0da4c9b0bdb290a7cf7da8ee735ebb", null ],
-    [ "MinHeapDelete", "_binary_min_heap_8h.html#af9659ab6a5ed268ee6e46ad7374099d8", null ],
-    [ "MinHeapify", "_binary_min_heap_8h.html#a5512f4164d64dbff0582bf70d346e437", null ],
-    [ "MinHeapifyDown", "_binary_min_heap_8h.html#ad435f3e6b4ae7966ad8c1cc72c86c024", null ],
-    [ "MinHeapInitialize", "_binary_min_heap_8h.html#a24e4fa8db84be2123570cc6b371bc8e0", null ],
-    [ "printMinHeap", "_binary_min_heap_8h.html#adf3bc6996f1baec9a3b63c0c8be3b248", null ]
+    [ "clearMinHeap", "_binary_min_heap_8h.html#a553de232b5682e75fc412fc55bc812b0", null ],
+    [ "destroyMinHeap", "_binary_min_heap_8h.html#ac078e8c16afc8b6d9826dc07f6f1e05f", null ],
+    [ "MinHeapAddAll", "_binary_min_heap_8h.html#a8a8a4669df451c4fd073c8cab5fc9305", null ],
+    [ "MinHeapDelete", "_binary_min_heap_8h.html#a0b3d0b14e7e37104dc3153b2a8bc1718", null ],
+    [ "MinHeapify", "_binary_min_heap_8h.html#a7252e69bb18f0a06e92d86971b92b138", null ],
+    [ "MinHeapifyDown", "_binary_min_heap_8h.html#ae829b18e5749ba3a9a3497fb6aa175cb", null ],
+    [ "MinHeapInitialize", "_binary_min_heap_8h.html#a431fa259b41c3f43cdde4d70afb9fd94", null ],
+    [ "MinHeapInsert", "_binary_min_heap_8h.html#a36d7b6f819ebc9a51f6eee1d6adafa53", null ],
+    [ "printMinHeap", "_binary_min_heap_8h.html#acdd847c3c0a8bc27addf1cc74034572f", null ]
 ];

@@ -54,9 +54,20 @@ add_executable(C_DataStructures main.c
 
         Sources/StackQueue.c
         Headers/StackQueue.h
+
         Sources/HashMap.c
         Headers/HashMap.h
 
         Sources/PriorityQueue.c
         Headers/PriorityQueue.h
-        Sources/LinekdListHashMap.c Headers/LinekdListHashMap.h)
+
+        Sources/LinkedListHashMap.c
+        Headers/LinkedListHashMap.h
+
+        Sources/RedBlackTree.c
+        Headers/RedBlackTree.h
+
+        Sources/Deque.c
+        Headers/Deque.h
+
+        )

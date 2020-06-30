@@ -1,12 +1,12 @@
 #include "../Headers/BinaryMinHeap.h"
 
-///
-/// \param size
-/// \param cmp
-/// \return
-BinaryMinHeap *MinHeapInitialize(uint16_t size, int16_t (*cmp)(const void*, const void*)){
+/** Allocates space for minimum heap on the heap. Setting the inital size to 0 and the initial allocated size to 10.
+ *  @param cmp compare function for values stored in the heap.
+ *  @return Returns pointer to the allocated minimum heap on the heap.
+**/
+BinaryMinHeap *MinHeapInitialize(int32_t (*cmp)(const void*, const void*)){
     BinaryMinHeap *h = malloc(sizeof(*h));
-    h->capacity = 50;
+    h->capacity = 10;
     void **harr = (void **)malloc(sizeof(void*)*h->capacity);
     h->memory = harr;
     h->size = 0;
@@ -14,116 +14,137 @@ BinaryMinHeap *MinHeapInitialize(uint16_t size, int16_t (*cmp)(const void*, cons
     return h;
 };
 
-///
-/// \param heap
-/// \param res
-void MinHeapDelete(BinaryMinHeap* heap, void ** res) {
-    *res = heap->memory[0];
-    heap->memory[0] = heap->memory[heap->size - 1];
-    heap->memory[heap->size - 1] = NULL;
-    heap->size--;
-    MinHeapifyDown(heap, 0);
+/** Deletes the root element of the heap and restores the heap property of the heap.
+ *  @param pMinHeap Reference to minimum heap pointer allocated on the heap.
+ *  @param res pointer to store the root if needed.
+**/
+void MinHeapDelete(BinaryMinHeap* pMinHeap, void ** res) {
+    *res = pMinHeap->memory[0];
+    pMinHeap->memory[0] = pMinHeap->memory[pMinHeap->size - 1];
+    pMinHeap->memory[pMinHeap->size - 1] = NULL;
+    pMinHeap->size--;
+    MinHeapifyDown(pMinHeap, 0);
 }
 
-///
-/// \param h
-/// \param index
-void MinHeapifyUP(BinaryMinHeap* h, int index) {
+/** Restores the heap property , by recursively traversing the heap. Moving elements up the minimum tree.
+ *  @param pMinHeap  Reference to minimum heap pointer allocated on the heap.
+ *  @param index
+**/
+void MinHeapifyUP(BinaryMinHeap* pMinHeap, int index) {
     if(index){
         int p = PARENT(index);
-        if (((h->cmpFn)(h->memory[p], h->memory[index])) >0) {
-            void* temp = h->memory[p];
-            h->memory[p] = h->memory[index];
-            h->memory[index]= temp;
+        if (((pMinHeap->cmpFn)(pMinHeap->memory[p], pMinHeap->memory[index])) > 0) {
+            void* temp = pMinHeap->memory[p];
+            pMinHeap->memory[p] = pMinHeap->memory[index];
+            pMinHeap->memory[index]= temp;
         }
-        MinHeapifyUP(h, p);
+        MinHeapifyUP(pMinHeap, p);
     }
 }
 
-///
-/// \param h
-/// \param value
-void insertInMinHeap(BinaryMinHeap* h, void* value){
-    if(h->size == h->capacity){
-        h->capacity *= 2;
-        h->memory = realloc(h->memory, sizeof(void*) * h->capacity);
+/** Inserts at the bottom of the tree then moves the element up the tree by calling @link MinHeapifyUP @endlink
+ *  @param pMinHeap  Reference to minimum heap pointer allocated on the heap.
+ *  @param value value to insert in the tree.
+**/
+void MinHeapInsert(BinaryMinHeap* pMinHeap, void* value){
+    if(pMinHeap->size == pMinHeap->capacity){
+        pMinHeap->capacity *= 2;
+        pMinHeap->memory = realloc(pMinHeap->memory, sizeof(void*) * pMinHeap->capacity);
     }
-    h->memory[h->size] = value;
-    MinHeapifyUP(h,h->size++);
+    pMinHeap->memory[pMinHeap->size] = value;
+    MinHeapifyUP(pMinHeap, pMinHeap->size++);
 }
 
-///
-/// \param heap
-/// \param index
-void MinHeapifyDown(BinaryMinHeap *heap, int index) {
+/** Function that ensures heap property, by recursively traversing the heap. Moving elements down the minimum tree.
+ *  @param pMinHeap  Reference to minimum heap pointer allocated on the pMinHeap.
+ *  @param index index ot heapify at.
+**/
+void MinHeapifyDown(BinaryMinHeap *pMinHeap, int index) {
     if (index < 0) return;
-    if(index > heap->size) return;
+    if(index > pMinHeap->size) return;
     int LeftChildIndex = LCHILD(index);
     int RightChildIndex = RCHILD(index);
     int CurrentIndex = index;
 
-    if (HAS_LEFT(heap,index) &&
-        (heap->cmpFn)(heap->memory[LeftChildIndex], heap->memory[CurrentIndex]) < 0){
+    if (HAS_LEFT(pMinHeap, index) &&
+        (pMinHeap->cmpFn)(pMinHeap->memory[LeftChildIndex], pMinHeap->memory[CurrentIndex]) < 0){
         CurrentIndex = LeftChildIndex;
     }
 
-    if (HAS_RIGHT(heap,index)&&
-        (heap->cmpFn)(heap->memory[RightChildIndex], heap->memory[CurrentIndex]) < 0 ){
+    if (HAS_RIGHT(pMinHeap, index) &&
+        (pMinHeap->cmpFn)(pMinHeap->memory[RightChildIndex], pMinHeap->memory[CurrentIndex]) < 0 ){
         CurrentIndex = RightChildIndex;
     }
 
     if (CurrentIndex != index){
-        void* temp  = heap->memory[index];
-        heap->memory[index]=heap->memory[CurrentIndex];
-        heap->memory[CurrentIndex] = temp;
+        void* temp  = pMinHeap->memory[index];
+        pMinHeap->memory[index]=pMinHeap->memory[CurrentIndex];
+        pMinHeap->memory[CurrentIndex] = temp;
         index = CurrentIndex;
     }
     else
         return;
-    MinHeapifyDown(heap,index);
+    MinHeapifyDown(pMinHeap, index);
 }
 
-///
-/// \param arr
-/// \param size
-/// \param type
-/// \return
-BinaryMinHeap *MinHeapify(void *arr, uint16_t size, uint8_t type){
+/** Given an array containing preallocated pointer to objects, this function creates a new heap with the objects in it.
+ *  @param arr Array to add elements from into the heap.
+ *  @param size Size of the array to be inserted into the heap.
+ *  @param cmp  compare function for values stored in the heap.
+ *  @return Reference to minimum heap pointer allocated on the pMinHeap.
+**/
+BinaryMinHeap *MinHeapify(void *arr, uint32_t size,int32_t (*cmp)(const void*, const void*)){
     BinaryMinHeap *h = malloc(sizeof(BinaryMinHeap));
     h->capacity = size;
     void **harr = malloc(sizeof(void*)*h->capacity);
     h->memory = harr;
     h->size = 0;
+    h->cmpFn = cmp;
     for (int i = 0; i < h->capacity; ++i) {
-        insertInMinHeap(h,arr+i);
+        MinHeapInsert(h, arr + i);
     }
     return h;
 }
 
-///
-/// \param h
-/// \param printfn
-void printMinHeap(BinaryMinHeap *h, void (*printfn)(void *)){
-    for (int i = 0; i < h->size; ++i) {
-        (printfn)(h->memory[i]);
+/** Given a reference to heap prints it's elements.
+ *  @param pMinHeap  Reference to minimum heap pointer allocated on the heap.
+ *  @param printfn pointer to the print funtion to be used.
+**/
+void printMinHeap(BinaryMinHeap *pMinHeap, void (*printfn)(void *)){
+    for (int i = 0; i < pMinHeap->size; ++i) {
+        (printfn)(pMinHeap->memory[i]);
     }
     puts("\n");
 }
 
-///
-/// \param binaryMaxHeap
-/// \param arr
-/// \param size
-/// \return
-void * MinHeapAddAll(BinaryMinHeap *binaryMaxHeap,void **arr, uint16_t size){
+/** Given an array of void pointers to pre-allocated objects, it inserts them in a maximum heap.
+ *  @param pMinHeap  Reference to minimum heap pointer allocated on the heap.
+ *  @param arr array to add elements from into the heap.
+ *  @param size Size of the array to be inserted into the heap.
+**/
+void MinHeapAddAll(BinaryMinHeap *pMinHeap, void **arr, uint32_t size){
     for(int i=0;i<size;i++){
-        insertInMinHeap(binaryMaxHeap,arr[i]);
+        MinHeapInsert(pMinHeap, arr[i]);
     }
 }
 
-///
-/// \param h
-void destroyMinHeap(BinaryMinHeap * h) {
-    free(h->memory);
-    free(h);
+/** Given a heap it frees its memory container and the allocated pointer within it,
+  setting them null as well as the memory container and frees the heap pointer.
+ *  @param pMinHeap  Reference to minimum heap pointer allocated on the heap.
+**/
+void destroyMinHeap(BinaryMinHeap * pMinHeap) {
+    clearMinHeap(pMinHeap);
+    free(pMinHeap->memory);
+    pMinHeap->memory = NULL;
+    free(pMinHeap);
+}
+
+/** Given a heap pointer it frees it's memory container contents. But not the memory container of the heap.
+ * @param pMinHeap Reference to minimum heap pointer allocated on the heap.
+ * */
+void clearMinHeap(BinaryMinHeap * pMinHeap){
+    for(int i =0; i < pMinHeap->size; i++){
+        free(pMinHeap->memory[i]);
+        pMinHeap->memory[i] =NULL;
+    }
 }

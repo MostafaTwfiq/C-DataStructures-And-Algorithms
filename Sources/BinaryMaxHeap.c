@@ -1,8 +1,9 @@
 #include "../Headers/BinaryMaxHeap.h"
 
-///
-/// \param h
-/// \param index
+/** Restores the heap property , by recursively traversing the heap. Moving elements up the maximum tree.
+ *  @param h  Reference to maximum heap pointer allocated on the heap.
+ *  @param index
+**/
 void MaxHeapifyUP(BinaryMaxHeap* h, int index){
     if(!index) return;
     int p = PARENT(index);
@@ -15,9 +16,10 @@ void MaxHeapifyUP(BinaryMaxHeap* h, int index){
 
 }
 
-///
-/// \param heap
-/// \param index
+/** Function that ensures heap property, by recursively traversing the heap. Moving elements down the maximum tree.
+ *  @param heap  Reference to maximum heap pointer allocated on the pMinHeap.
+ *  @param index index to heapify at.
+**/
 void MaxHeapifyDown(BinaryMaxHeap *heap, int index) {
     if (index < 0) return;
     if(index > heap->size) return;
@@ -50,11 +52,11 @@ void MaxHeapifyDown(BinaryMaxHeap *heap, int index) {
     MaxHeapifyDown(heap,index);
 }
 
-///
-/// \param size
-/// \param cmp
-/// \return
-BinaryMaxHeap *MaxHeapInitialize(uint16_t size, int16_t (*cmp)(const void*, const void*)) {
+/** Allocates space for maximum heap on the heap. Setting the inital size to 0 and the initial allocated size to 10.
+ *  @param cmp compare function for values stored in the heap.
+ *  @return Returns pointer to the allocated maximum heap on the heap.
+**/
+BinaryMaxHeap *MaxHeapInitialize( int32_t (*cmp)(const void*, const void*)) {
     BinaryMaxHeap *h = malloc(sizeof(*h));
     h->capacity = 10;
     void **harr = (void **)malloc(sizeof(void*)*h->capacity);
@@ -64,9 +66,10 @@ BinaryMaxHeap *MaxHeapInitialize(uint16_t size, int16_t (*cmp)(const void*, cons
     return h;
 }
 
-///
-/// \param h
-/// \param value
+/** Inserts at the bottom of the tree then moves the element up the tree by calling @link MaxHeapifyUP @endlink
+ *  @param h  Reference to maximum heap pointer allocated on the heap.
+ *  @param value value to insert in the tree.
+**/
 void MaxHeapInsert(BinaryMaxHeap* h, void* value) {
     if(h->size == h->capacity){
         h->capacity *=2;
@@ -76,9 +79,10 @@ void MaxHeapInsert(BinaryMaxHeap* h, void* value) {
     MaxHeapifyUP(h,h->size++);
 }
 
-///
-/// \param heap
-/// \param res
+/** Deletes the root element of the heap and restores the heap property of the heap.
+ *  @param heap Reference to maximum heap pointer allocated on the heap.
+ *  @param res pointer to store the root if needed.
+**/
 void MaxHeapDelete(BinaryMaxHeap* heap, void ** res) {
     *res = heap->memory[0];
     heap->memory[0] = heap->memory[heap->size - 1];
@@ -88,12 +92,13 @@ void MaxHeapDelete(BinaryMaxHeap* heap, void ** res) {
     //MaxHeapFloatDown(heap,0);
 }
 
-///
-/// \param arr
-/// \param size
-/// \param cmp
-/// \return
-BinaryMaxHeap *MaxHeapify(void **arr, uint16_t size,int16_t (*cmp)(const void*, const void*)) {
+/** Given an array containing preallocated pointer to objects, this function creates a new heap with the objects in it.
+ *  @param arr Array to add elements from into the heap.
+ *  @param size Size of the array to be inserted into the heap.
+ *  @param cmp  compare function for values stored in the heap.
+ *  @return Reference to maximum heap pointer allocated on the pMinHeap.
+**/
+BinaryMaxHeap *MaxHeapify(void **arr, uint32_t size,int32_t (*cmp)(const void*, const void*)) {
     BinaryMaxHeap *h = malloc(sizeof(*h));
     h->capacity = 10;
     void **harr = (void **)malloc(sizeof(void*)*h->capacity);
@@ -106,30 +111,64 @@ BinaryMaxHeap *MaxHeapify(void **arr, uint16_t size,int16_t (*cmp)(const void*, 
     return h;
 }
 
-///
-/// \param binaryMaxHeap
-/// \param arr
-/// \param size
-/// \return
-void * MaxHeapAddAll(BinaryMaxHeap *binaryMaxHeap,void **arr, uint16_t size){
+/** Given an array of void pointers to pre-allocated objects, it inserts them in a maximum heap.
+ *  @param binaryMaxHeap  Reference to maximum heap pointer allocated on the heap.
+ *  @param arr array to add elements from into the heap.
+ *  @param size Size of the array to be inserted into the heap.
+**/
+void  MaxHeapAddAll(BinaryMaxHeap *binaryMaxHeap,void **arr, uint32_t size){
     for(int i=0;i<size;i++){
         MaxHeapInsert(binaryMaxHeap,arr[i]);
     }
 }
 
-///
-/// \param heap
-void destroyMaxHeap(BinaryMaxHeap * heap) {
-    free(heap->memory);
-    free(heap);
-}
-
-///
-/// \param h
-/// \param printfn
+/** Given a reference to heap prints it's elements.
+ *  @param h  Reference to maximum heap pointer allocated on the heap.
+ *  @param printfn pointer to the print funtion to be used.
+**/
 void printMaxHeap(BinaryMaxHeap *h, void (*printfn)(void *)) {
     for (int i = 0; i < h->size; ++i) {
         (printfn)(h->memory[i]);
     }
     puts("\n");
 }
+
+
+/** Given a heap it frees its memory container and the allocated pointer within it,
+  setting them null as well as the memory container and frees the heap pointer.
+ *  @param heap  Reference to maximum heap pointer allocated on the heap.
+**/
+void destroyMaxHeap(BinaryMaxHeap * heap) {
+    clearMaxHeap(heap);
+    free(heap->memory);
+    heap->memory = NULL;
+    free(heap);
+}
+
+/** Given a heap pointer it frees it's memory container contents. But not the memory container of the heap.
+ * @param pMaxHeap Reference to maximum heap pointer allocated on the heap.
+ * */
+void clearMaxHeap(BinaryMaxHeap * pMaxHeap){
+    for(int i =0; i < pMaxHeap->size; i++){
+        free(pMaxHeap->memory[i]);
+        pMaxHeap->memory[i] =NULL;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

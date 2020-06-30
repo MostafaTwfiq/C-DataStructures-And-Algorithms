@@ -102,7 +102,7 @@ Data Structures</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This structure describes n AVL Tree <a class="el" href="struct_node.html">Node</a>.  <a href="struct_a_v_l_t_node.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_a_v_l_tree.html">AVLTree</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This structure implements a basic generic stack.  <a href="struct_a_v_l_tree.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This structure implements a basic generic AVL Tree.  <a href="struct_a_v_l_tree.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -131,8 +131,8 @@ Functions</h2></td></tr>
 <tr class="separator:a8e91708b0bddf3e46eee2309a1ad0634"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a408cd50366ab2eae29808bc74b8cf384"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_a_v_l_tree_8h.html#a408cd50366ab2eae29808bc74b8cf384">AVLTreePrint</a> (<a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> *root, void(printFn)(void *))</td></tr>
 <tr class="separator:a408cd50366ab2eae29808bc74b8cf384"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48c7a5dea010485092c5d93049875866"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_a_v_l_tree_8h.html#a48c7a5dea010485092c5d93049875866">inOrderPredecessorAVLTree</a> (<a class="el" href="struct_a_v_l_tree.html">AVLTree</a> *avlTree, <a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> *root, <a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> *referenceNode, <a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> **rightMost)</td></tr>
-<tr class="separator:a48c7a5dea010485092c5d93049875866"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16cf89dbdc035e1f355fced3aa709ee0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_a_v_l_tree_8h.html#a16cf89dbdc035e1f355fced3aa709ee0">AVLTreeInOrderPredecessor</a> (<a class="el" href="struct_a_v_l_tree.html">AVLTree</a> *avlTree, <a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> *root, <a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> *referenceNode, <a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> **rightMost)</td></tr>
+<tr class="separator:a16cf89dbdc035e1f355fced3aa709ee0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7fd70e00cde3134777341034e675bb9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_a_v_l_tree_8h.html#ad7fd70e00cde3134777341034e675bb9">AVLTreeInOrderSuccessor</a> (<a class="el" href="struct_a_v_l_tree.html">AVLTree</a> *avlTree, <a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> *root, <a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> *referenceNode, <a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> **leftMost)</td></tr>
 <tr class="separator:ad7fd70e00cde3134777341034e675bb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f3f3f0fd3c7d6071843974fcc40e10a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_a_v_l_tree_8h.html#a3f3f3f0fd3c7d6071843974fcc40e10a">AVLTreeInsert</a> (<a class="el" href="struct_a_v_l_tree.html">AVLTree</a> *avlTree, <a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> *node, void *key)</td></tr>
@@ -240,7 +240,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns the new root <a class="el" href="struct_node.html">Node</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the new root node. </dd></dl>
 
 </div>
 </div>
@@ -275,15 +275,15 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Given a Tree and it's root deletes a key with the same key and restores the tree order then returns the new <a class="el" href="struct_node.html">Node</a>. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Given a Tree and it's root deletes a key with the same key and restores the tree order then returns the new node. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">avlTree</td><td>Reference to the AVL tree. Reference to the AVL tree. </td></tr>
-    <tr><td class="paramname">root</td><td>Reference to the root <a class="el" href="struct_node.html">Node</a>. </td></tr>
-    <tr><td class="paramname">key</td><td>Key object to add to the <a class="el" href="struct_a_v_l_tree.html" title="This structure implements a basic generic stack.">AVLTree</a>. </td></tr>
+    <tr><td class="paramname">root</td><td>Reference to the root node. </td></tr>
+    <tr><td class="paramname">key</td><td>Key object to add to the <a class="el" href="struct_a_v_l_tree.html" title="This structure implements a basic generic AVL Tree.">AVLTree</a>. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns the new root <a class="el" href="struct_node.html">Node</a> of the AVL Tree. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the new root node of the AVL Tree. </dd></dl>
 
 </div>
 </div>
@@ -304,7 +304,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Given an AVL Tree's root node it frees it's elements recursively.Setting the root node to Null. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">node</td><td>Eact Reference to root <a class="el" href="struct_node.html">Node</a> to start freeing at. </td></tr>
+    <tr><td class="paramname">node</td><td>Exact Reference to root node to start freeing at. </td></tr>
   </table>
   </dd>
 </dl>
@@ -326,13 +326,13 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Gets the maximum steps to reach the left most node recursively. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">node</td><td></td></tr>
+    <tr><td class="paramname">node</td><td><a class="el" href="struct_node.html">Node</a> to start traversing from </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>int reference to increment it's contents. </dd></dl>
 
 </div>
 </div>
@@ -351,13 +351,13 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Gets the minimum steps to reach the right most node recursively. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">node</td><td></td></tr>
+    <tr><td class="paramname">node</td><td><a class="el" href="struct_node.html">Node</a> to start traversing from </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>int reference to increment it's contents. </dd></dl>
 
 </div>
 </div>
@@ -376,13 +376,13 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Reference to the root node to start calculating the size of tree. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">root</td><td>Reference to the root <a class="el" href="struct_node.html">Node</a>. </td></tr>
+    <tr><td class="paramname">root</td><td>Reference to the root node. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the number of nodes in the tree. </dd></dl>
 
 </div>
 </div>
@@ -401,13 +401,62 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Initialization Function for AVL Tree. A comparison function must be provided for the tree to be able to level its Nodes. Returns a reference to an allocated <a class="el" href="struct_a_v_l_tree.html" title="This structure implements a basic generic stack.">AVLTree</a> pointer on the heap. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Initialization Function for AVL Tree. A comparison function must be provided for the tree to be able to level its Nodes. Returns a reference to an allocated <a class="el" href="struct_a_v_l_tree.html" title="This structure implements a basic generic AVL Tree.">AVLTree</a> pointer on the heap. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">cmp</td><td>Reference to the comparator function. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the allocated AVL tree on the heap. </dd></dl>
+
+</div>
+</div>
+<a id="a16cf89dbdc035e1f355fced3aa709ee0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16cf89dbdc035e1f355fced3aa709ee0">&#9670;&nbsp;</a></span>AVLTreeInOrderPredecessor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AVLTreeInOrderPredecessor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_a_v_l_tree.html">AVLTree</a> *&#160;</td>
+          <td class="paramname"><em>avlTree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> *&#160;</td>
+          <td class="paramname"><em>root</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> *&#160;</td>
+          <td class="paramname"><em>referenceNode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> **&#160;</td>
+          <td class="paramname"><em>rightMost</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Given a root node (i.e a to start search at for the reference node n) find the reference node and stores to inorder Predecessor for that node in the rightMost param. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">avlTree</td><td>Reference to the AVL tree. </td></tr>
+    <tr><td class="paramname">root</td><td>Reference to the root node. </td></tr>
+    <tr><td class="paramname">referenceNode</td><td>Reference node to get the in-order Predecessor for. </td></tr>
+    <tr><td class="paramname">rightMost</td><td>Pointer to store the inorder Predecessor for that node. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -448,12 +497,12 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Given a root node (i.e a to start search at for the reference node n) find the reference node and stores to inorder Successor for that node in the leftMost param. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">avlTree</td><td>Reference to the AVL tree. </td></tr>
-    <tr><td class="paramname">root</td><td>Reference to the root <a class="el" href="struct_node.html">Node</a>. </td></tr>
-    <tr><td class="paramname">referenceNode</td><td>Reference <a class="el" href="struct_node.html">Node</a> to get the in-order successor for. </td></tr>
-    <tr><td class="paramname">leftMost</td><td>Pointer to store the inorder successor for that <a class="el" href="struct_node.html">Node</a>. </td></tr>
+    <tr><td class="paramname">root</td><td>Reference to the root node. </td></tr>
+    <tr><td class="paramname">referenceNode</td><td>Reference node to get the in-order successor for. </td></tr>
+    <tr><td class="paramname">leftMost</td><td>Pointer to store the inorder successor for that node. </td></tr>
   </table>
   </dd>
 </dl>
@@ -491,7 +540,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>inserts a <a class="el" href="struct_node.html">Node</a> at the a reference <a class="el" href="struct_node.html">Node</a> (preferably the root) with the provided key if not present in the tree and returns a reference to the new <a class="el" href="struct_node.html">Node</a>. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Inserts a node at the a reference node (preferably the root) with the provided key if not present in the tree and returns a reference to the new node. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">avlTree</td><td>Reference to the AVL tree. </td></tr>
     <tr><td class="paramname">node</td><td>reference for node to start inserting at preferably the root. </td></tr>
@@ -528,15 +577,14 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Given a key, and a tree to search in determines whether a key is present in the tree or not. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">avlTree</td><td>Reference to the AVL tree. </td></tr>
-    <tr><td class="paramname">root</td><td>Reference to the root <a class="el" href="struct_node.html">Node</a>. </td></tr>
-    <tr><td class="paramname">searchKey</td><td></td></tr>
+    <tr><td class="paramname">searchKey</td><td>key to search for in the tree. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>returns int as bool. Returns 1 if is found else returns 0. </dd></dl>
 
 </div>
 </div>
@@ -555,13 +603,13 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Gets the left most node which should be the maximum value node of the AVL Tree. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">node</td><td></td></tr>
+    <tr><td class="paramname">node</td><td><a class="el" href="struct_node.html">Node</a> to start traversing from. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a reference pointer to the left most node. </dd></dl>
 
 </div>
 </div>
@@ -580,13 +628,13 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Gets the right most node which should be the minimum value node of the <a class="el" href="struct_a_v_l_tree.html" title="This structure implements a basic generic AVL Tree.">AVLTree</a>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">node</td><td></td></tr>
+    <tr><td class="paramname">node</td><td><a class="el" href="struct_node.html">Node</a> to start traversing from. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a reference pointer to the right most node. </dd></dl>
 
 </div>
 </div>
@@ -617,7 +665,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Prints a tree in 2 space of the console. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">root</td><td>Reference to the root <a class="el" href="struct_node.html">Node</a>. </td></tr>
+    <tr><td class="paramname">root</td><td>Reference to the root node. </td></tr>
     <tr><td class="paramname">printFn</td><td>Pointer to the print function. </td></tr>
   </table>
   </dd>
@@ -650,10 +698,10 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Takes a print function and starts printing from using the provided print function. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">node</td><td></td></tr>
-    <tr><td class="paramname">printFn</td><td></td></tr>
+    <tr><td class="paramname">node</td><td>Reference node to start printing from. </td></tr>
+    <tr><td class="paramname">printFn</td><td>print function to use for printing node keys. </td></tr>
   </table>
   </dd>
 </dl>
@@ -678,8 +726,8 @@ Functions</h2></td></tr>
 <p>Prints the Tree Statistics:</p><ul>
 <li>Number of Nodes,</li>
 <li>Height,</li>
-<li>Minimum Steps to the minimum <a class="el" href="struct_node.html">Node</a>,</li>
-<li>Maximum Steps to the max <a class="el" href="struct_node.html">Node</a>.</li>
+<li>Minimum Steps to the minimum node,</li>
+<li>Maximum Steps to the max node.</li>
 <li>Rule Satisfaction:<ul>
 <li>Maximum node Rule(2^(h+1)-1)</li>
 <li>Minimum node Rule(2*1.6^h) where h is the height of the tree. <dl class="params"><dt>Parameters</dt><dd>
@@ -726,15 +774,15 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Given a tree and a reference node to start searching at (preferably the root) searchs for node with the same key and return it. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Given a tree and a reference node to start searching at (preferably the root) searches for node with the same key and return it. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">avlTree</td><td>Reference to the AVL tree. </td></tr>
-    <tr><td class="paramname">node</td><td><a class="el" href="struct_node.html">Node</a> to start searching from preferably the root. </td></tr>
-    <tr><td class="paramname">key</td><td>Key object to search for in the <a class="el" href="struct_a_v_l_tree.html" title="This structure implements a basic generic stack.">AVLTree</a>. </td></tr>
+    <tr><td class="paramname">node</td><td>node to start searching from preferably the root. </td></tr>
+    <tr><td class="paramname">key</td><td>Key object to search for in the <a class="el" href="struct_a_v_l_tree.html" title="This structure implements a basic generic AVL Tree.">AVLTree</a>. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns the Found <a class="el" href="struct_node.html">Node</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the found node. </dd></dl>
 
 </div>
 </div>
@@ -753,62 +801,13 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Given a Tree converts it to an array in-order </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">avlTree</td><td>Reference to the AVL tree. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
-</div>
-</div>
-<a id="a48c7a5dea010485092c5d93049875866"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a48c7a5dea010485092c5d93049875866">&#9670;&nbsp;</a></span>inOrderPredecessorAVLTree()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void inOrderPredecessorAVLTree </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_a_v_l_tree.html">AVLTree</a> *&#160;</td>
-          <td class="paramname"><em>avlTree</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> *&#160;</td>
-          <td class="paramname"><em>root</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> *&#160;</td>
-          <td class="paramname"><em>referenceNode</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="struct_a_v_l_t_node.html">AVLTNode</a> **&#160;</td>
-          <td class="paramname"><em>rightMost</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Given a root node (i.e a to start search at for the reference <a class="el" href="struct_node.html">Node</a> n) find the reference node and stores to inorder Predecessor for that <a class="el" href="struct_node.html">Node</a> in the rightMost param. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">avlTree</td><td>Reference to the AVL tree. </td></tr>
-    <tr><td class="paramname">root</td><td>Reference to the root <a class="el" href="struct_node.html">Node</a>. </td></tr>
-    <tr><td class="paramname">referenceNode</td><td>Reference <a class="el" href="struct_node.html">Node</a> to get the in-order Predecessor for. </td></tr>
-    <tr><td class="paramname">rightMost</td><td>Pointer to store the inorder Predecessor for that <a class="el" href="struct_node.html">Node</a>. </td></tr>
-  </table>
-  </dd>
-</dl>
+<dl class="section return"><dt>Returns</dt><dd>returns an array of pointer references to keys that were stored in the tree. </dd></dl>
 
 </div>
 </div>

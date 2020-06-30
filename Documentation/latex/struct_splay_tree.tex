@@ -2,39 +2,47 @@
 \label{struct_splay_tree}\index{SplayTree@{SplayTree}}
 
 
+This structure implements a basic generic Splay Tree.  
+
+
+
+
 {\ttfamily \#include $<$Splay\+Tree.\+h$>$}
 
 \doxysubsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{struct_splay_node}{Splay\+Node}} $\ast$ \mbox{\hyperlink{struct_splay_tree_a38069f74e7553ea80a183bcfadb4442b}{root}}
+\mbox{\hyperlink{struct_splay_node}{Splay\+Node}} $\ast$ \mbox{\hyperlink{struct_splay_tree_ab4b8daf4b8ea9d39568719e1e320076f}{root}}
 \item 
-uint32\+\_\+t \mbox{\hyperlink{struct_splay_tree_a9ff3c0ff509d8eb055d29faa0ec185a1}{node\+Count}}
+uint32\+\_\+t \mbox{\hyperlink{struct_splay_tree_ab38cbcec9c19f57dfbf84b7de112c8e5}{node\+Count}}
 \item 
-int16\+\_\+t($\ast$ \mbox{\hyperlink{struct_splay_tree_a88bbe3d84e05dbeda8b6e10976f5a4cc}{cmp}} )(const void $\ast$, const void $\ast$)
+int16\+\_\+t($\ast$ \mbox{\hyperlink{struct_splay_tree_a1d33f9a800f1f7181c58f3cd60a96958}{cmp}} )(const void $\ast$, const void $\ast$)
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+This structure implements a basic generic Splay Tree. 
+
 \doxysubsection{Field Documentation}
-\mbox{\Hypertarget{struct_splay_tree_a88bbe3d84e05dbeda8b6e10976f5a4cc}\label{struct_splay_tree_a88bbe3d84e05dbeda8b6e10976f5a4cc}} 
+\mbox{\Hypertarget{struct_splay_tree_a1d33f9a800f1f7181c58f3cd60a96958}\label{struct_splay_tree_a1d33f9a800f1f7181c58f3cd60a96958}} 
 \index{SplayTree@{SplayTree}!cmp@{cmp}}
 \index{cmp@{cmp}!SplayTree@{SplayTree}}
 \doxysubsubsection{\texorpdfstring{cmp}{cmp}}
-{\footnotesize\ttfamily int16\+\_\+t($\ast$ cmp) (const void $\ast$, const void $\ast$)}
+{\footnotesize\ttfamily cmp}
 
-\mbox{\Hypertarget{struct_splay_tree_a9ff3c0ff509d8eb055d29faa0ec185a1}\label{struct_splay_tree_a9ff3c0ff509d8eb055d29faa0ec185a1}} 
+Member \textquotesingle{}cmp\textquotesingle{} is a pointer to the comparision function that is going to be used throughout the tree. \mbox{\Hypertarget{struct_splay_tree_ab38cbcec9c19f57dfbf84b7de112c8e5}\label{struct_splay_tree_ab38cbcec9c19f57dfbf84b7de112c8e5}} 
 \index{SplayTree@{SplayTree}!nodeCount@{nodeCount}}
 \index{nodeCount@{nodeCount}!SplayTree@{SplayTree}}
 \doxysubsubsection{\texorpdfstring{nodeCount}{nodeCount}}
-{\footnotesize\ttfamily uint32\+\_\+t node\+Count}
+{\footnotesize\ttfamily node\+Count}
 
-\mbox{\Hypertarget{struct_splay_tree_a38069f74e7553ea80a183bcfadb4442b}\label{struct_splay_tree_a38069f74e7553ea80a183bcfadb4442b}} 
+Member \textquotesingle{}node\+Count\textquotesingle{} holds the number of nodes currently present in the tree. \mbox{\Hypertarget{struct_splay_tree_ab4b8daf4b8ea9d39568719e1e320076f}\label{struct_splay_tree_ab4b8daf4b8ea9d39568719e1e320076f}} 
 \index{SplayTree@{SplayTree}!root@{root}}
 \index{root@{root}!SplayTree@{SplayTree}}
 \doxysubsubsection{\texorpdfstring{root}{root}}
-{\footnotesize\ttfamily \mbox{\hyperlink{struct_splay_node}{Splay\+Node}}$\ast$ root}
+{\footnotesize\ttfamily root}
 
-
+Member \textquotesingle{}root\textquotesingle{} is a pointer to the root \mbox{\hyperlink{struct_node}{Node}} of the tree. 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

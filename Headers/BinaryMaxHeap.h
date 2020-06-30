@@ -14,15 +14,14 @@ typedef struct BinaryMaxHeap{
     void **  memory;
     uint32_t capacity;
     uint32_t size;
-    uint16_t sizeOfType;
-    int16_t  (*cmpFn)(const void* ,const void* );
+    int32_t  (*cmpFn)(const void* ,const void* );
 }BinaryMaxHeap;
 
-BinaryMaxHeap *MaxHeapInitialize(uint16_t size, int16_t (*cmp)(const void*, const void*));
+BinaryMaxHeap *MaxHeapInitialize( int32_t (*cmp)(const void*, const void*));
 
 void MaxHeapInsert(BinaryMaxHeap* h, void* value);
 
-BinaryMaxHeap *MaxHeapify(void **arr, uint16_t size,int16_t (*cmp)(const void*, const void*));
+BinaryMaxHeap *MaxHeapify(void **arr, uint32_t size,int32_t (*cmp)(const void*, const void*));
 
 void printMaxHeap(BinaryMaxHeap *h, void (*printfn)(void *));
 
@@ -31,5 +30,9 @@ void MaxHeapifyDown(BinaryMaxHeap* h, int index);
 void MaxHeapPrint(BinaryMaxHeap *MaxHeap, int i, void (*printfn)(void *));
 
 void MaxHeapDelete(BinaryMaxHeap* heap, void ** res);
+
+void clearMaxHeap(BinaryMaxHeap * pMaxHeap);
+
+void  MaxHeapAddAll(BinaryMaxHeap *binaryMaxHeap,void **arr, uint32_t size);
 
 #endif //C_DATASTRUCTURES_BINARYMAXHEAP_H

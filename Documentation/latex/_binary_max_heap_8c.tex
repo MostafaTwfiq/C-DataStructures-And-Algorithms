@@ -8,82 +8,92 @@ void \mbox{\hyperlink{_binary_max_heap_8c_a366dddec8f8a4afd373183d1bee32799}{Max
 \item 
 void \mbox{\hyperlink{_binary_max_heap_8c_a546b63813f17ed0940637c762129b969}{Max\+Heapify\+Down}} (\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$heap, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} index)
 \item 
-\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$ \mbox{\hyperlink{_binary_max_heap_8c_aa230273e670cd4c24bfeaf648b9134a0}{Max\+Heap\+Initialize}} (uint16\+\_\+t size, int16\+\_\+t($\ast$cmp)(const void $\ast$, const void $\ast$))
+\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$ \mbox{\hyperlink{_binary_max_heap_8c_ad6520be560cc8613438499bcfe714eb8}{Max\+Heap\+Initialize}} (int32\+\_\+t($\ast$cmp)(const void $\ast$, const void $\ast$))
 \item 
 void \mbox{\hyperlink{_binary_max_heap_8c_a98db9f37a5fb6716f08d19fa743251b2}{Max\+Heap\+Insert}} (\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$h, void $\ast$value)
 \item 
 void \mbox{\hyperlink{_binary_max_heap_8c_a7435e4bdaa80aec6c780754eeac1dc67}{Max\+Heap\+Delete}} (\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$heap, void $\ast$$\ast$res)
 \item 
-\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$ \mbox{\hyperlink{_binary_max_heap_8c_a8716132a6c2071f4113b67ce877a704e}{Max\+Heapify}} (void $\ast$$\ast$arr, uint16\+\_\+t size, int16\+\_\+t($\ast$cmp)(const void $\ast$, const void $\ast$))
+\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$ \mbox{\hyperlink{_binary_max_heap_8c_a504a7873d2573eb3a2d68fc89daeca08}{Max\+Heapify}} (void $\ast$$\ast$arr, uint32\+\_\+t size, int32\+\_\+t($\ast$cmp)(const void $\ast$, const void $\ast$))
 \item 
-void $\ast$ \mbox{\hyperlink{_binary_max_heap_8c_a99617a781b5e529344da58d008cb0b45}{Max\+Heap\+Add\+All}} (\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$binary\+Max\+Heap, void $\ast$$\ast$arr, uint16\+\_\+t size)
+void \mbox{\hyperlink{_binary_max_heap_8c_a79f12c9a4bcae559d19fdb686463a317}{Max\+Heap\+Add\+All}} (\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$binary\+Max\+Heap, void $\ast$$\ast$arr, uint32\+\_\+t size)
+\item 
+void \mbox{\hyperlink{_binary_max_heap_8c_a6f756ea2f3c9b28dd4cf0053d7a731f4}{print\+Max\+Heap}} (\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$h, void($\ast$printfn)(void $\ast$))
 \item 
 void \mbox{\hyperlink{_binary_max_heap_8c_a6f1b61dca4e494015e73cddb7173ddc3}{destroy\+Max\+Heap}} (\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$heap)
 \item 
-void \mbox{\hyperlink{_binary_max_heap_8c_a6f756ea2f3c9b28dd4cf0053d7a731f4}{print\+Max\+Heap}} (\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$h, void($\ast$printfn)(void $\ast$))
+void \mbox{\hyperlink{_binary_max_heap_8c_ad5f8b80a48c29375617be671d9a9612e}{clear\+Max\+Heap}} (\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$p\+Max\+Heap)
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_binary_max_heap_8c_ad5f8b80a48c29375617be671d9a9612e}\label{_binary_max_heap_8c_ad5f8b80a48c29375617be671d9a9612e}} 
+\index{BinaryMaxHeap.c@{BinaryMaxHeap.c}!clearMaxHeap@{clearMaxHeap}}
+\index{clearMaxHeap@{clearMaxHeap}!BinaryMaxHeap.c@{BinaryMaxHeap.c}}
+\doxysubsubsection{\texorpdfstring{clearMaxHeap()}{clearMaxHeap()}}
+{\footnotesize\ttfamily void clear\+Max\+Heap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$}]{p\+Max\+Heap }\end{DoxyParamCaption})}
+
+Given a heap pointer it frees it\textquotesingle{}s memory container contents. But not the memory container of the heap. 
+\begin{DoxyParams}{Parameters}
+{\em p\+Max\+Heap} & Reference to maximum heap pointer allocated on the heap. \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{_binary_max_heap_8c_a6f1b61dca4e494015e73cddb7173ddc3}\label{_binary_max_heap_8c_a6f1b61dca4e494015e73cddb7173ddc3}} 
 \index{BinaryMaxHeap.c@{BinaryMaxHeap.c}!destroyMaxHeap@{destroyMaxHeap}}
 \index{destroyMaxHeap@{destroyMaxHeap}!BinaryMaxHeap.c@{BinaryMaxHeap.c}}
 \doxysubsubsection{\texorpdfstring{destroyMaxHeap()}{destroyMaxHeap()}}
 {\footnotesize\ttfamily void destroy\+Max\+Heap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$}]{heap }\end{DoxyParamCaption})}
 
-
+Given a heap it frees its memory container and the allocated pointer within it, setting them null as well as the memory container and frees the heap pointer. 
 \begin{DoxyParams}{Parameters}
-{\em heap} & \\
+{\em heap} & Reference to maximum heap pointer allocated on the heap. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{_binary_max_heap_8c_a99617a781b5e529344da58d008cb0b45}\label{_binary_max_heap_8c_a99617a781b5e529344da58d008cb0b45}} 
+\mbox{\Hypertarget{_binary_max_heap_8c_a79f12c9a4bcae559d19fdb686463a317}\label{_binary_max_heap_8c_a79f12c9a4bcae559d19fdb686463a317}} 
 \index{BinaryMaxHeap.c@{BinaryMaxHeap.c}!MaxHeapAddAll@{MaxHeapAddAll}}
 \index{MaxHeapAddAll@{MaxHeapAddAll}!BinaryMaxHeap.c@{BinaryMaxHeap.c}}
 \doxysubsubsection{\texorpdfstring{MaxHeapAddAll()}{MaxHeapAddAll()}}
-{\footnotesize\ttfamily void$\ast$ Max\+Heap\+Add\+All (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$}]{binary\+Max\+Heap,  }\item[{void $\ast$$\ast$}]{arr,  }\item[{uint16\+\_\+t}]{size }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Max\+Heap\+Add\+All (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$}]{binary\+Max\+Heap,  }\item[{void $\ast$$\ast$}]{arr,  }\item[{uint32\+\_\+t}]{size }\end{DoxyParamCaption})}
 
-
+Given an array of void pointers to pre-\/allocated objects, it inserts them in a maximum heap. 
 \begin{DoxyParams}{Parameters}
-{\em binary\+Max\+Heap} & \\
+{\em binary\+Max\+Heap} & Reference to maximum heap pointer allocated on the heap. \\
 \hline
-{\em arr} & \\
+{\em arr} & array to add elements from into the heap. \\
 \hline
-{\em size} & \\
+{\em size} & Size of the array to be inserted into the heap. \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-
-\end{DoxyReturn}
 \mbox{\Hypertarget{_binary_max_heap_8c_a7435e4bdaa80aec6c780754eeac1dc67}\label{_binary_max_heap_8c_a7435e4bdaa80aec6c780754eeac1dc67}} 
 \index{BinaryMaxHeap.c@{BinaryMaxHeap.c}!MaxHeapDelete@{MaxHeapDelete}}
 \index{MaxHeapDelete@{MaxHeapDelete}!BinaryMaxHeap.c@{BinaryMaxHeap.c}}
 \doxysubsubsection{\texorpdfstring{MaxHeapDelete()}{MaxHeapDelete()}}
 {\footnotesize\ttfamily void Max\+Heap\+Delete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$}]{heap,  }\item[{void $\ast$$\ast$}]{res }\end{DoxyParamCaption})}
 
-
+Deletes the root element of the heap and restores the heap property of the heap. 
 \begin{DoxyParams}{Parameters}
-{\em heap} & \\
+{\em heap} & Reference to maximum heap pointer allocated on the heap. \\
 \hline
-{\em res} & \\
+{\em res} & pointer to store the root if needed. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{_binary_max_heap_8c_a8716132a6c2071f4113b67ce877a704e}\label{_binary_max_heap_8c_a8716132a6c2071f4113b67ce877a704e}} 
+\mbox{\Hypertarget{_binary_max_heap_8c_a504a7873d2573eb3a2d68fc89daeca08}\label{_binary_max_heap_8c_a504a7873d2573eb3a2d68fc89daeca08}} 
 \index{BinaryMaxHeap.c@{BinaryMaxHeap.c}!MaxHeapify@{MaxHeapify}}
 \index{MaxHeapify@{MaxHeapify}!BinaryMaxHeap.c@{BinaryMaxHeap.c}}
 \doxysubsubsection{\texorpdfstring{MaxHeapify()}{MaxHeapify()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}}$\ast$ Max\+Heapify (\begin{DoxyParamCaption}\item[{void $\ast$$\ast$}]{arr,  }\item[{uint16\+\_\+t}]{size,  }\item[{int16\+\_\+t($\ast$)(const void $\ast$, const void $\ast$)}]{cmp }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}}$\ast$ Max\+Heapify (\begin{DoxyParamCaption}\item[{void $\ast$$\ast$}]{arr,  }\item[{uint32\+\_\+t}]{size,  }\item[{int32\+\_\+t($\ast$)(const void $\ast$, const void $\ast$)}]{cmp }\end{DoxyParamCaption})}
 
-
+Given an array containing preallocated pointer to objects, this function creates a new heap with the objects in it. 
 \begin{DoxyParams}{Parameters}
-{\em arr} & \\
+{\em arr} & Array to add elements from into the heap. \\
 \hline
-{\em size} & \\
+{\em size} & Size of the array to be inserted into the heap. \\
 \hline
-{\em cmp} & \\
+{\em cmp} & compare function for values stored in the heap. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-
+Reference to maximum heap pointer allocated on the p\+Min\+Heap. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{_binary_max_heap_8c_a546b63813f17ed0940637c762129b969}\label{_binary_max_heap_8c_a546b63813f17ed0940637c762129b969}} 
 \index{BinaryMaxHeap.c@{BinaryMaxHeap.c}!MaxHeapifyDown@{MaxHeapifyDown}}
@@ -91,11 +101,11 @@ void \mbox{\hyperlink{_binary_max_heap_8c_a6f756ea2f3c9b28dd4cf0053d7a731f4}{pri
 \doxysubsubsection{\texorpdfstring{MaxHeapifyDown()}{MaxHeapifyDown()}}
 {\footnotesize\ttfamily void Max\+Heapify\+Down (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$}]{heap,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{index }\end{DoxyParamCaption})}
 
-
+Function that ensures heap property, by recursively traversing the heap. Moving elements down the maximum tree. 
 \begin{DoxyParams}{Parameters}
-{\em heap} & \\
+{\em heap} & Reference to maximum heap pointer allocated on the p\+Min\+Heap. \\
 \hline
-{\em index} & \\
+{\em index} & index to heapify at. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{_binary_max_heap_8c_a366dddec8f8a4afd373183d1bee32799}\label{_binary_max_heap_8c_a366dddec8f8a4afd373183d1bee32799}} 
@@ -104,28 +114,26 @@ void \mbox{\hyperlink{_binary_max_heap_8c_a6f756ea2f3c9b28dd4cf0053d7a731f4}{pri
 \doxysubsubsection{\texorpdfstring{MaxHeapifyUP()}{MaxHeapifyUP()}}
 {\footnotesize\ttfamily void Max\+Heapify\+UP (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$}]{h,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{index }\end{DoxyParamCaption})}
 
-
+Restores the heap property , by recursively traversing the heap. Moving elements up the maximum tree. 
 \begin{DoxyParams}{Parameters}
-{\em h} & \\
+{\em h} & Reference to maximum heap pointer allocated on the heap. \\
 \hline
 {\em index} & \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{_binary_max_heap_8c_aa230273e670cd4c24bfeaf648b9134a0}\label{_binary_max_heap_8c_aa230273e670cd4c24bfeaf648b9134a0}} 
+\mbox{\Hypertarget{_binary_max_heap_8c_ad6520be560cc8613438499bcfe714eb8}\label{_binary_max_heap_8c_ad6520be560cc8613438499bcfe714eb8}} 
 \index{BinaryMaxHeap.c@{BinaryMaxHeap.c}!MaxHeapInitialize@{MaxHeapInitialize}}
 \index{MaxHeapInitialize@{MaxHeapInitialize}!BinaryMaxHeap.c@{BinaryMaxHeap.c}}
 \doxysubsubsection{\texorpdfstring{MaxHeapInitialize()}{MaxHeapInitialize()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}}$\ast$ Max\+Heap\+Initialize (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{size,  }\item[{int16\+\_\+t($\ast$)(const void $\ast$, const void $\ast$)}]{cmp }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}}$\ast$ Max\+Heap\+Initialize (\begin{DoxyParamCaption}\item[{int32\+\_\+t($\ast$)(const void $\ast$, const void $\ast$)}]{cmp }\end{DoxyParamCaption})}
 
-
+Allocates space for maximum heap on the heap. Setting the inital size to 0 and the initial allocated size to 10. 
 \begin{DoxyParams}{Parameters}
-{\em size} & \\
-\hline
-{\em cmp} & \\
+{\em cmp} & compare function for values stored in the heap. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-
+Returns pointer to the allocated maximum heap on the heap. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{_binary_max_heap_8c_a98db9f37a5fb6716f08d19fa743251b2}\label{_binary_max_heap_8c_a98db9f37a5fb6716f08d19fa743251b2}} 
 \index{BinaryMaxHeap.c@{BinaryMaxHeap.c}!MaxHeapInsert@{MaxHeapInsert}}
@@ -133,11 +141,11 @@ void \mbox{\hyperlink{_binary_max_heap_8c_a6f756ea2f3c9b28dd4cf0053d7a731f4}{pri
 \doxysubsubsection{\texorpdfstring{MaxHeapInsert()}{MaxHeapInsert()}}
 {\footnotesize\ttfamily void Max\+Heap\+Insert (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$}]{h,  }\item[{void $\ast$}]{value }\end{DoxyParamCaption})}
 
-
+Inserts at the bottom of the tree then moves the element up the tree by calling \mbox{\hyperlink{_binary_max_heap_8c_a366dddec8f8a4afd373183d1bee32799}{Max\+Heapify\+UP}} 
 \begin{DoxyParams}{Parameters}
-{\em h} & \\
+{\em h} & Reference to maximum heap pointer allocated on the heap. \\
 \hline
-{\em value} & \\
+{\em value} & value to insert in the tree. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{_binary_max_heap_8c_a6f756ea2f3c9b28dd4cf0053d7a731f4}\label{_binary_max_heap_8c_a6f756ea2f3c9b28dd4cf0053d7a731f4}} 
@@ -146,10 +154,10 @@ void \mbox{\hyperlink{_binary_max_heap_8c_a6f756ea2f3c9b28dd4cf0053d7a731f4}{pri
 \doxysubsubsection{\texorpdfstring{printMaxHeap()}{printMaxHeap()}}
 {\footnotesize\ttfamily void print\+Max\+Heap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_max_heap}{Binary\+Max\+Heap}} $\ast$}]{h,  }\item[{void($\ast$)(void $\ast$)}]{printfn }\end{DoxyParamCaption})}
 
-
+Given a reference to heap prints it\textquotesingle{}s elements. 
 \begin{DoxyParams}{Parameters}
-{\em h} & \\
+{\em h} & Reference to maximum heap pointer allocated on the heap. \\
 \hline
-{\em printfn} & \\
+{\em printfn} & pointer to the print funtion to be used. \\
 \hline
 \end{DoxyParams}

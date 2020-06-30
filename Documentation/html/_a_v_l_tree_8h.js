@@ -12,6 +12,7 @@ var _a_v_l_tree_8h =
     [ "AVLTreeGetMinSteps", "_a_v_l_tree_8h.html#a7d5dbb5d9703807f7b103519a7be440f", null ],
     [ "AVLTreeGetSize", "_a_v_l_tree_8h.html#a3736f4614cb91a152fbbdeb6657a21c4", null ],
     [ "AVLTreeInitialize", "_a_v_l_tree_8h.html#a4a6b19f3dba7f99ac0244d2e1140361c", null ],
+    [ "AVLTreeInOrderPredecessor", "_a_v_l_tree_8h.html#a16cf89dbdc035e1f355fced3aa709ee0", null ],
     [ "AVLTreeInOrderSuccessor", "_a_v_l_tree_8h.html#ad7fd70e00cde3134777341034e675bb9", null ],
     [ "AVLTreeInsert", "_a_v_l_tree_8h.html#a3f3f3f0fd3c7d6071843974fcc40e10a", null ],
     [ "AVLTreeIsPresent", "_a_v_l_tree_8h.html#a8e91708b0bddf3e46eee2309a1ad0634", null ],
@@ -21,6 +22,5 @@ var _a_v_l_tree_8h =
     [ "AVLTreePrintInOrder", "_a_v_l_tree_8h.html#a5b5a8294de8b83dcc103617a053f2432", null ],
     [ "AVLTreePrintStats", "_a_v_l_tree_8h.html#aa28256979c1111ae717b835935c000e5", null ],
     [ "AVLTreeSearch", "_a_v_l_tree_8h.html#aa333f496dc1cb2579d7d797fc4dfde78", null ],
-    [ "AVLTreeToArray", "_a_v_l_tree_8h.html#a467121bd8538ce81992035b604d6a697", null ],
-    [ "inOrderPredecessorAVLTree", "_a_v_l_tree_8h.html#a48c7a5dea010485092c5d93049875866", null ]
+    [ "AVLTreeToArray", "_a_v_l_tree_8h.html#a467121bd8538ce81992035b604d6a697", null ]
 ];

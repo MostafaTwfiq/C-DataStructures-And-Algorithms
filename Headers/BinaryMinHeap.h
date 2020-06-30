@@ -9,29 +9,30 @@
 #define HAS_LEFT(h,i)  (LCHILD(i) < h->size)
 #define HAS_RIGHT(h,i) (RCHILD(i) < h->size)
 
-typedef struct BinaryMinHeap{
+typedef struct BinaryMinHeap {
     void **  memory;
     uint32_t capacity;
     uint32_t size;
-    uint16_t sizeOfType;
-    int16_t  (*cmpFn)(const void* ,const void* );
+    int32_t  (*cmpFn)(const void* ,const void* );
 }BinaryMinHeap;
 
-BinaryMinHeap *MinHeapInitialize(uint16_t size, int16_t (*cmp)(const void*, const void*));
+BinaryMinHeap *MinHeapInitialize(int32_t (*cmp)(const void*, const void*));
 
-void insertInMinHeap(BinaryMinHeap* h, void* value);
+void MinHeapInsert(BinaryMinHeap* pMinHeap, void* value);
 
-BinaryMinHeap *MinHeapify(void *arr, uint16_t size, uint8_t type);
+BinaryMinHeap *MinHeapify(void *arr, uint32_t size,int32_t (*cmp)(const void*, const void*));
 
-void destroyMinHeap(BinaryMinHeap *);
+void destroyMinHeap(BinaryMinHeap *pMinHeap);
 
-void printMinHeap(BinaryMinHeap *h, void (*printfn)(void *));
+void printMinHeap(BinaryMinHeap *pMinHeap, void (*printfn)(void *));
 
-void MinHeapifyDown(BinaryMinHeap* h, int index);
+void MinHeapifyDown(BinaryMinHeap* pMinHeap, int index);
 
-void MinHeapDelete(BinaryMinHeap* heap, void ** res);
+void MinHeapDelete(BinaryMinHeap* pMinHeap, void ** res);
 
-void * MinHeapAddAll(BinaryMinHeap *binaryMaxHeap,void **arr, uint16_t size);
+void MinHeapAddAll(BinaryMinHeap *pMinHeap, void **arr, uint32_t size);
+
+void clearMinHeap(BinaryMinHeap * pMinHeap);
 
 #endif //C_DATASTRUCTURES_MinHeap_H
 

@@ -85,10 +85,6 @@ $(document).ready(function(){initNavTree('globals_func_s.html',''); initResizabl
 &#160;
 
 <h3><a id="index_s"></a>- s -</h3><ul>
-<li>searchBinaryTree()
-: <a class="el" href="_binary_tree_8h.html#a872451120c65f64f87745837555aa2ed">BinaryTree.h</a>
-, <a class="el" href="_binary_tree_8c.html#a903132198fc763099b50743ebed6eb80">BinaryTree.c</a>
-</li>
 <li>sHashCal()
 : <a class="el" href="_hash_map_8c.html#af89b7abe3395e2ddeb1e830e81fb6856">HashMap.c</a>
 </li>
@@ -96,9 +92,21 @@ $(document).ready(function(){initNavTree('globals_func_s.html',''); initResizabl
 : <a class="el" href="_splay_tree_8h.html#a7bb63495a1efc73a5523986e7d383bce">SplayTree.h</a>
 , <a class="el" href="_splay_tree_8c.html#a7bb63495a1efc73a5523986e7d383bce">SplayTree.c</a>
 </li>
+<li>SplayLeftRotate()
+: <a class="el" href="_splay_tree_8h.html#aaae890bb66c29edd36035d7c229c6cac">SplayTree.h</a>
+, <a class="el" href="_splay_tree_8c.html#aaae890bb66c29edd36035d7c229c6cac">SplayTree.c</a>
+</li>
+<li>SplayRightRotate()
+: <a class="el" href="_splay_tree_8h.html#aed81367b435195ab5d1e9972f049523d">SplayTree.h</a>
+, <a class="el" href="_splay_tree_8c.html#aed81367b435195ab5d1e9972f049523d">SplayTree.c</a>
+</li>
 <li>SplayTreeDelete()
 : <a class="el" href="_splay_tree_8h.html#a029c068f95888d30671fac6ba933be75">SplayTree.h</a>
 , <a class="el" href="_splay_tree_8c.html#a029c068f95888d30671fac6ba933be75">SplayTree.c</a>
+</li>
+<li>SplayTreeFree()
+: <a class="el" href="_splay_tree_8h.html#aa47d75db0996882b12c7700cf163d988">SplayTree.h</a>
+, <a class="el" href="_splay_tree_8c.html#aa47d75db0996882b12c7700cf163d988">SplayTree.c</a>
 </li>
 <li>SplayTreeInitialize()
 : <a class="el" href="_splay_tree_8h.html#a4a740f25a7422ff48cc7acc32204fa96">SplayTree.h</a>
@@ -140,16 +148,16 @@ $(document).ready(function(){initNavTree('globals_func_s.html',''); initResizabl
 , <a class="el" href="_stack_queue_8c.html#afa73e7537e317f981aba2c2a3e85338a">StackQueue.c</a>
 </li>
 <li>sQueueIsEmpty()
-: <a class="el" href="_stack_queue_8h.html#aab2a056d72de759c94cd08c948d57293">StackQueue.h</a>
-, <a class="el" href="_stack_queue_8c.html#aab2a056d72de759c94cd08c948d57293">StackQueue.c</a>
+: <a class="el" href="_stack_queue_8c.html#aab2a056d72de759c94cd08c948d57293">StackQueue.c</a>
+, <a class="el" href="_stack_queue_8h.html#aab2a056d72de759c94cd08c948d57293">StackQueue.h</a>
 </li>
 <li>sQueuePeek()
 : <a class="el" href="_stack_queue_8h.html#a0b55d7d9774123a6e9ac28e1e270b072">StackQueue.h</a>
 , <a class="el" href="_stack_queue_8c.html#a0b55d7d9774123a6e9ac28e1e270b072">StackQueue.c</a>
 </li>
 <li>sQueueToArray()
-: <a class="el" href="_stack_queue_8c.html#ab133614fdbcf80fdf2f585e6254fec1f">StackQueue.c</a>
-, <a class="el" href="_stack_queue_8h.html#ab133614fdbcf80fdf2f585e6254fec1f">StackQueue.h</a>
+: <a class="el" href="_stack_queue_8h.html#ab133614fdbcf80fdf2f585e6254fec1f">StackQueue.h</a>
+, <a class="el" href="_stack_queue_8c.html#ab133614fdbcf80fdf2f585e6254fec1f">StackQueue.c</a>
 </li>
 <li>stackAddAll()
 : <a class="el" href="_stack_8h.html#af69cc5e878f15b5671c7f6a166d8761f">Stack.h</a>
@@ -188,8 +196,8 @@ $(document).ready(function(){initNavTree('globals_func_s.html',''); initResizabl
 , <a class="el" href="_string_8c.html#a6b2fb3a54af830356f0fa058d3db403e">String.c</a>
 </li>
 <li>stringChangeStringByCharArray()
-: <a class="el" href="_string_8c.html#a2c0f1a0e0b16e4c66426e9eda9296a5e">String.c</a>
-, <a class="el" href="_string_8h.html#a2c0f1a0e0b16e4c66426e9eda9296a5e">String.h</a>
+: <a class="el" href="_string_8h.html#a2c0f1a0e0b16e4c66426e9eda9296a5e">String.h</a>
+, <a class="el" href="_string_8c.html#a2c0f1a0e0b16e4c66426e9eda9296a5e">String.c</a>
 </li>
 <li>stringChangeStringByString()
 : <a class="el" href="_string_8h.html#a3063c4167c30d375c848480b1e22760f">String.h</a>
@@ -200,36 +208,36 @@ $(document).ready(function(){initNavTree('globals_func_s.html',''); initResizabl
 , <a class="el" href="_string_8c.html#a6fbb17a7e2612e0d89341f357d977ccb">String.c</a>
 </li>
 <li>stringFindCharIndex()
-: <a class="el" href="_string_8c.html#a5b30127d66bdb05ce75abaec416f3f19">String.c</a>
-, <a class="el" href="_string_8h.html#a5b30127d66bdb05ce75abaec416f3f19">String.h</a>
+: <a class="el" href="_string_8h.html#a5b30127d66bdb05ce75abaec416f3f19">String.h</a>
+, <a class="el" href="_string_8c.html#a5b30127d66bdb05ce75abaec416f3f19">String.c</a>
 </li>
 <li>stringGetCharAtIndex()
-: <a class="el" href="_string_8h.html#a79862a93afaa71bcf9be4ddd5b7987a1">String.h</a>
-, <a class="el" href="_string_8c.html#a79862a93afaa71bcf9be4ddd5b7987a1">String.c</a>
+: <a class="el" href="_string_8c.html#a79862a93afaa71bcf9be4ddd5b7987a1">String.c</a>
+, <a class="el" href="_string_8h.html#a79862a93afaa71bcf9be4ddd5b7987a1">String.h</a>
 </li>
 <li>stringGetLength()
 : <a class="el" href="_string_8h.html#a61454d1c91df369370e8301a4e5c8368">String.h</a>
 , <a class="el" href="_string_8c.html#a61454d1c91df369370e8301a4e5c8368">String.c</a>
 </li>
 <li>stringGetStringBetweenTwoIndices()
-: <a class="el" href="_string_8h.html#aa124aa376fc014f9f78a45987bf8a314">String.h</a>
-, <a class="el" href="_string_8c.html#aa124aa376fc014f9f78a45987bf8a314">String.c</a>
+: <a class="el" href="_string_8c.html#aa124aa376fc014f9f78a45987bf8a314">String.c</a>
+, <a class="el" href="_string_8h.html#aa124aa376fc014f9f78a45987bf8a314">String.h</a>
 </li>
 <li>stringInitialization()
-: <a class="el" href="_string_8h.html#a2b2f38aefb3e6ff97e1979ffe343f8d5">String.h</a>
-, <a class="el" href="_string_8c.html#a2b2f38aefb3e6ff97e1979ffe343f8d5">String.c</a>
+: <a class="el" href="_string_8c.html#a2b2f38aefb3e6ff97e1979ffe343f8d5">String.c</a>
+, <a class="el" href="_string_8h.html#a2b2f38aefb3e6ff97e1979ffe343f8d5">String.h</a>
 </li>
 <li>stringIsEqualsToCharArray()
 : <a class="el" href="_string_8c.html#a1387c31db23f6d60d80714206e43e564">String.c</a>
 , <a class="el" href="_string_8h.html#a1387c31db23f6d60d80714206e43e564">String.h</a>
 </li>
 <li>stringIsEqualsToMyString()
-: <a class="el" href="_string_8h.html#a62ee1a1948778ab568f6ac41d671e39e">String.h</a>
-, <a class="el" href="_string_8c.html#a62ee1a1948778ab568f6ac41d671e39e">String.c</a>
+: <a class="el" href="_string_8c.html#a62ee1a1948778ab568f6ac41d671e39e">String.c</a>
+, <a class="el" href="_string_8h.html#a62ee1a1948778ab568f6ac41d671e39e">String.h</a>
 </li>
 <li>stringRemoveCharAtIndex()
-: <a class="el" href="_string_8c.html#a2ed854a1ba8bd009ca560b707af44eaf">String.c</a>
-, <a class="el" href="_string_8h.html#a2ed854a1ba8bd009ca560b707af44eaf">String.h</a>
+: <a class="el" href="_string_8h.html#a2ed854a1ba8bd009ca560b707af44eaf">String.h</a>
+, <a class="el" href="_string_8c.html#a2ed854a1ba8bd009ca560b707af44eaf">String.c</a>
 </li>
 <li>stringSubString()
 : <a class="el" href="_string_8h.html#acf3397e59f9b6e5111e222b3fa9e7497">String.h</a>
@@ -240,8 +248,8 @@ $(document).ready(function(){initNavTree('globals_func_s.html',''); initResizabl
 , <a class="el" href="_string_8h.html#a360015898b669d4fb309e407e56e5f4c">String.h</a>
 </li>
 <li>stringTrim()
-: <a class="el" href="_string_8h.html#a1a8b4c95f18c9d015b066091baa4de37">String.h</a>
-, <a class="el" href="_string_8c.html#a1a8b4c95f18c9d015b066091baa4de37">String.c</a>
+: <a class="el" href="_string_8c.html#a1a8b4c95f18c9d015b066091baa4de37">String.c</a>
+, <a class="el" href="_string_8h.html#a1a8b4c95f18c9d015b066091baa4de37">String.h</a>
 </li>
 <li>swapItems()
 : <a class="el" href="_priority_queue_8c.html#adfd03da1707adec1404fbf3f7e80ba9b">PriorityQueue.c</a>

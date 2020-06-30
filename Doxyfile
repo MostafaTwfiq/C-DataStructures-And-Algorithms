@@ -2285,7 +2285,7 @@ EXTERNAL_PAGES         = YES
 CLASS_DIAGRAMS         = YES
 
 # You can include diagrams made with dia in doxygen documentation. Doxygen will
-# then run dia to produce the diagram and insertBinaryTree it in the documentation. The
+# then run dia to produce the diagram and BinaryTreeInsert it in the documentation. The
 # DIA_PATH tag allows you to specify the directory where the dia binary resides.
 # If left empty dia is assumed to be found in the default search path.
 

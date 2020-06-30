@@ -1,0 +1,222 @@
+\hypertarget{_linked_list_hash_map_8h}{}\doxysection{Headers/\+Linked\+List\+Hash\+Map.h File Reference}
+\label{_linked_list_hash_map_8h}\index{Headers/LinkedListHashMap.h@{Headers/LinkedListHashMap.h}}
+{\ttfamily \#include \char`\"{}Doubly\+Linked\+List.\+h\char`\"{}}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_entry}{Entry}}
+\item 
+struct \mbox{\hyperlink{struct_linked_list_hash_map}{Linked\+List\+Hash\+Map}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct_entry}{Entry}} \mbox{\hyperlink{_linked_list_hash_map_8h_a65b0d0252adaf76f9ce2004299344de8}{Entry}}
+\item 
+typedef struct \mbox{\hyperlink{struct_linked_list_hash_map}{Linked\+List\+Hash\+Map}} \mbox{\hyperlink{_linked_list_hash_map_8h_aa3c92cba43076301ff25287b2bfbca47}{Linked\+List\+Hash\+Map}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_linked_list_hash_map}{Linked\+List\+Hash\+Map}} $\ast$ \mbox{\hyperlink{_linked_list_hash_map_8h_a427c28e9c0ebb2cd8f59cf7d461c7121}{linked\+List\+Hash\+Map\+Initialization}} (\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} map\+Length, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} size\+Of\+Type)
+\item 
+void \mbox{\hyperlink{_linked_list_hash_map_8h_a97ccb4f8eeca11c732e2c225e3de3f65}{l\+L\+Hash\+Map\+Insert}} (\mbox{\hyperlink{struct_linked_list_hash_map}{Linked\+List\+Hash\+Map}} $\ast$map, void $\ast$key, void $\ast$item, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} size\+Of\+Key)
+\item 
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_linked_list_hash_map_8h_afcc3e6f2c2d2dbe3aabf48544d16c76a}{l\+L\+Hash\+Map\+Contains}} (\mbox{\hyperlink{struct_linked_list_hash_map}{Linked\+List\+Hash\+Map}} $\ast$map, void $\ast$key, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} size\+Of\+Key)
+\item 
+void $\ast$ \mbox{\hyperlink{_linked_list_hash_map_8h_a066087f91215528cdebf302c2b088dad}{l\+L\+Hash\+Map\+Get}} (\mbox{\hyperlink{struct_linked_list_hash_map}{Linked\+List\+Hash\+Map}} $\ast$map, void $\ast$key, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} size\+Of\+Key)
+\item 
+void \mbox{\hyperlink{_linked_list_hash_map_8h_ae58b411046bc19ae5ccc6f0f82b83c36}{l\+L\+Hash\+Map\+Delete}} (\mbox{\hyperlink{struct_linked_list_hash_map}{Linked\+List\+Hash\+Map}} $\ast$map, void $\ast$key, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} size\+Of\+Key)
+\item 
+void $\ast$$\ast$ \mbox{\hyperlink{_linked_list_hash_map_8h_a64fdaac7578f7d7f768c7dd0e3edd72c}{l\+L\+Hash\+Map\+To\+Array}} (\mbox{\hyperlink{struct_linked_list_hash_map}{Linked\+List\+Hash\+Map}} $\ast$map)
+\item 
+\mbox{\hyperlink{struct_entry}{Entry}} $\ast$$\ast$ \mbox{\hyperlink{_linked_list_hash_map_8h_aab08be244822170642ea53aeafb91c80}{l\+L\+Hash\+Map\+To\+Entry\+Array}} (\mbox{\hyperlink{struct_linked_list_hash_map}{Linked\+List\+Hash\+Map}} $\ast$map)
+\item 
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_linked_list_hash_map_8h_a09a97eafb1b683dbbef8644cada4d4d2}{l\+L\+Hash\+Map\+Get\+Length}} (\mbox{\hyperlink{struct_linked_list_hash_map}{Linked\+List\+Hash\+Map}} $\ast$map)
+\item 
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_linked_list_hash_map_8h_aefe8729026a5a7f740052989784c8d20}{l\+L\+Hash\+Map\+Is\+Empty}} (\mbox{\hyperlink{struct_linked_list_hash_map}{Linked\+List\+Hash\+Map}} $\ast$map)
+\item 
+void \mbox{\hyperlink{_linked_list_hash_map_8h_a4eaacc8cf21b82444c8549026232ada5}{clear\+L\+L\+Hash\+Map}} (\mbox{\hyperlink{struct_linked_list_hash_map}{Linked\+List\+Hash\+Map}} $\ast$map)
+\item 
+void \mbox{\hyperlink{_linked_list_hash_map_8h_a5f097f86528df4b0296484e0d7738b11}{destroy\+L\+L\+Hash\+Map}} (\mbox{\hyperlink{struct_linked_list_hash_map}{Linked\+List\+Hash\+Map}} $\ast$map)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{_linked_list_hash_map_8h_a65b0d0252adaf76f9ce2004299344de8}\label{_linked_list_hash_map_8h_a65b0d0252adaf76f9ce2004299344de8}} 
+\index{LinkedListHashMap.h@{LinkedListHashMap.h}!Entry@{Entry}}
+\index{Entry@{Entry}!LinkedListHashMap.h@{LinkedListHashMap.h}}
+\doxysubsubsection{\texorpdfstring{Entry}{Entry}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct_entry}{Entry}} \mbox{\hyperlink{struct_entry}{Entry}}}
+
+\mbox{\Hypertarget{_linked_list_hash_map_8h_aa3c92cba43076301ff25287b2bfbca47}\label{_linked_list_hash_map_8h_aa3c92cba43076301ff25287b2bfbca47}} 
+\index{LinkedListHashMap.h@{LinkedListHashMap.h}!LinkedListHashMap@{LinkedListHashMap}}
+\index{LinkedListHashMap@{LinkedListHashMap}!LinkedListHashMap.h@{LinkedListHashMap.h}}
+\doxysubsubsection{\texorpdfstring{LinkedListHashMap}{LinkedListHashMap}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct_linked_list_hash_map}{Linked\+List\+Hash\+Map}} \mbox{\hyperlink{struct_linked_list_hash_map}{Linked\+List\+Hash\+Map}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_linked_list_hash_map_8h_a4eaacc8cf21b82444c8549026232ada5}\label{_linked_list_hash_map_8h_a4eaacc8cf21b82444c8549026232ada5}} 
+\index{LinkedListHashMap.h@{LinkedListHashMap.h}!clearLLHashMap@{clearLLHashMap}}
+\index{clearLLHashMap@{clearLLHashMap}!LinkedListHashMap.h@{LinkedListHashMap.h}}
+\doxysubsubsection{\texorpdfstring{clearLLHashMap()}{clearLLHashMap()}}
+{\footnotesize\ttfamily void clear\+L\+L\+Hash\+Map (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list_hash_map}{Linked\+List\+Hash\+Map}} $\ast$}]{map }\end{DoxyParamCaption})}
+
+This function will take the hash map address as a parameter, then it will clear and free all the hash map entries, without destroying the hash map it self. 
+\begin{DoxyParams}{Parameters}
+{\em map} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_linked_list_hash_map_8h_a5f097f86528df4b0296484e0d7738b11}\label{_linked_list_hash_map_8h_a5f097f86528df4b0296484e0d7738b11}} 
+\index{LinkedListHashMap.h@{LinkedListHashMap.h}!destroyLLHashMap@{destroyLLHashMap}}
+\index{destroyLLHashMap@{destroyLLHashMap}!LinkedListHashMap.h@{LinkedListHashMap.h}}
+\doxysubsubsection{\texorpdfstring{destroyLLHashMap()}{destroyLLHashMap()}}
+{\footnotesize\ttfamily void destroy\+L\+L\+Hash\+Map (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list_hash_map}{Linked\+List\+Hash\+Map}} $\ast$}]{map }\end{DoxyParamCaption})}
+
+This function will take the hash map address as a parameter, then it will destroy and free the hash map and all it\textquotesingle{}s entries. 
+\begin{DoxyParams}{Parameters}
+{\em map} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_linked_list_hash_map_8h_a427c28e9c0ebb2cd8f59cf7d461c7121}\label{_linked_list_hash_map_8h_a427c28e9c0ebb2cd8f59cf7d461c7121}} 
+\index{LinkedListHashMap.h@{LinkedListHashMap.h}!linkedListHashMapInitialization@{linkedListHashMapInitialization}}
+\index{linkedListHashMapInitialization@{linkedListHashMapInitialization}!LinkedListHashMap.h@{LinkedListHashMap.h}}
+\doxysubsubsection{\texorpdfstring{linkedListHashMapInitialization()}{linkedListHashMapInitialization()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_linked_list_hash_map}{Linked\+List\+Hash\+Map}}$\ast$ linked\+List\+Hash\+Map\+Initialization (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{map\+Length,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{size\+Of\+Type }\end{DoxyParamCaption})}
+
+This function will take the length of the hash map, and the size of type as a parameters, then it will allocate a new linked list hash map in the memory, then the function will return the hash map address. 
+\begin{DoxyParams}{Parameters}
+{\em map\+Length} & \\
+\hline
+{\em size\+Of\+Type} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_linked_list_hash_map_8h_afcc3e6f2c2d2dbe3aabf48544d16c76a}\label{_linked_list_hash_map_8h_afcc3e6f2c2d2dbe3aabf48544d16c76a}} 
+\index{LinkedListHashMap.h@{LinkedListHashMap.h}!lLHashMapContains@{lLHashMapContains}}
+\index{lLHashMapContains@{lLHashMapContains}!LinkedListHashMap.h@{LinkedListHashMap.h}}
+\doxysubsubsection{\texorpdfstring{lLHashMapContains()}{lLHashMapContains()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} l\+L\+Hash\+Map\+Contains (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list_hash_map}{Linked\+List\+Hash\+Map}} $\ast$}]{map,  }\item[{void $\ast$}]{key,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{size\+Of\+Key }\end{DoxyParamCaption})}
+
+This function will take the hash map address, the key address, and the size of the key as a parameters, then it will return one (1) if the key is in the tree, other wise it will return zero (0). 
+\begin{DoxyParams}{Parameters}
+{\em map} & \\
+\hline
+{\em key} & \\
+\hline
+{\em size\+Of\+Key} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_linked_list_hash_map_8h_ae58b411046bc19ae5ccc6f0f82b83c36}\label{_linked_list_hash_map_8h_ae58b411046bc19ae5ccc6f0f82b83c36}} 
+\index{LinkedListHashMap.h@{LinkedListHashMap.h}!lLHashMapDelete@{lLHashMapDelete}}
+\index{lLHashMapDelete@{lLHashMapDelete}!LinkedListHashMap.h@{LinkedListHashMap.h}}
+\doxysubsubsection{\texorpdfstring{lLHashMapDelete()}{lLHashMapDelete()}}
+{\footnotesize\ttfamily void l\+L\+Hash\+Map\+Delete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list_hash_map}{Linked\+List\+Hash\+Map}} $\ast$}]{map,  }\item[{void $\ast$}]{key,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{size\+Of\+Key }\end{DoxyParamCaption})}
+
+This function will take the hash map address, the key address, and the size of the key as a parameters, then it will remove the item with the provided key from the hash map. 
+\begin{DoxyParams}{Parameters}
+{\em map} & \\
+\hline
+{\em key} & \\
+\hline
+{\em size\+Of\+Key} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_linked_list_hash_map_8h_a066087f91215528cdebf302c2b088dad}\label{_linked_list_hash_map_8h_a066087f91215528cdebf302c2b088dad}} 
+\index{LinkedListHashMap.h@{LinkedListHashMap.h}!lLHashMapGet@{lLHashMapGet}}
+\index{lLHashMapGet@{lLHashMapGet}!LinkedListHashMap.h@{LinkedListHashMap.h}}
+\doxysubsubsection{\texorpdfstring{lLHashMapGet()}{lLHashMapGet()}}
+{\footnotesize\ttfamily void$\ast$ l\+L\+Hash\+Map\+Get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list_hash_map}{Linked\+List\+Hash\+Map}} $\ast$}]{map,  }\item[{void $\ast$}]{key,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{size\+Of\+Key }\end{DoxyParamCaption})}
+
+This function will take the hash map address, the key address, and the size if the key as a parameters, then it will return the item with the provided key, other wise if the function didn\textquotesingle{}t find that key it will return N\+U\+LL. 
+\begin{DoxyParams}{Parameters}
+{\em map} & \\
+\hline
+{\em key} & \\
+\hline
+{\em size\+Of\+Key} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_linked_list_hash_map_8h_a09a97eafb1b683dbbef8644cada4d4d2}\label{_linked_list_hash_map_8h_a09a97eafb1b683dbbef8644cada4d4d2}} 
+\index{LinkedListHashMap.h@{LinkedListHashMap.h}!lLHashMapGetLength@{lLHashMapGetLength}}
+\index{lLHashMapGetLength@{lLHashMapGetLength}!LinkedListHashMap.h@{LinkedListHashMap.h}}
+\doxysubsubsection{\texorpdfstring{lLHashMapGetLength()}{lLHashMapGetLength()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} l\+L\+Hash\+Map\+Get\+Length (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list_hash_map}{Linked\+List\+Hash\+Map}} $\ast$}]{map }\end{DoxyParamCaption})}
+
+This function will take the hash map address as a parameter, then it will return the number of the items in the hash map. 
+\begin{DoxyParams}{Parameters}
+{\em map} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_linked_list_hash_map_8h_a97ccb4f8eeca11c732e2c225e3de3f65}\label{_linked_list_hash_map_8h_a97ccb4f8eeca11c732e2c225e3de3f65}} 
+\index{LinkedListHashMap.h@{LinkedListHashMap.h}!lLHashMapInsert@{lLHashMapInsert}}
+\index{lLHashMapInsert@{lLHashMapInsert}!LinkedListHashMap.h@{LinkedListHashMap.h}}
+\doxysubsubsection{\texorpdfstring{lLHashMapInsert()}{lLHashMapInsert()}}
+{\footnotesize\ttfamily void l\+L\+Hash\+Map\+Insert (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list_hash_map}{Linked\+List\+Hash\+Map}} $\ast$}]{map,  }\item[{void $\ast$}]{key,  }\item[{void $\ast$}]{item,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{size\+Of\+Key }\end{DoxyParamCaption})}
+
+This function will take the hash map address, the key address, the item address, and the size of the key as a parameters, then it will add the item and it\textquotesingle{}s key in the hash map. 
+\begin{DoxyParams}{Parameters}
+{\em map} & \\
+\hline
+{\em key} & \\
+\hline
+{\em item} & \\
+\hline
+{\em size\+Of\+Key} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_linked_list_hash_map_8h_aefe8729026a5a7f740052989784c8d20}\label{_linked_list_hash_map_8h_aefe8729026a5a7f740052989784c8d20}} 
+\index{LinkedListHashMap.h@{LinkedListHashMap.h}!lLHashMapIsEmpty@{lLHashMapIsEmpty}}
+\index{lLHashMapIsEmpty@{lLHashMapIsEmpty}!LinkedListHashMap.h@{LinkedListHashMap.h}}
+\doxysubsubsection{\texorpdfstring{lLHashMapIsEmpty()}{lLHashMapIsEmpty()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} l\+L\+Hash\+Map\+Is\+Empty (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list_hash_map}{Linked\+List\+Hash\+Map}} $\ast$}]{map }\end{DoxyParamCaption})}
+
+This function will take the hash map address as a parameter, then it will return one (1) if the hash map is empty, other wise it will return zero (0). 
+\begin{DoxyParams}{Parameters}
+{\em map} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_linked_list_hash_map_8h_a64fdaac7578f7d7f768c7dd0e3edd72c}\label{_linked_list_hash_map_8h_a64fdaac7578f7d7f768c7dd0e3edd72c}} 
+\index{LinkedListHashMap.h@{LinkedListHashMap.h}!lLHashMapToArray@{lLHashMapToArray}}
+\index{lLHashMapToArray@{lLHashMapToArray}!LinkedListHashMap.h@{LinkedListHashMap.h}}
+\doxysubsubsection{\texorpdfstring{lLHashMapToArray()}{lLHashMapToArray()}}
+{\footnotesize\ttfamily void$\ast$$\ast$ l\+L\+Hash\+Map\+To\+Array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list_hash_map}{Linked\+List\+Hash\+Map}} $\ast$}]{map }\end{DoxyParamCaption})}
+
+This function will take the hash map address as a parameter, then it will return a double void array that contains a copy of all the items in the hash map. 
+\begin{DoxyParams}{Parameters}
+{\em map} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_linked_list_hash_map_8h_aab08be244822170642ea53aeafb91c80}\label{_linked_list_hash_map_8h_aab08be244822170642ea53aeafb91c80}} 
+\index{LinkedListHashMap.h@{LinkedListHashMap.h}!lLHashMapToEntryArray@{lLHashMapToEntryArray}}
+\index{lLHashMapToEntryArray@{lLHashMapToEntryArray}!LinkedListHashMap.h@{LinkedListHashMap.h}}
+\doxysubsubsection{\texorpdfstring{lLHashMapToEntryArray()}{lLHashMapToEntryArray()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_entry}{Entry}}$\ast$$\ast$ l\+L\+Hash\+Map\+To\+Entry\+Array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list_hash_map}{Linked\+List\+Hash\+Map}} $\ast$}]{map }\end{DoxyParamCaption})}
+
+This function will take the hash map address as a parameter, then it will return an \mbox{\hyperlink{struct_entry}{Entry}} double pointer array that contains all the entries in the hash map. 
+\begin{DoxyParams}{Parameters}
+{\em map} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}

@@ -3,15 +3,32 @@
 #include "Utils.h"
 #define COUNT 10
 
+/** @struct BinaryTreeNode
+ *  @brief This structure describes n Binary Tree Node.
+ *  @var BinaryTreeNode:: key
+ *  Member 'key' is a pointer a pre-allocated object.
+ *  @var BinaryTreeNode::left
+ *  Member 'left' holds a reference to the left Node if present else it is Null.
+ *  @var BinaryTreeNode::right
+ *  Member 'right' holds a reference to the right Node if present else it is Null.
+ */
 typedef struct BinaryTreeNode{
     void *key;
     struct BinaryTreeNode * right;
     struct BinaryTreeNode * left;
 }BinaryTreeNode;
 
+/** @struct BinaryTree
+ *  @brief This structure implements a basic generic Binary Tree.
+ *  @var BinaryTree:: root
+ *  Member 'root' is a pointer to the root Node of the tree.
+ *  @var BinaryTree::nodeCount
+ *  Member 'nodeCount' holds the number of nodes currently present in the tree.
+ *  @var BinaryTree::cmp
+ *  Member 'cmp' is a pointer to the comparision function that is going to be used throughout the tree.
+ */
 typedef struct BinaryTree{
     BinaryTreeNode *root;
-    int sizeOfType;
     unsigned int nodeCount;
     int(*cmp)(const void*, const void*);
 }BinaryTree;
@@ -20,37 +37,37 @@ typedef struct BinaryTree{
 
 BinaryTreeNode* DeleteBinaryTreeNode(BinaryTree *binaryTree, BinaryTreeNode* root, void *key);
 
-int getMinStepsBinaryTree(BinaryTreeNode* node);
+int BinaryTreeGetMinSteps(BinaryTreeNode* node);
 
-int getMaxBinaryTreeSteps(BinaryTreeNode* node);
+int BinaryTreeGetMaxSteps(BinaryTreeNode* node);
 
-int getSizeBinaryTree(BinaryTreeNode *root);
+int BinaryTreeGetSize(BinaryTreeNode *root);
 
-int isPresentInBinaryTree(BinaryTree *binaryTree, void *searchKey);
+int BinaryTreeIsPresent(BinaryTree *binaryTree, void *searchKey);
 
-void printBinaryTree(BinaryTreeNode *root, void (printFn)(void *));
+void BinaryTreePrint(BinaryTreeNode *root, void (printFn)(void *));
 
-void inOrderPredecessorBinaryTree(BinaryTree *binaryTree, BinaryTreeNode *root, BinaryTreeNode *targetNode, BinaryTreeNode **rightMost);
+void BinaryTreeInOrderPredecessor(BinaryTree *binaryTree, BinaryTreeNode *root, BinaryTreeNode *referenceNode, BinaryTreeNode **rightMost);
 
-void inOrderSuccessorBinaryTree(BinaryTree *binaryTree, BinaryTreeNode* root, BinaryTreeNode* targetNode, BinaryTreeNode **leftMost);
+void BinaryTreeInOrderSuccessor(BinaryTree *binaryTree, BinaryTreeNode* root, BinaryTreeNode* referenceNode, BinaryTreeNode **leftMost);
 
-BinaryTreeNode* insertBinaryTree(BinaryTree * binaryTree, BinaryTreeNode *node, void *key);
+BinaryTreeNode* BinaryTreeInsert(BinaryTree * binaryTree, BinaryTreeNode *node, void *key);
 
-BinaryTreeNode *searchBinaryTree(BinaryTree *avlTree, BinaryTreeNode *node, char *key);
+BinaryTreeNode *BinaryTreeSearch(BinaryTree *binaryTree, BinaryTreeNode *node, char *key);
 
 void **BinaryTreeToArray(BinaryTree *binaryTree);
 
-void freeBinaryTree(BinaryTreeNode **node);
+void BinaryTreeFree(BinaryTreeNode **node);
 
-BinaryTree* BinaryTreeInitialize(int size, int(*cmp)(const void*, const void*));
+BinaryTree* BinaryTreeInitialize(int(*cmp)(const void*, const void*));
 
 void printBinaryTreeStats(BinaryTree *tree);
 
 BinaryTreeNode * maxValueBinaryTreeNode(BinaryTreeNode* node);
 
-BinaryTreeNode * minValueBinaryTreeNode(BinaryTreeNode* node);
+BinaryTreeNode * BinaryTreeMinValueNode(BinaryTreeNode* node);
 
-void printInOrderBinaryTree(BinaryTreeNode* node, void (printFn)(void *));
+void BinaryTreePrintInOrder(BinaryTreeNode* node, void (printFn)(void *));
 
 BinaryTreeNode * BinaryTreeInsertAll(BinaryTree* binaryTree, void** array, int length);
 

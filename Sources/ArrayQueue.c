@@ -12,7 +12,7 @@ ArrayQueue* QueueInitialize(int size){
 
     ArrayQueue* q =(ArrayQueue *) malloc(sizeof ( *q ));
 
-    if(!q){
+    if(q == NULL){
         fprintf(stderr,"Was Unable to Allocate Queue");
         exit(NULL_POINTER);
     }

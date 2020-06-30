@@ -89,57 +89,65 @@ $(document).ready(function(){initNavTree('struct_splay_tree.html',''); initResiz
 </div><!--header-->
 <div class="contents">
 
+<p>This structure implements a basic generic Splay Tree.  
+ <a href="struct_splay_tree.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_splay_tree_8h_source.html">SplayTree.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a38069f74e7553ea80a183bcfadb4442b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_splay_node.html">SplayNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_splay_tree.html#a38069f74e7553ea80a183bcfadb4442b">root</a></td></tr>
-<tr class="separator:a38069f74e7553ea80a183bcfadb4442b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ff3c0ff509d8eb055d29faa0ec185a1"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_splay_tree.html#a9ff3c0ff509d8eb055d29faa0ec185a1">nodeCount</a></td></tr>
-<tr class="separator:a9ff3c0ff509d8eb055d29faa0ec185a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88bbe3d84e05dbeda8b6e10976f5a4cc"><td class="memItemLeft" align="right" valign="top">int16_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_splay_tree.html#a88bbe3d84e05dbeda8b6e10976f5a4cc">cmp</a> )(const void *, const void *)</td></tr>
-<tr class="separator:a88bbe3d84e05dbeda8b6e10976f5a4cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4b8daf4b8ea9d39568719e1e320076f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_splay_node.html">SplayNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_splay_tree.html#ab4b8daf4b8ea9d39568719e1e320076f">root</a></td></tr>
+<tr class="separator:ab4b8daf4b8ea9d39568719e1e320076f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab38cbcec9c19f57dfbf84b7de112c8e5"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_splay_tree.html#ab38cbcec9c19f57dfbf84b7de112c8e5">nodeCount</a></td></tr>
+<tr class="separator:ab38cbcec9c19f57dfbf84b7de112c8e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d33f9a800f1f7181c58f3cd60a96958"><td class="memItemLeft" align="right" valign="top">int16_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_splay_tree.html#a1d33f9a800f1f7181c58f3cd60a96958">cmp</a> )(const void *, const void *)</td></tr>
+<tr class="separator:a1d33f9a800f1f7181c58f3cd60a96958"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Field Documentation</h2>
-<a id="a88bbe3d84e05dbeda8b6e10976f5a4cc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a88bbe3d84e05dbeda8b6e10976f5a4cc">&#9670;&nbsp;</a></span>cmp</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This structure implements a basic generic Splay Tree. </p>
+</div><h2 class="groupheader">Field Documentation</h2>
+<a id="a1d33f9a800f1f7181c58f3cd60a96958"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d33f9a800f1f7181c58f3cd60a96958">&#9670;&nbsp;</a></span>cmp</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int16_t(* cmp) (const void *, const void *)</td>
+          <td class="memname">cmp</td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Member 'cmp' is a pointer to the comparision function that is going to be used throughout the tree. </p>
 
 </div>
 </div>
-<a id="a9ff3c0ff509d8eb055d29faa0ec185a1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9ff3c0ff509d8eb055d29faa0ec185a1">&#9670;&nbsp;</a></span>nodeCount</h2>
+<a id="ab38cbcec9c19f57dfbf84b7de112c8e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab38cbcec9c19f57dfbf84b7de112c8e5">&#9670;&nbsp;</a></span>nodeCount</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint32_t nodeCount</td>
+          <td class="memname">nodeCount</td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Member 'nodeCount' holds the number of nodes currently present in the tree. </p>
 
 </div>
 </div>
-<a id="a38069f74e7553ea80a183bcfadb4442b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a38069f74e7553ea80a183bcfadb4442b">&#9670;&nbsp;</a></span>root</h2>
+<a id="ab4b8daf4b8ea9d39568719e1e320076f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4b8daf4b8ea9d39568719e1e320076f">&#9670;&nbsp;</a></span>root</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="struct_splay_node.html">SplayNode</a>* root</td>
+          <td class="memname">root</td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Member 'root' is a pointer to the root <a class="el" href="struct_node.html">Node</a> of the tree. </p>
 
 </div>
 </div>

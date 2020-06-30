@@ -6,7 +6,7 @@
 
 /** @struct AVLTNode
  *  @brief This structure describes n AVL Tree Node.
- *  @var AVLTNode:: key
+ *  @var AVLTNode::key
  *  Member 'key' is a pointer a pre-allocated object.
  *  @var AVLTNode::height
  *  Member 'height' holds the current height of the node.
@@ -23,8 +23,8 @@ typedef struct AVLTNode{
 }AVLTNode;
 
 /** @struct AVLTree
- *  @brief This structure implements a basic generic stack.
- *  @var AVLTree:: root
+ *  @brief This structure implements a basic generic AVL Tree.
+ *  @var AVLTree::root
  *  Member 'root' is a pointer to the root Node of the tree.
  *  @var AVLTree::nodeCount
  *  Member 'nodeCount' holds the number of nodes currently present in the tree.
@@ -33,11 +33,9 @@ typedef struct AVLTNode{
  */
 typedef struct AVLTree{
     AVLTNode *root;
-    unsigned int nodeCount;
-    int(*cmp)(const void*,const void*);
+    uint32_t nodeCount;
+    int16_t (*cmp)(const void*,const void*);
 }AVLTree;
-
-
 
 
 AVLTNode* AVLTreeDeleteNode(AVLTree *avlTree, AVLTNode* root, void *key);
@@ -52,7 +50,7 @@ int AVLTreeIsPresent(AVLTree *avlTree, void* searchKey);
 
 void AVLTreePrint(AVLTNode *root, void (printFn)(void *));
 
-void inOrderPredecessorAVLTree(AVLTree *avlTree, AVLTNode *root, AVLTNode *referenceNode, AVLTNode **rightMost);
+void AVLTreeInOrderPredecessor(AVLTree *avlTree, AVLTNode *root, AVLTNode *referenceNode, AVLTNode **rightMost);
 
 void AVLTreeInOrderSuccessor(AVLTree *avlTree, AVLTNode* root, AVLTNode* referenceNode, AVLTNode **leftMost);
 

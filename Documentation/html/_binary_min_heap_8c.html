@@ -92,28 +92,54 @@ $(document).ready(function(){initNavTree('_binary_min_heap_8c.html',''); initRes
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a24e4fa8db84be2123570cc6b371bc8e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_binary_min_heap_8c.html#a24e4fa8db84be2123570cc6b371bc8e0">MinHeapInitialize</a> (uint16_t size, int16_t(*cmp)(const void *, const void *))</td></tr>
-<tr class="separator:a24e4fa8db84be2123570cc6b371bc8e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af9659ab6a5ed268ee6e46ad7374099d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_binary_min_heap_8c.html#af9659ab6a5ed268ee6e46ad7374099d8">MinHeapDelete</a> (<a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *heap, void **res)</td></tr>
-<tr class="separator:af9659ab6a5ed268ee6e46ad7374099d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f04c0a1b03d31345e864772c5ad8d3b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_binary_min_heap_8c.html#a1f04c0a1b03d31345e864772c5ad8d3b">MinHeapifyUP</a> (<a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *h, <a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a> index)</td></tr>
-<tr class="separator:a1f04c0a1b03d31345e864772c5ad8d3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1fa31f2dd8c03b1203f86238806c01a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_binary_min_heap_8c.html#a1fa31f2dd8c03b1203f86238806c01a7">insertInMinHeap</a> (<a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *h, void *value)</td></tr>
-<tr class="separator:a1fa31f2dd8c03b1203f86238806c01a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afcc542d9ad59f646c97524e011e46f43"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_binary_min_heap_8c.html#afcc542d9ad59f646c97524e011e46f43">MinHeapifyDown</a> (<a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *heap, <a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a> index)</td></tr>
-<tr class="separator:afcc542d9ad59f646c97524e011e46f43"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5512f4164d64dbff0582bf70d346e437"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_binary_min_heap_8c.html#a5512f4164d64dbff0582bf70d346e437">MinHeapify</a> (void *arr, uint16_t size, uint8_t type)</td></tr>
-<tr class="separator:a5512f4164d64dbff0582bf70d346e437"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf3bc6996f1baec9a3b63c0c8be3b248"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_binary_min_heap_8c.html#adf3bc6996f1baec9a3b63c0c8be3b248">printMinHeap</a> (<a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *h, void(*printfn)(void *))</td></tr>
-<tr class="separator:adf3bc6996f1baec9a3b63c0c8be3b248"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b0da4c9b0bdb290a7cf7da8ee735ebb"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_binary_min_heap_8c.html#a1b0da4c9b0bdb290a7cf7da8ee735ebb">MinHeapAddAll</a> (<a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *binaryMaxHeap, void **arr, uint16_t size)</td></tr>
-<tr class="separator:a1b0da4c9b0bdb290a7cf7da8ee735ebb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab3179deb1964864aae297bdf21ba6e09"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_binary_min_heap_8c.html#ab3179deb1964864aae297bdf21ba6e09">destroyMinHeap</a> (<a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *h)</td></tr>
-<tr class="separator:ab3179deb1964864aae297bdf21ba6e09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a431fa259b41c3f43cdde4d70afb9fd94"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_binary_min_heap_8c.html#a431fa259b41c3f43cdde4d70afb9fd94">MinHeapInitialize</a> (int32_t(*cmp)(const void *, const void *))</td></tr>
+<tr class="separator:a431fa259b41c3f43cdde4d70afb9fd94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b3d0b14e7e37104dc3153b2a8bc1718"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_binary_min_heap_8c.html#a0b3d0b14e7e37104dc3153b2a8bc1718">MinHeapDelete</a> (<a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *pMinHeap, void **res)</td></tr>
+<tr class="separator:a0b3d0b14e7e37104dc3153b2a8bc1718"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d638af4c1837fdd141e8dfcd6d7a107"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_binary_min_heap_8c.html#a7d638af4c1837fdd141e8dfcd6d7a107">MinHeapifyUP</a> (<a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *pMinHeap, <a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a> index)</td></tr>
+<tr class="separator:a7d638af4c1837fdd141e8dfcd6d7a107"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36d7b6f819ebc9a51f6eee1d6adafa53"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_binary_min_heap_8c.html#a36d7b6f819ebc9a51f6eee1d6adafa53">MinHeapInsert</a> (<a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *pMinHeap, void *value)</td></tr>
+<tr class="separator:a36d7b6f819ebc9a51f6eee1d6adafa53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae829b18e5749ba3a9a3497fb6aa175cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_binary_min_heap_8c.html#ae829b18e5749ba3a9a3497fb6aa175cb">MinHeapifyDown</a> (<a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *pMinHeap, <a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a> index)</td></tr>
+<tr class="separator:ae829b18e5749ba3a9a3497fb6aa175cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7252e69bb18f0a06e92d86971b92b138"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_binary_min_heap_8c.html#a7252e69bb18f0a06e92d86971b92b138">MinHeapify</a> (void *arr, uint32_t size, int32_t(*cmp)(const void *, const void *))</td></tr>
+<tr class="separator:a7252e69bb18f0a06e92d86971b92b138"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdd847c3c0a8bc27addf1cc74034572f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_binary_min_heap_8c.html#acdd847c3c0a8bc27addf1cc74034572f">printMinHeap</a> (<a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *pMinHeap, void(*printfn)(void *))</td></tr>
+<tr class="separator:acdd847c3c0a8bc27addf1cc74034572f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a8a4669df451c4fd073c8cab5fc9305"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_binary_min_heap_8c.html#a8a8a4669df451c4fd073c8cab5fc9305">MinHeapAddAll</a> (<a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *pMinHeap, void **arr, uint32_t size)</td></tr>
+<tr class="separator:a8a8a4669df451c4fd073c8cab5fc9305"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac078e8c16afc8b6d9826dc07f6f1e05f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_binary_min_heap_8c.html#ac078e8c16afc8b6d9826dc07f6f1e05f">destroyMinHeap</a> (<a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *pMinHeap)</td></tr>
+<tr class="separator:ac078e8c16afc8b6d9826dc07f6f1e05f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a553de232b5682e75fc412fc55bc812b0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_binary_min_heap_8c.html#a553de232b5682e75fc412fc55bc812b0">clearMinHeap</a> (<a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *pMinHeap)</td></tr>
+<tr class="separator:a553de232b5682e75fc412fc55bc812b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ab3179deb1964864aae297bdf21ba6e09"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab3179deb1964864aae297bdf21ba6e09">&#9670;&nbsp;</a></span>destroyMinHeap()</h2>
+<a id="a553de232b5682e75fc412fc55bc812b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a553de232b5682e75fc412fc55bc812b0">&#9670;&nbsp;</a></span>clearMinHeap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void clearMinHeap </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *&#160;</td>
+          <td class="paramname"><em>pMinHeap</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Given a heap pointer it frees it's memory container contents. But not the memory container of the heap. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pMinHeap</td><td>Reference to minimum heap pointer allocated on the heap. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac078e8c16afc8b6d9826dc07f6f1e05f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac078e8c16afc8b6d9826dc07f6f1e05f">&#9670;&nbsp;</a></span>destroyMinHeap()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -122,66 +148,31 @@ Functions</h2></td></tr>
           <td class="memname">void destroyMinHeap </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *&#160;</td>
-          <td class="paramname"><em>h</em></td><td>)</td>
+          <td class="paramname"><em>pMinHeap</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Given a heap it frees its memory container and the allocated pointer within it, setting them null as well as the memory container and frees the heap pointer. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">h</td><td></td></tr>
+    <tr><td class="paramname">pMinHeap</td><td>Reference to minimum heap pointer allocated on the heap. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a1fa31f2dd8c03b1203f86238806c01a7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1fa31f2dd8c03b1203f86238806c01a7">&#9670;&nbsp;</a></span>insertInMinHeap()</h2>
+<a id="a8a8a4669df451c4fd073c8cab5fc9305"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a8a4669df451c4fd073c8cab5fc9305">&#9670;&nbsp;</a></span>MinHeapAddAll()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void insertInMinHeap </td>
+          <td class="memname">void MinHeapAddAll </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *&#160;</td>
-          <td class="paramname"><em>h</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>value</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">h</td><td></td></tr>
-    <tr><td class="paramname">value</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a1b0da4c9b0bdb290a7cf7da8ee735ebb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1b0da4c9b0bdb290a7cf7da8ee735ebb">&#9670;&nbsp;</a></span>MinHeapAddAll()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void* MinHeapAddAll </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *&#160;</td>
-          <td class="paramname"><em>binaryMaxHeap</em>, </td>
+          <td class="paramname"><em>pMinHeap</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -192,7 +183,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramtype">uint32_t&#160;</td>
           <td class="paramname"><em>size</em>&#160;</td>
         </tr>
         <tr>
@@ -202,20 +193,19 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Given an array of void pointers to pre-allocated objects, it inserts them in a maximum heap. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">binaryMaxHeap</td><td></td></tr>
-    <tr><td class="paramname">arr</td><td></td></tr>
-    <tr><td class="paramname">size</td><td></td></tr>
+    <tr><td class="paramname">pMinHeap</td><td>Reference to minimum heap pointer allocated on the heap. </td></tr>
+    <tr><td class="paramname">arr</td><td>array to add elements from into the heap. </td></tr>
+    <tr><td class="paramname">size</td><td>Size of the array to be inserted into the heap. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 </div>
 </div>
-<a id="af9659ab6a5ed268ee6e46ad7374099d8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af9659ab6a5ed268ee6e46ad7374099d8">&#9670;&nbsp;</a></span>MinHeapDelete()</h2>
+<a id="a0b3d0b14e7e37104dc3153b2a8bc1718"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b3d0b14e7e37104dc3153b2a8bc1718">&#9670;&nbsp;</a></span>MinHeapDelete()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -224,7 +214,7 @@ Functions</h2></td></tr>
           <td class="memname">void MinHeapDelete </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *&#160;</td>
-          <td class="paramname"><em>heap</em>, </td>
+          <td class="paramname"><em>pMinHeap</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -239,18 +229,18 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Deletes the root element of the heap and restores the heap property of the heap. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">heap</td><td></td></tr>
-    <tr><td class="paramname">res</td><td></td></tr>
+    <tr><td class="paramname">pMinHeap</td><td>Reference to minimum heap pointer allocated on the heap. </td></tr>
+    <tr><td class="paramname">res</td><td>pointer to store the root if needed. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a5512f4164d64dbff0582bf70d346e437"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5512f4164d64dbff0582bf70d346e437">&#9670;&nbsp;</a></span>MinHeapify()</h2>
+<a id="a7252e69bb18f0a06e92d86971b92b138"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7252e69bb18f0a06e92d86971b92b138">&#9670;&nbsp;</a></span>MinHeapify()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -264,120 +254,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramtype">uint32_t&#160;</td>
           <td class="paramname"><em>size</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>type</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">arr</td><td></td></tr>
-    <tr><td class="paramname">size</td><td></td></tr>
-    <tr><td class="paramname">type</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
-</div>
-</div>
-<a id="afcc542d9ad59f646c97524e011e46f43"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afcc542d9ad59f646c97524e011e46f43">&#9670;&nbsp;</a></span>MinHeapifyDown()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void MinHeapifyDown </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *&#160;</td>
-          <td class="paramname"><em>heap</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a>&#160;</td>
-          <td class="paramname"><em>index</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">heap</td><td></td></tr>
-    <tr><td class="paramname">index</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a1f04c0a1b03d31345e864772c5ad8d3b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1f04c0a1b03d31345e864772c5ad8d3b">&#9670;&nbsp;</a></span>MinHeapifyUP()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void MinHeapifyUP </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *&#160;</td>
-          <td class="paramname"><em>h</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a>&#160;</td>
-          <td class="paramname"><em>index</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">h</td><td></td></tr>
-    <tr><td class="paramname">index</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a24e4fa8db84be2123570cc6b371bc8e0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a24e4fa8db84be2123570cc6b371bc8e0">&#9670;&nbsp;</a></span>MinHeapInitialize()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a>* MinHeapInitialize </td>
-          <td>(</td>
-          <td class="paramtype">uint16_t&#160;</td>
-          <td class="paramname"><em>size</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int16_t(*)(const void *, const void *)&#160;</td>
+          <td class="paramtype">int32_t(*)(const void *, const void *)&#160;</td>
           <td class="paramname"><em>cmp</em>&#160;</td>
         </tr>
         <tr>
@@ -387,19 +270,150 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Given an array containing preallocated pointer to objects, this function creates a new heap with the objects in it. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">size</td><td></td></tr>
-    <tr><td class="paramname">cmp</td><td></td></tr>
+    <tr><td class="paramname">arr</td><td>Array to add elements from into the heap. </td></tr>
+    <tr><td class="paramname">size</td><td>Size of the array to be inserted into the heap. </td></tr>
+    <tr><td class="paramname">cmp</td><td>compare function for values stored in the heap. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Reference to minimum heap pointer allocated on the pMinHeap. </dd></dl>
 
 </div>
 </div>
-<a id="adf3bc6996f1baec9a3b63c0c8be3b248"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adf3bc6996f1baec9a3b63c0c8be3b248">&#9670;&nbsp;</a></span>printMinHeap()</h2>
+<a id="ae829b18e5749ba3a9a3497fb6aa175cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae829b18e5749ba3a9a3497fb6aa175cb">&#9670;&nbsp;</a></span>MinHeapifyDown()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MinHeapifyDown </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *&#160;</td>
+          <td class="paramname"><em>pMinHeap</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a>&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Function that ensures heap property, by recursively traversing the heap. Moving elements down the minimum tree. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pMinHeap</td><td>Reference to minimum heap pointer allocated on the pMinHeap. </td></tr>
+    <tr><td class="paramname">index</td><td>index ot heapify at. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7d638af4c1837fdd141e8dfcd6d7a107"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d638af4c1837fdd141e8dfcd6d7a107">&#9670;&nbsp;</a></span>MinHeapifyUP()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MinHeapifyUP </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *&#160;</td>
+          <td class="paramname"><em>pMinHeap</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a>&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Restores the heap property , by recursively traversing the heap. Moving elements up the minimum tree. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pMinHeap</td><td>Reference to minimum heap pointer allocated on the heap. </td></tr>
+    <tr><td class="paramname">index</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a431fa259b41c3f43cdde4d70afb9fd94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a431fa259b41c3f43cdde4d70afb9fd94">&#9670;&nbsp;</a></span>MinHeapInitialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a>* MinHeapInitialize </td>
+          <td>(</td>
+          <td class="paramtype">int32_t(*)(const void *, const void *)&#160;</td>
+          <td class="paramname"><em>cmp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Allocates space for minimum heap on the heap. Setting the inital size to 0 and the initial allocated size to 10. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cmp</td><td>compare function for values stored in the heap. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns pointer to the allocated minimum heap on the heap. </dd></dl>
+
+</div>
+</div>
+<a id="a36d7b6f819ebc9a51f6eee1d6adafa53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36d7b6f819ebc9a51f6eee1d6adafa53">&#9670;&nbsp;</a></span>MinHeapInsert()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MinHeapInsert </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *&#160;</td>
+          <td class="paramname"><em>pMinHeap</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Inserts at the bottom of the tree then moves the element up the tree by calling <a class="el" href="_binary_min_heap_8c.html#a7d638af4c1837fdd141e8dfcd6d7a107">MinHeapifyUP</a> </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pMinHeap</td><td>Reference to minimum heap pointer allocated on the heap. </td></tr>
+    <tr><td class="paramname">value</td><td>value to insert in the tree. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acdd847c3c0a8bc27addf1cc74034572f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdd847c3c0a8bc27addf1cc74034572f">&#9670;&nbsp;</a></span>printMinHeap()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -408,7 +422,7 @@ Functions</h2></td></tr>
           <td class="memname">void printMinHeap </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *&#160;</td>
-          <td class="paramname"><em>h</em>, </td>
+          <td class="paramname"><em>pMinHeap</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -423,10 +437,10 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Given a reference to heap prints it's elements. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">h</td><td></td></tr>
-    <tr><td class="paramname">printfn</td><td></td></tr>
+    <tr><td class="paramname">pMinHeap</td><td>Reference to minimum heap pointer allocated on the heap. </td></tr>
+    <tr><td class="paramname">printfn</td><td>pointer to the print funtion to be used. </td></tr>
   </table>
   </dd>
 </dl>

@@ -5,9 +5,9 @@
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}}
-\item 
+\begin{DoxyCompactList}\small\item\em This structure describes n Binary Tree \mbox{\hyperlink{struct_node}{Node}}. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This structure implements a basic generic Binary Tree. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
@@ -25,37 +25,37 @@ typedef struct \mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} \mbox{\hyperl
 \item 
 \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$ \mbox{\hyperlink{_binary_tree_8h_a4a300432c953778ad6600cd5450c623b}{Delete\+Binary\+Tree\+Node}} (\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$binary\+Tree, \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$root, void $\ast$key)
 \item 
-\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_binary_tree_8h_a810c1b3c5d4afe8554c9674e94d08112}{get\+Min\+Steps\+Binary\+Tree}} (\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$node)
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_binary_tree_8h_a2b0f66dc5781b034898d45b43a3b91bc}{Binary\+Tree\+Get\+Min\+Steps}} (\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$node)
 \item 
-\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_binary_tree_8h_aea1c2cb05740b01ee9ccc86d6f2f4ecd}{get\+Max\+Binary\+Tree\+Steps}} (\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$node)
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_binary_tree_8h_ab5617ed9756a71696216e83f44587859}{Binary\+Tree\+Get\+Max\+Steps}} (\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$node)
 \item 
-\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_binary_tree_8h_a7947e852b2cd7b7716f181277a7c4563}{get\+Size\+Binary\+Tree}} (\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$root)
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_binary_tree_8h_a361620f22205dccf56b7d221ae3766b3}{Binary\+Tree\+Get\+Size}} (\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$root)
 \item 
-\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_binary_tree_8h_a22da9a1184cf7874d2df3d2ac0265eb4}{is\+Present\+In\+Binary\+Tree}} (\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$binary\+Tree, void $\ast$search\+Key)
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_binary_tree_8h_a64d94650185cd4fdfb641ee303395fd0}{Binary\+Tree\+Is\+Present}} (\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$binary\+Tree, void $\ast$search\+Key)
 \item 
-void \mbox{\hyperlink{_binary_tree_8h_aa25bab9f18a6cbdba444f2e6a0272b1d}{print\+Binary\+Tree}} (\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$root, void(print\+Fn)(void $\ast$))
+void \mbox{\hyperlink{_binary_tree_8h_a56bc298ee89b6465b558e9917dd315d1}{Binary\+Tree\+Print}} (\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$root, void(print\+Fn)(void $\ast$))
 \item 
-void \mbox{\hyperlink{_binary_tree_8h_a210a714469efcd329c85b1c6d3426aa4}{in\+Order\+Predecessor\+Binary\+Tree}} (\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$binary\+Tree, \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$root, \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$target\+Node, \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$$\ast$right\+Most)
+void \mbox{\hyperlink{_binary_tree_8h_ae312ecefb9976bf6ca85f8a458dedf1f}{Binary\+Tree\+In\+Order\+Predecessor}} (\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$binary\+Tree, \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$root, \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$reference\+Node, \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$$\ast$right\+Most)
 \item 
-void \mbox{\hyperlink{_binary_tree_8h_a9ca8c3022c3d2b0bf1159173cc754cff}{in\+Order\+Successor\+Binary\+Tree}} (\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$binary\+Tree, \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$root, \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$target\+Node, \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$$\ast$left\+Most)
+void \mbox{\hyperlink{_binary_tree_8h_a45c0f788e4371351c4b2bb62138ec58b}{Binary\+Tree\+In\+Order\+Successor}} (\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$binary\+Tree, \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$root, \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$reference\+Node, \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$$\ast$left\+Most)
 \item 
-\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$ \mbox{\hyperlink{_binary_tree_8h_a0775db4a8df6ae7f77a92372d99ed12e}{insert\+Binary\+Tree}} (\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$binary\+Tree, \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$node, void $\ast$key)
+\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$ \mbox{\hyperlink{_binary_tree_8h_a4cd25041e4d387196cfd2fe0ac69a4ab}{Binary\+Tree\+Insert}} (\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$binary\+Tree, \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$node, void $\ast$key)
 \item 
-\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$ \mbox{\hyperlink{_binary_tree_8h_a872451120c65f64f87745837555aa2ed}{search\+Binary\+Tree}} (\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$avl\+Tree, \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$node, \mbox{\hyperlink{_c_make_cache_8txt_afe71f11dacb15682cdc012f7208e6e09}{char}} $\ast$key)
+\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$ \mbox{\hyperlink{_binary_tree_8h_aa8eaf22f61867d33542877313dbc58af}{Binary\+Tree\+Search}} (\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$binary\+Tree, \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$node, \mbox{\hyperlink{_c_make_cache_8txt_afe71f11dacb15682cdc012f7208e6e09}{char}} $\ast$key)
 \item 
 void $\ast$$\ast$ \mbox{\hyperlink{_binary_tree_8h_a8db6666c4006cfd7895194caba77b9fd}{Binary\+Tree\+To\+Array}} (\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$binary\+Tree)
 \item 
-void \mbox{\hyperlink{_binary_tree_8h_a4682cfaea0bd0c2b469f5240407ea5cb}{free\+Binary\+Tree}} (\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$$\ast$node)
+void \mbox{\hyperlink{_binary_tree_8h_a114a4fe6686c22b11d8972e06559011c}{Binary\+Tree\+Free}} (\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$$\ast$node)
 \item 
-\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$ \mbox{\hyperlink{_binary_tree_8h_a22d5287545f03067f443a93f432be2f1}{Binary\+Tree\+Initialize}} (\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} size, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$cmp)(const void $\ast$, const void $\ast$))
+\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$ \mbox{\hyperlink{_binary_tree_8h_a12fbf13f277349bd405bdb86b2872254}{Binary\+Tree\+Initialize}} (\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$cmp)(const void $\ast$, const void $\ast$))
 \item 
 void \mbox{\hyperlink{_binary_tree_8h_a8e2d543d42366644908d2a95c6fe328b}{print\+Binary\+Tree\+Stats}} (\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$tree)
 \item 
 \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$ \mbox{\hyperlink{_binary_tree_8h_a23c3390a47c730efd5a1b93498709c2f}{max\+Value\+Binary\+Tree\+Node}} (\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$node)
 \item 
-\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$ \mbox{\hyperlink{_binary_tree_8h_aa986c4d101723d1d1ac1378034bbde98}{min\+Value\+Binary\+Tree\+Node}} (\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$node)
+\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$ \mbox{\hyperlink{_binary_tree_8h_a718ce0639ff1a679478d3224d9d796c1}{Binary\+Tree\+Min\+Value\+Node}} (\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$node)
 \item 
-void \mbox{\hyperlink{_binary_tree_8h_a42981174a03e116233e5c361430916e1}{print\+In\+Order\+Binary\+Tree}} (\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$node, void(print\+Fn)(void $\ast$))
+void \mbox{\hyperlink{_binary_tree_8h_ae73b7d1d85df695da2a80882049a0bf3}{Binary\+Tree\+Print\+In\+Order}} (\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$node, void(print\+Fn)(void $\ast$))
 \item 
 \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$ \mbox{\hyperlink{_binary_tree_8h_a1e00eb46ff6256e7cbf77b6179c9cd03}{Binary\+Tree\+Insert\+All}} (\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$binary\+Tree, void $\ast$$\ast$array, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} length)
 \end{DoxyCompactItemize}
@@ -86,19 +86,124 @@ void \mbox{\hyperlink{_binary_tree_8h_a42981174a03e116233e5c361430916e1}{print\+
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{_binary_tree_8h_a22d5287545f03067f443a93f432be2f1}\label{_binary_tree_8h_a22d5287545f03067f443a93f432be2f1}} 
-\index{BinaryTree.h@{BinaryTree.h}!BinaryTreeInitialize@{BinaryTreeInitialize}}
-\index{BinaryTreeInitialize@{BinaryTreeInitialize}!BinaryTree.h@{BinaryTree.h}}
-\doxysubsubsection{\texorpdfstring{BinaryTreeInitialize()}{BinaryTreeInitialize()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}}$\ast$ Binary\+Tree\+Initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{size,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$)(const void $\ast$, const void $\ast$)}]{cmp }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{_binary_tree_8h_a114a4fe6686c22b11d8972e06559011c}\label{_binary_tree_8h_a114a4fe6686c22b11d8972e06559011c}} 
+\index{BinaryTree.h@{BinaryTree.h}!BinaryTreeFree@{BinaryTreeFree}}
+\index{BinaryTreeFree@{BinaryTreeFree}!BinaryTree.h@{BinaryTree.h}}
+\doxysubsubsection{\texorpdfstring{BinaryTreeFree()}{BinaryTreeFree()}}
+{\footnotesize\ttfamily void Binary\+Tree\+Free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$$\ast$}]{node }\end{DoxyParamCaption})}
 
-
+Given an Binary Tree\textquotesingle{}s root node it frees it\textquotesingle{}s elements recursively.\+Setting the root node to Null. 
 \begin{DoxyParams}{Parameters}
-{\em cmp} & \\
+{\em node} & Exact Reference to root node to start freeing at. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_binary_tree_8h_ab5617ed9756a71696216e83f44587859}\label{_binary_tree_8h_ab5617ed9756a71696216e83f44587859}} 
+\index{BinaryTree.h@{BinaryTree.h}!BinaryTreeGetMaxSteps@{BinaryTreeGetMaxSteps}}
+\index{BinaryTreeGetMaxSteps@{BinaryTreeGetMaxSteps}!BinaryTree.h@{BinaryTree.h}}
+\doxysubsubsection{\texorpdfstring{BinaryTreeGetMaxSteps()}{BinaryTreeGetMaxSteps()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} Binary\+Tree\+Get\+Max\+Steps (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+Recursively gets the max steps of the tree. 
+\begin{DoxyParams}{Parameters}
+{\em node} & Root to get the max from. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
+int steps to max left most node. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_binary_tree_8h_a2b0f66dc5781b034898d45b43a3b91bc}\label{_binary_tree_8h_a2b0f66dc5781b034898d45b43a3b91bc}} 
+\index{BinaryTree.h@{BinaryTree.h}!BinaryTreeGetMinSteps@{BinaryTreeGetMinSteps}}
+\index{BinaryTreeGetMinSteps@{BinaryTreeGetMinSteps}!BinaryTree.h@{BinaryTree.h}}
+\doxysubsubsection{\texorpdfstring{BinaryTreeGetMinSteps()}{BinaryTreeGetMinSteps()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} Binary\+Tree\+Get\+Min\+Steps (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
 
+Gets the minimum steps to reach the right most node recursively. 
+\begin{DoxyParams}{Parameters}
+{\em node} & \mbox{\hyperlink{struct_node}{Node}} to start traversing from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int reference to increment it\textquotesingle{}s contents. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_binary_tree_8h_a361620f22205dccf56b7d221ae3766b3}\label{_binary_tree_8h_a361620f22205dccf56b7d221ae3766b3}} 
+\index{BinaryTree.h@{BinaryTree.h}!BinaryTreeGetSize@{BinaryTreeGetSize}}
+\index{BinaryTreeGetSize@{BinaryTreeGetSize}!BinaryTree.h@{BinaryTree.h}}
+\doxysubsubsection{\texorpdfstring{BinaryTreeGetSize()}{BinaryTreeGetSize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} Binary\+Tree\+Get\+Size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{root }\end{DoxyParamCaption})}
+
+Reference to the root node to start calculating the size of tree. 
+\begin{DoxyParams}{Parameters}
+{\em root} & Reference to the root node. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the number of nodes in the tree. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_binary_tree_8h_a12fbf13f277349bd405bdb86b2872254}\label{_binary_tree_8h_a12fbf13f277349bd405bdb86b2872254}} 
+\index{BinaryTree.h@{BinaryTree.h}!BinaryTreeInitialize@{BinaryTreeInitialize}}
+\index{BinaryTreeInitialize@{BinaryTreeInitialize}!BinaryTree.h@{BinaryTree.h}}
+\doxysubsubsection{\texorpdfstring{BinaryTreeInitialize()}{BinaryTreeInitialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}}$\ast$ Binary\+Tree\+Initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$)(const void $\ast$, const void $\ast$)}]{cmp }\end{DoxyParamCaption})}
+
+Initialization Function for Binary Tree. A comparison function must be provided for the tree to be able to level its Nodes. Returns a reference to an allocated \mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} pointer on the heap. 
+\begin{DoxyParams}{Parameters}
+{\em cmp} & Reference to the comparator function. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the allocated Binary tree on the heap. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_binary_tree_8h_ae312ecefb9976bf6ca85f8a458dedf1f}\label{_binary_tree_8h_ae312ecefb9976bf6ca85f8a458dedf1f}} 
+\index{BinaryTree.h@{BinaryTree.h}!BinaryTreeInOrderPredecessor@{BinaryTreeInOrderPredecessor}}
+\index{BinaryTreeInOrderPredecessor@{BinaryTreeInOrderPredecessor}!BinaryTree.h@{BinaryTree.h}}
+\doxysubsubsection{\texorpdfstring{BinaryTreeInOrderPredecessor()}{BinaryTreeInOrderPredecessor()}}
+{\footnotesize\ttfamily void Binary\+Tree\+In\+Order\+Predecessor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$}]{binary\+Tree,  }\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{root,  }\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{reference\+Node,  }\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$$\ast$}]{right\+Most }\end{DoxyParamCaption})}
+
+Given a root node (i.\+e a to start search at for the reference node n) find the reference node and stores to inorder Predecessor for that node in the right\+Most param. 
+\begin{DoxyParams}{Parameters}
+{\em binary\+Tree} & Reference to the Binary tree. \\
+\hline
+{\em root} & Reference to the root node. \\
+\hline
+{\em reference\+Node} & Reference node to get the in-\/order Predecessor for. \\
+\hline
+{\em right\+Most} & Pointer to store the inorder Predecessor for that node. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_binary_tree_8h_a45c0f788e4371351c4b2bb62138ec58b}\label{_binary_tree_8h_a45c0f788e4371351c4b2bb62138ec58b}} 
+\index{BinaryTree.h@{BinaryTree.h}!BinaryTreeInOrderSuccessor@{BinaryTreeInOrderSuccessor}}
+\index{BinaryTreeInOrderSuccessor@{BinaryTreeInOrderSuccessor}!BinaryTree.h@{BinaryTree.h}}
+\doxysubsubsection{\texorpdfstring{BinaryTreeInOrderSuccessor()}{BinaryTreeInOrderSuccessor()}}
+{\footnotesize\ttfamily void Binary\+Tree\+In\+Order\+Successor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$}]{binary\+Tree,  }\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{root,  }\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{reference\+Node,  }\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$$\ast$}]{left\+Most }\end{DoxyParamCaption})}
+
+Given a root node (i.\+e a to start search at for the reference node n) find the reference node and stores to inorder Successor for that node in the left\+Most param. 
+\begin{DoxyParams}{Parameters}
+{\em binary\+Tree} & Reference to the binary tree. \\
+\hline
+{\em root} & Reference to the root node. \\
+\hline
+{\em reference\+Node} & Reference node to get the in-\/order successor for. \\
+\hline
+{\em left\+Most} & Pointer to store the inorder successor for that node. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_binary_tree_8h_a4cd25041e4d387196cfd2fe0ac69a4ab}\label{_binary_tree_8h_a4cd25041e4d387196cfd2fe0ac69a4ab}} 
+\index{BinaryTree.h@{BinaryTree.h}!BinaryTreeInsert@{BinaryTreeInsert}}
+\index{BinaryTreeInsert@{BinaryTreeInsert}!BinaryTree.h@{BinaryTree.h}}
+\doxysubsubsection{\texorpdfstring{BinaryTreeInsert()}{BinaryTreeInsert()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}}$\ast$ Binary\+Tree\+Insert (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$}]{binary\+Tree,  }\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{node,  }\item[{void $\ast$}]{key }\end{DoxyParamCaption})}
+
+Inserts a node at the a reference node (preferably the root) with the provided key if not present in the tree and returns a reference to the new node. 
+\begin{DoxyParams}{Parameters}
+{\em binary\+Tree} & Reference to the Binary tree. \\
+\hline
+{\em node} & reference for node to start inserting at preferably the root. \\
+\hline
+{\em key} & Reference to key to inset in the Tree. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns reference to the new root. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{_binary_tree_8h_a1e00eb46ff6256e7cbf77b6179c9cd03}\label{_binary_tree_8h_a1e00eb46ff6256e7cbf77b6179c9cd03}} 
 \index{BinaryTree.h@{BinaryTree.h}!BinaryTreeInsertAll@{BinaryTreeInsertAll}}
@@ -106,19 +211,105 @@ void \mbox{\hyperlink{_binary_tree_8h_a42981174a03e116233e5c361430916e1}{print\+
 \doxysubsubsection{\texorpdfstring{BinaryTreeInsertAll()}{BinaryTreeInsertAll()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}}$\ast$ Binary\+Tree\+Insert\+All (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$}]{binary\+Tree,  }\item[{void $\ast$$\ast$}]{array,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{length }\end{DoxyParamCaption})}
 
+Adds an array of void pointers to elements of the same type as the nodes of the tree. 
+\begin{DoxyParams}{Parameters}
+{\em binary\+Tree} & Reference to the Binary tree. \\
+\hline
+{\em array} & Array to add data from. \\
+\hline
+{\em length} & The Length of the array to add from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the new root node. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_binary_tree_8h_a64d94650185cd4fdfb641ee303395fd0}\label{_binary_tree_8h_a64d94650185cd4fdfb641ee303395fd0}} 
+\index{BinaryTree.h@{BinaryTree.h}!BinaryTreeIsPresent@{BinaryTreeIsPresent}}
+\index{BinaryTreeIsPresent@{BinaryTreeIsPresent}!BinaryTree.h@{BinaryTree.h}}
+\doxysubsubsection{\texorpdfstring{BinaryTreeIsPresent()}{BinaryTreeIsPresent()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} Binary\+Tree\+Is\+Present (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$}]{binary\+Tree,  }\item[{void $\ast$}]{search\+Key }\end{DoxyParamCaption})}
+
+Given a key, and a tree to search in determines whether a key is present in the tree or not. 
+\begin{DoxyParams}{Parameters}
+{\em binary\+Tree} & Reference to the Binary tree. \\
+\hline
+{\em search\+Key} & key to search for in the tree. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns int as bool. Returns 1 if is found else returns 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_binary_tree_8h_a718ce0639ff1a679478d3224d9d796c1}\label{_binary_tree_8h_a718ce0639ff1a679478d3224d9d796c1}} 
+\index{BinaryTree.h@{BinaryTree.h}!BinaryTreeMinValueNode@{BinaryTreeMinValueNode}}
+\index{BinaryTreeMinValueNode@{BinaryTreeMinValueNode}!BinaryTree.h@{BinaryTree.h}}
+\doxysubsubsection{\texorpdfstring{BinaryTreeMinValueNode()}{BinaryTreeMinValueNode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}}$\ast$ Binary\+Tree\+Min\+Value\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+Gets the right most node which should be the minimum value node of the Binary Tree. 
+\begin{DoxyParams}{Parameters}
+{\em node} & \mbox{\hyperlink{struct_node}{Node}} to start traversing from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a reference pointer to the right most node. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_binary_tree_8h_a56bc298ee89b6465b558e9917dd315d1}\label{_binary_tree_8h_a56bc298ee89b6465b558e9917dd315d1}} 
+\index{BinaryTree.h@{BinaryTree.h}!BinaryTreePrint@{BinaryTreePrint}}
+\index{BinaryTreePrint@{BinaryTreePrint}!BinaryTree.h@{BinaryTree.h}}
+\doxysubsubsection{\texorpdfstring{BinaryTreePrint()}{BinaryTreePrint()}}
+{\footnotesize\ttfamily void Binary\+Tree\+Print (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{root,  }\item[{void(print\+Fn)(void $\ast$)}]{ }\end{DoxyParamCaption})}
+
+Prints a tree in 2 space of the console. 
+\begin{DoxyParams}{Parameters}
+{\em root} & Reference to the root node. \\
+\hline
+{\em print\+Fn} & Pointer to the print function. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_binary_tree_8h_ae73b7d1d85df695da2a80882049a0bf3}\label{_binary_tree_8h_ae73b7d1d85df695da2a80882049a0bf3}} 
+\index{BinaryTree.h@{BinaryTree.h}!BinaryTreePrintInOrder@{BinaryTreePrintInOrder}}
+\index{BinaryTreePrintInOrder@{BinaryTreePrintInOrder}!BinaryTree.h@{BinaryTree.h}}
+\doxysubsubsection{\texorpdfstring{BinaryTreePrintInOrder()}{BinaryTreePrintInOrder()}}
+{\footnotesize\ttfamily void Binary\+Tree\+Print\+In\+Order (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{node,  }\item[{void(print\+Fn)(void $\ast$)}]{ }\end{DoxyParamCaption})}
+
+Takes a print function and starts printing from using the provided print function. 
+\begin{DoxyParams}{Parameters}
+{\em node} & Reference node to start printing from. \\
+\hline
+{\em print\+Fn} & print function to use for printing node keys. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_binary_tree_8h_aa8eaf22f61867d33542877313dbc58af}\label{_binary_tree_8h_aa8eaf22f61867d33542877313dbc58af}} 
+\index{BinaryTree.h@{BinaryTree.h}!BinaryTreeSearch@{BinaryTreeSearch}}
+\index{BinaryTreeSearch@{BinaryTreeSearch}!BinaryTree.h@{BinaryTree.h}}
+\doxysubsubsection{\texorpdfstring{BinaryTreeSearch()}{BinaryTreeSearch()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}}$\ast$ Binary\+Tree\+Search (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$}]{binary\+Tree,  }\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{node,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_afe71f11dacb15682cdc012f7208e6e09}{char}} $\ast$}]{key }\end{DoxyParamCaption})}
+
+Given a tree and a reference node to start searching at (preferably the root) searches for node with the same key and return it. 
+\begin{DoxyParams}{Parameters}
+{\em binary\+Tree} & Reference to the Binary tree. \\
+\hline
+{\em node} & node to start searching from preferably the root. \\
+\hline
+{\em key} & Key object to search for in the Binary Tree. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the Found node. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{_binary_tree_8h_a8db6666c4006cfd7895194caba77b9fd}\label{_binary_tree_8h_a8db6666c4006cfd7895194caba77b9fd}} 
 \index{BinaryTree.h@{BinaryTree.h}!BinaryTreeToArray@{BinaryTreeToArray}}
 \index{BinaryTreeToArray@{BinaryTreeToArray}!BinaryTree.h@{BinaryTree.h}}
 \doxysubsubsection{\texorpdfstring{BinaryTreeToArray()}{BinaryTreeToArray()}}
 {\footnotesize\ttfamily void$\ast$$\ast$ Binary\+Tree\+To\+Array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$}]{binary\+Tree }\end{DoxyParamCaption})}
 
-
+Given a Tree converts it to an array in-\/order 
 \begin{DoxyParams}{Parameters}
-{\em binary\+Tree} & \\
+{\em binary\+Tree} & Reference to the Binary tree. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-
+returns an array of pointer references to keys that were stored in the tree. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{_binary_tree_8h_a4a300432c953778ad6600cd5450c623b}\label{_binary_tree_8h_a4a300432c953778ad6600cd5450c623b}} 
 \index{BinaryTree.h@{BinaryTree.h}!DeleteBinaryTreeNode@{DeleteBinaryTreeNode}}
@@ -126,140 +317,17 @@ void \mbox{\hyperlink{_binary_tree_8h_a42981174a03e116233e5c361430916e1}{print\+
 \doxysubsubsection{\texorpdfstring{DeleteBinaryTreeNode()}{DeleteBinaryTreeNode()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}}$\ast$ Delete\+Binary\+Tree\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$}]{binary\+Tree,  }\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{root,  }\item[{void $\ast$}]{key }\end{DoxyParamCaption})}
 
-
+Given a Tree and it\textquotesingle{}s root deletes a key with the same key and restores the tree order then returns the new node. 
 \begin{DoxyParams}{Parameters}
-{\em binary\+Tree} & \\
+{\em binary\+Tree} & Reference to the Binary tree. Reference to the Binary tree. \\
 \hline
-{\em root} & \\
+{\em root} & Reference to the root node. \\
 \hline
-{\em key} & \\
+{\em key} & Key object to add to the Binary Tree. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-
-\end{DoxyReturn}
-\mbox{\Hypertarget{_binary_tree_8h_a4682cfaea0bd0c2b469f5240407ea5cb}\label{_binary_tree_8h_a4682cfaea0bd0c2b469f5240407ea5cb}} 
-\index{BinaryTree.h@{BinaryTree.h}!freeBinaryTree@{freeBinaryTree}}
-\index{freeBinaryTree@{freeBinaryTree}!BinaryTree.h@{BinaryTree.h}}
-\doxysubsubsection{\texorpdfstring{freeBinaryTree()}{freeBinaryTree()}}
-{\footnotesize\ttfamily void free\+Binary\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$$\ast$}]{node }\end{DoxyParamCaption})}
-
-
-\begin{DoxyParams}{Parameters}
-{\em node} & \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{_binary_tree_8h_aea1c2cb05740b01ee9ccc86d6f2f4ecd}\label{_binary_tree_8h_aea1c2cb05740b01ee9ccc86d6f2f4ecd}} 
-\index{BinaryTree.h@{BinaryTree.h}!getMaxBinaryTreeSteps@{getMaxBinaryTreeSteps}}
-\index{getMaxBinaryTreeSteps@{getMaxBinaryTreeSteps}!BinaryTree.h@{BinaryTree.h}}
-\doxysubsubsection{\texorpdfstring{getMaxBinaryTreeSteps()}{getMaxBinaryTreeSteps()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} get\+Max\+Binary\+Tree\+Steps (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
-
-
-\begin{DoxyParams}{Parameters}
-{\em node} & \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-
-\end{DoxyReturn}
-\mbox{\Hypertarget{_binary_tree_8h_a810c1b3c5d4afe8554c9674e94d08112}\label{_binary_tree_8h_a810c1b3c5d4afe8554c9674e94d08112}} 
-\index{BinaryTree.h@{BinaryTree.h}!getMinStepsBinaryTree@{getMinStepsBinaryTree}}
-\index{getMinStepsBinaryTree@{getMinStepsBinaryTree}!BinaryTree.h@{BinaryTree.h}}
-\doxysubsubsection{\texorpdfstring{getMinStepsBinaryTree()}{getMinStepsBinaryTree()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} get\+Min\+Steps\+Binary\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
-
-
-\begin{DoxyParams}{Parameters}
-{\em node} & \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-
-\end{DoxyReturn}
-\mbox{\Hypertarget{_binary_tree_8h_a7947e852b2cd7b7716f181277a7c4563}\label{_binary_tree_8h_a7947e852b2cd7b7716f181277a7c4563}} 
-\index{BinaryTree.h@{BinaryTree.h}!getSizeBinaryTree@{getSizeBinaryTree}}
-\index{getSizeBinaryTree@{getSizeBinaryTree}!BinaryTree.h@{BinaryTree.h}}
-\doxysubsubsection{\texorpdfstring{getSizeBinaryTree()}{getSizeBinaryTree()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} get\+Size\+Binary\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{root }\end{DoxyParamCaption})}
-
-
-\begin{DoxyParams}{Parameters}
-{\em root} & \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-
-\end{DoxyReturn}
-\mbox{\Hypertarget{_binary_tree_8h_a210a714469efcd329c85b1c6d3426aa4}\label{_binary_tree_8h_a210a714469efcd329c85b1c6d3426aa4}} 
-\index{BinaryTree.h@{BinaryTree.h}!inOrderPredecessorBinaryTree@{inOrderPredecessorBinaryTree}}
-\index{inOrderPredecessorBinaryTree@{inOrderPredecessorBinaryTree}!BinaryTree.h@{BinaryTree.h}}
-\doxysubsubsection{\texorpdfstring{inOrderPredecessorBinaryTree()}{inOrderPredecessorBinaryTree()}}
-{\footnotesize\ttfamily void in\+Order\+Predecessor\+Binary\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$}]{binary\+Tree,  }\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{root,  }\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{target\+Node,  }\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$$\ast$}]{right\+Most }\end{DoxyParamCaption})}
-
-
-\begin{DoxyParams}{Parameters}
-{\em binary\+Tree} & \\
-\hline
-{\em root} & \\
-\hline
-{\em target\+Node} & \\
-\hline
-{\em right\+Most} & \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{_binary_tree_8h_a9ca8c3022c3d2b0bf1159173cc754cff}\label{_binary_tree_8h_a9ca8c3022c3d2b0bf1159173cc754cff}} 
-\index{BinaryTree.h@{BinaryTree.h}!inOrderSuccessorBinaryTree@{inOrderSuccessorBinaryTree}}
-\index{inOrderSuccessorBinaryTree@{inOrderSuccessorBinaryTree}!BinaryTree.h@{BinaryTree.h}}
-\doxysubsubsection{\texorpdfstring{inOrderSuccessorBinaryTree()}{inOrderSuccessorBinaryTree()}}
-{\footnotesize\ttfamily void in\+Order\+Successor\+Binary\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$}]{binary\+Tree,  }\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{root,  }\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{target\+Node,  }\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$$\ast$}]{left\+Most }\end{DoxyParamCaption})}
-
-
-\begin{DoxyParams}{Parameters}
-{\em binary\+Tree} & \\
-\hline
-{\em root} & \\
-\hline
-{\em target\+Node} & \\
-\hline
-{\em left\+Most} & \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{_binary_tree_8h_a0775db4a8df6ae7f77a92372d99ed12e}\label{_binary_tree_8h_a0775db4a8df6ae7f77a92372d99ed12e}} 
-\index{BinaryTree.h@{BinaryTree.h}!insertBinaryTree@{insertBinaryTree}}
-\index{insertBinaryTree@{insertBinaryTree}!BinaryTree.h@{BinaryTree.h}}
-\doxysubsubsection{\texorpdfstring{insertBinaryTree()}{insertBinaryTree()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}}$\ast$ insert\+Binary\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$}]{binary\+Tree,  }\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{node,  }\item[{void $\ast$}]{key }\end{DoxyParamCaption})}
-
-
-\begin{DoxyParams}{Parameters}
-{\em binary\+Tree} & \\
-\hline
-{\em node} & \\
-\hline
-{\em key} & \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-
-\end{DoxyReturn}
-\mbox{\Hypertarget{_binary_tree_8h_a22da9a1184cf7874d2df3d2ac0265eb4}\label{_binary_tree_8h_a22da9a1184cf7874d2df3d2ac0265eb4}} 
-\index{BinaryTree.h@{BinaryTree.h}!isPresentInBinaryTree@{isPresentInBinaryTree}}
-\index{isPresentInBinaryTree@{isPresentInBinaryTree}!BinaryTree.h@{BinaryTree.h}}
-\doxysubsubsection{\texorpdfstring{isPresentInBinaryTree()}{isPresentInBinaryTree()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} is\+Present\+In\+Binary\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$}]{binary\+Tree,  }\item[{void $\ast$}]{search\+Key }\end{DoxyParamCaption})}
-
-
-\begin{DoxyParams}{Parameters}
-{\em binary\+Tree} & \\
-\hline
-{\em root} & \\
-\hline
-{\em search\+Key} & \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-
+Returns the new root node of the Binary Tree. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{_binary_tree_8h_a23c3390a47c730efd5a1b93498709c2f}\label{_binary_tree_8h_a23c3390a47c730efd5a1b93498709c2f}} 
 \index{BinaryTree.h@{BinaryTree.h}!maxValueBinaryTreeNode@{maxValueBinaryTreeNode}}
@@ -267,80 +335,34 @@ void \mbox{\hyperlink{_binary_tree_8h_a42981174a03e116233e5c361430916e1}{print\+
 \doxysubsubsection{\texorpdfstring{maxValueBinaryTreeNode()}{maxValueBinaryTreeNode()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}}$\ast$ max\+Value\+Binary\+Tree\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
 
-
+Gets the left most node which should be the maximum value node of the Binary Tree. 
 \begin{DoxyParams}{Parameters}
-{\em node} & \\
+{\em node} & \mbox{\hyperlink{struct_node}{Node}} to start traversing from. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-
+Returns a reference pointer to the left most node. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{_binary_tree_8h_aa986c4d101723d1d1ac1378034bbde98}\label{_binary_tree_8h_aa986c4d101723d1d1ac1378034bbde98}} 
-\index{BinaryTree.h@{BinaryTree.h}!minValueBinaryTreeNode@{minValueBinaryTreeNode}}
-\index{minValueBinaryTreeNode@{minValueBinaryTreeNode}!BinaryTree.h@{BinaryTree.h}}
-\doxysubsubsection{\texorpdfstring{minValueBinaryTreeNode()}{minValueBinaryTreeNode()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}}$\ast$ min\+Value\+Binary\+Tree\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
-
-
-\begin{DoxyParams}{Parameters}
-{\em node} & \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-
-\end{DoxyReturn}
-\mbox{\Hypertarget{_binary_tree_8h_aa25bab9f18a6cbdba444f2e6a0272b1d}\label{_binary_tree_8h_aa25bab9f18a6cbdba444f2e6a0272b1d}} 
-\index{BinaryTree.h@{BinaryTree.h}!printBinaryTree@{printBinaryTree}}
-\index{printBinaryTree@{printBinaryTree}!BinaryTree.h@{BinaryTree.h}}
-\doxysubsubsection{\texorpdfstring{printBinaryTree()}{printBinaryTree()}}
-{\footnotesize\ttfamily void print\+Binary\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{root,  }\item[{void(print\+Fn)(void $\ast$)}]{ }\end{DoxyParamCaption})}
-
-
-\begin{DoxyParams}{Parameters}
-{\em root} & \\
-\hline
-{\em print\+Fn} & \\
-\hline
-\end{DoxyParams}
 \mbox{\Hypertarget{_binary_tree_8h_a8e2d543d42366644908d2a95c6fe328b}\label{_binary_tree_8h_a8e2d543d42366644908d2a95c6fe328b}} 
 \index{BinaryTree.h@{BinaryTree.h}!printBinaryTreeStats@{printBinaryTreeStats}}
 \index{printBinaryTreeStats@{printBinaryTreeStats}!BinaryTree.h@{BinaryTree.h}}
 \doxysubsubsection{\texorpdfstring{printBinaryTreeStats()}{printBinaryTreeStats()}}
 {\footnotesize\ttfamily void print\+Binary\+Tree\+Stats (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$}]{tree }\end{DoxyParamCaption})}
 
-
+Prints the Tree Statistics\+:
+\begin{DoxyItemize}
+\item Number of Nodes,
+\item Height,
+\item Minimum Steps to the minimum node,
+\item Maximum Steps to the max node.
+\item Rule Satisfaction\+:
+\begin{DoxyItemize}
+\item Maximum node Rule(2$^\wedge$(h+1)-\/1)
+\item Minimum node Rule(2$\ast$1.6$^\wedge$h) where h is the height of the tree. 
 \begin{DoxyParams}{Parameters}
-{\em tree} & \\
+{\em tree} & Reference to the Binary tree. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{_binary_tree_8h_a42981174a03e116233e5c361430916e1}\label{_binary_tree_8h_a42981174a03e116233e5c361430916e1}} 
-\index{BinaryTree.h@{BinaryTree.h}!printInOrderBinaryTree@{printInOrderBinaryTree}}
-\index{printInOrderBinaryTree@{printInOrderBinaryTree}!BinaryTree.h@{BinaryTree.h}}
-\doxysubsubsection{\texorpdfstring{printInOrderBinaryTree()}{printInOrderBinaryTree()}}
-{\footnotesize\ttfamily void print\+In\+Order\+Binary\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{node,  }\item[{void(print\+Fn)(void $\ast$)}]{ }\end{DoxyParamCaption})}
 
-
-\begin{DoxyParams}{Parameters}
-{\em node} & \\
-\hline
-{\em print\+Fn} & \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{_binary_tree_8h_a872451120c65f64f87745837555aa2ed}\label{_binary_tree_8h_a872451120c65f64f87745837555aa2ed}} 
-\index{BinaryTree.h@{BinaryTree.h}!searchBinaryTree@{searchBinaryTree}}
-\index{searchBinaryTree@{searchBinaryTree}!BinaryTree.h@{BinaryTree.h}}
-\doxysubsubsection{\texorpdfstring{searchBinaryTree()}{searchBinaryTree()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}}$\ast$ search\+Binary\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_tree}{Binary\+Tree}} $\ast$}]{binary\+Tree,  }\item[{\mbox{\hyperlink{struct_binary_tree_node}{Binary\+Tree\+Node}} $\ast$}]{node,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_afe71f11dacb15682cdc012f7208e6e09}{char}} $\ast$}]{key }\end{DoxyParamCaption})}
-
-
-\begin{DoxyParams}{Parameters}
-{\em binary\+Tree} & \\
-\hline
-{\em node} & \\
-\hline
-{\em key} & \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-
-\end{DoxyReturn}
+\end{DoxyItemize}
+\end{DoxyItemize}
