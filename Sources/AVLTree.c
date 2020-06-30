@@ -37,7 +37,7 @@ int getBalance(AVLTNode *N);
 
 ///
 /// \param tree
-void printAVLTreeStats(AVLTree *tree){
+void AVLTreePrintStats(AVLTree *tree){
     if(tree&&tree->root){
         printf("............................\n");
         printf("Size = %d\n", tree->nodeCount);

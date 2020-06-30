@@ -10,7 +10,7 @@ void myPrint(void *val){
     printf("%d, ",*(int*)val );
 }
 int main() {
-    SplayTree* st = SplayTreeInitialize(sizeof(int),mycmp);
+    SplayTree* st = SplayTreeInitialize(mycmp);
 
     int a = 1,
             b = 2,
@@ -47,8 +47,18 @@ int main() {
     SplayTreeInsert(st,p9);
     SplayTreeInsert(st,p10);
 
+
     printInOrderSplayTree(st->root,myPrint);
     puts("\n");
+    //printSplayTree(st->root,myPrint);
+
+    SplayTreeDelete(st,p9);
+    SplayTreeDelete(st,p1);
+    SplayTreeDelete(st,p5);
+
+    printInOrderSplayTree(st->root,myPrint);
+    puts("\n");
+
     printSplayTree(st->root,myPrint);
 /*
     Trie *trie = trieInitialization();

@@ -50,7 +50,7 @@ void AVLTreeFree(AVLTNode **node);
 
 AVLTree* AVLTreeInitialize(int size, int (*cmp)(const void*, const void*));
 
-void printAVLTreeStats(AVLTree *tree);
+void AVLTreePrintStats(AVLTree *tree);
 
 AVLTNode * AVLTreeMaxValueNode(AVLTNode* node);
 

@@ -22,7 +22,7 @@ SplayNode* newSplayNode(void* key){
 /// \param size
 /// \param cmp
 /// \return
-SplayTree* SplayTreeInitialize(int size, int16_t (*cmp)(const void*, const void*)){
+SplayTree* SplayTreeInitialize( int16_t (*cmp)(const void*, const void*)){
     SplayTree *t = (SplayTree *) malloc(sizeof(SplayTree));
     if(!t){
         fprintf(stderr,"Failed at allocating tree\n");
@@ -31,7 +31,6 @@ SplayTree* SplayTreeInitialize(int size, int16_t (*cmp)(const void*, const void*
     t->root = NULL;
     t->cmp = cmp;
     t->nodeCount =0;
-    t->sizeOfType = size;
     return t;
 }
 
