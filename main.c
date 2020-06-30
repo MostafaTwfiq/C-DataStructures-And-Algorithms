@@ -4,7 +4,7 @@
 
 int16_t mycmp(const void * v1,const void * v2){
     return  *(int *)v1 - *(int*)v2;
-} 
+}
 
 void myPrint(void *val){
     printf("%d, ",*(int*)val );
