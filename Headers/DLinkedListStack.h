@@ -31,7 +31,7 @@ int dlStackIsEmpty(DLinkedListStack *stack);
 void *dlStackPeek(DLinkedListStack *stack);
 
 
-void *dlStackToArray(DLinkedListStack *stack);
+void **dlStackToArray(DLinkedListStack *stack);
 
 
 void clearDLStack(DLinkedListStack *stack);

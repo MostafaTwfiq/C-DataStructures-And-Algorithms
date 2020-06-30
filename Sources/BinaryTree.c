@@ -3,7 +3,7 @@
 
 void printBinaryTreeHelper(BTreeNode *root, int space, void (printFn)(void *));
 void isPresentInBinaryTreeRecurs(BinaryTree *binaryTree, BTreeNode *root, void *searchedValue, int* found );
-void BinaryTreeToArrayRecurs(BTreeNode* node , int sizeOfType, void *arr, int *i);
+void BinaryTreeToArrayRecurs(BTreeNode* node , int sizeOfType, void **arr, int *i);
 void freeBinaryTreeNode(BTreeNode **node);
 BTreeNode* newBinaryTreeNode(void* key);
 void getMaxStepsBinaryTreeRecurs(BTreeNode * node, int * steps);
@@ -262,8 +262,8 @@ void printInOrderBinaryTree(BTreeNode* node, void (printFn)(void *)){
 ///
 /// \param binaryTree
 /// \return
-void** BinarytreeToArray(BinaryTree *binaryTree){
-    void *array = malloc(binaryTree->sizeOfType * binaryTree->nodeCount);
+void **BinaryTreeToArray(BinaryTree *binaryTree){
+    void **array = (void **) malloc(sizeof(void *) * binaryTree->nodeCount);
     int i = 0;
     BinaryTreeToArrayRecurs(binaryTree->root, binaryTree->sizeOfType, array, &i);
     return array;
@@ -273,10 +273,11 @@ void** BinarytreeToArray(BinaryTree *binaryTree){
 /// \param node
 /// \param arr
 /// \param i
-void BinaryTreeToArrayRecurs(BTreeNode* node , int sizeOfType, void *arr, int *i){
+void BinaryTreeToArrayRecurs(BTreeNode* node , int sizeOfType, void **arr, int *i){
     if(!node) return;
     BinaryTreeToArrayRecurs(node->left, sizeOfType, arr, i);
-    memcpy(arr + sizeOfType * *i, node->key, sizeOfType);
+    arr[*i] = (void *) malloc(sizeOfType);
+    memcpy(arr[*i], node->key, sizeOfType);
     *i += 1;
     BinaryTreeToArrayRecurs(node->right, sizeOfType, arr, i);
 }

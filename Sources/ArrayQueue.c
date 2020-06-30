@@ -203,12 +203,14 @@ void *ArrayQueuePeek(ArrayQueue * arrayQueue) {
 * @param arrayQueue Pointer to the Queue on the heap.
 * @return Pointer to an allocated array on the heap.
  * */
-void *ArrayQueueToArray(ArrayQueue * arrayQueue){
-    void *array = (void *) malloc(arrayQueue->sizeOfType * ArrayQueueLength(arrayQueue));
+void **ArrayQueueToArray(ArrayQueue * arrayQueue){
+    void **array = (void **) malloc(sizeof(void *) * ArrayQueueLength(arrayQueue));
 
     for (int i = 0; i <  ArrayQueueLength(arrayQueue); i++) {
-        memcpy(array + i * arrayQueue->sizeOfType,arrayQueue->memory[i] , arrayQueue->sizeOfType);
+        array[i] = (void *) malloc(arrayQueue->sizeOfType);
+        memcpy(array[i], arrayQueue->memory[i], arrayQueue->sizeOfType);
     }
+
     return array;
 
 }

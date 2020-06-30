@@ -170,7 +170,7 @@ int lLQueueIsEmpty(LinkedListQueue *queue) {
  * @return
  */
 
-void *lLQueueToArray(LinkedListQueue *queue) {
+void **lLQueueToArray(LinkedListQueue *queue) {
 
     if (queue == NULL) {
         fprintf(stderr,"Illegal argument, the queue is NULL.");

@@ -44,7 +44,7 @@ AVLTNode* insertAVLTree(AVLTree * avlTree, AVLTNode *node, void *key);
 
 AVLTNode *searchAVLTree(AVLTree *avlTree,AVLTNode *node, char *key);
 
-void** AVLTreeToArray(AVLTree *avlTree);
+void **AVLTreeToArray(AVLTree *avlTree);
 
 void freeAVLTree(AVLTNode **node);
 

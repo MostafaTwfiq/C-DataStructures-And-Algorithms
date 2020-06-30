@@ -57,7 +57,7 @@ void *doublyLinkedListGetFirst(DoublyLinkedList *linkedList);
 void *doublyLinkedListGetLast(DoublyLinkedList *linkedList);
 
 
-void *doublyLinkedListToArray(DoublyLinkedList *linkedList);
+void **doublyLinkedListToArray(DoublyLinkedList *linkedList);
 
 
 void *doublyLinkedListGet(DoublyLinkedList *linkedList, int index);

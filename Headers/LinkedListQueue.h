@@ -36,7 +36,7 @@ int lLQueueGetLength(LinkedListQueue *queue);
 int lLQueueIsEmpty(LinkedListQueue *queue);
 
 
-void *lLQueueToArray(LinkedListQueue *queue);
+void **lLQueueToArray(LinkedListQueue *queue);
 
 
 void clearLLQueue(LinkedListQueue *queue);

@@ -32,7 +32,7 @@ int sQueueGetLength(SQueue *queue);
 int sQueueIsEmpty(SQueue *queue);
 
 
-void *sQueueToArray(SQueue *queue);
+void **sQueueToArray(SQueue *queue);
 
 
 void clearSQueue(SQueue *queue);

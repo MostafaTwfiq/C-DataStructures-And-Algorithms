@@ -38,7 +38,7 @@ BTreeNode* insertBinaryTree(BinaryTree * binaryTree, BTreeNode *node, void *key)
 
 BTreeNode *searchBinaryTree(BinaryTree *avlTree,BTreeNode *node, char *key);
 
-void** BinarytreeToArray(BinaryTree *binaryTree);
+void **BinaryTreeToArray(BinaryTree *binaryTree);
 
 void freeBinaryTree(BTreeNode **node);
 

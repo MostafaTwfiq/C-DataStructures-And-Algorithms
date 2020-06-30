@@ -60,6 +60,11 @@ HashMap *hashMapInitialization(int sizeOfType) {
  */
 
 void hashMapInsert(HashMap *map, void *key, void *item, int sizeOfKey) {
+    if (map == NULL) {
+        fprintf(stderr, "Illegal argument, the hash map is null.");
+        exit(-3);
+    }
+
     if (map->count == map->length) {
         map->length = getNextPrime(map->length * 2); //the length of the map array should always be a prime number.
         map->arr = (Entry **) malloc(sizeof(Entry *) * map->length);
@@ -105,6 +110,11 @@ void hashMapInsert(HashMap *map, void *key, void *item, int sizeOfKey) {
  */
 
 int hashMapContains(HashMap *map, void *key, int sizeOfKey) {
+    if (map == NULL) {
+        fprintf(stderr, "Illegal argument, the hash map is null.");
+        exit(-3);
+    }
+
     unsigned int fHash, sHash = sHashCal( (unsigned int) key, sizeOfKey, map->bPrime);
     unsigned int index = fHash = fHashCal( (unsigned int) key, sizeOfKey, map->length);
     unsigned int firstIndex = index;
@@ -138,6 +148,11 @@ int hashMapContains(HashMap *map, void *key, int sizeOfKey) {
  */
 
 void *hashMapGet(HashMap *map, void *key, int sizeOfKey) {
+    if (map == NULL) {
+        fprintf(stderr, "Illegal argument, the hash map is null.");
+        exit(-3);
+    }
+
     unsigned int fHash, sHash = sHashCal( (unsigned int) key, sizeOfKey, map->bPrime);
     unsigned int index = fHash = fHashCal( (unsigned int) key, sizeOfKey, map->length);
     unsigned int firstIndex = index;
@@ -170,6 +185,11 @@ void *hashMapGet(HashMap *map, void *key, int sizeOfKey) {
  */
 
 void hashMapDelete(HashMap *map, void *key, int sizeOfKey) {
+    if (map == NULL) {
+        fprintf(stderr, "Illegal argument, the hash map is null.");
+        exit(-3);
+    }
+
     unsigned int fHash, sHash = sHashCal( (unsigned int) key, sizeOfKey, map->bPrime);
     unsigned int index = fHash = fHashCal( (unsigned int) key, sizeOfKey, map->length);
     unsigned int firstIndex = index;
@@ -205,6 +225,11 @@ void hashMapDelete(HashMap *map, void *key, int sizeOfKey) {
  */
 
 void *hashMapToArray(HashMap *map) {
+    if (map == NULL) {
+        fprintf(stderr, "Illegal argument, the hash map is null.");
+        exit(-3);
+    }
+
     void **arr = (void *) malloc(sizeof(void *) * map->count);
     for (int i = 0, index = 0; i < map->length; i++) {
         if (map->arr[i] != NULL) {
@@ -227,6 +252,11 @@ void *hashMapToArray(HashMap *map) {
  */
 
 Entry *hashMapToEntryArray(HashMap *map) {
+    if (map == NULL) {
+        fprintf(stderr, "Illegal argument, the hash map is null.");
+        exit(-3);
+    }
+
     Entry *arr = (Entry *) malloc(sizeof(Entry) * map->count);
     for (int i = 0, index = 0; i < map->length; i++) {
         if (map->arr[i] != NULL) {
@@ -253,6 +283,11 @@ Entry *hashMapToEntryArray(HashMap *map) {
  */
 
 int hashMapGetLength(HashMap *map) {
+    if (map == NULL) {
+        fprintf(stderr, "Illegal argument, the hash map is null.");
+        exit(-3);
+    }
+
     return map->count;
 }
 
@@ -268,6 +303,11 @@ int hashMapGetLength(HashMap *map) {
  */
 
 int hashMapIsEmpty(HashMap *map) {
+    if (map == NULL) {
+        fprintf(stderr, "Illegal argument, the hash map is null.");
+        exit(-3);
+    }
+
     return map->count == 0;
 }
 
@@ -281,6 +321,11 @@ int hashMapIsEmpty(HashMap *map) {
  */
 
 void clearHashMap(HashMap *map) {
+    if (map == NULL) {
+        fprintf(stderr, "Illegal argument, the hash map is null.");
+        exit(-3);
+    }
+
     for (int i = 0; i < map->count; i++) {
         if (map->arr[i] != NULL) {
             free(map->arr[i]->value);
@@ -305,6 +350,11 @@ void clearHashMap(HashMap *map) {
  */
 
 void destroyHashMap(HashMap *map) {
+    if (map == NULL) {
+        fprintf(stderr, "Illegal argument, the hash map is null.");
+        exit(-3);
+    }
+
     clearHashMap(map);
     free(map->arr);
     free(map);

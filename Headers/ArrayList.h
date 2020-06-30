@@ -40,10 +40,10 @@ int arrayListGetLastIndex(ArrayList *list, void *item, int (*comparator)(const v
 void *arrayListGet(ArrayList *list, int index);
 
 
-void *arrayListToArray(ArrayList *list);
+void **arrayListToArray(ArrayList *list);
 
 
-void *arrayListToSubArray(ArrayList *list, int start, int end);
+void **arrayListToSubArray(ArrayList *list, int start, int end);
 
 
 void arrayListSort(ArrayList *list, int (*comparator)(const void *, const void *));

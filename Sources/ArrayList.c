@@ -257,17 +257,19 @@ void *arrayListGet(ArrayList *list, int index) {
  * @return
  */
 
-void *arrayListToArray(ArrayList *list) {
+void **arrayListToArray(ArrayList *list) {
 
     if (list == NULL) {
          fprintf(stderr,"Illegal argument, the array list is NULL.");
         exit(-3);
     }
 
-    void *array = (void *) malloc(list->sizeOfType * arrayListGetLength(list));
+    void **array = (void **) malloc(sizeof(void *) * arrayListGetLength(list));
 
-    for (int i = 0; i < arrayListGetLength(list); i++)
-        memcpy(array + list->sizeOfType * i, list->arr[i], list->sizeOfType);
+    for (int i = 0; i < arrayListGetLength(list); i++) {
+        array[i] = (void *) malloc(list->sizeOfType);
+        memcpy(array[i], list->arr[i], list->sizeOfType);
+    }
 
 
     return array;
@@ -285,7 +287,7 @@ void *arrayListToArray(ArrayList *list) {
  * @return
  */
 
-void *arrayListToSubArray(ArrayList *list, int start, int end) {
+void **arrayListToSubArray(ArrayList *list, int start, int end) {
 
     if (list == NULL) {
          fprintf(stderr,"Illegal argument, the array list is NULL.");
@@ -295,10 +297,12 @@ void *arrayListToSubArray(ArrayList *list, int start, int end) {
         exit(-3);
     }
 
-    void *array = (void *) malloc(list->sizeOfType * (end - start) );
+    void **array = (void **) malloc(sizeof(void *) * (end - start) );
 
-    for (int i = start; i < end; i++)
-        memcpy(array + list->sizeOfType * (i - start), list->arr[i], list->sizeOfType);
+    for (int i = start; i < end; i++) {
+        array[i] = (void *) malloc(list->sizeOfType);
+        memcpy(array[i - start], list->arr[i], list->sizeOfType);
+    }
 
 
     return array;

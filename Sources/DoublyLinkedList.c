@@ -531,17 +531,18 @@ void *doublyLinkedListGet(DoublyLinkedList *linkedList, int index) {
  * @return
  */
 
-void *doublyLinkedListToArray(DoublyLinkedList *linkedList) {
+void **doublyLinkedListToArray(DoublyLinkedList *linkedList) {
     if (linkedList == NULL) {
          fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
     }
 
-    void *array = (void *) malloc(linkedList->sizeOfType * doublyLinkedListGetLength(linkedList));
+    void **array = (void **) malloc(sizeof(void *) * doublyLinkedListGetLength(linkedList));
 
     Node *currentNode = linkedList->head;
     for (int i = 0; i < doublyLinkedListGetLength(linkedList); i++) {
-        memcpy(array + i * linkedList->sizeOfType, currentNode->item, linkedList->sizeOfType);
+        array[i] = (void *) malloc(linkedList->sizeOfType);
+        memcpy(array[i], currentNode->item, linkedList->sizeOfType);
 
         currentNode = currentNode->next;
     }

@@ -188,7 +188,7 @@ int sQueueIsEmpty(SQueue *queue) {
  * @return
  */
 
-void *sQueueToArray(SQueue *queue) {
+void **sQueueToArray(SQueue *queue) {
 
     if(queue == NULL) {
         fprintf( stderr , "Illegal argument, queue is null." );
@@ -196,11 +196,12 @@ void *sQueueToArray(SQueue *queue) {
     }
 
     int length = sQueueGetLength(queue);
-    void *arr = (void *) malloc(queue->fStack->sizeOfType * length);
+    void **arr = (void **) malloc(sizeof(void *) * length);
 
     for (int i = 0; i < length; i++) {
         void *item = sQueueDequeue(queue);
-        memcpy(arr + queue->fStack->sizeOfType * i, item, queue->fStack->sizeOfType);
+        arr[i] = (void *) malloc(queue->fStack->sizeOfType);
+        memcpy(arr[i], item, queue->fStack->sizeOfType);
         sQueueEnqueue(queue, item);
     }
 

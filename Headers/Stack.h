@@ -32,7 +32,7 @@ short isEmptyStack(Stack *stack);
 
 void *peekStack(Stack *stack);
 
-void *stackToArray(Stack *stack);
+void **stackToArray(Stack *stack);
 
 int getStackLength(Stack *stack);
 

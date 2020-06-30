@@ -104,7 +104,7 @@ void *dlStackPop(DLinkedListStack *stack) {
  * @return
  */
 
-void *dlStackToArray(DLinkedListStack *stack) {
+void **dlStackToArray(DLinkedListStack *stack) {
 
     if (stack == NULL) {
         fprintf(stderr,"Illegal argument, the stack is NULL.");
