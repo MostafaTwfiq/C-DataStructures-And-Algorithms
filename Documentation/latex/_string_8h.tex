@@ -1,8 +1,6 @@
 \hypertarget{_string_8h}{}\doxysection{Headers/\+String.h File Reference}
 \label{_string_8h}\index{Headers/String.h@{Headers/String.h}}
-{\ttfamily \#include $<$stdio.\+h$>$}\newline
-{\ttfamily \#include $<$stdlib.\+h$>$}\newline
-{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Utils.\+h\char`\"{}}\newline
 \doxysubsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
@@ -51,6 +49,8 @@ void \mbox{\hyperlink{_string_8h_a1a8b4c95f18c9d015b066091baa4de37}{string\+Trim
 void \mbox{\hyperlink{_string_8h_a4a9c0937bfad27b5d104a72a7c8873be}{destroy\+String}} (\mbox{\hyperlink{struct_string}{String}} $\ast$my\+String)
 \item 
 void \mbox{\hyperlink{_string_8h_a6fbb17a7e2612e0d89341f357d977ccb}{string\+F\+GetS}} (\mbox{\hyperlink{struct_string}{String}} $\ast$my\+String)
+\item 
+void \mbox{\hyperlink{_string_8h_a54f67fdbb8bc6a25caa3efd03c28070d}{print\+String}} (\mbox{\hyperlink{struct_string}{String}} $\ast$string)
 \end{DoxyCompactItemize}
 
 
@@ -73,6 +73,17 @@ void \mbox{\hyperlink{_string_8h_a6fbb17a7e2612e0d89341f357d977ccb}{string\+F\+G
 This function will take the string address as a parameter, then it will destroy and free the string from the memory. 
 \begin{DoxyParams}{Parameters}
 {\em my\+String} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_string_8h_a54f67fdbb8bc6a25caa3efd03c28070d}\label{_string_8h_a54f67fdbb8bc6a25caa3efd03c28070d}} 
+\index{String.h@{String.h}!printString@{printString}}
+\index{printString@{printString}!String.h@{String.h}}
+\doxysubsubsection{\texorpdfstring{printString()}{printString()}}
+{\footnotesize\ttfamily void print\+String (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_string}{String}} $\ast$}]{string }\end{DoxyParamCaption})}
+
+This function will take the string address as a parameter, then it will print the string in the stdout file. 
+\begin{DoxyParams}{Parameters}
+{\em string} & \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{_string_8h_a8c5ab7570fb03da98a011f312405c5be}\label{_string_8h_a8c5ab7570fb03da98a011f312405c5be}} 
@@ -312,7 +323,7 @@ This function will take the string address as a parameter, then it will convert 
 \doxysubsubsection{\texorpdfstring{stringTrim()}{stringTrim()}}
 {\footnotesize\ttfamily void string\+Trim (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_string}{String}} $\ast$}]{my\+String }\end{DoxyParamCaption})}
 
-This function will take the string address as a paramter, then it will trim this string (remove spaces and tabs). 
+This function will take the string address as a parameter, then it will trim this string (remove spaces and tabs). 
 \begin{DoxyParams}{Parameters}
 {\em my\+String} & \\
 \hline

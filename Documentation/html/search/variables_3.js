@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['front_580',['front',['../struct_array_queue.html#ae97b43d7057bc2ef3c3d92b9f72fb42b',1,'ArrayQueue']]]
+  ['eow_855',['EOW',['../struct_node.html#a9f58eb13784d40153c40607ff3aef361',1,'Node']]]
 ];

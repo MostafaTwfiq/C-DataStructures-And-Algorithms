@@ -36,15 +36,15 @@ void \mbox{\hyperlink{_linked_list_8c_a60c0e872f82605c9b09b3f070ffbca06}{linked\
 \item 
 void \mbox{\hyperlink{_linked_list_8c_afe66f6f3d91c03c85df217ac82a8574b}{linked\+List\+Delete\+At\+Index\+Wt\+Fr}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} index)
 \item 
-\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_linked_list_8c_a5fcfa415b4ad9483eb6b6d255a0e8c09}{linked\+List\+Contains}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List, void $\ast$item, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$comparator)(const void $\ast$, const void $\ast$))
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_linked_list_8c_a5fcfa415b4ad9483eb6b6d255a0e8c09}{linked\+List\+Contains}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List, void $\ast$item, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$\mbox{\hyperlink{_trie_8c_a1640ed6646f0dbc0b4ee3cdd8adff7d9}{comparator}})(const void $\ast$, const void $\ast$))
 \item 
-\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_linked_list_8c_a17ab61d31c209a4fac0dba0ea94f1091}{linked\+List\+Get\+Index}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List, void $\ast$item, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$comparator)(const void $\ast$, const void $\ast$))
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_linked_list_8c_a17ab61d31c209a4fac0dba0ea94f1091}{linked\+List\+Get\+Index}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List, void $\ast$item, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$\mbox{\hyperlink{_trie_8c_a1640ed6646f0dbc0b4ee3cdd8adff7d9}{comparator}})(const void $\ast$, const void $\ast$))
 \item 
 void $\ast$ \mbox{\hyperlink{_linked_list_8c_ae4076814526fcdf953e50f39511e03ba}{linked\+List\+Get\+First}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List)
 \item 
 void $\ast$ \mbox{\hyperlink{_linked_list_8c_af1f2a54a8916d4bd6d9b507f2a20ca9e}{linked\+List\+Get\+Last}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List)
 \item 
-void $\ast$ \mbox{\hyperlink{_linked_list_8c_a582144735ceba15f68a12692afd99cc5}{linked\+List\+Get\+Item}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List, void $\ast$item, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$comparator)(const void $\ast$, const void $\ast$))
+void $\ast$ \mbox{\hyperlink{_linked_list_8c_a582144735ceba15f68a12692afd99cc5}{linked\+List\+Get\+Item}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List, void $\ast$item, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}($\ast$\mbox{\hyperlink{_trie_8c_a1640ed6646f0dbc0b4ee3cdd8adff7d9}{comparator}})(const void $\ast$, const void $\ast$))
 \item 
 void $\ast$ \mbox{\hyperlink{_linked_list_8c_ac94cb5cc42b93d5079454f56637c4e29}{linked\+List\+Get}} (\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$linked\+List, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} index)
 \item 
@@ -198,7 +198,7 @@ This function will take the linked list address, and the index as parameters, th
 \index{LinkedList.c@{LinkedList.c}!linkedListDeleteFirst@{linkedListDeleteFirst}}
 \index{linkedListDeleteFirst@{linkedListDeleteFirst}!LinkedList.c@{LinkedList.c}}
 \doxysubsubsection{\texorpdfstring{linkedListDeleteFirst()}{linkedListDeleteFirst()}}
-{\footnotesize\ttfamily void linked\+List\+DeleteAVLTreeNode\+First (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$}]{linked\+List }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void linked\+List\+Delete\+First (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$}]{linked\+List }\end{DoxyParamCaption})}
 
 This function will take the linked list address as a parameter, then it will delete and free the first element from the linked list. 
 \begin{DoxyParams}{Parameters}
@@ -209,7 +209,7 @@ This function will take the linked list address as a parameter, then it will del
 \index{LinkedList.c@{LinkedList.c}!linkedListDeleteFirstWtFr@{linkedListDeleteFirstWtFr}}
 \index{linkedListDeleteFirstWtFr@{linkedListDeleteFirstWtFr}!LinkedList.c@{LinkedList.c}}
 \doxysubsubsection{\texorpdfstring{linkedListDeleteFirstWtFr()}{linkedListDeleteFirstWtFr()}}
-{\footnotesize\ttfamily void linked\+List\+DeleteBinaryTreeNode\+First\+Wt\+Fr (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$}]{linked\+List }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void linked\+List\+Delete\+First\+Wt\+Fr (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_linked_list}{Linked\+List}} $\ast$}]{linked\+List }\end{DoxyParamCaption})}
 
 This function will take the linked list address as a parameter, then it will delete and free only the node without the item of the first element from the linked list. 
 \begin{DoxyParams}{Parameters}

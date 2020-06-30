@@ -21,7 +21,7 @@ void myPrint(void * var){
 }
 
 int main() {
-    Heap *h = HeapInitialize(MAX_HEAP, sizeof(int), mycmp);
+    Heap *h = HeapInitialize(MIN_HEAP, sizeof(int), mycmp);
 
     int a = 1,
             b = 2,
@@ -62,7 +62,8 @@ int main() {
 
 
     //printf("%d",(h->cmp)(&p5,&p4));
-    printHeap(h, myPrint);
+    //printHeap(h, myPrint);
+    heapPrint(h,0,myPrint);
 
 /*
     Trie *trie = trieInitialization();

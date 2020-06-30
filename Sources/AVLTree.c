@@ -211,44 +211,45 @@ int getBalance(AVLTNode *N){
 ///
 /// \param avlTree
 /// \param root
-/// \param targetNode
+/// \param referenceNode
 /// \param leftMost
-void inOrderSuccessorAVLTree(AVLTree *avlTree, AVLTNode* root, AVLTNode* targetNode, AVLTNode **leftMost) {
+void inOrderSuccessorAVLTree(AVLTree *avlTree, AVLTNode* root, AVLTNode* referenceNode, AVLTNode **leftMost) {
     if (root == NULL) {
         leftMost = NULL;
         return;}
-    if ((avlTree->cmp)(root->key,targetNode->key)==0){
+    if ((avlTree->cmp)(root->key, referenceNode->key) == 0){
         if (root->right)
             *leftMost = minValueNodeAVLTree(root->right);
     }
-    else if ((avlTree->cmp)(targetNode->key, root->key)<0){
+    else if ((avlTree->cmp)(referenceNode->key, root->key) < 0){
         *leftMost = root;
-        inOrderSuccessorAVLTree(avlTree, root->left, targetNode, leftMost);
+        inOrderSuccessorAVLTree(avlTree, root->left, referenceNode, leftMost);
     }
     else{
-        inOrderSuccessorAVLTree(avlTree, root->right, targetNode, leftMost);
+        inOrderSuccessorAVLTree(avlTree, root->right, referenceNode, leftMost);
     }
 }
 
 ///
 /// \param avlTree
 /// \param root
-/// \param targetNode
+/// \param referenceNode
 /// \param rightMost
-void inOrderPredecessorAVLTree(AVLTree *avlTree, AVLTNode *root, AVLTNode *targetNode, AVLTNode **rightMost){
+void inOrderPredecessorAVLTree(AVLTree *avlTree, AVLTNode *root, AVLTNode *referenceNode, AVLTNode **rightMost){
     if (root == NULL) {
         rightMost = NULL;
-        return;}
-    if ((avlTree->cmp)(root->key,targetNode->key)==0){
+        return;
+    }
+    if ((avlTree->cmp)(root->key, referenceNode->key) == 0){
         if (root->left)
             *rightMost = maxValueNodeAVLTree(root->left);
     }
-    else if ((avlTree->cmp)(targetNode->key, root->key)<0){
-        inOrderPredecessorAVLTree(avlTree, root->left, targetNode, rightMost);
+    else if ((avlTree->cmp)(referenceNode->key, root->key) < 0){
+        inOrderPredecessorAVLTree(avlTree, root->left, referenceNode, rightMost);
     }
     else{
         *rightMost = root;
-        inOrderPredecessorAVLTree(avlTree, root->right, targetNode, rightMost);
+        inOrderPredecessorAVLTree(avlTree, root->right, referenceNode, rightMost);
     }
 }
 
@@ -454,4 +455,4 @@ AVLTNode* DeleteAVLTreeNode(AVLTree *avlTree, AVLTNode* root, void *key) {
         return leftRotate(root);
     }
     return root;
-}/**/
+}

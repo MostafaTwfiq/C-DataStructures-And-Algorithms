@@ -1,4 +1,4 @@
-#include "../Headers/Heap.h"
+#include "../Headers/MinHeap.h"
 
 void swap(void** x, void** y) {
     void* temp = *x;
@@ -6,46 +6,43 @@ void swap(void** x, void** y) {
     *y = temp;
 }
 
-Heap *HeapInitialize(uint8_t type, uint16_t size,int16_t (*cmp)(void*,void*)){
-    Heap *h = malloc(sizeof(Heap));
+MinHeap *MinHeapInitialize(uint8_t type, uint16_t size,int16_t (*cmp)(const void*,const void*)){
+    MinHeap *h = malloc(sizeof(*h));
     h->capacity = 10;
     void **harr = (void **)malloc(sizeof(void*)*h->capacity);
     h->memory = harr;
-    h->type = type;
     h->size = 0;
     h->cmpFn = cmp;
     return h;
 };
 
 
-void heapifyUP(Heap* h, int index){
+void MinHeapifyUP(MinHeap* h, int index){
     if(index){
         int p = PARENT(index);
-       if (h->type == MAX_HEAP){
+/*       if (h->type == MAX_MinHeap){
             if (((h->cmpFn)(h->memory[p], h->memory[index])) < 0){
                 swap(h->memory + p, h->memory + index);
-                heapifyUP(h,p);
-            }
-        } else if (h->type == MIN_HEAP) {
+                MinHeapifyUP(h,p);
+            }*/
             if (((h->cmpFn)(h->memory[p], h->memory[index])) == 1) {
                 swap(&h->memory[p], &h->memory[index]);
-                heapifyUP(h, p);
+                MinHeapifyUP(h, p);
             }
-        }
     }
 }
 
-void insertInHeap(Heap* h,void* value){
+void insertInMinHeap(MinHeap* h,void* value){
     if(h->size == h->capacity){
         h->capacity *=2;
         h->memory = realloc(h->memory, sizeof(void*)*h->capacity);
     }
     h->memory[h->size] = value;
-    heapifyUP(h,h->size++);
+    MinHeapifyUP(h,h->size++);
 }
 
 
-void heapifyDown(Heap* h, int index){
+void MinHeapifyDown(MinHeap* h, int index){
     if(index){
         if( !HAS_RIGHT(h,index) && !HAS_LEFT(h,index) )
             return;
@@ -61,37 +58,31 @@ void heapifyDown(Heap* h, int index){
         else
             smaller = LCHILD(index);
         swap( &h->memory[index], &h->memory[smaller] );
-        heapifyDown( h, smaller );
+        MinHeapifyDown( h, smaller );
     }
 }
 
-Heap *heapify(void *arr,uint16_t size, uint8_t type){
-    Heap *h = malloc(sizeof(Heap));
+MinHeap *MinHeapify(void *arr,uint16_t size, uint8_t type){
+    MinHeap *h = malloc(sizeof(MinHeap));
     h->capacity = size;
     void **harr = malloc(sizeof(void*)*h->capacity);
     h->memory = harr;
     h->type = type;
     h->size = 0;
     for (int i = 0; i < h->capacity; ++i) {
-        insertInHeap(h,arr+i);
+        insertInMinHeap(h,arr+i);
     }
     return h;
 }
 
-void printHeap(Heap *h, void (*printfn)(void *)){
-    puts("------------------------------------------------");
-    puts("Stored Values:");
+void printMinHeap(MinHeap *h, void (*printfn)(void *)){
     for (int i = 0; i < h->size; ++i) {
         (printfn)(h->memory[i]);
     }
     puts("\n");
-    printf("Number of nodes: %d\n",h->size);
-    printf("Heap capacity: %d\n",h->capacity);
-    printf("Type of heap: %s heap.\n",(h->type == MIN_HEAP)?"MIN":"MAX");
-    puts("------------------------------------------------");
 }
 
-void destroyHeap(Heap * h) {
+void destroyMinHeap(MinHeap * h) {
     free(h->memory);
     free(h);
 }

@@ -1,9 +1,6 @@
 \hypertarget{_stack_8h}{}\doxysection{Headers/\+Stack.h File Reference}
 \label{_stack_8h}\index{Headers/Stack.h@{Headers/Stack.h}}
-{\ttfamily \#include $<$stdio.\+h$>$}\newline
-{\ttfamily \#include $<$stdlib.\+h$>$}\newline
-{\ttfamily \#include $<$string.\+h$>$}\newline
-{\ttfamily \#include \char`\"{}Error\+Code.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Utils.\+h\char`\"{}}\newline
 \doxysubsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
@@ -17,7 +14,7 @@ typedef struct \mbox{\hyperlink{struct_stack}{Stack}} \mbox{\hyperlink{_stack_8h
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{struct_stack}{Stack}} $\ast$ \mbox{\hyperlink{_stack_8h_a1c1d1c4ce037d76a7c8468dfe583b3d8}{Stack\+Initalization}} (\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} size)
+\mbox{\hyperlink{struct_stack}{Stack}} $\ast$ \mbox{\hyperlink{_stack_8h_a500f366dd65434fe0bd1580ea9201fed}{stack\+Initialization}} (\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} size)
 \item 
 void \mbox{\hyperlink{_stack_8h_a3a7d6f060063d9fb421d2f5d230511a6}{push\+Stack}} (\mbox{\hyperlink{struct_stack}{Stack}} $\ast$stack, void $\ast$data)
 \item 
@@ -97,11 +94,11 @@ void \mbox{\hyperlink{_stack_8h_a77fe71415a828c5f972ff6defe05f319}{Stack\+Destro
 \doxysubsubsection{\texorpdfstring{StackDestroy()}{StackDestroy()}}
 {\footnotesize\ttfamily void Stack\+Destroy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_stack}{Stack}} $\ast$}]{stack }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{_stack_8h_a1c1d1c4ce037d76a7c8468dfe583b3d8}\label{_stack_8h_a1c1d1c4ce037d76a7c8468dfe583b3d8}} 
-\index{Stack.h@{Stack.h}!StackInitalization@{StackInitalization}}
-\index{StackInitalization@{StackInitalization}!Stack.h@{Stack.h}}
-\doxysubsubsection{\texorpdfstring{StackInitalization()}{stackInitialization()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{struct_stack}{Stack}}$\ast$ Stack\+Initalization (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{size }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{_stack_8h_a500f366dd65434fe0bd1580ea9201fed}\label{_stack_8h_a500f366dd65434fe0bd1580ea9201fed}} 
+\index{Stack.h@{Stack.h}!stackInitialization@{stackInitialization}}
+\index{stackInitialization@{stackInitialization}!Stack.h@{Stack.h}}
+\doxysubsubsection{\texorpdfstring{stackInitialization()}{stackInitialization()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_stack}{Stack}}$\ast$ stack\+Initialization (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{size }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{_stack_8h_a45d98424fbb7d3fde82f6ea22d3e1b8f}\label{_stack_8h_a45d98424fbb7d3fde82f6ea22d3e1b8f}} 
 \index{Stack.h@{Stack.h}!stackToArray@{stackToArray}}

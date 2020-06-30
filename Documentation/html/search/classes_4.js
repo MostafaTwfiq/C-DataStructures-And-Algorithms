@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['stack_314',['Stack',['../struct_stack.html',1,'']]],
-  ['string_315',['String',['../struct_string.html',1,'']]]
+  ['keyholder_465',['KeyHolder',['../struct_key_holder.html',1,'']]]
 ];

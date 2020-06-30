@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['dlinkedliststack_309',['DLinkedListStack',['../struct_d_linked_list_stack.html',1,'']]],
-  ['doublylinkedlist_310',['DoublyLinkedList',['../struct_doubly_linked_list.html',1,'']]]
+  ['binarytree_460',['BinaryTree',['../struct_binary_tree.html',1,'']]],
+  ['btreenode_461',['BTreeNode',['../struct_b_tree_node.html',1,'']]]
 ];

@@ -3,6 +3,7 @@ var _string_8h =
     [ "String", "struct_string.html", "struct_string" ],
     [ "String", "_string_8h.html#a54ad19f2d17915dbf4eb4c2fa2fa8680", null ],
     [ "destroyString", "_string_8h.html#a4a9c0937bfad27b5d104a72a7c8873be", null ],
+    [ "printString", "_string_8h.html#a54f67fdbb8bc6a25caa3efd03c28070d", null ],
     [ "stringAddCharAtIndex", "_string_8h.html#a8c5ab7570fb03da98a011f312405c5be", null ],
     [ "stringAddCharAtLast", "_string_8h.html#a906bb65cf9f5d9ee77c930c66a1e3f4b", null ],
     [ "stringAddStringAtLast", "_string_8h.html#a6b2fb3a54af830356f0fa058d3db403e", null ],

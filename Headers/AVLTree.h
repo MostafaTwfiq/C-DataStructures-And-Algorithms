@@ -36,9 +36,9 @@ int isPresentInAVLTree(AVLTree *avlTree, AVLTNode *root, void *searchKey);
 
 void printAVLTree(AVLTNode *root, void (printFn)(void *));
 
-void inOrderPredecessorAVLTree(AVLTree *avlTree, AVLTNode *root, AVLTNode *targetNode, AVLTNode **rightMost);
+void inOrderPredecessorAVLTree(AVLTree *avlTree, AVLTNode *root, AVLTNode *referenceNode, AVLTNode **rightMost);
 
-void inOrderSuccessorAVLTree(AVLTree *avlTree, AVLTNode* root, AVLTNode* targetNode, AVLTNode **leftMost);
+void inOrderSuccessorAVLTree(AVLTree *avlTree, AVLTNode* root, AVLTNode* referenceNode, AVLTNode **leftMost);
 
 AVLTNode* insertAVLTree(AVLTree * avlTree, AVLTNode *node, void *key);
 

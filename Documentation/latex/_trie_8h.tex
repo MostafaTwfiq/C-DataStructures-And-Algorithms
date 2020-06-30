@@ -1,0 +1,168 @@
+\hypertarget{_trie_8h}{}\doxysection{Headers/\+Trie.h File Reference}
+\label{_trie_8h}\index{Headers/Trie.h@{Headers/Trie.h}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Array\+List.\+h\char`\"{}}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_trie}{Trie}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct_trie}{Trie}} \mbox{\hyperlink{_trie_8h_ac539c2f1d9c08086c130fedc98bc6990}{Trie}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_trie}{Trie}} $\ast$ \mbox{\hyperlink{_trie_8h_a3710692d990dd25010ca41e3205ced4b}{trie\+Initialization}} ()
+\item 
+void \mbox{\hyperlink{_trie_8h_ab5c47c523478101c8d2cad147c5f6029}{trie\+Add\+Word}} (\mbox{\hyperlink{struct_trie}{Trie}} $\ast$trie, \mbox{\hyperlink{_c_make_cache_8txt_afe71f11dacb15682cdc012f7208e6e09}{char}} $\ast$word)
+\item 
+\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} \mbox{\hyperlink{_trie_8h_a3312d408993f54dcac28b12508a84491}{trie\+Contains}} (\mbox{\hyperlink{struct_trie}{Trie}} $\ast$trie, \mbox{\hyperlink{_c_make_cache_8txt_afe71f11dacb15682cdc012f7208e6e09}{char}} $\ast$word)
+\item 
+void \mbox{\hyperlink{_trie_8h_abae07f5f29151e203bf7d4399f4dc494}{trie\+Remove\+Word}} (\mbox{\hyperlink{struct_trie}{Trie}} $\ast$trie, \mbox{\hyperlink{_c_make_cache_8txt_afe71f11dacb15682cdc012f7208e6e09}{char}} $\ast$word)
+\item 
+\mbox{\hyperlink{struct_array_list}{Array\+List}} $\ast$ \mbox{\hyperlink{_trie_8h_a0c201487d74044c31e48ebb2fc30cf5a}{trie\+Auto\+Completion}} (\mbox{\hyperlink{struct_trie}{Trie}} $\ast$trie, \mbox{\hyperlink{_c_make_cache_8txt_afe71f11dacb15682cdc012f7208e6e09}{char}} $\ast$word, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} num\+Of\+Suggestion)
+\item 
+\mbox{\hyperlink{struct_array_list}{Array\+List}} $\ast$ \mbox{\hyperlink{_trie_8h_a3ff3ac8cdd168da51516ed815922ffe1}{trie\+Suggestion}} (\mbox{\hyperlink{struct_trie}{Trie}} $\ast$trie, \mbox{\hyperlink{_c_make_cache_8txt_afe71f11dacb15682cdc012f7208e6e09}{char}} $\ast$word, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} num\+Of\+Suggestion)
+\item 
+void \mbox{\hyperlink{_trie_8h_a6aad6d5d739abc5f9cbcbc5dd0b1bc9f}{trie\+Print\+All\+Words}} (\mbox{\hyperlink{struct_trie}{Trie}} $\ast$trie)
+\item 
+void \mbox{\hyperlink{_trie_8h_a45674511fadd38d7467c86db3102a125}{clear\+Trie}} (\mbox{\hyperlink{struct_trie}{Trie}} $\ast$trie)
+\item 
+void \mbox{\hyperlink{_trie_8h_a768ce00d14a15fc2551dd11e7db735c0}{destroy\+Trie}} (\mbox{\hyperlink{struct_trie}{Trie}} $\ast$trie)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{_trie_8h_ac539c2f1d9c08086c130fedc98bc6990}\label{_trie_8h_ac539c2f1d9c08086c130fedc98bc6990}} 
+\index{Trie.h@{Trie.h}!Trie@{Trie}}
+\index{Trie@{Trie}!Trie.h@{Trie.h}}
+\doxysubsubsection{\texorpdfstring{Trie}{Trie}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct_trie}{Trie}} \mbox{\hyperlink{struct_trie}{Trie}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_trie_8h_a45674511fadd38d7467c86db3102a125}\label{_trie_8h_a45674511fadd38d7467c86db3102a125}} 
+\index{Trie.h@{Trie.h}!clearTrie@{clearTrie}}
+\index{clearTrie@{clearTrie}!Trie.h@{Trie.h}}
+\doxysubsubsection{\texorpdfstring{clearTrie()}{clearTrie()}}
+{\footnotesize\ttfamily void clear\+Trie (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_trie}{Trie}} $\ast$}]{trie }\end{DoxyParamCaption})}
+
+This function will take the trie address as a parameter, then it will clear and free all the trie nodes, without destroying the trie. 
+\begin{DoxyParams}{Parameters}
+{\em trie} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_trie_8h_a768ce00d14a15fc2551dd11e7db735c0}\label{_trie_8h_a768ce00d14a15fc2551dd11e7db735c0}} 
+\index{Trie.h@{Trie.h}!destroyTrie@{destroyTrie}}
+\index{destroyTrie@{destroyTrie}!Trie.h@{Trie.h}}
+\doxysubsubsection{\texorpdfstring{destroyTrie()}{destroyTrie()}}
+{\footnotesize\ttfamily void destroy\+Trie (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_trie}{Trie}} $\ast$}]{trie }\end{DoxyParamCaption})}
+
+This function will take the trie address as a parameter, then it will destroy and free the trie and all it\textquotesingle{}s nodes. 
+\begin{DoxyParams}{Parameters}
+{\em trie} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_trie_8h_ab5c47c523478101c8d2cad147c5f6029}\label{_trie_8h_ab5c47c523478101c8d2cad147c5f6029}} 
+\index{Trie.h@{Trie.h}!trieAddWord@{trieAddWord}}
+\index{trieAddWord@{trieAddWord}!Trie.h@{Trie.h}}
+\doxysubsubsection{\texorpdfstring{trieAddWord()}{trieAddWord()}}
+{\footnotesize\ttfamily void trie\+Add\+Word (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_trie}{Trie}} $\ast$}]{trie,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_afe71f11dacb15682cdc012f7208e6e09}{char}} $\ast$}]{word }\end{DoxyParamCaption})}
+
+This function will take the trie address, and the word address as a parameters, then it will add the word into the trie. 
+\begin{DoxyParams}{Parameters}
+{\em trie} & \\
+\hline
+{\em word} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_trie_8h_a0c201487d74044c31e48ebb2fc30cf5a}\label{_trie_8h_a0c201487d74044c31e48ebb2fc30cf5a}} 
+\index{Trie.h@{Trie.h}!trieAutoCompletion@{trieAutoCompletion}}
+\index{trieAutoCompletion@{trieAutoCompletion}!Trie.h@{Trie.h}}
+\doxysubsubsection{\texorpdfstring{trieAutoCompletion()}{trieAutoCompletion()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_array_list}{Array\+List}}$\ast$ trie\+Auto\+Completion (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_trie}{Trie}} $\ast$}]{trie,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_afe71f11dacb15682cdc012f7208e6e09}{char}} $\ast$}]{word,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{num\+Of\+Suggestion }\end{DoxyParamCaption})}
+
+This function will take the trie address, the word address, and the number of suggestion needed as a parameters, then it will return and array list pointer that contains all the words. Note\+: if the given word is wrong Linguistically then, the function will start to complete starts from the first wrong character. 
+\begin{DoxyParams}{Parameters}
+{\em trie} & \\
+\hline
+{\em word} & \\
+\hline
+{\em num\+Of\+Suggestion} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_trie_8h_a3312d408993f54dcac28b12508a84491}\label{_trie_8h_a3312d408993f54dcac28b12508a84491}} 
+\index{Trie.h@{Trie.h}!trieContains@{trieContains}}
+\index{trieContains@{trieContains}!Trie.h@{Trie.h}}
+\doxysubsubsection{\texorpdfstring{trieContains()}{trieContains()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} trie\+Contains (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_trie}{Trie}} $\ast$}]{trie,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_afe71f11dacb15682cdc012f7208e6e09}{char}} $\ast$}]{word }\end{DoxyParamCaption})}
+
+This function will take the trie address, and the word address as a parameter, then it will return one (1) if the word is in the trie, other wise it will return zero (0). 
+\begin{DoxyParams}{Parameters}
+{\em trie} & \\
+\hline
+{\em word} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_trie_8h_a3710692d990dd25010ca41e3205ced4b}\label{_trie_8h_a3710692d990dd25010ca41e3205ced4b}} 
+\index{Trie.h@{Trie.h}!trieInitialization@{trieInitialization}}
+\index{trieInitialization@{trieInitialization}!Trie.h@{Trie.h}}
+\doxysubsubsection{\texorpdfstring{trieInitialization()}{trieInitialization()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_trie}{Trie}}$\ast$ trie\+Initialization (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This function will initialize a new trie in the memory, and initialize it\textquotesingle{}s fields then, the function will return it\textquotesingle{}s address. \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_trie_8h_a6aad6d5d739abc5f9cbcbc5dd0b1bc9f}\label{_trie_8h_a6aad6d5d739abc5f9cbcbc5dd0b1bc9f}} 
+\index{Trie.h@{Trie.h}!triePrintAllWords@{triePrintAllWords}}
+\index{triePrintAllWords@{triePrintAllWords}!Trie.h@{Trie.h}}
+\doxysubsubsection{\texorpdfstring{triePrintAllWords()}{triePrintAllWords()}}
+{\footnotesize\ttfamily void trie\+Print\+All\+Words (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_trie}{Trie}} $\ast$}]{trie }\end{DoxyParamCaption})}
+
+This function will take the trie address as a parameter, then it will print all the words in the trie. 
+\begin{DoxyParams}{Parameters}
+{\em trie} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_trie_8h_abae07f5f29151e203bf7d4399f4dc494}\label{_trie_8h_abae07f5f29151e203bf7d4399f4dc494}} 
+\index{Trie.h@{Trie.h}!trieRemoveWord@{trieRemoveWord}}
+\index{trieRemoveWord@{trieRemoveWord}!Trie.h@{Trie.h}}
+\doxysubsubsection{\texorpdfstring{trieRemoveWord()}{trieRemoveWord()}}
+{\footnotesize\ttfamily void trie\+Remove\+Word (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_trie}{Trie}} $\ast$}]{trie,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_afe71f11dacb15682cdc012f7208e6e09}{char}} $\ast$}]{word }\end{DoxyParamCaption})}
+
+This function will take the trie address, and the word address as a parameters, then it will remove the given word from the trie. 
+\begin{DoxyParams}{Parameters}
+{\em trie} & \\
+\hline
+{\em word} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_trie_8h_a3ff3ac8cdd168da51516ed815922ffe1}\label{_trie_8h_a3ff3ac8cdd168da51516ed815922ffe1}} 
+\index{Trie.h@{Trie.h}!trieSuggestion@{trieSuggestion}}
+\index{trieSuggestion@{trieSuggestion}!Trie.h@{Trie.h}}
+\doxysubsubsection{\texorpdfstring{trieSuggestion()}{trieSuggestion()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_array_list}{Array\+List}}$\ast$ trie\+Suggestion (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_trie}{Trie}} $\ast$}]{trie,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_afe71f11dacb15682cdc012f7208e6e09}{char}} $\ast$}]{word,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{num\+Of\+Suggestion }\end{DoxyParamCaption})}
+
+This function will take the trie address, the word address, the number of needed words to be suggested as a parameters, then it will return an array list that contains the suggested words. 
+\begin{DoxyParams}{Parameters}
+{\em trie} & \\
+\hline
+{\em word} & \\
+\hline
+{\em num\+Of\+Suggestion} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
