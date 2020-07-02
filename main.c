@@ -1,57 +1,84 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Headers/ArrayDeque.h"
+#include "Headers/RedBlackTree.h"
 
-int16_t mycmp(const void * v1,const void * v2){
-    return  *(int *)v1 - *(int*)v2;
+#define ANSI_COLOR_RED     "\x1b[31m"
+#define ANSI_COLOR_BOLD_RED     "\x1b[1;31m"
+#define ANSI_COLOR_GREEN   "\x1b[32m"
+#define ANSI_COLOR_BOLD_GREEN   "\x1b[1;32m"
+#define ANSI_COLOR_YELLOW  "\x1b[33m"
+#define ANSI_COLOR_BOLD_YELLOW  "\x1b[01;33m"
+#define ANSI_COLOR_BLUE    "\x1b[34m"
+#define ANSI_COLOR_BOLD_BLUE    "\x1b[1;34m"
+#define ANSI_COLOR_MAGENTA "\x1b[35m"
+#define ANSI_COLOR_BOLD_MAGENTA "\x1b[1;35m"
+#define ANSI_COLOR_CYAN    "\x1b[36m"
+#define ANSI_COLOR_BOLD_CYAN    "\x1b[1;36m"
+#define ANSI_COLOR_WHITE    "\x1b[37m"
+#define ANSI_COLOR_RESET   "\x1b[0m"
+
+int cmp(const void *p1, const void *p2) {
+    return *(int *)p1 - *(int *)p2;
 }
 
-void myPrint(void *val){
-    printf("%d, ",*(int*)val );
+void printFun(const void *item, COLOR color) {
+    if (color == RED)
+        printf(ANSI_COLOR_RED);
+    else
+        printf(ANSI_COLOR_WHITE);
+
+    printf("%d\n" ANSI_COLOR_RESET, *(int *)item);
 }
+
 int main() {
+    RBTree *tree = redBlackTreeInitialization(sizeof(int), cmp);
 
+    int *item;
 
-    int a = 1,
-            b = 2,
-            c = 3,
-            d = 4,
-            e = 5,
-            f = 6,
-            g = 7,
-            hi = 8,
-            j = 9,
-            k = 10;
+    item = (int *) malloc(sizeof(int ));
+    *item = 7;
+    rBTreeInsert(tree, (void *) item);
 
+    item = (int *) malloc(sizeof(int ));
+    *item = 3;
+    rBTreeInsert(tree, (void *) item);
 
-    void *p1 = &a,
-            *p2 = &b,
-            *p3 = &c,
-            *p4 = &d,
-            *p5 = &e,
-            *p6 = &f,
-            *p7 = &g,
-            *p8 = &hi,
-            *p9 = &j,
-            *p10 = &k;
+    item = (int *) malloc(sizeof(int ));
+    *item = 18;
+    rBTreeInsert(tree, (void *) item);
 
-    ArrayDeque *dq = ArrayDequeInitialize(12);
-    ArrayDequeInsertRear(dq,p1);
-    ArrayDequeInsertRear(dq,p3);
-    ArrayDequeInsertRear(dq,p5);
-    ArrayDequeInsertRear(dq,p7);
-    ArrayDequeInsertRear(dq,p9);
+    item = (int *) malloc(sizeof(int ));
+    *item = 10;
+    rBTreeInsert(tree, (void *) item);
 
-    ArrayDequeInsertFront(dq,p2);
-    ArrayDequeInsertFront(dq,p4);
-    ArrayDequeInsertFront(dq,p6);
-    ArrayDequeInsertFront(dq,p8);
-    ArrayDequeInsertFront(dq,p10);
-    //ArrayDequeDeleteRear(dq);
-    ArrayDequeInsertFront(dq,p8);
-    //ArrayDequeDeleteFront(dq);
+    item = (int *) malloc(sizeof(int ));
+    *item = 22;
+    rBTreeInsert(tree, (void *) item);
 
-    ArrayDequePrint(dq,myPrint);
+    item = (int *) malloc(sizeof(int ));
+    *item = 8;
+    rBTreeInsert(tree, (void *) item);
 
+    item = (int *) malloc(sizeof(int ));
+    *item = 11;
+    rBTreeInsert(tree, (void *) item);
+
+    item = (int *) malloc(sizeof(int ));
+    *item = 26;
+    rBTreeInsert(tree, (void *) item);
+
+    printf("\n\n");
+    item = (int *) malloc(sizeof(int ));
+    *item = 15;
+    rBTreeInsert(tree, (void *) item);
+    rBPreOrderTraversal(tree, printFun);
+    printf("\n\n");
+
+    item = (int *) malloc(sizeof(int ));
+    *item = 10;
+    rBTreeDelete(tree, item);
+
+    rBPreOrderTraversal(tree, printFun);
     return 0;
+
 }

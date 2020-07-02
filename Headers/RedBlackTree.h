@@ -7,6 +7,7 @@ typedef enum COLOR {
     BLACK
 }COLOR;
 
+
 typedef struct  RBNode {
     void * key;
     COLOR color;
@@ -17,11 +18,15 @@ typedef struct  RBNode {
 
 
 typedef struct RBTree{
-    RBNode * root;
+    RBNode *root;
     uint32_t nodeCount;
-    int16_t (*cmp)(const void*,const void *);
+    int sizeOfType;
+    int (*cmp)(const void*, const void *);
 }RBTree;
 
-RBNode* RBTreeInsert(RBTree *pRBTree,void *key);
+RBTree *redBlackTreeInitialization(int sizeOfType, int (*cmp)(const void*, const void *));
+void rBTreeInsert(RBTree *tree, void *item);
+void rBPreOrderTraversal(RBTree *tree, void (*printFun)(const void *item, COLOR color));
+void rBTreeDelete(RBTree *tree, void *item);
 
 #endif //C_DATASTRUCTURES_REDBLACKTREE_H
