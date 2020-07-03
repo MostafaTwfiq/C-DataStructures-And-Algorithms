@@ -36,19 +36,27 @@ int main() {
     int *item;
 
     item = (int *) malloc(sizeof(int ));
-    *item = 13;
+    *item = 7;
+    rBTreeInsert(tree, (void *) item);
+
+    item = (int *) malloc(sizeof(int ));
+    *item = 3;
+    rBTreeInsert(tree, (void *) item);
+
+    item = (int *) malloc(sizeof(int ));
+    *item = 18;
+    rBTreeInsert(tree, (void *) item);
+
+    item = (int *) malloc(sizeof(int ));
+    *item = 10;
+    rBTreeInsert(tree, (void *) item);
+
+    item = (int *) malloc(sizeof(int ));
+    *item = 22;
     rBTreeInsert(tree, (void *) item);
 
     item = (int *) malloc(sizeof(int ));
     *item = 8;
-    rBTreeInsert(tree, (void *) item);
-
-    item = (int *) malloc(sizeof(int ));
-    *item = 17;
-    rBTreeInsert(tree, (void *) item);
-
-    item = (int *) malloc(sizeof(int ));
-    *item = 1;
     rBTreeInsert(tree, (void *) item);
 
     item = (int *) malloc(sizeof(int ));
@@ -56,32 +64,48 @@ int main() {
     rBTreeInsert(tree, (void *) item);
 
     item = (int *) malloc(sizeof(int ));
-    *item = 6;
-    rBTreeInsert(tree, (void *) item);
-
-    item = (int *) malloc(sizeof(int ));
-    *item = 15;
-    rBTreeInsert(tree, (void *) item);
-
-    item = (int *) malloc(sizeof(int ));
-    *item = 25;
+    *item = 26;
     rBTreeInsert(tree, (void *) item);
 
     printf("\n\n");
     item = (int *) malloc(sizeof(int ));
-    *item = 22;
-    rBTreeInsert(tree, (void *) item);
-    //RBTreePrint(tree->root,myPrint);printf("\n\n");
-
-    item = (int *) malloc(sizeof(int ));
-    *item = 27;
+    *item = 15;
     rBTreeInsert(tree, (void *) item);
     rBPreOrderTraversal(tree, printFun);
     printf("\n\n");
 
     item = (int *) malloc(sizeof(int ));
-    *item = 8;
-    rBTreeDelete(tree, (void *) item);
+    *item = 22;
+    rBTreeDelete(tree, item);
+    rBPreOrderTraversal(tree, printFun);
+    printf("\n\n");
+
+    item = (int *) malloc(sizeof(int ));
+    *item = 15;
+    rBTreeDelete(tree, item);
+    rBPreOrderTraversal(tree, printFun);
+    printf("\n\n");
+
+    item = (int *) malloc(sizeof(int ));
+    *item = 26;
+    rBTreeDelete(tree, item);
+    rBPreOrderTraversal(tree, printFun);
+    printf("\n\n");
+
+    item = (int *) malloc(sizeof(int ));
+    *item = 10;
+    rBTreeDelete(tree, item);
+
+
+    item = (int *) malloc(sizeof(int ));
+    *item = 7;
+    //rBTreeDelete(tree, item);
+
+
+    item = (int *) malloc(sizeof(int ));
+    *item = 3;
+    //rBTreeDelete(tree, item);
+
 
     rBPreOrderTraversal(tree, printFun);
     return 0;
