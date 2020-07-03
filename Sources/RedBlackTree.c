@@ -264,7 +264,7 @@ void doubleBlackCase(RBTree *tree, RBNode *root, RBNode *parent) {
         doubleBlackCase(tree, parent, parent->parent);
     } else if (sibling->color == RED) {
         //RotationType rotationType = doubleBlackCaseRotationType(sibling->parent, sibling, sibling->right != NULL ? sibling->right : sibling->left);
-        RotationType rotationType = parent->right == sibling ? RIGHT : LEFT;
+        RotationType rotationType = parent->right == sibling ? LEFT : RIGHT;
         parent->color = RED;
         sibling->color = BLACK;
         RBNode *grandParent = parent->parent;
@@ -444,4 +444,36 @@ void rBPreOrderTraversalR(RBNode *root, void (*printFun)(const void *item, COLOR
     rBPreOrderTraversalR(root->left, printFun);
     rBPreOrderTraversalR(root->right, printFun);
 
+}
+
+
+void printRBTreeHelper(RBNode *root, int space, void (printFn)(void *,int type));
+
+
+/** Prints a tree in 2 space of the console.
+* @param root Reference to the root node.
+* @param printFn Pointer to the print function.
+**/
+
+void RBTreePrint(RBNode *root, void (printFn)(void *,int type)){
+    printRBTreeHelper(root, 0, printFn);
+}
+
+
+/** Helper function for printing the tree in 2d space.
+* @param root Reference to the root node.
+* @param space Number of spaces to print at the current level.
+* @param printFn Pointer to the print function.
+**/
+
+void printRBTreeHelper(RBNode *root, int space, void (printFn)(void *,int type)){
+    if (root == NULL){
+        return;
+    }
+    space += 10;
+    printRBTreeHelper(root->right, space, printFn);
+    printf("\n");
+    for (int i = 10; i < space; i++) printf(" ");
+    (printFn)(root->key,root->color);
+    printRBTreeHelper(root->left, space, printFn);
 }

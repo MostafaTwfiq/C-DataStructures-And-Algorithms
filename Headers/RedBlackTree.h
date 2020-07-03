@@ -28,5 +28,5 @@ RBTree *redBlackTreeInitialization(int sizeOfType, int (*cmp)(const void*, const
 void rBTreeInsert(RBTree *tree, void *item);
 void rBPreOrderTraversal(RBTree *tree, void (*printFun)(const void *item, COLOR color));
 void rBTreeDelete(RBTree *tree, void *item);
-
+void RBTreePrint(RBNode *root, void (printFn)(void *,int type));
 #endif //C_DATASTRUCTURES_REDBLACKTREE_H

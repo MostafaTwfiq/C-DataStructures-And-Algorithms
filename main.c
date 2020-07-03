@@ -30,6 +30,13 @@ void printFun(const void *item, COLOR color) {
     printf("%d -- Parent: %d\n" ANSI_COLOR_RESET, *(int *)((RBNode *)item)->key, ((RBNode *)((RBNode *)item)->parent) != NULL ? *(int *)((RBNode *)((RBNode *)item)->parent)->key : 0);
 }
 
+void myPrint(const void *item, int color){
+    if (color == RED)
+        printf(ANSI_COLOR_RED);
+    else
+        printf(ANSI_COLOR_WHITE);
+    printf("%d",*(int*)item);
+}
 int main() {
     RBTree *tree = redBlackTreeInitialization(sizeof(int), cmp);
 
@@ -58,7 +65,6 @@ int main() {
     item = (int *) malloc(sizeof(int ));
     *item = 6;
     rBTreeInsert(tree, (void *) item);
-
     item = (int *) malloc(sizeof(int ));
     *item = 15;
     rBTreeInsert(tree, (void *) item);
@@ -67,23 +73,21 @@ int main() {
     *item = 25;
     rBTreeInsert(tree, (void *) item);
 
-    printf("\n\n");
-    item = (int *) malloc(sizeof(int ));
-    *item = 22;
-    rBTreeInsert(tree, (void *) item);
-    //RBTreePrint(tree->root,myPrint);printf("\n\n");
-
     item = (int *) malloc(sizeof(int ));
     *item = 27;
     rBTreeInsert(tree, (void *) item);
-    rBPreOrderTraversal(tree, printFun);
-    printf("\n\n");
 
     item = (int *) malloc(sizeof(int ));
-    *item = 8;
-    rBTreeDelete(tree, (void *) item);
+    *item = 22;
+    rBTreeInsert(tree, (void *) item);
 
-    rBPreOrderTraversal(tree, printFun);
+    item = (int *) malloc(sizeof(int ));
+    *item = 11;
+    rBTreeDelete(tree, item);
+
+    RBTreePrint(tree->root,myPrint);
+    printf("\n\n\n");
+    rBPreOrderTraversal(tree,printFun);
     return 0;
 
 }
