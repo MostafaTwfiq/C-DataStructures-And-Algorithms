@@ -6,7 +6,7 @@ typedef enum RotationType{
 } RotationType;
 
 RBNode *rBTreeInsertR(RBNode *root, RBNode *parent, void *item, int (*cmp)(const void*, const void *));
-RBNode *rBTreeDeleteR(RBNode *root, void *item, int sizeOfType, int (*cmp)(const void*, const void *));
+void rBTreeDeleteR(RBTree *tree, RBNode *root, void *item);
 RBNode *getUncle(RBNode *currentNode);
 COLOR getNodeColor(RBNode *node);
 RotationType getRotationType(RBNode *grandParent);
@@ -18,10 +18,12 @@ void rBPreOrderTraversalR(RBNode *root, void (*printFun)(const void *item, COLOR
 int isCaseOne(RBNode *root);
 RBNode *getSuccessorNode(RBNode *node);
 void performRotationRecoloring(RBNode *root, RotationType rotationType);
-void doubleBlackCase(RBNode *root, RBNode *parent);
-RBNode *deleteNodeLeafCase(RBNode *root, int sizeOfType, int (*cmp)(const void*, const void *));
-RBNode *deleteRightNullNode(RBNode *root, int sizeOfType, int (*cmp)(const void*, const void *));
-RBNode *deleteRightNoneNullNode(RBNode *root, int sizeOfType, int (*cmp)(const void*, const void *));
+void doubleBlackCase(RBTree *tree, RBNode *root, RBNode *parent);
+void deleteNodeLeafCase(RBTree *tree, RBNode *root);
+void deleteRightNullNode(RBTree *tree, RBNode *root);
+void deleteRightNoneNullNode(RBTree *tree, RBNode *root);
+void deleteLeftNullNode(RBTree *tree, RBNode *root);
+RotationType doubleBlackCaseRotationType(RBNode *grandParent, RBNode *parent, RBNode *grandSon);
 
 
 
@@ -82,99 +84,189 @@ RBNode *rBTreeInsertR(RBNode *root, RBNode *parent, void *item, int (*cmp)(const
 
 
 void rBTreeDelete(RBTree *tree, void *item) {
-    tree->root = rBTreeDeleteR(tree->root, item, tree->sizeOfType, tree->cmp);
-    if (tree->root != NULL)
+    rBTreeDeleteR(tree, tree->root, item);
+    if (tree->root != NULL) {
         tree->root->color = BLACK;
+        tree->root->parent = NULL;
+    }
 
 }
 
-RBNode *rBTreeDeleteR(RBNode *root, void *item, int sizeOfType, int (*cmp)(const void*, const void *)) {
+void rBTreeDeleteR(RBTree *tree, RBNode *root, void *item) {
     if (root == NULL)
-        return root;
-    else if (cmp(root->key, item) == 0) {
+        return;
+    else if (tree->cmp(root->key, item) == 0) {
         if (root->right == NULL && root->left == NULL) {
-            return deleteNodeLeafCase(root,  sizeOfType, cmp);
+            deleteNodeLeafCase(tree, root);
         } else if (root->right == NULL) {
-            return deleteRightNullNode(root, sizeOfType, cmp);
-        } else {
-            return deleteRightNoneNullNode(root,  sizeOfType, cmp);
+            deleteRightNullNode(tree, root);
+        } else if (root->left == NULL) {
+            deleteLeftNullNode(tree, root);
+        }else {
+            deleteRightNoneNullNode(tree, root);
         }
 
-    } else if (cmp(root->key, item) > 0) {
-        root->left = rBTreeDeleteR(root->left, item, sizeOfType, cmp);
-    } else if (cmp(root->key, item) < 0) {
-        root->right = rBTreeDeleteR(root->right, item, sizeOfType, cmp);
+    } else if (tree->cmp(root->key, item) > 0) {
+        rBTreeDeleteR(tree, root->left, item);
+    } else if (tree->cmp(root->key, item) < 0) {
+        rBTreeDeleteR(tree, root->right, item);
     }
 
-    if (isRequiredRotation(root)) {
+    /*else if (isRequiredRotation(root)) {
         RotationType rotationType = getRotationType(root);
+        RBNode *parent = root->parent;
         RBNode *newRoot = performRotation(root, rotationType);
         performRotationRecoloring(newRoot, rotationType);
-        return newRoot;
-    }
-
-    return root;
+        if (parent == NULL)
+            tree->root = newRoot;
+        else if (parent->right == parent) {
+            parent->right = newRoot;
+        } else if (parent->left == parent) {
+            parent->left = newRoot;
+        }
+    }*/
 
 }
 
-RBNode *deleteNodeLeafCase(RBNode *root, int sizeOfType, int (*cmp)(const void*, const void *)) {
+void deleteNodeLeafCase(RBTree *tree, RBNode *root) {
     COLOR rootColor = root->color;
     RBNode *parent = root->parent;
-    free(root->key);
-    free(root);
-    if (rootColor == RED || root->parent == NULL) // parent = NULL mean it's the tree root node.
-        return NULL;
-    else {
-        doubleBlackCase(NULL, parent);
+    if (parent != NULL) {
+        if (parent->right == root) {
+            parent->right = NULL;
+        } else {
+            parent->left = NULL;
+        }
     }
 
-    return NULL;
+    if (rootColor != RED) {
+        doubleBlackCase(tree, root, parent);
+    }
+
+    free(root->key);
+    free(root);
+
 }
 
-RBNode *deleteRightNullNode(RBNode *root, int sizeOfType, int (*cmp)(const void*, const void *)) {
-    COLOR rootColor = root->color;
+void deleteRightNullNode(RBTree *tree, RBNode *root) {
     RBNode *returnNode = root->left;
-    returnNode->parent = root->parent;
+    RBNode *parent = root->parent;
+    returnNode->parent = parent;
+
+    if (parent != NULL) {
+        if (parent->right == root) {
+            parent->right = returnNode;
+        } else {
+            parent->left = returnNode;
+        }
+    }
+
     free(root->key);
     free(root);
 
     if (root == RED)
-        return returnNode;
-    else if (returnNode->color == RED) {
+        return;
+    else if (returnNode->color == RED) { //This case mean the current node is black and it's child is red colored.
         returnNode->color = BLACK;
-        return returnNode;
+        return;
     }
     else {
-        doubleBlackCase(returnNode, returnNode->parent);
+        doubleBlackCase(tree, returnNode, returnNode->parent);
     }
-
-    return returnNode;
 
 }
 
-RBNode *deleteRightNoneNullNode(RBNode *root, int sizeOfType, int (*cmp)(const void*, const void *)) {
-    COLOR rootColor = root->color;
-    RBNode *successorNode = getSuccessorNode(root);
-    COLOR successorNodeColor = successorNode->color;
-    void *itemCopy = (void *) malloc(sizeOfType);
-    memcpy(itemCopy, successorNode->key, sizeOfType);
-    free(root->key);
-    root->key = itemCopy;
-    root->right = rBTreeDeleteR(root->right, successorNode->key, sizeOfType, cmp);
+void deleteLeftNullNode(RBTree *tree, RBNode *root) {
+    RBNode *returnNode = root->right;
+    RBNode *parent = root->parent;
+    returnNode->parent = parent;
 
-    if (root == RED) {
-        root->color = successorNodeColor;
-        return root;
+    if (parent != NULL) {
+        if (parent->right == root) {
+            parent->right = returnNode;
+        } else {
+            parent->left = returnNode;
+        }
     }
-    else if (successorNodeColor == RED) {
-        root->color = BLACK;
-        return root;
+
+    free(root->key);
+    free(root);
+
+    if (root == RED)
+        return;
+    else if (returnNode->color == RED) { //This case mean the current node is black and it's child is red colored.
+        returnNode->color = BLACK;
+        return;
     }
     else {
-        doubleBlackCase(root, root->parent);
+        doubleBlackCase(tree, returnNode, returnNode->parent);
     }
 
-    return root;
+}
+
+void deleteRightNoneNullNode(RBTree *tree, RBNode *root) {
+    RBNode *successorNode = getSuccessorNode(root);
+    COLOR successorNodeColor = successorNode->color;
+    void *itemCopy = (void *) malloc(tree->sizeOfType);
+    memcpy(itemCopy, successorNode->key, tree->sizeOfType);
+    free(root->key);
+    root->key = itemCopy;
+    rBTreeDeleteR(tree, root->right, successorNode->key);
+
+    /*if (root == RED) {
+        root->color = successorNodeColor;
+        return;
+    }
+    else if (successorNodeColor == RED) { //This case mean the current node is black and it's child is red colored.
+        root->color = BLACK;
+        return;
+    }
+    else {
+        doubleBlackCase(tree, root, root->parent);
+    }*/
+
+}
+
+void doubleBlackCase(RBTree *tree, RBNode *root, RBNode *parent) {
+    if (parent == NULL)
+        return;
+
+    RBNode *sibling = parent->right == root ? parent->left : parent->right;
+    if (sibling != NULL && sibling->color == BLACK && (getNodeColor(sibling->right) == RED || getNodeColor(sibling->left) == RED)) {
+        RBNode *sRedChild = getNodeColor(sibling->right) == RED ? sibling->right : sibling->left;
+        RotationType rotationType = doubleBlackCaseRotationType(sibling->parent, sibling, sRedChild);
+        RBNode *grandParent = parent->parent;
+        if (grandParent == NULL)
+            tree->root = performRotation(sibling->parent, rotationType);
+        else if (grandParent->right == parent) {
+            grandParent->right = performRotation(sibling->parent, rotationType);
+        } else if (grandParent->left == parent) {
+            grandParent->left = performRotation(sibling->parent, rotationType);
+        }
+        return;
+    } else if ((sibling == NULL || sibling->color == BLACK) && parent->color == RED){
+        if (sibling != NULL)
+            sibling->color = RED;
+
+        parent->color = sibling != NULL ? RED : BLACK;
+        return;
+    } else if ((sibling == NULL || sibling->color == BLACK) && parent->color == BLACK){
+        doubleBlackCase(tree, parent, parent->parent);
+    } else if (sibling != NULL && sibling->color == RED) {
+        RotationType rotationType = doubleBlackCaseRotationType(sibling->parent, sibling, sibling->right != NULL ? sibling->right : sibling->left);
+        RBNode *grandParent = parent->parent;
+        if (grandParent == NULL) {
+            tree->root = performRotation(sibling->parent, rotationType);
+            performRotationRecoloring(tree->root, rotationType);
+        } else if (grandParent->right == parent) {
+            grandParent->right = performRotation(sibling->parent, rotationType);
+            performRotationRecoloring(grandParent->right, rotationType);
+        } else if (grandParent->left == parent) {
+            grandParent->left = performRotation(sibling->parent, rotationType);
+            performRotationRecoloring(grandParent->left, rotationType);
+        }
+        return;
+    }
 
 }
 
@@ -190,30 +282,6 @@ RotationType doubleBlackCaseRotationType(RBNode *grandParent, RBNode *parent, RB
     } else {
         return NONE;
     }
-}
-
-void doubleBlackCase(RBNode *root, RBNode *parent) {
-    if (parent == NULL)
-        return;
-
-    RBNode *sibling = parent->right == root ? parent->left : parent->right;
-    if (sibling->color == BLACK && (getNodeColor(sibling->right) == RED || getNodeColor(sibling->left) == RED)) {
-        RBNode *sRedChild = getNodeColor(sibling->right) == RED ? sibling->right : sibling->left;
-        RotationType rotationType = doubleBlackCaseRotationType(sibling->parent, sibling, sRedChild);
-        performRotation(sibling->parent, rotationType);
-        return;
-    } else if (sibling->color == BLACK && parent->color == RED){
-            sibling->color = RED;
-            parent->color = RED;
-            return;
-    } else if (sibling->color == BLACK && parent->color == BLACK){
-        doubleBlackCase(parent, parent->parent);
-    } else if (sibling->color == RED) {
-        RotationType rotationType = doubleBlackCaseRotationType(sibling->parent, sibling, sibling->right != NULL ? sibling->right : sibling->left);
-        RBNode *newRoot = performRotation(sibling->parent, rotationType);
-        performRotationRecoloring(newRoot, rotationType);
-    }
-
 }
 
 RBNode *getSuccessorNode(RBNode *node) {
@@ -362,7 +430,7 @@ void rBPreOrderTraversalR(RBNode *root, void (*printFun)(const void *item, COLOR
     if (root == NULL)
         return;
 
-    printFun(root->key, root->color);
+    printFun(root, root->color);
     rBPreOrderTraversalR(root->left, printFun);
     rBPreOrderTraversalR(root->right, printFun);
 

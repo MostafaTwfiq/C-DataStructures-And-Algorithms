@@ -27,7 +27,7 @@ void printFun(const void *item, COLOR color) {
     else
         printf(ANSI_COLOR_WHITE);
 
-    printf("%d\n" ANSI_COLOR_RESET, *(int *)item);
+    printf("%d -- Parent: %d\n" ANSI_COLOR_RESET, *(int *)((RBNode *)item)->key, ((RBNode *)((RBNode *)item)->parent) != NULL ? *(int *)((RBNode *)((RBNode *)item)->parent)->key : 0);
 }
 
 int main() {
@@ -75,8 +75,37 @@ int main() {
     printf("\n\n");
 
     item = (int *) malloc(sizeof(int ));
+    *item = 22;
+    rBTreeDelete(tree, item);
+    rBPreOrderTraversal(tree, printFun);
+    printf("\n\n");
+
+    item = (int *) malloc(sizeof(int ));
+    *item = 15;
+    rBTreeDelete(tree, item);
+    rBPreOrderTraversal(tree, printFun);
+    printf("\n\n");
+
+    item = (int *) malloc(sizeof(int ));
+    *item = 26;
+    rBTreeDelete(tree, item);
+    rBPreOrderTraversal(tree, printFun);
+    printf("\n\n");
+
+    item = (int *) malloc(sizeof(int ));
     *item = 10;
     rBTreeDelete(tree, item);
+
+
+    item = (int *) malloc(sizeof(int ));
+    *item = 7;
+    //rBTreeDelete(tree, item);
+
+
+    item = (int *) malloc(sizeof(int ));
+    *item = 3;
+    //rBTreeDelete(tree, item);
+
 
     rBPreOrderTraversal(tree, printFun);
     return 0;
