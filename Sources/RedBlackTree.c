@@ -24,7 +24,7 @@ void deleteRightNullNode(RBTree *tree, RBNode *root);
 void deleteRightNoneNullNode(RBTree *tree, RBNode *root);
 void deleteLeftNullNode(RBTree *tree, RBNode *root);
 RotationType doubleBlackCaseRotationType(RBNode *grandParent, RBNode *parent, RBNode *grandSon);
-
+void RBTreeToArrayRecurs(RBNode* node , void **arr, int *i , int size);
 
 
 RBTree *redBlackTreeInitialization(int sizeOfType, int (*cmp)(const void*, const void *)) {
@@ -477,3 +477,67 @@ void printRBTreeHelper(RBNode *root, int space, void (printFn)(void *,int type))
     (printFn)(root->key,root->color);
     printRBTreeHelper(root->left, space, printFn);
 }
+
+
+/** Given a tree and a reference node to start searching at (preferably the root) searches for node with the same key and return it.
+* @param rbTree Reference to the Red Black tree.
+* @param node node to start searching from preferably the root.
+* @param key Key object to search for in the  Red Black tree.
+* @return Returns the Found node.
+**/
+RBNode *RBTreeSearch(RBTree *rbTree, RBNode *node, char *key){
+    if(!node) return NULL;
+    if (((rbTree->cmp)(key,node->key)==0))return node;
+    if ((rbTree->cmp)(key,node->key)<0) return BinaryTreeSearch(rbTree, node->left, key);
+    if ((rbTree->cmp)(key,node->key)>0) return BinaryTreeSearch(rbTree, node->right, key);
+}
+
+
+/** Adds an array of void pointers to elements of the same type as the nodes of the tree.
+* @param rbTree Reference to the Binary tree.
+* @param array Array to add data from.
+* @param length The Length of the array to add from.
+* @return Returns the new root node.
+**/
+RBNode * RBInsertAll(RBTree* rbTree, void** array, int length){
+    for(int i=0;i<length;i++){
+        rBTreeInsert(rbTree, array[i]);
+    }
+    return rbTree->root;
+}
+
+
+/** Given a Tree converts it to an array in-order
+* @param rbTree Reference to the Red Black tree.
+* @return returns an array of pointer references to keys that were stored in the tree.
+**/
+void **RBTreeToArray(RBTree *rbTree){
+    void **array = (void **) malloc(sizeof(void *) * rbTree->nodeCount);
+    int i = 0;
+    RBTreeToArrayRecurs(rbTree->root, array, &i,rbTree->sizeOfType);
+    return array;
+}
+
+/** Recursively traverses the tree in order and adds elements to an allocated array by @link RBTreeToArray @endlink .
+* @param node Node reference node to start converting from.
+* @param arr Preallocated array to start storing at.
+* @param i index to insert at in the array.
+**/
+void RBTreeToArrayRecurs(RBNode* node , void **arr, int *i , int size){
+    if(!node) return;
+    RBTreeToArrayRecurs(node->left, arr, i,size);
+    arr[*i] = (void *) malloc(size);
+    memcpy(arr[*i], node->key, size);
+    *i += 1;
+    RBTreeToArrayRecurs(node->right, arr, i,size);
+}
+
+/** Reference to the root node to start calculating the size of tree.
+* @param root Reference to the root node.
+* @return the number of nodes in the tree.
+**/
+int RBGetSize(RBNode* root){
+    if (root) return 1 + RBGetSize(root->left) + RBGetSize(root->right);
+    else return 0;
+}
+

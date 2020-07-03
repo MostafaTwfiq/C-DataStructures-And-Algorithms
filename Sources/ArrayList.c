@@ -260,8 +260,6 @@ void **arrayListToArray(ArrayList *list) {
         array[i] = (void *) malloc(list->sizeOfType);
         memcpy(array[i], list->arr[i], list->sizeOfType);
     }
-
-
     return array;
 
 }
