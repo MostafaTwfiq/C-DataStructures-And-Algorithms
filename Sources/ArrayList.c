@@ -395,8 +395,6 @@ void clearArrayList(ArrayList *list) {
 }
 
 
-
-
 /** This function will take the array list address as a parameter,
  * then it will destroy and free the array list and all it's items.
  * @param list

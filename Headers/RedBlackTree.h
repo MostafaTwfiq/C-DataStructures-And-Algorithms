@@ -7,7 +7,6 @@ typedef enum COLOR {
     BLACK
 }COLOR;
 
-
 typedef struct  RBNode {
     void * key;
     COLOR color;
@@ -16,10 +15,9 @@ typedef struct  RBNode {
     struct RBNode *parent;
 }RBNode;
 
-
 typedef struct RBTree{
-    RBNode *root;
-    uint32_t nodeCount;
+    struct RBNode *root;
+    int nodeCount;
     int sizeOfType;
     int (*cmp)(const void*, const void *);
 }RBTree;

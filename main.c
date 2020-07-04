@@ -43,37 +43,38 @@ int main() {
     int *item;
 
     item = (int *) malloc(sizeof(int ));
-    *item = 13;
+    *item = 7;
+    rBTreeInsert(tree, (void *) item);
+
+    item = (int *) malloc(sizeof(int ));
+    *item = 3;
+    rBTreeInsert(tree, (void *) item);
+
+    item = (int *) malloc(sizeof(int ));
+    *item = 18;
+    rBTreeInsert(tree, (void *) item);
+
+    item = (int *) malloc(sizeof(int ));
+    *item = 10;
+    rBTreeInsert(tree, (void *) item);
+
+    item = (int *) malloc(sizeof(int ));
+    *item = 22;
     rBTreeInsert(tree, (void *) item);
 
     item = (int *) malloc(sizeof(int ));
     *item = 8;
     rBTreeInsert(tree, (void *) item);
-
-    item = (int *) malloc(sizeof(int ));
-    *item = 17;
-    rBTreeInsert(tree, (void *) item);
-
-    item = (int *) malloc(sizeof(int ));
-    *item = 1;
-    rBTreeInsert(tree, (void *) item);
-
     item = (int *) malloc(sizeof(int ));
     *item = 11;
     rBTreeInsert(tree, (void *) item);
 
     item = (int *) malloc(sizeof(int ));
-    *item = 6;
-    rBTreeInsert(tree, (void *) item);
-    item = (int *) malloc(sizeof(int ));
-    *item = 15;
+    *item = 26;
     rBTreeInsert(tree, (void *) item);
 
     item = (int *) malloc(sizeof(int ));
-    *item = 25;
-    rBTreeInsert(tree, (void *) item);
 
-    item = (int *) malloc(sizeof(int ));
     *item = 27;
     rBTreeInsert(tree, (void *) item);
 
@@ -82,8 +83,9 @@ int main() {
     rBTreeInsert(tree, (void *) item);
 
     item = (int *) malloc(sizeof(int ));
-    *item = 11;
+    *item = 3;
     rBTreeDelete(tree, item);
+
 
     RBTreePrint(tree->root,myPrint);
     printf("\n\n\n");
