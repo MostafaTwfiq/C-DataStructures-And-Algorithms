@@ -29,7 +29,8 @@ typedef struct BinaryTreeNode{
  */
 typedef struct BinaryTree{
     BinaryTreeNode *root;
-    unsigned int nodeCount;
+    uint32_t  nodeCount;
+    uint32_t sizeOfType;
     int(*cmp)(const void*, const void*);
 }BinaryTree;
 
@@ -59,7 +60,7 @@ void **BinaryTreeToArray(BinaryTree *binaryTree);
 
 void BinaryTreeFree(BinaryTreeNode **node);
 
-BinaryTree* BinaryTreeInitialize(int(*cmp)(const void*, const void*));
+BinaryTree* BinaryTreeInitialize(int size,int(*cmp)(const void*, const void*));
 
 void printBinaryTreeStats(BinaryTree *tree);
 
