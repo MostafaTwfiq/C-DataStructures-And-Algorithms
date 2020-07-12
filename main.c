@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Headers/RedBlackTree.h"
+#include "Headers/HashSet.h"
 
 #define ANSI_COLOR_RED     "\x1b[31m"
 #define ANSI_COLOR_BOLD_RED     "\x1b[1;31m"
@@ -17,79 +17,47 @@
 #define ANSI_COLOR_WHITE    "\x1b[37m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
-int cmp(const void *p1, const void *p2) {
-    return *(int *)p1 - *(int *)p2;
-}
-
-void printFun(const void *item, COLOR color) {
-    if (color == RED)
-        printf(ANSI_COLOR_RED);
-    else
-        printf(ANSI_COLOR_WHITE);
-
-    printf("%d -- Parent: %d\n" ANSI_COLOR_RESET, *(int *)((RBNode *)item)->key, ((RBNode *)((RBNode *)item)->parent) != NULL ? *(int *)((RBNode *)((RBNode *)item)->parent)->key : 0);
-}
-
-void myPrint(const void *item, int color){
-    if (color == RED)
-        printf(ANSI_COLOR_RED);
-    else
-        printf(ANSI_COLOR_WHITE);
-    printf("%d",*(int*)item);
-}
 int main() {
-    RBTree *tree = redBlackTreeInitialization(sizeof(int), cmp);
+
+    HashSet *hashSet = hashSetInitialization(sizeof(int));
 
     int *item;
 
-    item = (int *) malloc(sizeof(int ));
-    *item = 7;
-    rBTreeInsert(tree, (void *) item);
-
-    item = (int *) malloc(sizeof(int ));
-    *item = 3;
-    rBTreeInsert(tree, (void *) item);
-
-    item = (int *) malloc(sizeof(int ));
-    *item = 18;
-    rBTreeInsert(tree, (void *) item);
-
-    item = (int *) malloc(sizeof(int ));
+    item = (int *) malloc(sizeof(int));
     *item = 10;
-    rBTreeInsert(tree, (void *) item);
-
-    item = (int *) malloc(sizeof(int ));
-    *item = 22;
-    rBTreeInsert(tree, (void *) item);
-
-    item = (int *) malloc(sizeof(int ));
-    *item = 8;
-    rBTreeInsert(tree, (void *) item);
-    item = (int *) malloc(sizeof(int ));
-    *item = 11;
-    rBTreeInsert(tree, (void *) item);
-
-    item = (int *) malloc(sizeof(int ));
-    *item = 26;
-    rBTreeInsert(tree, (void *) item);
-
-    item = (int *) malloc(sizeof(int ));
-
-    *item = 27;
-    rBTreeInsert(tree, (void *) item);
-
-    item = (int *) malloc(sizeof(int ));
-    *item = 22;
-    rBTreeInsert(tree, (void *) item);
-
-    item = (int *) malloc(sizeof(int ));
-    *item = 3;
-    rBTreeDelete(tree, item);
+    hashSetInsert(hashSet, item);
 
 
-    RBTreePrint(tree->root,myPrint);
-    printf("\n\n\n");
-    rBPreOrderTraversal(tree,printFun);
+    item = (int *) malloc(sizeof(int));
+    *item = 100;
+    hashSetInsert(hashSet, item);
+
+    item = (int *) malloc(sizeof(int));
+    *item = 30;
+    hashSetInsert(hashSet, item);
+
+    item = (int *) malloc(sizeof(int));
+    *item = 40;
+    hashSetInsert(hashSet, item);
+
+    item = (int *) malloc(sizeof(int));
+    *item = 100;
+    hashSetDelete(hashSet, item);
+
+
+    *item = 40;
+    printf("has 40: %d\n", hashSetContains(hashSet, item));
+    *item = 100;
+    printf("has 100: %d\n", hashSetContains(hashSet, item));
+
+
+    destroyHashSet(hashSet);
+    int **arr = (int **) hashSetToArray(hashSet);
+
+    for (int i = 0; i < hashSetGetLength(hashSet); i++) {
+        printf("%d\n", *arr[i]);
+    }
+
     return 0;
 
 }

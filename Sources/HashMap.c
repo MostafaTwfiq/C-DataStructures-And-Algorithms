@@ -70,7 +70,7 @@ void hashMapInsert(HashMap *map, void *key, void *item, int sizeOfKey) {
 
     if (map->count == map->length) {
         map->length = getNextPrime(map->length * 2); //the length of the map array should always be a prime number.
-        map->arr = (Entry **) malloc(sizeof(Entry *) * map->length);
+        map->arr = (Entry **) calloc(sizeof(Entry *), map->length);
         map->bPrime = calBPrime(map->length);
     }
 
