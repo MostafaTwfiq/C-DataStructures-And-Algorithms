@@ -222,6 +222,12 @@ void **hashSetToArray(HashSet *hashSet) {
  */
 
 int hashSetGetLength(HashSet *hashSet) {
+
+    if (hashSet == NULL) {
+        fprintf(stderr, "Illegal argument, the hash set is null.");
+        exit(-3);
+    }
+
     return hashSet->count;
 }
 
@@ -240,6 +246,12 @@ int hashSetGetLength(HashSet *hashSet) {
  */
 
 int hashSetIsEmpty(HashSet *hashSet) {
+
+    if (hashSet == NULL) {
+        fprintf(stderr, "Illegal argument, the hash set is null.");
+        exit(-3);
+    }
+
     return hashSet->count == 0;
 }
 
@@ -258,6 +270,12 @@ int hashSetIsEmpty(HashSet *hashSet) {
  */
 
 void clearHashSet(HashSet *hashSet) {
+
+    if (hashSet == NULL) {
+        fprintf(stderr, "Illegal argument, the hash set is null.");
+        exit(-3);
+    }
+
     for (int i = 0; i < hashSet->length; i++) {
         if (hashSet->arr[i] != NULL) {
             free(hashSet->arr[i]);

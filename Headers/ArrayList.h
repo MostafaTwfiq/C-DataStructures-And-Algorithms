@@ -2,24 +2,32 @@
 #define C_DATASTRUCTURES_ARRAYLIST_H
 
 #include "Utils.h"
+#include "math.h"
+
+
+
+typedef struct ArrayListItem {
+    void *value;
+    int sizeOfItem;
+} ArrayListItem;
 
 
 typedef struct ArrayList {
-    void **arr;
+    ArrayListItem **arr;
     int length;
     int count;
-    int sizeOfType;
+    void (*freeItem)(void *);
 } ArrayList;
 
 
 
-ArrayList *arrayListInitialization(int initialLength, int sizeOfType);
+ArrayList *arrayListInitialization(int initialLength, void (*freeFun)(void *));
 
 
-void arrayListAdd(ArrayList *list, void *item);
+void arrayListAdd(ArrayList *list, void *item, int sizeOfItem);
 
 
-void arrayListAddAll(ArrayList *list, void **array, int arrayLength);
+void arrayListAddAll(ArrayList *list, void **array, int arrayLength, int sizeOfItem);
 
 
 void arrayListRemove(ArrayList *list);

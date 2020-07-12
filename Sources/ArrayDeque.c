@@ -1,34 +1,59 @@
 #include "../Headers/ArrayDeque.h"
+
+
+
+//TODO: Check this implementation it seems not right.
+//TODO: I have read it, and it still make no sense.
+
+
+void arrayDequeDestroyItem(ArrayDequeItem *item, void (*freeItem)(void *));
+
+
 /** Determines if a an Array Dequeue is full or not.
- * @param  arrayDeque Reference to preallocated Deque.
+ * @param  arrayDeque Reference to pre allocated Deque.
  * @return Return short int 1 if full else 0.
 **/
+
 uint16_t  ArrayDequeIsFull(ArrayDeque* arrayDeque){
     return ((arrayDeque->front == 0 && arrayDeque->rear == arrayDeque->size-1)
             ||arrayDeque->front == arrayDeque->rear+1);
 }
+
+
+
+
+
 /** Allocates space for a deque with an array of size set by the initialSize param on the heap and returns a pointer to the deque structure.
  * @param initialSize Size of the intial deque array.
  * @return Pointer to the newly allocated deque on the heap.
  **/
-ArrayDeque* ArrayDequeInitialize(uint32_t initialSize ) {
+
+ArrayDeque* ArrayDequeInitialize(uint32_t initialSize, void (*freeItem)(void *)) {
     ArrayDeque* ad = (ArrayDeque*) malloc(sizeof(*ad));
     ad->size       =  initialSize;
     ad->front      = -1;
     ad->rear       =  0;
-    ad->memory        = calloc(sizeof(*ad->memory), ad->size);
+    ad->memory     = (ArrayDequeItem **) calloc(sizeof(ArrayDequeItem *), ad->size);
+    ad->freeItem = freeItem;
     return ad;
 }
 
+
+
+
+
+
 /** 
- * @param arrayDeque Reference to preallocated Deque. 
- * @param key  Pointer to key to stored in the deque.
+ * @param arrayDeque Reference to pre allocated Deque.
+ * @param item  Pointer to key to stored in the deque.
  **/
-void ArrayDequeInsertFront(ArrayDeque* arrayDeque,void* key ) {
+
+void ArrayDequeInsertFront(ArrayDeque* arrayDeque, void *item, int sizeOfItem) {
     if (ArrayDequeIsFull(arrayDeque)) {
-        arrayDeque->size*=2;
-        arrayDeque->memory = realloc(arrayDeque->memory,arrayDeque->size);
+        arrayDeque->size *= 2;
+        arrayDeque->memory = (ArrayDequeItem **) realloc(arrayDeque->memory, sizeof(ArrayDequeItem *) * arrayDeque->size);
     }
+
     if (arrayDeque->front == -1) {
         arrayDeque->front = 0;
         arrayDeque->rear = 0;
@@ -40,49 +65,80 @@ void ArrayDequeInsertFront(ArrayDeque* arrayDeque,void* key ) {
     else
         arrayDeque->front--;
 
-    arrayDeque->memory[arrayDeque->front] = key ;
+
+    ArrayDequeItem *newItem = (ArrayDequeItem *) malloc(sizeof(ArrayDequeItem));
+    newItem->value = item;
+    newItem->sizeOfType = sizeOfItem;
+    arrayDeque->memory[arrayDeque->front] = newItem;
+
 }
 
+
+
+
+
+
+
 /** Inserts At the Rear of the deque. 
- * @param arrayDeque Reference to preallocated Deque. Reference to preallocated Deque.
- * @param key Pointer to key to stored in the deque.
+ * @param arrayDeque Reference to pre allocated Deque. Reference to pre allocated Deque.
+ * @param item Pointer to item to stored in the deque.
  **/
-void ArrayDequeInsertRear(ArrayDeque* arrayDeque,void* key ) {
+
+void ArrayDequeInsertRear(ArrayDeque* arrayDeque, void *item, int sizeOfItem) {
     if (ArrayDequeIsFull(arrayDeque)) {
-        arrayDeque->size*=2;
-        arrayDeque->memory = realloc(arrayDeque->memory,arrayDeque->size);
+        arrayDeque->size *= 2;
+        arrayDeque->memory = (ArrayDequeItem **) realloc(arrayDeque->memory, sizeof(ArrayDequeItem *) * arrayDeque->size);
     }
     if (arrayDeque->front == -1){
         arrayDeque->front = 0;
         arrayDeque->rear  = 0;
     }
-    else if (arrayDeque->rear == arrayDeque->size-1)
+
+    else if (arrayDeque->rear == arrayDeque->size - 1)
         arrayDeque->rear = 0;
     else
-        arrayDeque->rear = arrayDeque->rear+1;
+        arrayDeque->rear = arrayDeque->rear + 1;
 
-    arrayDeque->memory[arrayDeque->rear] = key ;
+
+    ArrayDequeItem *newItem = (ArrayDequeItem *) malloc(sizeof(ArrayDequeItem));
+    newItem->value = item;
+    newItem->sizeOfType = sizeOfItem;
+    arrayDeque->memory[arrayDeque->rear] = newItem;
+
 }
 
+
+
+
+
+
+
 /**  Decrements the Front pointer to the object.
- * @param arrayDeque Reference to preallocated Deque.
+ * @param arrayDeque Reference to pre allocated Deque.
  **/
-void ArrayDequeDeleteFront(ArrayDeque* arrayDeque ) {
+
+void ArrayDequeDeleteFront(ArrayDeque *arrayDeque) {
     if (ArrayDequeIsEmpty(arrayDeque)){
-        fprintf(stderr, "Queue Underflow\n");
+        fprintf(stderr, "Queue Underflow");
         return ;
     }
-    if ( arrayDeque->front ==  arrayDeque->rear) {
+
+    if ( arrayDeque->front == arrayDeque->rear) {
+        arrayDequeDestroyItem(arrayDeque->memory[0], arrayDeque->freeItem);
         arrayDeque->front = -1;
         arrayDeque->rear = -1;
     }
+
     else {
         if (arrayDeque->front ==  arrayDeque->size - 1)
             arrayDeque->front = 0;
 
-        else
+        else {
             arrayDeque->front++;
+        }
+
     }
+
 }
 
 /** Decrements the Rear pointer to the object.
@@ -161,4 +217,20 @@ void ArrayDequeClear(ArrayDeque* arrayDeque){
         free( arrayDeque->memory[arrayDeque->size-i] );
         arrayDeque->memory[arrayDeque->size-i]=NULL;
     }
+}
+
+
+
+
+
+/** This function will take the address of the arrayDequeItem, and the freeItem function address as a parameters,
+ * then it will free the item value and the item container.
+ * Note: this function should only be called from the array deque functions.
+ * @param item the item container address
+ * @param freeItem the freeItem function address
+ */
+
+void arrayDequeDestroyItem(ArrayDequeItem *item, void (*freeItem)(void *)) {
+    freeItem(item->value);
+    free(item);
 }

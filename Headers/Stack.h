@@ -10,8 +10,8 @@
  *  Member 'allocated' holds the current max allocated size for the stack.
  *  @var Stack::top
  *  Member 'top' holds the index to the top most stored value.
- *  @var Stack::sizeOfType
- *  Member 'sizeOfType' the size of the data stored in the stack.
+ *  @var Stack::sizeOfItem
+ *  Member 'sizeOfItem' the size of the data stored in the stack.
  */
 typedef struct Stack {
     void **memory;

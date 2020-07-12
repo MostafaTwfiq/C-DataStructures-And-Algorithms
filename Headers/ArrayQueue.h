@@ -15,8 +15,8 @@
  *  Member 'front' holds the index to the front of the Queue Element.
   *  @var ArrayQueue::rear
  *  Member 'rear' holds the index to the last Queue Element.
- *  @var ArrayQueue::sizeOfType
- *  Member 'sizeOfType' the size of the data stored in the Queue.
+ *  @var ArrayQueue::sizeOfItem
+ *  Member 'sizeOfItem' the size of the data stored in the Queue.
  */
 typedef struct ArrayQueue{
     void ** memory;

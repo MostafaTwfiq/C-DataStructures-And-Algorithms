@@ -104,7 +104,7 @@ Functions</h2></td></tr>
 <tr class="separator:adddf3b0b2d42cb8bba1fc2cb36a18982"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a459352581beebe8f4c4e600091aa69b0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_hash_map_8c.html#a459352581beebe8f4c4e600091aa69b0">getNextPrime</a> (<a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a> num)</td></tr>
 <tr class="separator:a459352581beebe8f4c4e600091aa69b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a292c183f4923f390e70bce4a79b88d79"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_hash_map.html">HashMap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_hash_map_8c.html#a292c183f4923f390e70bce4a79b88d79">hashMapInitialization</a> (<a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a> sizeOfType)</td></tr>
+<tr class="memitem:a292c183f4923f390e70bce4a79b88d79"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_hash_map.html">HashMap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_hash_map_8c.html#a292c183f4923f390e70bce4a79b88d79">hashMapInitialization</a> (<a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a> sizeOfItem)</td></tr>
 <tr class="separator:a292c183f4923f390e70bce4a79b88d79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a005535a90d796417a9985ad10b15844a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_hash_map_8c.html#a005535a90d796417a9985ad10b15844a">hashMapInsert</a> (<a class="el" href="struct_hash_map.html">HashMap</a> *map, void *key, void *item, <a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a> sizeOfKey)</td></tr>
 <tr class="separator:a005535a90d796417a9985ad10b15844a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -482,14 +482,14 @@ Functions</h2></td></tr>
           <td class="memname"><a class="el" href="struct_hash_map.html">HashMap</a>* hashMapInitialization </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a>&#160;</td>
-          <td class="paramname"><em>sizeOfType</em></td><td>)</td>
+          <td class="paramname"><em>sizeOfItem</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p>This function will take the size of the stored data type in the map as a parameter, then it will initialize a new hash map, then the function will return the address of the hash map. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">sizeOfType</td><td></td></tr>
+    <tr><td class="paramname">sizeOfItem</td><td></td></tr>
   </table>
   </dd>
 </dl>

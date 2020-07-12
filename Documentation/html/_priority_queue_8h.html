@@ -108,7 +108,7 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a13c4c93548d6e164d9656d4a2355ae74"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_priority_queue.html">PriorityQueue</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_priority_queue_8h.html#a13c4c93548d6e164d9656d4a2355ae74">priorityQueueInitialization</a> (<a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a> sizeOfType, <a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a>(*comp)(const void *, const void *))</td></tr>
+<tr class="memitem:a13c4c93548d6e164d9656d4a2355ae74"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_priority_queue.html">PriorityQueue</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_priority_queue_8h.html#a13c4c93548d6e164d9656d4a2355ae74">priorityQueueInitialization</a> (<a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a> sizeOfItem, <a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a>(*comp)(const void *, const void *))</td></tr>
 <tr class="separator:a13c4c93548d6e164d9656d4a2355ae74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e2d03623f41b555478c9897d091ee8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_priority_queue_8h.html#a7e2d03623f41b555478c9897d091ee8e">pQueueEnqueue</a> (<a class="el" href="struct_priority_queue.html">PriorityQueue</a> *queue, void *item)</td></tr>
 <tr class="separator:a7e2d03623f41b555478c9897d091ee8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -405,7 +405,7 @@ Functions</h2></td></tr>
           <td class="memname"><a class="el" href="struct_priority_queue.html">PriorityQueue</a>* priorityQueueInitialization </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="_c_make_cache_8txt.html#ae5ddf38bc47713b2bcad41253d69d372">int</a>&#160;</td>
-          <td class="paramname"><em>sizeOfType</em>, </td>
+          <td class="paramname"><em>sizeOfItem</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -422,7 +422,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>This function will take the size of the type, and the compare function address as a parameters, then it will initialize a new priority queue in the memory, then the function will return the queue address. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">sizeOfType</td><td></td></tr>
+    <tr><td class="paramname">sizeOfItem</td><td></td></tr>
     <tr><td class="paramname">comp</td><td></td></tr>
   </table>
   </dd>

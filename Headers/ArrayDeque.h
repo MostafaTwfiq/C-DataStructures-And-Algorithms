@@ -14,16 +14,24 @@
  *  @var ArrayDeque::size
  *  Member 'size' holds the current size of the allocated deque array.
  */
+
+
+typedef struct ArrayDequeItem {
+    void *value;
+    int sizeOfType;
+} ArrayDequeItem;
+
 typedef struct ArrayDeque{
-    void** memory;
+    ArrayDequeItem **memory;
     uint32_t  front;
     uint32_t  rear;
     uint32_t  size;
+    void (*freeItem)(void *);
 }ArrayDeque;
 
-ArrayDeque* ArrayDequeInitialize(uint32_t initialSize);
-void       ArrayDequeInsertFront(ArrayDeque* arrayDeque,void* key);
-void       ArrayDequeInsertRear(ArrayDeque* arrayDeque,void* key);
+ArrayDeque* ArrayDequeInitialize(uint32_t initialSize, void (*freeItem)(void *));
+void ArrayDequeInsertFront(ArrayDeque* arrayDeque, void *item, int sizeOfItem);
+void ArrayDequeInsertRear(ArrayDeque* arrayDeque, void *item, int sizeOfItem);
 void       ArrayDequeDeleteFront(ArrayDeque* arrayDeque);
 void       ArrayDequeDeleteRear(ArrayDeque* arrayDeque);
 uint16_t   ArrayDequeIsEmpty(ArrayDeque* arrayDeque);

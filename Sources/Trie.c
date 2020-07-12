@@ -20,6 +20,8 @@ typedef struct KeyHolder {
 } KeyHolder;
 
 
+void freeFun(void *item);
+
 char toLowerCase(char c);
 
 Node *createNode(char value, int EOW);
@@ -231,7 +233,7 @@ ArrayList *trieAutoCompletion(Trie *trie, char *word, int numOfSuggestion) {
     } else if (word == NULL)
         return NULL;
 
-    ArrayList *wordsList = arrayListInitialization(numOfSuggestion, sizeof(char *));
+    ArrayList *wordsList = arrayListInitialization(numOfSuggestion, freeFun);
     String *string = stringInitialization(10);
     trieAutoCompletionR(trie->root, word, numOfSuggestion, string, wordsList);
 
@@ -265,7 +267,7 @@ void trieAutoCompletionR(Node *root, char *currentChar, int numOfSuggestion, Str
         return;
     else if (root->EOW && *currentChar == '\0') {
         char *word = stringToArrayOfCharacters(string);
-        arrayListAdd(wordsList, word);
+        arrayListAdd(wordsList, word, stringGetLength(string) + 1);
     }
 
     int index = toLowerCase(*currentChar) - 'a';
@@ -304,7 +306,7 @@ ArrayList *trieSuggestion(Trie *trie, char *word, int numOfSuggestion) {
         return NULL;
 
     String *string = stringInitialization(10);
-    ArrayList *wordsList = arrayListInitialization(numOfSuggestion, sizeof(char *));
+    ArrayList *wordsList = arrayListInitialization(numOfSuggestion, freeFun);
 
 
     trieSuggestionR(trie->root, word, string, wordsList, numOfSuggestion);
@@ -341,7 +343,7 @@ void trieSuggestionR(Node *root, char *word, String *string, ArrayList *wordsLis
             return;
         else if (root->EOW) {
             char *finalWord = stringToArrayOfCharacters(string);
-            arrayListAdd(wordsList, finalWord);
+            arrayListAdd(wordsList, finalWord, stringGetLength(string) + 1);
         }
     }
 
@@ -638,4 +640,11 @@ int *generateIndexes(char c) {
 
     return arr;
 
+}
+
+
+
+
+void freeFun(void *item) {
+    free((char *) item);
 }

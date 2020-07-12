@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Headers/HashSet.h"
+#include "Headers/ArrayList.h"
+
 
 #define ANSI_COLOR_RED     "\x1b[31m"
 #define ANSI_COLOR_BOLD_RED     "\x1b[1;31m"
@@ -17,46 +19,49 @@
 #define ANSI_COLOR_WHITE    "\x1b[37m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
+
+
+void freeFuno(void *item) {
+    free(item);
+}
+
+int comp(const void *item1, const void *item2) {
+    return *(int *)(*(ArrayListItem **)item1)->value - *(int *)(*(ArrayListItem **)item2)->value;
+}
+
 int main() {
 
-    HashSet *hashSet = hashSetInitialization(sizeof(int));
+    ArrayList *arrayList = arrayListInitialization(1, freeFuno);
 
     int *item;
 
     item = (int *) malloc(sizeof(int));
-    *item = 10;
-    hashSetInsert(hashSet, item);
-
-
-    item = (int *) malloc(sizeof(int));
-    *item = 100;
-    hashSetInsert(hashSet, item);
+    *item = 20;
+    arrayListAdd(arrayList, item, sizeof(int));
 
     item = (int *) malloc(sizeof(int));
     *item = 30;
-    hashSetInsert(hashSet, item);
+    arrayListAdd(arrayList, item, sizeof(int));
+
+    item = (int *) malloc(sizeof(int));
+    *item = 10;
+    arrayListAdd(arrayList, item, sizeof(int));
 
     item = (int *) malloc(sizeof(int));
     *item = 40;
-    hashSetInsert(hashSet, item);
+    arrayListAdd(arrayList, item, sizeof(int));
 
-    item = (int *) malloc(sizeof(int));
-    *item = 100;
-    hashSetDelete(hashSet, item);
+    arrayListSort(arrayList, comp);
+    //arrayListRemoveAtIndex(arrayList, 3);
 
+    //clearArrayList(arrayList);
+    int **arr = (int **) arrayListToArray(arrayList);
 
-    *item = 40;
-    printf("has 40: %d\n", hashSetContains(hashSet, item));
-    *item = 100;
-    printf("has 100: %d\n", hashSetContains(hashSet, item));
-
-
-    destroyHashSet(hashSet);
-    int **arr = (int **) hashSetToArray(hashSet);
-
-    for (int i = 0; i < hashSetGetLength(hashSet); i++) {
+    for (int i = 0; i < arrayListGetLength(arrayList); i++) {
         printf("%d\n", *arr[i]);
     }
+
+    destroyArrayList(arrayList);
 
     return 0;
 
