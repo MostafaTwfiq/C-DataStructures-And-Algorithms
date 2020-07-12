@@ -4,7 +4,7 @@
 void printAVLTreeHelper(AVLTNode *root, int space, void (printFn)(void *));
 void AVLTreeIsPresentRecurs(AVLTree *avlTree, AVLTNode *root, void *searchValue, int* found );
 int max(int a,int b);
-void AVLTreeToArrayRecurs(AVLTNode* node, void **arr, int *i);
+void AVLTreeToArrayRecurs(AVLTNode* node, void **arr, int *i,int size);
 void freeAVLTreeNode(AVLTNode **node);
 AVLTNode* newBinaryTreeNode(void* key);
 int height(AVLTNode *node);
@@ -85,13 +85,14 @@ void AVLTreePrintStats(AVLTree *tree){
 * @param cmp Reference to the comparator function.
 * @return Pointer to the allocated AVL tree on the heap.
 **/
-AVLTree* AVLTreeInitialize(int(*cmp)(const void*, const void*)){
+AVLTree* AVLTreeInitialize(int size ,int(*cmp)(const void*, const void*)){
     AVLTree *t = (AVLTree *) malloc(sizeof(AVLTree));
     if(!t){
         fprintf(stderr,"Failed at allocating tree\n");
         exit(-1);
     }
     t->root = NULL;
+    t->sizeOfType = size;
     t->cmp = cmp;
     t->nodeCount=0;
     return t;
@@ -409,7 +410,7 @@ void AVLTreePrintInOrder(AVLTNode* node, void (printFn)(void *)){
 void **AVLTreeToArray(AVLTree *avlTree){
     void **array = (void **) malloc(sizeof(void *) * avlTree->nodeCount);
     int i = 0;
-    AVLTreeToArrayRecurs(avlTree->root,array, &i);
+    AVLTreeToArrayRecurs(avlTree->root,array, &i,avlTree->sizeOfType);
     return array;
 }
 
@@ -418,12 +419,13 @@ void **AVLTreeToArray(AVLTree *avlTree){
 * @param arr Preallocated array to start storing at.
 * @param i index to insert at in the array.
 **/
-void AVLTreeToArrayRecurs(AVLTNode* node, void **arr, int *i){
+void AVLTreeToArrayRecurs(AVLTNode* node, void **arr, int *i,int size){
     if(!node) return;
-    AVLTreeToArrayRecurs(node->left, arr, i);
-    arr[*i] = node->key;
+    AVLTreeToArrayRecurs(node->left, arr, i,size);
+    arr[*i] = malloc(size);
+    memcpy(arr+*i,node->key,size);
     *i += 1;
-    AVLTreeToArrayRecurs(node->right, arr, i);
+    AVLTreeToArrayRecurs(node->right, arr, i,size);
 }
 
 /** Given a tree and a reference node to start searching at (preferably the root) searches for node with the same key and return it.

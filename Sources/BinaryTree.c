@@ -3,7 +3,7 @@
 
 void printBinaryTreeHelper(BinaryTreeNode *root, int space, void (printFn)(void *));
 void BinaryTreeIsPresentRecurs(BinaryTree *binaryTree, BinaryTreeNode *root, void *searchValue, int* found );
-void BinaryTreeToArrayRecurs(BinaryTreeNode* node , void **arr, int *i);
+void BinaryTreeToArrayRecurs(BinaryTreeNode* node , void **arr, int *i,int size );
 void freeBinaryTreeNode(BinaryTreeNode **node);
 BinaryTreeNode* newBinaryTreeNode(void* key);
 void BinaryTreeGetMaxStepsRecurs(BinaryTreeNode * node, int * steps);
@@ -40,13 +40,14 @@ void printBinaryTreeStats(BinaryTree *tree){
 * @param cmp Reference to the comparator function.
 * @return Pointer to the allocated Binary tree on the heap.
 **/
-BinaryTree* BinaryTreeInitialize( int(*cmp)(const void*, const void*)){
+BinaryTree* BinaryTreeInitialize( int size, int(*cmp)(const void*, const void*)){
     BinaryTree *t = (BinaryTree *) malloc(sizeof(BinaryTree));
     if(!t){
         fprintf(stderr,"Failed at allocating tree\n");
         exit(-1);
     }
     t->root = NULL;
+    t->sizeOfType =size;
     t->cmp = cmp;
     t->nodeCount =0;
     return t;
@@ -296,7 +297,7 @@ void BinaryTreePrintInOrder(BinaryTreeNode* node, void (printFn)(void *)){
 void **BinaryTreeToArray(BinaryTree *binaryTree){
     void **array = (void **) malloc(sizeof(void *) * binaryTree->nodeCount);
     int i = 0;
-    BinaryTreeToArrayRecurs(binaryTree->root, array, &i);
+    BinaryTreeToArrayRecurs(binaryTree->root, array, &i,binaryTree->sizeOfType);
     return array;
 }
 
@@ -305,12 +306,13 @@ void **BinaryTreeToArray(BinaryTree *binaryTree){
 * @param arr Preallocated array to start storing at.
 * @param i index to insert at in the array.
 **/
-void BinaryTreeToArrayRecurs(BinaryTreeNode* node , void **arr, int *i){
+void BinaryTreeToArrayRecurs(BinaryTreeNode* node , void **arr, int *i,int size ){
     if(!node) return;
-    BinaryTreeToArrayRecurs(node->left, arr, i);
-    arr[*i] = node->key;
+    BinaryTreeToArrayRecurs(node->left, arr, i,size);
+    arr[*i] = malloc(size);
+    memcpy(arr+*i,node->key,size);
     *i += 1;
-    BinaryTreeToArrayRecurs(node->right, arr, i);
+    BinaryTreeToArrayRecurs(node->right, arr, i,size);
 }
 
 /** Given a tree and a reference node to start searching at (preferably the root) searches for node with the same key and return it.
