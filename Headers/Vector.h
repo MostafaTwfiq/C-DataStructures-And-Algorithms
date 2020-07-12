@@ -2,25 +2,31 @@
 #define C_DATASTRUCTURES_VECTOR_H
 
 
+#include "math.h"
 #include "Utils.h"
 
 
+typedef struct VectorItem {
+    void *value;
+    int sizeOfItem;
+} VectorItem;
+
 typedef struct Vector {
-    void **arr;
+    VectorItem **arr;
     int length;
     int count;
-    int sizeOfType;
+    void (*freeItem)(void *);
 } Vector;
 
 
 
-Vector *vectorListInitialization(int initialLength, int sizeOfType);
+Vector *vectorInitialization(int initialLength, void (*freeFun)(void *));
 
 
-void vectorListAdd(Vector *list, void *item);
+void vectorAdd(Vector *list, void *item, int sizeOfItem);
 
 
-void vectorAddAll(Vector *list, void **array, int arrayLength);
+void vectorAddAll(Vector *list, void **array, int arrayLength, int sizeOfItem);
 
 
 void vectorRemove(Vector *list);
