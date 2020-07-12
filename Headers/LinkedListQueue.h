@@ -15,13 +15,13 @@ typedef struct LinkedListQueue {
 
 
 
-LinkedListQueue *linkedListQueueInitialization(int sizeOfType);
+LinkedListQueue *linkedListQueueInitialization(void (*freeFun));
 
 
-void lLQueueEnqueue(LinkedListQueue *queue, void *item);
+void lLQueueEnqueue(LinkedListQueue *queue, void *item, int sizeOfItem);
 
 
-void lLQueueEnqueueAll(LinkedListQueue *queue, void **arr, int arrLength);
+void lLQueueEnqueueAll(LinkedListQueue *queue, void **arr, int arrLength, int sizeOfItem);
 
 
 void *lLQueueDequeue(LinkedListQueue *queue);

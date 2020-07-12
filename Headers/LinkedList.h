@@ -6,21 +6,24 @@
 typedef struct LinkedList {
     struct Node *head;
     struct Node *tail;
-    int sizeOfType; //this field will be useful to know the size of the items in the linked list.
     int length;
+    void (*freeFun)(void *item);
 } LinkedList;
 
 
-LinkedList *linkedListInitialization(int sizeOfType);
+LinkedList *linkedListInitialization(void (*freeFun)(void *item));
 
 
-void linkedListAddFirst(LinkedList *linkedList, void *item);
+void linkedListAddFirst(LinkedList *linkedList, void *item, int sizeOfItem);
 
 
-void linkedListAddLast(LinkedList *linkedList, void *item);
+void linkedListAddLast(LinkedList *linkedList, void *item, int sizeOfItem);
 
 
-void linkedListAddAtIndex(LinkedList *linkedList, int index, void *item);
+void linkedListAddAtIndex(LinkedList *linkedList, int index, void *item, int sizeOfItem);
+
+
+void linkedListAddAll(LinkedList *linkedList, void **items, int itemsLength, int sizeOfItem);
 
 
 void linkedListDeleteFirst(LinkedList *linkedList);

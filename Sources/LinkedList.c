@@ -1,23 +1,30 @@
 #include "../Headers/LinkedList.h"
 
 
+typedef struct LLItem {
+    void *value;
+    int sizeOfItem;
+} LLItem;
 
 typedef struct Node {
-    void *item; //void pointer so the node be generic.
+    LLItem *item; //void pointer so the node be generic.
     struct Node *next; // a pointer to the next node.
 } Node;
 
 
+void linkedListDestroyItem(LLItem *item, void (*freeFun)(void *));
+
 
 
 /** This function will allocate a new linked list in the memory, setup it's fields and return it.
- * @param sizeOfType */
+ * @param freeFun the free function address that will be called to free the items in the linked list
+*/
 
-LinkedList *linkedListInitialization(int sizeOfType) {
+LinkedList *linkedListInitialization(void (*freeFun)(void *item)) {
     LinkedList *linkedList = (LinkedList *) malloc(sizeof(LinkedList));
     linkedList->head = linkedList->tail = NULL;
-    linkedList->sizeOfType = sizeOfType;
     linkedList->length = 0;
+    linkedList->freeFun  = freeFun;
 
     return linkedList;
 }
@@ -25,19 +32,25 @@ LinkedList *linkedListInitialization(int sizeOfType) {
 
 
 
-/** This function will take the linked list address and the item address as a parameters,
-    then it will add the item in the start of the linked list.
-  * @param linkedList
-  * @param item */
 
-void linkedListAddFirst(LinkedList *linkedList, void *item) {
+/** This function will take the linked list address, the item address, and the size of item as a parameters,
+    then it will add the item in the start of the linked list.
+  * @param linkedList the linked list address
+  * @param item the new item address
+  * @param sizeOfItem the size of the item in bytes
+  * */
+
+void linkedListAddFirst(LinkedList *linkedList, void *item, int sizeOfItem) {
     if (linkedList == NULL) {
          fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
     }
 
     Node *newNode = (Node *) malloc(sizeof(Node));
-    newNode->item = item;
+    LLItem *newItem = (LLItem *) malloc(sizeof(LLItem));
+    newItem->value = item;
+    newItem->sizeOfItem = sizeOfItem;
+    newNode->item = newItem;
 
     newNode->next = linkedList->head;
 
@@ -51,19 +64,24 @@ void linkedListAddFirst(LinkedList *linkedList, void *item) {
 
 
 
-/** This function will take the linked list address and the item address as a parameters,
+/** This function will take the linked list address, the item address, and the size of the new item as a parameters,
  * then it will add the item in the end of the linked list.
- * @param linkedList
- * @param item */
+ * @param linkedList the linked list address
+ * @param item the new item address
+ * @param sizeOfItem the size of the new item in bytes
+ */
 
-void linkedListAddLast(LinkedList *linkedList, void *item) {
+void linkedListAddLast(LinkedList *linkedList, void *item, int sizeOfItem) {
     if (linkedList == NULL) {
          fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
     }
 
     Node *newNode = (Node *) malloc(sizeof(Node));
-    newNode->item = item;
+    LLItem *newItem = (LLItem *) malloc(sizeof(LLItem));
+    newItem->value = item;
+    newItem->sizeOfItem = sizeOfItem;
+    newNode->item = newItem;
 
     newNode->next = NULL;
 
@@ -79,14 +97,15 @@ void linkedListAddLast(LinkedList *linkedList, void *item) {
 
 
 
-/** This function will take the linked list address, item index, and the item address  the a parameters,
+/** This function will take the linked list address, item index, the item address, and the size of the item the a parameters,
  * then it will add the item in the passed index.
- * @param linkedList
- * @param index
- * @param item
+ * @param linkedList the linked list address
+ * @param index the index that the new item will be inserted in
+ * @param item the new item address
+ * @param sizeOfItem the size of the new item in bytes
  */
 
-void linkedListAddAtIndex(LinkedList *linkedList, int index, void *item) {
+void linkedListAddAtIndex(LinkedList *linkedList, int index, void *item, int sizeOfItem) {
     if (linkedList == NULL) {
          fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
@@ -96,7 +115,10 @@ void linkedListAddAtIndex(LinkedList *linkedList, int index, void *item) {
     }
 
     Node *newNode = (Node *) malloc(sizeof(Node));
-    newNode->item = item;
+    LLItem *newItem = (LLItem *) malloc(sizeof(LLItem));
+    newItem->value = item;
+    newItem->sizeOfItem = sizeOfItem;
+    newNode->item = newItem;
 
     Node *currentNode = linkedList->head;
     Node *prevNode = NULL;
@@ -119,21 +141,22 @@ void linkedListAddAtIndex(LinkedList *linkedList, int index, void *item) {
 
 
 
-/** This function will take the linked list address, items array, and the length of the array as parameters,
+/** This function will take the linked list address, items array, the length of the array, and the size of items as parameters,
  * then it will copy the array item if the linked list in a new items addresses.
- * @param linkedList
- * @param items
- * @param itemsLength
+ * @param linkedList the linked list address
+ * @param items the items array represented as a double pointer array
+ * @param itemsLength the length of the items array
+ * @param sizeOfItem the size of the items in the array in bytes
  */
 
-void linkedListAddAll(LinkedList *linkedList, void **items, int itemsLength) {
+void linkedListAddAll(LinkedList *linkedList, void **items, int itemsLength, int sizeOfItem) {
     if (linkedList == NULL) {
          fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
     }
-    for (int i = 0; i < itemsLength; i++) {
-        linkedListAddLast(linkedList, items[i]);
-    }
+
+    for (int i = 0; i < itemsLength; i++)
+        linkedListAddLast(linkedList, items[i], sizeOfItem);
 
 }
 
@@ -163,8 +186,9 @@ void linkedListDeleteFirst(LinkedList *linkedList) {
     linkedList->head = linkedList->head->next;
 
     linkedList->length--;
-    free(nodeToFree->item);
+    linkedListDestroyItem(nodeToFree->item, linkedList->freeFun);
     free(nodeToFree);
+
 }
 
 
@@ -193,7 +217,9 @@ void linkedListDeleteFirstWtFr(LinkedList *linkedList) {
     linkedList->head = linkedList->head->next;
 
     linkedList->length--;
+    free(nodeToFree->item);
     free(nodeToFree);
+
 }
 
 
@@ -229,8 +255,9 @@ void linkedListDeleteLast(LinkedList *linkedList) {
     linkedList->tail = prevNode;
 
     linkedList->length--;
-    free(currentNode->item);
+    linkedListDestroyItem(currentNode->item, linkedList->freeFun);
     free(currentNode);
+
 }
 
 
@@ -266,7 +293,9 @@ void linkedListDeleteLastWtFr(LinkedList *linkedList) {
     linkedList->tail = prevNode;
 
     linkedList->length--;
+    free(currentNode->item);
     free(currentNode);
+
 }
 
 
@@ -304,7 +333,7 @@ void linkedListDeleteAtIndex(LinkedList *linkedList, int index) {
         prevNode->next = currentNode->next;
 
         linkedList->length--;
-        free(currentNode->item);
+        linkedListDestroyItem(currentNode->item, linkedList->freeFun);
         free(currentNode);
     }
 
@@ -344,7 +373,9 @@ void linkedListDeleteAtIndexWtFr(LinkedList *linkedList, int index) {
         prevNode->next = currentNode->next;
 
         linkedList->length--;
+        free(currentNode->item);
         free(currentNode);
+
     }
 
 }
@@ -378,7 +409,7 @@ int linkedListContains(LinkedList *linkedList, void *item,
 
     while (currentNode != NULL) {
         // if the comparator function returned zero then the two items are equal.
-        if (comparator(currentNode->item, item) == 0)
+        if (comparator(currentNode->item->value, item) == 0)
             return 1;
 
         currentNode = currentNode->next;
@@ -414,7 +445,7 @@ int linkedListGetIndex(LinkedList *linkedList, void *item,
 
     for (int index = 0; currentNode != NULL; currentNode = currentNode->next, index++) {
         // if the comparator function returned zero then the two items are equal.
-        if (comparator(currentNode->item, item) == 0)
+        if (comparator(currentNode->item->value, item) == 0)
             return index;
 
     }
@@ -439,7 +470,8 @@ void *linkedListGetFirst(LinkedList *linkedList) {
         exit(-1);
     }
 
-    return linkedList->head->item;
+    return linkedList->head->item->value;
+
 }
 
 
@@ -459,7 +491,8 @@ void *linkedListGetLast(LinkedList *linkedList) {
         exit(-1);
     }
 
-    return linkedList->tail->item;
+    return linkedList->tail->item->value;
+
 }
 
 
@@ -489,8 +522,8 @@ void *linkedListGetItem(LinkedList *linkedList, void *item,
 
     while (currentNode != NULL) {
         // if the comparator function returned zero then the two items are equal.
-        if (comparator(currentNode->item, item) == 0)
-            return currentNode->item;
+        if (comparator(currentNode->item->value, item) == 0)
+            return currentNode->item->value;
 
         currentNode = currentNode->next;
     }
@@ -523,7 +556,7 @@ void *linkedListGet(LinkedList *linkedList, int index) {
     for (int i = 0; i < index; i++)
         currentNode = currentNode->next;
 
-    return currentNode->item;
+    return currentNode->item->value;
 }
 
 
@@ -546,8 +579,8 @@ void **linkedListToArray(LinkedList *linkedList) {
 
     Node *currentNode = linkedList->head;
     for (int i = 0; i < linkedListGetLength(linkedList); i++) {
-        array[i] = (void *) malloc(linkedList->sizeOfType);
-        memcpy(array[i], currentNode->item, linkedList->sizeOfType);
+        array[i] = (void *) malloc(currentNode->item->sizeOfItem);
+        memcpy(array[i], currentNode->item->value, currentNode->item->sizeOfItem);
 
         currentNode = currentNode->next;
     }
@@ -605,7 +638,7 @@ int linkedListIsEmpty(LinkedList *linkedList) {
 void printLinkedList(LinkedList *linkedList, void (*printFun) (const void *)) {
     Node *currentNode = linkedList->head;
     while (currentNode != NULL) {
-        printFun(currentNode->item);
+        printFun(currentNode->item->value);
         currentNode = currentNode->next;
     }
 
@@ -633,12 +666,14 @@ void linkedListClear(LinkedList *linkedList) {
         nodeToFree = currentNode;
         currentNode = currentNode->next;
 
-        free(nodeToFree->item);
+        linkedListDestroyItem(nodeToFree->item, linkedList->freeFun);
         free(nodeToFree);
+
     }
 
     linkedList->head = linkedList->tail = NULL;
     linkedList->length = 0;
+
 }
 
 
@@ -651,22 +686,21 @@ void linkedListClear(LinkedList *linkedList) {
 
 void destroyLinkedList(LinkedList *linkedList) {
 
-    if (linkedList == NULL) {
-         fprintf(stderr,"Illegal argument, the linked list is NULL.");
-        exit(-1);
-    }
-
-    Node *currentNode = linkedList->head;
-    Node *nodeToFree;
-
-    while (currentNode != NULL) {
-        nodeToFree = currentNode;
-        currentNode = currentNode->next;
-
-        free(nodeToFree->item);
-        free(nodeToFree);
-    }
-
+    linkedListClear(linkedList);
     free(linkedList);
+
+}
+
+
+/** This function will take the item address, and the free function address as a parameters,
+ * then it will free the item container and it's value.
+ * Note: this function should only be called from the array list functions.
+ * @param item the item container address
+ * @param freeFun the free item function address
+ */
+
+void linkedListDestroyItem(LLItem *item, void (*freeFun)(void *)) {
+    freeFun(item->value);
+    free(item);
 
 }

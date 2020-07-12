@@ -6,14 +6,14 @@
 
 /** This function will take the size of the items type as a parameter,
     then it will initialize a new linked list queue, and return it's address.
- * @param sizeOfType
+ * @param freeFun the free function address that will be called to free the queue items
  */
 
-LinkedListQueue *linkedListQueueInitialization(int sizeOfType) {
+LinkedListQueue *linkedListQueueInitialization(void (*freeFun)) {
 
     LinkedListQueue *queue = (LinkedListQueue *) malloc(sizeof(LinkedListQueue));
 
-    queue->linkedList = linkedListInitialization(sizeOfType);
+    queue->linkedList = linkedListInitialization(freeFun);
 
     return queue;
 }
@@ -21,41 +21,43 @@ LinkedListQueue *linkedListQueueInitialization(int sizeOfType) {
 
 
 
-/** This function will take the queue address, and the item address as a parameter,
+/** This function will take the queue address, the item address, and the size of the item as a parameter,
     then it will push the item into the queue.
- * @param queue
- * @param item
+ * @param queue the queue address
+ * @param item the new item address
+ * @param sizeOfItem the size of the new item in bytes
  */
 
-void lLQueueEnqueue(LinkedListQueue *queue, void *item) {
+void lLQueueEnqueue(LinkedListQueue *queue, void *item, int sizeOfItem) {
 
     if (queue == NULL) {
         fprintf(stderr,"Illegal argument, the queue is NULL.");
         exit(-4);
     }
 
-    linkedListAddLast(queue->linkedList, item);
+    linkedListAddLast(queue->linkedList, item, sizeOfItem);
 
 }
 
 
 
 
-/** This function will take the queue address, the array address, and the array length as a parameter,
+/** This function will take the queue address, the array address, the array length, and the size of the array items as a parameter,
     then it will add all the items in the array to the queue in order.
- * @param queue
- * @param arr
- * @param arrLength
+ * @param queue the queue address
+ * @param arr the array address that will be added to the queue
+ * @param arrLength the length of the array
+ * @param sizeOfItem the size of the array items in bytes
  */
 
-void lLQueueEnqueueAll(LinkedListQueue *queue, void **arr, int arrLength) {
+void lLQueueEnqueueAll(LinkedListQueue *queue, void **arr, int arrLength, int sizeOfItem) {
     if (queue == NULL) {
         fprintf(stderr,"Illegal argument, the queue is NULL.");
         exit(-4);
     }
 
     for (int i = 0; i < arrLength; i++) {
-        linkedListAddLast(queue->linkedList, arr[i]);
+        linkedListAddLast(queue->linkedList, arr[i], sizeOfItem);
     }
 
 }
@@ -68,8 +70,8 @@ void lLQueueEnqueueAll(LinkedListQueue *queue, void **arr, int arrLength) {
     then it will return the first item in the queue,
     then the item will be deleted from the queue.
  * Note: if the queue i empty the program will be terminated.
- * @param queue
- * @return
+ * @param queue the queue address
+ * @return it will return the (first in) item address as a void pointer
  */
 
 void *lLQueueDequeue(LinkedListQueue *queue) {
@@ -95,8 +97,8 @@ void *lLQueueDequeue(LinkedListQueue *queue) {
 /** This function will take the queue address as a parameter,
     then it will return the first item in the queue without removing the item from the queue.
  * Note: if the queue i empty the program will be terminated.
- * @param queue
- * @return
+ * @param queue the queue address
+ * @return it will return the (first in) item address as a void pointer
  */
 
 void *lLQueuePeek(LinkedListQueue *queue) {
@@ -122,8 +124,8 @@ void *lLQueuePeek(LinkedListQueue *queue) {
 
 /** This function will take the queue address as a parameter,
     then it will return the number of the elements in the array.
- * @param queue
- * @return
+ * @param queue the queue  address
+ * @return it will return the number of items in the queue
  */
 
 int lLQueueGetLength(LinkedListQueue *queue) {
@@ -142,8 +144,8 @@ int lLQueueGetLength(LinkedListQueue *queue) {
 
 /** This function will take the queue address as a parameter,
     then it will return one (1) if the queue is empty, other wise it will return zero (0).
- * @param queue
- * @return
+ * @param queue the queue address
+ * @return it will return one if the queue is empty other wise it will return zero
  */
 
 int lLQueueIsEmpty(LinkedListQueue *queue) {
@@ -163,8 +165,8 @@ int lLQueueIsEmpty(LinkedListQueue *queue) {
 
 /** This function will take the queue address as a parameter,
  * then it will return a void array that contains all the items in the queue.
- * @param queue
- * @return
+ * @param queue the queue address
+ * @return it will return a double void array that contains a copy of all the items in the queue
  */
 
 void **lLQueueToArray(LinkedListQueue *queue) {
@@ -180,7 +182,7 @@ void **lLQueueToArray(LinkedListQueue *queue) {
 
 /** This function will take the queue address as a parameter,
  * then it will delete and free all the items in the queue without destroying the queue.
- * @param queue
+ * @param queue the queue address
  */
 
 void clearLLQueue(LinkedListQueue *queue) {
@@ -198,7 +200,7 @@ void clearLLQueue(LinkedListQueue *queue) {
 
 /** This function will take the queue address as a parameter,
  * then it will destroy and free all the item in the queue then it will also free the queue.
- * @param queue
+ * @param queue the queue address
  */
 
 void destroyLLQueue(LinkedListQueue *queue) {
