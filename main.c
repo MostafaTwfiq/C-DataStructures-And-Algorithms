@@ -18,7 +18,7 @@
 #define ANSI_COLOR_WHITE    "\x1b[37m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
-#include "Headers/ArrayQueue.h"
+#include "Headers/StackQueue.h"
 
 void freeItem(void *item) {
     free(item);
@@ -30,23 +30,27 @@ int comp(const void *p1, int s1, const void *p2, int s2) {
 
 
 int main() {
-    ArrayQueue *arrayQueue = QueueInitialize(freeItem);
+    SQueue *queue = stackQueueInitialization(freeItem);
 
+
+    int **tempArr;
+    tempArr = (int **) malloc(sizeof(int *) * 100);
     int *item;
 
-    item = (int *) malloc(sizeof(int));
-    *item = 10;
-    ArrayQueueEnqueue(arrayQueue, item, sizeof(int));
+    for (int i = 0; i < 100; i++) {
+        item = (int *) malloc(sizeof(int));
+        *item = i;
+        tempArr[i] = item;
+    }
 
-    item = (int *) malloc(sizeof(int));
-    *item = 20;
-    ArrayQueueEnqueue(arrayQueue, item, sizeof(int));
+    sQueueAddAll(queue, (void **) tempArr, 100, sizeof(int));
 
-    item = (int *) malloc(sizeof(int));
-    *item = 30;
-    ArrayQueueEnqueue(arrayQueue, item, sizeof(int));
+    while (!sQueueIsEmpty(queue)) {
+        printf("%d\n", *(int *)sQueueDequeue(queue));
+    }
 
-    printf("%d", *(int *)ArrayQueueDequeue(arrayQueue));
+
+    destroySQueue(queue);
 
     return 0;
 

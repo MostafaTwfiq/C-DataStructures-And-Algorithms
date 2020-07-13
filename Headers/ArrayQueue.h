@@ -4,12 +4,6 @@
 #include "Utils.h"
 
 
-typedef struct ArrayQueueItem {
-    void *value;
-    int sizeOfItem;
-} ArrayQueueItem;
-
-
 
 /** @struct ArrayQueue
  *  @brief This structure implements a basic generic Queue where memory is laid out sequentially.
@@ -26,7 +20,7 @@ typedef struct ArrayQueueItem {
  */
 
 typedef struct ArrayQueue{
-    ArrayQueueItem ** memory;
+    struct ArrayQueueItem ** memory;
     int allocated;
     int front;
     int rear;

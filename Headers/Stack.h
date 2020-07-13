@@ -2,6 +2,7 @@
 #define C_DATASTRUCTURES_STACK_H
 #include "Utils.h"
 
+
 /** @struct Stack
  *  @brief This structure implements a basic generic stack.
  *  @var Stack:: memory
@@ -13,18 +14,25 @@
  *  @var Stack::sizeOfItem
  *  Member 'sizeOfItem' the size of the data stored in the stack.
  */
+
+
+typedef struct StackItem {
+    void *value;
+    int sizeOfItem;
+} StackItem;
+
 typedef struct Stack {
-    void **memory;
+    struct StackItem **memory;
     int allocated;
     int top;
-    int sizeOfType;
+    void (*freeItem)(void *item);
 }Stack;
 
-Stack* stackInitialization(int size);
+Stack* stackInitialization(void (*freeItem)(void *item));
 
-void pushStack(Stack *stack, void *data);
+void pushStack( Stack* stack ,  void * data, int dataSize);
 
-void stackAddAll(Stack *stack, void **array, int arrLength);
+void stackAddAll(Stack *stack, void **array, int arrLength, int sizeOfItem);
 
 void *popStack(Stack *stack);
 

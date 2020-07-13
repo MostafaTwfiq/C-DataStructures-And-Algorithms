@@ -2,6 +2,11 @@
 
 
 
+typedef struct ArrayQueueItem {
+    void *value;
+    int sizeOfItem;
+} ArrayQueueItem;
+
 
 
 
@@ -98,7 +103,9 @@ void* ArrayQueueDequeue(ArrayQueue* arrayQueue) {
         exit( NULL_POINTER );
     }
     else {
-        return arrayQueue->memory[arrayQueue->front++]->value;
+        void *returnItem = arrayQueue->memory[arrayQueue->front]->value;
+        free(arrayQueue->memory[arrayQueue->front++]);
+        return returnItem;
     }
 
 }
