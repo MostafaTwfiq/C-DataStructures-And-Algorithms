@@ -44,7 +44,7 @@ void MinHeapifyUP(BinaryMinHeap* pMinHeap, int index) {
 
 /** Inserts at the bottom of the tree then moves the element up the tree by calling @link MinHeapifyUP @endlink
  *  @param pMinHeap  Reference to minimum heap pointer allocated on the heap.
- *  @param value value to insert in the tree.
+ *  @param value item to insert in the tree.
 **/
 void MinHeapInsert(BinaryMinHeap* pMinHeap, void* value){
     if(pMinHeap->size == pMinHeap->capacity){

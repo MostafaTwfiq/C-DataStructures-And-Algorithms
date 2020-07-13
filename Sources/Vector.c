@@ -316,7 +316,7 @@ void **vectorToSubArray(Vector *list, int start, int end) {
  * @param comparator the comparator function address
  * Example of comparator function if the items are integers:
  * int comp(const void *item1, const void *item2) {
-    return *(int *)(*(VectorItem **)item1)->value - *(int *)(*(VectorItem **)item2)->value;}
+    return *(int *)(*(VectorItem **)item1)->item - *(int *)(*(VectorItem **)item2)->item;}
  */
 
 void vectorSort(Vector *list, int (*comparator)(const void *, const void *)) {
@@ -429,7 +429,7 @@ void destroyVector(Vector *list) {
 
 
 /** This function will take the item address, and the free function address as a parameters,
- * then it will free the item container and it's value.
+ * then it will free the item container and it's item.
  * Note: this function should only be called from the vector functions.
  * @param item the item container address
  * @param freeFun the free item function address

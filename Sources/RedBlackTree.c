@@ -870,7 +870,7 @@ void printRBTreeHelper(RBNode *root, int space, void (*printFun)(const void *ite
 /** This function will take the tree address, the key address as a parameters,
  * then it will return the node key.
  * @param tree a reference to the tree address.
- * @param key a reference to any key that has ta same value that will be compared
+ * @param key a reference to any key that has ta same item that will be compared
  * @return the return will be the key address if it's existed other wise it will be NULL
  */
 

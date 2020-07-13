@@ -693,8 +693,8 @@ void destroyLinkedList(LinkedList *linkedList) {
 
 
 /** This function will take the item address, and the free function address as a parameters,
- * then it will free the item container and it's value.
- * Note: this function should only be called from the array list functions.
+ * then it will free the item container and it's item.
+ * Note: this function should only be called from the doubly linked list functions.
  * @param item the item container address
  * @param freeFun the free item function address
  */

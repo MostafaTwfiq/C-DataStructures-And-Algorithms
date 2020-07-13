@@ -9,7 +9,7 @@
  *  @var Stack::allocated
  *  Member 'allocated' holds the current max allocated size for the stack.
  *  @var Stack::top
- *  Member 'top' holds the index to the top most stored value.
+ *  Member 'top' holds the index to the top most stored item.
  *  @var Stack::sizeOfItem
  *  Member 'sizeOfItem' the size of the data stored in the stack.
  */

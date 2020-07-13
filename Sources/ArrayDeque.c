@@ -224,7 +224,7 @@ void ArrayDequeClear(ArrayDeque* arrayDeque){
 
 
 /** This function will take the address of the arrayDequeItem, and the freeItem function address as a parameters,
- * then it will free the item value and the item container.
+ * then it will free the item item and the item container.
  * Note: this function should only be called from the array deque functions.
  * @param item the item container address
  * @param freeItem the freeItem function address

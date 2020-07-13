@@ -123,7 +123,7 @@ Typedefs</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a431fa259b41c3f43cdde4d70afb9fd94"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_binary_min_heap_8h.html#a431fa259b41c3f43cdde4d70afb9fd94">MinHeapInitialize</a> (int32_t(*cmp)(const void *, const void *))</td></tr>
 <tr class="separator:a431fa259b41c3f43cdde4d70afb9fd94"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a36d7b6f819ebc9a51f6eee1d6adafa53"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_binary_min_heap_8h.html#a36d7b6f819ebc9a51f6eee1d6adafa53">MinHeapInsert</a> (<a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *pMinHeap, void *value)</td></tr>
+<tr class="memitem:a36d7b6f819ebc9a51f6eee1d6adafa53"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_binary_min_heap_8h.html#a36d7b6f819ebc9a51f6eee1d6adafa53">MinHeapInsert</a> (<a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *pMinHeap, void *item)</td></tr>
 <tr class="separator:a36d7b6f819ebc9a51f6eee1d6adafa53"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7252e69bb18f0a06e92d86971b92b138"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_binary_min_heap.html">BinaryMinHeap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_binary_min_heap_8h.html#a7252e69bb18f0a06e92d86971b92b138">MinHeapify</a> (void *arr, uint32_t size, int32_t(*cmp)(const void *, const void *))</td></tr>
 <tr class="separator:a7252e69bb18f0a06e92d86971b92b138"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -511,7 +511,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>value</em>&#160;</td>
+          <td class="paramname"><em>item</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -523,7 +523,7 @@ Functions</h2></td></tr>
 <p>Inserts at the bottom of the tree then moves the element up the tree by calling <a class="el" href="_binary_min_heap_8c.html#a7d638af4c1837fdd141e8dfcd6d7a107">MinHeapifyUP</a> </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pMinHeap</td><td>Reference to minimum heap pointer allocated on the heap. </td></tr>
-    <tr><td class="paramname">value</td><td>value to insert in the tree. </td></tr>
+    <tr><td class="paramname">item</td><td>item to insert in the tree. </td></tr>
   </table>
   </dd>
 </dl>

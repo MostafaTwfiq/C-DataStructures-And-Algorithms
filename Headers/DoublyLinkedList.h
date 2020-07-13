@@ -6,23 +6,25 @@
 typedef struct DoublyLinkedList {
     struct Node *head;
     struct Node *tail;
-    int sizeOfType; //this field will be useful to know the size of the items in the linked list.
     int length;
+    void (*freeFun)(void *);
 } DoublyLinkedList;
 
 
-void doublyLinkedListAddAll(DoublyLinkedList *linkedList, void **items, int itemsLength);
 
-DoublyLinkedList *doublyLinkedListInitialization(int sizeOfType);
-
-
-void doublyLinkedListAddFirst(DoublyLinkedList *linkedList, void *item);
+DoublyLinkedList *doublyLinkedListInitialization(void (*freeFun)(void *));
 
 
-void doublyLinkedListAddLast(DoublyLinkedList *linkedList, void *item);
+void doublyLinkedListAddFirst(DoublyLinkedList *linkedList, void *item, int sizeOfItem);
 
 
-void doublyLinkedListAddAtIndex(DoublyLinkedList *linkedList, int index, void *item);
+void doublyLinkedListAddLast(DoublyLinkedList *linkedList, void *item, int sizeOfItem);
+
+
+void doublyLinkedListAddAtIndex(DoublyLinkedList *linkedList, int index, void *item, int sizeOfItem);
+
+
+void doublyLinkedListAddAll(DoublyLinkedList *linkedList, void **items, int itemsLength, int sizeOfItem);
 
 
 void doublyLinkedListDeleteFirst(DoublyLinkedList *linkedList);

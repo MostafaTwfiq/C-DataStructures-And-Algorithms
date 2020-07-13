@@ -183,7 +183,7 @@ void ArrayQueueEnqueueAll(ArrayQueue * arrayQueue,void **arr, int arrLength){
     }
 }
 
-/* Returns the first value that was enqueued at the
+/* Returns the first item that was enqueued at the
 * @param arrayQueue Pointer to the Queue on the heap.
 * @return Pointer the first enqueued Object.
 **/

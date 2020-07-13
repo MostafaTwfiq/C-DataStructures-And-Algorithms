@@ -316,7 +316,7 @@ void **arrayListToSubArray(ArrayList *list, int start, int end) {
  * @param comparator the comparator function address
  * Example of comparator function if the items are integers:
  * int comp(const void *item1, const void *item2) {
-    return *(int *)(*(ArrayListItem **)item1)->value - *(int *)(*(ArrayListItem **)item2)->value;}
+    return *(int *)(*(ArrayListItem **)item1)->item - *(int *)(*(ArrayListItem **)item2)->item;}
  */
 
 void arrayListSort(ArrayList *list, int (*comparator)(const void *, const void *)) {
@@ -427,7 +427,7 @@ void destroyArrayList(ArrayList *list) {
 
 
 /** This function will take the item address, and the free function address as a parameters,
- * then it will free the item container and it's value.
+ * then it will free the item container and it's item.
  * Note: this function should only be called from the array list functions.
  * @param item the item container address
  * @param freeFun the free item function address

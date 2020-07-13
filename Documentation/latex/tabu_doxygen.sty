@@ -2299,7 +2299,7 @@
 \long\def\tabu@Hy@ftntext{\tabu@Hy@ftntxt {\the \c@footnote }}
 \long\def\tabu@Hy@xfootnote [#1]{%
    \begingroup
-      \value\@mpfn #1\relax
+      \item\@mpfn #1\relax
       \protected@xdef \@thefnmark  {\thempfn}%
    \endgroup
    \@footnotemark \tabu@Hy@ftntxt {#1}%
@@ -2308,7 +2308,7 @@
     \edef\@tempa{%
         \the\tabu@footnotes
         \begingroup
-            \value\@mpfn #1\relax
+            \item\@mpfn #1\relax
             \noexpand\protected@xdef\noexpand\@thefnmark {\noexpand\thempfn}%
             \expandafter \noexpand \expandafter
                 \tabu@Hy@footnotetext \expandafter{\Hy@footnote@currentHref}%

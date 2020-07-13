@@ -5,9 +5,14 @@
 #include "DoublyLinkedList.h"
 
 
+typedef struct LLHashMapItem {
+    void *value;
+    int sizeOfItem;
+} LLHashMapItem;
+
 typedef struct Entry{
     void *key;
-    void *value;
+    LLHashMapItem *item;
     int sizeOfKey;
 } Entry;
 
@@ -15,14 +20,13 @@ typedef struct LinkedListHashMap {
     DoublyLinkedList **arr;
     int length;
     int count;
-    int sizeOfType;
 } LinkedListHashMap;
 
 
-LinkedListHashMap *linkedListHashMapInitialization(int mapLength, int sizeOfType);
+LinkedListHashMap *linkedListHashMapInitialization(int mapLength, void (*freeKey)(void *key), void (*freeItem)(void *item));
 
 
-        void lLHashMapInsert(LinkedListHashMap *map, void *key, void *item, int sizeOfKey);
+void lLHashMapInsert(LinkedListHashMap *map, void *key, int sizeOfKey, void *item, int sizeOfItem);
 
 
 int lLHashMapContains(LinkedListHashMap *map, void *key, int sizeOfKey);

@@ -219,7 +219,7 @@ int BinaryTreeGetSize(BinaryTreeNode* root){
     else return 0;
 }
 
-/** Gets the right most node which should be the minimum value node of the Binary Tree.
+/** Gets the right most node which should be the minimum item node of the Binary Tree.
 * @param node Node to start traversing from.
 * @return Returns a reference pointer to the right most node.
 **/
@@ -229,7 +229,7 @@ BinaryTreeNode * BinaryTreeMinValueNode(BinaryTreeNode* node){
     return node;
 }
 
-/** Gets the left most node which should be the maximum value node of the Binary Tree.
+/** Gets the left most node which should be the maximum item node of the Binary Tree.
 * @param node Node to start traversing from.
 * @return Returns a reference pointer to the left most node.
 **/

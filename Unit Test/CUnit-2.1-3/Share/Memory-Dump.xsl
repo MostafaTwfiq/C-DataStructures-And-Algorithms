@@ -47,12 +47,12 @@
 		<xsl:param name="ptr" select="MD_POINTER"/>
 		<xsl:for-each select="MD_EVENT_RECORD">
 			<tr>
-				<td> <xsl:value-of select="$ptr"/> </td>
-				<td> <xsl:value-of select="MD_ALLOC_FILE"/> </td>
-				<td> <xsl:value-of select="MD_ALLOC_LINE"/> </td>
-				<td> <xsl:value-of select="MD_DEALLOC_FILE"/> </td>
-				<td> <xsl:value-of select="MD_DEALLOC_LINE"/> </td>
-				<td> <xsl:value-of select="MD_SIZE"/> </td>
+				<td> <xsl:item-of select="$ptr"/> </td>
+				<td> <xsl:item-of select="MD_ALLOC_FILE"/> </td>
+				<td> <xsl:item-of select="MD_ALLOC_LINE"/> </td>
+				<td> <xsl:item-of select="MD_DEALLOC_FILE"/> </td>
+				<td> <xsl:item-of select="MD_DEALLOC_LINE"/> </td>
+				<td> <xsl:item-of select="MD_SIZE"/> </td>
 			</tr>
 		</xsl:for-each>
 	</xsl:template>
@@ -65,17 +65,17 @@
 			</tr>
 			<tr>
 				<td width="50%" bgcolor="ffffc0" align="center"> Valid Records </td>
-				<td bgcolor="#e0f0d0"> <xsl:value-of select="MD_SUMMARY_VALID_RECORDS" /> </td>
+				<td bgcolor="#e0f0d0"> <xsl:item-of select="MD_SUMMARY_VALID_RECORDS" /> </td>
 			</tr>
 
 			<tr>
 				<td width="50%" bgcolor="ffffc0" align="center"> Invalid Records </td>
-				<td bgcolor="#e0f0d0"> <xsl:value-of select="MD_SUMMARY_INVALID_RECORDS" /> </td>
+				<td bgcolor="#e0f0d0"> <xsl:item-of select="MD_SUMMARY_INVALID_RECORDS" /> </td>
 			</tr>
 
 			<tr>
 				<td width="50%" bgcolor="ffffc0" align="center"> Total Number of Allocation/Deallocation Records </td>
-				<td bgcolor="#e0f0d0"> <xsl:value-of select="MD_SUMMARY_TOTAL_RECORDS" /> </td>
+				<td bgcolor="#e0f0d0"> <xsl:item-of select="MD_SUMMARY_TOTAL_RECORDS" /> </td>
 			</tr>
 
 		</table>

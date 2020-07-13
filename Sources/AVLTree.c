@@ -332,7 +332,7 @@ int AVLTreeGetSize(AVLTNode* root){
     else return 0;
 }
 
-/** Gets the right most node which should be the minimum value node of the AVLTree.
+/** Gets the right most node which should be the minimum item node of the AVLTree.
 * @param node Node to start traversing from.
 * @return Returns a reference pointer to the right most node.
 **/
@@ -342,7 +342,7 @@ AVLTNode * AVLTreeMinValueNode(AVLTNode* node){
     return node;
 }
 
-/** Gets the left most node which should be the maximum value node of the AVL Tree.
+/** Gets the left most node which should be the maximum item node of the AVL Tree.
 * @param node Node to start traversing from.
 * @return Returns a reference pointer to the left most node.
 **/

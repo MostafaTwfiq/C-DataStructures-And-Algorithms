@@ -185,7 +185,7 @@ the following:
 <P CLASS="indent2"><CITE>#define <B>CU_ADD_TEST</B>(suite, test) (CU_add_test(suite, #test, (CU_TestFunc)test))</CITE></P>
 <P CLASS="indent5">This macro automatically generates a unique test name
 based on the test function name, and adds it to the specified suite.  The return 
-value should be checked by the user to verify success.</P>
+item should be checked by the user to verify success.</P>
 <P CLASS="indent2" ID="regsuites">
 <CITE>CU_ErrorCode <B>CU_register_suites</B>(CU_SuiteInfo suite_info[])</CITE><BR />
 <CITE>CU_ErrorCode <B>CU_register_nsuites</B>(int suite_count, ...)</CITE>
@@ -273,7 +273,7 @@ to deactivate a test or suite and then specifically request that it be
 <P CLASS="indent2">Normally the attributes of suites and tests are set at creation time.  
 In some cases, a client may wish to manipulate these to modify the test structure 
 dynamically.  The following functions are provided for this purpose, and should
-be used instead of directly setting the value of the data structure members.  All
+be used instead of directly setting the item of the data structure members.  All
 return <CODE>CUE_SUCCESS</CODE> on success, and the indicated error code on failure.
 <A HREF="#lookup">Lookup functions</A> are provided to assist clients in locating
 specific tests and suites.

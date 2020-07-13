@@ -79,10 +79,10 @@ void hashMapInsert(HashMap *map, void *key, void *item, int sizeOfKey) {
     while (map->arr[index] != NULL) {
 
         if (sizeOfKey == map->arr[index]->sizeOfKey && memcmp(map->arr[index]->key, key, sizeOfKey) == 0) {
-            free(map->arr[index]->value);
+            free(map->arr[index]->item);
             free(map->arr[index]->key);
             map->arr[index]->key = key;
-            map->arr[index]->value = item;
+            map->arr[index]->item = item;
             return;
         }
 
@@ -92,7 +92,7 @@ void hashMapInsert(HashMap *map, void *key, void *item, int sizeOfKey) {
     Entry *newEntry = (Entry *) malloc(sizeof(Entry));
     newEntry->key = key;
     newEntry->sizeOfKey = sizeOfKey;
-    newEntry->value = item;
+    newEntry->item = item;
     map->arr[index] = newEntry;
     map->count++;
 
@@ -169,7 +169,7 @@ void *hashMapGet(HashMap *map, void *key, int sizeOfKey) {
 
         if (map->arr[index] != NULL) {
             if (sizeOfKey == map->arr[index]->sizeOfKey && memcmp(map->arr[index]->key, key, sizeOfKey) == 0)
-                return map->arr[index]->value;
+                return map->arr[index]->item;
 
         }
 
@@ -209,7 +209,7 @@ void hashMapDelete(HashMap *map, void *key, int sizeOfKey) {
 
         if (map->arr[index] != NULL) {
             if (sizeOfKey == map->arr[index]->sizeOfKey && memcmp(map->arr[index]->key, key, sizeOfKey) == 0) {
-                free(map->arr[index]->value);
+                free(map->arr[index]->item);
                 free(map->arr[index]->key);
                 free(map->arr[index]);
                 map->arr[index] = NULL;
@@ -246,7 +246,7 @@ void **hashMapToArray(HashMap *map) {
     for (int i = 0, index = 0; i < map->length; i++) {
         if (map->arr[i] != NULL) {
             arr[index] = (void *) malloc(sizeof(map->sizeOfType));
-            memcpy(arr[index], map->arr[i]->value, map->sizeOfType);
+            memcpy(arr[index], map->arr[i]->item, map->sizeOfType);
             index++;
         }
     }
@@ -275,9 +275,9 @@ Entry **hashMapToEntryArray(HashMap *map) {
             arr[index] = (Entry *) malloc(sizeof(Entry));
             arr[index]->sizeOfKey = map->arr[i]->sizeOfKey;
             arr[index]->key = (void *) malloc(map->arr[i]->sizeOfKey);
-            arr[index]->value = (void *) malloc(map->sizeOfType);
+            arr[index]->item = (void *) malloc(map->sizeOfType);
             memcpy(arr[index]->key, map->arr[i]->key, map->arr[i]->sizeOfKey);
-            memcpy(arr[index]->value, map->arr[i]->value, map->sizeOfType);
+            memcpy(arr[index]->item, map->arr[i]->item, map->sizeOfType);
             index++;
         }
     }
@@ -341,7 +341,7 @@ void clearHashMap(HashMap *map) {
 
     for (int i = 0; i < map->count; i++) {
         if (map->arr[i] != NULL) {
-            free(map->arr[i]->value);
+            free(map->arr[i]->item);
             free(map->arr[i]->key);
             free(map->arr[i]);
             map->arr[i] = NULL;

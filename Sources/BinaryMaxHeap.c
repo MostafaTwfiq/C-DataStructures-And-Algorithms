@@ -68,7 +68,7 @@ BinaryMaxHeap *MaxHeapInitialize( int32_t (*cmp)(const void*, const void*)) {
 
 /** Inserts at the bottom of the tree then moves the element up the tree by calling @link MaxHeapifyUP @endlink
  *  @param h  Reference to maximum heap pointer allocated on the heap.
- *  @param value value to insert in the tree.
+ *  @param value item to insert in the tree.
 **/
 void MaxHeapInsert(BinaryMaxHeap* h, void* value) {
     if(h->size == h->capacity){

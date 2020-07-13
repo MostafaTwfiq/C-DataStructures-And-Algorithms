@@ -50,7 +50,7 @@
 	<xsl:template match="CUNIT_RUN_SUITE_SUCCESS">
 		<tr bgcolor="#f0e0f0">
 			<td colspan="4">
-				Running Suite <xsl:value-of select="SUITE_NAME"/>
+				Running Suite <xsl:item-of select="SUITE_NAME"/>
 			</td>
 		</tr>
 		<xsl:apply-templates/>
@@ -86,7 +86,7 @@
 		<tr bgcolor="#e0f0d0">
 			<td> </td>
 			<td colspan="2">
-				Running test <xsl:value-of select="TEST_NAME"/>...
+				Running test <xsl:item-of select="TEST_NAME"/>...
 			</td>
 			<td bgcolor="#ff5050"> Failed </td>
 		</tr>
@@ -97,17 +97,17 @@
 					<tr>
 						<th width="15%"> File Name </th>
 						<td width="50%" bgcolor="#e0eee0">
-							<xsl:value-of select="FILE_NAME"/>
+							<xsl:item-of select="FILE_NAME"/>
 						</td>
 						<th width="20%"> Line Number </th>
 						<td width="10%" bgcolor="#e0eee0">
-							<xsl:value-of select="LINE_NUMBER"/>
+							<xsl:item-of select="LINE_NUMBER"/>
 						</td>
 					</tr>
 					<tr>
 						<th width="15%"> Condition </th>
 						<td colspan="3" width="85%" bgcolor="#e0eee0">
-							<xsl:value-of select="CONDITION"/>
+							<xsl:item-of select="CONDITION"/>
 						</td>
 					</tr>
 				</table>
@@ -118,10 +118,10 @@
 	<xsl:template match="CUNIT_RUN_SUITE_FAILURE">
 		<tr>
 			<td colspan="3" bgcolor="#f0b0f0">
-				Running Suite <xsl:value-of select="SUITE_NAME"/>...
+				Running Suite <xsl:item-of select="SUITE_NAME"/>...
 			</td>
 			<td bgcolor="#ff7070">
-				<xsl:value-of select="FAILURE_REASON"/>
+				<xsl:item-of select="FAILURE_REASON"/>
 			</td>
 		</tr>
 	</xsl:template>
@@ -129,10 +129,10 @@
 	<xsl:template match="CUNIT_RUN_GROUP_FAILURE">
 		<tr>
 			<td colspan="3" bgcolor="#f0b0f0">
-				Running Group <xsl:value-of select="GROUP_NAME"/>...
+				Running Group <xsl:item-of select="GROUP_NAME"/>...
 			</td>
 			<td bgcolor="#ff7070">
-				<xsl:value-of select="FAILURE_REASON"/>
+				<xsl:item-of select="FAILURE_REASON"/>
 			</td>
 		</tr>
 	</xsl:template>
@@ -153,12 +153,12 @@
 			</tr>
 			<xsl:for-each select="CUNIT_RUN_SUMMARY_RECORD">
 				<tr align="center" bgcolor="lightgreen">
-					<td> <xsl:value-of select="TYPE" /> </td>
-					<td> <xsl:value-of select="TOTAL" /> </td>
-					<td> <xsl:value-of select="RUN" /> </td>
-					<td> <xsl:value-of select="SUCCEEDED" /> </td>
-					<td> <xsl:value-of select="FAILED" /> </td>
-					<td> <xsl:value-of select="INACTIVE" /> </td>
+					<td> <xsl:item-of select="TYPE" /> </td>
+					<td> <xsl:item-of select="TOTAL" /> </td>
+					<td> <xsl:item-of select="RUN" /> </td>
+					<td> <xsl:item-of select="SUCCEEDED" /> </td>
+					<td> <xsl:item-of select="FAILED" /> </td>
+					<td> <xsl:item-of select="INACTIVE" /> </td>
 				</tr>
 			</xsl:for-each>
 		</table>

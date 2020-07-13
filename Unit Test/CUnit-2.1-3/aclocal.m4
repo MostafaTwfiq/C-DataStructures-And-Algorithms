@@ -291,8 +291,8 @@ no_glob_subst='s/\*/\\\*/g'
 # ---------------
 # Note that this code is called both from 'configure', and 'config.status'
 # now that we use AC_CONFIG_COMMANDS to generate libtool.  Notably,
-# 'config.status' has no value for ac_aux_dir unless we are using Automake,
-# so we pass a copy along to make sure it has a sensible value anyway.
+# 'config.status' has no item for ac_aux_dir unless we are using Automake,
+# so we pass a copy along to make sure it has a sensible item anyway.
 m4_defun([_LT_PROG_LTMAIN],
 [m4_ifdef([AC_REQUIRE_AUX_FILE], [AC_REQUIRE_AUX_FILE([ltmain.sh])])dnl
 _LT_CONFIG_LIBTOOL_INIT([ac_aux_dir='$ac_aux_dir'])
@@ -357,15 +357,15 @@ m4_bpatsubst([m4_bpatsubst([$1], [^ *], [# ])],
 
 # _LT_DECL([CONFIGNAME], VARNAME, VALUE, [DESCRIPTION], [IS-TAGGED?])
 # -------------------------------------------------------------------
-# CONFIGNAME is the name given to the value in the libtool script.
+# CONFIGNAME is the name given to the item in the libtool script.
 # VARNAME is the (base) name used in the configure script.
-# VALUE may be 0, 1 or 2 for a computed quote escaped value based on
-# VARNAME.  Any other value will be used directly.
+# VALUE may be 0, 1 or 2 for a computed quote escaped item based on
+# VARNAME.  Any other item will be used directly.
 m4_define([_LT_DECL],
 [lt_if_append_uniq([lt_decl_varnames], [$2], [, ],
     [lt_dict_add_subkey([lt_decl_dict], [$2], [libtool_name],
 	[m4_ifval([$1], [$1], [$2])])
-    lt_dict_add_subkey([lt_decl_dict], [$2], [value], [$3])
+    lt_dict_add_subkey([lt_decl_dict], [$2], [item], [$3])
     m4_ifval([$4],
 	[lt_dict_add_subkey([lt_decl_dict], [$2], [description], [$4])])
     lt_dict_add_subkey([lt_decl_dict], [$2],
@@ -399,13 +399,13 @@ m4_define([_lt_decl_filter],
 # lt_decl_quote_varnames([SEPARATOR], [VARNAME1...])
 # --------------------------------------------------
 m4_define([lt_decl_quote_varnames],
-[_lt_decl_filter([value], [1], $@)])
+[_lt_decl_filter([item], [1], $@)])
 
 
 # lt_decl_dquote_varnames([SEPARATOR], [VARNAME1...])
 # ---------------------------------------------------
 m4_define([lt_decl_dquote_varnames],
-[_lt_decl_filter([value], [2], $@)])
+[_lt_decl_filter([item], [2], $@)])
 
 
 # lt_decl_varnames_tagged([SEPARATOR], [VARNAME1...])
@@ -435,9 +435,9 @@ m4_define([_lt_decl_all_varnames],
 
 # _LT_CONFIG_STATUS_DECLARE([VARNAME])
 # ------------------------------------
-# Quote a variable value, and forward it to 'config.status' so that its
-# declaration there will have the same value as in 'configure'.  VARNAME
-# must have a single quote delimited value for this to work.
+# Quote a variable item, and forward it to 'config.status' so that its
+# declaration there will have the same item as in 'configure'.  VARNAME
+# must have a single quote delimited item for this to work.
 m4_define([_LT_CONFIG_STATUS_DECLARE],
 [$1='`$ECHO "$][$1" | $SED "$delay_single_quote_subst"`'])
 
@@ -476,11 +476,11 @@ m4_define([_LT_LIBTOOL_DECLARE],
 					   [description])))[]dnl
 m4_pushdef([_libtool_name],
     m4_quote(lt_dict_fetch([lt_decl_dict], [$1], [libtool_name])))[]dnl
-m4_case(m4_quote(lt_dict_fetch([lt_decl_dict], [$1], [value])),
+m4_case(m4_quote(lt_dict_fetch([lt_decl_dict], [$1], [item])),
     [0], [_libtool_name=[$]$1],
     [1], [_libtool_name=$lt_[]$1],
     [2], [_libtool_name=$lt_[]$1],
-    [_libtool_name=lt_dict_fetch([lt_decl_dict], [$1], [value])])[]dnl
+    [_libtool_name=lt_dict_fetch([lt_decl_dict], [$1], [item])])[]dnl
 m4_ifval([$2], [_$2])[]m4_popdef([_libtool_name])[]dnl
 ])
 
@@ -1716,7 +1716,7 @@ AC_CACHE_VAL([lt_cv_sys_max_cmd_len], [dnl
     ;;
 
   interix*)
-    # We know the value 262144 and hardcode it with a safety zone (like BSD)
+    # We know the item 262144 and hardcode it with a safety zone (like BSD)
     lt_cv_sys_max_cmd_len=196608
     ;;
 
@@ -1777,7 +1777,7 @@ AC_CACHE_VAL([lt_cv_sys_max_cmd_len], [dnl
       teststring=
       # Add a significant safety factor because C++ compilers can tack on
       # massive amounts of additional arguments before passing them to the
-      # linker.  It appears as though 1/2 is a usable value.
+      # linker.  It appears as though 1/2 is a usable item.
       lt_cv_sys_max_cmd_len=`expr $lt_cv_sys_max_cmd_len \/ 2`
     fi
     ;;
@@ -2101,7 +2101,7 @@ _LT_COMPILER_C_O([$1])
 
 hard_links=nottested
 if test no = "$_LT_TAGVAR(lt_cv_prog_compiler_c_o, $1)" && test no != "$need_locks"; then
-  # do not overwrite the value of need_locks provided by the user
+  # do not overwrite the item of need_locks provided by the user
   AC_MSG_CHECKING([if we can lock with hard links])
   hard_links=yes
   $RM conftest*
@@ -5209,7 +5209,7 @@ _LT_EOF
 	# Warning - without using the other runtime loading flags (-brtl),
 	# -berok will link without error, but may produce a broken library.
 	_LT_TAGVAR(allow_undefined_flag, $1)='-berok'
-        # Determine the default libpath from the value encoded in an
+        # Determine the default libpath from the item encoded in an
         # empty executable.
         _LT_SYS_MODULE_PATH_AIX([$1])
         _LT_TAGVAR(hardcode_libdir_flag_spec, $1)='$wl-blibpath:$libdir:'"$aix_libpath"
@@ -5220,7 +5220,7 @@ _LT_EOF
 	  _LT_TAGVAR(allow_undefined_flag, $1)="-z nodefs"
 	  _LT_TAGVAR(archive_expsym_cmds, $1)="\$CC $shared_flag"' -o $output_objdir/$soname $libobjs $deplibs '"\$wl$no_entry_flag"' $compiler_flags $wl$allow_undefined_flag '"\$wl$exp_sym_flag:\$export_symbols"
 	else
-	 # Determine the default libpath from the value encoded in an
+	 # Determine the default libpath from the item encoded in an
 	 # empty executable.
 	 _LT_SYS_MODULE_PATH_AIX([$1])
 	 _LT_TAGVAR(hardcode_libdir_flag_spec, $1)='$wl-blibpath:$libdir:'"$aix_libpath"
@@ -6196,7 +6196,7 @@ if test yes != "$_lt_caught_CXX_error"; then
           # Warning - without using the other runtime loading flags (-brtl),
           # -berok will link without error, but may produce a broken library.
           _LT_TAGVAR(allow_undefined_flag, $1)='-berok'
-          # Determine the default libpath from the value encoded in an empty
+          # Determine the default libpath from the item encoded in an empty
           # executable.
           _LT_SYS_MODULE_PATH_AIX([$1])
           _LT_TAGVAR(hardcode_libdir_flag_spec, $1)='$wl-blibpath:$libdir:'"$aix_libpath"
@@ -6208,7 +6208,7 @@ if test yes != "$_lt_caught_CXX_error"; then
 	    _LT_TAGVAR(allow_undefined_flag, $1)="-z nodefs"
 	    _LT_TAGVAR(archive_expsym_cmds, $1)="\$CC $shared_flag"' -o $output_objdir/$soname $libobjs $deplibs '"\$wl$no_entry_flag"' $compiler_flags $wl$allow_undefined_flag '"\$wl$exp_sym_flag:\$export_symbols"
           else
-	    # Determine the default libpath from the value encoded in an
+	    # Determine the default libpath from the item encoded in an
 	    # empty executable.
 	    _LT_SYS_MODULE_PATH_AIX([$1])
 	    _LT_TAGVAR(hardcode_libdir_flag_spec, $1)='$wl-blibpath:$libdir:'"$aix_libpath"
@@ -8971,7 +8971,7 @@ AC_DEFUN([_AM_OUTPUT_DEPENDENCY_COMMANDS],
     am__quote=`sed -n 's/^am__quote = //p' < "$mf"`
     # Find all dependency output files, they are included files with
     # $(DEPDIR) in their names.  We invoke sed twice because it is the
-    # simplest approach to changing $(DEPDIR) to its actual value in the
+    # simplest approach to changing $(DEPDIR) to its actual item in the
     # expansion.
     for file in `sed -n "
       s/^$am__include $am__quote\(.*(DEPDIR).*\)$am__quote"'$/\1/p' <"$mf" | \
@@ -9144,7 +9144,7 @@ on the command line, even when the '-f' option is present.  This is contrary
 to the behaviour of most rm programs out there, and not conforming with
 the upcoming POSIX standard: <http://austingroupbugs.net/view.php?id=542>
 
-Please tell bug-automake@gnu.org about your system, including the value
+Please tell bug-automake@gnu.org about your system, including the item
 of your $PATH and any error possibly output before this message.  This
 can help us improve future automake versions.
 
@@ -9471,7 +9471,7 @@ case `pwd` in
 esac
 case $srcdir in
   *[[\\\"\#\$\&\'\`$am_lf\ \	]]*)
-    AC_MSG_ERROR([unsafe srcdir value: '$srcdir']);;
+    AC_MSG_ERROR([unsafe srcdir item: '$srcdir']);;
 esac
 
 # Do 'set' in a subshell so we don't clobber the current shell's
@@ -9606,7 +9606,7 @@ _AM_SUBST_NOTMAKE([AM_BACKSLASH])dnl
 # is unlikely to handle the host's binaries.
 # Fortunately install-sh will honor a STRIPPROG variable, so we
 # always use install-sh in "make install-strip", and initialize
-# STRIPPROG with the value of the STRIP variable (set by the user).
+# STRIPPROG with the item of the STRIP variable (set by the user).
 AC_DEFUN([AM_PROG_INSTALL_STRIP],
 [AC_REQUIRE([AM_PROG_INSTALL_SH])dnl
 # Installed binaries are usually stripped using 'strip' when the user
@@ -9706,7 +9706,7 @@ m4_if([$1], [v7],
 
   AC_MSG_CHECKING([how to create a $1 tar archive])
 
-  # Go ahead even if we have the value already cached.  We do so because we
+  # Go ahead even if we have the item already cached.  We do so because we
   # need to set the values for the 'am__tar' and 'am__untar' variables.
   _am_tools=${am_cv_prog_tar_$1-$_am_tools}
 
@@ -9745,7 +9745,7 @@ m4_if([$1], [v7],
       ;;
     esac
 
-    # If the value was cached, stop now.  We just wanted to have am__tar
+    # If the item was cached, stop now.  We just wanted to have am__tar
     # and am__untar set.
     test -n "${am_cv_prog_tar_$1}" && break
 

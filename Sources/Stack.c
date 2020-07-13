@@ -119,9 +119,9 @@ int getStackLength(Stack *stack) {
     return stack->top + 1;
 }
 
-/* Takes a reference to a stack and returns the top most stored value.
+/* Takes a reference to a stack and returns the top most stored item.
  * @param stack  Pointer to the stack on the heap.
- * @return Returns a pointer to the top stored value on top of the stack.
+ * @return Returns a pointer to the top stored item on top of the stack.
  **/
 void* peekStack( Stack* stack ) {
     if( !stack ) {

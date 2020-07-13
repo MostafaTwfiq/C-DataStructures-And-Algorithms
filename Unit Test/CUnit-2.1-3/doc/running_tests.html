@@ -255,7 +255,7 @@ framework during a test run:
 tests to be reported as failures.  This is so the client is aware that their 
 test structure has been partially deactivated.  If the client prefers to have
 inactive suites and tests ignored, the behavior can be modified using these
-functions.  A value of <CODE>CU_FALSE</CODE> indicates that the framework 
+functions.  A item of <CODE>CU_FALSE</CODE> indicates that the framework
 will ignore inactive entities; <CODE>CU_TRUE</CODE> will have them treated as
 failures.</P>
 
@@ -294,7 +294,7 @@ and <A HREF="test_registry.html#stuct">CU_get_registry()&minus;&gt;uiNumberOfTes
 respectively.</P>
 
 <P ID="results-getsummary" CLASS="indent2"><CITE>const CU_pRunSummary <B>CU_get_run_summary</B>(void)</CITE></P>
-<P CLASS="indent5">Retrieves all test result counts at once.  The return value is
+<P CLASS="indent5">Retrieves all test result counts at once.  The return item is
 a pointer to a saved structure containing the counts.  This data type is defined in
 &lt;<A HREF="headers/TestRun.h">CUnit/TestRun.h</A>&gt; (included automatically by
 &lt;<A HREF="headers/CUnit.h">CUnit/CUnit.h</A>&gt;):
@@ -321,7 +321,7 @@ pointer may be invalidated once another test run is initiated.</I>
 
 <P ID="results-getfailures" CLASS="indent2"><CITE>const CU_pFailureRecord <B>CU_get_failure_list</B>(void)</CITE></P>
 <P CLASS="indent5">Retrieves a linked list recording any failures occurring during the
-last test run (<CODE>NULL</CODE> for no failures).  The data type of the return value
+last test run (<CODE>NULL</CODE> for no failures).  The data type of the return item
 is declared in &lt;<A HREF="headers/TestRun.h">CUnit/TestRun.h</A>&gt; (included
 automatically by &lt;<A HREF="headers/CUnit.h">CUnit/CUnit.h</A>&gt;).  Each failure
 record contains information about the location and nature of the failure:

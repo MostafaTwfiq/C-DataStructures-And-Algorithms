@@ -17,7 +17,7 @@
 #define ANSI_COLOR_WHITE    "\x1b[37m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
-#include "Headers/LinkedList.h"
+#include "Headers/DoublyLinkedList.h"
 
 void freeFuno(void *item) {
     free(item);
@@ -28,7 +28,47 @@ int comp(const void *p1, const void *p2) {
 }
 
 int main() {
+    DoublyLinkedList *linkedList = doublyLinkedListInitialization(freeFuno);
 
+    char *item;
+
+    item = malloc(sizeof(char ) * strlen("Mostafa") + 1);
+    strcpy(item, "Mostafa");
+    doublyLinkedListAddFirst(linkedList, item, strlen(item) + 1);
+
+    item = malloc(sizeof(char ) * strlen("Mohammed") + 1);
+    strcpy(item, "Mohammed");
+    doublyLinkedListAddFirst(linkedList, item, strlen(item) + 1);
+
+    item = malloc(sizeof(char ) * strlen("Tawfiq") + 1);
+    strcpy(item, "Tawfiq");
+    doublyLinkedListAddFirst(linkedList, item, strlen(item) + 1);
+
+
+    item = malloc(sizeof(char ) * strlen("Ibrahim") + 1);
+    strcpy(item, "Ibrahim");
+    doublyLinkedListAddLast(linkedList, item, strlen(item) + 1);
+
+    item = malloc(sizeof(char ) * strlen("Ali") + 1);
+    strcpy(item, "Ali");
+    doublyLinkedListAddLast(linkedList, item, strlen(item) + 1);
+
+
+    doublyLinkedListDeleteAtIndex(linkedList, 3);
+
+    item = malloc(sizeof(char ) * strlen("Ali") + 1);
+    strcpy(item, "Ali");
+    printf("%d\n\n\n", doublyLinkedListContains(linkedList, item, comp));
+
+
+    //linkedListClear(linkedList);
+    char **arr = (char **) doublyLinkedListToArray(linkedList);
+
+    for (int i = 0; i < doublyLinkedListGetLength(linkedList); i++)
+        printf("%s\n", arr[i]);
+
+
+    destroyDoublyLinkedList(linkedList);
 
     return 0;
 

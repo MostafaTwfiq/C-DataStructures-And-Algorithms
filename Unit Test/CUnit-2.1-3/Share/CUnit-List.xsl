@@ -32,10 +32,10 @@
 	<xsl:template match="CUNIT_LIST_TOTAL_SUMMARY_RECORD">
 		<tr>
 			<td bgcolor="#f0f0e0" width="70%">
-				<xsl:value-of select="CUNIT_LIST_TOTAL_SUMMARY_RECORD_TEXT" />
+				<xsl:item-of select="CUNIT_LIST_TOTAL_SUMMARY_RECORD_TEXT" />
 			</td>
 			<td bgcolor="#f0e0e0" align="center">
-				<xsl:value-of select="CUNIT_LIST_TOTAL_SUMMARY_RECORD_VALUE" />
+				<xsl:item-of select="CUNIT_LIST_TOTAL_SUMMARY_RECORD_VALUE" />
 			</td>
 		</tr>
 	</xsl:template>
@@ -70,12 +70,12 @@
 		</tr>
 		<tr>
 			<td bgcolor="#f0e0f0" align="left"> Suite </td>
-			<td bgcolor="#f0e0f0" align="left"> <b> <xsl:value-of select="SUITE_NAME" /> </b> </td>
+			<td bgcolor="#f0e0f0" align="left"> <b> <xsl:item-of select="SUITE_NAME" /> </b> </td>
 
-			<td bgcolor="#f0e0f0" align="center"> <xsl:value-of select="INITIALIZE_VALUE" /> </td>
-			<td bgcolor="#f0e0f0" align="center"> <xsl:value-of select="CLEANUP_VALUE" /> </td>
-			<td bgcolor="#f0e0f0" align="center"> <xsl:value-of select="TEST_COUNT_VALUE" /> </td>
-			<td bgcolor="#f0e0f0" align="center"> <xsl:value-of select="ACTIVE_VALUE" /> </td>
+			<td bgcolor="#f0e0f0" align="center"> <xsl:item-of select="INITIALIZE_VALUE" /> </td>
+			<td bgcolor="#f0e0f0" align="center"> <xsl:item-of select="CLEANUP_VALUE" /> </td>
+			<td bgcolor="#f0e0f0" align="center"> <xsl:item-of select="TEST_COUNT_VALUE" /> </td>
+			<td bgcolor="#f0e0f0" align="center"> <xsl:item-of select="ACTIVE_VALUE" /> </td>
 		</tr>
 		<tr bgcolor="#00ccff">
 			<td colspan="8"> </td>
@@ -90,10 +90,10 @@
 		<tr>
 			<td align="center" bgcolor="#e0f0d0"> Test </td>
 			<td align="left" colspan="4" bgcolor="#e0e0d0">
-				<xsl:value-of select="TEST_CASE_NAME" />
+				<xsl:item-of select="TEST_CASE_NAME" />
 			</td>
 			<td align="center" bgcolor="#e0e0d0">
-				<xsl:value-of select="TEST_ACTIVE_VALUE" />
+				<xsl:item-of select="TEST_ACTIVE_VALUE" />
 			</td>
 		</tr>
 	</xsl:template>
@@ -106,22 +106,22 @@
 		<tr>
 			<td width="10%" bgcolor="#f0e0f0"> Suite </td>
 			<td width="20%" bgcolor="#e0f0f0" >
-				<b> <xsl:value-of select="GROUP_NAME" /> </b>
+				<b> <xsl:item-of select="GROUP_NAME" /> </b>
 			</td>
 
 			<td width="15%" bgcolor="#f0e0f0"> Initialize Function? </td>
 			<td width="5%" bgcolor="#e0f0f0">
-				<xsl:value-of select="INITIALIZE_VALUE" />
+				<xsl:item-of select="INITIALIZE_VALUE" />
 			</td>
 
 			<td width="15%" bgcolor="#f0e0f0"> Cleanup Function? </td>
 			<td width="5%" bgcolor="#e0f0f0">
-				<xsl:value-of select="CLEANUP_VALUE" />
+				<xsl:item-of select="CLEANUP_VALUE" />
 			</td>
 
 			<td width="10%" bgcolor="#f0e0f0"> Test Count </td>
 			<td width="5%" bgcolor="#e0f0f0">
-				<xsl:value-of select="TEST_COUNT_VALUE" />
+				<xsl:item-of select="TEST_COUNT_VALUE" />
 			</td>
 		</tr>
 	</xsl:template>

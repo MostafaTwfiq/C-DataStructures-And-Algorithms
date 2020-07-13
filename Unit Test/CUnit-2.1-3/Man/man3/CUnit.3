@@ -142,19 +142,19 @@ Assert that expression is CU_TRUE (non-zero).
 .RE
 
 .P
-.B CU_ASSERT_TRUE(value)
+.B CU_ASSERT_TRUE(item)
 .br
-.B CU_ASSERT_TRUE_FATAL(value)
+.B CU_ASSERT_TRUE_FATAL(item)
 .RS 5
-Assert that value is CU_TRUE (non-zero).
+Assert that item is CU_TRUE (non-zero).
 .RE
 
 .P
-.B CU_ASSERT_FALSE(value)
+.B CU_ASSERT_FALSE(item)
 .br
-.B CU_ASSERT_FALSE_FATAL(value)
+.B CU_ASSERT_FALSE_FATAL(item)
 .RS 5
-Assert that value is CU_FALSE (zero).
+Assert that item is CU_FALSE (zero).
 .RE
 
 .P
@@ -190,19 +190,19 @@ Assert that pointers actual != expected.
 .RE
 
 .P
-.B CU_ASSERT_PTR_NULL(value)
+.B CU_ASSERT_PTR_NULL(item)
 .br
-.B CU_ASSERT_PTR_NULL_FATAL(value)
+.B CU_ASSERT_PTR_NULL_FATAL(item)
 .RS 5
-Assert that pointer value == NULL.
+Assert that pointer item == NULL.
 .RE
 
 .P
-.B CU_ASSERT_PTR_NOT_NULL(value)
+.B CU_ASSERT_PTR_NOT_NULL(item)
 .br
-.B CU_ASSERT_PTR_NOT_NULL_FATAL(value)
+.B CU_ASSERT_PTR_NOT_NULL_FATAL(item)
 .RS 5
-Assert that pointer value != NULL.
+Assert that pointer item != NULL.
 .RE
 
 .P
@@ -470,7 +470,7 @@ if the specified suite or test is NULL.
 Normally the attributes of suites and tests are set at creation time.  In some
 cases, a client may wish to manipulate these to modify the test structure  
 dynamically.  The following functions are provided for this purpose, and should
-be used instead of directly setting the value of the data structure members.  All
+be used instead of directly setting the item of the data structure members.  All
 return CUE_SUCCESS on success, and the indicated error code on failure.
 .P
 .TP5

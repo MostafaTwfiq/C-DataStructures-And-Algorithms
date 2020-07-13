@@ -23,7 +23,7 @@ typedef struct \mbox{\hyperlink{struct_key_holder}{Key\+Holder}} \mbox{\hyperlin
 \item 
 \mbox{\hyperlink{_c_make_cache_8txt_afe71f11dacb15682cdc012f7208e6e09}{char}} \mbox{\hyperlink{_trie_8c_ac4a7e9da207191c5aab0116fe4e29406}{to\+Lower\+Case}} (\mbox{\hyperlink{_c_make_cache_8txt_afe71f11dacb15682cdc012f7208e6e09}{char}} c)
 \item 
-\mbox{\hyperlink{struct_node}{Node}} $\ast$ \mbox{\hyperlink{_trie_8c_a5c796127653d1063fcd3313dc18d38e4}{create\+Node}} (\mbox{\hyperlink{_c_make_cache_8txt_afe71f11dacb15682cdc012f7208e6e09}{char}} value, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} E\+OW)
+\mbox{\hyperlink{struct_node}{Node}} $\ast$ \mbox{\hyperlink{_trie_8c_a5c796127653d1063fcd3313dc18d38e4}{create\+Node}} (\mbox{\hyperlink{_c_make_cache_8txt_afe71f11dacb15682cdc012f7208e6e09}{char}} item, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} E\+OW)
 \item 
 void \mbox{\hyperlink{_trie_8c_a213fb63564d51228a5380f1e68e32f81}{free\+Node}} (\mbox{\hyperlink{struct_node}{Node}} $\ast$node)
 \item 
@@ -100,11 +100,11 @@ This function is useful for the generate\+Indexes function, to sort the key\+Hol
 \index{Trie.c@{Trie.c}!createNode@{createNode}}
 \index{createNode@{createNode}!Trie.c@{Trie.c}}
 \doxysubsubsection{\texorpdfstring{createNode()}{createNode()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{struct_node}{Node}} $\ast$ create\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_c_make_cache_8txt_afe71f11dacb15682cdc012f7208e6e09}{char}}}]{value,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{E\+OW }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_node}{Node}} $\ast$ create\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_c_make_cache_8txt_afe71f11dacb15682cdc012f7208e6e09}{char}}}]{item,  }\item[{\mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{E\+OW }\end{DoxyParamCaption})}
 
 This function will take a character, and an end of word boolean as a parameters, then it will return a new node address that has been initialized with the passed values. Note\+: this function should be only called from the inside of the trie. 
 \begin{DoxyParams}{Parameters}
-{\em value} & \\
+{\em item} & \\
 \hline
 {\em E\+OW} & \\
 \hline

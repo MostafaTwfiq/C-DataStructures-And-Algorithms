@@ -98,7 +98,7 @@ Functions</h2></td></tr>
 <tr class="separator:a546b63813f17ed0940637c762129b969"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad6520be560cc8613438499bcfe714eb8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_binary_max_heap.html">BinaryMaxHeap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_binary_max_heap_8c.html#ad6520be560cc8613438499bcfe714eb8">MaxHeapInitialize</a> (int32_t(*cmp)(const void *, const void *))</td></tr>
 <tr class="separator:ad6520be560cc8613438499bcfe714eb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a98db9f37a5fb6716f08d19fa743251b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_binary_max_heap_8c.html#a98db9f37a5fb6716f08d19fa743251b2">MaxHeapInsert</a> (<a class="el" href="struct_binary_max_heap.html">BinaryMaxHeap</a> *h, void *value)</td></tr>
+<tr class="memitem:a98db9f37a5fb6716f08d19fa743251b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_binary_max_heap_8c.html#a98db9f37a5fb6716f08d19fa743251b2">MaxHeapInsert</a> (<a class="el" href="struct_binary_max_heap.html">BinaryMaxHeap</a> *h, void *item)</td></tr>
 <tr class="separator:a98db9f37a5fb6716f08d19fa743251b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7435e4bdaa80aec6c780754eeac1dc67"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_binary_max_heap_8c.html#a7435e4bdaa80aec6c780754eeac1dc67">MaxHeapDelete</a> (<a class="el" href="struct_binary_max_heap.html">BinaryMaxHeap</a> *heap, void **res)</td></tr>
 <tr class="separator:a7435e4bdaa80aec6c780754eeac1dc67"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -393,7 +393,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>value</em>&#160;</td>
+          <td class="paramname"><em>item</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -405,7 +405,7 @@ Functions</h2></td></tr>
 <p>Inserts at the bottom of the tree then moves the element up the tree by calling <a class="el" href="_binary_max_heap_8c.html#a366dddec8f8a4afd373183d1bee32799">MaxHeapifyUP</a> </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">h</td><td>Reference to maximum heap pointer allocated on the heap. </td></tr>
-    <tr><td class="paramname">value</td><td>value to insert in the tree. </td></tr>
+    <tr><td class="paramname">item</td><td>item to insert in the tree. </td></tr>
   </table>
   </dd>
 </dl>

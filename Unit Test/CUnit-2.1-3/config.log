@@ -87,7 +87,7 @@ Target: x86_64-apple-darwin13.1.0
 Thread model: posix
 configure:3382: $? = 0
 configure:3371: gcc -V >&5
-clang: error: argument to '-V' is missing (expected 1 value)
+clang: error: argument to '-V' is missing (expected 1 item)
 clang: error: no input files
 configure:3382: $? = 1
 configure:3371: gcc -qversion >&5

@@ -10,13 +10,13 @@ typedef struct DLinkedListStack {
 } DLinkedListStack;
 
 
-DLinkedListStack *dlStackInitialization(int sizeOfType);
+DLinkedListStack *dlStackInitialization(void (*freeFun)(void *item));
 
 
-void dlStackPush(DLinkedListStack *stack, void *item);
+void dlStackPush(DLinkedListStack *stack, void *item, int sizeOfItem);
 
 
-void dlStackAddAll(DLinkedListStack *stack, void **arr, int arrLength);
+void dlStackAddAll(DLinkedListStack *stack, void **arr, int arrLength, int sizeOfItem);
 
 
 void *dlStackPop(DLinkedListStack *stack);

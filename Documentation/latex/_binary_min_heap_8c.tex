@@ -10,7 +10,7 @@ void \mbox{\hyperlink{_binary_min_heap_8c_a0b3d0b14e7e37104dc3153b2a8bc1718}{Min
 \item 
 void \mbox{\hyperlink{_binary_min_heap_8c_a7d638af4c1837fdd141e8dfcd6d7a107}{Min\+Heapify\+UP}} (\mbox{\hyperlink{struct_binary_min_heap}{Binary\+Min\+Heap}} $\ast$p\+Min\+Heap, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} index)
 \item 
-void \mbox{\hyperlink{_binary_min_heap_8c_a36d7b6f819ebc9a51f6eee1d6adafa53}{Min\+Heap\+Insert}} (\mbox{\hyperlink{struct_binary_min_heap}{Binary\+Min\+Heap}} $\ast$p\+Min\+Heap, void $\ast$value)
+void \mbox{\hyperlink{_binary_min_heap_8c_a36d7b6f819ebc9a51f6eee1d6adafa53}{Min\+Heap\+Insert}} (\mbox{\hyperlink{struct_binary_min_heap}{Binary\+Min\+Heap}} $\ast$p\+Min\+Heap, void $\ast$item)
 \item 
 void \mbox{\hyperlink{_binary_min_heap_8c_ae829b18e5749ba3a9a3497fb6aa175cb}{Min\+Heapify\+Down}} (\mbox{\hyperlink{struct_binary_min_heap}{Binary\+Min\+Heap}} $\ast$p\+Min\+Heap, \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} index)
 \item 
@@ -139,13 +139,13 @@ Returns pointer to the allocated minimum heap on the heap.
 \index{BinaryMinHeap.c@{BinaryMinHeap.c}!MinHeapInsert@{MinHeapInsert}}
 \index{MinHeapInsert@{MinHeapInsert}!BinaryMinHeap.c@{BinaryMinHeap.c}}
 \doxysubsubsection{\texorpdfstring{MinHeapInsert()}{MinHeapInsert()}}
-{\footnotesize\ttfamily void Min\+Heap\+Insert (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_min_heap}{Binary\+Min\+Heap}} $\ast$}]{p\+Min\+Heap,  }\item[{void $\ast$}]{value }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Min\+Heap\+Insert (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_binary_min_heap}{Binary\+Min\+Heap}} $\ast$}]{p\+Min\+Heap,  }\item[{void $\ast$}]{item }\end{DoxyParamCaption})}
 
 Inserts at the bottom of the tree then moves the element up the tree by calling \mbox{\hyperlink{_binary_min_heap_8c_a7d638af4c1837fdd141e8dfcd6d7a107}{Min\+Heapify\+UP}} 
 \begin{DoxyParams}{Parameters}
 {\em p\+Min\+Heap} & Reference to minimum heap pointer allocated on the heap. \\
 \hline
-{\em value} & value to insert in the tree. \\
+{\em item} & item to insert in the tree. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{_binary_min_heap_8c_acdd847c3c0a8bc27addf1cc74034572f}\label{_binary_min_heap_8c_acdd847c3c0a8bc27addf1cc74034572f}} 
