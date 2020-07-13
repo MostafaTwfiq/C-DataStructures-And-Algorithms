@@ -7,26 +7,25 @@
 #include <string.h>
 
 
-
 typedef struct PriorityQueue {
-    void **arr;
+    struct PQueueItem **arr;
     int length;
     int count;
     int fPointer;
-    int sizeOfType;
-    int (*comp)(const void *, const void *);
+    void (*freeItem)(void *item);
+    int (*comp)(const void *, int, const void *, int);
 } PriorityQueue;
 
 
 
 
-PriorityQueue *priorityQueueInitialization(int sizeOfType, int (*comp)(const void *, const void *));
+PriorityQueue *priorityQueueInitialization(void (*freeItem)(void *item), int (*comp)(const void *, int, const void *, int));
 
 
-void pQueueEnqueue(PriorityQueue *queue, void *item);
+void pQueueEnqueue(PriorityQueue *queue, void *item, int sizeOfItem);
 
 
-void pQueueEnqueueAll(PriorityQueue *queue, void **items, int arrLength);
+void pQueueEnqueueAll(PriorityQueue *queue, void **items, int arrLength, int sizeOfItem);
 
 
 void *pQueueDequeue(PriorityQueue *queue);

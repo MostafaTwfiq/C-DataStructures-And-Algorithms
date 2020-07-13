@@ -63,6 +63,8 @@ void ArrayQueueEnqueue(ArrayQueue* arrayQueue, void *data, int dataSize) {
         memcpy(tempArr, arrayQueue->memory + arrayQueue->front, sizeof(ArrayQueueItem *) * (arrayQueue->rear - arrayQueue->front) );
         free(arrayQueue->memory);
         arrayQueue->memory = tempArr;
+        arrayQueue->rear -= arrayQueue->front;
+        arrayQueue->front = 0;
     }
 
     if ( !arrayQueue->memory ) {

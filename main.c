@@ -18,7 +18,7 @@
 #define ANSI_COLOR_WHITE    "\x1b[37m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
-#include "Headers/StackQueue.h"
+#include "Headers/PriorityQueue.h"
 
 void freeItem(void *item) {
     free(item);
@@ -30,27 +30,35 @@ int comp(const void *p1, int s1, const void *p2, int s2) {
 
 
 int main() {
-    SQueue *queue = stackQueueInitialization(freeItem);
 
+    PriorityQueue *queue = priorityQueueInitialization(freeItem, comp);
 
-    int **tempArr;
-    tempArr = (int **) malloc(sizeof(int *) * 100);
     int *item;
 
-    for (int i = 0; i < 100; i++) {
-        item = (int *) malloc(sizeof(int));
-        *item = i;
-        tempArr[i] = item;
-    }
+    item = (int *) malloc(sizeof(int));
+    *item = 20;
+    pQueueEnqueue(queue, item, sizeof(int));
 
-    sQueueAddAll(queue, (void **) tempArr, 100, sizeof(int));
+    item = (int *) malloc(sizeof(int));
+    *item = 10;
+    pQueueEnqueue(queue, item, sizeof(int));
 
-    while (!sQueueIsEmpty(queue)) {
-        printf("%d\n", *(int *)sQueueDequeue(queue));
-    }
+    item = (int *) malloc(sizeof(int));
+    *item = 55;
+    pQueueEnqueue(queue, item, sizeof(int));
+
+    item = (int *) malloc(sizeof(int));
+    *item = 23;
+    pQueueEnqueue(queue, item, sizeof(int));
 
 
-    destroySQueue(queue);
+
+    int **arr = (int **) pQueueToArray(queue);
+
+    for (int i = 0; i < pQueueGetLength(queue); i++)
+        printf("%d\n", *arr[i]);
+
+    destroyPQueue(queue);
 
     return 0;
 
