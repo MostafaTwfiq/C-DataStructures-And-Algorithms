@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 
 #define ANSI_COLOR_RED     "\x1b[31m"
@@ -17,58 +18,161 @@
 #define ANSI_COLOR_WHITE    "\x1b[37m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
-#include "Headers/DoublyLinkedList.h"
+#include "Headers/HashMap.h"
 
-void freeFuno(void *item) {
+void freeItem(void *item) {
     free(item);
 }
 
-int comp(const void *p1, const void *p2) {
-    return strcmp((char *)p1, (char *)p2);
+void freeKey(void *key) {
+    free(key);
 }
 
+/*int comp(const void *p1, const void *p2) {
+    return strcmp((char *)p1, (char *)p2);
+}*/
+
 int main() {
-    DoublyLinkedList *linkedList = doublyLinkedListInitialization(freeFuno);
+    HashMap *hashMap = hashMapInitialization(freeItem, freeKey);
 
-    char *item;
+    char *key;
+    int *item;
 
-    item = malloc(sizeof(char ) * strlen("Mostafa") + 1);
-    strcpy(item, "Mostafa");
-    doublyLinkedListAddFirst(linkedList, item, strlen(item) + 1);
+    printf("Array length: %d , BPrime: %d\n", hashMap->length, hashMap->bPrime);
+    for (int i = 0; i < hashMap->length; i++)
+        printf("%p   ----> index: %d\n", hashMap->arr[i], i);
+    printf("------------------------------------\n");
 
-    item = malloc(sizeof(char ) * strlen("Mohammed") + 1);
-    strcpy(item, "Mohammed");
-    doublyLinkedListAddFirst(linkedList, item, strlen(item) + 1);
+    key = (char *) malloc(sizeof(char ) * (strlen("One") + 1) );
+    strcpy(key, "One");
+    item = (int *) malloc(sizeof(int));
+    *item = 1;
+    hashMapInsert(hashMap, key, strlen(key) + 1, item, sizeof(int));
 
-    item = malloc(sizeof(char ) * strlen("Tawfiq") + 1);
-    strcpy(item, "Tawfiq");
-    doublyLinkedListAddFirst(linkedList, item, strlen(item) + 1);
+    printf("Array length: %d , BPrime: %d\n", hashMap->length, hashMap->bPrime);
+    for (int i = 0; i < hashMap->length; i++)
+        printf("%p   ----> index: %d\n", hashMap->arr[i], i);
+    printf("------------------------------------\n");
+
+    key = (char *) malloc(sizeof(char ) * (strlen("Two") + 1) );
+    strcpy(key, "Two");
+    item = (int *) malloc(sizeof(int));
+    *item = 2;
+    hashMapInsert(hashMap, key, strlen(key) + 1, item, sizeof(int));
+
+    printf("Array length: %d , BPrime: %d\n", hashMap->length, hashMap->bPrime);
+    for (int i = 0; i < hashMap->length; i++)
+        printf("%p   ----> index: %d\n", hashMap->arr[i], i);
+    printf("------------------------------------\n");
+
+    key = (char *) malloc(sizeof(char ) * (strlen("Three") + 1) );
+    strcpy(key, "Three");
+    item = (int *) malloc(sizeof(int));
+    *item = 3;
+    hashMapInsert(hashMap, key, strlen(key) + 1, item, sizeof(int));
+
+    printf("Array length: %d , BPrime: %d\n", hashMap->length, hashMap->bPrime);
+    for (int i = 0; i < hashMap->length; i++)
+        printf("%p   ----> index: %d\n", hashMap->arr[i], i);
+    printf("------------------------------------\n");
+
+    key = (char *) malloc(sizeof(char ) * (strlen("Four") + 1) );
+    strcpy(key, "Four");
+    item = (int *) malloc(sizeof(int));
+    *item = 4;
+    hashMapInsert(hashMap, key, strlen(key) + 1, item, sizeof(int));
+
+    printf("Array length: %d , BPrime: %d\n", hashMap->length, hashMap->bPrime);
+    for (int i = 0; i < hashMap->length; i++)
+        printf("%p   ----> index: %d\n", hashMap->arr[i], i);
+    printf("------------------------------------\n");
+
+    key = (char *) malloc(sizeof(char ) * (strlen("Five") + 1) );
+    strcpy(key, "Five");
+    item = (int *) malloc(sizeof(int));
+    *item = 5;
+    hashMapInsert(hashMap, key, strlen(key) + 1, item, sizeof(int));
+
+    printf("Array length: %d , BPrime: %d\n", hashMap->length, hashMap->bPrime);
+    for (int i = 0; i < hashMap->length; i++)
+        printf("%p   ----> index: %d\n", hashMap->arr[i], i);
+    printf("------------------------------------\n");
 
 
-    item = malloc(sizeof(char ) * strlen("Ibrahim") + 1);
-    strcpy(item, "Ibrahim");
-    doublyLinkedListAddLast(linkedList, item, strlen(item) + 1);
-
-    item = malloc(sizeof(char ) * strlen("Ali") + 1);
-    strcpy(item, "Ali");
-    doublyLinkedListAddLast(linkedList, item, strlen(item) + 1);
-
-
-    doublyLinkedListDeleteAtIndex(linkedList, 3);
-
-    item = malloc(sizeof(char ) * strlen("Ali") + 1);
-    strcpy(item, "Ali");
-    printf("%d\n\n\n", doublyLinkedListContains(linkedList, item, comp));
+    hashMapDelete(hashMap, "Five", 5);
+    printf("Array length: %d , BPrime: %d\n", hashMap->length, hashMap->bPrime);
+    for (int i = 0; i < hashMap->length; i++)
+        printf("%p   ----> index: %d\n", hashMap->arr[i], i);
+    printf("Contains five: %d\n", hashMapContains(hashMap, "Five", 5));
+    printf("Contains four: %d\n", hashMapContains(hashMap, "Four", 5));
+    printf("------------------------------------\n");
 
 
-    //linkedListClear(linkedList);
-    char **arr = (char **) doublyLinkedListToArray(linkedList);
+    key = (char *) malloc(sizeof(char ) * (strlen("Six") + 1) );
+    strcpy(key, "Six");
+    item = (int *) malloc(sizeof(int));
+    *item = 6;
+    hashMapInsert(hashMap, key, strlen(key) + 1, item, sizeof(int));
 
-    for (int i = 0; i < doublyLinkedListGetLength(linkedList); i++)
-        printf("%s\n", arr[i]);
+    printf("Array length: %d , BPrime: %d\n", hashMap->length, hashMap->bPrime);
+    for (int i = 0; i < hashMap->length; i++)
+        printf("%p   ----> index: %d\n", hashMap->arr[i], i);
+    printf("------------------------------------\n");
+
+    key = (char *) malloc(sizeof(char ) * (strlen("Seven") + 1) );
+    strcpy(key, "Seven");
+    item = (int *) malloc(sizeof(int));
+    *item = 7;
+    hashMapInsert(hashMap, key, strlen(key) + 1, item, sizeof(int));
+
+    printf("Array length: %d , BPrime: %d\n", hashMap->length, hashMap->bPrime);
+    for (int i = 0; i < hashMap->length; i++)
+        printf("%p   ----> index: %d\n", hashMap->arr[i], i);
+    printf("------------------------------------\n");
+
+    key = (char *) malloc(sizeof(char ) * (strlen("Eight") + 1) );
+    strcpy(key, "Eight");
+    item = (int *) malloc(sizeof(int));
+    *item = 8;
+    hashMapInsert(hashMap, key, strlen(key) + 1, item, sizeof(int));
+
+    printf("Array length: %d , BPrime: %d\n", hashMap->length, hashMap->bPrime);
+    for (int i = 0; i < hashMap->length; i++)
+        printf("%p   ----> index: %d\n", hashMap->arr[i], i);
+    printf("------------------------------------\n");
+
+    key = (char *) malloc(sizeof(char ) * (strlen("Nine") + 1) );
+    strcpy(key, "Nine");
+    item = (int *) malloc(sizeof(int));
+    *item = 9;
+    hashMapInsert(hashMap, key, strlen(key) + 1, item, sizeof(int));
+
+    printf("Array length: %d , BPrime: %d\n", hashMap->length, hashMap->bPrime);
+    for (int i = 0; i < hashMap->length; i++)
+        printf("%p   ----> index: %d\n", hashMap->arr[i], i);
+    printf("------------------------------------\n");
+
+    key = (char *) malloc(sizeof(char ) * (strlen("Ten") + 1) );
+    strcpy(key, "Ten");
+    item = (int *) malloc(sizeof(int));
+    *item = 10;
+    hashMapInsert(hashMap, key, strlen(key) + 1, item, sizeof(int));
 
 
-    destroyDoublyLinkedList(linkedList);
+    printf("Array length: %d , BPrime: %d\n", hashMap->length, hashMap->bPrime);
+    for (int i = 0; i < hashMap->length; i++)
+        printf("%p   ----> index: %d\n", hashMap->arr[i], i);
+    printf("------------------------------------\n");
+
+
+    clearHashMap(hashMap);
+    Entry **arr = (Entry **) hashMapToEntryArray(hashMap);
+
+    for (int i = 0; i < hashMapGetLength(hashMap); i++)
+        printf("I: %d -- Key: %s -- Value: %d\n", i, arr[i]->key, *((int *)arr[i]->item->value));
+
+
+    destroyHashMap(hashMap);
 
     return 0;
 

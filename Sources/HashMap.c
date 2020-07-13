@@ -6,6 +6,18 @@
 
 
 
+void (*freeItemFun)(void *item);
+void (*freeKeyFun)(void *key);
+void freeEntry(void *entry) {
+    Entry *entryToFree = (Entry *) entry;
+    freeItemFun(entryToFree->item->value);
+    free(entryToFree->item);
+    freeKeyFun(entryToFree->key);
+    free(entryToFree);
+
+}
+
+
 unsigned int fHashCal(unsigned int address, unsigned int sizeOfKey, unsigned int length);
 
 
@@ -26,21 +38,23 @@ int getNextPrime(int num);
 
 
 
-/** This function will take the size of the stored data type in the map as a parameter,
+/** This function will take the freeing item function address, and the freeing key function address as a parameters,
    then it will initialize a new hash map,
    then the function will return the address of the hash map.
- * @param sizeOfType
- * @return
+ * @param freeItem the freeing item function address that will be called to free the hash map items
+ * @param freeKey the freeing key function address that will be called to free the items keys
+ * @return it will return the new initialized hash map address
  */
 
-HashMap *hashMapInitialization(int sizeOfType) {
+HashMap *hashMapInitialization(void (*freeItem)(void *item), void (*freeKey)(void *key)) {
     HashMap *map = (HashMap *) malloc(sizeof(HashMap));
 
-    map->length = getNextPrime(10); //the length of the map array should always be a prime number.
+    map->length = getNextPrime(5); //the length of the map array should always be a prime number.
     map->arr = (Entry **) calloc(sizeof(Entry *), map->length);
     map->count = 0;
-    map->sizeOfType = sizeOfType;
     map->bPrime = calBPrime(map->length);
+    freeItemFun = freeItem;
+    freeKeyFun = freeKey;
 
     return map;
 
@@ -50,16 +64,17 @@ HashMap *hashMapInitialization(int sizeOfType) {
 
 
 
-/** This function will take the map address, the key address, the item address, and the size of the key in bytes,
+/** This function will take the map address, the key address, the size of the key in bytes, the item address, and the item size ,
     as a parameters, then it will insert the item in the map.
  * Note: if the key is already in the map then the map will override the data and free the old item and it's key.
- * @param map
- * @param key
- * @param item
- * @param sizeOfKey
+ * @param map the hash map address
+ * @param key the key address
+ * @param sizeOfKey the size of the key in bytes
+ * @param item the item address
+ * @param sizeOfItem the new item size in bytes
  */
 
-void hashMapInsert(HashMap *map, void *key, void *item, int sizeOfKey) {
+void hashMapInsert(HashMap *map, void *key, int sizeOfKey, void *item, int sizeOfItem) {
     if (map == NULL) {
         fprintf(stderr, "Illegal argument, the hash map is null.");
         exit(-3);
@@ -70,29 +85,43 @@ void hashMapInsert(HashMap *map, void *key, void *item, int sizeOfKey) {
 
     if (map->count == map->length) {
         map->length = getNextPrime(map->length * 2); //the length of the map array should always be a prime number.
-        map->arr = (Entry **) calloc(sizeof(Entry *), map->length);
+        map->arr = (Entry **) realloc(map->arr, sizeof(Entry *) * map->length);
+
+        for (int i = map->count; i < map->length; i++)
+            map->arr[i] = NULL;
+
         map->bPrime = calBPrime(map->length);
     }
 
-    unsigned int fHash, sHash = sHashCal( (unsigned int) key, sizeOfKey, map->bPrime);
-    unsigned int index = fHash = fHashCal( (unsigned int) key, sizeOfKey, map->length);
+    unsigned int
+            fHash = fHashCal( (unsigned int) key, sizeOfKey, map->length)
+            , sHash = sHashCal( (unsigned int) key, sizeOfKey, map->bPrime);
+
+    unsigned int pHashIndex = 1;
+    unsigned int index = calIndex(fHash, sHash, pHashIndex, map->length);
+
     while (map->arr[index] != NULL) {
 
         if (sizeOfKey == map->arr[index]->sizeOfKey && memcmp(map->arr[index]->key, key, sizeOfKey) == 0) {
-            free(map->arr[index]->item);
-            free(map->arr[index]->key);
+            freeItemFun(map->arr[index]->item->value);
+            freeKeyFun(map->arr[index]->key);
             map->arr[index]->key = key;
-            map->arr[index]->item = item;
+            map->arr[index]->item->value = item;
+            map->arr[index]->item->sizeOfItem = sizeOfItem;
             return;
         }
 
-        index = calIndex(fHash, sHash, index + 1, map->length);
+        pHashIndex++;
+        index = calIndex(fHash, sHash, pHashIndex, map->length);
+
     }
 
     Entry *newEntry = (Entry *) malloc(sizeof(Entry));
     newEntry->key = key;
     newEntry->sizeOfKey = sizeOfKey;
-    newEntry->item = item;
+    newEntry->item = (HashMapItem *) malloc(sizeof(HashMapItem));
+    newEntry->item->value = item;
+    newEntry->item->sizeOfItem = sizeOfItem;
     map->arr[index] = newEntry;
     map->count++;
 
@@ -106,10 +135,10 @@ void hashMapInsert(HashMap *map, void *key, void *item, int sizeOfKey) {
 /** This function will take the map address, the key address, and the key size as a parameters,
     then it will return (1) if the key is in the map,
     other wise it will return zero (0).
- * @param map
- * @param key
- * @param sizeOfKey
- * @return
+ * @param map the hash map address
+ * @param key the key address
+ * @param sizeOfKey the size of the key in bytes
+ * @return it will return one if the provided key is in the hash map, other wise it will return zero
  */
 
 int hashMapContains(HashMap *map, void *key, int sizeOfKey) {
@@ -121,9 +150,14 @@ int hashMapContains(HashMap *map, void *key, int sizeOfKey) {
         exit(-3);
     }
 
-    unsigned int fHash, sHash = sHashCal( (unsigned int) key, sizeOfKey, map->bPrime);
-    unsigned int index = fHash = fHashCal( (unsigned int) key, sizeOfKey, map->length);
+    unsigned int
+            fHash = fHashCal( (unsigned int) key, sizeOfKey, map->length)
+    , sHash = sHashCal( (unsigned int) key, sizeOfKey, map->bPrime);
+
+    unsigned int pHashIndex = 1;
+    unsigned int index = calIndex(fHash, sHash, pHashIndex, map->length);
     unsigned int firstIndex = index;
+
     do {
 
         if (map->arr[index] != NULL) {
@@ -132,7 +166,8 @@ int hashMapContains(HashMap *map, void *key, int sizeOfKey) {
 
         }
 
-        index = calIndex(fHash, sHash, index + 1, map->length);
+        pHashIndex++;
+        index = calIndex(fHash, sHash, pHashIndex, map->length);
 
     } while (firstIndex != index);
 
@@ -147,10 +182,10 @@ int hashMapContains(HashMap *map, void *key, int sizeOfKey) {
 /** This function will take the map address, the key address, and the key size as a parameter,
     then it will return the item address if the key existed,
     other wise it will return NULL.
- * @param map
- * @param key
- * @param sizeOfKey
- * @return
+ * @param map the hash map address
+ * @param key the key address
+ * @param sizeOfKey the size of the key in bytes
+ * @return it will return the item with the provided key if found other wise it will return NULL
  */
 
 void *hashMapGet(HashMap *map, void *key, int sizeOfKey) {
@@ -162,18 +197,24 @@ void *hashMapGet(HashMap *map, void *key, int sizeOfKey) {
         exit(-3);
     }
 
-    unsigned int fHash, sHash = sHashCal( (unsigned int) key, sizeOfKey, map->bPrime);
-    unsigned int index = fHash = fHashCal( (unsigned int) key, sizeOfKey, map->length);
+    unsigned int
+            fHash = fHashCal( (unsigned int) key, sizeOfKey, map->length)
+    , sHash = sHashCal( (unsigned int) key, sizeOfKey, map->bPrime);
+
+    unsigned int pHashIndex = 1;
+    unsigned int index = calIndex(fHash, sHash, pHashIndex, map->length);
     unsigned int firstIndex = index;
+
     do {
 
         if (map->arr[index] != NULL) {
             if (sizeOfKey == map->arr[index]->sizeOfKey && memcmp(map->arr[index]->key, key, sizeOfKey) == 0)
-                return map->arr[index]->item;
+                return map->arr[index]->item->value;
 
         }
 
-        index = calIndex(fHash, sHash, index + 1, map->length);
+        pHashIndex++;
+        index = calIndex(fHash, sHash, pHashIndex, map->length);
 
     } while (firstIndex != index);
 
@@ -188,9 +229,9 @@ void *hashMapGet(HashMap *map, void *key, int sizeOfKey) {
 
 /** This function will take the map address, the key address, and the size of the key as a parameters,
     then it will delete and free the key and the item that linked to the key.
- * @param map
- * @param key
- * @param sizeOfKey
+ * @param map the hash map address
+ * @param key the key address
+ * @param sizeOfKey the size of the key in bytes
  */
 
 void hashMapDelete(HashMap *map, void *key, int sizeOfKey) {
@@ -202,16 +243,19 @@ void hashMapDelete(HashMap *map, void *key, int sizeOfKey) {
         exit(-3);
     }
 
-    unsigned int fHash, sHash = sHashCal( (unsigned int) key, sizeOfKey, map->bPrime);
-    unsigned int index = fHash = fHashCal( (unsigned int) key, sizeOfKey, map->length);
+    unsigned int
+            fHash = fHashCal( (unsigned int) key, sizeOfKey, map->length)
+    , sHash = sHashCal( (unsigned int) key, sizeOfKey, map->bPrime);
+
+    unsigned int pHashIndex = 1;
+    unsigned int index = calIndex(fHash, sHash, pHashIndex, map->length);
     unsigned int firstIndex = index;
+
     do {
 
         if (map->arr[index] != NULL) {
             if (sizeOfKey == map->arr[index]->sizeOfKey && memcmp(map->arr[index]->key, key, sizeOfKey) == 0) {
-                free(map->arr[index]->item);
-                free(map->arr[index]->key);
-                free(map->arr[index]);
+                freeEntry(map->arr[index]);
                 map->arr[index] = NULL;
                 map->count--;
                 return;
@@ -219,7 +263,8 @@ void hashMapDelete(HashMap *map, void *key, int sizeOfKey) {
 
         }
 
-        index = calIndex(fHash, sHash, index + 1, map->length);
+        pHashIndex++;
+        index = calIndex(fHash, sHash, pHashIndex, map->length);
 
     } while (firstIndex != index);
 
@@ -232,8 +277,8 @@ void hashMapDelete(HashMap *map, void *key, int sizeOfKey) {
 
 /** This function will take the map address as a parameter,
     then it will return double void pointer that has a copy of all the items in the map.
- * @param map
- * @return
+ * @param map the hash map address
+ * @return it will return a double void array that contains a copy of the hash map items
  */
 
 void **hashMapToArray(HashMap *map) {
@@ -245,8 +290,8 @@ void **hashMapToArray(HashMap *map) {
     void **arr = (void *) malloc(sizeof(void *) * map->count);
     for (int i = 0, index = 0; i < map->length; i++) {
         if (map->arr[i] != NULL) {
-            arr[index] = (void *) malloc(sizeof(map->sizeOfType));
-            memcpy(arr[index], map->arr[i]->item, map->sizeOfType);
+            arr[index] = (void *) malloc(sizeof(map->arr[i]->item->sizeOfItem));
+            memcpy(arr[index], map->arr[i]->item->value, map->arr[i]->item->sizeOfItem);
             index++;
         }
     }
@@ -259,8 +304,9 @@ void **hashMapToArray(HashMap *map) {
 
 /** This function will take the map address as a parameter,
     then it will return an entry array that contains a copy of all the items and it's key in the map.
- * @param map
- * @return
+ * Note: the returned Entries will not be a really copy of the keys and items, it will reference to the same addresses
+ * @param map the hash map address
+ * @return it will return a double Entry array that contains all the hash map entries
  */
 
 Entry **hashMapToEntryArray(HashMap *map) {
@@ -270,14 +316,14 @@ Entry **hashMapToEntryArray(HashMap *map) {
     }
 
     Entry **arr = (Entry **) malloc(sizeof(Entry *) * map->count);
+
     for (int i = 0, index = 0; i < map->length; i++) {
         if (map->arr[i] != NULL) {
             arr[index] = (Entry *) malloc(sizeof(Entry));
             arr[index]->sizeOfKey = map->arr[i]->sizeOfKey;
-            arr[index]->key = (void *) malloc(map->arr[i]->sizeOfKey);
-            arr[index]->item = (void *) malloc(map->sizeOfType);
-            memcpy(arr[index]->key, map->arr[i]->key, map->arr[i]->sizeOfKey);
-            memcpy(arr[index]->item, map->arr[i]->item, map->sizeOfType);
+            arr[index]->key = map->arr[i]->key;
+            arr[index]->item = (HashMapItem *) malloc(sizeof(HashMapItem));
+            memcpy(arr[index]->item, map->arr[i]->item, sizeof(HashMapItem));
             index++;
         }
     }
@@ -291,8 +337,8 @@ Entry **hashMapToEntryArray(HashMap *map) {
 
 /** This function will take the map address as a parameter,
     then it will return the number of items in the map.
- * @param map
- * @return
+ * @param map the hash map address
+ * @return it will return the number of entries (items) in the hash map
  */
 
 int hashMapGetLength(HashMap *map) {
@@ -311,8 +357,8 @@ int hashMapGetLength(HashMap *map) {
 /** This function will take the map address as a parameter,
     then it will return one (1) if the map is empty,
     other wise it will return zero (0).
- * @param map
- * @return
+ * @param map the hash map address
+ * @return it will return one if the hash map is empty, other wise it will return zero
  */
 
 int hashMapIsEmpty(HashMap *map) {
@@ -330,7 +376,7 @@ int hashMapIsEmpty(HashMap *map) {
 
 /** This function will take the map address as a parameter,
  * then it will clear and free all the items and it's key from the map without freeing the map.
- * @param map
+ * @param map the hash map address
  */
 
 void clearHashMap(HashMap *map) {
@@ -341,9 +387,7 @@ void clearHashMap(HashMap *map) {
 
     for (int i = 0; i < map->count; i++) {
         if (map->arr[i] != NULL) {
-            free(map->arr[i]->item);
-            free(map->arr[i]->key);
-            free(map->arr[i]);
+            freeEntry(map->arr[i]);
             map->arr[i] = NULL;
         }
 
@@ -359,7 +403,7 @@ void clearHashMap(HashMap *map) {
 
 /** This function will take the map address as a parameter,
     then it will destroy and free the map and all it's entries.
- * @param map
+ * @param map the hash map address
  */
 
 void destroyHashMap(HashMap *map) {
@@ -376,10 +420,10 @@ void destroyHashMap(HashMap *map) {
 /** This function will take the key address as an integer, the size of the key and the length of the map,
     as a parameters, then it will return the first hash of this key.
  * Note: this function should only be called from the hash map functions.
- * @param address
- * @param sizeOfKey
- * @param length
- * @return
+ * @param address the address of the key represented as an unsigned integer
+ * @param sizeOfKey the size of the key in bytes
+ * @param length the length of the hash map array
+ * @return it will return the first hashed key
  */
 
 unsigned int fHashCal(unsigned int address, unsigned int sizeOfKey, unsigned int length) {
@@ -397,10 +441,10 @@ unsigned int fHashCal(unsigned int address, unsigned int sizeOfKey, unsigned int
 /** This function will take the key address as an integer, the size of the key and the biggest prime number,
     that smaller than the map array length as a parameters, then it will return the second hash of this key.
  * Note: this function should only be called from the hash map functions.
- * @param address
- * @param sizeOfKey
- * @param length
- * @return
+ * @param address the address of the key represented as an unsigned integer
+ * @param sizeOfKey the size of the key in bytes
+ * @param length the length of the hash map array
+ * @return it will return the second hashed key
  */
 
 unsigned int sHashCal(unsigned int address, unsigned int sizeOfKey, unsigned int bPrime) {
@@ -419,11 +463,11 @@ unsigned int sHashCal(unsigned int address, unsigned int sizeOfKey, unsigned int
 /** This function will take the first hash of the key, the second hash of the key, the index, and the length of the map array
     as a parameters, then it will return the next index that should be available.
  * Note: this function should only be called from the hash map functions.
- * @param fHash
- * @param sHash
- * @param index
- * @param length
- * @return
+ * @param fHash the first hashed key
+ * @param sHash the second hashed key
+ * @param index the current index in the array that wasn't empty
+ * @param length the length of the hash map array
+ * @return it will return the next index that should be empty
  */
 
 unsigned int calIndex(unsigned int fHash, unsigned int sHash, unsigned int index, unsigned int length) {
@@ -435,8 +479,8 @@ unsigned int calIndex(unsigned int fHash, unsigned int sHash, unsigned int index
 
 /** This function will take the length of the map array as a parameter,
     then it will return the biggest prime number that is smaller than the length.
- * @param length
- * @return
+ * @param length the length of the hash map array
+ * @return it will return the biggest prime number that is smaller than the length
  */
 
 int calBPrime(int length) {
@@ -460,8 +504,9 @@ int calBPrime(int length) {
 /** This function will take an integer number as a parameter,
     then it will return the next prime number that bigger than or equal to the passed parameter,
     other wise it will return 1 if the function didn't found any prime numbers.
- * @param num
- * @return
+ * @param num the number that the function will start to check from
+ * @return it will return the first prime number that is bigger than or equal to the provided number, and if
+ * it didn't found any number smaller that or equal to the MAX_INT, then the function will return one
  */
 
 int getNextPrime(int num) {

@@ -6,7 +6,7 @@
 DirectedGraph *directedGraphInitialization(int sizeOfType, void (*freeItem)(void *)) {
     DirectedGraph *directedGraph = (DirectedGraph *) malloc(sizeof(DirectedGraph));
 
-    directedGraph->nodes = hashMapInitialization(sizeof(DirGraphNode));
+    //directedGraph->nodes = hashMapInitialization(sizeof(DirGraphNode));
     directedGraph->sizeOfType = sizeOfType;
     directedGraph->freeItem = freeItem;
 
@@ -27,8 +27,8 @@ void dirGraphAddNode(DirectedGraph *graph, void *value) {
 
     DirGraphNode *newNode = (DirGraphNode *) malloc(sizeof(DirGraphNode));
     newNode->value = value;
-    newNode->adjacentNodes = arrayListInitialization(5, sizeof(DirGraphNode));
-    hashMapInsert(graph->nodes, value, newNode, graph->sizeOfType);
+    //newNode->adjacentNodes = arrayListInitialization(5, sizeof(DirGraphNode));
+    //hashMapInsert(graph->nodes, value, newNode, graph->sizeOfType);
 
 }
 

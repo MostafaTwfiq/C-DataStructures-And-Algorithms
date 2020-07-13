@@ -246,6 +246,7 @@ void **lLHashMapToArray(LinkedListHashMap *map) {
 
 /** This function will take the hash map address as a parameter,
     then it will return an Entry double pointer array that contains all the entries in the hash map.
+ * Note: the returned Entries will not be a really copy of the keys and items, it will reference to the same addresses
  * @param map the hash map address
  * @return it will return a double Entry pointer array that contains a copy of all the entries in the hash map
  */
@@ -264,7 +265,10 @@ Entry **lLHashMapToEntryArray(LinkedListHashMap *map) {
             for (int j = 0; j < doublyLinkedListGetLength(map->arr[i]); j++) {
                 Entry *entry = doublyLinkedListGet(map->arr[i], j);
                 arr[index] = (Entry *) malloc(sizeof(Entry));
-                memcpy(arr[index++], entry, sizeof(Entry));
+                arr[index]->sizeOfKey = entry->sizeOfKey;
+                arr[index]->key = entry->key;
+                arr[index]->item = (LLHashMapItem *) malloc(sizeof(LLHashMapItem));
+                memcpy(arr[index]->item, entry->item, sizeof(LLHashMapItem));
             }
 
         }

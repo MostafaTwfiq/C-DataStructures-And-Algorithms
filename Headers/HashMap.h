@@ -6,9 +6,17 @@
 #include <stdlib.h>
 
 
+typedef struct HashMapItem {
+    void *value;
+    int sizeOfItem;
+} HashMapItem;
+
+
+
+
 typedef struct Entry{
     void *key;
-    void *item;
+    HashMapItem *item;
     int sizeOfKey;
 } Entry;
 
@@ -18,16 +26,15 @@ typedef struct HashMap {
     Entry **arr;
     int length;
     int count;
-    int sizeOfType;
     int bPrime;
 } HashMap;
 
 
 
-HashMap *hashMapInitialization(int sizeOfType);
+HashMap *hashMapInitialization(void (*freeItem)(void *item), void (*freeKey)(void *key));
 
 
-void hashMapInsert(HashMap *map, void *key, void *item, int sizeOfKey);
+void hashMapInsert(HashMap *map, void *key, int sizeOfKey, void *item, int sizeOfItem);
 
 
 int hashMapContains(HashMap *map, void *key, int sizeOfKey);
