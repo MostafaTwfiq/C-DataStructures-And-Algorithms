@@ -20,17 +20,17 @@ unsigned int hashSetCalIndex(unsigned int fHash, unsigned int sHash, unsigned in
 
 /** This function will take the size of the hash set elements type as a parameter,
  * then it will return a new hash set address.
- * @param sizeOfType size of the type, that the hash set will hold
+ * @param freeItem the freeing item function address, that will be called to free the hash set items
  * @return it will return a new hash set pointer
  */
 
-HashSet *hashSetInitialization(int sizeOfType) {
+HashSet *hashSetInitialization(void (*freeItem)(void *item)) {
     HashSet *hashSet = (HashSet *) malloc(sizeof(HashSet));
 
     hashSet->length = hashSetGetNextPrime(10);
-    hashSet->arr = (void **) calloc(sizeof(void *), hashSet->length);
+    hashSet->arr = (HashSetItem **) calloc(sizeof(HashSetItem *), hashSet->length);
     hashSet->count = 0;
-    hashSet->sizeOfType = sizeOfType;
+    hashSet->freeItem = freeItem;
     hashSet->bPrime = hashSetCalBPrime(hashSet->length);
 
     return hashSet;
@@ -45,14 +45,15 @@ HashSet *hashSetInitialization(int sizeOfType) {
 
 
 
-/** This function will take the hash set address, and the new item address as a parameters,
+/** This function will take the hash set address, the new item address, and the size of the item as a parameters,
  * then it will insert the provided item into the hash set.
  * Note: the hash set will hold the provided item address (it will not copy the item data into the hash set).
  * @param hashSet the hash set address
  * @param item the new item address
+ * @param sizeOfItem the size of the new item in bytes
  */
 
-void hashSetInsert(HashSet *hashSet, void *item) {
+void hashSetInsert(HashSet *hashSet, void *item, int sizeOfItem) {
 
     if (hashSet == NULL) {
         fprintf(stderr, "Illegal argument, the hash set is null.");
@@ -60,27 +61,39 @@ void hashSetInsert(HashSet *hashSet, void *item) {
     }
 
     if (hashSet->count == hashSet->length) {
-        hashSet->length *= 2;
-        hashSet->length = hashSetGetNextPrime(hashSet->length);
+        hashSet->length = hashSetGetNextPrime(hashSet->length * 2);
         hashSet->bPrime = hashSetCalBPrime(hashSet->length);
-        hashSet->arr = (void **) realloc(hashSet->arr, sizeof(void *) * hashSet->length);
+        hashSet->arr = (HashSetItem **) realloc(hashSet->arr, sizeof(HashSetItem *) * hashSet->length);
+        for (int i = hashSet->count; i < hashSet->length; i++)
+            hashSet->arr[i] = NULL;
+
     }
 
 
-    unsigned int fHash, sHash = hashSetSHashCal( (unsigned int) item, hashSet->sizeOfType, hashSet->bPrime);
-    unsigned int index = fHash = hashSetFHashCal( (unsigned int) item, hashSet->sizeOfType, hashSet->length);
+    unsigned int
+            fHash = hashSetFHashCal( (unsigned int) item, sizeOfItem, hashSet->length)
+    , sHash = hashSetSHashCal( (unsigned int) item, sizeOfItem, hashSet->bPrime);
+
+    unsigned int pHashIndex = 1;
+    unsigned int index = hashSetCalIndex(fHash, sHash, pHashIndex, hashSet->length);
+
     while (hashSet->arr[index] != NULL) {
 
-        if (memcmp(hashSet->arr[index], item, hashSet->sizeOfType) == 0) {
-            free(hashSet->arr[index]);
-            hashSet->arr[index] = item;
+        if (hashSet->arr[index]->sizeOfItem == sizeOfItem && memcmp(hashSet->arr[index]->value, item, sizeOfItem) == 0) {
+            hashSet->freeItem(hashSet->arr[index]->value);
+            hashSet->arr[index]->value = item;
+            hashSet->arr[index]->sizeOfItem = sizeOfItem;
             return;
         }
 
-        index = hashSetCalIndex(fHash, sHash, index + 1, hashSet->length);
+        pHashIndex++;
+        index = hashSetCalIndex(fHash, sHash, pHashIndex, hashSet->length);
+
     }
 
-    hashSet->arr[index] = item;
+    hashSet->arr[index] = (HashSetItem *) malloc(sizeof(HashSetItem));
+    hashSet->arr[index]->value = item;
+    hashSet->arr[index]->sizeOfItem = sizeOfItem;
     hashSet->count++;
 
 }
@@ -93,16 +106,17 @@ void hashSetInsert(HashSet *hashSet, void *item) {
 
 
 
-/** This function will take the hash set address, and the item address as a parameters,
+/** This function will take the hash set address, the item address, and the size of the item as a parameters,
  * then it will delete the provided item from the hash set.
  * Note: the function will memory compare the provided item with the items in the hash set.
  * Note: if the item was found in the hash set, then the function will free the item in the hash set,
  * without freeing the provided one in the parameters.
  * @param hashSet the hash set address
  * @param item the item address that hash the same data as the item that will be deleted
+ * @param sizeOfItem the size of provided item in bytes
  */
 
-void hashSetDelete(HashSet *hashSet, void *item) {
+void hashSetDelete(HashSet *hashSet, void *item, int sizeOfItem) {
     if (hashSet == NULL) {
         fprintf(stderr, "Illegal argument, the hash set is null.");
         exit(-3);
@@ -111,13 +125,19 @@ void hashSetDelete(HashSet *hashSet, void *item) {
         exit(-3);
     }
 
-    unsigned int fHash, sHash = hashSetSHashCal( (unsigned int) item, hashSet->sizeOfType, hashSet->bPrime);
-    unsigned int index = fHash = hashSetFHashCal( (unsigned int) item, hashSet->sizeOfType, hashSet->length);
+    unsigned int
+            fHash = hashSetFHashCal( (unsigned int) item, sizeOfItem, hashSet->length)
+    , sHash = hashSetSHashCal( (unsigned int) item, sizeOfItem, hashSet->bPrime);
+
+    unsigned int pHashIndex = 1;
+    unsigned int index = hashSetCalIndex(fHash, sHash, pHashIndex, hashSet->length);
     unsigned int firstIndex = index;
+
     do {
 
         if (hashSet->arr[index] != NULL) {
-            if (memcmp(hashSet->arr[index], item, hashSet->sizeOfType) == 0) {
+            if (hashSet->arr[index]->sizeOfItem == sizeOfItem && memcmp(hashSet->arr[index]->value, item, sizeOfItem) == 0) {
+                hashSet->freeItem(hashSet->arr[index]->value);
                 free(hashSet->arr[index]);
                 hashSet->arr[index] = NULL;
                 hashSet->count--;
@@ -126,7 +146,8 @@ void hashSetDelete(HashSet *hashSet, void *item) {
 
         }
 
-        index = hashSetCalIndex(fHash, sHash, index + 1, hashSet->length);
+        pHashIndex++;
+        index = hashSetCalIndex(fHash, sHash, pHashIndex, hashSet->length);
 
     } while (firstIndex != index);
 
@@ -140,17 +161,18 @@ void hashSetDelete(HashSet *hashSet, void *item) {
 
 
 
-/** This function will take the hash set address, and the item address as a parameters,
+/** This function will take the hash set address, the item address, and the size of the item as a parameters,
  * then it will return one (1) if the provided item is in the hash set,
  * other wise it will return zero (0).
  * Note: the provided item should has the same data as the one that will be searched for,
  * because the function will memory compare the provided item and the hash set items.
  * @param hashSet the hash set address
  * @param item the item address that has the same data as the one that you are searching for.
- * @return
+ * @param sizeOfItem the size of the provided item
+ * @return it will return one if the provided item is in the hash set, other wise it will return zero
  */
 
-int hashSetContains(HashSet *hashSet, void *item) {
+int hashSetContains(HashSet *hashSet, void *item, int sizeOfItem) {
     if (hashSet == NULL) {
         fprintf(stderr, "Illegal argument, the hash set is null.");
         exit(-3);
@@ -159,18 +181,24 @@ int hashSetContains(HashSet *hashSet, void *item) {
         exit(-3);
     }
 
-    unsigned int fHash, sHash = hashSetSHashCal( (unsigned int) item, hashSet->sizeOfType, hashSet->bPrime);
-    unsigned int index = fHash = hashSetFHashCal( (unsigned int) item, hashSet->sizeOfType, hashSet->length);
+    unsigned int
+            fHash = hashSetFHashCal( (unsigned int) item, sizeOfItem, hashSet->length)
+    , sHash = hashSetSHashCal( (unsigned int) item, sizeOfItem, hashSet->bPrime);
+
+    unsigned int pHashIndex = 1;
+    unsigned int index = hashSetCalIndex(fHash, sHash, pHashIndex, hashSet->length);
     unsigned int firstIndex = index;
+
     do {
 
         if (hashSet->arr[index] != NULL) {
-            if (memcmp(hashSet->arr[index], item, hashSet->sizeOfType) == 0)
+            if (hashSet->arr[index]->sizeOfItem == sizeOfItem && memcmp(hashSet->arr[index]->value, item, sizeOfItem) == 0)
                 return 1;
 
         }
 
-        index = hashSetCalIndex(fHash, sHash, index + 1, hashSet->length);
+        pHashIndex++;
+        index = hashSetCalIndex(fHash, sHash, pHashIndex, hashSet->length);
 
     } while (firstIndex != index);
 
@@ -200,8 +228,8 @@ void **hashSetToArray(HashSet *hashSet) {
     void **array = (void **) malloc(sizeof(void *) * hashSetGetLength(hashSet));
     for (int i = 0, index = 0; i < hashSet->length; i++) {
         if (hashSet->arr[i] != NULL) {
-            array[index] = (void *) malloc(hashSet->sizeOfType);
-            memcpy(array[index], hashSet->arr[i], hashSet->sizeOfType);
+            array[index] = (void *) malloc(hashSet->arr[i]->sizeOfItem);
+            memcpy(array[index], hashSet->arr[i]->value, hashSet->arr[i]->sizeOfItem);
             index++;
         }
 
@@ -278,6 +306,7 @@ void clearHashSet(HashSet *hashSet) {
 
     for (int i = 0; i < hashSet->length; i++) {
         if (hashSet->arr[i] != NULL) {
+            hashSet->freeItem(hashSet->arr[i]->value);
             free(hashSet->arr[i]);
             hashSet->arr[i] = NULL;
         }

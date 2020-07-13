@@ -28,7 +28,7 @@ void dirGraphAddNode(DirectedGraph *graph, void *value) {
     DirGraphNode *newNode = (DirGraphNode *) malloc(sizeof(DirGraphNode));
     newNode->value = value;
     //newNode->adjacentNodes = arrayListInitialization(5, sizeof(DirGraphNode));
-    //hashMapInsert(graph->nodes, value, newNode, graph->sizeOfType);
+    //hashMapInsert(graph->nodes, value, newNode, graph->sizeOfItem);
 
 }
 

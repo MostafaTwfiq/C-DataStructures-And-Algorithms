@@ -6,12 +6,11 @@
 #include <stdlib.h>
 
 
+
 typedef struct HashMapItem {
     void *value;
     int sizeOfItem;
 } HashMapItem;
-
-
 
 
 typedef struct Entry{

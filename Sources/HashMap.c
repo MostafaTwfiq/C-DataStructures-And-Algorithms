@@ -49,7 +49,7 @@ int getNextPrime(int num);
 HashMap *hashMapInitialization(void (*freeItem)(void *item), void (*freeKey)(void *key)) {
     HashMap *map = (HashMap *) malloc(sizeof(HashMap));
 
-    map->length = getNextPrime(5); //the length of the map array should always be a prime number.
+    map->length = getNextPrime(10); //the length of the map array should always be a prime number.
     map->arr = (Entry **) calloc(sizeof(Entry *), map->length);
     map->count = 0;
     map->bPrime = calBPrime(map->length);
