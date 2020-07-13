@@ -49,7 +49,7 @@ Node *destroyTrieNodes(Node *root);
 
 /** This function will initialize a new trie in the memory, and initialize it's fields then,
     the function will return it's address.
- * @return
+ * @return it will return the initialized trie address
  */
 
 Trie *trieInitialization() {
@@ -69,8 +69,8 @@ Trie *trieInitialization() {
 
 /** This function will take the trie address, and the word  address as a parameters,
  * then it will add the word into the trie.
- * @param trie
- * @param word
+ * @param trie the trie address
+ * @param word the word address
  */
 
 void trieAddWord(Trie *trie, char *word) {
@@ -111,9 +111,9 @@ void trieAddWord(Trie *trie, char *word) {
 /** This function will take the trie address, and the word address as a parameter,
     then it  will return one (1) if the word is in the trie,
     other wise it will return zero (0).
- * @param trie
- * @param word
- * @return
+ * @param trie the trie address
+ * @param word the word address
+ * @return it will return one if the word is in the trie, other wise it will return zero
  */
 
 int trieContains(Trie *trie, char *word) {
@@ -149,8 +149,8 @@ int trieContains(Trie *trie, char *word) {
 
 /** This function will take the trie address, and the word address as a parameters,
     then it will remove the given word from the trie.
- * @param trie
- * @param word
+ * @param trie the trie address
+ * @param word the word address
  */
 
 void trieRemoveWord(Trie *trie, char *word) {
@@ -176,9 +176,9 @@ void trieRemoveWord(Trie *trie, char *word) {
 /** This function takes the root node address, and the current char address as a parameters,
     then it will remove the given word from the trie recursively.
  * Note: this function will be only called from the trieRemoveWord function only.
- * @param root
- * @param currentChar
- * @return
+ * @param root the node address
+ * @param currentChar the current char address
+ * @return it will return the node address to it's parent
  */
 
 Node *trieRemoveWordR(Node *root, const char *currentChar) {
@@ -219,10 +219,10 @@ Node *trieRemoveWordR(Node *root, const char *currentChar) {
     then it will return and array list pointer that contains all the words.
  * Note: if the given word is wrong Linguistically then,
    the function will start to complete starts from the first wrong character.
- * @param trie
- * @param word
- * @param numOfSuggestion
- * @return
+ * @param trie the trie address
+ * @param word the word address
+ * @param numOfSuggestion the number of wanted suggestion
+ * @return it will return an ArrayList address consisting the suggested words
  */
 
 ArrayList *trieAutoCompletion(Trie *trie, char *word, int numOfSuggestion) {
@@ -252,11 +252,11 @@ ArrayList *trieAutoCompletion(Trie *trie, char *word, int numOfSuggestion) {
     a string address, and an array list to put the words in it, as a parameters,
     then it will fill the array list with the words.
  * Note: this function should be  called by the trieAutoCompletion function only.
- * @param root
- * @param currentChar
- * @param numOfSuggestion
- * @param string
- * @param wordsList
+ * @param root the node address
+ * @param currentChar the current char address
+ * @param numOfSuggestion the number of wanted suggestions
+ * @param string an initialized String address
+ * @param wordsList an initialized ArrayList address
  */
 
 void trieAutoCompletionR(Node *root, char *currentChar, int numOfSuggestion, String *string, ArrayList *wordsList) {
@@ -291,10 +291,10 @@ void trieAutoCompletionR(Node *root, char *currentChar, int numOfSuggestion, Str
 
 /** This function will take the trie address, the word address, the number of needed words to be suggested as a parameters,
  * then it will return an array list that contains the suggested words.
- * @param trie
- * @param word
- * @param numOfSuggestion
- * @return
+ * @param trie the trie address
+ * @param word the word address
+ * @param numOfSuggestion the number of wanted suggestion
+ * @return it will return an array list consisting of the suggested words
  */
 
 ArrayList *trieSuggestion(Trie *trie, char *word, int numOfSuggestion) {
@@ -327,11 +327,11 @@ ArrayList *trieSuggestion(Trie *trie, char *word, int numOfSuggestion) {
     and the number of words thar needed to be suggested as a parameter,
     then it will fill the array list with the words.
  * Note: this function should only be called by the trieSuggestion function.
- * @param root
- * @param word
- * @param string
- * @param wordsList
- * @param numOfSuggestion
+ * @param root the node address
+ * @param word the word address
+ * @param string an initialized String address
+ * @param wordsList an intialized ArrayList address
+ * @param numOfSuggestion the number of wanted suggestion
  */
 
 void trieSuggestionR(Node *root, char *word, String *string, ArrayList *wordsList, int numOfSuggestion) {
@@ -367,7 +367,7 @@ void trieSuggestionR(Node *root, char *word, String *string, ArrayList *wordsLis
 
 /** This function will take the trie address as a parameter,
  * then it will print all the words in the trie.
- * @param trie
+ * @param trie the trie address
  */
 
 void triePrintAllWords(Trie *trie) {
@@ -397,8 +397,8 @@ void triePrintAllWords(Trie *trie) {
 /** This function will take the root node address, and a string address as a parameter,
  * then it will print all the words in the trie.
  * Note: this function should only be called from the triePrintAllWords function.
- * @param root
- * @param string
+ * @param root the node address
+ * @param string an initialized String address
  */
 
 void triePrintAllWordsR(Node *root, String *string) {
@@ -426,7 +426,7 @@ void triePrintAllWordsR(Node *root, String *string) {
 /** This function will take the trie address as a parameter,
     then it will clear and free all the trie nodes,
     without destroying the trie.
- * @param trie
+ * @param trie the trie address
  */
 
 void clearTrie(Trie *trie) {
@@ -450,7 +450,7 @@ void clearTrie(Trie *trie) {
 
 /** This function will take the trie address as a parameter,
     then it will destroy and free the trie and all it's nodes.
- * @param trie
+ * @param trie the trie address
  */
 
 void destroyTrie(Trie *trie) {
@@ -473,8 +473,8 @@ void destroyTrie(Trie *trie) {
 /** This function takes the root node address as a parameter,
     then it will destroy and free all the nodes.
  * Note: This should only be called from the clearTrie and destroyTrie functions.
- * @param root
- * @return
+ * @param root the node address
+ * @return it will return NULL to the node parent
  */
 
 Node *destroyTrieNodes(Node *root) {
@@ -494,8 +494,8 @@ Node *destroyTrieNodes(Node *root) {
 /** This function takes a character as a parameter,
     then it will return the lower case of the of the character if it's an alphabet.
     Note: this function private to be used by the tries function only.
- * @param c
- * @return
+ * @param c the character
+ * @return it will return the character in lower case
  */
 
 char toLowerCase(char c) {
@@ -513,8 +513,8 @@ char toLowerCase(char c) {
     then it will return one (1) if the node has al least one child,
     other wise it will return zero (0).
  * Note: This function is private to be used by the trie functions only.
- * @param node
- * @return
+ * @param node the node address
+ * @return it will return one if the node hash children, other wise it will return zero
  */
 
 int nodeHasChildren(Node *node) {
@@ -535,9 +535,9 @@ int nodeHasChildren(Node *node) {
 /** This function will take a character, and an end of word boolean as a parameters,
     then it will return a new node address that has been initialized with the passed values.
  * Note: this function should be only called from the inside of the trie.
- * @param value
- * @param EOW
- * @return
+ * @param value the node character
+ * @param EOW the end of word boolean
+ * @return it will return a new initialized node address
  */
 
 Node *createNode(char value, int EOW) {
@@ -558,7 +558,7 @@ Node *createNode(char value, int EOW) {
 /** This function will take a node address as a parameter,
     then it will destroy and free that node.
  * Note: this function should be only called from the inside if the trie.
- * @param node
+ * @param node the node address
  */
 
 void freeNode(Node *node) {
@@ -582,8 +582,8 @@ int comparator(const void *p1, const void *p2) {
 /** This function will take a character as a parameter,
  * then it will generate a list of indices that depends on the distance between keys in the keyboard,
  * and return it as an integer array.
- * @param c
- * @return
+ * @param c the character value
+ * @return it will return an array of indices
  */
 
 int *generateIndexes(char c) {
@@ -644,6 +644,9 @@ int *generateIndexes(char c) {
 
 
 
+/** The free function that will free the words in the array list that will be returned to the user,
+ * holding the suggested words.
+ */
 
 void freeFun(void *item) {
     free((char *) item);
