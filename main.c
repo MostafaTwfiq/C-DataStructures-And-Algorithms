@@ -18,7 +18,7 @@
 #define ANSI_COLOR_WHITE    "\x1b[37m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
-#include "Headers/RedBlackTree.h"
+#include "Headers/ArrayQueue.h"
 
 void freeItem(void *item) {
     free(item);
@@ -28,62 +28,25 @@ int comp(const void *p1, int s1, const void *p2, int s2) {
     return *(int *)p1 - *(int *)p2;
 }
 
-void printFun(const void *item, COLOR color) {
-    if (color == RED) {
-        printf(ANSI_COLOR_RED "%d" ANSI_COLOR_RESET, *(int *)item);
-    } else {
-        printf(ANSI_COLOR_WHITE "%d" ANSI_COLOR_RESET, *(int *)item);
-    }
-}
 
 int main() {
-
-    RBTree *tree = redBlackTreeInitialization(freeItem, comp);
-
+    ArrayQueue *arrayQueue = QueueInitialize(freeItem);
 
     int *item;
 
     item = (int *) malloc(sizeof(int));
-    *item = 11;
-    rBTreeInsert(tree, item, sizeof(int));
-
-    item = (int *) malloc(sizeof(int));
-    *item = 7;
-    rBTreeInsert(tree, item, sizeof(int));
-
-    item = (int *) malloc(sizeof(int));
-    *item = 26;
-    rBTreeInsert(tree, item, sizeof(int));
-
-    item = (int *) malloc(sizeof(int));
-    *item = 3;
-    rBTreeInsert(tree, item, sizeof(int));
-
-    item = (int *) malloc(sizeof(int));
-    *item = 8;
-    rBTreeInsert(tree, item, sizeof(int));
-
-    item = (int *) malloc(sizeof(int));
-    *item = 18;
-    rBTreeInsert(tree, item, sizeof(int));
-
-    item = (int *) malloc(sizeof(int));
-    *item = 28;
-    rBTreeInsert(tree, item, sizeof(int));
+    *item = 10;
+    ArrayQueueEnqueue(arrayQueue, item, sizeof(int));
 
     item = (int *) malloc(sizeof(int));
     *item = 20;
-    rBTreeInsert(tree, item, sizeof(int));
-
-    rBTreePrint(tree, printFun);
-    printf("\n\n");
+    ArrayQueueEnqueue(arrayQueue, item, sizeof(int));
 
     item = (int *) malloc(sizeof(int));
-    *item = 26;
-    rBTreeDelete(tree, item, sizeof(int));
+    *item = 30;
+    ArrayQueueEnqueue(arrayQueue, item, sizeof(int));
 
-    rBTreePrint(tree, printFun);
-
+    printf("%d", *(int *)ArrayQueueDequeue(arrayQueue));
 
     return 0;
 

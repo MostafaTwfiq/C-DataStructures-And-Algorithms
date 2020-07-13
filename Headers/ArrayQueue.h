@@ -3,8 +3,14 @@
 
 #include "Utils.h"
 
-#ifndef ARRAY_QUEUE_STRUCT_
-#define ARRAY_QUEUE_STRUCT_
+
+typedef struct ArrayQueueItem {
+    void *value;
+    int sizeOfItem;
+} ArrayQueueItem;
+
+
+
 /** @struct ArrayQueue
  *  @brief This structure implements a basic generic Queue where memory is laid out sequentially.
  *  @var ArrayQueue:: memory
@@ -18,18 +24,20 @@
  *  @var ArrayQueue::sizeOfItem
  *  Member 'sizeOfItem' the size of the data stored in the Queue.
  */
+
 typedef struct ArrayQueue{
-    void ** memory;
+    ArrayQueueItem ** memory;
     int allocated;
     int front;
     int rear;
-    int sizeOfType;
-}ArrayQueue;
-#endif
+    void (*freeItem)(void *item)
+} ArrayQueue;
 
-ArrayQueue *QueueInitialize(int size);
 
-void ArrayQueueEnqueue(ArrayQueue *arrayQueue,void *data);
+
+ArrayQueue* QueueInitialize(void (*freeItem)(void *item));
+
+void ArrayQueueEnqueue(ArrayQueue* arrayQueue, void *data, int dataSize);
 
 void *ArrayQueueDequeue(ArrayQueue *arrayQueue);
 
@@ -43,7 +51,7 @@ short isArrayQueueEmpty(ArrayQueue *arrayQueue);
 
 int ArrayQueueLength(ArrayQueue * arrayQueue);
 
-void ArrayQueueEnqueueAll(ArrayQueue * arrayQueue,void **arr, int arrLength);
+void ArrayQueueEnqueueAll(ArrayQueue * arrayQueue, void **arr, int arrLength, int sizeOfItem);
 
 void *ArrayQueuePeek(ArrayQueue * arrayQueue);
 
