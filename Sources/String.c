@@ -6,8 +6,8 @@
 
 /** This function will take the initial length of the string as a parameter,
     then it will initialize a new String pointer and return it.
- * @param initialLength
- * @return
+ * @param initialLength the string initial length
+ * @return it will return the initialized string
  */
 
 String *stringInitialization(int initialLength) {
@@ -25,8 +25,8 @@ String *stringInitialization(int initialLength) {
 
 /** This function will take the string address, and the new character as a parameter,
     then it will put the new character in the end of the string.
- * @param myString
- * @param c
+ * @param myString the string address
+ * @param c the new character
  */
 
 void stringAddCharAtLast(String *myString, char c) {
@@ -50,9 +50,9 @@ void stringAddCharAtLast(String *myString, char c) {
 /** This function will take the string address, index, and the new character as a parameters,
     then it will put the new character in the given index.
  * If the index is out of the string range the program will terminate.
- * @param myString
- * @param index
- * @param c
+ * @param myString the string address
+ * @param index the new character index
+ * @param c the new character
  */
 
 void stringAddCharAtIndex(String *myString, int index, char c) {
@@ -74,8 +74,8 @@ void stringAddCharAtIndex(String *myString, int index, char c) {
 /** This function will take the string address, and the index as a parameter,
     then it will remove the character in the given index.
  * If the index is out of the string range the program will terminate.
- * @param myString
- * @param index
+ * @param myString the string address
+ * @param index the index of the char that will be removed
  */
 
 void stringRemoveCharAtIndex(String *myString, int index) {
@@ -98,8 +98,8 @@ void stringRemoveCharAtIndex(String *myString, int index) {
 
 /** This function will take the string address, and the new char pointer array as a parameters,
     then it will add the new array of characters in the end of the string.
- * @param myString
- * @param newString
+ * @param myString the string address
+ * @param newString the char array address
  */
 
 void stringAddStringAtLast(String *myString, char *newString) {
@@ -121,8 +121,8 @@ void stringAddStringAtLast(String *myString, char *newString) {
 
 /** This function will take the string address, and the new char pointer array as a parameters,
     then it will change the string to the new char pointer array.
- * @param string
- * @param newString
+ * @param string the string address
+ * @param newString a char array address
  */
 
 void stringChangeStringByCharArray(String *string, char *newString) {
@@ -142,8 +142,8 @@ void stringChangeStringByCharArray(String *string, char *newString) {
 
 /** This function will take string address, and the the new string address as a parameters,
     then it will change the first string to the second string.
- * @param string
- * @param newString
+ * @param string the string address
+ * @param newString the new string address
  */
 
 void stringChangeStringByString(String *string, String *newString) {
@@ -167,9 +167,9 @@ void stringChangeStringByString(String *string, String *newString) {
 /** This function will take the string address, and the character as a parameters,
     then it will return the first occur of this character in the string and will return it's index,
     other wise it will return minus one (-1).
- * @param myString
- * @param c
- * @return
+ * @param myString the string address
+ * @param c the character value
+ * @return it will return the first index of the provided character if found, other wise it will return -1
  */
 
 int stringFindCharIndex(String *myString, char c) {
@@ -193,9 +193,9 @@ int stringFindCharIndex(String *myString, char c) {
 /** This function will take the string address, and the index as a parameters,
     then it will return the character at the given index.
  * If the index is out of the string range the program will terminate.
- * @param myString
- * @param index
- * @return
+ * @param myString the string address
+ * @param index the index of the wanted character
+ * @return it will return the character at the provided index
  */
 
 char stringGetCharAtIndex(String *myString, int index) {
@@ -216,9 +216,9 @@ char stringGetCharAtIndex(String *myString, int index) {
 /** This function will take the string address, and a char pointer array as a parameters,
     then it will return one (1) if the second char array is a substring of the first string,
     other wise it will return zero (0).
- * @param myString
- * @param string
- * @return
+ * @param myString the string address
+ * @param string a char array address
+ * @return it will return one if the provided char array are a substring of the original string
  */
 
 int stringSubString(String *myString, char *string) {
@@ -251,8 +251,8 @@ int stringSubString(String *myString, char *string) {
 
 /** This function will take the string address as a parameter,
  * then it will convert it to a char pointer array, and return it.
- * @param myString
- * @return
+ * @param myString the string address
+ * @return it will return a pointer to char array that has the same string of myString
  */
 
 char *stringToArrayOfCharacters(String *myString) {
@@ -275,10 +275,10 @@ char *stringToArrayOfCharacters(String *myString) {
 /** This method will take the string address, start index, and end index as a parameters,
     then it will convert the string from the start index to the end index to a char pointer array,
     then return it.
- * @param myString
- * @param startIndex
- * @param endIndex
- * @return
+ * @param myString the string address
+ * @param startIndex the start index
+ * @param endIndex the end index
+ * @return it will return a pointer to character array, that has copy of the from the start index to the end index
  */
 
 char *stringGetStringBetweenTwoIndices(String *myString, int startIndex, int endIndex) {
@@ -308,8 +308,8 @@ char *stringGetStringBetweenTwoIndices(String *myString, int startIndex, int end
 
 /** This function will take the string address as a parameter,
     then it will return the string length.
- * @param myString
- * @return
+ * @param myString the string address
+ * @return it will return the length of the string
  */
 
 int stringGetLength(String *myString) {
@@ -327,9 +327,9 @@ int stringGetLength(String *myString) {
 /** This function will take the string address, and a char pointer array as a parameters,
     then it will return one (1) if the string is equal to the char array,
     other wise it will return zero (0).
- * @param myString
- * @param string
- * @return
+ * @param myString the string address
+ * @param string a character array pointer
+ * @return it will return one if the provided char array is equal to the string, other wise in will return zero
  */
 
 int stringIsEqualsToCharArray(String *myString, char *string) {
@@ -358,9 +358,9 @@ int stringIsEqualsToCharArray(String *myString, char *string) {
 /** This function will take the string address, and second string address as a parameters,
     then it will return one (1) if the first string is equal to the second string,
     other wise it will return zero (0).
- * @param myString
- * @param string
- * @return
+ * @param myString the string address
+ * @param string the other string address
+ * @return it will return one if the second string is equal to the original string, other wise in will return zero
  */
 
 int stringIsEqualsToMyString(String *myString, String *string) {
@@ -388,7 +388,7 @@ int stringIsEqualsToMyString(String *myString, String *string) {
 
 /** This function will take the string address as a parameter,
     then it will trim this string (remove spaces and tabs).
- * @param myString
+ * @param myString the string address
  */
 
 void stringTrim(String *myString) {
@@ -427,7 +427,7 @@ void stringTrim(String *myString) {
 
 /** This function will take the string address as a parameter,
  * then it will read the input from the stdin file and put it in the string.
- * @param myString
+ * @param myString the string address
  */
 
 void stringFGetS(String *myString) {
@@ -458,7 +458,7 @@ void stringFGetS(String *myString) {
 
 /** This function will take the string address as a parameter,
  * then it will print the string in the stdout file.
- * @param string
+ * @param string the string address
  */
 
 void printString(String *string) {
@@ -471,7 +471,7 @@ void printString(String *string) {
 
 /** This function will take the string address as a parameter,
  * then it will destroy and free the string from the memory.
- * @param myString
+ * @param myString the string address
  */
 
 void destroyString(String *myString) {
