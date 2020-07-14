@@ -1,6 +1,14 @@
 #include "../Headers/DirectedGraph.h"
 
 
+#include "../Headers/ArrayList.h"
+#include "../Headers/HashMap.h"
+#include "../Headers/HashSet.h"
+#include "../Headers/Stack.h"
+#include "../Headers/ArrayQueue.h"
+
+
+
 
 
 
@@ -509,66 +517,109 @@ int compInt(const void *int1, int s1, const void *int2, int s2) {
 /** This function will depth first traverse the graph.
  * Note: actually you can do more than printing values, the printing function will take the value as a parameter.
  * @param graph the graph address
+ * @param startVal the start node value address
+ * @param the start value size in bytes
  * @param printVal the printing function address, that will be called to print the value
  */
 
-void dirGraphDepthFirstTraversal(DirectedGraph *graph, void (*printVal)(void *)) {
+
+void dirGraphDepthFirstTraversal(DirectedGraph *graph, void *startVal, int sizeOfValue, void (*printVal)(void *)) {
     if (graph == NULL) {
         fprintf(stderr, "Illegal argument, the directed graph is null.");
         exit(-3);
     }
 
+    DirGraphNode *startNode = hashMapGet(graph->nodes, startVal, sizeOfValue);
+    if (startNode == NULL)
+        return;
+
     HashSet *visitedNodes = hashSetInitialization(freeInt, compInt);
+    Stack *nodesStack = stackInitialization(freeDGraphNode);
+    pushStack(nodesStack, startNode, sizeof(DirGraphNode));
 
-    DirGraphNode **hashMapNodes = (DirGraphNode **) hashMapToArray(graph->nodes);
+    int *startNodeValAddress = (int *) malloc(sizeof(int));
+    *startNodeValAddress = (int) startNode->value;
+    hashSetInsert(visitedNodes, startNodeValAddress, sizeof(int));
 
-    for (int i = 0; i < hashMapGetLength(graph->nodes); i++) {
+    DirGraphNode *currentNode;
 
-        DirGraphNode *currentNode = hashMapNodes[i];
-        int *address = (int *) malloc(sizeof(int));
-        *address = (int) currentNode->value;
+    while (!isEmptyStack(nodesStack)) {
+        currentNode = popStack(nodesStack);
+        printVal(currentNode->value);
 
-        if (!hashSetContains(visitedNodes, address, sizeof(int))) {
-
-            printVal(currentNode->value);
-            printf("\n");
-            hashSetInsert(visitedNodes, address, sizeof(int));
-
-            for (int j = 0; j < arrayListGetLength(currentNode->adjacentNodes); j++) {
-
-                DirGraphNode *childNode = arrayListGet(currentNode->adjacentNodes, j);
-                int *childAddress = (int *) malloc(sizeof(int));
-                *childAddress = (int) childNode->value;
-
-
-                if (!hashSetContains(visitedNodes, childAddress, sizeof(int))) {
-                    printVal(childNode->value);
-                    printf("\n");
-                    hashSetInsert(visitedNodes, childAddress, sizeof(int));
-                }
-
-                else {
-                    free(childAddress);
-                }
-
-
+        for (int i = 0; i < arrayListGetLength(currentNode->adjacentNodes); i++) {
+            DirGraphNode *adjNode = (DirGraphNode *) arrayListGet(currentNode->adjacentNodes, i);
+            int *adjNodeValAddress = (int *) malloc(sizeof(int));
+            *adjNodeValAddress = (int) adjNode->value;
+            if (!hashSetContains(visitedNodes, adjNodeValAddress, sizeof(int))) {
+                pushStack(nodesStack, adjNode, sizeof(DirGraphNode));
+                hashSetInsert(visitedNodes, adjNodeValAddress, sizeof(int));
             }
 
         }
 
-        else {
-            free(address);
-        }
 
     }
 
-    //TODO: if we changed the toArray function to return the original addresses instead of a copy,
-    // then don't forget to edit here too.
-
-    for (int i = 0; i < hashMapGetLength(graph->nodes); i++)
-        free(hashMapNodes[i]);
-
-    free(hashMapNodes);
     destroyHashSet(visitedNodes);
+    StackDestroy(nodesStack);
+}
+
+
+
+
+
+
+
+
+
+/** This function will breadth first traverse the graph.
+ * Note: actually you can do more than printing values, the printing function will take the value as a parameter.
+ * @param graph the graph address
+ * @param startVal the start node value address
+ * @param the start value size in bytes
+ * @param printVal the printing function address, that will be called to print the value
+ */
+
+void dirGraphBreadthFirstTraversal(DirectedGraph *graph, void *startVal, int sizeOfValue, void (*printVal)(void *)) {
+    if (graph == NULL) {
+        fprintf(stderr, "Illegal argument, the directed graph is null.");
+        exit(-3);
+    }
+
+    DirGraphNode *startNode = hashMapGet(graph->nodes, startVal, sizeOfValue);
+    if (startNode == NULL)
+        return;
+
+    HashSet *visitedNodes = hashSetInitialization(freeInt, compInt);
+    ArrayQueue *nodesQueue = QueueInitialize(freeDGraphNode);
+    ArrayQueueEnqueue(nodesQueue, startNode, sizeof(DirGraphNode));
+
+    int *startNodeValAddress = (int *) malloc(sizeof(int));
+    *startNodeValAddress = (int) startNode->value;
+    hashSetInsert(visitedNodes, startNodeValAddress, sizeof(int));
+
+    DirGraphNode *currentNode;
+
+    while (!isArrayQueueEmpty(nodesQueue)) {
+        currentNode = ArrayQueueDequeue(nodesQueue);
+        printVal(currentNode->value);
+
+        for (int i = 0; i < arrayListGetLength(currentNode->adjacentNodes); i++) {
+            DirGraphNode *adjNode = (DirGraphNode *) arrayListGet(currentNode->adjacentNodes, i);
+            int *adjNodeValAddress = (int *) malloc(sizeof(int));
+            *adjNodeValAddress = (int) adjNode->value;
+            if (!hashSetContains(visitedNodes, adjNodeValAddress, sizeof(int))) {
+                ArrayQueueEnqueue(nodesQueue, adjNode, sizeof(DirGraphNode));
+                hashSetInsert(visitedNodes, adjNodeValAddress, sizeof(int));
+            }
+
+        }
+
+
+    }
+
+    destroyHashSet(visitedNodes);
+    ArrayQueueDestroy(nodesQueue);
 
 }

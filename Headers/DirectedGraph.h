@@ -2,22 +2,18 @@
 #define C_DATASTRUCTURES_DIRECTEDGRAPH_H
 
 
-#include "ArrayList.h"
-#include "HashMap.h"
-#include "HashSet.h"
-
 
 typedef struct DirGraphNode {
     void *value;
     int sizeOfValue;
-    ArrayList *adjacentNodes;
+    struct ArrayList *adjacentNodes;
 } DirGraphNode;
 
 
 
 
 typedef struct DirectedGraph {
-    HashMap *nodes;
+    struct HashMap *nodes;
 } DirectedGraph;
 
 
@@ -58,7 +54,10 @@ void destroyDirGraph(DirectedGraph *graph);
 void dirGraphPrint(DirectedGraph *graph, void (*printVal)(void *));
 
 
-void dirGraphDepthFirstTraversal(DirectedGraph *graph, void (*printVal)(void *));
+void dirGraphDepthFirstTraversal(DirectedGraph *graph, void *startVal, int sizeOfValue, void (*printVal)(void *));
+
+
+void dirGraphBreadthFirstTraversal(DirectedGraph *graph, void *startVal, int sizeOfValue, void (*printVal)(void *));
 
 
 #endif //C_DATASTRUCTURES_DIRECTEDGRAPH_H

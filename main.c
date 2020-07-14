@@ -29,7 +29,7 @@ int comp(const void *p1, int s1, const void *p2, int s2) {
 }
 
 void print(void *item) {
-    printf("%s", (char *)item);
+    printf("%s\n", (char *)item);
 }
 
 int main() {
@@ -37,31 +37,45 @@ int main() {
 
     char *node;
 
-    node = (char *) malloc(sizeof(char) * (strlen("Mostafa") + 1) );
-    strcpy(node, "Mostafa");
+    node = (char *) malloc(sizeof(char) * (strlen("A") + 1) );
+    strcpy(node, "A");
     dirGraphAddNode(graph, node, strlen(node) + 1);
 
-    node = (char *) malloc(sizeof(char) * (strlen("Mohammed") + 1) );
-    strcpy(node, "Mohammed");
+    node = (char *) malloc(sizeof(char) * (strlen("B") + 1) );
+    strcpy(node, "B");
     dirGraphAddNode(graph, node, strlen(node) + 1);
 
-    node = (char *) malloc(sizeof(char) * (strlen("Tawfiq") + 1) );
-    strcpy(node, "Tawfiq");
+    node = (char *) malloc(sizeof(char) * (strlen("C") + 1) );
+    strcpy(node, "C");
     dirGraphAddNode(graph, node, strlen(node) + 1);
 
-    dirGraphAddEdge(graph, "Mostafa", strlen("Mostafa") + 1, "Mohammed", strlen("Mohammed") + 1);
-    dirGraphAddEdge(graph, "Mostafa", strlen("Mostafa") + 1, "Tawfiq", strlen("Tawfiq") + 1);
-    dirGraphAddEdge(graph, "Mohammed", strlen("Mohammed") + 1, "Tawfiq", strlen("Tawfiq") + 1);
+    node = (char *) malloc(sizeof(char) * (strlen("D") + 1) );
+    strcpy(node, "D");
+    dirGraphAddNode(graph, node, strlen(node) + 1);
 
+    node = (char *) malloc(sizeof(char) * (strlen("E") + 1) );
+    strcpy(node, "E");
+    dirGraphAddNode(graph, node, strlen(node) + 1);
+
+
+    dirGraphAddEdge(graph, "A", strlen("A") + 1, "B", strlen("B") + 1);
+    dirGraphAddEdge(graph, "A", strlen("A") + 1, "E", strlen("E") + 1);
+    dirGraphAddEdge(graph, "D", strlen("D") + 1, "E", strlen("E") + 1);
+    dirGraphAddEdge(graph, "B", strlen("B") + 1, "E", strlen("E") + 1);
+    dirGraphAddEdge(graph, "C", strlen("C") + 1, "D", strlen("D") + 1);
+    dirGraphAddEdge(graph, "C", strlen("C") + 1, "E", strlen("E") + 1);
+    dirGraphAddEdge(graph, "C", strlen("C") + 1, "B", strlen("B") + 1);
     //dirGraphRemoveEdge(graph, "Mostafa", strlen("Mostafa") + 1, "Mohammed", strlen("Mohammed") + 1);
     //dirGraphRemoveNode(graph, "Tawfiq", strlen("Tawfiq") + 1);
     //print("done");
-    dirGraphPrint(graph, print);
+    //dirGraphPrint(graph, print);
 
     //dirGraphDepthFirstTraversal(graph, print);
     //printf("\n\n%d", dirGraphContainsEdge(graph, "Mohammed", strlen("Mohammed") + 1, "Tawfiq", strlen("Tawfiq") + 1));
 
     //printf("%d", dirGraphGetNumOfNodes(graph));
+
+    dirGraphBreadthFirstTraversal(graph, "C", strlen("C") + 1, print);
 
     destroyDirGraph(graph);
     return 0;
