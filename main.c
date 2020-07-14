@@ -18,60 +18,46 @@
 #define ANSI_COLOR_WHITE    "\x1b[37m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
-#include "Headers/HashMap.h"
+#include "DirectedGraph.h"
 
 void freeItem(void *item) {
     free(item);
 }
 
-int comp(void *p1, int s1, void *p2, int s2) {
+int comp(const void *p1, int s1, const void *p2, int s2) {
     return strcmp((char *)p1, (char *)p2);
 }
 
-
-typedef struct try {
-    int *m;
-} try;
-
+void print(void *item) {
+    printf("%s", (char *)item);
+}
 
 int main() {
+    DirectedGraph *graph = directedGraphInitialization(freeItem, comp);
 
-    HashMap *hashMap = hashMapInitialization(freeItem, freeItem, comp);
+    char *node;
 
-    char *key;
-    int *item;
+    node = (char *) malloc(sizeof(char) * (strlen("Mostafa") + 1) );
+    strcpy(node, "Mostafa");
+    dirGraphAddNode(graph, node, strlen(node) + 1);
 
+    node = (char *) malloc(sizeof(char) * (strlen("Mohammed") + 1) );
+    strcpy(node, "Mohammed");
+    dirGraphAddNode(graph, node, strlen(node) + 1);
 
-    key = (char *) malloc(sizeof(char ) * (strlen("One") + 1));
-    strcpy(key, "One");
-    item = (int *) malloc(sizeof(int));
-    *item = 1;
-    hashMapInsert(hashMap, key, strlen(key) + 1, item, sizeof(int));
+    node = (char *) malloc(sizeof(char) * (strlen("Tawfiq") + 1) );
+    strcpy(node, "Tawfiq");
+    dirGraphAddNode(graph, node, strlen(node) + 1);
 
-    key = (char *) malloc(sizeof(char ) * (strlen("Two") + 1));
-    strcpy(key, "Two");
-    item = (int *) malloc(sizeof(int));
-    *item = 2;
-    hashMapInsert(hashMap, key, strlen(key) + 1, item, sizeof(int));
+    dirGraphAddEdge(graph, "Mostafa", strlen("Mostafa") + 1, "Mohammed", strlen("Mohammed") + 1);
+    dirGraphAddEdge(graph, "Mostafa", strlen("Mostafa") + 1, "Tawfiq", strlen("Tawfiq") + 1);
+    dirGraphAddEdge(graph, "Mohammed", strlen("Mohammed") + 1, "Tawfiq", strlen("Tawfiq") + 1);
 
-    key = (char *) malloc(sizeof(char ) * (strlen("Three") + 1));
-    strcpy(key, "Three");
-    item = (int *) malloc(sizeof(int));
-    *item = 3;
-    hashMapInsert(hashMap, key, strlen(key) + 1, item, sizeof(int));
+   // dirGraphRemoveEdge(graph, "Mostafa", strlen("Mostafa") + 1, "Mohammed", strlen("Mohammed") + 1);
+    dirGraphRemoveNode(graph, "Tawfiq", strlen("Tawfiq") + 1);
+    //print("done");
+    dirGraphPrint(graph, print);
 
-    key = (char *) malloc(sizeof(char ) * (strlen("Three") + 1));
-    strcpy(key, "Three");
-    item = (int *) malloc(sizeof(int));
-    *item = 1000;
-    hashMapInsert(hashMap, key, strlen(key) + 1, item, sizeof(int));
-
-
-    Entry **entries = hashMapToEntryArray(hashMap);
-
-    for (int i = 0; i < hashMapGetLength(hashMap); i++) {
-        printf("Key: %s , Value: %d\n", entries[i]->key, *(int *)entries[i]->item->value);
-    }
     return 0;
 
 }

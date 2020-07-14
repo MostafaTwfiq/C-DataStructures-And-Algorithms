@@ -75,9 +75,8 @@ int (*keyCompFun)(const void *key1, int s1, const void *key2, int s2);
  */
 
 HashMap *hashMapInitialization(
-
-        void (*freeItem)(void *item)
-        , void (*freeKey)(void *key)
+        void (*freeKey)(void *key)
+        , void (*freeItem)(void *item)
         , int (*keyComp)(const void *key1, int s1, const void *key2, int s2)
         ) {
 
@@ -323,10 +322,10 @@ void **hashMapToArray(HashMap *map) {
         exit(-3);
     }
 
-    void **arr = (void *) malloc(sizeof(void *) * map->count);
+    void **arr = (void **) malloc(sizeof(void *) * map->count);
     for (int i = 0, index = 0; i < map->length; i++) {
         if (map->arr[i] != NULL) {
-            arr[index] = (void *) malloc(sizeof(map->arr[i]->item->sizeOfItem));
+            arr[index] = (void *) malloc(map->arr[i]->item->sizeOfItem);
             memcpy(arr[index], map->arr[i]->item->value, map->arr[i]->item->sizeOfItem);
             index++;
         }

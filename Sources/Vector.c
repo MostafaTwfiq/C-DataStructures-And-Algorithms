@@ -98,6 +98,28 @@ void vectorRemove(Vector *list) {
 
 
 
+/** This function will take the vector as a parameter,
+    then it will remove the last item in the vector, without freeing the item.
+ * Note: if the vector is empty then the program will be terminated.
+ * @param list the vector address
+ */
+
+void vectorRemoveWtFr(Vector *list) {
+    if (list == NULL) {
+        fprintf(stderr,"Illegal argument, the vector is NULL.");
+        exit(-3);
+    } else if (vectorIsEmpty(list)) {
+        fprintf(stderr,"Vector out of range.");
+        exit(-3);
+    }
+
+    free(list->arr[vectorGetLength(list) - 1]);
+    list->count--;
+
+}
+
+
+
 
 /** This function will take the vector address, and the index as a parameters,
     then it will remove the item in the given index from the vector.
@@ -107,6 +129,33 @@ void vectorRemove(Vector *list) {
  */
 
 void vectorRemoveAtIndex(Vector *list, int index) {
+    if (list == NULL) {
+        fprintf(stderr,"Illegal argument, the vector is NULL.");
+        exit(-3);
+    } else if (index < 0 || index >= vectorGetLength(list)) {
+        fprintf(stderr,"Index out of vector range.");
+        exit(-3);
+    }
+
+    vectorDestroyItem(list->arr[index], list->freeItem);
+    list->count--;
+
+    for (int i = index; i < list->count; i++) //this loop will shift the items to the left to delete the index.
+        list->arr[i] = list->arr[i + 1];
+
+
+}
+
+
+
+/** This function will take the vector address, and the index as a parameters,
+    then it will remove the item in the given index from the vector, without freeing the item.
+ * Note: if the index is out of the vector range then the program will be terminated.
+ * @param list the vector address
+ * @param index the index of the item that will be deleted
+ */
+
+void vectorRemoveAtIndexWtFr(Vector *list, int index) {
     if (list == NULL) {
         fprintf(stderr,"Illegal argument, the vector is NULL.");
         exit(-3);

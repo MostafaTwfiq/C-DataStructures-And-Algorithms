@@ -76,7 +76,7 @@ void freeRBTreeNodesR(RBNode *root, void (*freeItem)(void *item));
 
 /** Initialization Function for Red Black Tree. A comparison and freeing items functions must be provided
   for the tree to be able to level its Nodes. Returns a reference to an allocated Red Black Tree pointer on the heap.
- * @param freeItem Reference to the dGFreeItem function, that will be called to free the tree items
+ * @param freeItem Reference to the dGFreeValue function, that will be called to free the tree items
  * @param cmp Reference to the comparator function.
  * @return Pointer to the allocated Red Black tree on the heap.
  * */
@@ -138,7 +138,7 @@ void clearRBTree(RBTree *tree) {
 /**This function will take the root node address, and the freeing item function address as a parameters,
  * then recursively it will destroy and free all the tree nodes.
  * @param root the address of the node
- * @param freeItem dGFreeItem the freeing item function address
+ * @param freeItem dGFreeValue the freeing item function address
  */
 
 

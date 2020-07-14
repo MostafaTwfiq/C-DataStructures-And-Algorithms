@@ -32,7 +32,13 @@ void vectorAddAll(Vector *list, void **array, int arrayLength, int sizeOfItem);
 void vectorRemove(Vector *list);
 
 
+void vectorRemoveWtFr(Vector *list);
+
+
 void vectorRemoveAtIndex(Vector *list, int index);
+
+
+void vectorRemoveAtIndexWtFr(Vector *list, int index);
 
 
 int vectorContains(Vector *list, void *item, int (*comparator)(const void *, const void *));

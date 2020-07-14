@@ -98,6 +98,30 @@ void arrayListRemove(ArrayList *list) {
 
 
 
+/** This function will take the array list as a parameter,
+    then it will remove the last item in the array list, without freeing the item.
+ * Note: if the array list is empty then the program will be terminated.
+ * @param list the array list address
+ */
+
+void arrayListRemoveWtFr(ArrayList *list) {
+    if (list == NULL) {
+        fprintf(stderr,"Illegal argument, the array list is NULL.");
+        exit(-3);
+    } else if (arrayListIsEmpty(list)) {
+        fprintf(stderr,"Array list out of range.");
+        exit(-3);
+    }
+
+
+    free(list->arr[arrayListGetLength(list) - 1]);
+    list->count--;
+
+}
+
+
+
+
 
 /** This function will take the array list address, and the index as a parameters,
     then it will remove the item in the given index from the array list.
@@ -116,6 +140,33 @@ void arrayListRemoveAtIndex(ArrayList *list, int index) {
     }
 
     arrayListDestroyItem(list->arr[index], list->freeItem);
+    list->count--;
+
+    for (int i = index; i < list->count; i++) //this loop will shift the items to the left to delete the index.
+        list->arr[i] = list->arr[i + 1];
+
+
+}
+
+
+/** This function will take the array list address, and the index as a parameters,
+    then it will remove the item in the given index from the array list without freeing the item.
+ * Note: if the index is out of the array list range then the program will be terminated.
+ * @param list the array list address
+ * @param index the index of the item that will be deleted
+ */
+
+void arrayListRemoveAtIndexWtFr(ArrayList *list, int index) {
+    if (list == NULL) {
+        fprintf(stderr,"Illegal argument, the array list is NULL.");
+        exit(-3);
+    } else if (index < 0 || index >= arrayListGetLength(list)) {
+        fprintf(stderr,"Index out of array list range.");
+        exit(-3);
+    }
+
+
+    free(list->arr[index]);
     list->count--;
 
     for (int i = index; i < list->count; i++) //this loop will shift the items to the left to delete the index.
