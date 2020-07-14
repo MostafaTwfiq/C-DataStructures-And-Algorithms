@@ -4,22 +4,6 @@
 
 
 
-
-
-void (*freeItemFun)(void *item);
-void (*freeKeyFun)(void *key);
-void freeEntry(void *entry) {
-    Entry *entryToFree = (Entry *) entry;
-    freeItemFun(entryToFree->item->value);
-    free(entryToFree->item);
-    freeKeyFun(entryToFree->key);
-    free(entryToFree);
-
-}
-
-int (*keyCompFun)(void *key1, int s1, void *key2, int s2);
-
-
 unsigned int fHashCal(unsigned int address, unsigned int sizeOfKey, unsigned int length);
 
 
@@ -33,6 +17,47 @@ int calBPrime(int length);
 
 
 int getNextPrime(int num);
+
+
+
+/** The freeing item function address variable.
+ * @param item the item address
+ */
+
+void (*freeItemFun)(void *item);
+
+
+/** The freeing key function address variable.
+ * @param key the  key address
+ */
+
+void (*freeKeyFun)(void *key);
+
+
+/** The freeing entry function.
+ * @param entry the entry address.
+ */
+
+void freeEntry(void *entry) {
+    Entry *entryToFree = (Entry *) entry;
+    freeItemFun(entryToFree->item->value);
+    free(entryToFree->item);
+    freeKeyFun(entryToFree->key);
+    free(entryToFree);
+
+}
+
+
+/** The comparing keys function address variable.
+ * Note: if the function returned zero then the two key are equal.
+ * @param key1 the first key address
+ * @param s1 the size of the first key in bytes
+ * @param key2 the second key address
+ * @param s2 the second key size in bytes
+ * @return it will return zero if the two key are equal, other wise it will return any other integer.
+ */
+
+int (*keyCompFun)(void *key1, int s1, void *key2, int s2);
 
 
 
@@ -53,8 +78,9 @@ HashMap *hashMapInitialization(
 
         void (*freeItem)(void *item)
         , void (*freeKey)(void *key)
-        , int (*keyComp)(void *key1, int s1, void *key2, int s2)
+        , int (*keyComp)(const void *key1, int s1, const void *key2, int s2)
         ) {
+
     HashMap *map = (HashMap *) malloc(sizeof(HashMap));
 
     map->length = getNextPrime(10); //the length of the map array should always be a prime number.

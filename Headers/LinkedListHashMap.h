@@ -23,7 +23,7 @@ typedef struct LinkedListHashMap {
 } LinkedListHashMap;
 
 
-LinkedListHashMap *linkedListHashMapInitialization(int mapLength, void (*freeKey)(void *key), void (*freeItem)(void *item));
+LinkedListHashMap *linkedListHashMapInitialization(int mapLength, void (*freeKey)(void *key), void (*freeItem)(void *item), int (*keyComp)(const void *key1, int s1, const void *key2, int s2));
 
 
 void lLHashMapInsert(LinkedListHashMap *map, void *key, int sizeOfKey, void *item, int sizeOfItem);

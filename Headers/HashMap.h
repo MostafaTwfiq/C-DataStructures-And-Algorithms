@@ -30,7 +30,7 @@ typedef struct HashMap {
 
 
 
-HashMap *hashMapInitialization(void (*freeItem)(void *item), void (*freeKey)(void *key), int (*keyComp)(void *key1, int s1, void *key2, int s2));
+HashMap *hashMapInitialization(void (*freeItem)(void *item), void (*freeKey)(void *key), int (*keyComp)(const void *key1, int s1, const void *key2, int s2));
 
 
 void hashMapInsert(HashMap *map, void *key, int sizeOfKey, void *item, int sizeOfItem);

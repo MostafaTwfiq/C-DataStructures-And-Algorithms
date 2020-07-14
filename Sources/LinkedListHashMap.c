@@ -5,13 +5,28 @@
 
 unsigned int hashCal(unsigned int address, unsigned int sizeOfKey, unsigned int length);
 
+int entriesCompFun(const void *p1, const void *p2);
 
-int compFun(const void *p1, const void *p2);
 
 
+/** The freeing item function address variable.
+ * @param item the item address
+ */
 
 void (*freeItemFun)(void *item);
+
+
+/** The freeing key function address variable.
+ * @param key the  key address
+ */
+
 void (*freeKeyFun)(void *key);
+
+
+/** The freeing entry function.
+ * @param entry the entry address.
+ */
+
 void freeEntryFun(void *entry) {
     Entry *entryToFree = (Entry *) entry;
     freeItemFun(entryToFree->item->value);
@@ -21,22 +36,46 @@ void freeEntryFun(void *entry) {
 }
 
 
+/** The comparing keys function address variable.
+ * Note: if the function returned zero then the two key are equal.
+ * @param key1 the first key address
+ * @param s1 the size of the first key in bytes
+ * @param key2 the second key address
+ * @param s2 the second key size in bytes
+ * @return it will return zero if the two key are equal, other wise it will return any other integer.
+ */
 
-/** This function will take the length of the hash map, and the free function address as a parameters,
+int (*keyCompFun)(const void *key1, int s1, const void *key2, int s2);
+
+
+
+
+
+
+
+/** This function will take the length of the hash map, the free function address, and the key comparator function as a parameters,
     then it will allocate a new linked list hash map in the memory,
     then the function will return the hash map address.
  * @param mapLength the hash map length
  * @param freeFun the free function address, that will be called to free the hash map items
+ * @param keyComp the key comparator function address, that will be called to compare two keys
  * @return it will return the new hash map address
  */
 
-LinkedListHashMap *linkedListHashMapInitialization(int mapLength, void (*freeKey)(void *key), void (*freeItem)(void *item)) {
+LinkedListHashMap *linkedListHashMapInitialization(
+        int mapLength,
+        void (*freeKey)(void *key),
+        void (*freeItem)(void *item),
+        int (*keyComp)(const void *key1, int s1, const void *key2, int s2)
+        ) {
+
     if (mapLength <= 0)
-        return NULL;
+        mapLength = 1;
 
 
     freeKeyFun = freeKey;
     freeItemFun = freeItem;
+    keyCompFun = keyComp;
 
     LinkedListHashMap *hashMap = (LinkedListHashMap *) malloc(sizeof(LinkedListHashMap));
 
@@ -81,7 +120,7 @@ void lLHashMapInsert(LinkedListHashMap *map, void *key, int sizeOfKey, void *ite
     entry->item->sizeOfItem = sizeOfItem;
     entry->sizeOfKey = sizeOfKey;
 
-    int entryIndex = doublyLinkedListGetIndex(map->arr[index], entry, compFun);
+    int entryIndex = doublyLinkedListGetIndex(map->arr[index], entry, entriesCompFun);
     if (entryIndex != -1)
         doublyLinkedListDeleteAtIndex(map->arr[index], entryIndex);
 
@@ -120,7 +159,7 @@ int lLHashMapContains(LinkedListHashMap *map, void *key, int sizeOfKey) {
     entry->key = key;
     entry->sizeOfKey = sizeOfKey;
 
-    int boolean = doublyLinkedListContains(map->arr[index], entry, compFun);
+    int boolean = doublyLinkedListContains(map->arr[index], entry, entriesCompFun);
     free(entry);
     return boolean;
 
@@ -157,7 +196,7 @@ void *lLHashMapGet(LinkedListHashMap *map, void *key, int sizeOfKey) {
     entry->key = key;
     entry->sizeOfKey = sizeOfKey;
 
-    int itemIndex = doublyLinkedListGetIndex(map->arr[index], entry, compFun);
+    int itemIndex = doublyLinkedListGetIndex(map->arr[index], entry, entriesCompFun);
     free(entry);
     if (itemIndex == -1)
         return NULL;
@@ -195,7 +234,7 @@ void lLHashMapDelete(LinkedListHashMap *map, void *key, int sizeOfKey) {
     entry->key = key;
     entry->sizeOfKey = sizeOfKey;
 
-    int itemIndex = doublyLinkedListGetIndex(map->arr[index], entry, compFun);
+    int itemIndex = doublyLinkedListGetIndex(map->arr[index], entry, entriesCompFun);
     free(entry);
     if (itemIndex == -1)
         return;
@@ -397,13 +436,10 @@ unsigned int hashCal(unsigned int address, unsigned int sizeOfKey, unsigned int 
  * @return it will return zero if the two entries has the same key value, other wise it will return one
  */
 
-int compFun(const void *p1, const void *p2) {
-    if (((Entry *) p1)->sizeOfKey != ((Entry *) p2)->sizeOfKey)
-        return 1;
+int entriesCompFun(const void *p1, const void *p2) {
+    Entry *entry1 = (Entry *) p1;
+    Entry *entry2 = (Entry *) p2;
 
-    else if (memcmp(((Entry *) p1)->key, ((Entry *) p2)->key, ((Entry *) p1)->sizeOfKey) == 0)
-        return 0;
-
-    return 1;
+    return keyCompFun(entry1->key, entry1->sizeOfKey, entry2->key, entry2->sizeOfKey);
 
 }
