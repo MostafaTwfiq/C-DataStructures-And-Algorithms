@@ -420,7 +420,7 @@ void clearHashMap(HashMap *map) {
         exit(-3);
     }
 
-    for (int i = 0; i < map->count; i++) {
+    for (int i = 0; i < map->length; i++) {
         if (map->arr[i] != NULL) {
             freeEntry(map->arr[i]);
             map->arr[i] = NULL;

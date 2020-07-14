@@ -70,4 +70,4 @@ add_executable(C_DataStructures main.c
         Sources/ArrayDeque.c
         Headers/ArrayDeque.h
 
-        Sources/HashSet.c Headers/HashSet.h DirectedGraph.c DirectedGraph.h)
+        Sources/HashSet.c Headers/HashSet.h Sources/DirectedGraph.c Headers/DirectedGraph.h)

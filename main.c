@@ -18,7 +18,7 @@
 #define ANSI_COLOR_WHITE    "\x1b[37m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
-#include "DirectedGraph.h"
+#include "Headers/DirectedGraph.h"
 
 void freeItem(void *item) {
     free(item);
@@ -53,11 +53,17 @@ int main() {
     dirGraphAddEdge(graph, "Mostafa", strlen("Mostafa") + 1, "Tawfiq", strlen("Tawfiq") + 1);
     dirGraphAddEdge(graph, "Mohammed", strlen("Mohammed") + 1, "Tawfiq", strlen("Tawfiq") + 1);
 
-   // dirGraphRemoveEdge(graph, "Mostafa", strlen("Mostafa") + 1, "Mohammed", strlen("Mohammed") + 1);
-    dirGraphRemoveNode(graph, "Tawfiq", strlen("Tawfiq") + 1);
+    //dirGraphRemoveEdge(graph, "Mostafa", strlen("Mostafa") + 1, "Mohammed", strlen("Mohammed") + 1);
+    //dirGraphRemoveNode(graph, "Tawfiq", strlen("Tawfiq") + 1);
     //print("done");
     dirGraphPrint(graph, print);
 
+    //dirGraphDepthFirstTraversal(graph, print);
+    //printf("\n\n%d", dirGraphContainsEdge(graph, "Mohammed", strlen("Mohammed") + 1, "Tawfiq", strlen("Tawfiq") + 1));
+
+    //printf("%d", dirGraphGetNumOfNodes(graph));
+
+    destroyDirGraph(graph);
     return 0;
 
 }
