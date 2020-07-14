@@ -9,13 +9,15 @@
 
 typedef struct DirGraphNode {
     void *value;
+    int sizeOfValue;
     ArrayList *adjacentNodes;
 } DirGraphNode;
 
+
+
+
 typedef struct DirectedGraph {
     HashMap *nodes;
-    int sizeOfType;
-    void (*freeItem)(void *);
 } DirectedGraph;
 
 

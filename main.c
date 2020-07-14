@@ -18,48 +18,60 @@
 #define ANSI_COLOR_WHITE    "\x1b[37m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
-#include "Headers/PriorityQueue.h"
+#include "Headers/HashMap.h"
 
 void freeItem(void *item) {
     free(item);
 }
 
-int comp(const void *p1, int s1, const void *p2, int s2) {
-    return *(int *)p1 - *(int *)p2;
+int comp(void *p1, int s1, void *p2, int s2) {
+    return strcmp((char *)p1, (char *)p2);
 }
+
+
+typedef struct try {
+    int *m;
+} try;
 
 
 int main() {
 
-    PriorityQueue *queue = priorityQueueInitialization(freeItem, comp);
+    HashMap *hashMap = hashMapInitialization(freeItem, freeItem, comp);
 
+    char *key;
     int *item;
 
+
+    key = (char *) malloc(sizeof(char ) * (strlen("One") + 1));
+    strcpy(key, "One");
     item = (int *) malloc(sizeof(int));
-    *item = 20;
-    pQueueEnqueue(queue, item, sizeof(int));
+    *item = 1;
+    hashMapInsert(hashMap, key, strlen(key) + 1, item, sizeof(int));
 
+    key = (char *) malloc(sizeof(char ) * (strlen("Two") + 1));
+    strcpy(key, "Two");
     item = (int *) malloc(sizeof(int));
-    *item = 10;
-    pQueueEnqueue(queue, item, sizeof(int));
+    *item = 2;
+    hashMapInsert(hashMap, key, strlen(key) + 1, item, sizeof(int));
 
+    key = (char *) malloc(sizeof(char ) * (strlen("Three") + 1));
+    strcpy(key, "Three");
     item = (int *) malloc(sizeof(int));
-    *item = 55;
-    pQueueEnqueue(queue, item, sizeof(int));
+    *item = 3;
+    hashMapInsert(hashMap, key, strlen(key) + 1, item, sizeof(int));
 
+    key = (char *) malloc(sizeof(char ) * (strlen("Three") + 1));
+    strcpy(key, "Three");
     item = (int *) malloc(sizeof(int));
-    *item = 23;
-    pQueueEnqueue(queue, item, sizeof(int));
+    *item = 1000;
+    hashMapInsert(hashMap, key, strlen(key) + 1, item, sizeof(int));
 
 
+    Entry **entries = hashMapToEntryArray(hashMap);
 
-    int **arr = (int **) pQueueToArray(queue);
-
-    for (int i = 0; i < pQueueGetLength(queue); i++)
-        printf("%d\n", *arr[i]);
-
-    destroyPQueue(queue);
-
+    for (int i = 0; i < hashMapGetLength(hashMap); i++) {
+        printf("Key: %s , Value: %d\n", entries[i]->key, *(int *)entries[i]->item->value);
+    }
     return 0;
 
 }
