@@ -17,14 +17,34 @@ unsigned int hashSetCalIndex(unsigned int fHash, unsigned int sHash, unsigned in
 
 
 
+/** The comparing items function address variable.
+ * Note: if the function returned zero then the two items are equal.
+ * @param item1 the first item address
+ * @param s1 the size of the first item in bytes
+ * @param item2 the second item address
+ * @param s2 the second item size in bytes
+ * @return it will return zero if the two items are equal, other wise it will return any other integer.
+ */
 
-/** This function will take the size of the hash set elements type as a parameter,
+int (*itemCompFun)(const void *item1, int s1, const void *item2, int s2);
+
+
+
+
+
+
+/** This function will take the size of the hash set elements type, and the comparing items function as a parameters,
  * then it will return a new hash set address.
  * @param freeItem the freeing item function address, that will be called to free the hash set items
+ * @param itemComp the comparing item function address, that will be called to compare two items.
  * @return it will return a new hash set pointer
  */
 
-HashSet *hashSetInitialization(void (*freeItem)(void *item)) {
+HashSet *hashSetInitialization(
+        void (*freeItem)(void *item),
+        int (*itemComp)(const void *item1, int s1, const void *item2, int s2)
+        ) {
+
     HashSet *hashSet = (HashSet *) malloc(sizeof(HashSet));
 
     hashSet->length = hashSetGetNextPrime(10);
@@ -33,6 +53,7 @@ HashSet *hashSetInitialization(void (*freeItem)(void *item)) {
     hashSet->freeItem = freeItem;
     hashSet->bPrime = hashSetCalBPrime(hashSet->length);
 
+    itemCompFun = itemComp;
     return hashSet;
 
 }
@@ -79,7 +100,7 @@ void hashSetInsert(HashSet *hashSet, void *item, int sizeOfItem) {
 
     while (hashSet->arr[index] != NULL) {
 
-        if (hashSet->arr[index]->sizeOfItem == sizeOfItem && memcmp(hashSet->arr[index]->value, item, sizeOfItem) == 0) {
+        if (itemCompFun(hashSet->arr[index]->value, hashSet->arr[index]->sizeOfItem, item, sizeOfItem) == 0) {
             hashSet->freeItem(hashSet->arr[index]->value);
             hashSet->arr[index]->value = item;
             hashSet->arr[index]->sizeOfItem = sizeOfItem;
@@ -136,7 +157,7 @@ void hashSetDelete(HashSet *hashSet, void *item, int sizeOfItem) {
     do {
 
         if (hashSet->arr[index] != NULL) {
-            if (hashSet->arr[index]->sizeOfItem == sizeOfItem && memcmp(hashSet->arr[index]->value, item, sizeOfItem) == 0) {
+            if (itemCompFun(hashSet->arr[index]->value, hashSet->arr[index]->sizeOfItem, item, sizeOfItem) == 0) {
                 hashSet->freeItem(hashSet->arr[index]->value);
                 free(hashSet->arr[index]);
                 hashSet->arr[index] = NULL;
@@ -192,7 +213,7 @@ int hashSetContains(HashSet *hashSet, void *item, int sizeOfItem) {
     do {
 
         if (hashSet->arr[index] != NULL) {
-            if (hashSet->arr[index]->sizeOfItem == sizeOfItem && memcmp(hashSet->arr[index]->value, item, sizeOfItem) == 0)
+            if (itemCompFun(hashSet->arr[index]->value, hashSet->arr[index]->sizeOfItem, item, sizeOfItem) == 0)
                 return 1;
 
         }

@@ -57,7 +57,7 @@ void freeEntry(void *entry) {
  * @return it will return zero if the two key are equal, other wise it will return any other integer.
  */
 
-int (*keyCompFun)(void *key1, int s1, void *key2, int s2);
+int (*keyCompFun)(const void *key1, int s1, const void *key2, int s2);
 
 
 

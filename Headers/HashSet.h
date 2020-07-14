@@ -28,7 +28,7 @@ typedef struct HashSet {
 
 
 
-HashSet *hashSetInitialization(void (*freeItem)(void *item));
+HashSet *hashSetInitialization(void (*freeItem)(void *item), int (*itemComp)(const void *item1, int s1, const void *item2, int s2));
 
 
 void hashSetInsert(HashSet *hashSet, void *item, int sizeOfItem);
