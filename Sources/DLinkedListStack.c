@@ -1,5 +1,5 @@
 #include "../Headers/DLinkedListStack.h"
-
+#include "../Headers/DoublyLinkedList.h"
 
 
 
@@ -9,11 +9,11 @@
  * @return it will return the new stack address
  */
 
-DLinkedListStack *dlStackInitialization(void (*freeFun)(void *item)) {
+DLinkedListStack *dlStackInitialization(void (*freeFun)(void *)) {
 
     DLinkedListStack *stack = (DLinkedListStack *) malloc(sizeof(DLinkedListStack));
 
-    stack->linkedList = doublyLinkedListInitialization(freeFun);
+    stack->linkedList = doublyLinkedListInitialization(freeFun, NULL);
 
     return stack;
 
@@ -23,20 +23,19 @@ DLinkedListStack *dlStackInitialization(void (*freeFun)(void *item)) {
 
 
 
-/** This function will take the stack address, the item address, and the size of item as a parameters,
+/** This function will take the stack address, and the item address as a parameters,
     then it will pushStack the item into the stack.
  * @param stack the stack address
  * @param item the new item address
- * @param sizeOfItem the size of the new item in bytes
  */
 
-void dlStackPush(DLinkedListStack *stack, void *item, int sizeOfItem) {
+void dlStackPush(DLinkedListStack *stack, void *item) {
     if (stack == NULL) {
          fprintf(stderr,"Illegal argument, the stack is NULL.");
         exit(-4);
     }
 
-    doublyLinkedListAddLast(stack->linkedList, item, sizeOfItem);
+    doublyLinkedListAddLast(stack->linkedList, item);
 
 }
 
@@ -44,15 +43,14 @@ void dlStackPush(DLinkedListStack *stack, void *item, int sizeOfItem) {
 
 
 
-/** This function will take the stack address, the array address, the array length, and the size of items as a parameters,
+/** This function will take the stack address, the array address, and the array length as a parameters,
     then it will add all the array items into the stack in order.
  * @param stack the stack address
  * @param arr the new items array address
  * @param arrLength the length of the new items array
- * @param sizeOfItem the size of the new items in bytes
  */
 
-void dlStackAddAll(DLinkedListStack *stack, void **arr, int arrLength, int sizeOfItem) {
+void dlStackAddAll(DLinkedListStack *stack, void **arr, int arrLength) {
     if (stack == NULL) {
         fprintf(stderr,"Illegal argument, the stack is NULL.");
         exit(-4);
@@ -60,7 +58,7 @@ void dlStackAddAll(DLinkedListStack *stack, void **arr, int arrLength, int sizeO
 
 
     for (int i = 0; i < arrLength; i++)
-        dlStackPush(stack,arr[i], sizeOfItem);
+        dlStackPush(stack,arr[i]);
 
 }
 
@@ -87,7 +85,7 @@ void *dlStackPop(DLinkedListStack *stack) {
     }
 
     void *item = doublyLinkedListGetLast(stack->linkedList);
-    doublyLinkedListDeleteLastWtFr(stack->linkedList);
+    doublyLinkedListDeleteLastWtoFr(stack->linkedList);
 
     return item;
 }

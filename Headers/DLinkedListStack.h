@@ -1,11 +1,10 @@
 #ifndef C_DATASTRUCTURES_DLINKEDLISTSTACK_H
 #define C_DATASTRUCTURES_DLINKEDLISTSTACK_H
 #include "Utils.h"
-#include "DoublyLinkedList.h"
 
 typedef struct DLinkedListStack {
 
-    DoublyLinkedList *linkedList;
+    struct DoublyLinkedList *linkedList;
 
 } DLinkedListStack;
 
@@ -13,10 +12,10 @@ typedef struct DLinkedListStack {
 DLinkedListStack *dlStackInitialization(void (*freeFun)(void *item));
 
 
-void dlStackPush(DLinkedListStack *stack, void *item, int sizeOfItem);
+void dlStackPush(DLinkedListStack *stack, void *item);
 
 
-void dlStackAddAll(DLinkedListStack *stack, void **arr, int arrLength, int sizeOfItem);
+void dlStackAddAll(DLinkedListStack *stack, void **arr, int arrLength);
 
 
 void *dlStackPop(DLinkedListStack *stack);

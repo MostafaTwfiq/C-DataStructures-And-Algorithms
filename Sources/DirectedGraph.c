@@ -10,7 +10,7 @@
 
 
 
-
+void dirGraphTopologicalSortR(DirGraphNode *node, HashSet *visitedNodes, Stack *sortStack);
 
 
 /** freeing graph values function address*/
@@ -56,7 +56,7 @@ void freeDGraphNode(void *node) {
  * @return it will return zero (0) if the two value are equal
  */
 
-int (*valueCompFun)(const void *val1, int s1, const void *val2, int s2);
+int (*valueCompFun)(const void *val1, const void *val2);
 
 
 
@@ -74,7 +74,7 @@ int dGraphNodeComp (const void *n1, const void *n2) {
     DirGraphNode *node1 = (DirGraphNode *) n1;
     DirGraphNode *node2 = (DirGraphNode *) n2;
 
-    return valueCompFun(node1->value, node1->sizeOfValue, node2->value, node2->sizeOfValue);
+    return valueCompFun(node1->value, node2->value);
 
 }
 
@@ -116,7 +116,6 @@ DirectedGraph *directedGraphInitialization(
 
 
 
-
 /** This function will take a value and insert it in the graph.
  * Note: if the value is already in the graph, then the graph will free the passed value immediately.
  * @param graph the graph address
@@ -140,8 +139,7 @@ void dirGraphAddNode(DirectedGraph *graph, void *value, int sizeOfValue) {
 
     DirGraphNode *newNode = (DirGraphNode *) malloc(sizeof(DirGraphNode));
     newNode->value = value;
-    newNode->sizeOfValue = sizeOfValue;
-    newNode->adjacentNodes = arrayListInitialization(5, freeDGraphNode);
+    newNode->adjacentNodes = arrayListInitialization(5, freeDGraphNode, dGraphNodeComp);
     hashMapInsert(graph->nodes, value, sizeOfValue, newNode, sizeof(DirGraphNode));
 
 }
@@ -178,7 +176,7 @@ void dirGraphRemoveNode(DirectedGraph *graph, void *value, int sizeOfValue) {
     void **hashMapNodes = (void **) hashMapToArray(graph->nodes);
 
     for (int i = 0; i < hashMapGetLength(graph->nodes); i++) {
-        int index = arrayListGetIndex( ((DirGraphNode *) hashMapNodes[i])->adjacentNodes , nodeToDelete, dGraphNodeComp);
+        int index = arrayListGetIndex( ((DirGraphNode *) hashMapNodes[i])->adjacentNodes , nodeToDelete);
         if (index != -1)
             arrayListRemoveAtIndexWtFr(((DirGraphNode *) hashMapNodes[i])->adjacentNodes, index);
 
@@ -230,7 +228,7 @@ void dirGraphAddEdge(DirectedGraph *graph, void *fromVal, int sizeOfFromVal, voi
         return;
 
 
-    arrayListAdd(fromNode->adjacentNodes, toNode, sizeof(DirGraphNode));
+    arrayListAdd(fromNode->adjacentNodes, toNode);
 
 }
 
@@ -265,7 +263,7 @@ void dirGraphRemoveEdge(DirectedGraph *graph, void *fromVal, int sizeOfFromVal, 
     if (fromNode == NULL || toNode == NULL)
         return;
 
-    int toNodeIndex = arrayListGetIndex(fromNode->adjacentNodes, toNode, dGraphNodeComp);
+    int toNodeIndex = arrayListGetIndex(fromNode->adjacentNodes, toNode);
     if (toNodeIndex != -1)
         arrayListRemoveAtIndexWtFr(fromNode->adjacentNodes, toNodeIndex);
 
@@ -330,7 +328,7 @@ int dirGraphContainsEdge(DirectedGraph *graph, void *fromVal, int sizeOfFromVal,
     if (fromNode == NULL || toNode == NULL)
         return 0;
 
-    return arrayListContains(fromNode->adjacentNodes, toNode, dGraphNodeComp);
+    return arrayListContains(fromNode->adjacentNodes, toNode);
 
 }
 
@@ -621,5 +619,62 @@ void dirGraphBreadthFirstTraversal(DirectedGraph *graph, void *startVal, int siz
 
     destroyHashSet(visitedNodes);
     ArrayQueueDestroy(nodesQueue);
+
+}
+
+
+
+ArrayList *dirGraphTopologicalSort(DirectedGraph *graph) {
+    if (graph == NULL) {
+        fprintf(stderr, "Illegal argument, the directed graph is null.");
+        exit(-3);
+    }
+
+
+    DirGraphNode **hashMapNodes = (DirGraphNode **) hashMapToArray(graph->nodes);
+    ArrayList *sortedArrayList = arrayListInitialization(hashMapGetLength(graph->nodes), dGFreeValue, valueCompFun);
+    HashSet *visitedNodes = hashSetInitialization(freeInt, compInt);
+    Stack *sortStack = stackInitialization(freeDGraphNode);
+
+    for (int i = 0; i < hashMapGetLength(graph->nodes); i++)
+        dirGraphTopologicalSortR(hashMapNodes[i], visitedNodes, sortStack);
+
+
+    while (!isEmptyStack(sortStack)) {
+        DirGraphNode *tempNode = popStack(sortStack);
+        arrayListAdd(sortedArrayList, tempNode->value);
+    }
+
+    StackDestroy(sortStack);
+    destroyHashSet(visitedNodes);
+
+    //TODO: if we changed the toArray function to return the original addresses instead of a copy,
+    // then don't forget to edit here too.
+
+    for (int i = 0; i < hashMapGetLength(graph->nodes); i++)
+        free(hashMapNodes[i]);
+
+    free(hashMapNodes);
+
+    return sortedArrayList;
+
+}
+
+
+void dirGraphTopologicalSortR(DirGraphNode *node, HashSet *visitedNodes, Stack *sortStack) {
+    int *nodeValueAddress = (int *) malloc(sizeof(int));
+    *nodeValueAddress = (int) node->value;
+
+    if (hashSetContains(visitedNodes, nodeValueAddress, sizeof(int))) {
+        free(nodeValueAddress);
+        return;
+    }
+
+    for (int i = 0; i < arrayListGetLength(node->adjacentNodes); i++)
+        dirGraphTopologicalSortR(arrayListGet(node->adjacentNodes, i), visitedNodes, sortStack);
+
+
+    hashSetInsert(visitedNodes, nodeValueAddress, sizeof(int));
+    pushStack(sortStack, node, sizeof(DirGraphNode));
 
 }

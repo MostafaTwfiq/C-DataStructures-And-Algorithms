@@ -42,6 +42,7 @@ int *generateIndexes(char c);
 
 Node *destroyTrieNodes(Node *root);
 
+int wordsComparator(const void *word1, const void *word2);
 
 
 
@@ -215,6 +216,21 @@ Node *trieRemoveWordR(Node *root, const char *currentChar) {
 
 
 
+/** This function will be useful to initialize the array lists that will be returned to the user,
+ * after suggesting the words.
+ * @param word1 the first word pointer
+ * @param word2 the second word pointer
+ * @return
+ */
+
+int wordsComparator(const void *word1, const void *word2) {
+    return strcmp((char *)word1, (char *)word2);
+}
+
+
+
+
+
 /** This function will take the trie address, the word address, and the number of suggestion needed as a parameters,
     then it will return and array list pointer that contains all the words.
  * Note: if the given word is wrong Linguistically then,
@@ -233,7 +249,7 @@ ArrayList *trieAutoCompletion(Trie *trie, char *word, int numOfSuggestion) {
     } else if (word == NULL)
         return NULL;
 
-    ArrayList *wordsList = arrayListInitialization(numOfSuggestion, freeFun);
+    ArrayList *wordsList = arrayListInitialization(numOfSuggestion, freeFun, wordsComparator);
     String *string = stringInitialization(10);
     trieAutoCompletionR(trie->root, word, numOfSuggestion, string, wordsList);
 
@@ -267,7 +283,7 @@ void trieAutoCompletionR(Node *root, char *currentChar, int numOfSuggestion, Str
         return;
     else if (root->EOW && *currentChar == '\0') {
         char *word = stringToArrayOfCharacters(string);
-        arrayListAdd(wordsList, word, stringGetLength(string) + 1);
+        arrayListAdd(wordsList, word);
     }
 
     int index = toLowerCase(*currentChar) - 'a';
@@ -306,7 +322,7 @@ ArrayList *trieSuggestion(Trie *trie, char *word, int numOfSuggestion) {
         return NULL;
 
     String *string = stringInitialization(10);
-    ArrayList *wordsList = arrayListInitialization(numOfSuggestion, freeFun);
+    ArrayList *wordsList = arrayListInitialization(numOfSuggestion, freeFun, wordsComparator);
 
 
     trieSuggestionR(trie->root, word, string, wordsList, numOfSuggestion);
@@ -343,7 +359,7 @@ void trieSuggestionR(Node *root, char *word, String *string, ArrayList *wordsLis
             return;
         else if (root->EOW) {
             char *finalWord = stringToArrayOfCharacters(string);
-            arrayListAdd(wordsList, finalWord, stringGetLength(string) + 1);
+            arrayListAdd(wordsList, finalWord);
         }
     }
 

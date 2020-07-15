@@ -18,14 +18,13 @@
 #define ANSI_COLOR_WHITE    "\x1b[37m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
-#include "Headers/ArrayDeque.h"
 
 void freeItem(void *item) {
     free(item);
 }
 
-int comp(const void *p1, int s1, const void *p2, int s2) {
-    return strcmp((char *)p1, (char *)p2);
+int comp(const void *p1, const void *p2) {
+    return *(int *)p1 - *(int *)p2;
 }
 
 void print(void *item) {
@@ -33,30 +32,6 @@ void print(void *item) {
 }
 
 int main() {
-    ArrayDeque *ad  = ArrayDequeInitialize(12);
-    int a=1;
-    void *i1 = ArrayDequeNewItem(4,&a);
-    ArrayDequeInsertFront(ad,i1);
-    int b=2;
-     i1 = ArrayDequeNewItem(4,&b);
-    ArrayDequeInsertFront(ad,i1);
-    int c=3;
-     i1 = ArrayDequeNewItem(4,&c);
-    ArrayDequeInsertFront(ad,i1);
-    int d=4;
-     i1 = ArrayDequeNewItem(4,&d);
-    ArrayDequeInsertFront(ad,i1);
-    int e=5;
-     i1 = ArrayDequeNewItem(4,&e);
-    ArrayDequeInsertFront(ad,i1);
-    int f=6;
-     i1 = ArrayDequeNewItem(4,&f);
-    ArrayDequeInsertFront(ad,i1);
-    int g=7;
-     i1 = ArrayDequeNewItem(4,&g);
-    ArrayDequeInsertFront(ad,i1);
-
-    ArrayDequePrint(ad,print);
     return 0;
 
 }

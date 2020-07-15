@@ -8,50 +8,51 @@ typedef struct DoublyLinkedList {
     struct Node *tail;
     int length;
     void (*freeFun)(void *);
+    int (*comparator)(const void *, const void *);
 } DoublyLinkedList;
 
 
 
-DoublyLinkedList *doublyLinkedListInitialization(void (*freeFun)(void *));
+DoublyLinkedList *doublyLinkedListInitialization(void (*freeFun)(void *), int (*comparator)(const void *, const void *));
 
 
-void doublyLinkedListAddFirst(DoublyLinkedList *linkedList, void *item, int sizeOfItem);
+void doublyLinkedListAddFirst(DoublyLinkedList *linkedList, void *item);
 
 
-void doublyLinkedListAddLast(DoublyLinkedList *linkedList, void *item, int sizeOfItem);
+void doublyLinkedListAddLast(DoublyLinkedList *linkedList, void *item);
 
 
-void doublyLinkedListAddAtIndex(DoublyLinkedList *linkedList, int index, void *item, int sizeOfItem);
+void doublyLinkedListAddAtIndex(DoublyLinkedList *linkedList, int index, void *item);
 
 
-void doublyLinkedListAddAll(DoublyLinkedList *linkedList, void **items, int itemsLength, int sizeOfItem);
+void doublyLinkedListAddAll(DoublyLinkedList *linkedList, void **items, int itemsLength);
 
 
 void doublyLinkedListDeleteFirst(DoublyLinkedList *linkedList);
 
 
-void doublyLinkedListDeleteFirstWtFr(DoublyLinkedList *linkedList);
+void *doublyLinkedListDeleteFirstWtoFr(DoublyLinkedList *linkedList);
 
 
 void doublyLinkedListDeleteLast(DoublyLinkedList *linkedList);
 
 
-void doublyLinkedListDeleteLastWtFr(DoublyLinkedList *linkedList);
+void *doublyLinkedListDeleteLastWtoFr(DoublyLinkedList *linkedList);
 
 
 void doublyLinkedListDeleteAtIndex(DoublyLinkedList *linkedList, int index);
 
 
-void doublyLinkedListDeleteAtIndexWtFr(DoublyLinkedList *linkedList, int index);
+void *doublyLinkedListDeleteAtIndexWtoFr(DoublyLinkedList *linkedList, int index);
 
 
-int doublyLinkedListContains(DoublyLinkedList *linkedList, void *item, int (*comparator)(const void *, const void *));
+int doublyLinkedListContains(DoublyLinkedList *linkedList, void *item);
 
 
-int doublyLinkedListGetIndex(DoublyLinkedList *linkedList, void *item, int (*comparator)(const void *, const void *));
+int doublyLinkedListGetIndex(DoublyLinkedList *linkedList, void *item);
 
 
-void *doublyLinkedListGetItem(DoublyLinkedList *linkedList, void *item, int (*comparator)(const void *, const void *));
+void *doublyLinkedListGetItem(DoublyLinkedList *linkedList, void *item);
 
 
 void *doublyLinkedListGetFirst(DoublyLinkedList *linkedList);
@@ -79,5 +80,6 @@ void doublyLinkedListClear(DoublyLinkedList *linkedList);
 
 
 void destroyDoublyLinkedList(DoublyLinkedList *linkedList);
+
 
 #endif //C_DATASTRUCTURES_DOUBLYLINKEDLIST_H

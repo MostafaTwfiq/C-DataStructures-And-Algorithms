@@ -2,31 +2,29 @@
 #define C_DATASTRUCTURES_LINKEDLISTHASHMAP_H
 
 
-#include "DoublyLinkedList.h"
-
-
-typedef struct LLHashMapItem {
-    void *value;
-    int sizeOfItem;
-} LLHashMapItem;
-
 typedef struct Entry{
     void *key;
-    LLHashMapItem *item;
-    int sizeOfKey;
+    void *item;
+    void (*freeKeyFun)(void *);
+    void (*freeItemFun)(void *);
+    int (*keyCompFun)(const void *, const void *);
 } Entry;
 
 typedef struct LinkedListHashMap {
-    DoublyLinkedList **arr;
+    struct DoublyLinkedList **arr;
     int length;
     int count;
+    void (*freeKeyFun)(void *);
+    void (*freeItemFun)(void *);
+    int (*keyCompFun)(const void *, const void *);
+
 } LinkedListHashMap;
 
 
-LinkedListHashMap *linkedListHashMapInitialization(int mapLength, void (*freeKey)(void *key), void (*freeItem)(void *item), int (*keyComp)(const void *key1, int s1, const void *key2, int s2));
+LinkedListHashMap *linkedListHashMapInitialization(int mapLength, void (*freeKey)(void *key), void (*freeItem)(void *item), int (*keyComp)(const void *key1,  const void *key2));
 
 
-void lLHashMapInsert(LinkedListHashMap *map, void *key, int sizeOfKey, void *item, int sizeOfItem);
+void lLHashMapInsert(LinkedListHashMap *map, void *key, int sizeOfKey, void *item);
 
 
 int lLHashMapContains(LinkedListHashMap *map, void *key, int sizeOfKey);
@@ -36,6 +34,9 @@ void *lLHashMapGet(LinkedListHashMap *map, void *key, int sizeOfKey);
 
 
 void lLHashMapDelete(LinkedListHashMap *map, void *key, int sizeOfKey);
+
+
+void lLHashMapDeleteWtoFr(LinkedListHashMap *map, void *key, int sizeOfKey);
 
 
 void **lLHashMapToArray(LinkedListHashMap *map);
