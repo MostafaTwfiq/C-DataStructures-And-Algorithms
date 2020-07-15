@@ -1,7 +1,19 @@
 #include "../Headers/ArrayDeque.h"
 
-void* ArrayDequeNewItem(int sizeOfType,void *key){
-    return key;
+void *recalloc(void *p, int old_size, int new_size){
+    void *r = calloc(new_size, 1);
+    if (!r) return 0;
+    memcpy(r, p, old_size);
+    free(p);
+    return r;
+}
+
+
+ArrayDequeItem* ArrayDequeNewItem(int sizeOfType,void *key){
+    ArrayDequeItem* it = malloc(sizeof(*it));
+    it->value          = key;
+    it->sizeOfItem     = sizeOfType;
+    return it;
 }
 
 
@@ -13,17 +25,19 @@ uint16_t  ArrayDequeIsFull(ArrayDeque* arrayDeque){
     return ((arrayDeque->front == 0 && arrayDeque->rear == arrayDeque->size-1)
             ||arrayDeque->front == arrayDeque->rear+1);
 }
+
 /** Allocates space for a deque with an array of size set by the initialSize param on the heap and ret
 urns a pointer to the deque structure.
  * @param initialSize Size of the intial deque array.
  * @return Pointer to the newly allocated deque on the heap.
  **/
 ArrayDeque* ArrayDequeInitialize(uint32_t initialSize ) {
-    ArrayDeque* ad = (ArrayDeque*) malloc(sizeof(*ad));
+    ArrayDeque* ad =  (ArrayDeque*) malloc(sizeof(*ad));
     ad->size       =  initialSize;
+    ad->allocated  = ad->size;
     ad->front      = -1;
     ad->rear       =  0;
-    ad->memory        = calloc(sizeof(*ad->memory), ad->size);
+    ad->memory     =  calloc(sizeof(*ad->memory), ad->size);
     return ad;
 }
 
@@ -33,21 +47,23 @@ ArrayDeque* ArrayDequeInitialize(uint32_t initialSize ) {
  **/
 void ArrayDequeInsertFront(ArrayDeque* arrayDeque,void* key ) {
     if (ArrayDequeIsFull(arrayDeque)) {
-        arrayDeque->size*=2;
-        arrayDeque->memory = realloc(arrayDeque->memory,arrayDeque->size);
+        arrayDeque->allocated*=2;
+        arrayDeque->memory = recalloc(arrayDeque->memory, (arrayDeque->allocated/2)*sizeof(*arrayDeque->memory),arrayDeque->allocated*sizeof(*arrayDeque->memory));
     }
+
     if (arrayDeque->front == -1) {
         arrayDeque->front = 0;
         arrayDeque->rear = 0;
     }
 
     else if (arrayDeque->front == 0)
-        arrayDeque->front = arrayDeque->size - 1 ;
+        arrayDeque->front = arrayDeque->size++ - 1 ;
 
     else
         arrayDeque->front--;
 
     arrayDeque->memory[arrayDeque->front] = key ;
+    //arrayDeque->size++;
 }
 
 /** Inserts At the Rear of the deque.
@@ -56,13 +72,15 @@ void ArrayDequeInsertFront(ArrayDeque* arrayDeque,void* key ) {
  **/
 void ArrayDequeInsertRear(ArrayDeque* arrayDeque,void* key ) {
     if (ArrayDequeIsFull(arrayDeque)) {
-        arrayDeque->size*=2;
-        arrayDeque->memory = realloc(arrayDeque->memory,arrayDeque->size);
+        arrayDeque->allocated*=2;
+        arrayDeque->memory =recalloc(arrayDeque->memory, (arrayDeque->allocated/2)*sizeof(*arrayDeque->memory),arrayDeque->allocated*sizeof(*arrayDeque->memory));
     }
+    
     if (arrayDeque->front == -1){
         arrayDeque->front = 0;
         arrayDeque->rear  = 0;
     }
+    
     else if (arrayDeque->rear == arrayDeque->size-1)
         arrayDeque->rear = 0;
     else
@@ -168,4 +186,8 @@ void ArrayDequeClear(ArrayDeque* arrayDeque){
         free( arrayDeque->memory[arrayDeque->size-i] );
         arrayDeque->memory[arrayDeque->size-i]=NULL;
     }
+}
+
+void doubleSize(ArrayDeque* ad){
+
 }

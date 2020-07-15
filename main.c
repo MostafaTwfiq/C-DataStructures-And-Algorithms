@@ -28,10 +28,10 @@ int comp(const void *p1, const void *p2) {
 }
 
 void print(void *item) {
-    printf("%d\n", *((int*)item));
+    printf("%d\n", *(int*)((ArrayDequeItem *)item)->value);
 }
 
-int main() {
+int main(){
     return 0;
 
 }
