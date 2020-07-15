@@ -2,12 +2,8 @@
 
 
 
-//TODO: Check this implementation it seems not right.
-//TODO: I have read it, and it still make no sense.
-
 
 void arrayDequeDestroyItem(ArrayDequeItem *item, void (*freeItem)(void *));
-
 
 /** Determines if a an Array Dequeue is full or not.
  * @param  arrayDeque Reference to pre allocated Deque.
@@ -19,7 +15,12 @@ uint16_t  ArrayDequeIsFull(ArrayDeque* arrayDeque){
             ||arrayDeque->front == arrayDeque->rear+1);
 }
 
-
+ArrayDequeItem* ArrayDequeNewItem(int sizeOfData, void * item){
+    ArrayDequeItem  *it  = malloc(sizeof(ArrayDequeItem));
+    it->value= malloc(sizeOfData);
+    it->value=item;
+    return it;
+}
 
 
 
@@ -34,7 +35,7 @@ ArrayDeque* ArrayDequeInitialize(uint32_t initialSize, void (*freeItem)(void *))
     ad->front      = -1;
     ad->rear       =  0;
     ad->memory     = (ArrayDequeItem **) calloc(sizeof(ArrayDequeItem *), ad->size);
-    ad->freeItem = freeItem;
+    ad->freeItem   = freeItem;
     return ad;
 }
 
@@ -48,13 +49,13 @@ ArrayDeque* ArrayDequeInitialize(uint32_t initialSize, void (*freeItem)(void *))
  * @param item  Pointer to key to stored in the deque.
  **/
 
-void ArrayDequeInsertFront(ArrayDeque* arrayDeque, void *item, int sizeOfItem) {
+void ArrayDequeInsertFront(ArrayDeque* arrayDeque, ArrayDequeItem *item) {
     if (ArrayDequeIsFull(arrayDeque)) {
         arrayDeque->size *= 2;
         arrayDeque->memory = (ArrayDequeItem **) realloc(arrayDeque->memory, sizeof(ArrayDequeItem *) * arrayDeque->size);
     }
 
-    if (arrayDeque->front == -1) {
+    if (ArrayDequeIsEmpty(arrayDeque)) {
         arrayDeque->front = 0;
         arrayDeque->rear = 0;
     }
@@ -65,11 +66,7 @@ void ArrayDequeInsertFront(ArrayDeque* arrayDeque, void *item, int sizeOfItem) {
     else
         arrayDeque->front--;
 
-
-    ArrayDequeItem *newItem = (ArrayDequeItem *) malloc(sizeof(ArrayDequeItem));
-    newItem->value = item;
-    newItem->sizeOfType = sizeOfItem;
-    arrayDeque->memory[arrayDeque->front] = newItem;
+    arrayDeque->memory[arrayDeque->front] = item;
 
 }
 
@@ -89,7 +86,7 @@ void ArrayDequeInsertRear(ArrayDeque* arrayDeque, void *item, int sizeOfItem) {
         arrayDeque->size *= 2;
         arrayDeque->memory = (ArrayDequeItem **) realloc(arrayDeque->memory, sizeof(ArrayDequeItem *) * arrayDeque->size);
     }
-    if (arrayDeque->front == -1){
+    if (ArrayDequeIsEmpty(arrayDeque)){
         arrayDeque->front = 0;
         arrayDeque->rear  = 0;
     }

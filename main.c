@@ -18,7 +18,7 @@
 #define ANSI_COLOR_WHITE    "\x1b[37m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
-#include "Headers/DirectedGraph.h"
+#include "Headers/ArrayDeque.h"
 
 void freeItem(void *item) {
     free(item);
@@ -29,55 +29,34 @@ int comp(const void *p1, int s1, const void *p2, int s2) {
 }
 
 void print(void *item) {
-    printf("%s\n", (char *)item);
+    printf("%d\n", *((int*)((ArrayDequeItem*)item)->value));
 }
 
 int main() {
-    DirectedGraph *graph = directedGraphInitialization(freeItem, comp);
+    ArrayDeque *ad  = ArrayDequeInitialize(10,free);
+    int a=1;
+    ArrayDequeItem *i1 = ArrayDequeNewItem(4,&a);
+    ArrayDequeInsertFront(ad,i1);
+    int b=2;
+     i1 = ArrayDequeNewItem(4,&b);
+    ArrayDequeInsertFront(ad,i1);
+    int c=3;
+     i1 = ArrayDequeNewItem(4,&c);
+    ArrayDequeInsertFront(ad,i1);
+    int d=4;
+     i1 = ArrayDequeNewItem(4,&d);
+    ArrayDequeInsertFront(ad,i1);
+    int e=5;
+     i1 = ArrayDequeNewItem(4,&e);
+    ArrayDequeInsertFront(ad,i1);
+    int f=6;
+     i1 = ArrayDequeNewItem(4,&f);
+    ArrayDequeInsertFront(ad,i1);
+    int g=7;
+     i1 = ArrayDequeNewItem(4,&g);
+    ArrayDequeInsertFront(ad,i1);
 
-    char *node;
-
-    node = (char *) malloc(sizeof(char) * (strlen("A") + 1) );
-    strcpy(node, "A");
-    dirGraphAddNode(graph, node, strlen(node) + 1);
-
-    node = (char *) malloc(sizeof(char) * (strlen("B") + 1) );
-    strcpy(node, "B");
-    dirGraphAddNode(graph, node, strlen(node) + 1);
-
-    node = (char *) malloc(sizeof(char) * (strlen("C") + 1) );
-    strcpy(node, "C");
-    dirGraphAddNode(graph, node, strlen(node) + 1);
-
-    node = (char *) malloc(sizeof(char) * (strlen("D") + 1) );
-    strcpy(node, "D");
-    dirGraphAddNode(graph, node, strlen(node) + 1);
-
-    node = (char *) malloc(sizeof(char) * (strlen("E") + 1) );
-    strcpy(node, "E");
-    dirGraphAddNode(graph, node, strlen(node) + 1);
-
-
-    dirGraphAddEdge(graph, "A", strlen("A") + 1, "B", strlen("B") + 1);
-    dirGraphAddEdge(graph, "A", strlen("A") + 1, "E", strlen("E") + 1);
-    dirGraphAddEdge(graph, "D", strlen("D") + 1, "E", strlen("E") + 1);
-    dirGraphAddEdge(graph, "B", strlen("B") + 1, "E", strlen("E") + 1);
-    dirGraphAddEdge(graph, "C", strlen("C") + 1, "D", strlen("D") + 1);
-    dirGraphAddEdge(graph, "C", strlen("C") + 1, "E", strlen("E") + 1);
-    dirGraphAddEdge(graph, "C", strlen("C") + 1, "B", strlen("B") + 1);
-    //dirGraphRemoveEdge(graph, "Mostafa", strlen("Mostafa") + 1, "Mohammed", strlen("Mohammed") + 1);
-    //dirGraphRemoveNode(graph, "Tawfiq", strlen("Tawfiq") + 1);
-    //print("done");
-    //dirGraphPrint(graph, print);
-
-    //dirGraphDepthFirstTraversal(graph, print);
-    //printf("\n\n%d", dirGraphContainsEdge(graph, "Mohammed", strlen("Mohammed") + 1, "Tawfiq", strlen("Tawfiq") + 1));
-
-    //printf("%d", dirGraphGetNumOfNodes(graph));
-
-    dirGraphBreadthFirstTraversal(graph, "C", strlen("C") + 1, print);
-
-    destroyDirGraph(graph);
+    ArrayDequePrint(ad,print);
     return 0;
 
 }

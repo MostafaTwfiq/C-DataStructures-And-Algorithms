@@ -4,6 +4,13 @@
 #include <math.h>
 #define COUNT 10
 
+typedef struct TreeItem {
+    void *value;
+    int sizeOfItem;
+} TreeItem;
+
+
+
 /** @struct AVLTNode
  *  @brief This structure describes n AVL Tree Node.
  *  @var AVLTNode::key
