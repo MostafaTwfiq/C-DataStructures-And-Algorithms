@@ -3,7 +3,7 @@ project(C_DataStructures C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(C_DataStructures main.c
+add_executable(C_DataStructures #[[main.c
 
         Sources/Stack.c
         Headers/Stack.h
@@ -70,4 +70,17 @@ add_executable(C_DataStructures main.c
         Sources/ArrayDeque.c
         Headers/ArrayDeque.h
 
-        Sources/HashSet.c Headers/HashSet.h Sources/DirectedGraph.c Headers/DirectedGraph.h)
+        Sources/HashSet.c
+        Headers/HashSet.h
+
+        Sources/DirectedGraph.c
+        Headers/DirectedGraph.h
+]]
+        "Unit Test/CuTest"
+        "Unit Test/testExample.c"
+        "Unit Test/CuTest/AllTests.c"
+        "Unit Test/CuTest/CuTest.c"
+        "Unit Test/CuTest/CuTestTest.c"
+        "Unit Test/CuTest/CuTest.h"
+
+        )
