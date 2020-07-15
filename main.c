@@ -29,13 +29,13 @@ int comp(const void *p1, int s1, const void *p2, int s2) {
 }
 
 void print(void *item) {
-    printf("%d\n", *((int*)((ArrayDequeItem*)item)->value));
+    printf("%d\n", *((int*)item));
 }
 
 int main() {
-    ArrayDeque *ad  = ArrayDequeInitialize(10,free);
+    ArrayDeque *ad  = ArrayDequeInitialize(12);
     int a=1;
-    ArrayDequeItem *i1 = ArrayDequeNewItem(4,&a);
+    void *i1 = ArrayDequeNewItem(4,&a);
     ArrayDequeInsertFront(ad,i1);
     int b=2;
      i1 = ArrayDequeNewItem(4,&b);

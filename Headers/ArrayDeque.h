@@ -5,8 +5,9 @@
 
 typedef struct ArrayDequeItem {
     void *value;
-    int sizeOfType;
+    int sizeOfItem;
 } ArrayDequeItem;
+
 
 
 /** @struct ArrayDeque
@@ -21,22 +22,21 @@ typedef struct ArrayDequeItem {
  *  Member 'size' holds the current size of the allocated deque array.
  */
 typedef struct ArrayDeque{
-    ArrayDequeItem **memory;
+    void** memory;
     uint32_t  front;
     uint32_t  rear;
     uint32_t  size;
-    void (*freeItem)(void *);
 }ArrayDeque;
 
-ArrayDeque*     ArrayDequeInitialize(uint32_t initialSize, void (*freeItem)(void *));
-void            ArrayDequeInsertFront(ArrayDeque* arrayDeque, ArrayDequeItem *item);
-void            ArrayDequeInsertRear(ArrayDeque* arrayDeque, void *item, int sizeOfItem);
-void            ArrayDequeDeleteFront(ArrayDeque* arrayDeque);
-void            ArrayDequeDeleteRear(ArrayDeque* arrayDeque);
-uint16_t        ArrayDequeIsEmpty(ArrayDeque* arrayDeque);
-void*           ArrayDequeGetFront(ArrayDeque* arrayDeque);
-void*           ArrayDequeGetRear(ArrayDeque* arrayDeque);
-void            ArrayDequePrint(ArrayDeque* arrayDeque, void (*printFn)(void *));
-ArrayDequeItem* ArrayDequeNewItem(int sizeOfData, void * item);
+ArrayDeque* ArrayDequeInitialize(uint32_t initialSize);
+void       ArrayDequeInsertFront(ArrayDeque* arrayDeque,void* key);
+void       ArrayDequeInsertRear(ArrayDeque* arrayDeque,void* key);
+void       ArrayDequeDeleteFront(ArrayDeque* arrayDeque);
+void       ArrayDequeDeleteRear(ArrayDeque* arrayDeque);
+uint16_t   ArrayDequeIsEmpty(ArrayDeque* arrayDeque);
+void*      ArrayDequeGetFront(ArrayDeque* arrayDeque);
+void*      ArrayDequeGetRear(ArrayDeque* arrayDeque);
+void       ArrayDequePrint(ArrayDeque* arrayDeque, void (*printFn)(void *));
+void* ArrayDequeNewItem(int sizeOfType,void *key);
 
 #endif //C_DATASTRUCTURES_ARRAYDEQUE_H
