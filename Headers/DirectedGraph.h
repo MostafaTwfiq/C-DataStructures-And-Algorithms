@@ -1,6 +1,9 @@
 #ifndef C_DATASTRUCTURES_DIRECTEDGRAPH_H
 #define C_DATASTRUCTURES_DIRECTEDGRAPH_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 
 typedef struct DirGraphNode {
@@ -8,8 +11,6 @@ typedef struct DirGraphNode {
     struct ArrayList *adjacentNodes;
     int (*valueCompFun)(const void *, const void *);
 } DirGraphNode;
-
-
 
 
 typedef struct DirectedGraph {
@@ -66,6 +67,11 @@ void dirGraphBreadthFirstTraversal(DirectedGraph *graph, void *startVal, int siz
 
 
 struct ArrayList *dirGraphTopologicalSort(DirectedGraph *graph);
+
+
+#ifdef __cplusplus
+}
+#endif
 
 
 #endif //C_DATASTRUCTURES_DIRECTEDGRAPH_H

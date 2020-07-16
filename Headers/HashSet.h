@@ -1,15 +1,14 @@
 #ifndef C_DATASTRUCTURES_HASHSET_H
 #define C_DATASTRUCTURES_HASHSET_H
 
-
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <limits.h>
 
-
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 typedef struct HashSet {
     void **arr;
@@ -18,7 +17,6 @@ typedef struct HashSet {
     int bPrime;
     void (*freeItem)(void *);
     int (*itemComp)(const void *, const void *);
-
 } HashSet;
 
 
@@ -53,5 +51,8 @@ void clearHashSet(HashSet *hashSet);
 void destroyHashSet(HashSet *hashSet);
 
 
+#ifdef __cplusplus
+}
+#endif
 
 #endif //C_DATASTRUCTURES_HASHSET_H

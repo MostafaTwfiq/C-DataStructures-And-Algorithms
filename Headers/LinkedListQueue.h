@@ -1,16 +1,14 @@
 #ifndef C_DATASTRUCTURES_LINKEDLISTQUEUE_H
 #define C_DATASTRUCTURES_LINKEDLISTQUEUE_H
 
-
-
 #include "LinkedList.h"
 
-
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 typedef struct LinkedListQueue {
-
     LinkedList *linkedList;
-
 } LinkedListQueue;
 
 
@@ -44,5 +42,9 @@ void clearLLQueue(LinkedListQueue *queue);
 
 void destroyLLQueue(LinkedListQueue *queue);
 
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //C_DATASTRUCTURES_LINKEDLISTQUEUE_H

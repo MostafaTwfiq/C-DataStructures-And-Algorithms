@@ -56,13 +56,14 @@ void MaxHeapifyDown(BinaryMaxHeap *heap, int index) {
  *  @param cmp compare function for values stored in the heap.
  *  @return Returns pointer to the allocated maximum heap on the heap.
 **/
-BinaryMaxHeap *MaxHeapInitialize( int32_t (*cmp)(const void*, const void*)) {
+BinaryMaxHeap *MaxHeapInitialize( int32_t (*cmp)(const void*, const void*),void  (*freeFn)(void*)) {
     BinaryMaxHeap *h = malloc(sizeof(*h));
-    h->capacity = 10;
-    void **harr = (void **)malloc(sizeof(void*)*h->capacity);
-    h->memory = harr;
-    h->size = 0;
-    h->cmpFn = cmp;
+    h->capacity      = 10;
+    void **harr      = (void **)malloc(sizeof(void*)*h->capacity);
+    h->memory        = harr;
+    h->size          = 0;
+    h->cmpFn         = cmp;
+    h->freeFn        = freeFn;
     return h;
 }
 
@@ -89,7 +90,6 @@ void MaxHeapDelete(BinaryMaxHeap* heap, void ** res) {
     heap->memory[heap->size - 1] = NULL;
     heap->size--;
     MaxHeapifyDown(heap,0);
-    //MaxHeapFloatDown(heap,0);
 }
 
 /** Given an array containing preallocated pointer to objects, this function creates a new heap with the objects in it.
@@ -97,7 +97,7 @@ void MaxHeapDelete(BinaryMaxHeap* heap, void ** res) {
  *  @param size Size of the array to be inserted into the heap.
  *  @param cmp  compare function for values stored in the heap.
  *  @return Reference to maximum heap pointer allocated on the pMinHeap.
-**/
+ **/
 BinaryMaxHeap *MaxHeapify(void **arr, uint32_t size,int32_t (*cmp)(const void*, const void*)) {
     BinaryMaxHeap *h = malloc(sizeof(*h));
     h->capacity = 10;
@@ -133,13 +133,12 @@ void printMaxHeap(BinaryMaxHeap *h, void (*printfn)(void *)) {
     puts("\n");
 }
 
-
 /** Given a heap it frees its memory container and the allocated pointer within it,
   setting them null as well as the memory container and frees the heap pointer.
  *  @param heap  Reference to maximum heap pointer allocated on the heap.
 **/
 void destroyMaxHeap(BinaryMaxHeap * heap) {
-    clearMaxHeap(heap);
+    MaxHeapClear(heap);
     free(heap->memory);
     heap->memory = NULL;
     free(heap);
@@ -148,9 +147,9 @@ void destroyMaxHeap(BinaryMaxHeap * heap) {
 /** Given a heap pointer it frees it's memory container contents. But not the memory container of the heap.
  * @param pMaxHeap Reference to maximum heap pointer allocated on the heap.
  * */
-void clearMaxHeap(BinaryMaxHeap * pMaxHeap){
+void MaxHeapClear(BinaryMaxHeap * pMaxHeap){
     for(int i =0; i < pMaxHeap->size; i++){
-        free(pMaxHeap->memory[i]);
+        pMaxHeap->freeFn(pMaxHeap->memory[i]);
         pMaxHeap->memory[i] =NULL;
     }
 }

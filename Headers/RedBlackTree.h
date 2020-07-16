@@ -2,25 +2,26 @@
 #define C_DATASTRUCTURES_REDBLACKTREE_H
 #include "Utils.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef enum COLOR {
     RED,
     BLACK
-}COLOR;
+} COLOR;
 
 
-
-
-typedef struct  RBNode {
+typedef struct RBNode {
     void *key;
     COLOR color;
     struct RBNode *left;
     struct RBNode *right;
     struct RBNode *parent;
-}RBNode;
+} RBNode;
 
 
-
-typedef struct RBTree{
+typedef struct RBTree {
     struct RBNode *root;
     int nodeCount;
     void (*freeItem)(void *);
@@ -29,12 +30,9 @@ typedef struct RBTree{
 
 
 
-
 RBTree *redBlackTreeInitialization(void (*freeItem)(void *), int (*cmp)(const void*, const void *));
 
-
 void rBTreeInsert(RBTree *tree, void *item);
-
 
 void rBInOrderTraversal(RBTree *tree, void (*printFun)(const void *, COLOR));
 
@@ -49,7 +47,6 @@ void *rbTreeGet(RBTree *tree, char *item);
 
 
 void **rBTreeToArray(RBTree *rbTree);
-
 
 int rBTreeGetSize(RBTree *tree);
 
@@ -74,5 +71,9 @@ void destroyRBTree(RBTree *tree);
 
 void rBInsertAll(RBTree* rbTree, void** array, int length);
 
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //C_DATASTRUCTURES_REDBLACKTREE_H

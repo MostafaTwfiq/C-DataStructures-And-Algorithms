@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 #include <stdio.h>
 #include <string.h>
 //#include "CUnit-2.1-3/CUnit/Headers/Basic.h"
@@ -101,4 +99,4 @@ int main()
     //CU_cleanup_registry();
     //return CU_get_error();
 }
->>>>>>> b4f51d97d377d813be69974f596529774652dff4
+

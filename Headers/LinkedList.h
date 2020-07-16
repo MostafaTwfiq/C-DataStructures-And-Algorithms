@@ -2,6 +2,9 @@
 #define C_DATASTRUCTURES_LINKEDLIST_H
 #include "Utils.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 typedef struct LinkedList {
     struct Node *head;
@@ -18,10 +21,12 @@ LinkedList *linkedListInitialization(void (*freeFun)(void *),  int (*comparator)
 void linkedListAddFirst(LinkedList *linkedList, void *item);
 
 
+
 void linkedListAddLast(LinkedList *linkedList, void *item);
 
 
 void linkedListAddAtIndex(LinkedList *linkedList, int index, void *item);
+
 
 
 void linkedListAddAll(LinkedList *linkedList, void **items, int itemsLength);
@@ -30,10 +35,12 @@ void linkedListAddAll(LinkedList *linkedList, void **items, int itemsLength);
 void linkedListDeleteFirst(LinkedList *linkedList);
 
 
+
 void *linkedListDeleteFirstWtoFr(LinkedList *linkedList);
 
 
 void linkedListDeleteLast(LinkedList *linkedList);
+
 
 
 void *linkedListDeleteLastWtoFr(LinkedList *linkedList);
@@ -45,7 +52,9 @@ void linkedListDeleteAtIndex(LinkedList *linkedList, int index);
 void *linkedListDeleteAtIndexWtoFr(LinkedList *linkedList, int index);
 
 
+
 int linkedListContains(LinkedList *linkedList, void *item);
+
 
 
 int linkedListGetIndex(LinkedList *linkedList, void *item);
@@ -72,7 +81,7 @@ int linkedListGetLength(LinkedList *linkedList);
 int linkedListIsEmpty(LinkedList *linkedList);
 
 
-void printLinkedList(LinkedList *linkedList, void (*printFun) (const void *));
+void printLinkedList(LinkedList *linkedList, void (*printFun)(const void *));
 
 
 void linkedListClear(LinkedList *linkedList);
@@ -80,5 +89,9 @@ void linkedListClear(LinkedList *linkedList);
 
 void destroyLinkedList(LinkedList *linkedList);
 
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //C_DATASTRUCTURES_LINKEDLIST_H

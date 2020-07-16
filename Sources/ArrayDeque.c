@@ -1,15 +1,27 @@
 #include "../Headers/ArrayDeque.h"
 
-void arrayCopy(void **source, int sourcePos, void **destination, int destinationPos,int len){
-    int max = sourcePos+len;
-    while(sourcePos<max)
-        destination[destinationPos++]=source[sourcePos++];
+
+/** Copies a source array from a beginning index to the destination array from the mentioned index. Number of arguments to be copied is decided by len argument.
+ * @param source Reference to the source array to copy from.
+ * @param sourceIndex index to start copying from in the source array.
+ * @param destination Reference pointer to the destination array.
+ * @param destinationIndex index to start copying into in the destination array.
+ * @param len number of elements to copy from the source to the destination.
+**/
+void arrayCopy(void **source, int32_t sourceIndex, void **destination, int32_t destinationIndex, uint32_t len){
+    int max = sourceIndex + len;
+    while(sourceIndex < max)
+        destination[destinationIndex++]=source[sourceIndex++];
 }
 
+/** Doubles the size of the ArrayDeque copying the contents of the previously allocated Deque to the new one.
+** @param ad Reference pointer to the ArrayDeque.
+**/
 void doubleSize(ArrayDeque* ad){
-    int n = ArrayDequeLength(ad);
-    int k = n-ad->front-1;
-    int r = ad->rear+1;
+    uint32_t n = ArrayDequeLength(ad);
+
+    uint32_t k = n-ad->front-1;
+    uint32_t r = ad->rear+1;
 
     ad->size = n * 2;
     void ** a = calloc(ad->size,sizeof(*ad->memory));
@@ -22,8 +34,6 @@ void doubleSize(ArrayDeque* ad){
     ad->memory = a;
     ad->front = ad->size-k-1;
 }
-
-
 
 /** Determines if a an Array Dequeue is full or not.
  * @param  arrayDeque Reference to preallocated Deque.
@@ -39,12 +49,13 @@ urns a pointer to the deque structure.
  * @param initialSize Size of the intial deque array.
  * @return Pointer to the newly allocated deque on the heap.
  **/
-ArrayDeque* ArrayDequeInitialize(uint32_t initialSize ) {
+ArrayDeque* ArrayDequeInitialize(uint32_t initialSize,void(*freeFn)(void*)){
     ArrayDeque* ad =  (ArrayDeque*) malloc(sizeof(*ad));
     ad->size       =  initialSize;
     ad->front      = -1;
     ad->rear       =  0;
     ad->memory     =  calloc(sizeof(*ad->memory), ad->size);
+    ad->freeFn     = freeFn;
     return ad;
 }
 
@@ -170,27 +181,56 @@ void* ArrayDequeGetRear(ArrayDeque* arrayDeque ) {
  **/
 void ArrayDequePrint(ArrayDeque* arrayDeque, void (*printFn)(void *)){
     for(int i=0;i<arrayDeque->rear+1;i++){
-        if( arrayDeque->memory[i]) (printFn)( arrayDeque->memory[i] );
+        (printFn)( arrayDeque->memory[i] );
     }
     for(int i=arrayDeque->front;i<arrayDeque->size;i++)
-        if(  arrayDeque->memory[i]) (printFn)( arrayDeque->memory[i] );
+         (printFn)( arrayDeque->memory[i] );
 }
 
-/* Clears the array Items and sets them to null.
+/** Clears the array Items and sets them to null.
  * @param arrayDeque Reference to preallocated Deque.
  **/
 void ArrayDequeClear(ArrayDeque* arrayDeque){
     for(int i=0;i<arrayDeque->rear+1;i++){
-        free(arrayDeque->memory[i] );
+        arrayDeque->freeFn(arrayDeque->memory[i] );
         arrayDeque->memory[i]=NULL;
     }
-    for(int i=1;i<arrayDeque->front+1;i++){
-        free( arrayDeque->memory[arrayDeque->size-i] );
+    for(int i=arrayDeque->front;i<arrayDeque->size;i++){
+        arrayDeque->freeFn( arrayDeque->memory[i] );
         arrayDeque->memory[arrayDeque->size-i]=NULL;
     }
 }
 
-int ArrayDequeLength(ArrayDeque* ad){
-    int size = ad->front > ad->rear?ad->size-ad->front+ad->rear+1:ad->rear - ad->front + 1;
+/** Clears and frees the contents of the array Deque
+* @param arrayDeque Reference pointer to the ArrayDeque.
+**/
+void ArrayDequeFree(ArrayDeque* arrayDeque){
+    ArrayDequeClear(arrayDeque);
+    free(arrayDeque->memory);
+    arrayDeque->memory = NULL;
+    free(arrayDeque);
+}
+
+/** Given an arrya deque it returns the length of the array Deque.
+ * @param ad  Reference pointer to the ArrayDeque.
+ * @return returns the length of the Array Deque i.e the number of elements stored in the Deque
+ **/
+uint32_t ArrayDequeLength(ArrayDeque* ad){
+    uint32_t size = ad->front > ad->rear?ad->size-ad->front+ad->rear+1:ad->rear - ad->front + 1;
     return size>ad->size?0:size;
+}
+
+/** Converts the Deque into an array in the order the items where inserted in.
+ * @param ad Reference pointer to the ArrayDeque.
+ * @return Pointer to the newly allocated array with ArrayDeque's Data.
+ **/
+void** ArrayDequeToArray(ArrayDeque * ad){
+    void ** arr = malloc(ArrayDequeLength(ad)*sizeof(*arr));
+    uint32_t index = 0 ;
+    arr[index++] = ad->memory[0];
+    for(int i=ad->size-1;i>=ad->front;i--)
+        arr[index++] =ad->memory[i];
+    for(int i=1;i<ad->rear+1;i++)
+        arr[index++] =ad->memory[i];
+    return arr;
 }

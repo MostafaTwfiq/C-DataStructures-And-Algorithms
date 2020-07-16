@@ -1,11 +1,13 @@
 #ifndef C_DATASTRUCTURES_PRIORITYQUEUE_H
 #define C_DATASTRUCTURES_PRIORITYQUEUE_H
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 typedef struct PriorityQueue {
     void **arr;
@@ -14,8 +16,8 @@ typedef struct PriorityQueue {
     int fPointer;
     void (*freeItem)(void *);
     int (*comp)(const void *, const void *);
-} PriorityQueue;
 
+} PriorityQueue;
 
 
 
@@ -23,6 +25,7 @@ PriorityQueue *priorityQueueInitialization(void (*freeItem)(void *), int (*comp)
 
 
 void pQueueEnqueue(PriorityQueue *queue, void *item);
+
 
 
 void pQueueEnqueueAll(PriorityQueue *queue, void **items, int arrLength);
@@ -48,5 +51,9 @@ void clearPQueue(PriorityQueue *queue);
 
 void destroyPQueue(PriorityQueue *queue);
 
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //C_DATASTRUCTURES_PRIORITYQUEUE_H

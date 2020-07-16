@@ -1,17 +1,19 @@
 #ifndef C_DATASTRUCTURES_HASHMAP_H
 #define C_DATASTRUCTURES_HASHMAP_H
 
-
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct Entry{
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+typedef struct Entry {
     void *key;
     void *item;
     void (*freeItemFun)(void *);
     void (*freeKeyFun)(void *);
 } Entry;
-
 
 
 typedef struct HashMap {
@@ -23,7 +25,6 @@ typedef struct HashMap {
     void (*freeKeyFun)(void *);
     int (*keyComp)(const void *, const void *);
 } HashMap;
-
 
 
 HashMap *hashMapInitialization(void (*freeKey)(void *), void (*freeItem)(void *), int (*keyComp)(const void *, const void *));
@@ -61,5 +62,8 @@ void clearHashMap(HashMap *map);
 
 void destroyHashMap(HashMap *map);
 
+#ifdef __cplusplus
+}
+#endif
 
 #endif //C_DATASTRUCTURES_HASHMAP_H

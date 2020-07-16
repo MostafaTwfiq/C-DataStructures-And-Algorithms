@@ -2,6 +2,9 @@
 #define C_DATASTRUCTURES_STACK_H
 #include "Utils.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /** @struct Stack
  *  @brief This structure implements a basic generic stack.
@@ -22,24 +25,38 @@ typedef struct Stack {
     void (*freeItem)(void *);
 }Stack;
 
-Stack* stackInitialization(void (*freeItem)(void *item));
+Stack *stackInitialization(void (*freeItem)(void *item));
 
-void pushStack( Stack* stack ,  void * data);
+
+void pushStack( Stack* stack, void * data);
+
 
 void stackAddAll(Stack *stack, void **array, int arrLength);
 
+
 void *popStack(Stack *stack);
+
 
 short isEmptyStack(Stack *stack);
 
+
 void *peekStack(Stack *stack);
+
 
 void **stackToArray(Stack *stack);
 
+
 int getStackLength(Stack *stack);
 
-void StackClear(Stack* stack);
 
-void StackDestroy(Stack* stack);
+void StackClear(Stack *stack);
+
+
+void StackDestroy(Stack *stack);
+
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //C_DATASTRUCTURES_STACK_H
