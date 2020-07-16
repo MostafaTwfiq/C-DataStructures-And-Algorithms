@@ -9,8 +9,8 @@ Priority
 
 | Tasks                                                          | Priority | Status |
 |----------------------------------------------------------------|----------|--------|
-| Comprehensive Function usage in the ArrayDeque Example c file. |  MEDIUM  |   0    |
-| Rebuild Doc After Refactor.                                    |   HIGH   |   0    |
+| Comprehensive Function usage in the ArrayDeque Example c file. |   LOW    |   0    |
+| Rebuild Doc After Refactor.                                    |  MEDIUM  |   0    |
 | Add withoutFree Methods to trees                               |   HIGH   |   0    |
 | Rewrite Tree Docs after Refactor                               |   HIGH   |   0    |
 |                                                                |          |        |

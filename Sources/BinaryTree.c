@@ -336,14 +336,14 @@ BinaryTreeNode *BinaryTreeSearchWrapper(BinaryTree *binaryTree, BinaryTreeNode *
 /// \param binaryTree
 /// \param key
 /// \return
-BinaryTreeNode ** BinaryTreeSearch(BinaryTree* binaryTree, void * key){
+BinaryTreeNode* BinaryTreeSearch(BinaryTree* binaryTree, void * key){
     return BinaryTreeSearchWrapper(binaryTree,binaryTree->root,key);
 }
 
 ///
 /// \param binaryTree
 /// \param key
-BinaryTreeNode*  DeleteBinaryTreeNode(BinaryTree *binaryTree, void *key) {
+void DeleteBinaryTreeNode(BinaryTree *binaryTree, void *key) {
     binaryTree->root = DeleteBinaryTreeNodeWrapper(binaryTree,binaryTree->root,key);
 }
 
@@ -379,13 +379,11 @@ BinaryTreeNode* DeleteBinaryTreeNodeWrapper(BinaryTree *binaryTree, BinaryTreeNo
 * @param binaryTree Reference to the Binary tree.
 * @param array Array to add data from.
 * @param length The Length of the array to add from.
-* @return Returns the new root node.
 **/
-BinaryTreeNode * BinaryTreeInsertAll(BinaryTree* binaryTree, void** array, int length){
+void  BinaryTreeInsertAll(BinaryTree* binaryTree, void** array, int length){
     for(int i=0;i<length;i++){
         binaryTree->root = BinaryTreeInsertWrapper(binaryTree, binaryTree->root, array[i]);
     }
-    return binaryTree->root;
 }
 ///
 /// \param binaryTree
@@ -411,7 +409,6 @@ BinaryTreeNode* BinaryTreeInOrderSuccessor(BinaryTree *binaryTree, BinaryTreeNod
 /// \param binaryTree
 /// \param key
 /// \return
-BinaryTreeNode* BinaryTreeInsert(BinaryTree *binaryTree, void *key){
+void BinaryTreeInsert(BinaryTree *binaryTree, void *key){
     binaryTree->root = BinaryTreeInsertWrapper(binaryTree,binaryTree->root,key);
-    return binaryTree->root;
 }

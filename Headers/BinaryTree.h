@@ -41,7 +41,7 @@ typedef struct BinaryTree {
 } BinaryTree;
 
 
-BinaryTreeNode* DeleteBinaryTreeNode(BinaryTree *binaryTree, void *key);
+void DeleteBinaryTreeNode(BinaryTree *binaryTree, void *key);
 
 int BinaryTreeGetMinSteps(BinaryTreeNode *node);
 
@@ -57,9 +57,9 @@ BinaryTreeNode* BinaryTreeInOrderPredecessor(BinaryTree *binaryTree,BinaryTreeNo
 
 BinaryTreeNode* BinaryTreeInOrderSuccessor(BinaryTree *binaryTree, BinaryTreeNode *referenceNode);
 
-BinaryTreeNode* BinaryTreeInsert(BinaryTree *binaryTree, void *key);
+void BinaryTreeInsert(BinaryTree *binaryTree, void *key);
 
-BinaryTreeNode ** BinaryTreeSearch(BinaryTree* binaryTree, void * key);
+BinaryTreeNode* BinaryTreeSearch(BinaryTree* binaryTree, void * key);
 
 void **BinaryTreeToArray(BinaryTree *binaryTree);
 
@@ -75,7 +75,7 @@ BinaryTreeNode *BinaryTreeMinValueNode(BinaryTreeNode *node);
 
 void BinaryTreePrintInOrder(BinaryTreeNode *node, void (printFn)(void *));
 
-BinaryTreeNode *BinaryTreeInsertAll(BinaryTree *binaryTree, void **array, int length);
+void BinaryTreeInsertAll(BinaryTree *binaryTree, void **array, int length);
 
 #ifdef __cplusplus
 }
