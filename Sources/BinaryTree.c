@@ -40,7 +40,7 @@ void printBinaryTreeStats(BinaryTree *tree){
 * @param cmp Reference to the comparator function.
 * @return Pointer to the allocated Binary tree on the heap.
 **/
-BinaryTree* BinaryTreeInitialize( int size, int(*cmp)(const void*, const void*)){
+BinaryTree* BinaryTreeInitialize( int size, int(*cmp)(const void*, const void*), void (*freeFn)(void *)){
     BinaryTree *t = (BinaryTree *) malloc(sizeof(BinaryTree));
     if(!t){
         fprintf(stderr,"Failed at allocating tree\n");
@@ -50,6 +50,7 @@ BinaryTree* BinaryTreeInitialize( int size, int(*cmp)(const void*, const void*))
     t->sizeOfType =size;
     t->cmp = cmp;
     t->nodeCount =0;
+    t->freeFn = freeFn;
     return t;
 }
 
@@ -380,10 +381,10 @@ BinaryTreeNode* DeleteBinaryTreeNodeWrapper(BinaryTree *binaryTree, BinaryTreeNo
 * @param array Array to add data from.
 * @param length The Length of the array to add from.
 **/
-void  BinaryTreeInsertAll(BinaryTree* binaryTree, void** array, int length){
-    for(int i=0;i<length;i++){
-        binaryTree->root = BinaryTreeInsertWrapper(binaryTree, binaryTree->root, array[i]);
-    }
+void  BinaryTreeInsertAll(BinaryTree* binaryTree, void** array, uint32_t length){
+    for(uint32_t i=0;i<length;i++)
+        BinaryTreeInsert(binaryTree, array[i]);
+
 }
 ///
 /// \param binaryTree

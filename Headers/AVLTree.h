@@ -15,23 +15,23 @@ typedef struct TreeItem {
 } TreeItem;
 
 
-/** @struct AVLTNode
+/** @struct AVLTreeNode
  *  @brief This structure describes n AVL Tree Node.
- *  @var AVLTNode::key
+ *  @var AVLTreeNode::key
  *  Member 'key' is a pointer a pre-allocated object.
- *  @var AVLTNode::height
+ *  @var AVLTreeNode::height
  *  Member 'height' holds the current height of the node.
- *  @var AVLTNode::left
+ *  @var AVLTreeNode::left
  *  Member 'left' holds a reference to the left Node if present else it is Null.
- *  @var AVLTNode::right
+ *  @var AVLTreeNode::right
  *  Member 'right' holds a reference to the right Node if present else it is Null.
  */
-typedef struct AVLTNode {
+typedef struct AVLTreeNode {
     void *key;
     int32_t height;
-    struct AVLTNode *left;
-    struct AVLTNode *right;
-} AVLTNode;
+    struct AVLTreeNode *left;
+    struct AVLTreeNode *right;
+} AVLTreeNode;
 
 
 /** @struct AVLTree
@@ -44,7 +44,7 @@ typedef struct AVLTNode {
  *  Member 'cmp' is a pointer to the comparision function that is going to be used throughout the tree.
  */
 typedef struct AVLTree {
-    AVLTNode *root;
+    AVLTreeNode *root;
     uint32_t nodeCount;
     uint32_t sizeOfType;
     int16_t (*cmp)(const void *, const void *);
@@ -52,41 +52,41 @@ typedef struct AVLTree {
 } AVLTree;
 
 
-AVLTNode *AVLTreeDeleteNode(AVLTree *avlTree, AVLTNode *root, void *key);
+void AVLTreeDeleteNode(AVLTree *avlTree, void *key);
 
-int32_t AVLTreeGetMinSteps(AVLTNode *node);
+int32_t AVLTreeGetMinSteps(AVLTreeNode *node);
 
-int32_t AVLTreeGetMaxSteps(AVLTNode *node);
+int32_t AVLTreeGetMaxSteps(AVLTreeNode *node);
 
-int32_t AVLTreeGetSize(AVLTNode *root);
+int32_t AVLTreeGetSize(AVLTreeNode *root);
 
 int32_t AVLTreeIsPresent(AVLTree *avlTree, void *searchKey);
 
-void AVLTreePrint(AVLTNode *root, void (printFn)(void *));
+void AVLTreePrint(AVLTreeNode *root, void (printFn)(void *));
 
-void AVLTreeInOrderPredecessor(AVLTree *avlTree, AVLTNode *root, AVLTNode *referenceNode, AVLTNode **rightMost);
+AVLTreeNode* AVLInOrderPredecessor(AVLTree *avlTree,AVLTreeNode *referenceNode);
 
-void AVLTreeInOrderSuccessor(AVLTree *avlTree, AVLTNode *root, AVLTNode *referenceNode, AVLTNode **leftMost);
+AVLTreeNode* AVLInOrderSuccessor(AVLTree *avlTree, AVLTreeNode *referenceNode);
 
-AVLTNode *AVLTreeInsert(AVLTree *avlTree, AVLTNode *node, void *key);
+void AVLTreeInsert(AVLTree *avlTree, void *key);
 
-AVLTNode *AVLTreeSearch(AVLTree *avlTree, AVLTNode *node, char *key);
+AVLTreeNode *AVLTreeSearch(AVLTree *avlTree, AVLTreeNode *node, char *key);
 
 void **AVLTreeToArray(AVLTree *avlTree);
 
-void AVLTreeFree(AVLTNode** node, void (*freeFn)(void *));
+void AVLTreeFree(AVLTree* avlTree);
 
 AVLTree *AVLTreeInitialize(int32_t size, int32_t (*cmp)(const void *, const void *), void (*freeFn)(void *));
 
 void AVLTreePrintStats(AVLTree *tree);
 
-AVLTNode *AVLTreeMaxValueNode(AVLTNode *node);
+AVLTreeNode *AVLTreeMaxValueNode(AVLTreeNode *node);
 
-AVLTNode *AVLTreeMinValueNode(AVLTNode *node);
+AVLTreeNode *AVLTreeMinValueNode(AVLTreeNode *node);
 
-void AVLTreePrintInOrder(AVLTNode *node, void (printFn)(void *));
+void AVLTreePrintInOrder(AVLTreeNode *node, void (printFn)(void *));
 
-AVLTNode *AVLTreeAddAll(AVLTree *avlTree, void **array, int32_t length);
+AVLTreeNode *AVLTreeInsertAll(AVLTree *avlTree, void **array, uint32_t length);
 
 #ifdef __cplusplus
 }

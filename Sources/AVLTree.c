@@ -1,15 +1,15 @@
 #include "../Headers/AVLTree.h"
 
 
-void printAVLTreeHelper(AVLTNode *root, int space, void (printFn)(void *));
-void AVLTreeIsPresentRecurs(AVLTree *avlTree, AVLTNode *root, void *searchValue, int* found );
+void printAVLTreeHelper(AVLTreeNode *root, int space, void (printFn)(void *));
+void AVLTreeIsPresentRecurs(AVLTree *avlTree, AVLTreeNode *root, void *searchValue, int* found );
 int max(int a,int b);
-void AVLTreeToArrayRecurs(AVLTNode* node, void **arr, int *i,int size);
-void freeAVLTreeNode(AVLTNode **node, void (*freeFn)(void *));
-AVLTNode* newBinaryTreeNode(void* key);
-int height(AVLTNode *node);
-void AVLTreeGetMaxStepsRecurs(AVLTNode * node, int * steps);
-void AVLTreeGetMinStepsRecurs(AVLTNode * node, int * steps);
+void AVLTreeToArrayRecurs(AVLTreeNode* node, void **arr, int *i, int size);
+void freeAVLTreeNode(AVLTreeNode **node, void (*freeFn)(void *));
+AVLTreeNode* newBinaryTreeNode(void* key);
+int height(AVLTreeNode *node);
+void AVLTreeGetMaxStepsRecurs(AVLTreeNode * node, int * steps);
+void AVLTreeGetMinStepsRecurs(AVLTreeNode * node, int * steps);
 
 
 /** This function calculates the max between two integers. 
@@ -25,19 +25,19 @@ int max(int a, int b){
 * @param n node to rotate at.
 * @return Returns the rotated sub-Tree at reference node n.
 **/
-AVLTNode *AVLLeftRotate(AVLTNode *n);
+AVLTreeNode *AVLLeftRotate(AVLTreeNode *n);
 
 /** Function that Right rotates a Tree at a certain node.
 * @param n  node to rotate at.
 * @return returns the rotated sub-tree at reference node n.
 **/
-AVLTNode *AVLRightRotate(AVLTNode *n);
+AVLTreeNode *AVLRightRotate(AVLTreeNode *n);
 
 /** Gets the balance at a certain node n.
 * @param n node to get the balance at
 * @return returns the int balance at node n
 **/
-int AVLGetBalance(AVLTNode *n);
+int AVLGetBalance(AVLTreeNode *n);
 
 /** Prints the Tree Statistics:
   - Number of Nodes,
@@ -103,8 +103,8 @@ AVLTree* AVLTreeInitialize(int size ,int(*cmp)(const void*, const void*), void (
 * @param key Reference pointer to preallocated key.
 * @return Returns a pointer to an allocated node on the heap.
 **/
-AVLTNode* newAVLTreeNode(void* key){
-    AVLTNode *p =  (AVLTNode*)malloc(sizeof(AVLTNode));
+AVLTreeNode* newAVLTreeNode(void* key){
+    AVLTreeNode *p =  (AVLTreeNode*)malloc(sizeof(AVLTreeNode));
     if(!p){
         printf("Failed at allocating node\n");
         exit(-1);
@@ -119,18 +119,22 @@ AVLTNode* newAVLTreeNode(void* key){
 /** Given an AVL Tree's root node it frees it's elements recursively.Setting the root node to Null. 
 * @param node Exact Reference to root node to start freeing at.
 **/
-void AVLTreeFree(AVLTNode** node, void (*freeFn)(void *)){
+void AVLTreeFreeWrapper(AVLTreeNode** node, void (*freeFn)(void *)){
     if (*node==NULL) return;
-    AVLTreeFree(&(*node)->left,freeFn);
-    AVLTreeFree(&(*node)->right,freeFn);
+    AVLTreeFreeWrapper(&(*node)->left,freeFn);
+    AVLTreeFreeWrapper(&(*node)->right,freeFn);
     freeAVLTreeNode(node,freeFn);
     *node=NULL;
+}
+
+void AVLTreeFree(AVLTree* avlTree){
+    AVLTreeFreeWrapper(&avlTree->root,avlTree->freeFn);
 }
 
 /** Given a node it frees it's Key and the node. Setting both to Null.
 * @param node Exact Reference for node to Free.
 **/
-void freeAVLTreeNode(AVLTNode **node, void (*freeFn)(void *)){
+void freeAVLTreeNode(AVLTreeNode **node, void (*freeFn)(void *)){
     if(*node) return;
     freeFn((*node)->key);
     (*node)->key = NULL;
@@ -144,13 +148,13 @@ void freeAVLTreeNode(AVLTNode **node, void (*freeFn)(void *)){
 * @param key Reference to key to inset in the Tree.
 * @return Returns reference to the new root.
 **/
-AVLTNode* AVLTreeInsert(AVLTree * avlTree, AVLTNode *node, void *key) {
+AVLTreeNode* AVLTreeInsertWrapper(AVLTree * avlTree, AVLTreeNode *node, void *key) {
     if (node == NULL) {
         avlTree->nodeCount++;
         return newAVLTreeNode(key);
     }
-    if ( (avlTree->cmp)(key ,node->key)<0) node->left = AVLTreeInsert(avlTree, node->left, key);
-    else if ((avlTree->cmp)(key ,node->key)>0) node->right = AVLTreeInsert(avlTree, node->right, key);
+    if ( (avlTree->cmp)(key ,node->key)<0) node->left = AVLTreeInsertWrapper(avlTree, node->left, key);
+    else if ((avlTree->cmp)(key ,node->key)>0) node->right = AVLTreeInsertWrapper(avlTree, node->right, key);
 
     node->height = max(height(node->left),height(node->right))+1;
 
@@ -179,11 +183,14 @@ AVLTNode* AVLTreeInsert(AVLTree * avlTree, AVLTNode *node, void *key) {
     return node;
 }
 
+void AVLTreeInsert(AVLTree *avlTree, void *key){
+    avlTree->root = AVLTreeInsertWrapper(avlTree,avlTree->root,key);
+}
 
-AVLTNode *AVLRightRotate(AVLTNode *n){
-    AVLTNode *leftNode = (AVLTNode*)n->left;
+AVLTreeNode *AVLRightRotate(AVLTreeNode *n){
+    AVLTreeNode *leftNode = (AVLTreeNode*)n->left;
     //   if(!leftNode) return n;
-    AVLTNode *rightOfLeft = (AVLTNode*)leftNode->right;
+    AVLTreeNode *rightOfLeft = (AVLTreeNode*)leftNode->right;
 
     leftNode->right = n;
     n->left = rightOfLeft;
@@ -194,10 +201,10 @@ AVLTNode *AVLRightRotate(AVLTNode *n){
     return leftNode;
 }
 
-AVLTNode *AVLLeftRotate(AVLTNode *n){
-    AVLTNode *rightNode =(AVLTNode*) n->right;
+AVLTreeNode *AVLLeftRotate(AVLTreeNode *n){
+    AVLTreeNode *rightNode =(AVLTreeNode*) n->right;
     if(!rightNode) return n;
-    AVLTNode *leftOfright = (AVLTNode*)rightNode->left;
+    AVLTreeNode *leftOfright = (AVLTreeNode*)rightNode->left;
 
     rightNode->left = n;
     n->right = leftOfright;
@@ -212,12 +219,12 @@ AVLTNode *AVLLeftRotate(AVLTNode *n){
 * @param node Gets the height at a reference node n.
 * @return Returns int height of the tree.
 **/
-int height(AVLTNode *node){
+int height(AVLTreeNode *node){
     if (!node) return 0;
     return node->height;
 }
 
-int AVLGetBalance(AVLTNode *n){
+int AVLGetBalance(AVLTreeNode *n){
     if (n == NULL) return 0;
     return height(n->left) - height(n->right);
 }
@@ -229,7 +236,7 @@ int AVLGetBalance(AVLTNode *n){
 * @param referenceNode  Reference node to get the in-order successor for.
 * @param leftMost Pointer to store the inorder successor for that node.
 **/
-void AVLTreeInOrderSuccessor(AVLTree *avlTree, AVLTNode* root, AVLTNode* referenceNode, AVLTNode **leftMost) {
+void AVLTreeInOrderSuccessorWrapper(AVLTree *avlTree, AVLTreeNode* root, AVLTreeNode* referenceNode, AVLTreeNode **leftMost) {
     if (root == NULL) {
         leftMost = NULL;
         return;}
@@ -239,10 +246,10 @@ void AVLTreeInOrderSuccessor(AVLTree *avlTree, AVLTNode* root, AVLTNode* referen
     }
     else if ((avlTree->cmp)(referenceNode->key, root->key) < 0){
         *leftMost = root;
-        AVLTreeInOrderSuccessor(avlTree, root->left, referenceNode, leftMost);
+        AVLTreeInOrderSuccessorWrapper(avlTree, root->left, referenceNode, leftMost);
     }
     else{
-        AVLTreeInOrderSuccessor(avlTree, root->right, referenceNode, leftMost);
+        AVLTreeInOrderSuccessorWrapper(avlTree, root->right, referenceNode, leftMost);
     }
 }
 
@@ -253,7 +260,7 @@ void AVLTreeInOrderSuccessor(AVLTree *avlTree, AVLTNode* root, AVLTNode* referen
 * @param referenceNode Reference node to get the in-order Predecessor for.
 * @param rightMost Pointer to store the inorder Predecessor for that node.
 **/
-void AVLTreeInOrderPredecessor(AVLTree *avlTree, AVLTNode *root, AVLTNode *referenceNode, AVLTNode **rightMost){
+void AVLTreeInOrderPredecessorWrapper(AVLTree *avlTree, AVLTreeNode *root, AVLTreeNode *referenceNode, AVLTreeNode **rightMost){
     if (root == NULL) {
         rightMost = NULL;
         return;
@@ -263,11 +270,11 @@ void AVLTreeInOrderPredecessor(AVLTree *avlTree, AVLTNode *root, AVLTNode *refer
             *rightMost = AVLTreeMaxValueNode(root->left);
     }
     else if ((avlTree->cmp)(referenceNode->key, root->key) < 0){
-        AVLTreeInOrderPredecessor(avlTree, root->left, referenceNode, rightMost);
+        AVLTreeInOrderPredecessorWrapper(avlTree, root->left, referenceNode, rightMost);
     }
     else{
         *rightMost = root;
-        AVLTreeInOrderPredecessor(avlTree, root->right, referenceNode, rightMost);
+        AVLTreeInOrderPredecessorWrapper(avlTree, root->right, referenceNode, rightMost);
     }
 }
 
@@ -275,7 +282,7 @@ void AVLTreeInOrderPredecessor(AVLTree *avlTree, AVLTNode *root, AVLTNode *refer
 * @param root Reference to the root node.
 * @param printFn Pointer to the print function.
 **/
-void AVLTreePrint(AVLTNode *root, void (printFn)(void *)){
+void AVLTreePrint(AVLTreeNode *root, void (printFn)(void *)){
     printAVLTreeHelper(root, 0, printFn);
 }
 
@@ -284,7 +291,7 @@ void AVLTreePrint(AVLTNode *root, void (printFn)(void *)){
 * @param space Number of spaces to print at the current level.
 * @param printFn Pointer to the print function.
 **/
-void printAVLTreeHelper(AVLTNode *root, int space, void (printFn)(void *)){
+void printAVLTreeHelper(AVLTreeNode *root, int space, void (printFn)(void *)){
     if (root == NULL)
         return;
     space += COUNT;
@@ -312,7 +319,7 @@ int AVLTreeIsPresent(AVLTree *avlTree, void* searchKey){
 * @param searchValue Value to search for.
 * @param found Int to act as boolean. If found it is 1 else set to 0.
 **/
-void AVLTreeIsPresentRecurs(AVLTree *avlTree, AVLTNode *root, void *searchValue, int* found ){
+void AVLTreeIsPresentRecurs(AVLTree *avlTree, AVLTreeNode *root, void *searchValue, int* found ){
     if (root) {
         if ((avlTree->cmp)(root->key, searchValue) == 0)
             *found = 1;
@@ -328,7 +335,7 @@ void AVLTreeIsPresentRecurs(AVLTree *avlTree, AVLTNode *root, void *searchValue,
 * @param root Reference to the root node.
 * @return the number of nodes in the tree.
 **/
-int AVLTreeGetSize(AVLTNode* root){
+int AVLTreeGetSize(AVLTreeNode* root){
     if (root) return 1 + AVLTreeGetSize(root->left) + AVLTreeGetSize(root->right);
     else return 0;
 }
@@ -337,7 +344,7 @@ int AVLTreeGetSize(AVLTNode* root){
 * @param node Node to start traversing from.
 * @return Returns a reference pointer to the right most node.
 **/
-AVLTNode * AVLTreeMinValueNode(AVLTNode* node){
+AVLTreeNode * AVLTreeMinValueNode(AVLTreeNode* node){
     if(!node) return NULL;
     if(node->left )return AVLTreeMinValueNode(node->left);
     return node;
@@ -347,7 +354,7 @@ AVLTNode * AVLTreeMinValueNode(AVLTNode* node){
 * @param node Node to start traversing from.
 * @return Returns a reference pointer to the left most node.
 **/
-AVLTNode * AVLTreeMaxValueNode(AVLTNode* node){
+AVLTreeNode * AVLTreeMaxValueNode(AVLTreeNode* node){
     if (!node) return NULL;
     if (node->right) return AVLTreeMaxValueNode(node->right);
     return node;
@@ -357,7 +364,7 @@ AVLTNode * AVLTreeMaxValueNode(AVLTNode* node){
 * @param node Node to start traversing from
 * @return int reference to increment it's contents.
 **/
-int AVLTreeGetMinSteps(AVLTNode* node){
+int AVLTreeGetMinSteps(AVLTreeNode* node){
     int steps=0;
     AVLTreeGetMinStepsRecurs(node, &steps);
     return steps;
@@ -367,7 +374,7 @@ int AVLTreeGetMinSteps(AVLTNode* node){
 * @param node Node to start traversing from
 * @param steps int refernce to increment it's contents.
 **/
-void AVLTreeGetMinStepsRecurs(AVLTNode *node, int *steps){
+void AVLTreeGetMinStepsRecurs(AVLTreeNode *node, int *steps){
     if(!node) return;
     *steps = *steps +1;
     if(node->left )AVLTreeGetMinStepsRecurs(node->left, steps);
@@ -377,7 +384,7 @@ void AVLTreeGetMinStepsRecurs(AVLTNode *node, int *steps){
 * @param node Node to start traversing from
 * @return int reference to increment it's contents.
 **/
-int AVLTreeGetMaxSteps(AVLTNode* node ){
+int AVLTreeGetMaxSteps(AVLTreeNode* node ){
     int steps = 0;
     AVLTreeGetMaxStepsRecurs(node, &steps);
     return steps;
@@ -387,7 +394,7 @@ int AVLTreeGetMaxSteps(AVLTNode* node ){
 * @param node Root to get the max from.
 * @param steps int reference to store the steps in.
 **/
-void AVLTreeGetMaxStepsRecurs(AVLTNode* node, int *steps){
+void AVLTreeGetMaxStepsRecurs(AVLTreeNode* node, int *steps){
     if (!node) return;
     *steps = *steps+1;
     if (node->right) AVLTreeGetMaxStepsRecurs(node->right, steps);
@@ -397,7 +404,7 @@ void AVLTreeGetMaxStepsRecurs(AVLTNode* node, int *steps){
 * @param node Reference node to start printing from.
 * @param printFn print function to use for printing node keys.
 **/
-void AVLTreePrintInOrder(AVLTNode* node, void (printFn)(void *)){
+void AVLTreePrintInOrder(AVLTreeNode* node, void (printFn)(void *)){
     if(!node)return;
     AVLTreePrintInOrder(node->left, printFn);
     (printFn)(node->key);
@@ -420,7 +427,7 @@ void **AVLTreeToArray(AVLTree *avlTree){
 * @param arr Preallocated array to start storing at.
 * @param i index to insert at in the array.
 **/
-void AVLTreeToArrayRecurs(AVLTNode* node, void **arr, int *i,int size){
+void AVLTreeToArrayRecurs(AVLTreeNode* node, void **arr, int *i, int size){
     if(!node) return;
     AVLTreeToArrayRecurs(node->left, arr, i,size);
     arr[*i] = malloc(size);
@@ -435,7 +442,7 @@ void AVLTreeToArrayRecurs(AVLTNode* node, void **arr, int *i,int size){
 * @param key Key object to search for in the AVLTree.
 * @return Returns the found node.
 **/
-AVLTNode *AVLTreeSearch(AVLTree *avlTree, AVLTNode *node, char *key){
+AVLTreeNode *AVLTreeSearch(AVLTree *avlTree, AVLTreeNode *node, char *key){
     if(!node) return NULL;
     if (((avlTree->cmp)(key,node->key)==0))return node;
     if ((avlTree->cmp)(key,node->key)<0) return AVLTreeSearch(avlTree, node->left, key);
@@ -448,22 +455,22 @@ AVLTNode *AVLTreeSearch(AVLTree *avlTree, AVLTNode *node, char *key){
 * @param key Key object to add to the AVLTree.
 * @return Returns the new root node of the AVL Tree.
 **/
-AVLTNode* AVLTreeDeleteNode(AVLTree *avlTree, AVLTNode* root, void *key) {
+AVLTreeNode* AVLTreeDeleteNodeWrapper(AVLTree *avlTree, AVLTreeNode* root, void *key) {
     if(root==NULL) return root;
-    if ((avlTree->cmp)(key ,root->key)<0) 		    root->left = AVLTreeDeleteNode(avlTree, root->left, key);
-    else if ((avlTree->cmp)(key ,root->key)>0)  	root->right = AVLTreeDeleteNode(avlTree, root->right, key);
+    if ((avlTree->cmp)(key ,root->key)<0) 		    root->left = AVLTreeDeleteNodeWrapper(avlTree, root->left, key);
+    else if ((avlTree->cmp)(key ,root->key)>0)  	root->right = AVLTreeDeleteNodeWrapper(avlTree, root->right, key);
     else {
         if( (root->left == NULL) ||(root->right == NULL) ){
-            AVLTNode *temp = root->left ? root->left : root->right;
+            AVLTreeNode *temp = root->left ? root->left : root->right;
             if (temp == NULL) {
                 temp =root;
                 root=NULL;
             }else {*root = *temp;}
         }
         else {
-            AVLTNode* temp = AVLTreeMinValueNode(root->right);
+            AVLTreeNode* temp = AVLTreeMinValueNode(root->right);
             root->key= temp->key;
-            root->right = AVLTreeDeleteNode(avlTree, root->right, temp->key);
+            root->right = AVLTreeDeleteNodeWrapper(avlTree, root->right, temp->key);
         }
         avlTree->nodeCount--;
     }
@@ -491,15 +498,35 @@ AVLTNode* AVLTreeDeleteNode(AVLTree *avlTree, AVLTNode* root, void *key) {
     return root;
 }
 
+///
+/// \param avlTree
+/// \param key
+void AVLTreeDeleteNode(AVLTree *avlTree, void *key) {
+    avlTree->root = AVLTreeDeleteNodeWrapper(avlTree,avlTree->root,key);
+}
+
+
 /** Adds an array of void pointers to elements of the same type as the nodes of the tree.
 * @param avlTree Reference to the AVL tree.
 * @param array Array to add data from.
 * @param length The Length of the array to add from.
 * @return Returns the new root node.
 **/
-AVLTNode * AVLTreeAddAll(AVLTree* avlTree,void **array, int length){
-    for(int i =0; i<length;i++){
-        avlTree->root = AVLTreeInsert(avlTree,avlTree->root,array[i]);
-    }
+AVLTreeNode * AVLTreeInsertAll(AVLTree* avlTree, void **array, uint32_t length){
+    for(uint32_t i =0; i<length;i++)
+      AVLTreeInsert(avlTree,array[i]);
     return avlTree->root;
+}
+
+AVLTreeNode* AVLInOrderPredecessor(AVLTree *avlTree,AVLTreeNode *referenceNode){
+    AVLTreeNode * rightMost  = malloc(sizeof(*rightMost));
+    AVLTreeInOrderPredecessorWrapper(avlTree,avlTree->root,referenceNode,&rightMost);
+    return rightMost;
+}
+
+
+AVLTreeNode* AVLInOrderSuccessor(AVLTree *avlTree, AVLTreeNode *referenceNode){
+    AVLTreeNode * leftMost  = malloc(sizeof(*leftMost));
+    AVLTreeInOrderSuccessorWrapper(avlTree, avlTree->root,referenceNode,&leftMost);
+    return leftMost;
 }

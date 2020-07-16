@@ -65,7 +65,7 @@ void **BinaryTreeToArray(BinaryTree *binaryTree);
 
 void BinaryTreeFree(BinaryTree* binaryTree);
 
-BinaryTree *BinaryTreeInitialize(int size, int(*cmp)(const void *, const void *));
+BinaryTree *BinaryTreeInitialize(int size, int(*cmp)(const void *, const void *),  void (*freeFn)(void *));
 
 void printBinaryTreeStats(BinaryTree *tree);
 
@@ -75,7 +75,7 @@ BinaryTreeNode *BinaryTreeMinValueNode(BinaryTreeNode *node);
 
 void BinaryTreePrintInOrder(BinaryTreeNode *node, void (printFn)(void *));
 
-void BinaryTreeInsertAll(BinaryTree *binaryTree, void **array, int length);
+void BinaryTreeInsertAll(BinaryTree *binaryTree, void **array, uint32_t length);
 
 #ifdef __cplusplus
 }
