@@ -33,7 +33,7 @@ void print(void *item) {
 }
 
 int main() {
-    ArrayDeque *ad  = ArrayDequeInitialize(3);
+    ArrayDeque *ad  = ArrayDequeInitialize(3,freeItem);
 
     printf("size %d\n",ArrayDequeLength(ad));
 
@@ -86,8 +86,12 @@ int main() {
     printf("size %d\n",ArrayDequeLength(ad));
 
     //ad->front=6;
-    ArrayDequePrint(ad,print);
+    //ArrayDequePrint(ad,print);
+    void **arr = ArrayDequeToArray(ad);
+    int op = ArrayDequeLength(ad);
 
+    for(int y = 0;y<op;y++)
+        print(arr[y]);
     return 0;
 
 }

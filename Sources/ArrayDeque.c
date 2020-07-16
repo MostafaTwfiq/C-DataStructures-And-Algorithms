@@ -1,13 +1,14 @@
 #include "../Headers/ArrayDeque.h"
 
-void arrayCopy(void **source, int sourcePos, void **destination, int destinationPos,int len){
-    int max = sourcePos+len;
-    while(sourcePos<max)
-        destination[destinationPos++]=source[sourcePos++];
+void arrayCopy(void **source, int sourceIndex, void **destination, int destinationIndex, int len){
+    int max = sourceIndex + len;
+    while(sourceIndex < max)
+        destination[destinationIndex++]=source[sourceIndex++];
 }
 
 void doubleSize(ArrayDeque* ad){
     int n = ArrayDequeLength(ad);
+
     int k = n-ad->front-1;
     int r = ad->rear+1;
 
@@ -23,8 +24,6 @@ void doubleSize(ArrayDeque* ad){
     ad->front = ad->size-k-1;
 }
 
-
-
 /** Determines if a an Array Dequeue is full or not.
  * @param  arrayDeque Reference to preallocated Deque.
  * @return Return short int 1 if full else 0.
@@ -39,12 +38,13 @@ urns a pointer to the deque structure.
  * @param initialSize Size of the intial deque array.
  * @return Pointer to the newly allocated deque on the heap.
  **/
-ArrayDeque* ArrayDequeInitialize(uint32_t initialSize ) {
+ArrayDeque* ArrayDequeInitialize(uint32_t initialSize,void(*freeFn)(void*)){
     ArrayDeque* ad =  (ArrayDeque*) malloc(sizeof(*ad));
     ad->size       =  initialSize;
     ad->front      = -1;
     ad->rear       =  0;
     ad->memory     =  calloc(sizeof(*ad->memory), ad->size);
+    ad->freeFn     = freeFn;
     return ad;
 }
 
@@ -170,10 +170,10 @@ void* ArrayDequeGetRear(ArrayDeque* arrayDeque ) {
  **/
 void ArrayDequePrint(ArrayDeque* arrayDeque, void (*printFn)(void *)){
     for(int i=0;i<arrayDeque->rear+1;i++){
-        if( arrayDeque->memory[i]) (printFn)( arrayDeque->memory[i] );
+        (printFn)( arrayDeque->memory[i] );
     }
     for(int i=arrayDeque->front;i<arrayDeque->size;i++)
-        if(  arrayDeque->memory[i]) (printFn)( arrayDeque->memory[i] );
+         (printFn)( arrayDeque->memory[i] );
 }
 
 /* Clears the array Items and sets them to null.
@@ -181,16 +181,42 @@ void ArrayDequePrint(ArrayDeque* arrayDeque, void (*printFn)(void *)){
  **/
 void ArrayDequeClear(ArrayDeque* arrayDeque){
     for(int i=0;i<arrayDeque->rear+1;i++){
-        free(arrayDeque->memory[i] );
+        arrayDeque->freeFn(arrayDeque->memory[i] );
         arrayDeque->memory[i]=NULL;
     }
-    for(int i=1;i<arrayDeque->front+1;i++){
-        free( arrayDeque->memory[arrayDeque->size-i] );
+    for(int i=arrayDeque->front;i<arrayDeque->size;i++){
+        arrayDeque->freeFn( arrayDeque->memory[i] );
         arrayDeque->memory[arrayDeque->size-i]=NULL;
     }
 }
 
+///
+/// \param arrayDeque
+void ArrayDequeFree(ArrayDeque* arrayDeque){
+    ArrayDequeClear(arrayDeque);
+    free(arrayDeque->memory);
+    arrayDeque->memory = NULL;
+    free(arrayDeque);
+}
+
+///
+/// \param ad
+/// \return
 int ArrayDequeLength(ArrayDeque* ad){
     int size = ad->front > ad->rear?ad->size-ad->front+ad->rear+1:ad->rear - ad->front + 1;
     return size>ad->size?0:size;
+}
+
+///
+/// \param ad
+/// \return
+void** ArrayDequeToArray(ArrayDeque * ad){
+    void ** arr = malloc(ArrayDequeLength(ad)*sizeof(*arr));
+    int index = 0 ;
+    arr[index++] = ad->memory[0];
+    for(int i=ad->size-1;i>=ad->front;i--)
+        arr[index++] =ad->memory[i];
+    for(int i=1;i<ad->rear+1;i++)
+        arr[index++] =ad->memory[i];
+    return arr;
 }
