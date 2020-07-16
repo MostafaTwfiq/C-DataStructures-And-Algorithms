@@ -17,31 +17,26 @@
  *  Member 'size' holds the number of nodes currently present in the heap.
  *  @var BinaryMinHeap::cmp
  *  Member 'cmp' is a pointer to the comparision function that is going to be used throughout the tree.
+ *  @var BinaryMinHeap::free
+ *  Member 'free' is a pointer to the free function.
  */
 typedef struct BinaryMinHeap {
     void **  memory;
     uint32_t capacity;
     uint32_t size;
     int32_t  (*cmpFn)(const void* ,const void* );
+    void     (*freeFn)(void*);
 }BinaryMinHeap;
 
-BinaryMinHeap *MinHeapInitialize(int32_t (*cmp)(const void*, const void*));
-
-void MinHeapInsert(BinaryMinHeap* pMinHeap, void* value);
-
-BinaryMinHeap *MinHeapify(void *arr, uint32_t size,int32_t (*cmp)(const void*, const void*));
-
-void destroyMinHeap(BinaryMinHeap *pMinHeap);
-
-void printMinHeap(BinaryMinHeap *pMinHeap, void (*printfn)(void *));
-
-void MinHeapifyDown(BinaryMinHeap* pMinHeap, int index);
-
-void MinHeapDelete(BinaryMinHeap* pMinHeap, void ** res);
-
-void MinHeapAddAll(BinaryMinHeap *pMinHeap, void **arr, uint32_t size);
-
-void clearMinHeap(BinaryMinHeap * pMinHeap);
+BinaryMinHeap*      MinHeapInitialize(int32_t (*cmp)(const void*, const void*),void (*freeFn)(void*) );
+void                MinHeapInsert(BinaryMinHeap* pMinHeap, void* value);
+BinaryMinHeap*      MinHeapify(void *arr, uint32_t size,int32_t (*cmp)(const void*, const void*));
+void                MinHeapDestroy(BinaryMinHeap *pMinHeap);
+void                printMinHeap(BinaryMinHeap *pMinHeap, void (*printfn)(void *));
+void                MinHeapifyDown(BinaryMinHeap* pMinHeap, int index);
+void                MinHeapDelete(BinaryMinHeap* pMinHeap, void ** res);
+void                MinHeapAddAll(BinaryMinHeap *pMinHeap, void **arr, uint32_t size);
+void                MinHeapClear(BinaryMinHeap * pMinHeap);
 
 #endif //C_DATASTRUCTURES_MinHeap_H
 

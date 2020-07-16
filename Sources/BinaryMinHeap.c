@@ -4,13 +4,14 @@
  *  @param cmp compare function for values stored in the heap.
  *  @return Returns pointer to the allocated minimum heap on the heap.
 **/
-BinaryMinHeap *MinHeapInitialize(int32_t (*cmp)(const void*, const void*)){
+BinaryMinHeap *MinHeapInitialize(int32_t (*cmp)(const void*, const void*),void (*freeFn)(void*) ){
     BinaryMinHeap *h = malloc(sizeof(*h));
-    h->capacity = 10;
-    void **harr = (void **)malloc(sizeof(void*)*h->capacity);
-    h->memory = harr;
-    h->size = 0;
-    h->cmpFn = cmp;
+    h->capacity      = 10;
+    void **harr      = (void **)malloc(sizeof(void*)*h->capacity);
+    h->memory        = harr;
+    h->size          = 0;
+    h->cmpFn         = cmp;
+    h->freeFn        = freeFn;
     return h;
 };
 
@@ -132,8 +133,8 @@ void MinHeapAddAll(BinaryMinHeap *pMinHeap, void **arr, uint32_t size){
   setting them null as well as the memory container and frees the heap pointer.
  *  @param pMinHeap  Reference to minimum heap pointer allocated on the heap.
 **/
-void destroyMinHeap(BinaryMinHeap * pMinHeap) {
-    clearMinHeap(pMinHeap);
+void MinHeapDestroy(BinaryMinHeap * pMinHeap) {
+    MinHeapClear(pMinHeap);
     free(pMinHeap->memory);
     pMinHeap->memory = NULL;
     free(pMinHeap);
@@ -142,9 +143,9 @@ void destroyMinHeap(BinaryMinHeap * pMinHeap) {
 /** Given a heap pointer it frees it's memory container contents. But not the memory container of the heap.
  * @param pMinHeap Reference to minimum heap pointer allocated on the heap.
  * */
-void clearMinHeap(BinaryMinHeap * pMinHeap){
+void MinHeapClear(BinaryMinHeap * pMinHeap){
     for(int i =0; i < pMinHeap->size; i++){
-        free(pMinHeap->memory[i]);
+        pMinHeap->freeFn(pMinHeap->memory[i]);
         pMinHeap->memory[i] =NULL;
     }
 }

@@ -9,10 +9,12 @@
  *  Member 'memory' is a pointer the deque's allocated array.
  *  @var ArrayDeque::front
  *  Member 'front' index of the front from the end index of the deque array.
-  *  @var ArrayDeque::rear
+  * @var ArrayDeque::rear
  *  Member 'rear' index of the rear from the start index of the deque array.
  *  @var ArrayDeque::size
  *  Member 'size' holds the current size of the allocated deque array,ie the number of allocated items.
+ *  @var ArrayDeque:: 'freeFn'
+ *  Member 'freeF' holds pointer to the function responsible for freeing the elements stored in the Deque.
  */
 typedef struct ArrayDeque{
     void** memory;
