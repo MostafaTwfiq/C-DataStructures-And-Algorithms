@@ -18,6 +18,7 @@
 #define ANSI_COLOR_WHITE    "\x1b[37m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
+#include "Headers/ArrayDeque.h"
 
 void freeItem(void *item) {
     free(item);
@@ -28,10 +29,35 @@ int comp(const void *p1, const void *p2) {
 }
 
 void print(void *item) {
-    printf("%d\n", *(int*)((ArrayDequeItem *)item)->value);
+
 }
 
 int main(){
+    ArrayDeque  *arrayDeque = ArrayDequeInitialize(freeItem);
+
+    int *item;
+
+    item = (int *) malloc(sizeof(int));
+    *item = 20;
+    ArrayDequeInsertFront(arrayDeque, item);
+
+    item = (int *) malloc(sizeof(int));
+    *item = 10;
+    ArrayDequeInsertFront(arrayDeque, item);
+
+    item = (int *) malloc(sizeof(int));
+    *item = 30;
+    ArrayDequeInsertRear(arrayDeque, item);
+
+    item = (int *) malloc(sizeof(int));
+    *item = 40;
+    ArrayDequeInsertRear(arrayDeque, item);
+
+
+    while (!ArrayDequeIsEmpty(arrayDeque)) {
+        printf("%d\n", *(int *)ArrayDequeGetFront(arrayDeque));
+        printf("%d\n", *(int *)ArrayDequeGetRear(arrayDeque));
+    }
     return 0;
 
 }

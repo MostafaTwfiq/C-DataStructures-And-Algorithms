@@ -9,12 +9,12 @@ void *recalloc(void *p, int old_size, int new_size){
 }
 
 
-ArrayDequeItem* ArrayDequeNewItem(int sizeOfType,void *key){
+/*ArrayDequeItem* ArrayDequeNewItem(int sizeOfType,void *key){
     ArrayDequeItem* it = malloc(sizeof(*it));
     it->value          = key;
     it->sizeOfItem     = sizeOfType;
     return it;
-}
+}*/
 
 
 /** Determines if a an Array Dequeue is full or not.
@@ -22,8 +22,7 @@ ArrayDequeItem* ArrayDequeNewItem(int sizeOfType,void *key){
  * @return Return short int 1 if full else 0.
 **/
 uint16_t  ArrayDequeIsFull(ArrayDeque* arrayDeque){
-    return ((arrayDeque->front == 0 && arrayDeque->rear == arrayDeque->size-1)
-            ||arrayDeque->front == arrayDeque->rear+1);
+    return arrayDeque->front == arrayDeque->allocated;
 }
 
 /** Allocates space for a deque with an array of size set by the initialSize param on the heap and ret
@@ -31,27 +30,40 @@ urns a pointer to the deque structure.
  * @param initialSize Size of the intial deque array.
  * @return Pointer to the newly allocated deque on the heap.
  **/
-ArrayDeque* ArrayDequeInitialize(uint32_t initialSize ) {
-    ArrayDeque* ad =  (ArrayDeque*) malloc(sizeof(*ad));
-    ad->size       =  initialSize;
-    ad->allocated  = ad->size;
+ArrayDeque* ArrayDequeInitialize(void(*freeFn)(void *)) {
+    ArrayDeque* ad =  (ArrayDeque*) malloc(sizeof(ArrayDeque));
+    //ad->size       =  initialSize;
+    ad->allocated  = 1;
     ad->front      = -1;
-    ad->rear       =  0;
-    ad->memory     =  calloc(sizeof(*ad->memory), ad->size);
+    ad->rear       =  -1;
+    ad->memory     =  (void **) malloc(sizeof(void *) * ad->allocated);
+    ad->freeFn = freeFn;
+
     return ad;
+
 }
 
 /**
- * @param arrayDeque Reference to preallocated Deque.
+ * @param arrayDeque Reference to pre allocated Deque.
  * @param key  Pointer to key to stored in the deque.
  **/
-void ArrayDequeInsertFront(ArrayDeque* arrayDeque,void* key ) {
+void ArrayDequeInsertFront(ArrayDeque* arrayDeque, void* key) {
     if (ArrayDequeIsFull(arrayDeque)) {
-        arrayDeque->allocated*=2;
-        arrayDeque->memory = recalloc(arrayDeque->memory, (arrayDeque->allocated/2)*sizeof(*arrayDeque->memory),arrayDeque->allocated*sizeof(*arrayDeque->memory));
+        arrayDeque->allocated *= 2;
+        void **tempArr = (void **) realloc(arrayDeque->memory + sizeof(void *) * (arrayDeque->front + 1), arrayDeque->allocated);
+        free(arrayDeque->memory);
+        arrayDeque->memory = tempArr;
+        arrayDeque->front = -1;
+        arrayDeque->rear = arrayDeque->rear - arrayDeque->front - 1;
+        //arrayDeque->memory = recalloc(arrayDeque->memory, (arrayDeque->allocated/2)*sizeof(*arrayDeque->memory),arrayDeque->allocated*sizeof(*arrayDeque->memory));
     }
 
-    if (arrayDeque->front == -1) {
+    for (int i = (int) arrayDeque->rear + 1; i > arrayDeque->front + 1; i--)
+        arrayDeque->memory[i] = arrayDeque->memory[i - 1];
+
+    arrayDeque->memory[arrayDeque->front + 1] = key;
+    arrayDeque->rear++;
+    /*if (arrayDeque->front == -1) {
         arrayDeque->front = 0;
         arrayDeque->rear = 0;
     }
@@ -60,9 +72,9 @@ void ArrayDequeInsertFront(ArrayDeque* arrayDeque,void* key ) {
         arrayDeque->front = arrayDeque->size++ - 1 ;
 
     else
-        arrayDeque->front--;
+        arrayDeque->front--;*/
 
-    arrayDeque->memory[arrayDeque->front] = key ;
+    //arrayDeque->memory[arrayDeque->front] = key ;
     //arrayDeque->size++;
 }
 
@@ -72,11 +84,17 @@ void ArrayDequeInsertFront(ArrayDeque* arrayDeque,void* key ) {
  **/
 void ArrayDequeInsertRear(ArrayDeque* arrayDeque,void* key ) {
     if (ArrayDequeIsFull(arrayDeque)) {
-        arrayDeque->allocated*=2;
-        arrayDeque->memory =recalloc(arrayDeque->memory, (arrayDeque->allocated/2)*sizeof(*arrayDeque->memory),arrayDeque->allocated*sizeof(*arrayDeque->memory));
+        arrayDeque->allocated *= 2;
+        void **tempArr = (void **) realloc(arrayDeque->memory + sizeof(void *) * (arrayDeque->front + 1), arrayDeque->allocated);
+        free(arrayDeque->memory);
+        arrayDeque->memory = tempArr;
+        arrayDeque->front = -1;
+        arrayDeque->rear = arrayDeque->rear - arrayDeque->front - 1;
+        //arrayDeque->memory =recalloc(arrayDeque->memory, (arrayDeque->allocated/2)*sizeof(*arrayDeque->memory),arrayDeque->allocated*sizeof(*arrayDeque->memory));
     }
-    
-    if (arrayDeque->front == -1){
+
+    arrayDeque->memory[++arrayDeque->rear] = key;
+    /*if (arrayDeque->front == -1){
         arrayDeque->front = 0;
         arrayDeque->rear  = 0;
     }
@@ -86,18 +104,18 @@ void ArrayDequeInsertRear(ArrayDeque* arrayDeque,void* key ) {
     else
         arrayDeque->rear = arrayDeque->rear+1;
 
-    arrayDeque->memory[arrayDeque->rear] = key ;
+    arrayDeque->memory[arrayDeque->rear] = key ;*/
 }
 
 /**  Decrements the Front pointer to the object.
  * @param arrayDeque Reference to preallocated Deque.
  **/
-void ArrayDequeDeleteFront(ArrayDeque* arrayDeque ) {
+void ArrayDequeDeleteFront(ArrayDeque* arrayDeque) {
     if (ArrayDequeIsEmpty(arrayDeque)){
         fprintf(stderr, "Queue Underflow\n");
         return ;
     }
-    if ( arrayDeque->front ==  arrayDeque->rear) {
+    /*if ( arrayDeque->front ==  arrayDeque->rear) {
         arrayDeque->front = -1;
         arrayDeque->rear = -1;
     }
@@ -107,7 +125,10 @@ void ArrayDequeDeleteFront(ArrayDeque* arrayDeque ) {
 
         else
             arrayDeque->front++;
-    }
+    }*/
+
+    arrayDeque->freeFn(arrayDeque->memory[++arrayDeque->front]);
+
 }
 
 /** Decrements the Rear pointer to the object.
@@ -118,7 +139,7 @@ void ArrayDequeDeleteRear(ArrayDeque* arrayDeque ) {
         fprintf(stderr, "Queue Underflow\n");
         return ;
     }
-    if (arrayDeque->front == arrayDeque->rear)
+    /*if (arrayDeque->front == arrayDeque->rear)
     {
         arrayDeque->front = -1;
         arrayDeque->rear = -1;
@@ -126,7 +147,9 @@ void ArrayDequeDeleteRear(ArrayDeque* arrayDeque ) {
     else if (arrayDeque->rear == 0)
         arrayDeque->rear = arrayDeque->size-1;
     else
-        arrayDeque->rear--;
+        arrayDeque->rear--;*/
+    arrayDeque->freeFn(arrayDeque->memory[arrayDeque->rear--]);
+
 }
 
 /** If array Deque is emtpy then return 1 else returns 0.
@@ -134,11 +157,11 @@ void ArrayDequeDeleteRear(ArrayDeque* arrayDeque ) {
  * @return  Return 1 if empty else return 0.
  **/
 uint16_t ArrayDequeIsEmpty(ArrayDeque* arrayDeque ) {
-    return (arrayDeque->front == -1);
+    return arrayDeque->front == arrayDeque->rear;
 }
 
 /**  Returns stored reference pointer to the previously added element. Does Not decrement the front.
- * @param arrayDeque Reference to preallocated Deque.
+ * @param arrayDeque Reference to pre allocated Deque.
  * @return Returns pointer to the data in front.
  **/
 void* ArrayDequeGetFront(ArrayDeque* arrayDeque ) {
@@ -146,11 +169,13 @@ void* ArrayDequeGetFront(ArrayDeque* arrayDeque ) {
         fprintf(stderr, "Queue Underflow\n");
         return NULL;
     }
-    return arrayDeque->memory[arrayDeque->front];
+
+    return arrayDeque->memory[++arrayDeque->front];
+
 }
 
 /** Returns stored reference pointer to the previously added element. Does Not decrement the rear.
- * @param arrayDeque Reference to preallocated Deque.
+ * @param arrayDeque Reference to pre allocated Deque.
  * @return Returns pointer to the data in rear.
  **/
 void* ArrayDequeGetRear(ArrayDeque* arrayDeque ) {
@@ -158,7 +183,9 @@ void* ArrayDequeGetRear(ArrayDeque* arrayDeque ) {
         fprintf(stderr, "Queue Underflow\n");
         return NULL;
     }
-    return arrayDeque->memory[arrayDeque->rear];
+
+    return arrayDeque->memory[arrayDeque->rear--];
+
 }
 
 /** Function that print the deque. First the head then the tail then the head.
