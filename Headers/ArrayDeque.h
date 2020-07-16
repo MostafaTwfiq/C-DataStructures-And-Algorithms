@@ -31,7 +31,7 @@ uint16_t        ArrayDequeIsEmpty(ArrayDeque* arrayDeque);
 void*           ArrayDequeGetFront(ArrayDeque* arrayDeque);
 void*           ArrayDequeGetRear(ArrayDeque* arrayDeque);
 void            ArrayDequePrint(ArrayDeque* arrayDeque, void (*printFn)(void *));
-int             ArrayDequeLength(ArrayDeque* ad);
+uint32_t        ArrayDequeLength(ArrayDeque* ad);
 void**          ArrayDequeToArray(ArrayDeque * ad);
 
 #endif //C_DATASTRUCTURES_ARRAYDEQUE_H
