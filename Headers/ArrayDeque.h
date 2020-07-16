@@ -3,13 +3,6 @@
 #include "Utils.h"
 
 
-typedef struct ArrayDequeItem {
-    void *value;
-    int sizeOfItem;
-} ArrayDequeItem;
-
-
-
 /** @struct ArrayDeque
  *  @brief This structure implements a basic generic Deque.
  *  @var ArrayDeque::arr
@@ -26,8 +19,7 @@ typedef struct ArrayDeque{
     uint32_t  front;
     uint32_t  rear;
     uint32_t  size;
-    uint32_t allocated;
-    void(*freeFn)(ArrayDequeItem*);
+    void(*freeFn)(void*);
 }ArrayDeque;
 
 ArrayDeque*         ArrayDequeInitialize(uint32_t initialSize);
@@ -39,6 +31,6 @@ uint16_t            ArrayDequeIsEmpty(ArrayDeque* arrayDeque);
 void*               ArrayDequeGetFront(ArrayDeque* arrayDeque);
 void*               ArrayDequeGetRear(ArrayDeque* arrayDeque);
 void                ArrayDequePrint(ArrayDeque* arrayDeque, void (*printFn)(void *));
-ArrayDequeItem*     ArrayDequeNewItem(int sizeOfType,void *key);
+int                 ArrayDequeLength(ArrayDeque* ad);
 
 #endif //C_DATASTRUCTURES_ARRAYDEQUE_H

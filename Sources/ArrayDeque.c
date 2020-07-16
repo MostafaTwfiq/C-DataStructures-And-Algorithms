@@ -1,20 +1,28 @@
 #include "../Headers/ArrayDeque.h"
 
-void *recalloc(void *p, int old_size, int new_size){
-    void *r = calloc(new_size, 1);
-    if (!r) return 0;
-    memcpy(r, p, old_size);
-    free(p);
-    return r;
+void arrayCopy(void **source, int sourcePos, void **destination, int destinationPos,int len){
+    int max = sourcePos+len;
+    while(sourcePos<max)
+        destination[destinationPos++]=source[sourcePos++];
 }
 
+void doubleSize(ArrayDeque* ad){
+    int n = ArrayDequeLength(ad);
+    int k = n-ad->front-1;
+    int r = ad->rear+1;
 
-ArrayDequeItem* ArrayDequeNewItem(int sizeOfType,void *key){
-    ArrayDequeItem* it = malloc(sizeof(*it));
-    it->value          = key;
-    it->sizeOfItem     = sizeOfType;
-    return it;
+    ad->size = n * 2;
+    void ** a = calloc(ad->size,sizeof(*ad->memory));
+
+    arrayCopy(ad->memory,ad->front,a,ad->size-k-1,k+1);
+    arrayCopy(ad->memory,0,a,0,r);
+    
+    free(ad->memory);
+
+    ad->memory = a;
+    ad->front = ad->size-k-1;
 }
+
 
 
 /** Determines if a an Array Dequeue is full or not.
@@ -34,7 +42,6 @@ urns a pointer to the deque structure.
 ArrayDeque* ArrayDequeInitialize(uint32_t initialSize ) {
     ArrayDeque* ad =  (ArrayDeque*) malloc(sizeof(*ad));
     ad->size       =  initialSize;
-    ad->allocated  = ad->size;
     ad->front      = -1;
     ad->rear       =  0;
     ad->memory     =  calloc(sizeof(*ad->memory), ad->size);
@@ -47,23 +54,21 @@ ArrayDeque* ArrayDequeInitialize(uint32_t initialSize ) {
  **/
 void ArrayDequeInsertFront(ArrayDeque* arrayDeque,void* key ) {
     if (ArrayDequeIsFull(arrayDeque)) {
-        arrayDeque->allocated*=2;
-        arrayDeque->memory = recalloc(arrayDeque->memory, (arrayDeque->allocated/2)*sizeof(*arrayDeque->memory),arrayDeque->allocated*sizeof(*arrayDeque->memory));
+        doubleSize(arrayDeque);
     }
 
-    if (arrayDeque->front == -1) {
+    if (ArrayDequeIsEmpty(arrayDeque)) {
         arrayDeque->front = 0;
         arrayDeque->rear = 0;
     }
 
     else if (arrayDeque->front == 0)
-        arrayDeque->front = arrayDeque->size++ - 1 ;
+        arrayDeque->front = arrayDeque->size - 1 ;
 
     else
         arrayDeque->front--;
 
     arrayDeque->memory[arrayDeque->front] = key ;
-    //arrayDeque->size++;
 }
 
 /** Inserts At the Rear of the deque.
@@ -72,11 +77,10 @@ void ArrayDequeInsertFront(ArrayDeque* arrayDeque,void* key ) {
  **/
 void ArrayDequeInsertRear(ArrayDeque* arrayDeque,void* key ) {
     if (ArrayDequeIsFull(arrayDeque)) {
-        arrayDeque->allocated*=2;
-        arrayDeque->memory =recalloc(arrayDeque->memory, (arrayDeque->allocated/2)*sizeof(*arrayDeque->memory),arrayDeque->allocated*sizeof(*arrayDeque->memory));
+        doubleSize(arrayDeque);
     }
     
-    if (arrayDeque->front == -1){
+    if (ArrayDequeIsEmpty(arrayDeque)){
         arrayDeque->front = 0;
         arrayDeque->rear  = 0;
     }
@@ -84,7 +88,7 @@ void ArrayDequeInsertRear(ArrayDeque* arrayDeque,void* key ) {
     else if (arrayDeque->rear == arrayDeque->size-1)
         arrayDeque->rear = 0;
     else
-        arrayDeque->rear = arrayDeque->rear+1;
+        arrayDeque->rear++;
 
     arrayDeque->memory[arrayDeque->rear] = key ;
 }
@@ -118,8 +122,7 @@ void ArrayDequeDeleteRear(ArrayDeque* arrayDeque ) {
         fprintf(stderr, "Queue Underflow\n");
         return ;
     }
-    if (arrayDeque->front == arrayDeque->rear)
-    {
+    if (arrayDeque->front == arrayDeque->rear){
         arrayDeque->front = -1;
         arrayDeque->rear = -1;
     }
@@ -167,11 +170,10 @@ void* ArrayDequeGetRear(ArrayDeque* arrayDeque ) {
  **/
 void ArrayDequePrint(ArrayDeque* arrayDeque, void (*printFn)(void *)){
     for(int i=0;i<arrayDeque->rear+1;i++){
-        (printFn)( arrayDeque->memory[i] );
+        if( arrayDeque->memory[i]) (printFn)( arrayDeque->memory[i] );
     }
-    for(int i=1;i<arrayDeque->front+1;i++){
-        (printFn)( arrayDeque->memory[arrayDeque->size-i] );
-    }
+    for(int i=arrayDeque->front;i<arrayDeque->size;i++)
+        if(  arrayDeque->memory[i]) (printFn)( arrayDeque->memory[i] );
 }
 
 /* Clears the array Items and sets them to null.
@@ -182,12 +184,13 @@ void ArrayDequeClear(ArrayDeque* arrayDeque){
         free(arrayDeque->memory[i] );
         arrayDeque->memory[i]=NULL;
     }
-    for(int i=1;i<arrayDeque->front;i++){
+    for(int i=1;i<arrayDeque->front+1;i++){
         free( arrayDeque->memory[arrayDeque->size-i] );
         arrayDeque->memory[arrayDeque->size-i]=NULL;
     }
 }
 
-void doubleSize(ArrayDeque* ad){
-
+int ArrayDequeLength(ArrayDeque* ad){
+    int size = ad->front > ad->rear?ad->size-ad->front+ad->rear+1:ad->rear - ad->front + 1;
+    return size>ad->size?0:size;
 }
