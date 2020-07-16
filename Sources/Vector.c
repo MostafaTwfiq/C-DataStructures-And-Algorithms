@@ -1,23 +1,22 @@
 #include "../Headers/Vector.h"
 
 
-void vectorDestroyItem(VectorItem *item, void (*freeFun)(void *));
 
-
-
-/** This function will take the initial length of the vector, and the size of the stored type as a parameter,
+/** This function will take the initial length of the vector, and the freeing and comparator functions as a parameter,
  * then it will initialize a new vector in the memory and set it's fields then return it.
  * @param initialLength the initial length of the vector.
  * @param freeFun the function address that will be called to free the vector items.
+ * @param comparator the comparator function address, that will be called to compare two items in the vector
  * @return
  */
 
-Vector *vectorInitialization(int initialLength, void (*freeFun)(void *)) {
+Vector *vectorInitialization(int initialLength, void (*freeFun)(void *), int (*comparator)(const void *, const void *)) {
     Vector *list = (Vector *) malloc(sizeof(Vector));
-    list->arr = (VectorItem **) malloc(sizeof(VectorItem *) * initialLength);
+    list->arr = (void **) malloc(sizeof(void *) * initialLength);
     list->length = initialLength > 0 ? initialLength : 1;
     list->count = 0;
     list->freeItem = freeFun;
+    list->comparator = comparator;
 
     return list;
 }
@@ -29,10 +28,9 @@ Vector *vectorInitialization(int initialLength, void (*freeFun)(void *)) {
     then it will put the item in the end of the vector.
  * @param list the vector address
  * @param item the item address
- * @param sizeOfItem the size of the new item in bytes
  */
 
-void vectorAdd(Vector *list, void *item, int sizeOfItem) {
+void vectorAdd(Vector *list, void *item) {
 
     if (list == NULL) {
         fprintf(stderr,"Illegal argument, the vector is NULL.");
@@ -41,35 +39,32 @@ void vectorAdd(Vector *list, void *item, int sizeOfItem) {
 
     if (list->count == list->length) {
         list->length *= 2;
-        list->arr = (VectorItem **) realloc(list->arr, sizeof(VectorItem *) * list->length);
+        list->arr = (void **) realloc(list->arr, sizeof(void *) * list->length);
     }
 
-    VectorItem *newItem = (VectorItem *) malloc(sizeof(VectorItem));
-    newItem->value = item;
-    newItem->sizeOfItem = sizeOfItem;
-    list->arr[list->count++] = newItem;
+
+    list->arr[list->count++] = item;
 
 }
 
 
 
 
-/** This function will take the vector address, the items array, the length of items array, and the size if the items as a parameters,
+/** This function will take the vector address, the items array, and the length of items array as a parameters,
     then it will copy the items array into the vector.
  * @param list the vector address
  * @param array the array address that will be inserted in the vector
  * @param arrayLength the length of the array that will be added
- * @param sizeOfItem the size of the array items in bytes
  */
 
-void vectorAddAll(Vector *list, void **array, int arrayLength, int sizeOfItem) {
+void vectorAddAll(Vector *list, void **array, int arrayLength) {
     if (list == NULL || array == NULL) {
         fprintf(stderr,"Illegal argument, the vector is NULL.");
         exit(-3);
     }
 
     for (int i = 0; i < arrayLength; i++)
-        vectorAdd(list, array[i], sizeOfItem);
+        vectorAdd(list, array[i]);
 
 }
 
@@ -91,7 +86,8 @@ void vectorRemove(Vector *list) {
         exit(-3);
     }
 
-    vectorDestroyItem(list->arr[vectorGetLength(list) - 1], list->freeItem);
+    list->freeItem(list->arr[vectorGetLength(list) - 1]);
+
     list->count--;
 
 }
@@ -113,7 +109,7 @@ void vectorRemoveWtFr(Vector *list) {
         exit(-3);
     }
 
-    free(list->arr[vectorGetLength(list) - 1]);
+
     list->count--;
 
 }
@@ -137,7 +133,7 @@ void vectorRemoveAtIndex(Vector *list, int index) {
         exit(-3);
     }
 
-    vectorDestroyItem(list->arr[index], list->freeItem);
+    list->freeItem(list->arr[index]);
     list->count--;
 
     for (int i = index; i < list->count; i++) //this loop will shift the items to the left to delete the index.
@@ -164,7 +160,6 @@ void vectorRemoveAtIndexWtFr(Vector *list, int index) {
         exit(-3);
     }
 
-    vectorDestroyItem(list->arr[index], list->freeItem);
     list->count--;
 
     for (int i = index; i < list->count; i++) //this loop will shift the items to the left to delete the index.
@@ -177,18 +172,17 @@ void vectorRemoveAtIndexWtFr(Vector *list, int index) {
 
 
 
-/** This function will take the vector address, the item address, and the comparator function as a parameters,
+/** This function will take the vector address, and the item address as a parameters,
     then it will return one (1) if the item is in the vector,
     other wise it will return zero (0).
  * Note: comparator function should return zero (0) when the two items are equal.
+ * Note: this function will not free the passed item
  * @param list the vector address
  * @param item the item that will be compared by address
- * @param comparator the comparator function address
  * @return it will return one if the item is in the vector other wise it will return zero
  */
 
-int vectorContains(Vector *list, void *item,
-                      int (*comparator)(const void *, const void *)) {
+int vectorContains(Vector *list, void *item) {
 
     if (list == NULL) {
         fprintf(stderr,"Illegal argument, the vector is NULL.");
@@ -197,7 +191,7 @@ int vectorContains(Vector *list, void *item,
 
     for (int i = 0; i < list->count; i++) {
 
-        if (comparator(list->arr[i]->value, item) == 0)
+        if (list->comparator(item, list->arr[i]) == 0)
             return 1;
 
     }
@@ -209,18 +203,17 @@ int vectorContains(Vector *list, void *item,
 
 
 
-/** This function will take the vector address, the item address, and the comparator function address as a parameters,
+/** This function will take the vector address, and the item address as a parameters,
     then it will return the index of the item if found,
     other wise it will return minus one (-1).
  * Note: comparator function should return zero (0) when the two items are equal.
+ * Note: this function will not free the passed item
  * @param list the vector address
  * @param item the item address that will be searching for
- * @param comparator the comparator function address
  * @return it will return the item address if found, other wise it will return minus one
  */
 
-int vectorGetIndex(Vector *list, void *item,
-                      int (*comparator)(const void *, const void *)) {
+int vectorGetIndex(Vector *list, void *item) {
 
     if (list == NULL) {
         fprintf(stderr,"Illegal argument, the vector is NULL.");
@@ -229,7 +222,7 @@ int vectorGetIndex(Vector *list, void *item,
 
     for (int i = 0; i < list->count; i++) {
 
-        if (comparator(list->arr[i]->value, item) == 0)
+        if (list->comparator(list->arr[i], item) == 0)
             return i;
 
     }
@@ -241,18 +234,17 @@ int vectorGetIndex(Vector *list, void *item,
 
 
 
-/** This function will take the vector address, the item address, and the comparator function address as a parameters,
+/** This function will take the vector address, and the item address as a parameters,
     then it will return the last index of the item if found,
     other wise it will return minus one (-1).
  * Note: comparator function should return zero (0) when the two items are equal.
+ * Note: this function will not free the passed item
  * @param list the vector address
  * @param item the item address that will be searching for
- * @param comparator the comparator function address
  * @return it will return the item address if found, other wise it will return minus one
  */
 
-int vectorGetLastIndex(Vector *list, void *item,
-                          int (*comparator)(const void *, const void *)) {
+int vectorGetLastIndex(Vector *list, void *item) {
 
     if (list == NULL) {
         fprintf(stderr,"Illegal argument, the vector is NULL.");
@@ -261,7 +253,7 @@ int vectorGetLastIndex(Vector *list, void *item,
 
     for (int i = list->count - 1; i >= 0; i--) {
 
-        if (comparator(list->arr[i]->value, item) == 0)
+        if (list->comparator(list->arr[i], item) == 0)
             return i;
 
     }
@@ -291,7 +283,7 @@ void *vectorGet(Vector *list, int index) {
         exit(-3);
     }
 
-    return list->arr[index]->value;
+    return list->arr[index];
 
 }
 
@@ -313,10 +305,8 @@ void **vectorToArray(Vector *list) {
 
     void **array = (void **) malloc(sizeof(void *) * vectorGetLength(list));
 
-    for (int i = 0; i < vectorGetLength(list); i++) {
-        array[i] = (void *) malloc(list->arr[i]->sizeOfItem);
-        memcpy(array[i], list->arr[i]->value, list->arr[i]->sizeOfItem);
-    }
+    for (int i = 0; i < vectorGetLength(list); i++)
+        array[i] = list->arr[i];
 
     return array;
 
@@ -345,10 +335,8 @@ void **vectorToSubArray(Vector *list, int start, int end) {
 
     void **array = (void **) malloc(sizeof(void *) * (end - start) );
 
-    for (int i = start; i < end; i++) {
-        array[i] = (void *) malloc(list->arr[i]->sizeOfItem);
-        memcpy(array[i - start], list->arr[i]->value, list->arr[i]->sizeOfItem);
-    }
+    for (int i = start; i < end; i++)
+        array[i] = list->arr[i];
 
 
     return array;
@@ -362,14 +350,13 @@ void **vectorToSubArray(Vector *list, int start, int end) {
     then it will sort the vector using qsort algorithm.
  * Note: the pointer will be sent to the sort comparator function will be a double void pointer (void **) of an vector item.
  * @param list the vector address
- * @param comparator the comparator function address
  * Example of comparator function if the items are integers:
  * int comp(const void *item1, const void *item2) {
-    return *(int *)(*(VectorItem **)item1)->item - *(int *)(*(VectorItem **)item2)->item;}
+    return *(int *)(*(void **)item1)->item - *(int *)(*(void **)item2)->item;}
  */
 
-void vectorSort(Vector *list, int (*comparator)(const void *, const void *)) {
-    qsort(list->arr, vectorGetLength(list), sizeof(VectorItem *), comparator);
+void vectorSort(Vector *list) {
+    qsort(list->arr, vectorGetLength(list), sizeof(void *), list->comparator);
 }
 
 
@@ -431,7 +418,7 @@ void printVector(Vector *list, void (*printFun) (const void *)) {
     }
 
     for (int i = 0; i < vectorGetLength(list); i++)
-        printFun(list->arr[i]->value);
+        printFun(list->arr[i]);
 
 
 }
@@ -453,7 +440,7 @@ void clearVector(Vector *list) {
     }
 
     for (int i = 0; i < vectorGetLength(list); i++)
-        vectorDestroyItem(list->arr[i], list->freeItem);
+        list->freeItem(list->arr[i]);
 
 
     list->count = 0;
@@ -471,21 +458,5 @@ void destroyVector(Vector *list) {
     clearVector(list);
     free(list->arr);
     free(list);
-
-}
-
-
-
-
-/** This function will take the item address, and the free function address as a parameters,
- * then it will free the item container and it's item.
- * Note: this function should only be called from the vector functions.
- * @param item the item container address
- * @param freeFun the free item function address
- */
-
-void vectorDestroyItem(VectorItem *item, void (*freeFun)(void *)) {
-    freeFun(item->value);
-    free(item);
 
 }

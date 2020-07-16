@@ -5,7 +5,6 @@
 
 typedef struct DirGraphNode {
     void *value;
-    int sizeOfValue;
     struct ArrayList *adjacentNodes;
 } DirGraphNode;
 
@@ -58,6 +57,9 @@ void dirGraphDepthFirstTraversal(DirectedGraph *graph, void *startVal, int sizeO
 
 
 void dirGraphBreadthFirstTraversal(DirectedGraph *graph, void *startVal, int sizeOfValue, void (*printVal)(void *));
+
+
+struct ArrayList *dirGraphTopologicalSort(DirectedGraph *graph);
 
 
 #endif //C_DATASTRUCTURES_DIRECTEDGRAPH_H

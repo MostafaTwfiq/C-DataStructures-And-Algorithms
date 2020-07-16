@@ -76,11 +76,12 @@ add_executable(C_DataStructures main.c
         Sources/DirectedGraph.c
         Headers/DirectedGraph.h
 
-        "Unit Test/CuTest"
+
+        #[["Unit Test/CuTest"
         "Unit Test/testExample.c"
        # "Unit Test/CuTest/AllTests.c"
         "Unit Test/CuTest/CuTest.c"
         "Unit Test/CuTest/CuTestTest.c"
         "Unit Test/CuTest/CuTest.h"
-
+]]
         )

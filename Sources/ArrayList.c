@@ -1,23 +1,22 @@
 #include "../Headers/ArrayList.h"
 
 
-void arrayListDestroyItem(ArrayListItem *item, void (*freeFun)(void *));
 
-
-
-/** This function will take the initial length of the array list, and the size of the stored type as a parameter,
+/** This function will take the initial length of the array list, and the freeing and comparator functions as a parameter,
  * then it will initialize a new array list in the memory and set it's fields then return it.
  * @param initialLength the initial length of the array list.
  * @param freeFun the function address that will be called to free the array list items.
- * @return it will return the new array list address
+ * @param comparator the comparator function address, that will be called to compare two items in the array list
+ * @return
  */
 
-ArrayList *arrayListInitialization(int initialLength, void (*freeFun)(void *)) {
+ArrayList *arrayListInitialization(int initialLength, void (*freeFun)(void *), int (*comparator)(const void *, const void *)) {
     ArrayList *list = (ArrayList *) malloc(sizeof(ArrayList));
-    list->arr = (ArrayListItem **) malloc(sizeof(ArrayListItem *) * initialLength);
+    list->arr = (void **) malloc(sizeof(void *) * initialLength);
     list->length = initialLength > 0 ? initialLength : 1;
     list->count = 0;
     list->freeItem = freeFun;
+    list->comparator = comparator;
 
     return list;
 }
@@ -29,47 +28,43 @@ ArrayList *arrayListInitialization(int initialLength, void (*freeFun)(void *)) {
     then it will put the item in the end of the array list.
  * @param list the array list address
  * @param item the item address
- * @param sizeOfItem the size of the new item in bytes
  */
 
-void arrayListAdd(ArrayList *list, void *item, int sizeOfItem) {
+void arrayListAdd(ArrayList *list, void *item) {
 
     if (list == NULL) {
-         fprintf(stderr,"Illegal argument, the array list is NULL.");
+        fprintf(stderr,"Illegal argument, the array list is NULL.");
         exit(-3);
     }
 
     if (list->count == list->length) {
-        list->length = (int) ceil(list->length * 1.5);
-        list->arr = (ArrayListItem **) realloc(list->arr, sizeof(ArrayListItem *) * list->length);
+        list->length *= 2;
+        list->arr = (void **) realloc(list->arr, sizeof(void *) * list->length);
     }
 
-    ArrayListItem *newItem = (ArrayListItem *) malloc(sizeof(ArrayListItem));
-    newItem->value = item;
-    newItem->sizeOfItem = sizeOfItem;
-    list->arr[list->count++] = newItem;
+
+    list->arr[list->count++] = item;
 
 }
 
 
 
 
-/** This function will take the array list address, the items array, the length of items array, and the size if the items as a parameters,
+/** This function will take the array list address, the items array, and the length of items array as a parameters,
     then it will copy the items array into the array list.
  * @param list the array list address
  * @param array the array address that will be inserted in the array list
  * @param arrayLength the length of the array that will be added
- * @param sizeOfItem the size of the array items in bytes
  */
 
-void arrayListAddAll(ArrayList *list, void **array, int arrayLength, int sizeOfItem) {
+void arrayListAddAll(ArrayList *list, void **array, int arrayLength) {
     if (list == NULL || array == NULL) {
-         fprintf(stderr,"Illegal argument, the array list is NULL.");
+        fprintf(stderr,"Illegal argument, the array list is NULL.");
         exit(-3);
     }
 
     for (int i = 0; i < arrayLength; i++)
-        arrayListAdd(list, array[i], sizeOfItem);
+        arrayListAdd(list, array[i]);
 
 }
 
@@ -84,14 +79,15 @@ void arrayListAddAll(ArrayList *list, void **array, int arrayLength, int sizeOfI
 
 void arrayListRemove(ArrayList *list) {
     if (list == NULL) {
-         fprintf(stderr,"Illegal argument, the array list is NULL.");
+        fprintf(stderr,"Illegal argument, the array list is NULL.");
         exit(-3);
     } else if (arrayListIsEmpty(list)) {
-         fprintf(stderr,"Array list out of range.");
+        fprintf(stderr,"array list out of range.");
         exit(-3);
     }
 
-    arrayListDestroyItem(list->arr[arrayListGetLength(list) - 1], list->freeItem);
+    list->freeItem(list->arr[arrayListGetLength(list) - 1]);
+
     list->count--;
 
 }
@@ -109,16 +105,14 @@ void arrayListRemoveWtFr(ArrayList *list) {
         fprintf(stderr,"Illegal argument, the array list is NULL.");
         exit(-3);
     } else if (arrayListIsEmpty(list)) {
-        fprintf(stderr,"Array list out of range.");
+        fprintf(stderr,"array list out of range.");
         exit(-3);
     }
 
 
-    free(list->arr[arrayListGetLength(list) - 1]);
     list->count--;
 
 }
-
 
 
 
@@ -132,14 +126,14 @@ void arrayListRemoveWtFr(ArrayList *list) {
 
 void arrayListRemoveAtIndex(ArrayList *list, int index) {
     if (list == NULL) {
-         fprintf(stderr,"Illegal argument, the array list is NULL.");
+        fprintf(stderr,"Illegal argument, the array list is NULL.");
         exit(-3);
     } else if (index < 0 || index >= arrayListGetLength(list)) {
-         fprintf(stderr,"Index out of array list range.");
+        fprintf(stderr,"Index out of array list range.");
         exit(-3);
     }
 
-    arrayListDestroyItem(list->arr[index], list->freeItem);
+    list->freeItem(list->arr[index]);
     list->count--;
 
     for (int i = index; i < list->count; i++) //this loop will shift the items to the left to delete the index.
@@ -149,8 +143,9 @@ void arrayListRemoveAtIndex(ArrayList *list, int index) {
 }
 
 
+
 /** This function will take the array list address, and the index as a parameters,
-    then it will remove the item in the given index from the array list without freeing the item.
+    then it will remove the item in the given index from the array list, without freeing the item.
  * Note: if the index is out of the array list range then the program will be terminated.
  * @param list the array list address
  * @param index the index of the item that will be deleted
@@ -165,8 +160,6 @@ void arrayListRemoveAtIndexWtFr(ArrayList *list, int index) {
         exit(-3);
     }
 
-
-    free(list->arr[index]);
     list->count--;
 
     for (int i = index; i < list->count; i++) //this loop will shift the items to the left to delete the index.
@@ -179,27 +172,26 @@ void arrayListRemoveAtIndexWtFr(ArrayList *list, int index) {
 
 
 
-/** This function will take the array list  address, the item address, and the comparator function as a parameters,
+/** This function will take the array list address, and the item address as a parameters,
     then it will return one (1) if the item is in the array list,
     other wise it will return zero (0).
  * Note: comparator function should return zero (0) when the two items are equal.
+ * Note: this function will not free the passed item
  * @param list the array list address
  * @param item the item that will be compared by address
- * @param comparator the comparator function address
  * @return it will return one if the item is in the array list other wise it will return zero
  */
 
-int arrayListContains(ArrayList *list, void *item,
-        int (*comparator)(const void *, const void *)) {
+int arrayListContains(ArrayList *list, void *item) {
 
     if (list == NULL) {
-         fprintf(stderr,"Illegal argument, the array list is NULL.");
+        fprintf(stderr,"Illegal argument, the array list is NULL.");
         exit(-3);
     }
 
     for (int i = 0; i < list->count; i++) {
 
-        if (comparator(list->arr[i]->value, item) == 0)
+        if (list->comparator(item, list->arr[i]) == 0)
             return 1;
 
     }
@@ -211,27 +203,26 @@ int arrayListContains(ArrayList *list, void *item,
 
 
 
-/** This function will take the array list address, the item address, and the comparator function address as a parameters,
+/** This function will take the array list address, and the item address as a parameters,
     then it will return the index of the item if found,
     other wise it will return minus one (-1).
  * Note: comparator function should return zero (0) when the two items are equal.
+ * Note: this function will not free the passed item
  * @param list the array list address
  * @param item the item address that will be searching for
- * @param comparator the comparator function address
  * @return it will return the item address if found, other wise it will return minus one
  */
 
-int arrayListGetIndex(ArrayList *list, void *item,
-                      int (*comparator)(const void *, const void *)) {
+int arrayListGetIndex(ArrayList *list, void *item) {
 
     if (list == NULL) {
-         fprintf(stderr,"Illegal argument, the array list is NULL.");
+        fprintf(stderr,"Illegal argument, the array list is NULL.");
         exit(-3);
     }
 
     for (int i = 0; i < list->count; i++) {
 
-        if (comparator(list->arr[i]->value, item) == 0)
+        if (list->comparator(list->arr[i], item) == 0)
             return i;
 
     }
@@ -243,27 +234,26 @@ int arrayListGetIndex(ArrayList *list, void *item,
 
 
 
-/** This function will take the array list address, the item address, and the comparator function address as a parameters,
+/** This function will take the array list address, and the item address as a parameters,
     then it will return the last index of the item if found,
     other wise it will return minus one (-1).
  * Note: comparator function should return zero (0) when the two items are equal.
+ * Note: this function will not free the passed item
  * @param list the array list address
  * @param item the item address that will be searching for
- * @param comparator the comparator function address
  * @return it will return the item address if found, other wise it will return minus one
  */
 
-int arrayListGetLastIndex(ArrayList *list, void *item,
-                      int (*comparator)(const void *, const void *)) {
+int arrayListGetLastIndex(ArrayList *list, void *item) {
 
     if (list == NULL) {
-         fprintf(stderr,"Illegal argument, the array list is NULL.");
+        fprintf(stderr,"Illegal argument, the array list is NULL.");
         exit(-3);
     }
 
     for (int i = list->count - 1; i >= 0; i--) {
 
-        if (comparator(list->arr[i]->value, item) == 0)
+        if (list->comparator(list->arr[i], item) == 0)
             return i;
 
     }
@@ -286,14 +276,14 @@ int arrayListGetLastIndex(ArrayList *list, void *item,
 
 void *arrayListGet(ArrayList *list, int index) {
     if (list == NULL) {
-         fprintf(stderr,"Illegal argument, the array list is NULL.");
+        fprintf(stderr,"Illegal argument, the array list is NULL.");
         exit(-3);
     } else if (index < 0 || index >= arrayListGetLength(list)) {
-         fprintf(stderr,"Index out of array list range.");
+        fprintf(stderr,"Index out of array list range.");
         exit(-3);
     }
 
-    return list->arr[index]->value;
+    return list->arr[index];
 
 }
 
@@ -309,16 +299,14 @@ void *arrayListGet(ArrayList *list, int index) {
 void **arrayListToArray(ArrayList *list) {
 
     if (list == NULL) {
-         fprintf(stderr,"Illegal argument, the array list is NULL.");
+        fprintf(stderr,"Illegal argument, the array list is NULL.");
         exit(-3);
     }
 
     void **array = (void **) malloc(sizeof(void *) * arrayListGetLength(list));
 
-    for (int i = 0; i < arrayListGetLength(list); i++) {
-        array[i] = (void *) malloc(list->arr[i]->sizeOfItem);
-        memcpy(array[i], list->arr[i]->value, list->arr[i]->sizeOfItem);
-    }
+    for (int i = 0; i < arrayListGetLength(list); i++)
+        array[i] = list->arr[i];
 
     return array;
 
@@ -338,19 +326,17 @@ void **arrayListToArray(ArrayList *list) {
 void **arrayListToSubArray(ArrayList *list, int start, int end) {
 
     if (list == NULL) {
-         fprintf(stderr,"Illegal argument, the array list is NULL.");
+        fprintf(stderr,"Illegal argument, the array list is NULL.");
         exit(-3);
     } else if (start < 0 || end > arrayListGetLength(list) || start > end) {
-         fprintf(stderr,"Index out of array list range.");
+        fprintf(stderr,"Index out of array list range.");
         exit(-3);
     }
 
     void **array = (void **) malloc(sizeof(void *) * (end - start) );
 
-    for (int i = start; i < end; i++) {
-        array[i] = (void *) malloc(list->arr[i]->sizeOfItem);
-        memcpy(array[i - start], list->arr[i]->value, list->arr[i]->sizeOfItem);
-    }
+    for (int i = start; i < end; i++)
+        array[i] = list->arr[i];
 
 
     return array;
@@ -364,15 +350,16 @@ void **arrayListToSubArray(ArrayList *list, int start, int end) {
     then it will sort the array list using qsort algorithm.
  * Note: the pointer will be sent to the sort comparator function will be a double void pointer (void **) of an array list item.
  * @param list the array list address
- * @param comparator the comparator function address
  * Example of comparator function if the items are integers:
  * int comp(const void *item1, const void *item2) {
-    return *(int *)(*(ArrayListItem **)item1)->item - *(int *)(*(ArrayListItem **)item2)->item;}
+    return *(int *)(*(void **)item1)->item - *(int *)(*(void **)item2)->item;}
  */
 
-void arrayListSort(ArrayList *list, int (*comparator)(const void *, const void *)) {
-    qsort(list->arr, arrayListGetLength(list), sizeof(ArrayListItem *), comparator);
+void arrayListSort(ArrayList *list) {
+    qsort(list->arr, arrayListGetLength(list), sizeof(void *), list->comparator);
 }
+
+
 
 
 
@@ -386,7 +373,7 @@ void arrayListSort(ArrayList *list, int (*comparator)(const void *, const void *
 int arrayListGetLength(ArrayList *list) {
 
     if (list == NULL) {
-         fprintf(stderr,"Illegal argument, the array list is NULL.");
+        fprintf(stderr,"Illegal argument, the array list is NULL.");
         exit(-3);
     }
 
@@ -401,13 +388,13 @@ int arrayListGetLength(ArrayList *list) {
     then it will return one if the array list is empty,
     other wise it will return 0.
  * @param list the array list address
- * @return it will return one if the array is empty, other wise it will return zero
+ * @return it will return one if the array list is empty, other wise it will return zero
  */
 
 int arrayListIsEmpty(ArrayList *list) {
 
     if (list == NULL) {
-         fprintf(stderr,"Illegal argument, the array list is NULL.");
+        fprintf(stderr,"Illegal argument, the array list is NULL.");
         exit(-3);
     }
 
@@ -426,12 +413,12 @@ int arrayListIsEmpty(ArrayList *list) {
 
 void printArrayList(ArrayList *list, void (*printFun) (const void *)) {
     if (list == NULL) {
-         fprintf(stderr,"Illegal argument, the array list is NULL.");
+        fprintf(stderr,"Illegal argument, the array list is NULL.");
         exit(-3);
     }
 
     for (int i = 0; i < arrayListGetLength(list); i++)
-        printFun(list->arr[i]->value);
+        printFun(list->arr[i]);
 
 
 }
@@ -448,12 +435,12 @@ void printArrayList(ArrayList *list, void (*printFun) (const void *)) {
 void clearArrayList(ArrayList *list) {
 
     if (list == NULL) {
-         fprintf(stderr,"Illegal argument, the array list is NULL.");
+        fprintf(stderr,"Illegal argument, the array list is NULL.");
         exit(-3);
     }
 
     for (int i = 0; i < arrayListGetLength(list); i++)
-        arrayListDestroyItem(list->arr[i], list->freeItem);
+        list->freeItem(list->arr[i]);
 
 
     list->count = 0;
@@ -471,21 +458,5 @@ void destroyArrayList(ArrayList *list) {
     clearArrayList(list);
     free(list->arr);
     free(list);
-
-}
-
-
-
-
-/** This function will take the item address, and the free function address as a parameters,
- * then it will free the item container and it's item.
- * Note: this function should only be called from the array list functions.
- * @param item the item container address
- * @param freeFun the free item function address
- */
-
-void arrayListDestroyItem(ArrayListItem *item, void (*freeFun)(void *)) {
-    freeFun(item->value);
-    free(item);
 
 }

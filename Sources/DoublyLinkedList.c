@@ -1,17 +1,8 @@
 #include "../Headers/DoublyLinkedList.h"
 
 
-
-
-
-typedef struct DLLItem {
-    void *value;
-    int sizeOfItem;
-} DLLItem;
-
-
 typedef struct Node {
-    DLLItem *item;
+    void *item;
     struct Node *next; // a pointer to the next node.
     struct Node *prevNode; // a pointer to the previous node.
 } Node;
@@ -21,23 +12,18 @@ typedef struct Node {
 
 
 
-void dLinkedListDestroyItem(DLLItem *item, void (*freeFun)(void *));
-
-
-
-
-
-
 
 /** This function will allocate a new linked list in the memory, setup it's fields and return it.
  * @param freeFun the free function address that will be called to free the linked list items
+ * @param comparator the comparator function address, that will be called to compare two items
  * */
 
-DoublyLinkedList *doublyLinkedListInitialization(void (*freeFun)(void *)) {
+DoublyLinkedList *doublyLinkedListInitialization(void (*freeFun)(void *), int (*comparator)(const void *, const void *)) {
     DoublyLinkedList *linkedList = (DoublyLinkedList *) malloc(sizeof(DoublyLinkedList));
     linkedList->head = linkedList->tail = NULL;
-    linkedList->freeFun = freeFun;
     linkedList->length = 0;
+    linkedList->freeFun = freeFun;
+    linkedList->comparator = comparator;
 
     return linkedList;
 }
@@ -50,24 +36,20 @@ DoublyLinkedList *doublyLinkedListInitialization(void (*freeFun)(void *)) {
 
 
 
-/** This function will take the linked list address, the item address, and the size of the item as a parameters,
+/** This function will take the linked list address, and the item address as a parameters,
     then it will add the item in the start of the linked list.
   * @param linkedList the linked list address
   * @param item the new item address
-  * @param sizeOfItem the size of the new item in bytes
   */
 
-void doublyLinkedListAddFirst(DoublyLinkedList *linkedList, void *item, int sizeOfItem) {
+void doublyLinkedListAddFirst(DoublyLinkedList *linkedList, void *item) {
     if (linkedList == NULL) {
          fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
     }
 
     Node *newNode = (Node *) malloc(sizeof(Node));
-    DLLItem *newItem = (DLLItem *) malloc(sizeof(DLLItem));
-    newItem->value = item;
-    newItem->sizeOfItem = sizeOfItem;
-    newNode->item = newItem;
+    newNode->item = item;
 
     newNode->next = linkedList->head;
     newNode->prevNode = NULL;
@@ -79,6 +61,7 @@ void doublyLinkedListAddFirst(DoublyLinkedList *linkedList, void *item, int size
 
     linkedList->head = newNode;
     linkedList->length++;
+
 }
 
 
@@ -90,24 +73,20 @@ void doublyLinkedListAddFirst(DoublyLinkedList *linkedList, void *item, int size
 
 
 
-/** This function will take the linked list address, the item address, and the size of the item as a parameters,
+/** This function will take the linked list address, and the item address as a parameters,
  * then it will add the item in the end of the linked list.
  * @param linkedList the linked list address
  * @param item the new item address
- * @param sizeOfItem the size of the new item in bytes
  */
 
-void doublyLinkedListAddLast(DoublyLinkedList *linkedList, void *item, int sizeOfItem) {
+void doublyLinkedListAddLast(DoublyLinkedList *linkedList, void *item) {
     if (linkedList == NULL) {
          fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
     }
 
     Node *newNode = (Node *) malloc(sizeof(Node));
-    DLLItem *newItem = (DLLItem *) malloc(sizeof(DLLItem));
-    newItem->value = item;
-    newItem->sizeOfItem = sizeOfItem;
-    newNode->item = newItem;
+    newNode->item = item;
 
     newNode->next = NULL;
 
@@ -129,15 +108,14 @@ void doublyLinkedListAddLast(DoublyLinkedList *linkedList, void *item, int sizeO
 
 
 
-/** This function will take the linked list address, item index, the item address, and the size of item as parameters,
+/** This function will take the linked list address, item index, and the item address as parameters,
  * then it will add the item in the passed index.
  * @param linkedList the linked list address
  * @param index the index of the new item
  * @param item the new item address
- * @param sizeOfItem the size of the new item in bytes
  */
 
-void doublyLinkedListAddAtIndex(DoublyLinkedList *linkedList, int index, void *item, int sizeOfItem) {
+void doublyLinkedListAddAtIndex(DoublyLinkedList *linkedList, int index, void *item) {
     if (linkedList == NULL) {
          fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
@@ -147,10 +125,7 @@ void doublyLinkedListAddAtIndex(DoublyLinkedList *linkedList, int index, void *i
     }
 
     Node *newNode = (Node *) malloc(sizeof(Node));
-    DLLItem *newItem = (DLLItem *) malloc(sizeof(DLLItem));
-    newItem->value = item;
-    newItem->sizeOfItem = sizeOfItem;
-    newNode->item = newItem;
+    newNode->item = item;
 
     Node *currentNode = linkedList->head;
     while (index-- != 0)
@@ -170,6 +145,7 @@ void doublyLinkedListAddAtIndex(DoublyLinkedList *linkedList, int index, void *i
     }
 
     linkedList->length++;
+
 }
 
 
@@ -180,22 +156,21 @@ void doublyLinkedListAddAtIndex(DoublyLinkedList *linkedList, int index, void *i
 
 
 
-/** This function will take the linked list address, items array, the length of the array, and the size of items as parameters,
+/** This function will take the linked list address, items array, and the length of the array as parameters,
  * then it will copy the array item if the linked list in a new items addresses.
  * @param linkedList the linked list address
  * @param items the new items array address
  * @param itemsLength the length of the new items array
- * @param sizeOfItem the size of the new items in bytes
  */
 
-void doublyLinkedListAddAll(DoublyLinkedList *linkedList, void **items, int itemsLength, int sizeOfItem) {
+void doublyLinkedListAddAll(DoublyLinkedList *linkedList, void **items, int itemsLength) {
     if (linkedList == NULL) {
          fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
     }
 
     for (int i = 0; i < itemsLength; i++)
-        doublyLinkedListAddLast(linkedList, items[i], sizeOfItem);
+        doublyLinkedListAddLast(linkedList, items[i]);
 
 }
 
@@ -231,7 +206,7 @@ void doublyLinkedListDeleteFirst(DoublyLinkedList *linkedList) {
     }
 
     linkedList->length--;
-    dLinkedListDestroyItem(nodeToFree->item, linkedList->freeFun);
+    linkedList->freeFun(nodeToFree->item);
     free(nodeToFree);
 
 }
@@ -248,9 +223,10 @@ void doublyLinkedListDeleteFirst(DoublyLinkedList *linkedList) {
 /** This function will take the linked list address as a parameter,
  * then it will delete and free only the node without the item of the first element from the linked list.
  * @param linkedList the linked list address
+ * @return it will return the deleted item
  */
 
-void doublyLinkedListDeleteFirstWtFr(DoublyLinkedList *linkedList) {
+void *doublyLinkedListDeleteFirstWtoFr(DoublyLinkedList *linkedList) {
 
     if (linkedList == NULL) {
          fprintf(stderr,"Illegal argument, the linked list is NULL.");
@@ -269,8 +245,10 @@ void doublyLinkedListDeleteFirstWtFr(DoublyLinkedList *linkedList) {
     }
 
     linkedList->length--;
-    free(nodeToFree->item);
+    void *returnItem = nodeToFree->item;
     free(nodeToFree);
+
+    return returnItem;
 
 }
 
@@ -306,8 +284,9 @@ void doublyLinkedListDeleteLast(DoublyLinkedList *linkedList) {
     }
 
     linkedList->length--;
-    dLinkedListDestroyItem(nodeToFree->item, linkedList->freeFun);
+    linkedList->freeFun(nodeToFree->item);
     free(nodeToFree);
+
 }
 
 
@@ -321,9 +300,10 @@ void doublyLinkedListDeleteLast(DoublyLinkedList *linkedList) {
 /** This function will take the linked list address as a parameter,
     then it will delete and free only the node without the item of the last element from the linked list.
  * @param linkedList the linked list address
+ * @return it will return the deleted item
  */
 
-void doublyLinkedListDeleteLastWtFr(DoublyLinkedList *linkedList) {
+void *doublyLinkedListDeleteLastWtoFr(DoublyLinkedList *linkedList) {
 
     if (linkedList == NULL) {
          fprintf(stderr,"Illegal argument, the linked list is NULL.");
@@ -342,9 +322,10 @@ void doublyLinkedListDeleteLastWtFr(DoublyLinkedList *linkedList) {
     }
 
     linkedList->length--;
-    free(nodeToFree->item);
+    void *returnItem = nodeToFree->item;
     free(nodeToFree);
 
+    return returnItem;
 }
 
 
@@ -384,7 +365,7 @@ void doublyLinkedListDeleteAtIndex(DoublyLinkedList *linkedList, int index) {
         currentNode->next->prevNode = currentNode->prevNode;
 
         linkedList->length--;
-        dLinkedListDestroyItem(currentNode->item, linkedList->freeFun);
+        linkedList->freeFun(currentNode->item);
         free(currentNode);
     }
 
@@ -403,9 +384,10 @@ void doublyLinkedListDeleteAtIndex(DoublyLinkedList *linkedList, int index) {
  * If the index is out of the linked list rang then the program will be terminated.
  * @param linkedList the linked list address
  * @param index the index of the item that want to be deleted
+ * @return it will return the deleted item
  */
 
-void doublyLinkedListDeleteAtIndexWtFr(DoublyLinkedList *linkedList, int index) {
+void *doublyLinkedListDeleteAtIndexWtoFr(DoublyLinkedList *linkedList, int index) {
     if (linkedList == NULL) {
          fprintf(stderr,"Illegal argument, the linked list is NULL.");
         exit(-1);
@@ -419,16 +401,18 @@ void doublyLinkedListDeleteAtIndexWtFr(DoublyLinkedList *linkedList, int index) 
         currentNode = currentNode->next;
 
     if (currentNode == linkedList->head) //if the index == 0.
-        doublyLinkedListDeleteFirstWtFr(linkedList);
+        return doublyLinkedListDeleteFirstWtoFr(linkedList);
     else if (currentNode == linkedList->tail) //if the index = length - 1.
-        doublyLinkedListDeleteLastWtFr(linkedList);
+        return doublyLinkedListDeleteLastWtoFr(linkedList);
     else {
         currentNode->prevNode->next = currentNode->next;
         currentNode->next->prevNode = currentNode->prevNode;
 
         linkedList->length--;
-        free(currentNode->item);
+        void *returnItem = currentNode->item;
         free(currentNode);
+
+        return returnItem;
 
     }
 
@@ -443,23 +427,19 @@ void doublyLinkedListDeleteAtIndexWtFr(DoublyLinkedList *linkedList, int index) 
 
 
 
-/** This function will take the linked list address, the item address, and the comparator function as parameters, then
+/** This function will take the linked list address, and the item address as parameters, then
     then it will return 1 if the item is in the list other wise it will return zero (0).
  *The function will use the comparator function to know if the two items are equivalent or not.
+ * Note: the function will not free the passed item.
  * @param linkedList the linked list address
  * @param item the item address that has the same item as the wanted one
- * @param comparator the comparator function address
  * @return it will return one if the item is in the linked list, other wise it will return zero
  */
 
-int doublyLinkedListContains(DoublyLinkedList *linkedList, void *item,
-                             int (*comparator)(const void *, const void *)) {
+int doublyLinkedListContains(DoublyLinkedList *linkedList, void *item) {
 
     if (linkedList == NULL) {
          fprintf(stderr,"Illegal argument, the linked list is NULL.");
-        exit(-1);
-    } else if (comparator == NULL) {
-         fprintf(stderr,"Illegal argument, the comparator function is NULL.");
         exit(-1);
     }
 
@@ -467,7 +447,7 @@ int doublyLinkedListContains(DoublyLinkedList *linkedList, void *item,
 
     while (currentNode != NULL) {
         // if the comparator function returned zero then the two items are equal.
-        if (comparator(currentNode->item->value, item) == 0)
+        if (linkedList->comparator(item, currentNode->item) == 0)
             return 1;
 
         currentNode = currentNode->next;
@@ -485,23 +465,19 @@ int doublyLinkedListContains(DoublyLinkedList *linkedList, void *item,
 
 
 
-/** This function will take the linked list address, the item address, adn the comparator function as a parameters,
+/** This function will take the linked list address, and the item address as a parameters,
     then it will return the index of the given item, other wise it will return minus one (-1) .
  * The function will use the comparator function to know if the two items are equivalent or not.
+ * Note: the function will not free the passed item.
  * @param linkedList the linked list address
  * @param item the item address the has the same item as the wanted one
- * @param comparator the comparator function address
  * @return it will return the index of the item if found, other wise it will return -1
  */
 
-int doublyLinkedListGetIndex(DoublyLinkedList *linkedList, void *item,
-                             int (*comparator)(const void *, const void *)) {
+int doublyLinkedListGetIndex(DoublyLinkedList *linkedList, void *item) {
 
     if (linkedList == NULL) {
          fprintf(stderr,"Illegal argument, the linked list is NULL.");
-        exit(-1);
-    } else if (comparator == NULL) {
-         fprintf(stderr,"Illegal argument, the comparator function is NULL.");
         exit(-1);
     }
 
@@ -509,7 +485,7 @@ int doublyLinkedListGetIndex(DoublyLinkedList *linkedList, void *item,
 
     for (int index = 0; currentNode != NULL; currentNode = currentNode->next, index++) {
         // if the comparator function returned zero then the two items are equal.
-        if (comparator(currentNode->item->value, item) == 0)
+        if (linkedList->comparator(item, currentNode->item) == 0)
             return index;
 
     }
@@ -540,7 +516,7 @@ void *doublyLinkedListGetFirst(DoublyLinkedList *linkedList) {
         exit(-1);
     }
 
-    return linkedList->head->item->value;
+    return linkedList->head->item;
 
 }
 
@@ -565,7 +541,8 @@ void *doublyLinkedListGetLast(DoublyLinkedList *linkedList) {
         exit(-1);
     }
 
-    return linkedList->tail->item->value;
+    return linkedList->tail->item;
+
 }
 
 
@@ -575,23 +552,19 @@ void *doublyLinkedListGetLast(DoublyLinkedList *linkedList) {
 
 
 
-/** This function will take the linked list address, the item address, and the comparator function as a parameters,
+/** This function will take the linked list address, and the item address, as a parameters,
     then it will return the item from the list if found, other wise it will return NULL.
  * The function will use the comparator function to know if the two items are equivalent or not.
+ * Note: the function will not free the passed item.
  * @param linkedList the linked list address
  * @param item the item address that hash the same item of the wanted one
- * @param comparator the comparator function address
  * @return it will return the item address if found, other wise it will return NULL
  */
 
-void *doublyLinkedListGetItem(DoublyLinkedList *linkedList, void *item,
-                              int (*comparator)(const void *, const void *)) {
+void *doublyLinkedListGetItem(DoublyLinkedList *linkedList, void *item) {
 
     if (linkedList == NULL) {
          fprintf(stderr,"Illegal argument, the linked list is NULL.");
-        exit(-1);
-    } else if (comparator == NULL) {
-         fprintf(stderr,"Illegal argument, the comparator function is NULL.");
         exit(-1);
     }
 
@@ -599,8 +572,8 @@ void *doublyLinkedListGetItem(DoublyLinkedList *linkedList, void *item,
 
     while (currentNode != NULL) {
         // if the comparator function returned zero then the two items are equal.
-        if (comparator(currentNode->item->value, item) == 0)
-            return currentNode->item->value;
+        if (linkedList->comparator(item, currentNode->item) == 0)
+            return currentNode->item;
 
         currentNode = currentNode->next;
     }
@@ -637,7 +610,7 @@ void *doublyLinkedListGet(DoublyLinkedList *linkedList, int index) {
     for (int i = 0; i < index; i++)
         currentNode = currentNode->next;
 
-    return currentNode->item->value;
+    return currentNode->item;
 
 }
 
@@ -666,9 +639,7 @@ void **doublyLinkedListToArray(DoublyLinkedList *linkedList) {
 
     Node *currentNode = linkedList->head;
     for (int i = 0; i < doublyLinkedListGetLength(linkedList); i++) {
-        array[i] = (void *) malloc(currentNode->item->sizeOfItem);
-        memcpy(array[i], currentNode->item->value, currentNode->item->sizeOfItem);
-
+        array[i] = currentNode->item;
         currentNode = currentNode->next;
     }
 
@@ -739,7 +710,7 @@ int doublyLinkedListIsEmpty(DoublyLinkedList *linkedList) {
 void printDoublyLinkedList(DoublyLinkedList *linkedList, void (*printFun) (const void *)) {
     Node *currentNode = linkedList->head;
     while (currentNode != NULL) {
-        printFun(currentNode->item->value);
+        printFun(currentNode->item);
         currentNode = currentNode->next;
     }
 
@@ -772,7 +743,7 @@ void doublyLinkedListClear(DoublyLinkedList *linkedList) {
         nodeToFree = currentNode;
         currentNode = currentNode->next;
 
-        dLinkedListDestroyItem(nodeToFree->item, linkedList->freeFun);
+        linkedList->freeFun(nodeToFree->item);
         free(nodeToFree);
     }
 
@@ -799,22 +770,4 @@ void destroyDoublyLinkedList(DoublyLinkedList *linkedList) {
     doublyLinkedListClear(linkedList);
     free(linkedList);
 
-}
-
-
-
-
-
-
-
-/** This function will take the item address, and the free function address as a parameters,
- * then it will free the item container and it's item.
- * Note: this function should only be called from the doubly linked list functions.
- * @param item the item container address
- * @param freeFun the free item function address
- */
-
-void dLinkedListDestroyItem(DLLItem *item, void (*freeFun)(void *)) {
-    freeFun(item->value);
-    free(item);
 }

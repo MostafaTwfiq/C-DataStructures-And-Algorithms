@@ -24,8 +24,8 @@ void freeItem(void *item) {
     free(item);
 }
 
-int comp(const void *p1, int s1, const void *p2, int s2) {
-    return strcmp((char *)p1, (char *)p2);
+int comp(const void *p1, const void *p2) {
+    return *(int *)p1 - *(int *)p2;
 }
 
 void print(void *item) {
@@ -85,10 +85,9 @@ int main() {
     ArrayDequeInsertRear(ad,&l);
     printf("size %d\n",ArrayDequeLength(ad));
 
-
-
     //ad->front=6;
     ArrayDequePrint(ad,print);
+
     return 0;
 
 }

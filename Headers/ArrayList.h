@@ -2,32 +2,24 @@
 #define C_DATASTRUCTURES_ARRAYLIST_H
 
 #include "Utils.h"
-#include "math.h"
-
-
-
-typedef struct ArrayListItem {
-    void *value;
-    int sizeOfItem;
-} ArrayListItem;
-
 
 typedef struct ArrayList {
-    ArrayListItem **arr;
+    void **arr;
     int length;
     int count;
     void (*freeItem)(void *);
+    int (*comparator)(const void *, const void *);
 } ArrayList;
 
 
 
-ArrayList *arrayListInitialization(int initialLength, void (*freeFun)(void *));
+ArrayList *arrayListInitialization(int initialLength, void (*freeFun)(void *), int (*comparator)(const void *, const void *));
 
 
-void arrayListAdd(ArrayList *list, void *item, int sizeOfItem);
+void arrayListAdd(ArrayList *list, void *item);
 
 
-void arrayListAddAll(ArrayList *list, void **array, int arrayLength, int sizeOfItem);
+void arrayListAddAll(ArrayList *list, void **array, int arrayLength);
 
 
 void arrayListRemove(ArrayList *list);
@@ -42,13 +34,13 @@ void arrayListRemoveAtIndex(ArrayList *list, int index);
 void arrayListRemoveAtIndexWtFr(ArrayList *list, int index);
 
 
-int arrayListContains(ArrayList *list, void *item, int (*comparator)(const void *, const void *));
+int arrayListContains(ArrayList *list, void *item);
 
 
-int arrayListGetIndex(ArrayList *list, void *item, int (*comparator)(const void *, const void *));
+int arrayListGetIndex(ArrayList *list, void *item);
 
 
-int arrayListGetLastIndex(ArrayList *list, void *item, int (*comparator)(const void *, const void *));
+int arrayListGetLastIndex(ArrayList *list, void *item);
 
 
 void *arrayListGet(ArrayList *list, int index);
@@ -60,7 +52,7 @@ void **arrayListToArray(ArrayList *list);
 void **arrayListToSubArray(ArrayList *list, int start, int end);
 
 
-void arrayListSort(ArrayList *list, int (*comparator)(const void *, const void *));
+void arrayListSort(ArrayList *list);
 
 
 int arrayListGetLength(ArrayList *list);
