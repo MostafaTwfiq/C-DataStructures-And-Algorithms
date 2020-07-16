@@ -5,18 +5,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-
-typedef struct HashMapItem {
-    void *value;
-    int sizeOfItem;
-} HashMapItem;
-
-
 typedef struct Entry{
     void *key;
-    HashMapItem *item;
-    int sizeOfKey;
+    void *item;
+    void (*freeItemFun)(void *);
+    void (*freeKeyFun)(void *);
 } Entry;
 
 
@@ -26,14 +19,17 @@ typedef struct HashMap {
     int length;
     int count;
     int bPrime;
+    void (*freeItemFun)(void *);
+    void (*freeKeyFun)(void *);
+    int (*keyComp)(const void *, const void *);
 } HashMap;
 
 
 
-HashMap *hashMapInitialization(void (*freeKey)(void *key), void (*freeItem)(void *item), int (*keyComp)(const void *key1, int s1, const void *key2, int s2));
+HashMap *hashMapInitialization(void (*freeKey)(void *), void (*freeItem)(void *), int (*keyComp)(const void *, const void *));
 
 
-void hashMapInsert(HashMap *map, void *key, int sizeOfKey, void *item, int sizeOfItem);
+void hashMapInsert(HashMap *map, void *key, int sizeOfKey, void *item);
 
 
 int hashMapContains(HashMap *map, void *key, int sizeOfKey);
@@ -43,6 +39,9 @@ void *hashMapGet(HashMap *map, void *key, int sizeOfKey);
 
 
 void hashMapDelete(HashMap *map, void *key, int sizeOfKey);
+
+
+void *hashMapDeleteWtoFr(HashMap *map, void *key, int sizeOfKey);
 
 
 void **hashMapToArray(HashMap *map);

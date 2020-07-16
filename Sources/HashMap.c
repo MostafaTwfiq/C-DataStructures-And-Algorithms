@@ -20,18 +20,8 @@ int getNextPrime(int num);
 
 
 
-/** The freeing item function address variable.
- * @param item the item address
- */
-
-void (*freeItemFun)(void *item);
 
 
-/** The freeing key function address variable.
- * @param key the  key address
- */
-
-void (*freeKeyFun)(void *key);
 
 
 /** The freeing entry function.
@@ -40,24 +30,13 @@ void (*freeKeyFun)(void *key);
 
 void freeEntry(void *entry) {
     Entry *entryToFree = (Entry *) entry;
-    freeItemFun(entryToFree->item->value);
+    entryToFree->freeItemFun(entryToFree->item);
     free(entryToFree->item);
-    freeKeyFun(entryToFree->key);
+    entryToFree->freeKeyFun(entryToFree->key);
     free(entryToFree);
 
 }
 
-
-/** The comparing keys function address variable.
- * Note: if the function returned zero then the two key are equal.
- * @param key1 the first key address
- * @param s1 the size of the first key in bytes
- * @param key2 the second key address
- * @param s2 the second key size in bytes
- * @return it will return zero if the two key are equal, other wise it will return any other integer.
- */
-
-int (*keyCompFun)(const void *key1, int s1, const void *key2, int s2);
 
 
 
@@ -75,9 +54,9 @@ int (*keyCompFun)(const void *key1, int s1, const void *key2, int s2);
  */
 
 HashMap *hashMapInitialization(
-        void (*freeKey)(void *key)
-        , void (*freeItem)(void *item)
-        , int (*keyComp)(const void *key1, int s1, const void *key2, int s2)
+        void (*freeKey)(void *)
+        , void (*freeItem)(void *)
+        , int (*keyComp)(const void *, const void *)
         ) {
 
     HashMap *map = (HashMap *) malloc(sizeof(HashMap));
@@ -86,9 +65,9 @@ HashMap *hashMapInitialization(
     map->arr = (Entry **) calloc(sizeof(Entry *), map->length);
     map->count = 0;
     map->bPrime = calBPrime(map->length);
-    freeItemFun = freeItem;
-    freeKeyFun = freeKey;
-    keyCompFun = keyComp;
+    map->freeItemFun = freeItem;
+    map->freeKeyFun = freeKey;
+    map->keyComp = keyComp;
 
     return map;
 
@@ -98,17 +77,16 @@ HashMap *hashMapInitialization(
 
 
 
-/** This function will take the map address, the key address, the size of the key in bytes, the item address, and the item size ,
-    as a parameters, then it will insert the item in the map.
+/** This function will take the map address, the key address, the size of the key in bytes, and the item address as a parameters,
+ * then it will insert the item in the map.
  * Note: if the key is already in the map then the map will override the data and free the old item and it's key.
  * @param map the hash map address
  * @param key the key address
  * @param sizeOfKey the size of the key in bytes
  * @param item the item address
- * @param sizeOfItem the new item size in bytes
  */
 
-void hashMapInsert(HashMap *map, void *key, int sizeOfKey, void *item, int sizeOfItem) {
+void hashMapInsert(HashMap *map, void *key, int sizeOfKey, void *item) {
     if (map == NULL) {
         fprintf(stderr, "Illegal argument, the hash map is null.");
         exit(-3);
@@ -136,12 +114,11 @@ void hashMapInsert(HashMap *map, void *key, int sizeOfKey, void *item, int sizeO
 
     while (map->arr[index] != NULL) {
 
-        if (keyCompFun(map->arr[index]->key, map->arr[index]->sizeOfKey, key, sizeOfKey) == 0) {
-            freeItemFun(map->arr[index]->item->value);
-            freeKeyFun(map->arr[index]->key);
+        if (map->keyComp(key, map->arr[index]->key) == 0) {
+            map->freeItemFun(map->arr[index]->item);
+            map->freeKeyFun(map->arr[index]->key);
             map->arr[index]->key = key;
-            map->arr[index]->item->value = item;
-            map->arr[index]->item->sizeOfItem = sizeOfItem;
+            map->arr[index]->item = item;
             return;
         }
 
@@ -152,10 +129,9 @@ void hashMapInsert(HashMap *map, void *key, int sizeOfKey, void *item, int sizeO
 
     Entry *newEntry = (Entry *) malloc(sizeof(Entry));
     newEntry->key = key;
-    newEntry->sizeOfKey = sizeOfKey;
-    newEntry->item = (HashMapItem *) malloc(sizeof(HashMapItem));
-    newEntry->item->value = item;
-    newEntry->item->sizeOfItem = sizeOfItem;
+    newEntry->item = item;
+    newEntry->freeItemFun = map->freeItemFun;
+    newEntry->freeKeyFun = map->freeKeyFun;
     map->arr[index] = newEntry;
     map->count++;
 
@@ -169,6 +145,7 @@ void hashMapInsert(HashMap *map, void *key, int sizeOfKey, void *item, int sizeO
 /** This function will take the map address, the key address, and the key size as a parameters,
     then it will return (1) if the key is in the map,
     other wise it will return zero (0).
+ * Note: this function will not free the passed key.
  * @param map the hash map address
  * @param key the key address
  * @param sizeOfKey the size of the key in bytes
@@ -195,7 +172,7 @@ int hashMapContains(HashMap *map, void *key, int sizeOfKey) {
     do {
 
         if (map->arr[index] != NULL) {
-            if (keyCompFun(map->arr[index]->key, map->arr[index]->sizeOfKey, key, sizeOfKey) == 0)
+            if (map->keyComp(key, map->arr[index]->key) == 0)
                 return 1;
 
         }
@@ -216,6 +193,7 @@ int hashMapContains(HashMap *map, void *key, int sizeOfKey) {
 /** This function will take the map address, the key address, and the key size as a parameter,
     then it will return the item address if the key existed,
     other wise it will return NULL.
+ * Note: this function will not free the passed key
  * @param map the hash map address
  * @param key the key address
  * @param sizeOfKey the size of the key in bytes
@@ -242,8 +220,8 @@ void *hashMapGet(HashMap *map, void *key, int sizeOfKey) {
     do {
 
         if (map->arr[index] != NULL) {
-            if (keyCompFun(map->arr[index]->key, map->arr[index]->sizeOfKey, key, sizeOfKey) == 0)
-                return map->arr[index]->item->value;
+            if (map->keyComp(key, map->arr[index]->key) == 0)
+                return map->arr[index]->item;
 
         }
 
@@ -289,7 +267,7 @@ void hashMapDelete(HashMap *map, void *key, int sizeOfKey) {
     do {
 
         if (map->arr[index] != NULL) {
-            if (keyCompFun(map->arr[index]->key, map->arr[index]->sizeOfKey, key, sizeOfKey) == 0) {
+            if (map->keyComp(key, map->arr[index]->key) == 0) {
                 freeEntry(map->arr[index]);
                 map->arr[index] = NULL;
                 map->count--;
@@ -302,6 +280,63 @@ void hashMapDelete(HashMap *map, void *key, int sizeOfKey) {
         index = calIndex(fHash, sHash, pHashIndex, map->length);
 
     } while (firstIndex != index);
+
+}
+
+
+
+
+
+
+
+
+
+
+/** This function will take the map address, the key address, and the size of the key as a parameters,
+    then it will delete and free the key without freeing the item that linked to that key.
+ * Note: if the key didn't found in the hash map, then the function will fo nothing.
+ * @param map the hash map address
+ * @param key the key address
+ * @param sizeOfKey the size of the key in bytes
+ * @return it will return the deleted item pointer if found, other wise it will return NULL
+ */
+
+void *hashMapDeleteWtoFr(HashMap *map, void *key, int sizeOfKey) {
+    if (map == NULL) {
+        fprintf(stderr, "Illegal argument, the hash map is null.");
+        exit(-3);
+    } else if (key == NULL) {
+        fprintf(stderr, "Illegal argument, the passed key is null.");
+        exit(-3);
+    }
+
+    unsigned int
+            fHash = fHashCal( (unsigned int) key, sizeOfKey, map->length)
+    , sHash = sHashCal( (unsigned int) key, sizeOfKey, map->bPrime);
+
+    unsigned int pHashIndex = 1;
+    unsigned int index = calIndex(fHash, sHash, pHashIndex, map->length);
+    unsigned int firstIndex = index;
+
+    do {
+
+        if (map->arr[index] != NULL) {
+            if (map->keyComp(key, map->arr[index]->key) == 0) {
+                void *returnItem = map->arr[index]->item;
+                free(map->arr[index]);
+                map->arr[index] = NULL;
+                map->count--;
+                return returnItem;
+            }
+
+        }
+
+        pHashIndex++;
+        index = calIndex(fHash, sHash, pHashIndex, map->length);
+
+    } while (firstIndex != index);
+
+    return NULL;
 
 }
 
@@ -324,11 +359,10 @@ void **hashMapToArray(HashMap *map) {
 
     void **arr = (void **) malloc(sizeof(void *) * map->count);
     for (int i = 0, index = 0; i < map->length; i++) {
-        if (map->arr[i] != NULL) {
-            arr[index] = (void *) malloc(map->arr[i]->item->sizeOfItem);
-            memcpy(arr[index], map->arr[i]->item->value, map->arr[i]->item->sizeOfItem);
-            index++;
-        }
+
+        if (map->arr[i] != NULL)
+            arr[index++] = map->arr[i]->item;
+
     }
 
     return arr;
@@ -355,10 +389,10 @@ Entry **hashMapToEntryArray(HashMap *map) {
     for (int i = 0, index = 0; i < map->length; i++) {
         if (map->arr[i] != NULL) {
             arr[index] = (Entry *) malloc(sizeof(Entry));
-            arr[index]->sizeOfKey = map->arr[i]->sizeOfKey;
+            arr[index]->freeKeyFun = map->freeKeyFun;
+            arr[index]->freeItemFun = map->freeItemFun;
             arr[index]->key = map->arr[i]->key;
-            arr[index]->item = (HashMapItem *) malloc(sizeof(HashMapItem));
-            memcpy(arr[index]->item, map->arr[i]->item, sizeof(HashMapItem));
+            arr[index]->item = map->arr[i]->item;
             index++;
         }
     }

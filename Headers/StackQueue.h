@@ -14,10 +14,10 @@ typedef struct SQueue{
 SQueue *stackQueueInitialization(void (*freeItem)(void *item));
 
 
-void sQueueEnqueue(SQueue *queue, void *item, int sizeOfItem);
+void sQueueEnqueue(SQueue *queue, void *item);
 
 
-void sQueueAddAll(SQueue *queue, void **items, int itemsLength, int sizeOfItem);
+void sQueueAddAll(SQueue *queue, void **items, int itemsLength);
 
 
 void *sQueueDequeue(SQueue *queue);

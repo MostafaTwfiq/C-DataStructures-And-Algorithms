@@ -6,6 +6,7 @@
 typedef struct DirGraphNode {
     void *value;
     struct ArrayList *adjacentNodes;
+    int (*valueCompFun)(const void *, const void *);
 } DirGraphNode;
 
 
@@ -13,17 +14,22 @@ typedef struct DirGraphNode {
 
 typedef struct DirectedGraph {
     struct HashMap *nodes;
+    void (*freeValue)(void *);
+    int (*valueComp)(const void *, const void *);
 } DirectedGraph;
 
 
 
-DirectedGraph *directedGraphInitialization(void (*freeValue)(void *), int (*valueComp)(const void *key1, int s1, const void *key2, int s2));
+DirectedGraph *directedGraphInitialization(void (*freeValue)(void *), int (*valueComp)(const void *, const void *));
 
 
 void dirGraphAddNode(DirectedGraph *graph, void *value, int sizeOfValue);
 
 
 void dirGraphRemoveNode(DirectedGraph *graph, void *value, int sizeOfValue);
+
+
+void *dirGraphRemoveNodeWtoFr(DirectedGraph *graph, void *value, int sizeOfValue);
 
 
 void dirGraphAddEdge(DirectedGraph *graph, void *fromVal, int sizeOfFromVal, void *toVal, int sizeOfToVal);

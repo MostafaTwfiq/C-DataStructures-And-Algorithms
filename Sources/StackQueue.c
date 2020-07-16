@@ -15,7 +15,7 @@ void transferItemsToSecondStack(Stack *fStack, Stack *sStack);
  * @return it will return the initialized queue address
  */
 
-SQueue *stackQueueInitialization(void (*freeItem)(void *item)) {
+SQueue *stackQueueInitialization(void (*freeItem)(void *)) {
     SQueue *queue = (SQueue *) malloc(sizeof(SQueue));
 
     queue->fStack = stackInitialization(freeItem);
@@ -28,20 +28,19 @@ SQueue *stackQueueInitialization(void (*freeItem)(void *item)) {
 
 
 
-/** This function will take the queue address, the item address, and the size of the item as a parameters,
+/** This function will take the queue address, and the item address as a parameters,
     then it will push the item into the queue.
  * @param queue the queue address
  * @param item the new item address
- * @param sizeOfItem the size of the new item
  */
 
-void sQueueEnqueue(SQueue *queue, void *item, int sizeOfItem) {
+void sQueueEnqueue(SQueue *queue, void *item) {
     if(queue == NULL) {
         fprintf( stderr , "Illegal argument, queue is null." );
         exit( NULL_POINTER );
     }
 
-    pushStack(queue->fStack, item, sizeOfItem);
+    pushStack(queue->fStack, item);
 
 }
 
@@ -49,24 +48,22 @@ void sQueueEnqueue(SQueue *queue, void *item, int sizeOfItem) {
 
 
 
-/** This function will take the queue address, the items array pointer, the length of the array, and the size of the items as a parameters,
+/** This function will take the queue address, the items array pointer, and the length of the array as a parameters,
     then it will push all the items in the array into the queue.
  * @param queue the queue address
  * @param items the items array address
  * @param itemsLength the length of the new items array
- * @param sizeOfItem the size of the items array in bytes
  */
 
-void sQueueAddAll(SQueue *queue, void **items, int itemsLength, int sizeOfItem) {
+void sQueueAddAll(SQueue *queue, void **items, int itemsLength) {
     if(queue == NULL) {
         fprintf( stderr , "Illegal argument, queue is null." );
         exit( NULL_POINTER );
     } else if (items == NULL)
         return;
 
-    for (int i = 0; i < itemsLength; i++) {
-        pushStack(queue->fStack, items[i], sizeOfItem);
-    }
+    for (int i = 0; i < itemsLength; i++)
+        pushStack(queue->fStack, items[i]);
 
 }
 
@@ -107,10 +104,8 @@ void *sQueueDequeue(SQueue *queue) {
  */
 
 void transferItemsToSecondStack(Stack *fStack, Stack *sStack) {
-    while (!isEmptyStack(fStack)) {
-        int sizeOfItem = fStack->memory[fStack->top]->sizeOfItem;
-        pushStack(sStack, popStack(fStack), sizeOfItem);
-    }
+    while (!isEmptyStack(fStack))
+        pushStack(sStack, popStack(fStack));
 
 }
 
@@ -206,12 +201,11 @@ void **sQueueToArray(SQueue *queue) {
         if (isEmptyStack(queue->sStack))
             transferItemsToSecondStack(queue->fStack, queue->sStack);
 
-        int size = queue->sStack->memory[queue->sStack->top]->sizeOfItem;
         void *item = popStack(queue->sStack);
 
-        arr[i] = (void *) malloc(size);
-        memcpy(arr[i], item, size);
-        sQueueEnqueue(queue, item, size);
+        arr[i] = item;
+        sQueueEnqueue(queue, item);
+
     }
 
     return arr;

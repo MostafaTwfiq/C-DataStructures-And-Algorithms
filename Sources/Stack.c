@@ -7,7 +7,7 @@
  * @return Pointer to the stack stored on the heap.
  **/
 
-Stack* stackInitialization(void (*freeItem)(void *item)) {
+Stack* stackInitialization(void (*freeItem)(void *)) {
 
     Stack *s = ( Stack*  )malloc( sizeof( Stack ) );
 
@@ -18,7 +18,7 @@ Stack* stackInitialization(void (*freeItem)(void *item)) {
 
     s->freeItem =  freeItem;
     s->allocated = 10;
-    s->memory = (StackItem **) malloc( sizeof(StackItem *) * s->allocated);
+    s->memory = (void **) malloc( sizeof(void *) * s->allocated);
 
     if( !s->memory ) {
         fprintf( stderr , "Failed At allocating memory for Stack" );
@@ -38,10 +38,9 @@ Stack* stackInitialization(void (*freeItem)(void *item)) {
 /** Pushes data on top of the stack.
  * @param stack Pointer to the stack on the heap.
  * @param dataSize the size of the provided data
- * @param data pointer to data to be stored on top of the stack.
  **/
 
-void pushStack( Stack* stack ,  void * data, int dataSize) {
+void pushStack( Stack* stack ,  void * data) {
     if( !stack || !data ) {
         fprintf( stderr , "Param Cannot be Null" );
         exit( NULL_POINTER );
@@ -49,7 +48,7 @@ void pushStack( Stack* stack ,  void * data, int dataSize) {
 
     if(stack->top == stack->allocated - 1 ) {
         stack->allocated *= 2;
-        stack->memory =  (StackItem **) realloc( stack->memory  , sizeof(StackItem *) * stack->allocated );
+        stack->memory =  (void **) realloc( stack->memory  , sizeof(void *) * stack->allocated );
 
         if ( !stack->memory ) {
             fprintf( stderr , "Failed at reallocating the Stack" );
@@ -57,10 +56,7 @@ void pushStack( Stack* stack ,  void * data, int dataSize) {
         }
     }
 
-    StackItem *newItem = (StackItem *) malloc(sizeof(StackItem));
-    newItem->value = data;
-    newItem->sizeOfItem = dataSize;
-    stack->memory[++stack->top] = newItem;
+    stack->memory[++stack->top] = data;
 
 }
 
@@ -70,17 +66,15 @@ void pushStack( Stack* stack ,  void * data, int dataSize) {
  * @param stack the stack address
  * @param array the array of items address
  * @param arrLength the length of the items array
- * @param sizeOfItem the size of the array items in bytes
  */
 
-void stackAddAll(Stack *stack, void **array, int arrLength, int sizeOfItem) {
+void stackAddAll(Stack *stack, void **array, int arrLength) {
     if (stack == NULL) {
         fprintf( stderr , "Param Cannot be Null" );
         exit( NULL_POINTER );
     }
-    for (int i = 0; i < arrLength; i++) {
-        pushStack(stack, array[i], sizeOfItem);
-    }
+    for (int i = 0; i < arrLength; i++)
+        pushStack(stack, array[i]);
 
 
 }
@@ -100,10 +94,8 @@ void **stackToArray(Stack *stack) {
 
     void **arr = (void **) malloc(sizeof(void *) * stack->top + 1);
 
-    for (int i = 0; i <= stack->top; i++) {
-        arr[i] = (void *) malloc(stack->memory[i]->sizeOfItem);
-        memcpy(arr[i], stack->memory[i]->value, stack->memory[i]->sizeOfItem);
-    }
+    for (int i = 0; i <= stack->top; i++)
+        arr[i] = stack->memory[i];
 
     return arr;
 }
@@ -120,10 +112,7 @@ void **stackToArray(Stack *stack) {
         exit( NULL_POINTER );
     }
 
-    void *returnItem = stack->memory[stack->top]->value;
-    free(stack->memory[stack->top--]);
-
-    return returnItem;
+    return stack->memory[stack->top--];
 
 }
 
@@ -183,7 +172,7 @@ void* peekStack( Stack* stack ) {
         exit(EMPTY_DATASTRUCTURE );
     }
 
-    return stack->memory[stack->top]->value;
+    return stack->memory[stack->top];
 
 }
 
@@ -200,10 +189,8 @@ void StackClear( Stack* stack ) {
         exit( NULL_POINTER );
     }
 
-    for (int i = 0; i < getStackLength(stack); i++) {
-        stack->freeItem(stack->memory[i]->value);
-        free(stack->memory[i]);
-    }
+    for (int i = 0; i < getStackLength(stack); i++)
+        stack->freeItem(stack->memory[i]);
 
 }
 

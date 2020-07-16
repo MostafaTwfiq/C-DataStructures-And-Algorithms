@@ -11,11 +11,11 @@ typedef enum RotationType{
 
 
 
-RBNode *createRBNode(RBNode *parent, COLOR color, void *item, int sizeOfItem);
+RBNode *createRBNode(RBNode *parent, COLOR color, void *item);
 
-RBNode *rBTreeInsertR(RBNode *root, RBNode *parent, void *item, int sizeOfItem, int (*cmp)(const void*, int, const void *, int));
+RBNode *rBTreeInsertR(RBNode *root, RBNode *parent, void *item, int (*cmp)(const void*, const void *));
 
-void rBTreeDeleteR(RBTree *tree, RBNode *root, void *item, int sizeOfItem);
+void rBTreeDeleteR(RBTree *tree, RBNode *root, void *item);
 
 RBNode *getUncle(RBNode *currentNode);
 
@@ -57,9 +57,9 @@ void RBTreeToArrayRecurs(RBNode* node , void **arr, int *i);
 
 void printRBTreeHelper(RBNode *root, int space, void (*printFun)(const void *item, COLOR color));
 
-void *rbTreeGetR(RBTree *rbTree, RBNode *node, char *item, int sizeOfItem);
+void *rbTreeGetR(RBTree *rbTree, RBNode *node, char *item);
 
-int rBTreeContainsR(RBTree *tree, RBNode *root, void *item, int sizeOfItem);
+int rBTreeContainsR(RBTree *tree, RBNode *root, void *item);
 
 void rBInOrderTraversalR(RBNode *root, void (*printFun)(const void *, COLOR));
 
@@ -68,6 +68,16 @@ void rBPostOrderTraversalR(RBNode *root, void (*printFun)(const void *, COLOR));
 void freeRBNode(RBNode *node, void (*freeItem)(void *item));
 
 void freeRBTreeNodesR(RBNode *root, void (*freeItem)(void *item));
+
+void *rBTreeDeleteRWtoFr(RBTree *tree, RBNode *root, void *item);
+
+void *deleteNodeLeafCaseWtoFr(RBTree *tree, RBNode *root);
+
+void *deleteRightNullNodeWtoFr(RBTree *tree, RBNode *root);
+
+void *deleteLeftNullNodeWtoFr(RBTree *tree, RBNode *root);
+
+void *deleteRightNoneNullNodeWtoFr(RBTree *tree, RBNode *root);
 
 
 
@@ -81,7 +91,7 @@ void freeRBTreeNodesR(RBNode *root, void (*freeItem)(void *item));
  * @return Pointer to the allocated Red Black tree on the heap.
  * */
 
-RBTree *redBlackTreeInitialization(void (*freeItem)(void *item), int (*cmp)(const void*, int, const void *, int)) {
+RBTree *redBlackTreeInitialization(void (*freeItem)(void *), int (*cmp)(const void*, const void *)) {
     RBTree *tree = (RBTree *) malloc(sizeof(RBTree));
     tree->root = NULL;
     tree->nodeCount = 0;
@@ -101,17 +111,13 @@ RBTree *redBlackTreeInitialization(void (*freeItem)(void *item), int (*cmp)(cons
  * @param  parent Reference to the Red Black tree's root 's or insertion point's parent.
  * @param color color of the node to be created.
  * @param item Reference pointer to pre allocated key.
- * @param sizeOfItem the size of the new item in bytes
  * @return Returns a pointer to an allocated node on the heap.
  * */
 
-RBNode *createRBNode(RBNode *parent, COLOR color, void *item, int sizeOfItem) {
+RBNode *createRBNode(RBNode *parent, COLOR color, void *item) {
     RBNode *node = (RBNode *) malloc(sizeof(RBNode));
-    RBTreeItem *newItem = (RBTreeItem *) malloc(sizeof(RBTreeItem));
-    newItem->value = item;
-    newItem->sizeOfItem = sizeOfItem;
     node->color = color;
-    node->key = newItem;
+    node->key = item;
     node->right = node->left = NULL;
     node->parent = parent;
     return node;
@@ -119,7 +125,7 @@ RBNode *createRBNode(RBNode *parent, COLOR color, void *item, int sizeOfItem) {
 
 
 
-/** This funvtion will take the tree address as a parameter,
+/** This function will take the tree address as a parameter,
  * then it will clear and free all the tree nodes without destroying the tree.
  * @param tree a reference to the tree address
  */
@@ -142,7 +148,7 @@ void clearRBTree(RBTree *tree) {
  */
 
 
-void freeRBTreeNodesR(RBNode *root, void (*freeItem)(void *item)) {
+void freeRBTreeNodesR(RBNode *root, void (*freeItem)(void *)) {
     if (root == NULL)
         return;
 
@@ -160,12 +166,11 @@ void freeRBTreeNodesR(RBNode *root, void (*freeItem)(void *item)) {
  * @param freeItem the freeing item function address
 **/
 
-void freeRBNode(RBNode *node, void (*freeItem)(void *item)) {
+void freeRBNode(RBNode *node, void (*freeItem)(void *)) {
     if(node == NULL)
         return;
 
-    freeItem(node->key->value);
-    free(node->key);
+    freeItem(node->key);
     free(node);
 
 }
@@ -194,11 +199,10 @@ void destroyRBTree(RBTree *tree) {
 /** Inserts a node at the a reference node (preferably the root) with the provided key and it's size.
  * @param  tree Reference to the Red Black tree.
  * @param item reference pointer to pre allocated key.
- * @param sizeOfItem the size of the new item in bytes
 **/
 
-void rBTreeInsert(RBTree *tree, void *item, int sizeOfItem) {
-    tree->root = rBTreeInsertR(tree->root, NULL, item, sizeOfItem, tree->cmp);
+void rBTreeInsert(RBTree *tree, void *item) {
+    tree->root = rBTreeInsertR(tree->root, NULL, item, tree->cmp);
     tree->nodeCount++;
     tree->root->color = BLACK;
 }
@@ -212,14 +216,13 @@ void rBTreeInsert(RBTree *tree, void *item, int sizeOfItem) {
  * @param  root Reference to the Red Black tree's root or insertion point.
  * @param  parent Reference to the Red Black tree's root 's or insertion point's parent.
  * @param item Reference pointer to pre allocated key.
- * @param sizeOfItem the size of the new item in bytes
  * @param cmp Reference to the comparator function. 
- * @return 
+ * @return it will return the passed root to it's parent
 **/
 
-RBNode *rBTreeInsertR(RBNode *root, RBNode *parent, void *item, int sizeOfItem, int (*cmp)(const void*, int, const void *, int)) {
+RBNode *rBTreeInsertR(RBNode *root, RBNode *parent, void *item, int (*cmp)(const void*, const void *)) {
     if (root == NULL) {
-        root = createRBNode(parent, parent == NULL ? BLACK : RED, item, sizeOfItem);
+        root = createRBNode(parent, parent == NULL ? BLACK : RED, item);
         //Case 1:
         if (isCaseOne(root)) {
             root->parent->color = BLACK;
@@ -227,10 +230,10 @@ RBNode *rBTreeInsertR(RBNode *root, RBNode *parent, void *item, int sizeOfItem, 
             root->parent->parent->color = RED;
         }
     }
-    else if (cmp(root->key->value, root->key->sizeOfItem, item, sizeOfItem) > 0)
-        root->left = rBTreeInsertR(root->left, root, item, sizeOfItem, cmp);
-    else if (cmp(root->key->value, root->key->sizeOfItem, item, sizeOfItem) < 0)
-        root->right = rBTreeInsertR(root->right, root, item, sizeOfItem, cmp);
+    else if (cmp(item, root->key) < 0)
+        root->left = rBTreeInsertR(root->left, root, item, cmp);
+    else if (cmp(item, root->key) > 0)
+        root->right = rBTreeInsertR(root->right, root, item, cmp);
     //Case 2:
     if (isRequiredRotation(root)) {
         RotationType rotationType = getRotationType(root);
@@ -249,11 +252,10 @@ RBNode *rBTreeInsertR(RBNode *root, RBNode *parent, void *item, int sizeOfItem, 
 /** if present Deletes a given Node of key item from the tree.
  * @param  tree Reference to the Red Black tree.
  * @param item   Reference pointer to pre allocated key.
- * @param sizeOfItem the size of the provided item
 **/
 
-void rBTreeDelete(RBTree *tree, void *item, int sizeOfItem) {
-    rBTreeDeleteR(tree, tree->root, item, sizeOfItem);
+void rBTreeDelete(RBTree *tree, void *item) {
+    rBTreeDeleteR(tree, tree->root, item);
 }
 
 
@@ -265,13 +267,12 @@ void rBTreeDelete(RBTree *tree, void *item, int sizeOfItem) {
  * @param  tree Reference to the Red Black tree.
  * @param  root Reference to the Red Black tree's root or insertion point.
  * @param item Reference to key to delete from the tree.
- * @param sizeOfItem the size if the provided item
 **/
 
-void rBTreeDeleteR(RBTree *tree, RBNode *root, void *item, int sizeOfItem) {
+void rBTreeDeleteR(RBTree *tree, RBNode *root, void *item) {
     if (root == NULL)
         return;
-    else if (tree->cmp(root->key->value, root->key->sizeOfItem, item, sizeOfItem) == 0) {
+    else if (tree->cmp(item, root->key) == 0) {
         if (root->right == NULL && root->left == NULL)
             deleteNodeLeafCase(tree, root);
         else if (root->right == NULL)
@@ -281,10 +282,12 @@ void rBTreeDeleteR(RBTree *tree, RBNode *root, void *item, int sizeOfItem) {
         else
             deleteRightNoneNullNode(tree, root);
     }
-    else if (tree->cmp(root->key->value, root->key->sizeOfItem, item, sizeOfItem) > 0)
-        rBTreeDeleteR(tree, root->left, item, sizeOfItem);
-    else if (tree->cmp(root->key->value, root->key->sizeOfItem, item, sizeOfItem) < 0)
-        rBTreeDeleteR(tree, root->right, item, sizeOfItem);
+
+    else if (tree->cmp(item, root->key) < 0)
+        rBTreeDeleteR(tree, root->left, item);
+    else if (tree->cmp(item, root->key) > 0)
+        rBTreeDeleteR(tree, root->right, item);
+
 }
 
 
@@ -301,9 +304,10 @@ void rBTreeDeleteR(RBTree *tree, RBNode *root, void *item, int sizeOfItem) {
 void deleteNodeLeafCase(RBTree *tree, RBNode *root) {
     COLOR rootColor = root->color;
     RBNode *parent = root->parent;
-    tree->freeItem(root->key->value);
-    free(root->key);
+
+    tree->freeItem(root->key);
     free(root);
+
     if (parent == NULL)
         tree->root = NULL;
     else {
@@ -342,9 +346,10 @@ void deleteRightNullNode(RBTree *tree, RBNode *root) {
         else
             parent->left = returnNode;
     }
-    tree->freeItem(root->key->value);
-    free(root->key);
+
+    tree->freeItem(root->key);
     free(root);
+
     //This case mean the current node is black and it's child is red colored.
     if (returnNode->color == RED && rootColor == BLACK)
         returnNode->color = BLACK;
@@ -379,9 +384,10 @@ void deleteLeftNullNode(RBTree *tree, RBNode *root) {
         else
             parent->left = returnNode;
     }
-    tree->freeItem(root->key->value);
-    free(root->key);
+
+    tree->freeItem(root->key);
     free(root);
+
     //This case mean the current node is black and it's child is red colored.
     if (returnNode->color == RED && rootColor == BLACK)
         returnNode->color = BLACK;
@@ -408,9 +414,202 @@ void deleteRightNoneNullNode(RBTree *tree, RBNode *root) {
     void *temp = root->key;
     root->key = successorNode->key;
     successorNode->key = temp;
-    rBTreeDeleteR(tree, root->right, successorNode->key->value, successorNode->key->sizeOfItem);
+    rBTreeDeleteR(tree, root->right, successorNode->key);
 
 }
+
+
+
+
+
+
+
+/** if present Deletes a given Node of key item from the tree without freeing it.
+ * @param  tree Reference to the Red Black tree.
+ * @param item   Reference pointer to pre allocated key.
+ * @return it will return the deleted item pointer
+**/
+
+void *rBTreeDeleteWtoFr(RBTree *tree, void *item) {
+    return rBTreeDeleteRWtoFr(tree, tree->root, item);
+}
+
+
+
+
+
+
+/** Helper function to the @link rBTreeDeleteWtoFr @endlink function.
+ * @param  tree Reference to the Red Black tree.
+ * @param  root Reference to the Red Black tree's root or insertion point.
+ * @param item Reference to key to delete from the tree.
+ * @return it will return the deleted item pointer
+**/
+
+void *rBTreeDeleteRWtoFr(RBTree *tree, RBNode *root, void *item) {
+    if (root == NULL)
+        return NULL ;
+    else if (tree->cmp(item, root->key) == 0) {
+        if (root->right == NULL && root->left == NULL)
+            return deleteNodeLeafCaseWtoFr(tree, root);
+        else if (root->right == NULL)
+            return deleteRightNullNodeWtoFr(tree, root);
+        else if (root->left == NULL)
+            return deleteLeftNullNodeWtoFr(tree, root);
+        else
+            return deleteRightNoneNullNodeWtoFr(tree, root);
+    }
+
+    else if (tree->cmp(item, root->key) < 0)
+        return rBTreeDeleteRWtoFr(tree, root->left, item);
+    else if (tree->cmp(item, root->key) > 0)
+        return rBTreeDeleteRWtoFr(tree, root->right, item);
+
+    return NULL;
+
+}
+
+
+
+
+
+
+
+/** if the node to be deleted has no children this function handles it's deletion without freeing.
+ * @param  tree Reference to the Red Black tree.
+ * @param  root Reference to the Red Black tree's root or insertion point.
+ * @return it will return the deleted item pointer
+**/
+
+void *deleteNodeLeafCaseWtoFr(RBTree *tree, RBNode *root) {
+    COLOR rootColor = root->color;
+    RBNode *parent = root->parent;
+
+    void *returnValue = root->key;
+    free(root);
+
+    if (parent == NULL)
+        tree->root = NULL;
+    else {
+        if (parent->right == root)
+            parent->right = NULL;
+        else
+            parent->left = NULL;
+    }
+    if (rootColor != RED)
+        doubleBlackCase(tree, NULL, parent);
+
+    tree->nodeCount--;
+
+    return returnValue;
+
+}
+
+
+
+
+
+
+/** If the node has no right child this function handles it's deletion without freeing.
+ * @param  tree Reference to the Red Black tree.
+ * @param  root Reference to the Red Black tree's root or insertion point.
+ * @return it will return the deleted item pointer
+**/
+
+void *deleteRightNullNodeWtoFr(RBTree *tree, RBNode *root) {
+    RBNode *returnNode = root->left;
+    RBNode *parent = root->parent;
+    returnNode->parent = parent;
+    COLOR rootColor = root->color;
+    if (parent == NULL)
+        tree->root = NULL;
+    else {
+        if (parent->right == root)
+            parent->right = returnNode;
+        else
+            parent->left = returnNode;
+    }
+
+    void *returnValue = root->key;
+    free(root);
+
+    //This case mean the current node is black and it's child is red colored.
+    if (returnNode->color == RED && rootColor == BLACK)
+        returnNode->color = BLACK;
+        //This case mean the deleted node is black and the replaced node is also black.
+    else if (returnNode->color == BLACK && rootColor == BLACK)
+        doubleBlackCase(tree, returnNode, returnNode->parent);
+
+    tree->nodeCount--;
+
+    return returnValue;
+
+}
+
+
+
+
+
+
+/** If the node has no left child this function handles it's deletion without freeing.
+ * @param  tree Reference to the Red Black tree.
+ * @param  root Reference to the Red Black tree's root or insertion point.
+ * @return it will return the deleted item pointer
+**/
+
+void *deleteLeftNullNodeWtoFr(RBTree *tree, RBNode *root) {
+    RBNode *returnNode = root->right;
+    RBNode *parent = root->parent;
+    returnNode->parent = parent;
+    COLOR rootColor = root->color;
+    if (parent == NULL)
+        tree->root = NULL;
+    else {
+        if (parent->right == root)
+            parent->right = returnNode;
+        else
+            parent->left = returnNode;
+    }
+
+    void *returnItem = root->key;
+    free(root);
+
+    //This case mean the current node is black and it's child is red colored.
+    if (returnNode->color == RED && rootColor == BLACK)
+        returnNode->color = BLACK;
+        //This case mean the deleted node is black and the replaced node is also black.
+    else if (returnNode->color == BLACK && rootColor == BLACK)
+        doubleBlackCase(tree, returnNode, returnNode->parent);
+
+    tree->nodeCount--;
+
+    return returnItem;
+
+}
+
+
+
+
+
+
+/** If the node has both a right and a left child this function handles it's deletion without freeing.
+ * @param  tree Reference to the Red Black tree.
+ * @param  root Reference to the Red Black tree's root or insertion point.
+ * @return it will return the deleted item pointer
+**/
+
+void *deleteRightNoneNullNodeWtoFr(RBTree *tree, RBNode *root) {
+    RBNode *successorNode = getSuccessorNode(root);
+    void *temp = root->key;
+    root->key = successorNode->key;
+    successorNode->key = temp;
+    return rBTreeDeleteRWtoFr(tree, root->right, successorNode->key);
+
+}
+
+
+
+
 
 
 
@@ -758,7 +957,7 @@ void rBPreOrderTraversalR(RBNode *root, void (*printFun)(const void *, COLOR)) {
     if (root == NULL)
         return;
 
-    printFun(root->key->value, root->color);
+    printFun(root->key, root->color);
 
     rBPreOrderTraversalR(root->left, printFun);
     rBPreOrderTraversalR(root->right, printFun);
@@ -799,7 +998,7 @@ void rBInOrderTraversalR(RBNode *root, void (*printFun)(const void *, COLOR)) {
         return;
 
     rBInOrderTraversalR(root->left, printFun);
-    printFun(root->key->value, root->color);
+    printFun(root->key, root->color);
     rBInOrderTraversalR(root->right, printFun);
 
 }
@@ -837,7 +1036,7 @@ void rBPostOrderTraversalR(RBNode *root, void (*printFun)(const void *, COLOR)) 
 
     rBPostOrderTraversalR(root->left, printFun);
     rBPostOrderTraversalR(root->right, printFun);
-    printFun(root->key->value, root->color);
+    printFun(root->key, root->color);
 
 }
 
@@ -877,7 +1076,7 @@ void printRBTreeHelper(RBNode *root, int space, void (*printFun)(const void *ite
     printRBTreeHelper(root->right, space, printFun);
     printf("\n");
     for (int i = 10; i < space; i++) printf(" ");
-    (printFun)(root->key->value, root->color);
+    (printFun)(root->key, root->color);
     printRBTreeHelper(root->left, space, printFun);
 }
 
@@ -891,12 +1090,11 @@ void printRBTreeHelper(RBNode *root, int space, void (*printFun)(const void *ite
  * then it will return the node item.
  * @param tree a reference to the tree address.
  * @param item a reference to any item that has ta same item that will be compared
- * @param sizeOfItem the size of the provided item
  * @return the return will be the item address if it's existed other wise it will be NULL
  */
 
-void *rbTreeGet(RBTree *tree, char *item, int sizeOfItem) {
-    return rbTreeGetR(tree, tree->root, item, sizeOfItem);
+void *rbTreeGet(RBTree *tree, char *item) {
+    return rbTreeGetR(tree, tree->root, item);
 }
 
 
@@ -909,21 +1107,19 @@ void *rbTreeGet(RBTree *tree, char *item, int sizeOfItem) {
  * @param rbTree Reference to the Red Black tree.
  * @param node node to start searching from preferably the root.
  * @param item Key object to search for in the  Red Black tree.
- * @param sizeOfItem the size of the provided item
  * @return Returns the Found node.
 **/
 
-void *rbTreeGetR(RBTree *rbTree, RBNode *node, char *item, int sizeOfItem) {
+void *rbTreeGetR(RBTree *rbTree, RBNode *node, char *item) {
     if(node == NULL)
         return NULL;
 
-    if (((rbTree->cmp)(item, sizeOfItem, node->key->value, node->key->sizeOfItem) == 0))
-        return node->key->value;
-    else if ((rbTree->cmp)(item, sizeOfItem, node->key->value, node->key->sizeOfItem) < 0)
-        return rbTreeGetR(rbTree, node->left, item, sizeOfItem);
-    else if ((rbTree->cmp)(item, sizeOfItem, node->key->value, node->key->sizeOfItem) > 0)
-        return rbTreeGetR(rbTree, node->right, item, sizeOfItem);
-
+    if (rbTree->cmp(item, node->key) == 0)
+        return node->key;
+    else if (rbTree->cmp(item, node->key) < 0)
+        return rbTreeGetR(rbTree, node->left, item);
+    else
+        return rbTreeGetR(rbTree, node->right, item);
 
 }
 
@@ -938,13 +1134,12 @@ void *rbTreeGetR(RBTree *rbTree, RBNode *node, char *item, int sizeOfItem) {
  * @param rbTree Reference to the red black tree.
  * @param array Array to add data from.
  * @param length The Length of the array to add from.
- * @param sizeOfItem the size of the provided array items
  * @return Returns the new root node.
 **/
 
-void rBInsertAll(RBTree* rbTree, void** array, int length, int sizeOfItem) {
+void rBInsertAll(RBTree* rbTree, void** array, int length) {
     for(int i = 0; i < length; i++)
-        rBTreeInsert(rbTree, array[i], sizeOfItem);
+        rBTreeInsert(rbTree, array[i]);
 
 }
 
@@ -988,9 +1183,7 @@ void RBTreeToArrayRecurs(RBNode* node , void **arr, int *i) {
 
     RBTreeToArrayRecurs(node->left, arr, i);
 
-    arr[*i] = (void *) malloc(node->key->sizeOfItem);
-
-    memcpy(arr[*i], node->key->value, node->key->sizeOfItem);
+    arr[*i] = node->key;
     *i += 1;
 
     RBTreeToArrayRecurs(node->right, arr, i);
@@ -1018,17 +1211,16 @@ int rBTreeGetSize(RBTree *tree){
 
 
 
-/** This function will take the tree address, the item pointer, and the size of the item as a parameters,
+/** This function will take the tree address, and the item pointer as a parameters,
  * then it will return one if the key exist in the tree,
  * other wise it will return zero (0).
  * @param tree, a reference to the tree address
  * @param item, an address pointer to a memory space contains the data you want to search in the tree
- * @param sizeOfItem the size of the provided item in bytes
  * @return the return will be one (1) if the tree contains the provided key, other wise it will return zero (0)
  */
 
-int rBTreeContains(RBTree *tree, void *item, int sizeOfItem) {
-    return rBTreeContainsR(tree, tree->root, item, sizeOfItem);
+int rBTreeContains(RBTree *tree, void *item) {
+    return rBTreeContainsR(tree, tree->root, item);
 
 }
 
@@ -1041,23 +1233,23 @@ int rBTreeContains(RBTree *tree, void *item, int sizeOfItem) {
  * then it will return one (1) if the key is exist in the tree,
  * other wise it will return zero (0).
  * Note: this function should only be called from the red black tree functions.
- * @param tree
- * @param root
- * @param item
- * @return
+ * @param tree the tree address
+ * @param root the node address
+ * @param item the item address
+ * @return it will return one if the item is in the tree, other wise it will return zero
  */
 
-int rBTreeContainsR(RBTree *tree, RBNode *root, void *item, int sizeOfItem) {
+int rBTreeContainsR(RBTree *tree, RBNode *root, void *item) {
     if (root == NULL)
         return 0;
 
-    if (tree->cmp(root->key->value, root->key->sizeOfItem, item, sizeOfItem) == 0)
+    if (tree->cmp(item, root->key) == 0)
         return 1;
 
-    else if (tree->cmp(root->key->value, root->key->sizeOfItem, item, sizeOfItem) > 0)
-        return rBTreeContainsR(tree, root->left, item, sizeOfItem);
+    else if (tree->cmp(item, root->key) < 0)
+        return rBTreeContainsR(tree, root->left, item);
 
-    else if (tree->cmp(root->key->value, root->key->sizeOfItem, item, sizeOfItem) < 0)
-        return rBTreeContainsR(tree, root->right, item, sizeOfItem);
+    else
+        return rBTreeContainsR(tree, root->right, item);
 
 }

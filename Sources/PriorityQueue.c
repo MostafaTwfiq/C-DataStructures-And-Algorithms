@@ -2,14 +2,7 @@
 
 
 
-typedef struct PQueueItem {
-    void *value;
-    int sizeOfItem;
-} PQueueItem;
-
-
-
-void swapItems(PQueueItem **arr, int index1, int index2);
+void swapItems(void **arr, int index1, int index2);
 
 
 
@@ -23,11 +16,11 @@ void swapItems(PQueueItem **arr, int index1, int index2);
  * @return it will return the initialized queue address
  */
 
-PriorityQueue *priorityQueueInitialization(void (*freeItem)(void *item), int (*comp)(const void *, int, const void *, int)) {
+PriorityQueue *priorityQueueInitialization(void (*freeItem)(void *), int (*comp)(const void *, const void *)) {
     PriorityQueue *queue = (PriorityQueue *) malloc(sizeof(PriorityQueue));
 
     queue->length = 10;
-    queue->arr = (PQueueItem **) malloc(sizeof(PQueueItem *) * queue->length);
+    queue->arr = (void **) malloc(sizeof(void *) * queue->length);
     queue->count = queue->fPointer = 0;
     queue->freeItem = freeItem;
     queue->comp = comp;
@@ -41,36 +34,29 @@ PriorityQueue *priorityQueueInitialization(void (*freeItem)(void *item), int (*c
 
 
 
-/** This  function will take the queue address, the item address, and the size of the item as a parameters,
+/** This  function will take the queue address, and the item address as a parameters,
     then it will push the new item in it's right place in the queue.
  * Note: if the compare function returned a positive number, that means to swap.
  * @param queue the queue address
  * @param item the new item address
- * @param sizeOfItem the size of the new item
  */
 
-void pQueueEnqueue(PriorityQueue *queue, void *item, int sizeOfItem) {
+void pQueueEnqueue(PriorityQueue *queue, void *item) {
     if (queue->count == queue->length) {
         queue->length *= 2;
-        PQueueItem **tempArr = (PQueueItem **) malloc(sizeof(PQueueItem *) * queue->length);
-        memcpy(tempArr, queue->arr + queue->fPointer, sizeof(PQueueItem *) * (queue->count - queue->fPointer));
+        void **tempArr = (void **) malloc(sizeof(void *) * queue->length);
+        memcpy(tempArr, queue->arr + sizeof(void *) * queue->fPointer, sizeof(void *) * (queue->count - queue->fPointer));
         free(queue->arr);
         queue->arr = tempArr;
         queue->count -= queue->fPointer;
         queue->fPointer = 0;
     }
 
-    PQueueItem *newItem = (PQueueItem *) malloc(sizeof(PQueueItem));
-    newItem->value = item;
-    newItem->sizeOfItem = sizeOfItem;
-    queue->arr[queue->count++] = newItem;
+    queue->arr[queue->count++] = item;
     int index = queue->count - 1;
 
     while (index > queue->fPointer) {
-        if (    queue->comp(    queue->arr[index - 1]->value,
-                                queue->arr[index - 1]->sizeOfItem,
-                                queue->arr[index]->value,
-                                queue->arr[index]->sizeOfItem   ) > 0   ) {
+        if (queue->comp(queue->arr[index - 1], queue->arr[index]) > 0) {
 
             swapItems(queue->arr, index, index - 1);
 
@@ -92,13 +78,12 @@ void pQueueEnqueue(PriorityQueue *queue, void *item, int sizeOfItem) {
  * @param queue the queue address
  * @param items the items array pointer
  * @param arrLength the items array length
- * @param sizeOfItem the size of items in the array in bytes
  */
 
-void pQueueEnqueueAll(PriorityQueue *queue, void **items, int arrLength, int sizeOfItem) {
+void pQueueEnqueueAll(PriorityQueue *queue, void **items, int arrLength) {
 
     for (int i = 0; i < arrLength; i++)
-        pQueueEnqueue(queue, items[i], sizeOfItem);
+        pQueueEnqueue(queue, items[i]);
 
 
 }
@@ -120,10 +105,7 @@ void *pQueueDequeue(PriorityQueue *queue) {
         exit(-3);
     }
 
-    void *returnItem = queue->arr[queue->fPointer]->value;
-    free(queue->arr[queue->fPointer++]);
-
-    return returnItem;
+    return queue->arr[queue->fPointer++];
 
 }
 
@@ -145,7 +127,7 @@ void *pQueuePeek(PriorityQueue *queue) {
         exit(-3);
     }
 
-    return queue->arr[queue->fPointer]->value;
+    return queue->arr[queue->fPointer];
 
 }
 
@@ -198,10 +180,8 @@ void **pQueueToArray(PriorityQueue *queue) {
 
     void **arr = (void **) malloc(sizeof(void *) * pQueueGetLength(queue));
 
-    for (int i = queue->fPointer; i < queue->count; i++) {
-        arr[i - queue->fPointer] = (void *) malloc(queue->arr[i]->sizeOfItem);
-        memcpy(arr[i - queue->fPointer], queue->arr[i]->value, queue->arr[i]->sizeOfItem);
-    }
+    for (int i = queue->fPointer; i < queue->count; i++)
+        arr[i - queue->fPointer] = queue->arr[i];
 
     return arr;
 
@@ -219,10 +199,9 @@ void **pQueueToArray(PriorityQueue *queue) {
  */
 
 void clearPQueue(PriorityQueue *queue) {
-    while (queue->count != queue->fPointer) {
-        queue->freeItem(queue->arr[queue->fPointer]->value);
-        free(queue->arr[queue->fPointer++]);
-    }
+
+    while (queue->count != queue->fPointer)
+        queue->freeItem(pQueueDequeue(queue));
 
     queue->fPointer = queue->count = 0;
 
@@ -259,8 +238,8 @@ void destroyPQueue(PriorityQueue *queue) {
  * @param index2 the second index
  */
 
-void swapItems(PQueueItem **arr, int index1, int index2) {
-    PQueueItem *temp = arr[index1];
+void swapItems(void **arr, int index1, int index2) {
+    void *temp = arr[index1];
     arr[index1] = arr[index2];
     arr[index2] = temp;
 }

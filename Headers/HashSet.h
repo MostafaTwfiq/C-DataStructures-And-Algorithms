@@ -10,31 +10,29 @@
 #include <limits.h>
 
 
-typedef struct HashSetItem {
-    void *value;
-    int sizeOfItem;
-} HashSetItem;
-
-
 
 typedef struct HashSet {
-    HashSetItem **arr;
+    void **arr;
     int length;
     int count;
     int bPrime;
-    void (*freeItem)(void *item);
+    void (*freeItem)(void *);
+    int (*itemComp)(const void *, const void *);
 
 } HashSet;
 
 
 
-HashSet *hashSetInitialization(void (*freeItem)(void *item), int (*itemComp)(const void *item1, int s1, const void *item2, int s2));
+HashSet *hashSetInitialization(void (*freeItem)(void *), int (*itemComp)(const void *, const void *));
 
 
 void hashSetInsert(HashSet *hashSet, void *item, int sizeOfItem);
 
 
 void hashSetDelete(HashSet *hashSet, void *item, int sizeOfItem);
+
+
+void *hashSetDeleteWtoFr(HashSet *hashSet, void *item, int sizeOfItem);
 
 
 int hashSetContains(HashSet *hashSet, void *item, int sizeOfItem);

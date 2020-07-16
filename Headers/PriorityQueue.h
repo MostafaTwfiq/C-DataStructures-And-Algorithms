@@ -8,24 +8,24 @@
 
 
 typedef struct PriorityQueue {
-    struct PQueueItem **arr;
+    void **arr;
     int length;
     int count;
     int fPointer;
-    void (*freeItem)(void *item);
-    int (*comp)(const void *, int, const void *, int);
+    void (*freeItem)(void *);
+    int (*comp)(const void *, const void *);
 } PriorityQueue;
 
 
 
 
-PriorityQueue *priorityQueueInitialization(void (*freeItem)(void *item), int (*comp)(const void *, int, const void *, int));
+PriorityQueue *priorityQueueInitialization(void (*freeItem)(void *), int (*comp)(const void *, const void *));
 
 
-void pQueueEnqueue(PriorityQueue *queue, void *item, int sizeOfItem);
+void pQueueEnqueue(PriorityQueue *queue, void *item);
 
 
-void pQueueEnqueueAll(PriorityQueue *queue, void **items, int arrLength, int sizeOfItem);
+void pQueueEnqueueAll(PriorityQueue *queue, void **items, int arrLength);
 
 
 void *pQueueDequeue(PriorityQueue *queue);

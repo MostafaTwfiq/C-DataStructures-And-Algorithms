@@ -7,50 +7,51 @@ typedef struct LinkedList {
     struct Node *head;
     struct Node *tail;
     int length;
-    void (*freeFun)(void *item);
+    void (*freeFun)(void *);
+    int (*comparator)(const void *, const void *);
 } LinkedList;
 
 
-LinkedList *linkedListInitialization(void (*freeFun)(void *item));
+LinkedList *linkedListInitialization(void (*freeFun)(void *),  int (*comparator)(const void *, const void *));
 
 
-void linkedListAddFirst(LinkedList *linkedList, void *item, int sizeOfItem);
+void linkedListAddFirst(LinkedList *linkedList, void *item);
 
 
-void linkedListAddLast(LinkedList *linkedList, void *item, int sizeOfItem);
+void linkedListAddLast(LinkedList *linkedList, void *item);
 
 
-void linkedListAddAtIndex(LinkedList *linkedList, int index, void *item, int sizeOfItem);
+void linkedListAddAtIndex(LinkedList *linkedList, int index, void *item);
 
 
-void linkedListAddAll(LinkedList *linkedList, void **items, int itemsLength, int sizeOfItem);
+void linkedListAddAll(LinkedList *linkedList, void **items, int itemsLength);
 
 
 void linkedListDeleteFirst(LinkedList *linkedList);
 
 
-void linkedListDeleteFirstWtFr(LinkedList *linkedList);
+void *linkedListDeleteFirstWtoFr(LinkedList *linkedList);
 
 
 void linkedListDeleteLast(LinkedList *linkedList);
 
 
-void linkedListDeleteLastWtFr(LinkedList *linkedList);
+void *linkedListDeleteLastWtoFr(LinkedList *linkedList);
 
 
 void linkedListDeleteAtIndex(LinkedList *linkedList, int index);
 
 
-void linkedListDeleteAtIndexWtFr(LinkedList *linkedList, int index);
+void *linkedListDeleteAtIndexWtoFr(LinkedList *linkedList, int index);
 
 
-int linkedListContains(LinkedList *linkedList, void *item, int (*comparator)(const void *, const void *));
+int linkedListContains(LinkedList *linkedList, void *item);
 
 
-int linkedListGetIndex(LinkedList *linkedList, void *item, int (*comparator)(const void *, const void *));
+int linkedListGetIndex(LinkedList *linkedList, void *item);
 
 
-void *linkedListGetItem(LinkedList *linkedList, void *item, int (*comparator)(const void *, const void *));
+void *linkedListGetItem(LinkedList *linkedList, void *item);
 
 
 void *linkedListGetFirst(LinkedList *linkedList);

@@ -158,6 +158,7 @@ void doublyLinkedListAddAtIndex(DoublyLinkedList *linkedList, int index, void *i
 
 /** This function will take the linked list address, items array, and the length of the array as parameters,
  * then it will copy the array item if the linked list in a new items addresses.
+ * Note: this function will add all the new items in the end of the linked list
  * @param linkedList the linked list address
  * @param items the new items array address
  * @param itemsLength the length of the new items array

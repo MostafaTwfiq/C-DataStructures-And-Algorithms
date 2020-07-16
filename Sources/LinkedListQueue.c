@@ -9,11 +9,11 @@
  * @param freeFun the free function address that will be called to free the queue items
  */
 
-LinkedListQueue *linkedListQueueInitialization(void (*freeFun)) {
+LinkedListQueue *linkedListQueueInitialization(void (*freeFun)(void *)) {
 
     LinkedListQueue *queue = (LinkedListQueue *) malloc(sizeof(LinkedListQueue));
 
-    queue->linkedList = linkedListInitialization(freeFun);
+    queue->linkedList = linkedListInitialization(freeFun, NULL);
 
     return queue;
 }
@@ -21,44 +21,41 @@ LinkedListQueue *linkedListQueueInitialization(void (*freeFun)) {
 
 
 
-/** This function will take the queue address, the item address, and the size of the item as a parameter,
+/** This function will take the queue address, and the item address as a parameter,
     then it will push the item into the queue.
  * @param queue the queue address
  * @param item the new item address
- * @param sizeOfItem the size of the new item in bytes
  */
 
-void lLQueueEnqueue(LinkedListQueue *queue, void *item, int sizeOfItem) {
+void lLQueueEnqueue(LinkedListQueue *queue, void *item) {
 
     if (queue == NULL) {
         fprintf(stderr,"Illegal argument, the queue is NULL.");
         exit(-4);
     }
 
-    linkedListAddLast(queue->linkedList, item, sizeOfItem);
+    linkedListAddLast(queue->linkedList, item);
 
 }
 
 
 
 
-/** This function will take the queue address, the array address, the array length, and the size of the array items as a parameter,
+/** This function will take the queue address, the array address, and the array length as a parameter,
     then it will add all the items in the array to the queue in order.
  * @param queue the queue address
  * @param arr the array address that will be added to the queue
  * @param arrLength the length of the array
- * @param sizeOfItem the size of the array items in bytes
  */
 
-void lLQueueEnqueueAll(LinkedListQueue *queue, void **arr, int arrLength, int sizeOfItem) {
+void lLQueueEnqueueAll(LinkedListQueue *queue, void **arr, int arrLength) {
     if (queue == NULL) {
         fprintf(stderr,"Illegal argument, the queue is NULL.");
         exit(-4);
     }
 
-    for (int i = 0; i < arrLength; i++) {
-        linkedListAddLast(queue->linkedList, arr[i], sizeOfItem);
-    }
+    for (int i = 0; i < arrLength; i++)
+        linkedListAddLast(queue->linkedList, arr[i]);
 
 }
 
@@ -85,7 +82,7 @@ void *lLQueueDequeue(LinkedListQueue *queue) {
     }
 
     void *item = linkedListGetFirst(queue->linkedList);
-    linkedListDeleteFirstWtFr(queue->linkedList);
+    linkedListDeleteFirstWtoFr(queue->linkedList);
 
     return item;
 }
@@ -134,7 +131,7 @@ int lLQueueGetLength(LinkedListQueue *queue) {
         exit(-4);
     }
 
-    return queue->linkedList->length;
+    return linkedListGetLength(queue->linkedList);
 
 }
 

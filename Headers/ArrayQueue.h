@@ -20,18 +20,18 @@
  */
 
 typedef struct ArrayQueue{
-    struct ArrayQueueItem ** memory;
+    void ** memory;
     int allocated;
     int front;
     int rear;
-    void (*freeItem)(void *item)
+    void (*freeItem)(void *);
 } ArrayQueue;
 
 
 
 ArrayQueue* QueueInitialize(void (*freeItem)(void *item));
 
-void ArrayQueueEnqueue(ArrayQueue* arrayQueue, void *data, int dataSize);
+void ArrayQueueEnqueue(ArrayQueue* arrayQueue, void *data);
 
 void *ArrayQueueDequeue(ArrayQueue *arrayQueue);
 
@@ -45,7 +45,7 @@ short isArrayQueueEmpty(ArrayQueue *arrayQueue);
 
 int ArrayQueueLength(ArrayQueue * arrayQueue);
 
-void ArrayQueueEnqueueAll(ArrayQueue * arrayQueue, void **arr, int arrLength, int sizeOfItem);
+void ArrayQueueEnqueueAll(ArrayQueue * arrayQueue, void **arr, int arrLength);
 
 void *ArrayQueuePeek(ArrayQueue * arrayQueue);
 

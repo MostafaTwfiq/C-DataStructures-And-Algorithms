@@ -15,24 +15,18 @@
  *  Member 'sizeOfItem' the size of the data stored in the stack.
  */
 
-
-typedef struct StackItem {
-    void *value;
-    int sizeOfItem;
-} StackItem;
-
 typedef struct Stack {
-    struct StackItem **memory;
+    void **memory;
     int allocated;
     int top;
-    void (*freeItem)(void *item);
+    void (*freeItem)(void *);
 }Stack;
 
 Stack* stackInitialization(void (*freeItem)(void *item));
 
-void pushStack( Stack* stack ,  void * data, int dataSize);
+void pushStack( Stack* stack ,  void * data);
 
-void stackAddAll(Stack *stack, void **array, int arrLength, int sizeOfItem);
+void stackAddAll(Stack *stack, void **array, int arrLength);
 
 void *popStack(Stack *stack);
 
