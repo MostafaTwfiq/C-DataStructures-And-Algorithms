@@ -18,22 +18,47 @@
 #define ANSI_COLOR_WHITE    "\x1b[37m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
-#include "Headers/ArrayDeque.h"
+#include "Headers/DirectedGraph.h"
+#include "Headers/ArrayList.h"
 
 void freeItem(void *item) {
     free(item);
 }
 
 int comp(const void *p1, const void *p2) {
-    return *(int *)p1 - *(int *)p2;
+    return strcmp((char *)p1, (char *)p2);
 }
 
 void print(void *item) {
-    printf("%d->", *(int*)item);
+    printf("%s", (char *)item);
 }
 
 int main() {
 
+    DirectedGraph *graph = directedGraphInitialization(freeItem, comp);
+    char *item;
+
+    item = (char *) malloc(sizeof(char ) * (strlen("Mostafa") + 1));
+    strcpy(item, "Mostafa");
+    dirGraphAddNode(graph, item, strlen(item) + 1);
+
+    item = (char *) malloc(sizeof(char ) * (strlen("Mohammed") + 1));
+    strcpy(item, "Mohammed");
+    dirGraphAddNode(graph, item, strlen(item) + 1);
+
+    item = (char *) malloc(sizeof(char ) * (strlen("Tawfiq") + 1));
+    strcpy(item, "Tawfiq");
+    dirGraphAddNode(graph, item, strlen(item) + 1);
+
+
+    dirGraphAddEdge(graph, "Mostafa", strlen("Mostafa") + 1, "Mohammed", strlen("Mohammed") + 1);
+    dirGraphAddEdge(graph, "Mohammed", strlen("Mohammed") + 1, "Tawfiq", strlen("Tawfiq") + 1);
+    dirGraphAddEdge(graph, "Mostafa", strlen("Mostafa") + 1, "Tawfiq", strlen("Tawfiq") + 1);
+
+
+    ArrayList *arrayList = dirGraphTopologicalSort(graph);
+    for (int i = 0; i < arrayListGetLength(arrayList); i++)
+        printf("%s\n", (char *) arrayListGet(arrayList, i));
     return 0;
 
 }

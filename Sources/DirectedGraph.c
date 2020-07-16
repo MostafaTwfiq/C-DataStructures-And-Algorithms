@@ -657,6 +657,11 @@ void dirGraphBreadthFirstTraversal(DirectedGraph *graph, void *startVal, int siz
 
 
 
+/** This function will sort the graph nodes topologically, then it will return an array list that contains the values.
+ * @param graph the graph address
+ * @return it will return an array list pointer that contains the values sorted
+ */
+
 ArrayList *dirGraphTopologicalSort(DirectedGraph *graph) {
     if (graph == NULL) {
         fprintf(stderr, "Illegal argument, the directed graph is null.");
@@ -687,6 +692,12 @@ ArrayList *dirGraphTopologicalSort(DirectedGraph *graph) {
 
 }
 
+
+/** This function will sort the graph nodes topologically recursively, and it will fill the stack with the values.
+ * @param node the current node address
+ * @param visitedNodes the visited nodes hash set address
+ * @param sortStack the nodes stack address
+ */
 
 void dirGraphTopologicalSortR(DirGraphNode *node, HashSet *visitedNodes, Stack *sortStack) {
     int *nodeValueAddress = (int *) malloc(sizeof(int));
