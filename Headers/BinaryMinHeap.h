@@ -29,9 +29,7 @@ typedef struct BinaryMinHeap {
     void **memory;
     uint32_t capacity;
     uint32_t size;
-
     int32_t (*cmpFn)(const void *, const void *);
-
     void (*freeFn)(void *);
 } BinaryMinHeap;
 

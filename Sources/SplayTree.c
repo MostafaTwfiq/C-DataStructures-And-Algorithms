@@ -157,16 +157,16 @@ void SplayTreeDelete(SplayTree* splayTree, void *key){
         splayTree->root = splay(splayTree,splayTree->root->left, key);
         splayTree->root->right = temp->right;
     }
-    freeSplayNode(&temp);
+    freeSplayNode(&temp,splayTree->freeFn);
     splayTree->nodeCount--;
 }
 
 /** Given a node it frees it's Key and the node. Setting both to Null.
 * @param node Exact Reference for node to Free.
 **/
-void freeSplayNode(SplayNode **node){
+void freeSplayNode(SplayNode **node, void (*freeFn)(void*)){
     if(*node) return;
-    free((*node)->key);
+    freeFn((*node)->key);
     (*node)->key = NULL;
     free(*node);
 }
@@ -174,11 +174,11 @@ void freeSplayNode(SplayNode **node){
 /** Given an splay Tree's root node it frees it's elements recursively.Setting the root node to Null.
 * @param root Exact Reference to root node to start freeing at.
 **/
-void SplayTreeFree(SplayNode** root){
+void SplayTreeFree(SplayNode** root,void (*freeFn)(void*)){
     if (*root == NULL) return;
-    SplayTreeFree(&(*root)->left);
-    SplayTreeFree(&(*root)->right);
-    freeSplayNode(root);
+    SplayTreeFree(&(*root)->left,freeFn);
+    SplayTreeFree(&(*root)->right,freeFn);
+    freeSplayNode(root, NULL);
     *root=NULL;
 }
 

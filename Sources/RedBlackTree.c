@@ -1,14 +1,8 @@
 #include "../Headers/RedBlackTree.h"
 
-
-
-
 typedef enum RotationType{
     NONE, RIGHT, LEFT, RIGHT_LEFT, LEFT_RIGHT
 } RotationType;
-
-
-
 
 
 RBNode *createRBNode(RBNode *parent, COLOR color, void *item);

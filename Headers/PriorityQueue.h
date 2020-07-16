@@ -19,38 +19,25 @@ typedef struct PriorityQueue {
 
 } PriorityQueue;
 
-
-
 PriorityQueue *priorityQueueInitialization(void (*freeItem)(void *), int (*comp)(const void *, const void *));
-
 
 void pQueueEnqueue(PriorityQueue *queue, void *item);
 
-
-
 void pQueueEnqueueAll(PriorityQueue *queue, void **items, int arrLength);
-
 
 void *pQueueDequeue(PriorityQueue *queue);
 
-
 void *pQueuePeek(PriorityQueue *queue);
-
 
 int pQueueGetLength(PriorityQueue *queue);
 
-
 int pQueueIsEmpty(PriorityQueue *queue);
-
 
 void **pQueueToArray(PriorityQueue *queue);
 
-
 void clearPQueue(PriorityQueue *queue);
 
-
 void destroyPQueue(PriorityQueue *queue);
-
 
 #ifdef __cplusplus
 }

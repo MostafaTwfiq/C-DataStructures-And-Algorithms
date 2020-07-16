@@ -14,33 +14,23 @@ typedef struct SQueue {
 
 SQueue *stackQueueInitialization(void (*freeItem)(void *item));
 
-
 void sQueueEnqueue(SQueue *queue, void *item);
-
 
 void sQueueAddAll(SQueue *queue, void **items, int itemsLength);
 
-
 void *sQueueDequeue(SQueue *queue);
-
 
 void *sQueuePeek(SQueue *queue);
 
-
 int sQueueGetLength(SQueue *queue);
-
 
 int sQueueIsEmpty(SQueue *queue);
 
-
 void **sQueueToArray(SQueue *queue);
-
 
 void clearSQueue(SQueue *queue);
 
-
 void destroySQueue(SQueue *queue);
-
 
 #ifdef __cplusplus
 }

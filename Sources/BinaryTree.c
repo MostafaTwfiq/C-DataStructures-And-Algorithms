@@ -1,13 +1,13 @@
 #include "../Headers/BinaryTree.h"
 
-
+void freeBinaryTreeNode(BinaryTreeNode **node,void (*freeFn)(void *));
 void printBinaryTreeHelper(BinaryTreeNode *root, int space, void (printFn)(void *));
 void BinaryTreeIsPresentRecurs(BinaryTree *binaryTree, BinaryTreeNode *root, void *searchValue, int* found );
 void BinaryTreeToArrayRecurs(BinaryTreeNode* node , void **arr, int *i,int size );
-void freeBinaryTreeNode(BinaryTreeNode **node);
 BinaryTreeNode* newBinaryTreeNode(void* key);
 void BinaryTreeGetMaxStepsRecurs(BinaryTreeNode * node, int * steps);
 void BinaryTreeGetMinStepsRecurs(BinaryTreeNode * node, int * steps);
+BinaryTreeNode* DeleteBinaryTreeNodeWrapper(BinaryTree *binaryTree, BinaryTreeNode* root, void *key);
 
 /** Prints the Tree Statistics:
   - Number of Nodes,
@@ -72,20 +72,24 @@ BinaryTreeNode* newBinaryTreeNode(void* key){
 /** Given an Binary Tree's root node it frees it's elements recursively.Setting the root node to Null.
 * @param node Exact Reference to root node to start freeing at.
 **/
-void BinaryTreeFree(BinaryTreeNode** node){
+void BinaryTreeFreeWrapper(BinaryTreeNode** node,void (*freeFn)(void*)){
     if (*node==NULL) return;
-    BinaryTreeFree(&(*node)->left);
-    BinaryTreeFree(&(*node)->right);
-    freeBinaryTreeNode(node);
+    BinaryTreeFreeWrapper(&(*node)->left,freeFn);
+    BinaryTreeFreeWrapper(&(*node)->right,freeFn);
+    freeBinaryTreeNode(node,freeFn);
     *node=NULL;
+}
+
+void BinaryTreeFree(BinaryTree* binaryTree){
+    BinaryTreeFreeWrapper(&binaryTree->root,binaryTree->freeFn);
 }
 
 /** Given a node it frees it's Key and the node. Setting both to Null.
 * @param node Exact Reference for node to Free.
 **/
-void freeBinaryTreeNode(BinaryTreeNode **node){
+void freeBinaryTreeNode(BinaryTreeNode **node,void (*freeFn)(void *)){
     if(*node) return;
-    free((*node)->key);
+    freeFn((*node)->key);
     (*node)->key = NULL;
     free(*node);
 }
@@ -97,13 +101,13 @@ void freeBinaryTreeNode(BinaryTreeNode **node){
 * @param key Reference to key to inset in the Tree.
 * @return Returns reference to the new root.
 **/
-BinaryTreeNode* BinaryTreeInsert(BinaryTree * binaryTree, BinaryTreeNode *node, void *key) {
+BinaryTreeNode* BinaryTreeInsertWrapper(BinaryTree * binaryTree, BinaryTreeNode *node, void *key) {
     if (node == NULL) {
         binaryTree->nodeCount++;
         return newBinaryTreeNode(key);
     }
-    if ( (binaryTree->cmp)(key ,node->key)<0) node->left = BinaryTreeInsert(binaryTree, node->left, key);
-    else if ((binaryTree->cmp)(key ,node->key)>0) node->right = BinaryTreeInsert(binaryTree, node->right, key);
+    if ( (binaryTree->cmp)(key ,node->key)<0) node->left = BinaryTreeInsertWrapper(binaryTree, node->left, key);
+    else if ((binaryTree->cmp)(key ,node->key)>0) node->right = BinaryTreeInsertWrapper(binaryTree, node->right, key);
 
     return node;
 }
@@ -115,7 +119,7 @@ BinaryTreeNode* BinaryTreeInsert(BinaryTree * binaryTree, BinaryTreeNode *node, 
 * @param referenceNode  Reference node to get the in-order successor for.
 * @param leftMost Pointer to store the inorder successor for that node.
 **/
-void BinaryTreeInOrderSuccessor(BinaryTree *binaryTree, BinaryTreeNode* root, BinaryTreeNode* referenceNode, BinaryTreeNode **leftMost) {
+void BinaryTreeInOrderSuccessorWrapper(BinaryTree *binaryTree, BinaryTreeNode* root, BinaryTreeNode* referenceNode, BinaryTreeNode **leftMost) {
     if (root == NULL) {
         leftMost = NULL;
         return;}
@@ -125,10 +129,10 @@ void BinaryTreeInOrderSuccessor(BinaryTree *binaryTree, BinaryTreeNode* root, Bi
     }
     else if ((binaryTree->cmp)(referenceNode->key, root->key) < 0){
         *leftMost = root;
-        BinaryTreeInOrderSuccessor(binaryTree, root->left, referenceNode, leftMost);
+        BinaryTreeInOrderSuccessorWrapper(binaryTree, root->left, referenceNode, leftMost);
     }
     else{
-        BinaryTreeInOrderSuccessor(binaryTree, root->right, referenceNode, leftMost);
+        BinaryTreeInOrderSuccessorWrapper(binaryTree, root->right, referenceNode, leftMost);
     }
 }
 
@@ -139,7 +143,7 @@ void BinaryTreeInOrderSuccessor(BinaryTree *binaryTree, BinaryTreeNode* root, Bi
 * @param referenceNode Reference node to get the in-order Predecessor for.
 * @param rightMost Pointer to store the inorder Predecessor for that node.
 **/
-void BinaryTreeInOrderPredecessor(BinaryTree *binaryTree, BinaryTreeNode *root, BinaryTreeNode *referenceNode, BinaryTreeNode **rightMost){
+void BinaryTreeInOrderPredecessorWrapper(BinaryTree *binaryTree, BinaryTreeNode *root, BinaryTreeNode *referenceNode, BinaryTreeNode **rightMost){
     if (root == NULL) {
         rightMost = NULL;
         return;}
@@ -148,11 +152,11 @@ void BinaryTreeInOrderPredecessor(BinaryTree *binaryTree, BinaryTreeNode *root, 
             *rightMost = maxValueBinaryTreeNode(root->left);
     }
     else if ((binaryTree->cmp)(referenceNode->key, root->key) < 0){
-        BinaryTreeInOrderPredecessor(binaryTree, root->left, referenceNode, rightMost);
+        BinaryTreeInOrderPredecessorWrapper(binaryTree, root->left, referenceNode, rightMost);
     }
     else{
         *rightMost = root;
-        BinaryTreeInOrderPredecessor(binaryTree, root->right, referenceNode, rightMost);
+        BinaryTreeInOrderPredecessorWrapper(binaryTree, root->right, referenceNode, rightMost);
     }
 }
 
@@ -321,11 +325,26 @@ void BinaryTreeToArrayRecurs(BinaryTreeNode* node , void **arr, int *i,int size 
 * @param key Key object to search for in the Binary Tree.
 * @return Returns the Found node.
 **/
-BinaryTreeNode *BinaryTreeSearch(BinaryTree *binaryTree, BinaryTreeNode *node, char *key){
+BinaryTreeNode *BinaryTreeSearchWrapper(BinaryTree *binaryTree, BinaryTreeNode *node, char *key){
     if(!node) return NULL;
     if (((binaryTree->cmp)(key,node->key)==0))return node;
-    if ((binaryTree->cmp)(key,node->key)<0) return BinaryTreeSearch(binaryTree, node->left, key);
-    if ((binaryTree->cmp)(key,node->key)>0) return BinaryTreeSearch(binaryTree, node->right, key);
+    if ((binaryTree->cmp)(key,node->key)<0) return BinaryTreeSearchWrapper(binaryTree, node->left, key);
+    if ((binaryTree->cmp)(key,node->key)>0) return BinaryTreeSearchWrapper(binaryTree, node->right, key);
+}
+
+///
+/// \param binaryTree
+/// \param key
+/// \return
+BinaryTreeNode ** BinaryTreeSearch(BinaryTree* binaryTree, void * key){
+    return BinaryTreeSearchWrapper(binaryTree,binaryTree->root,key);
+}
+
+///
+/// \param binaryTree
+/// \param key
+BinaryTreeNode*  DeleteBinaryTreeNode(BinaryTree *binaryTree, void *key) {
+    binaryTree->root = DeleteBinaryTreeNodeWrapper(binaryTree,binaryTree->root,key);
 }
 
 /** Given a Tree and it's root deletes a key with the same key and restores the tree order then returns the new node.
@@ -334,10 +353,10 @@ BinaryTreeNode *BinaryTreeSearch(BinaryTree *binaryTree, BinaryTreeNode *node, c
 * @param key Key object to add to the Binary Tree.
 * @return Returns the new root node of the Binary Tree.
 **/
-BinaryTreeNode* DeleteBinaryTreeNode(BinaryTree *binaryTree, BinaryTreeNode* root, void *key) {
+BinaryTreeNode* DeleteBinaryTreeNodeWrapper(BinaryTree *binaryTree, BinaryTreeNode* root, void *key) {
     if(root==NULL) return root;
-    if ((binaryTree->cmp)(key ,root->key)<0) 		root->left = DeleteBinaryTreeNode(binaryTree, root->left, key);
-    else if ((binaryTree->cmp)(key ,root->key)>0)  	root->right = DeleteBinaryTreeNode(binaryTree, root->right, key);
+    if ((binaryTree->cmp)(key ,root->key)<0) 		root->left = DeleteBinaryTreeNodeWrapper(binaryTree, root->left, key);
+    else if ((binaryTree->cmp)(key ,root->key)>0)  	root->right = DeleteBinaryTreeNodeWrapper(binaryTree, root->right, key);
     else {
         if( (root->left == NULL) ||(root->right == NULL) ){
             BinaryTreeNode *temp = root->left ? root->left : root->right;
@@ -349,7 +368,7 @@ BinaryTreeNode* DeleteBinaryTreeNode(BinaryTree *binaryTree, BinaryTreeNode* roo
         else {
             BinaryTreeNode* temp = BinaryTreeMinValueNode(root->right);
             root->key= temp->key;
-            root->right = DeleteBinaryTreeNode(binaryTree, root->right, temp->key);
+            root->right = DeleteBinaryTreeNodeWrapper(binaryTree, root->right, temp->key);
         }
         binaryTree->nodeCount--;
     }
@@ -364,7 +383,35 @@ BinaryTreeNode* DeleteBinaryTreeNode(BinaryTree *binaryTree, BinaryTreeNode* roo
 **/
 BinaryTreeNode * BinaryTreeInsertAll(BinaryTree* binaryTree, void** array, int length){
     for(int i=0;i<length;i++){
-        binaryTree->root = BinaryTreeInsert(binaryTree, binaryTree->root, array[i]);
+        binaryTree->root = BinaryTreeInsertWrapper(binaryTree, binaryTree->root, array[i]);
     }
+    return binaryTree->root;
+}
+///
+/// \param binaryTree
+/// \param referenceNode
+/// \return
+BinaryTreeNode* BinaryTreeInOrderPredecessor(BinaryTree *binaryTree,BinaryTreeNode *referenceNode){
+    BinaryTreeNode * rightMost  = malloc(sizeof(*rightMost));
+    BinaryTreeInOrderPredecessorWrapper(binaryTree,binaryTree->root,referenceNode,&rightMost);
+    return rightMost;
+}
+
+///
+/// \param binaryTree
+/// \param referenceNode
+/// \return
+BinaryTreeNode* BinaryTreeInOrderSuccessor(BinaryTree *binaryTree, BinaryTreeNode *referenceNode){
+    BinaryTreeNode * leftMost  = malloc(sizeof(*leftMost));
+    BinaryTreeInOrderSuccessorWrapper(binaryTree, binaryTree->root,referenceNode,&leftMost);
+    return leftMost;
+}
+
+///
+/// \param binaryTree
+/// \param key
+/// \return
+BinaryTreeNode* BinaryTreeInsert(BinaryTree *binaryTree, void *key){
+    binaryTree->root = BinaryTreeInsertWrapper(binaryTree,binaryTree->root,key);
     return binaryTree->root;
 }

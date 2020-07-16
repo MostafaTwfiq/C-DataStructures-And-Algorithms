@@ -5,7 +5,7 @@ void printAVLTreeHelper(AVLTNode *root, int space, void (printFn)(void *));
 void AVLTreeIsPresentRecurs(AVLTree *avlTree, AVLTNode *root, void *searchValue, int* found );
 int max(int a,int b);
 void AVLTreeToArrayRecurs(AVLTNode* node, void **arr, int *i,int size);
-void freeAVLTreeNode(AVLTNode **node);
+void freeAVLTreeNode(AVLTNode **node, void (*freeFn)(void *));
 AVLTNode* newBinaryTreeNode(void* key);
 int height(AVLTNode *node);
 void AVLTreeGetMaxStepsRecurs(AVLTNode * node, int * steps);
@@ -85,7 +85,7 @@ void AVLTreePrintStats(AVLTree *tree){
 * @param cmp Reference to the comparator function.
 * @return Pointer to the allocated AVL tree on the heap.
 **/
-AVLTree* AVLTreeInitialize(int size ,int(*cmp)(const void*, const void*)){
+AVLTree* AVLTreeInitialize(int size ,int(*cmp)(const void*, const void*), void (*freeFn)(void *)){
     AVLTree *t = (AVLTree *) malloc(sizeof(AVLTree));
     if(!t){
         fprintf(stderr,"Failed at allocating tree\n");
@@ -95,6 +95,7 @@ AVLTree* AVLTreeInitialize(int size ,int(*cmp)(const void*, const void*)){
     t->sizeOfType = size;
     t->cmp = cmp;
     t->nodeCount=0;
+    t->freeFn = freeFn;
     return t;
 }
 
@@ -118,20 +119,20 @@ AVLTNode* newAVLTreeNode(void* key){
 /** Given an AVL Tree's root node it frees it's elements recursively.Setting the root node to Null. 
 * @param node Exact Reference to root node to start freeing at.
 **/
-void AVLTreeFree(AVLTNode** node){
+void AVLTreeFree(AVLTNode** node, void (*freeFn)(void *)){
     if (*node==NULL) return;
-    AVLTreeFree(&(*node)->left);
-    AVLTreeFree(&(*node)->right);
-    freeAVLTreeNode(node);
+    AVLTreeFree(&(*node)->left,freeFn);
+    AVLTreeFree(&(*node)->right,freeFn);
+    freeAVLTreeNode(node,freeFn);
     *node=NULL;
 }
 
 /** Given a node it frees it's Key and the node. Setting both to Null.
 * @param node Exact Reference for node to Free.
 **/
-void freeAVLTreeNode(AVLTNode **node){
+void freeAVLTreeNode(AVLTNode **node, void (*freeFn)(void *)){
     if(*node) return;
-    free((*node)->key);
+    freeFn((*node)->key);
     (*node)->key = NULL;
     free(*node);
 }

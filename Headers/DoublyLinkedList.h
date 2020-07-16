@@ -10,9 +10,7 @@ typedef struct DoublyLinkedList {
     struct Node *head;
     struct Node *tail;
     int length;
-
     void (*freeFun)(void *);
-
     int (*comparator)(const void *, const void *);
 } DoublyLinkedList;
 

@@ -23,7 +23,6 @@ extern "C" {
  *  Member 'freeFn' holds pointer to the function responsible for freeing the elements stored in the Deque.
  */
 
-
 typedef struct ArrayQueue{
     void ** memory;
     int allocated;
@@ -32,37 +31,25 @@ typedef struct ArrayQueue{
     void (*freeItem)(void *);
 } ArrayQueue;
 
-
-
 ArrayQueue *QueueInitialize(void (*freeFn)(void *));
-
 
 void ArrayQueueEnqueue(ArrayQueue* arrayQueue, void *data);
 
-
 void *ArrayQueueDequeue(ArrayQueue *arrayQueue);
-
 
 void ArrayQueueDisplay(ArrayQueue *arrayQueue, void(*fptr)(void *));
 
-
 void ArrayQueueDestroy(ArrayQueue *arrayQueue);
-
 
 void ArrayQueueClear(ArrayQueue *arrayQueue);
 
-
 int16_t isArrayQueueEmpty(ArrayQueue *arrayQueue);
-
 
 uint32_t ArrayQueueLength(ArrayQueue *arrayQueue);
 
-
 void ArrayQueueEnqueueAll(ArrayQueue * arrayQueue, void **arr, int arrLength);
 
-
 void *ArrayQueuePeek(ArrayQueue *arrayQueue);
-
 
 void **ArrayQueueToArray(ArrayQueue *arrayQueue);
 

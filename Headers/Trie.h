@@ -11,7 +11,6 @@ extern "C" {
 
 typedef struct Trie {
     struct Node *root;
-
 } Trie;
 
 Trie *trieInitialization();

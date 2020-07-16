@@ -11,9 +11,7 @@ typedef struct Vector {
     void **arr;
     int length;
     int count;
-
     void (*freeItem)(void *);
-
     int (*comparator)(const void *, const void *);
 } Vector;
 

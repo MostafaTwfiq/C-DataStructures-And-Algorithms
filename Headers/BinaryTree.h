@@ -36,12 +36,12 @@ typedef struct BinaryTree {
     BinaryTreeNode *root;
     uint32_t nodeCount;
     uint32_t sizeOfType;
-
     int (*cmp)(const void *, const void *);
+    void (*freeFn)(void *);
 } BinaryTree;
 
 
-BinaryTreeNode *DeleteBinaryTreeNode(BinaryTree *binaryTree, BinaryTreeNode *root, void *key);
+BinaryTreeNode* DeleteBinaryTreeNode(BinaryTree *binaryTree, void *key);
 
 int BinaryTreeGetMinSteps(BinaryTreeNode *node);
 
@@ -53,19 +53,17 @@ int BinaryTreeIsPresent(BinaryTree *binaryTree, void *searchKey);
 
 void BinaryTreePrint(BinaryTreeNode *root, void (printFn)(void *));
 
-void BinaryTreeInOrderPredecessor(BinaryTree *binaryTree, BinaryTreeNode *root, BinaryTreeNode *referenceNode,
-                                  BinaryTreeNode **rightMost);
+BinaryTreeNode* BinaryTreeInOrderPredecessor(BinaryTree *binaryTree,BinaryTreeNode *referenceNode);
 
-void BinaryTreeInOrderSuccessor(BinaryTree *binaryTree, BinaryTreeNode *root, BinaryTreeNode *referenceNode,
-                                BinaryTreeNode **leftMost);
+BinaryTreeNode* BinaryTreeInOrderSuccessor(BinaryTree *binaryTree, BinaryTreeNode *referenceNode);
 
-BinaryTreeNode *BinaryTreeInsert(BinaryTree *binaryTree, BinaryTreeNode *node, void *key);
+BinaryTreeNode* BinaryTreeInsert(BinaryTree *binaryTree, void *key);
 
-BinaryTreeNode *BinaryTreeSearch(BinaryTree *binaryTree, BinaryTreeNode *node, char *key);
+BinaryTreeNode ** BinaryTreeSearch(BinaryTree* binaryTree, void * key);
 
 void **BinaryTreeToArray(BinaryTree *binaryTree);
 
-void BinaryTreeFree(BinaryTreeNode **node);
+void BinaryTreeFree(BinaryTree* binaryTree);
 
 BinaryTree *BinaryTreeInitialize(int size, int(*cmp)(const void *, const void *));
 

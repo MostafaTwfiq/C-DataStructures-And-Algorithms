@@ -24,7 +24,6 @@ typedef struct ArrayDeque {
     uint32_t front;
     uint32_t rear;
     uint32_t size;
-
     void (*freeFn)(void *);
 } ArrayDeque;
 

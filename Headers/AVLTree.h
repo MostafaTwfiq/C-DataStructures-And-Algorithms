@@ -47,8 +47,8 @@ typedef struct AVLTree {
     AVLTNode *root;
     uint32_t nodeCount;
     uint32_t sizeOfType;
-
     int16_t (*cmp)(const void *, const void *);
+    void    (*freeFn)(void *);
 } AVLTree;
 
 
@@ -74,9 +74,9 @@ AVLTNode *AVLTreeSearch(AVLTree *avlTree, AVLTNode *node, char *key);
 
 void **AVLTreeToArray(AVLTree *avlTree);
 
-void AVLTreeFree(AVLTNode **node);
+void AVLTreeFree(AVLTNode** node, void (*freeFn)(void *));
 
-AVLTree *AVLTreeInitialize(int32_t size, int32_t (*cmp)(const void *, const void *));
+AVLTree *AVLTreeInitialize(int32_t size, int32_t (*cmp)(const void *, const void *), void (*freeFn)(void *));
 
 void AVLTreePrintStats(AVLTree *tree);
 

@@ -20,13 +20,9 @@ typedef struct LinkedListHashMap {
     struct DoublyLinkedList **arr;
     int length;
     int count;
-
     void (*freeKeyFun)(void *);
-
     void (*freeItemFun)(void *);
-
     int (*keyCompFun)(const void *, const void *);
-
 } LinkedListHashMap;
 
 LinkedListHashMap *

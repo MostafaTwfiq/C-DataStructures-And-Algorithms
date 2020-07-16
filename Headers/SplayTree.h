@@ -34,8 +34,8 @@ typedef struct SplayNode {
 typedef struct SplayTree {
     SplayNode *root;
     uint32_t nodeCount;
-
     int16_t (*cmp)(const void *, const void *);
+    void (*freeFn)(void *);
 } SplayTree;
 
 
@@ -55,9 +55,9 @@ void SplayTreeInsert(SplayTree *splayTree, void *key);
 
 void SplayTreeDelete(SplayTree *splayTree, void *key);
 
-void freeSplayNode(SplayNode **node);
+void freeSplayNode(SplayNode **node, void (*pFunction)(void *));
 
-void SplayTreeFree(SplayNode **root);
+void SplayTreeFree(SplayNode **root, void (*pFunction)(void *));
 
 void printInOrderSplayTree(SplayNode *node, void (printFn)(void *));
 
