@@ -3,6 +3,10 @@
 #include "Utils.h"
 #define COUNT 10
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /** @struct SplayNode
  *  @brief This structure describes n Splay Tree Node.
  *  @var SplayNode::key
@@ -12,11 +16,11 @@
  *  @var SplayNode::right
  *  Member 'right' holds a reference to the right Node if present else it is Null.
  */
-typedef struct SplayNode{
-    void * key;
+typedef struct SplayNode {
+    void *key;
     struct SplayNode *right;
     struct SplayNode *left;
-}SplayNode;
+} SplayNode;
 
 /** @struct SplayTree
  *  @brief This structure implements a basic generic Splay Tree.
@@ -27,39 +31,44 @@ typedef struct SplayNode{
  *  @var SplayTree::cmp
  *  Member 'cmp' is a pointer to the comparision function that is going to be used throughout the tree.
  */
-typedef struct SplayTree{
+typedef struct SplayTree {
     SplayNode *root;
     uint32_t nodeCount;
-    int16_t (*cmp)(const void *,const void *);
-}SplayTree;
+
+    int16_t (*cmp)(const void *, const void *);
+} SplayTree;
 
 
-SplayNode* newSplayNode(void* key);
+SplayNode *newSplayNode(void *key);
 
-SplayTree *SplayTreeInitialize(int16_t (*cmp)(const void *,const void *));
+SplayTree *SplayTreeInitialize(int16_t (*cmp)(const void *, const void *));
 
 SplayNode *SplayRightRotate(SplayNode *x);
 
 SplayNode *SplayLeftRotate(SplayNode *x);
 
-SplayNode *splay(SplayTree *splayTree,SplayNode *root,void *key);
+SplayNode *splay(SplayTree *splayTree, SplayNode *root, void *key);
 
-SplayNode *SplayTreeSearch(SplayTree *splayTree,void *key);
+SplayNode *SplayTreeSearch(SplayTree *splayTree, void *key);
 
-void SplayTreeInsert(SplayTree* splayTree, void *key);
+void SplayTreeInsert(SplayTree *splayTree, void *key);
 
-void  SplayTreeDelete(SplayTree* splayTree, void *key);
+void SplayTreeDelete(SplayTree *splayTree, void *key);
 
 void freeSplayNode(SplayNode **node);
 
 void SplayTreeFree(SplayNode **root);
 
-void printInOrderSplayTree(SplayNode* node, void (printFn)(void *));
+void printInOrderSplayTree(SplayNode *node, void (printFn)(void *));
 
 void printSplayTree(SplayNode *root, void (printFn)(void *));
 
-void SplayTreeInsertAll(SplayTree* splayTree, void** array, int length);
+void SplayTreeInsertAll(SplayTree *splayTree, void **array, int length);
 
 void **SplayTreeToArray(SplayTree *splayTree);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //C_DATASTRUCTURES_SPLAYTREE_H

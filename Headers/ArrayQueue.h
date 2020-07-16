@@ -3,7 +3,9 @@
 
 #include "Utils.h"
 
-
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /** @struct ArrayQueue
  *  @brief This structure implements a basic generic Queue where memory is laid out sequentially.
@@ -17,38 +19,43 @@
  *  Member 'rear' holds the index to the last Queue Element.
  *  @var ArrayQueue::sizeOfItem
  *  Member 'sizeOfItem' the size of the data stored in the Queue.
+ *  @var ArrayQueue:: 'freeFn'
+ *  Member 'freeFn' holds pointer to the function responsible for freeing the elements stored in the Deque.
  */
 
-typedef struct ArrayQueue{
-    struct ArrayQueueItem ** memory;
-    int allocated;
-    int front;
-    int rear;
-    void (*freeItem)(void *item)
+typedef struct ArrayQueue {
+    struct ArrayQueueItem **memory;
+    uint32_t allocated;
+    int32_t front;
+    int32_t rear;
+
+    void (*freeFn)(void *item)
 } ArrayQueue;
 
+ArrayQueue *QueueInitialize(void (*freeFn)(void *item));
 
-
-ArrayQueue* QueueInitialize(void (*freeItem)(void *item));
-
-void ArrayQueueEnqueue(ArrayQueue* arrayQueue, void *data, int dataSize);
+void ArrayQueueEnqueue(ArrayQueue *arrayQueue, void *data, int dataSize);
 
 void *ArrayQueueDequeue(ArrayQueue *arrayQueue);
 
-void ArrayQueueDisplay(ArrayQueue *arrayQueue,void(*fptr)(void *));
+void ArrayQueueDisplay(ArrayQueue *arrayQueue, void(*fptr)(void *));
 
 void ArrayQueueDestroy(ArrayQueue *arrayQueue);
 
 void ArrayQueueClear(ArrayQueue *arrayQueue);
 
-short isArrayQueueEmpty(ArrayQueue *arrayQueue);
+int16_t isArrayQueueEmpty(ArrayQueue *arrayQueue);
 
-int ArrayQueueLength(ArrayQueue * arrayQueue);
+uint32_t ArrayQueueLength(ArrayQueue *arrayQueue);
 
-void ArrayQueueEnqueueAll(ArrayQueue * arrayQueue, void **arr, int arrLength, int sizeOfItem);
+void ArrayQueueEnqueueAll(ArrayQueue *arrayQueue, void **arr, int arrLength, int sizeOfItem);
 
-void *ArrayQueuePeek(ArrayQueue * arrayQueue);
+void *ArrayQueuePeek(ArrayQueue *arrayQueue);
 
-void **ArrayQueueToArray(ArrayQueue * arrayQueue);
+void **ArrayQueueToArray(ArrayQueue *arrayQueue);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //C_DATASTRUCTURES_ARRAYQUEUE_H

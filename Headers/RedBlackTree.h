@@ -2,12 +2,14 @@
 #define C_DATASTRUCTURES_REDBLACKTREE_H
 #include "Utils.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef enum COLOR {
     RED,
     BLACK
-}COLOR;
-
-
+} COLOR;
 
 
 typedef struct RBTreeItem {
@@ -16,68 +18,55 @@ typedef struct RBTreeItem {
 } RBTreeItem;
 
 
-
-
-typedef struct  RBNode {
+typedef struct RBNode {
     RBTreeItem *key;
     COLOR color;
     struct RBNode *left;
     struct RBNode *right;
     struct RBNode *parent;
-}RBNode;
+} RBNode;
 
 
-
-typedef struct RBTree{
+typedef struct RBTree {
     struct RBNode *root;
     int nodeCount;
+
     void (*freeItem)(void *item);
-    int (*cmp)(const void*, int, const void *, int);
-}RBTree;
+
+    int (*cmp)(const void *, int, const void *, int);
+} RBTree;
 
 
-
-
-RBTree *redBlackTreeInitialization(void (*freeItem)(void *item), int (*cmp)(const void*, int, const void *, int));
-
+RBTree *redBlackTreeInitialization(void (*freeItem)(void *item), int (*cmp)(const void *, int, const void *, int));
 
 void rBTreeInsert(RBTree *tree, void *item, int sizeOfItem);
 
-
 void rBInOrderTraversal(RBTree *tree, void (*printFun)(const void *, COLOR));
-
 
 void rBTreeDelete(RBTree *tree, void *item, int sizeOfItem);
 
-
 void *rbTreeGet(RBTree *tree, char *item, int sizeOfItem);
-
 
 void **rBTreeToArray(RBTree *rbTree);
 
-
 int rBTreeGetSize(RBTree *tree);
-
 
 int rBTreeContains(RBTree *tree, void *item, int sizeOfItem);
 
-
 void rBPreOrderTraversal(RBTree *tree, void (*printFun)(const void *, COLOR));
-
 
 void rBTreePrint(RBTree *tree, void (*printFun)(const void *, COLOR));
 
-
 void rBPostOrderTraversal(RBTree *tree, void (*printFun)(const void *, COLOR));
-
 
 void clearRBTree(RBTree *tree);
 
-
 void destroyRBTree(RBTree *tree);
 
+void rBInsertAll(RBTree *rbTree, void **array, int length, int sizeOfItem);
 
-void rBInsertAll(RBTree* rbTree, void** array, int length, int sizeOfItem);
-
+#ifdef __cplusplus
+}
+#endif
 
 #endif //C_DATASTRUCTURES_REDBLACKTREE_H
