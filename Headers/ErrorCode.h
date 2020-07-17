@@ -13,17 +13,19 @@ typedef enum ERROR {
     FAILED_COPY                   = -83385167,
     INVALID_ARG                   = -83384987,
     NULL_POINTER                  = -83386157,
+    OUT_OF_RANGE                  = -83385991,
     EMPTY_DATA_STRUCTURE          = -833816740
 }ERROR;
 
 
 
-#define         FAILED_ALLOCATION_MESSAGE           "The allocation in %s failed."
-#define         FAILED_REALLOCATION_MESSAGE         "The reallocation in %s failed."
+#define         FAILED_ALLOCATION_MESSAGE           "The %s allocation in %s failed."
+#define         FAILED_REALLOCATION_MESSAGE         "The %s reallocation in %s failed."
 #define         FAILED_COPY_MESSAGE                 "Copying failed in %s."
-#define         INVALID_ARG_MESSAGE                 "The passed arg in %s is invalid."
-#define         NULL_POINTER_MESSAGE                "The passed %s pointer is NULL."
-#define         EMPTY_DATA_STRUCTURE_MESSAGE        "The passed %s pointer is NULL."
+#define         INVALID_ARG_MESSAGE                 "The passed arg %s in %s is invalid."
+#define         NULL_POINTER_MESSAGE                "The %s pointer in %s is NULL."
+#define         OUT_OF_RANGE_MESSAGE                "The passed index is out of the %s range."
+#define         EMPTY_DATA_STRUCTURE_MESSAGE        "The passed %s pointer is empty."
 
 
 #endif //C_DATASTRUCTURES_ERRORCODE_H
