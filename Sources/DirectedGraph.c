@@ -79,14 +79,18 @@ DirectedGraph *directedGraphInitialization(
         ) {
 
     if (freeValue == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "free function", "directed graph data structure");
-        exit(NULL_POINTER);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "directed graph data structure");
+        exit(INVALID_ARG);
     } else if (valueComp == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "comparator function", "directed graph data structure");
-        exit(NULL_POINTER);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "directed graph data structure");
+        exit(INVALID_ARG);
     }
 
     DirectedGraph *directedGraph = (DirectedGraph *) malloc(sizeof(DirectedGraph));
+    if (directedGraph == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "directed graph", "directed graph data structure");
+        exit(FAILED_ALLOCATION);
+    }
 
     directedGraph->valueComp = valueComp;
     directedGraph->freeValue = freeValue;
@@ -115,8 +119,11 @@ DirectedGraph *directedGraphInitialization(
 void dirGraphAddNode(DirectedGraph *graph, void *value, int sizeOfValue) {
 
     if (graph == NULL) {
-        fprintf(stderr, "Illegal argument, the directed graph is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
+        exit(NULL_POINTER);
+    } else if (value == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "directed graph data structure");
+        exit(INVALID_ARG);
     }
 
 
@@ -151,8 +158,11 @@ void dirGraphAddNode(DirectedGraph *graph, void *value, int sizeOfValue) {
 void dirGraphRemoveNode(DirectedGraph *graph, void *value, int sizeOfValue) {
 
     if (graph == NULL) {
-        fprintf(stderr, "Illegal argument, the directed graph is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
+        exit(NULL_POINTER);
+    } else if (value == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "directed graph data structure");
+        exit(INVALID_ARG);
     }
 
 
@@ -195,8 +205,11 @@ void dirGraphRemoveNode(DirectedGraph *graph, void *value, int sizeOfValue) {
 void *dirGraphRemoveNodeWtoFr(DirectedGraph *graph, void *value, int sizeOfValue) {
 
     if (graph == NULL) {
-        fprintf(stderr, "Illegal argument, the directed graph is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
+        exit(NULL_POINTER);
+    } else if (value == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "directed graph data structure");
+        exit(INVALID_ARG);
     }
 
 
@@ -242,8 +255,14 @@ void *dirGraphRemoveNodeWtoFr(DirectedGraph *graph, void *value, int sizeOfValue
 
 void dirGraphAddEdge(DirectedGraph *graph, void *fromVal, int sizeOfFromVal, void *toVal, int sizeOfToVal) {
     if (graph == NULL) {
-        fprintf(stderr, "Illegal argument, the directed graph is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
+        exit(NULL_POINTER);
+    } else if (fromVal == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "from value pointer", "directed graph data structure");
+        exit(INVALID_ARG);
+    } else if (toVal == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "to value pointer", "directed graph data structure");
+        exit(INVALID_ARG);
     }
 
 
@@ -278,8 +297,14 @@ void dirGraphAddEdge(DirectedGraph *graph, void *fromVal, int sizeOfFromVal, voi
 
 void dirGraphRemoveEdge(DirectedGraph *graph, void *fromVal, int sizeOfFromVal, void *toVal, int sizeOfToVal) {
     if (graph == NULL) {
-        fprintf(stderr, "Illegal argument, the directed graph is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
+        exit(NULL_POINTER);
+    } else if (fromVal == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "from value pointer", "directed graph data structure");
+        exit(INVALID_ARG);
+    } else if (toVal == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "to value pointer", "directed graph data structure");
+        exit(INVALID_ARG);
     }
 
 
@@ -314,8 +339,11 @@ void dirGraphRemoveEdge(DirectedGraph *graph, void *fromVal, int sizeOfFromVal, 
 
 int dirGraphContainsNode(DirectedGraph *graph, void *value, int sizeOfValue) {
     if (graph == NULL) {
-        fprintf(stderr, "Illegal argument, the directed graph is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
+        exit(NULL_POINTER);
+    } else if (value == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "directed graph data structure");
+        exit(INVALID_ARG);
     }
 
     return hashMapContains(graph->nodes, value, sizeOfValue);
@@ -344,8 +372,14 @@ int dirGraphContainsNode(DirectedGraph *graph, void *value, int sizeOfValue) {
 int dirGraphContainsEdge(DirectedGraph *graph, void *fromVal, int sizeOfFromVal, void *toVal, int sizeOfToVal) {
 
     if (graph == NULL) {
-        fprintf(stderr, "Illegal argument, the directed graph is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
+        exit(NULL_POINTER);
+    } else if (fromVal == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "from value pointer", "directed graph data structure");
+        exit(INVALID_ARG);
+    } else if (toVal == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "to value pointer", "directed graph data structure");
+        exit(INVALID_ARG);
     }
 
     DirGraphNode *fromNode = hashMapGet(graph->nodes, fromVal, sizeOfFromVal);
@@ -374,8 +408,8 @@ int dirGraphContainsEdge(DirectedGraph *graph, void *fromVal, int sizeOfFromVal,
 
 int dirGraphGetNumOfNodes(DirectedGraph *graph) {
     if (graph == NULL) {
-        fprintf(stderr, "Illegal argument, the directed graph is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
+        exit(NULL_POINTER);
     }
 
     return hashMapGetLength(graph->nodes);
@@ -398,8 +432,8 @@ int dirGraphGetNumOfNodes(DirectedGraph *graph) {
 
 int dirGraphIsEmpty(DirectedGraph *graph) {
     if (graph == NULL) {
-        fprintf(stderr, "Illegal argument, the directed graph is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
+        exit(NULL_POINTER);
     }
 
     return hashMapGetLength(graph->nodes) == 0;
@@ -421,8 +455,8 @@ int dirGraphIsEmpty(DirectedGraph *graph) {
 void clearDirGraph(DirectedGraph *graph) {
 
     if (graph == NULL) {
-        fprintf(stderr, "Illegal argument, the directed graph is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
+        exit(NULL_POINTER);
     }
 
     clearHashMap(graph->nodes);
@@ -445,8 +479,8 @@ void clearDirGraph(DirectedGraph *graph) {
 void destroyDirGraph(DirectedGraph *graph) {
 
     if (graph == NULL) {
-        fprintf(stderr, "Illegal argument, the directed graph is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
+        exit(NULL_POINTER);
     }
 
     destroyHashMap(graph->nodes);
@@ -476,8 +510,11 @@ void destroyDirGraph(DirectedGraph *graph) {
 void dirGraphPrint(DirectedGraph *graph, void (*printVal)(void *)) {
 
     if (graph == NULL) {
-        fprintf(stderr, "Illegal argument, the directed graph is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
+        exit(NULL_POINTER);
+    } else if (printVal == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "print function pointer", "directed graph data structure");
+        exit(INVALID_ARG);
     }
 
     DirGraphNode **arr = (DirGraphNode **) hashMapToArray(graph->nodes);
@@ -549,8 +586,14 @@ int compInt(const void *int1, const void *int2) {
 
 void dirGraphDepthFirstTraversal(DirectedGraph *graph, void *startVal, int sizeOfValue, void (*printVal)(void *)) {
     if (graph == NULL) {
-        fprintf(stderr, "Illegal argument, the directed graph is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
+        exit(NULL_POINTER);
+    } else if (startVal == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "start value pointer", "directed graph data structure");
+        exit(INVALID_ARG);
+    } else if (printVal == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "print function pointer", "directed graph data structure");
+        exit(INVALID_ARG);
     }
 
     DirGraphNode *startNode = hashMapGet(graph->nodes, startVal, sizeOfValue);
@@ -608,8 +651,14 @@ void dirGraphDepthFirstTraversal(DirectedGraph *graph, void *startVal, int sizeO
 
 void dirGraphBreadthFirstTraversal(DirectedGraph *graph, void *startVal, int sizeOfValue, void (*printVal)(void *)) {
     if (graph == NULL) {
-        fprintf(stderr, "Illegal argument, the directed graph is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
+        exit(NULL_POINTER);
+    } else if (startVal == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "start value pointer", "directed graph data structure");
+        exit(INVALID_ARG);
+    } else if (printVal == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "print function pointer", "directed graph data structure");
+        exit(INVALID_ARG);
     }
 
     DirGraphNode *startNode = hashMapGet(graph->nodes, startVal, sizeOfValue);
@@ -658,8 +707,8 @@ void dirGraphBreadthFirstTraversal(DirectedGraph *graph, void *startVal, int siz
 
 ArrayList *dirGraphTopologicalSort(DirectedGraph *graph) {
     if (graph == NULL) {
-        fprintf(stderr, "Illegal argument, the directed graph is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
+        exit(NULL_POINTER);
     }
 
 
