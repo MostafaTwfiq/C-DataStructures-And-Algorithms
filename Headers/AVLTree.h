@@ -9,12 +9,6 @@ extern "C" {
 #endif
 
 
-typedef struct TreeItem {
-    void *value;
-    int32_t sizeOfItem;
-} TreeItem;
-
-
 /** @struct AVLTreeNode
  *  @brief This structure describes n AVL Tree Node.
  *  @var AVLTreeNode::key
