@@ -144,7 +144,7 @@ void SplayTreeInsert(SplayTree* splayTree, void *key){
  * @param splayTree  Reference to the Splay tree.
  * @param key Key object to add to the Binary Tree.
  **/
-void SplayTreeDelete(SplayTree* splayTree, void *key){
+void SplayTreeDeleteWithFree(SplayTree* splayTree, void *key){
     if (splayTree->root==NULL) return;
     splayTree->root = splay(splayTree,splayTree->root,key);
     if((splayTree->cmp)(splayTree->root->key,key)!=0) return;
@@ -158,6 +158,25 @@ void SplayTreeDelete(SplayTree* splayTree, void *key){
         splayTree->root->right = temp->right;
     }
     freeSplayNode(&temp,splayTree->freeFn);
+    splayTree->nodeCount--;
+}
+
+///
+/// \param splayTree
+/// \param key
+void SplayTreeDeleteWithoutFree(SplayTree* splayTree, void *key){
+    if (splayTree->root==NULL) return;
+    splayTree->root = splay(splayTree,splayTree->root,key);
+    if((splayTree->cmp)(splayTree->root->key,key)!=0) return;
+    SplayNode* temp;
+    if (splayTree->root->left==NULL){
+        temp = splayTree->root;
+        splayTree->root = splayTree->root->right;
+    }else{
+        temp = splayTree->root;
+        splayTree->root = splay(splayTree,splayTree->root->left, key);
+        splayTree->root->right = temp->right;
+    }
     splayTree->nodeCount--;
 }
 

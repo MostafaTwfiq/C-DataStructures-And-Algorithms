@@ -53,7 +53,9 @@ SplayNode *SplayTreeSearch(SplayTree *splayTree, void *key);
 
 void SplayTreeInsert(SplayTree *splayTree, void *key);
 
-void SplayTreeDelete(SplayTree *splayTree, void *key);
+void SplayTreeDeleteWithFree(SplayTree *splayTree, void *key);
+
+void SplayTreeDeleteWithoutFree(SplayTree* splayTree, void *key);
 
 void freeSplayNode(SplayNode **node, void (*pFunction)(void *));
 
