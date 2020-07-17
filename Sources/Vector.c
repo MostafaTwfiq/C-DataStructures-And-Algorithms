@@ -2,6 +2,10 @@
 #include "../Headers/Utils.h"
 
 
+
+
+
+
 /** This function will take the initial length of the vector, and the freeing and comparator functions as a parameter,
  * then it will initialize a new vector in the memory and set it's fields then return it.
  * @param initialLength the initial length of the vector.
@@ -59,7 +63,7 @@ void vectorAdd(Vector *list, void *item) {
         list->length *= 2;
 
         list->arr = (void **) realloc(list->arr, sizeof(void *) * list->length);
-        if (list == NULL) {
+        if (list->arr == NULL) {
             fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "items memory", "vector data structure");
             exit(FAILED_REALLOCATION);
         }

@@ -1,48 +1,76 @@
 #include  "../Headers/ArrayQueue.h"
+#include "../Headers/Utils.h"
+
+
+
+
+
+
+
 
 
 /** Function Initializes Queue on Heap using malloc and returns pointer to it.
  * @param size Size of the data to be stored by the Queue.
  * @return Return Pointer ot Queue on the Heap.
- * */
+ */
 
-ArrayQueue* QueueInitialize(void (*freeItem)(void *)) {
-    ArrayQueue* q =(ArrayQueue *) malloc(sizeof ( *q ));
+ArrayQueue* arrayQueueInitialization(void (*freeItem)(void *)) {
 
-    if(q == NULL){
-        fprintf(stderr,"Was Unable to Allocate Queue");
-        exit(NULL_POINTER);
+    if (freeItem == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "free function", "array queue data structure");
+        exit(INVALID_ARG);
     }
 
-    q->freeItem =  freeItem;
-    q->allocated = 10;
-    q->memory = (void **) malloc( sizeof(void *) * q->allocated);
+    ArrayQueue* queue =(ArrayQueue *) malloc(sizeof ( *queue ));
 
-    if(!q->memory){
-        fprintf(stderr,"Was Unable to Allocate Memory for Queue.\n");
-        exit(NULL_POINTER);
+    if (queue == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "data structure", "array queue data structure");
+        exit(FAILED_ALLOCATION);
     }
 
-    q->front = q->rear = 0;
+    queue->freeItem =  freeItem;
+    queue->allocated = 10;
+    queue->memory = (void **) malloc(sizeof(void *) * queue->allocated);
 
-    return q;
+    if (queue->memory == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "items memory", "array queue data structure");
+        exit(FAILED_ALLOCATION);
+    }
+
+    queue->front = queue->rear = 0;
+
+    return queue;
 }
+
+
+
+
+
+
 
 /** Function that takes a pointer to previously externally allocated object and enqueues it.
  * @param arrayQueue Pointer to the Queue on the heap.
  * @param data Pointer to the data to be stored on the heap.
- * */
+ */
 
-void ArrayQueueEnqueue(ArrayQueue* arrayQueue, void *data) {
+void arrayQueueEnqueue(ArrayQueue* arrayQueue, void *data) {
 
-    if(arrayQueue ==NULL || data == NULL) {
-        fprintf(stderr,"Invalid Params, Nor Data  OR Queue Can be NULL.\n");
+    if (arrayQueue == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "queue pointer", "array queue data structure");
+        exit(INVALID_ARG);
+    } else if (data == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "data pointer", "array queue data structure");
         exit(INVALID_ARG);
     }
 
     if(arrayQueue->allocated ==  arrayQueue->rear){
         arrayQueue->allocated *= 2;
         void **tempArr = (void **) malloc(sizeof(void *) * arrayQueue->allocated);
+        if (tempArr == NULL) {
+            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "items memory", "array queue data structure");
+            exit(FAILED_ALLOCATION);
+        }
+
         memcpy(tempArr, arrayQueue->memory + sizeof(void *) * arrayQueue->front, sizeof(void *) * (arrayQueue->rear - arrayQueue->front) );
         free(arrayQueue->memory);
         arrayQueue->memory = tempArr;
@@ -50,85 +78,96 @@ void ArrayQueueEnqueue(ArrayQueue* arrayQueue, void *data) {
         arrayQueue->front = 0;
     }
 
-    if ( !arrayQueue->memory ) {
-        fprintf( stderr , "Failed at reallocating the Queue.\n" );
-        exit( FAILED_REALLOCATION );
-    }
-
     arrayQueue->memory[arrayQueue->rear++] = data;
 
 }
+
+
+
+
+
+
+
 
 /** Function that returns a pointer to previously allocated objected and dequeue it.
  * from a queue.
  * @param arrayQueue Pointer to the Queue on the heap.
  * @return Pointer to the previously queued data on the heap.
- * */
+ */
 
-void* ArrayQueueDequeue(ArrayQueue* arrayQueue) {
-    if(arrayQueue ==NULL ) {
-        fprintf(stderr,"Invalid Params, Queue Cannot be NULL.\n");
+void* arrayQueueDequeue(ArrayQueue* arrayQueue) {
+    if (arrayQueue == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "queue pointer", "array queue data structure");
         exit(INVALID_ARG);
+    } else if (arrayQueueIsEmpty(arrayQueue)) {
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "array queue data structure");
+        exit(EMPTY_DATA_STRUCTURE);
     }
-
-    if (arrayQueue->front == arrayQueue->rear) {
-        fprintf(stderr,"Queue is empty\n");
-        exit( NULL_POINTER );
-    }
-
 
     return arrayQueue->memory[arrayQueue->front++];
 
 }
 
+
+
+
+
+
+
+
 /** Takes a reference pointer to print function and prints data in the queue.
  * @param arrayQueue Pointer to the Queue on the heap.
  * @param fptr pointer to an externally defined print function.
- * */
+ */
 
-void ArrayQueueDisplay(ArrayQueue* arrayQueue, void (*fptr)(void *)) {
-    if(arrayQueue == NULL || fptr == NULL) {
-        fprintf(stderr,"Invalid Params, Function Pointer or Queue cannot be NULL.\n");
+void arrayQueueDisplay(ArrayQueue* arrayQueue, void (*fptr)(void *)) {
+    if (arrayQueue == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "queue pointer", "array queue data structure");
+        exit(INVALID_ARG);
+    } else if (fptr) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "printf function pointer", "array queue data structure");
         exit(INVALID_ARG);
     }
 
-    if (arrayQueue->front == arrayQueue->rear) {
-        fprintf( stderr , "Queue is empty\n" );
-        exit( NULL_POINTER );
-    }
-
-    for (int i = arrayQueue->front; i < arrayQueue->rear; i++) {
+    for (int i = arrayQueue->front; i < arrayQueue->rear; i++)
         fptr(arrayQueue->memory[i]);
-    }
 
 }
 
+
+
+
+
+
+
+
 /** Destroys the Queue and its allocated objects.
  * @param arrayQueue Pointer to the Queue on the heap.
- * */
-void ArrayQueueDestroy(ArrayQueue* arrayQueue) {
-    if(arrayQueue ==NULL ) {
-        fprintf(stderr,"Invalid Param, Queue Cannot be NULL.\n");
-        exit(INVALID_ARG);
-    }
+ */
 
-    ArrayQueueClear(arrayQueue);
+void arrayQueueDestroy(ArrayQueue* arrayQueue) {
+    arrayQueueClear(arrayQueue);
 
     free(arrayQueue->memory);
     free(arrayQueue);
 
 }
 
+
+
+
+
+
+
+
+
 /** Clear the elements stored on the Queue.
  * @param arrayQueue Pointer to the Queue on the heap.
- * */
+ */
 
-
-
-
-void ArrayQueueClear(ArrayQueue* arrayQueue) {
-    if(arrayQueue ==NULL ) {
-        fprintf(stderr,"Invalid Param, Queue Cannot be NULL.\n");
+void arrayQueueClear(ArrayQueue* arrayQueue) {
+    if (arrayQueue == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "queue pointer", "array queue data structure");
         exit(INVALID_ARG);
     }
 
@@ -144,15 +183,19 @@ void ArrayQueueClear(ArrayQueue* arrayQueue) {
 
 
 
+
+
+
+
+
 /** Returns whether Queue is Empty or Not.
  * @param arrayQueue Pointer to the Queue on the heap.
  * @return returns short integer 1 if Empty else 0.
- **/
+ */
 
-
- short isArrayQueueEmpty(ArrayQueue * arrayQueue) {
-    if(arrayQueue ==NULL ) {
-        fprintf(stderr,"Invalid Param, Queue Cannot be NULL.\n");
+ short arrayQueueIsEmpty(ArrayQueue * arrayQueue) {
+    if (arrayQueue == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "queue pointer", "array queue data structure");
         exit(INVALID_ARG);
     }
 
@@ -162,15 +205,19 @@ void ArrayQueueClear(ArrayQueue* arrayQueue) {
 
 
 
+
+
+
+
+
 /** Returns the number of elements currently stored in the Queue.
  * @param arrayQueue Pointer to the Queue on the heap.
  * @return integer length of array.
- * */
+ */
 
-
-uint32_t ArrayQueueLength(ArrayQueue * arrayQueue){
-    if(arrayQueue ==NULL ) {
-        fprintf(stderr,"Invalid Param, Queue Cannot be NULL.\n");
+uint32_t arrayQueueGetLength(ArrayQueue * arrayQueue){
+    if (arrayQueue == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "queue pointer", "array queue data structure");
         exit(INVALID_ARG);
     }
 
@@ -180,31 +227,36 @@ uint32_t ArrayQueueLength(ArrayQueue * arrayQueue){
 
 
 
+
+
+
+
+
 /** This function will take an array of items pointers, then it will enqueue all the array items.
-* @param arrayQueue Pointer to the Queue on the heap.
-* @param arr Pointer to an Externally defined array on the heap.
-* @param arrLength Number of elements of the Externally Defined Array.
-**/
+ * @param arrayQueue Pointer to the Queue on the heap.
+ * @param arr Pointer to an Externally defined array on the heap.
+ * @param arrLength Number of elements of the Externally Defined Array.
+ */
 
-void ArrayQueueEnqueueAll(ArrayQueue * arrayQueue, void **arr, int arrLength) {
+void arrayQueueEnqueueAll(ArrayQueue * arrayQueue, void **arr, int arrLength) {
 
-    if(arrayQueue ==NULL ) {
-        fprintf(stderr,"Invalid Param, Queue Cannot be NULL.\n");
+    if (arrayQueue == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "queue pointer", "array queue data structure");
         exit(INVALID_ARG);
-    }
-    if(arr ==NULL ) {
-        fprintf(stderr,"Invalid Param, arr Cannot be NULL.\n");
-        exit(INVALID_ARG);
-    }
-    if(arrLength == 0 ) {
-        fprintf(stderr,"Invalid Param, Queue arrLength be NULL or Zero(0).\n");
+    } else if (arr == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "items array", "array queue data structure");
         exit(INVALID_ARG);
     }
 
     for(int i = 0; i < arrLength; i++ )
-        ArrayQueueEnqueue(arrayQueue, arr[i]);
+        arrayQueueEnqueue(arrayQueue, arr[i]);
 
 }
+
+
+
+
+
 
 
 
@@ -212,11 +264,11 @@ void ArrayQueueEnqueueAll(ArrayQueue * arrayQueue, void **arr, int arrLength) {
 /** Returns the first item that was enqueued at the
 * @param arrayQueue Pointer to the Queue on the heap.
 * @return Pointer the first enqueued Object.
-**/
+*/
 
-void *ArrayQueuePeek(ArrayQueue * arrayQueue) {
-    if(arrayQueue ==NULL ) {
-        fprintf(stderr,"Invalid Param, Queue Cannot be NULL.\n");
+void *arrayQueuePeek(ArrayQueue * arrayQueue) {
+    if (arrayQueue == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "queue pointer", "array queue data structure");
         exit(INVALID_ARG);
     }
 
@@ -226,13 +278,27 @@ void *ArrayQueuePeek(ArrayQueue * arrayQueue) {
 
 
 
-/** Converts a queue to an Array.
-* @param arrayQueue Pointer to the Queue on the heap.
-* @return Pointer to an allocated array on the heap.
- * */
 
-void **ArrayQueueToArray(ArrayQueue * arrayQueue){
-    void **array = (void **) malloc(sizeof(void *) * ArrayQueueLength(arrayQueue));
+
+
+
+
+/** Converts a queue to an Array.
+ * @param arrayQueue Pointer to the Queue on the heap.
+ * @return Pointer to an allocated array on the heap.
+ */
+
+void **arrayQueueToArray(ArrayQueue * arrayQueue){
+    if (arrayQueue == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "queue pointer", "array queue data structure");
+        exit(INVALID_ARG);
+    }
+
+    void **array = (void **) malloc(sizeof(void *) * arrayQueueGetLength(arrayQueue));
+    if (array == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "array queue data structure");
+        exit(FAILED_ALLOCATION);
+    }
 
     for (int i = arrayQueue->front; i < arrayQueue->rear; i++)
         array[i] = arrayQueue->memory[i];
@@ -240,3 +306,4 @@ void **ArrayQueueToArray(ArrayQueue * arrayQueue){
     return array;
 
 }
+

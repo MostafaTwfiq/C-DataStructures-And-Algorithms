@@ -623,8 +623,8 @@ void dirGraphBreadthFirstTraversal(DirectedGraph *graph, void *startVal, int siz
         return;
 
     HashSet *visitedNodes = hashSetInitialization(freeInt, compInt);
-    ArrayQueue *nodesQueue = QueueInitialize(freeDGraphNode);
-    ArrayQueueEnqueue(nodesQueue, startNode);
+    ArrayQueue *nodesQueue = arrayQueueInitialization(freeDGraphNode);
+    arrayQueueEnqueue(nodesQueue, startNode);
 
     int *startNodeValAddress = (int *) malloc(sizeof(int));
     *startNodeValAddress = (int) startNode->value;
@@ -632,8 +632,8 @@ void dirGraphBreadthFirstTraversal(DirectedGraph *graph, void *startVal, int siz
 
     DirGraphNode *currentNode;
 
-    while (!isArrayQueueEmpty(nodesQueue)) {
-        currentNode = ArrayQueueDequeue(nodesQueue);
+    while (!arrayQueueIsEmpty(nodesQueue)) {
+        currentNode = arrayQueueDequeue(nodesQueue);
         printVal(currentNode->value);
 
         for (int i = 0; i < arrayListGetLength(currentNode->adjacentNodes); i++) {
@@ -641,7 +641,7 @@ void dirGraphBreadthFirstTraversal(DirectedGraph *graph, void *startVal, int siz
             int *adjNodeValAddress = (int *) malloc(sizeof(int));
             *adjNodeValAddress = (int) adjNode->value;
             if (!hashSetContains(visitedNodes, adjNodeValAddress, sizeof(int))) {
-                ArrayQueueEnqueue(nodesQueue, adjNode);
+                arrayQueueEnqueue(nodesQueue, adjNode);
                 hashSetInsert(visitedNodes, adjNodeValAddress, sizeof(int));
             }
 
@@ -651,7 +651,7 @@ void dirGraphBreadthFirstTraversal(DirectedGraph *graph, void *startVal, int siz
     }
 
     destroyHashSet(visitedNodes);
-    ArrayQueueDestroy(nodesQueue);
+    arrayQueueDestroy(nodesQueue);
 
 }
 

@@ -63,7 +63,7 @@ void arrayListAdd(ArrayList *list, void *item) {
         list->length = (int) ceil(list->length * 1.5);
 
         list->arr = (void **) realloc(list->arr, sizeof(void *) * list->length);
-        if (list == NULL) {
+        if (list->arr == NULL) {
             fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "items memory", "array list data structure");
             exit(FAILED_REALLOCATION);
         }

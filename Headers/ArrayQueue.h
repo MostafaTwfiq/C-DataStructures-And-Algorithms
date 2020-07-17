@@ -1,7 +1,7 @@
 #ifndef C_DATASTRUCTURES_ARRAYQUEUE_H
 #define C_DATASTRUCTURES_ARRAYQUEUE_H
 
-#include "Utils.h"
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -31,27 +31,27 @@ typedef struct ArrayQueue{
     void (*freeItem)(void *);
 } ArrayQueue;
 
-ArrayQueue *QueueInitialize(void (*freeFn)(void *));
+ArrayQueue *arrayQueueInitialization(void (*freeFn)(void *));
 
-void ArrayQueueEnqueue(ArrayQueue* arrayQueue, void *data);
+void arrayQueueEnqueue(ArrayQueue* arrayQueue, void *data);
 
-void *ArrayQueueDequeue(ArrayQueue *arrayQueue);
+void *arrayQueueDequeue(ArrayQueue *arrayQueue);
 
-void ArrayQueueDisplay(ArrayQueue *arrayQueue, void(*fptr)(void *));
+void arrayQueueDisplay(ArrayQueue *arrayQueue, void(*fptr)(void *));
 
-void ArrayQueueDestroy(ArrayQueue *arrayQueue);
+void arrayQueueDestroy(ArrayQueue *arrayQueue);
 
-void ArrayQueueClear(ArrayQueue *arrayQueue);
+void arrayQueueClear(ArrayQueue *arrayQueue);
 
-int16_t isArrayQueueEmpty(ArrayQueue *arrayQueue);
+int16_t arrayQueueIsEmpty(ArrayQueue *arrayQueue);
 
-uint32_t ArrayQueueLength(ArrayQueue *arrayQueue);
+uint32_t arrayQueueGetLength(ArrayQueue *arrayQueue);
 
-void ArrayQueueEnqueueAll(ArrayQueue * arrayQueue, void **arr, int arrLength);
+void arrayQueueEnqueueAll(ArrayQueue * arrayQueue, void **arr, int arrLength);
 
-void *ArrayQueuePeek(ArrayQueue *arrayQueue);
+void *arrayQueuePeek(ArrayQueue *arrayQueue);
 
-void **ArrayQueueToArray(ArrayQueue *arrayQueue);
+void **arrayQueueToArray(ArrayQueue *arrayQueue);
 
 #ifdef __cplusplus
 }
