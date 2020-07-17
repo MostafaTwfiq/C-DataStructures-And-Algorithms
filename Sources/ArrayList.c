@@ -353,6 +353,10 @@ void **arrayListToArray(ArrayList *list) {
     }
 
     void **array = (void **) malloc(sizeof(void *) * arrayListGetLength(list));
+    if (array == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "array list data structure");
+        exit(FAILED_ALLOCATION);
+    }
 
     for (int i = 0; i < arrayListGetLength(list); i++)
         array[i] = list->arr[i];
@@ -383,6 +387,10 @@ void **arrayListToSubArray(ArrayList *list, int start, int end) {
     }
 
     void **array = (void **) malloc(sizeof(void *) * (end - start) );
+    if (array == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "array list data structure");
+        exit(FAILED_ALLOCATION);
+    }
 
     for (int i = start; i < end; i++)
         array[i] = list->arr[i];

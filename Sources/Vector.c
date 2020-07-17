@@ -12,19 +12,19 @@
 
 Vector *vectorInitialization(int initialLength, void (*freeFun)(void *), int (*comparator)(const void *, const void *)) {
     if (freeFun == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "free function", "array list data structure");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "free function", "vector data structure");
         exit(INVALID_ARG);
     }
 
     Vector *list = (Vector *) malloc(sizeof(Vector));
     if (list == NULL) {
-        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "data structure", "array list data structure");
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "data structure", "vector data structure");
         exit(FAILED_ALLOCATION);
     }
 
     list->arr = (void **) malloc(sizeof(void *) * initialLength);
     if (list->arr == NULL) {
-        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "items memory", "array list data structure");
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "items memory", "vector data structure");
         exit(FAILED_ALLOCATION);
     }
 
@@ -48,13 +48,22 @@ Vector *vectorInitialization(int initialLength, void (*freeFun)(void *), int (*c
 void vectorAdd(Vector *list, void *item) {
 
     if (list == NULL) {
-        fprintf(stderr,"Illegal argument, the vector is NULL.");
-        exit(-3);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
+        exit(INVALID_ARG);
+    } else if (item == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "vector data structure");
+        exit(INVALID_ARG);
     }
 
     if (list->count == list->length) {
         list->length *= 2;
+
         list->arr = (void **) realloc(list->arr, sizeof(void *) * list->length);
+        if (list == NULL) {
+            fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "items memory", "vector data structure");
+            exit(FAILED_REALLOCATION);
+        }
+
     }
 
 
@@ -73,9 +82,12 @@ void vectorAdd(Vector *list, void *item) {
  */
 
 void vectorAddAll(Vector *list, void **array, int arrayLength) {
-    if (list == NULL || array == NULL) {
-        fprintf(stderr,"Illegal argument, the vector is NULL.");
-        exit(-3);
+    if (list == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
+        exit(INVALID_ARG);
+    } else if (array == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "items array", "vector data structure");
+        exit(INVALID_ARG);
     }
 
     for (int i = 0; i < arrayLength; i++)
@@ -94,11 +106,11 @@ void vectorAddAll(Vector *list, void **array, int arrayLength) {
 
 void vectorRemove(Vector *list) {
     if (list == NULL) {
-        fprintf(stderr,"Illegal argument, the vector is NULL.");
-        exit(-3);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
+        exit(INVALID_ARG);
     } else if (vectorIsEmpty(list)) {
-        fprintf(stderr,"Vector out of range.");
-        exit(-3);
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "vector data structure");
+        exit(EMPTY_DATA_STRUCTURE);
     }
 
     list->freeItem(list->arr[vectorGetLength(list) - 1]);
@@ -117,11 +129,11 @@ void vectorRemove(Vector *list) {
 
 void vectorRemoveWtFr(Vector *list) {
     if (list == NULL) {
-        fprintf(stderr,"Illegal argument, the vector is NULL.");
-        exit(-3);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
+        exit(INVALID_ARG);
     } else if (vectorIsEmpty(list)) {
-        fprintf(stderr,"Vector out of range.");
-        exit(-3);
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "vector data structure");
+        exit(EMPTY_DATA_STRUCTURE);
     }
 
 
@@ -141,11 +153,11 @@ void vectorRemoveWtFr(Vector *list) {
 
 void vectorRemoveAtIndex(Vector *list, int index) {
     if (list == NULL) {
-        fprintf(stderr,"Illegal argument, the vector is NULL.");
-        exit(-3);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
+        exit(INVALID_ARG);
     } else if (index < 0 || index >= vectorGetLength(list)) {
-        fprintf(stderr,"Index out of vector range.");
-        exit(-3);
+        fprintf(stderr, OUT_OF_RANGE_MESSAGE, "vector data structure");
+        exit(OUT_OF_RANGE);
     }
 
     list->freeItem(list->arr[index]);
@@ -168,11 +180,11 @@ void vectorRemoveAtIndex(Vector *list, int index) {
 
 void vectorRemoveAtIndexWtFr(Vector *list, int index) {
     if (list == NULL) {
-        fprintf(stderr,"Illegal argument, the vector is NULL.");
-        exit(-3);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
+        exit(INVALID_ARG);
     } else if (index < 0 || index >= vectorGetLength(list)) {
-        fprintf(stderr,"Index out of vector range.");
-        exit(-3);
+        fprintf(stderr, OUT_OF_RANGE_MESSAGE, "vector data structure");
+        exit(OUT_OF_RANGE);
     }
 
     list->count--;
@@ -200,8 +212,14 @@ void vectorRemoveAtIndexWtFr(Vector *list, int index) {
 int vectorContains(Vector *list, void *item) {
 
     if (list == NULL) {
-        fprintf(stderr,"Illegal argument, the vector is NULL.");
-        exit(-3);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
+        exit(INVALID_ARG);
+    } else if (item == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "vector data structure");
+        exit(INVALID_ARG);
+    } else if (list->comparator == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "comparator function", "vector data structure");
+        exit(NULL_POINTER);
     }
 
     for (int i = 0; i < list->count; i++) {
@@ -231,8 +249,14 @@ int vectorContains(Vector *list, void *item) {
 int vectorGetIndex(Vector *list, void *item) {
 
     if (list == NULL) {
-        fprintf(stderr,"Illegal argument, the vector is NULL.");
-        exit(-3);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
+        exit(INVALID_ARG);
+    } else if (item == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "vector data structure");
+        exit(INVALID_ARG);
+    } else if (list->comparator == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "comparator function", "vector data structure");
+        exit(NULL_POINTER);
     }
 
     for (int i = 0; i < list->count; i++) {
@@ -262,8 +286,14 @@ int vectorGetIndex(Vector *list, void *item) {
 int vectorGetLastIndex(Vector *list, void *item) {
 
     if (list == NULL) {
-        fprintf(stderr,"Illegal argument, the vector is NULL.");
-        exit(-3);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
+        exit(INVALID_ARG);
+    } else if (item == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "vector data structure");
+        exit(INVALID_ARG);
+    } else if (list->comparator == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "comparator function", "vector data structure");
+        exit(NULL_POINTER);
     }
 
     for (int i = list->count - 1; i >= 0; i--) {
@@ -291,11 +321,11 @@ int vectorGetLastIndex(Vector *list, void *item) {
 
 void *vectorGet(Vector *list, int index) {
     if (list == NULL) {
-        fprintf(stderr,"Illegal argument, the vector is NULL.");
-        exit(-3);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
+        exit(INVALID_ARG);
     } else if (index < 0 || index >= vectorGetLength(list)) {
-        fprintf(stderr,"Index out of vector range.");
-        exit(-3);
+        fprintf(stderr, OUT_OF_RANGE_MESSAGE, "vector data structure");
+        exit(OUT_OF_RANGE);
     }
 
     return list->arr[index];
@@ -314,11 +344,15 @@ void *vectorGet(Vector *list, int index) {
 void **vectorToArray(Vector *list) {
 
     if (list == NULL) {
-        fprintf(stderr,"Illegal argument, the vector is NULL.");
-        exit(-3);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
+        exit(INVALID_ARG);
     }
 
     void **array = (void **) malloc(sizeof(void *) * vectorGetLength(list));
+    if (array == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "vector data structure");
+        exit(FAILED_ALLOCATION);
+    }
 
     for (int i = 0; i < vectorGetLength(list); i++)
         array[i] = list->arr[i];
@@ -341,14 +375,18 @@ void **vectorToArray(Vector *list) {
 void **vectorToSubArray(Vector *list, int start, int end) {
 
     if (list == NULL) {
-        fprintf(stderr,"Illegal argument, the vector is NULL.");
-        exit(-3);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
+        exit(INVALID_ARG);
     } else if (start < 0 || end > vectorGetLength(list) || start > end) {
-        fprintf(stderr,"Index out of vector range.");
-        exit(-3);
+        fprintf(stderr, OUT_OF_RANGE_MESSAGE, "vector data structure");
+        exit(OUT_OF_RANGE);
     }
 
     void **array = (void **) malloc(sizeof(void *) * (end - start) );
+    if (array == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "vector data structure");
+        exit(FAILED_ALLOCATION);
+    }
 
     for (int i = start; i < end; i++)
         array[i] = list->arr[i];
@@ -371,7 +409,16 @@ void **vectorToSubArray(Vector *list, int start, int end) {
  */
 
 void vectorSort(Vector *list) {
+    if (list == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
+        exit(INVALID_ARG);
+    } else if (list->comparator == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "comparator function", "vector data structure");
+        exit(NULL_POINTER);
+    }
+
     qsort(list->arr, vectorGetLength(list), sizeof(void *), list->comparator);
+
 }
 
 
@@ -388,8 +435,8 @@ void vectorSort(Vector *list) {
 int vectorGetLength(Vector *list) {
 
     if (list == NULL) {
-        fprintf(stderr,"Illegal argument, the vector is NULL.");
-        exit(-3);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
+        exit(INVALID_ARG);
     }
 
     return list->count;
@@ -409,8 +456,8 @@ int vectorGetLength(Vector *list) {
 int vectorIsEmpty(Vector *list) {
 
     if (list == NULL) {
-        fprintf(stderr,"Illegal argument, the vector is NULL.");
-        exit(-3);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
+        exit(INVALID_ARG);
     }
 
     return list->count == 0;
@@ -428,8 +475,11 @@ int vectorIsEmpty(Vector *list) {
 
 void printVector(Vector *list, void (*printFun) (const void *)) {
     if (list == NULL) {
-        fprintf(stderr,"Illegal argument, the vector is NULL.");
-        exit(-3);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
+        exit(INVALID_ARG);
+    } else if (printFun == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "print function pointer", "vector data structure");
+        exit(INVALID_ARG);
     }
 
     for (int i = 0; i < vectorGetLength(list); i++)
@@ -450,8 +500,8 @@ void printVector(Vector *list, void (*printFun) (const void *)) {
 void clearVector(Vector *list) {
 
     if (list == NULL) {
-        fprintf(stderr,"Illegal argument, the vector is NULL.");
-        exit(-3);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
+        exit(INVALID_ARG);
     }
 
     for (int i = 0; i < vectorGetLength(list); i++)
