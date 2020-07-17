@@ -59,6 +59,7 @@ int main() {
     ArrayList *arrayList = dirGraphTopologicalSort(graph);
     for (int i = 0; i < arrayListGetLength(arrayList); i++)
         printf("%s\n", (char *) arrayListGet(arrayList, i));
+
     return 0;
 
 }
