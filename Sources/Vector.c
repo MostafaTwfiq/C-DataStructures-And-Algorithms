@@ -1,5 +1,5 @@
 #include "../Headers/Vector.h"
-
+#include "../Headers/Utils.h"
 
 
 /** This function will take the initial length of the vector, and the freeing and comparator functions as a parameter,
@@ -11,8 +11,23 @@
  */
 
 Vector *vectorInitialization(int initialLength, void (*freeFun)(void *), int (*comparator)(const void *, const void *)) {
+    if (freeFun == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "free function", "array list data structure");
+        exit(INVALID_ARG);
+    }
+
     Vector *list = (Vector *) malloc(sizeof(Vector));
+    if (list == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "data structure", "array list data structure");
+        exit(FAILED_ALLOCATION);
+    }
+
     list->arr = (void **) malloc(sizeof(void *) * initialLength);
+    if (list->arr == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "items memory", "array list data structure");
+        exit(FAILED_ALLOCATION);
+    }
+
     list->length = initialLength > 0 ? initialLength : 1;
     list->count = 0;
     list->freeItem = freeFun;

@@ -1,8 +1,6 @@
 #ifndef C_DATASTRUCTURES_VECTOR_H
 #define C_DATASTRUCTURES_VECTOR_H
 
-#include "Utils.h"
-
 #ifdef __cplusplus
 extern "C" {
 #endif

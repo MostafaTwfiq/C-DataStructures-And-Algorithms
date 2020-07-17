@@ -1,5 +1,6 @@
 #include "../Headers/ArrayList.h"
 #include "../Headers/Utils.h"
+#include <math.h>
 
 
 
@@ -59,7 +60,7 @@ void arrayListAdd(ArrayList *list, void *item) {
     }
 
     if (list->count == list->length) {
-        list->length *= 2;
+        list->length = (int) ceil(list->length * 1.5);
 
         list->arr = (void **) realloc(list->arr, sizeof(void *) * list->length);
         if (list == NULL) {
