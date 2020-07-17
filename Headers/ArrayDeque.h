@@ -33,9 +33,13 @@ void ArrayDequeInsertFront(ArrayDeque *arrayDeque, void *key);
 
 void ArrayDequeInsertRear(ArrayDeque *arrayDeque, void *key);
 
-void ArrayDequeDeleteFront(ArrayDeque *arrayDeque);
+void ArrayDequeDeleteFrontWithFree(ArrayDeque *arrayDeque);
 
-void ArrayDequeDeleteRear(ArrayDeque *arrayDeque);
+void ArrayDequeDeleteFrontWithoutFree(ArrayDeque *arrayDeque);
+
+void ArrayDequeDeleteRearWithFree(ArrayDeque *arrayDeque);
+
+void ArrayDequeDeleteRearWithoutFree(ArrayDeque *arrayDeque);
 
 uint16_t ArrayDequeIsEmpty(ArrayDeque *arrayDeque);
 

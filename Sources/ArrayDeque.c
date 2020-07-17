@@ -18,21 +18,27 @@ void arrayCopy(void **source, int32_t sourceIndex, void **destination, int32_t d
 ** @param ad Reference pointer to the ArrayDeque.
 **/
 void doubleSize(ArrayDeque* ad){
+    //THe length of the Deque
     uint32_t n = ArrayDequeLength(ad);
-
+    // The number of elements after the front
     uint32_t k = n-ad->front-1;
+    //the number of elements after the rear and including the starting point which is index Zero
     uint32_t r = ad->rear+1;
 
     ad->size = n * 2;
     void ** a = calloc(ad->size,sizeof(*ad->memory));
 
+    //Copy elements from the front to the end of the array
     arrayCopy(ad->memory,ad->front,a,ad->size-k-1,k+1);
+    //Copy elements from the start of the circular array to the rear's index
     arrayCopy(ad->memory,0,a,0,r);
     
     free(ad->memory);
 
     ad->memory = a;
+    //setting the new front with respect to the new size of the circular array
     ad->front = ad->size-k-1;
+    // the rear remains the same since it always increments from the start index zero.
 }
 
 /** Determines if a an Array Dequeue is full or not.
@@ -107,7 +113,27 @@ void ArrayDequeInsertRear(ArrayDeque* arrayDeque,void* key ) {
 /**  Decrements the Front pointer to the object.
  * @param arrayDeque Reference to preallocated Deque.
  **/
-void ArrayDequeDeleteFront(ArrayDeque* arrayDeque ) {
+void ArrayDequeDeleteFrontWithFree(ArrayDeque* arrayDeque ) {
+    if (ArrayDequeIsEmpty(arrayDeque)){
+        fprintf(stderr, "Queue Underflow\n");
+        return ;
+    }
+    if ( arrayDeque->front ==  arrayDeque->rear) {
+        arrayDeque->freeFn(arrayDeque->memory[0]);
+        arrayDeque->memory[0]=NULL;
+        arrayDeque->front = -1;
+        arrayDeque->rear = -1;
+    }
+    else {
+        arrayDeque->freeFn(arrayDeque->memory[arrayDeque->front]);
+        arrayDeque->memory[arrayDeque->front]=NULL;
+        if (arrayDeque->front == arrayDeque->size - 1)
+            arrayDeque->front = 0;
+        else
+            arrayDeque->front++;
+    }
+}
+void ArrayDequeDeleteFrontWithoutFree(ArrayDeque* arrayDeque ) {
     if (ArrayDequeIsEmpty(arrayDeque)){
         fprintf(stderr, "Queue Underflow\n");
         return ;
@@ -128,7 +154,27 @@ void ArrayDequeDeleteFront(ArrayDeque* arrayDeque ) {
 /** Decrements the Rear pointer to the object.
  * @param arrayDeque Reference to preallocated Deque.
  **/
-void ArrayDequeDeleteRear(ArrayDeque* arrayDeque ) {
+void ArrayDequeDeleteRearWithFree(ArrayDeque* arrayDeque ) {
+    if (ArrayDequeIsEmpty(arrayDeque)){
+        fprintf(stderr, "Queue Underflow\n");
+        return ;
+    }
+    if (arrayDeque->front == arrayDeque->rear){
+        arrayDeque->freeFn(arrayDeque->memory[0]);
+        arrayDeque->memory[0]=NULL;
+        arrayDeque->front = -1;
+        arrayDeque->rear = -1;
+    }
+    else if (arrayDeque->rear == 0) {
+        arrayDeque->rear = arrayDeque->size - 1;
+    }else{
+        arrayDeque->freeFn(arrayDeque->memory[arrayDeque->rear]);
+        arrayDeque->memory[arrayDeque->rear]=NULL;
+        arrayDeque->rear--;
+    }
+}
+
+void ArrayDequeDeleteRearWithoutFree(ArrayDeque* arrayDeque ) {
     if (ArrayDequeIsEmpty(arrayDeque)){
         fprintf(stderr, "Queue Underflow\n");
         return ;
