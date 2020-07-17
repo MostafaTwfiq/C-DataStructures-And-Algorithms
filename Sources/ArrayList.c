@@ -52,8 +52,8 @@ ArrayList *arrayListInitialization(int initialLength, void (*freeFun)(void *), i
 
 void arrayListAdd(ArrayList *list, void *item) {
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array list pointer", "array list data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
+        exit(NULL_POINTER);
     } else if (item == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "array list data structure");
         exit(INVALID_ARG);
@@ -87,8 +87,8 @@ void arrayListAdd(ArrayList *list, void *item) {
 
 void arrayListAddAll(ArrayList *list, void **array, int arrayLength) {
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array list pointer", "array list data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
+        exit(NULL_POINTER);
     } else if (array == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "items array", "array list data structure");
         exit(INVALID_ARG);
@@ -110,8 +110,8 @@ void arrayListAddAll(ArrayList *list, void **array, int arrayLength) {
 
 void arrayListRemove(ArrayList *list) {
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array list pointer", "array list data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
+        exit(NULL_POINTER);
     } else if (arrayListIsEmpty(list)) {
         fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "array list data structure");
         exit(EMPTY_DATA_STRUCTURE);
@@ -133,8 +133,8 @@ void arrayListRemove(ArrayList *list) {
 
 void arrayListRemoveWtFr(ArrayList *list) {
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array list pointer", "array list data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
+        exit(NULL_POINTER);
     } else if (arrayListIsEmpty(list)) {
         fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "array list data structure");
         exit(EMPTY_DATA_STRUCTURE);
@@ -157,8 +157,8 @@ void arrayListRemoveWtFr(ArrayList *list) {
 
 void arrayListRemoveAtIndex(ArrayList *list, int index) {
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array list pointer", "array list data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
+        exit(NULL_POINTER);
     } else if (index < 0 || index >= arrayListGetLength(list)) {
         fprintf(stderr, OUT_OF_RANGE_MESSAGE, "array list data structure");
         exit(OUT_OF_RANGE);
@@ -184,8 +184,8 @@ void arrayListRemoveAtIndex(ArrayList *list, int index) {
 
 void arrayListRemoveAtIndexWtFr(ArrayList *list, int index) {
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array list pointer", "array list data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
+        exit(NULL_POINTER);
     } else if (index < 0 || index >= arrayListGetLength(list)) {
         fprintf(stderr, OUT_OF_RANGE_MESSAGE, "array list data structure");
         exit(OUT_OF_RANGE);
@@ -216,8 +216,8 @@ void arrayListRemoveAtIndexWtFr(ArrayList *list, int index) {
 int arrayListContains(ArrayList *list, void *item) {
 
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array list pointer", "array list data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
+        exit(NULL_POINTER);
     } else if (item == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "array list data structure");
         exit(INVALID_ARG);
@@ -253,8 +253,8 @@ int arrayListContains(ArrayList *list, void *item) {
 int arrayListGetIndex(ArrayList *list, void *item) {
 
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array list pointer", "array list data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
+        exit(NULL_POINTER);
     } else if (item == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "array list data structure");
         exit(INVALID_ARG);
@@ -290,8 +290,8 @@ int arrayListGetIndex(ArrayList *list, void *item) {
 int arrayListGetLastIndex(ArrayList *list, void *item) {
 
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array list pointer", "array list data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
+        exit(NULL_POINTER);
     } else if (item == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "array list data structure");
         exit(INVALID_ARG);
@@ -325,8 +325,8 @@ int arrayListGetLastIndex(ArrayList *list, void *item) {
 
 void *arrayListGet(ArrayList *list, int index) {
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array list pointer", "array list data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
+        exit(NULL_POINTER);
     } else if (index < 0 || index >= arrayListGetLength(list)) {
         fprintf(stderr, OUT_OF_RANGE_MESSAGE, "array list data structure");
         exit(OUT_OF_RANGE);
@@ -348,8 +348,8 @@ void *arrayListGet(ArrayList *list, int index) {
 void **arrayListToArray(ArrayList *list) {
 
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array list pointer", "array list data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
+        exit(NULL_POINTER);
     }
 
     void **array = (void **) malloc(sizeof(void *) * arrayListGetLength(list));
@@ -379,8 +379,8 @@ void **arrayListToArray(ArrayList *list) {
 void **arrayListToSubArray(ArrayList *list, int start, int end) {
 
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array list pointer", "array list data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
+        exit(NULL_POINTER);
     } else if (start < 0 || end > arrayListGetLength(list) || start > end) {
         fprintf(stderr, OUT_OF_RANGE_MESSAGE, "array list data structure");
         exit(OUT_OF_RANGE);
@@ -415,8 +415,8 @@ void **arrayListToSubArray(ArrayList *list, int start, int end) {
 void arrayListSort(ArrayList *list) {
 
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array list pointer", "array list data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
+        exit(NULL_POINTER);
     } else if (list->comparator == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "comparator function", "array list data structure");
         exit(NULL_POINTER);
@@ -440,8 +440,8 @@ void arrayListSort(ArrayList *list) {
 int arrayListGetLength(ArrayList *list) {
 
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array list pointer", "array list data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
+        exit(NULL_POINTER);
     }
 
     return list->count;
@@ -461,8 +461,8 @@ int arrayListGetLength(ArrayList *list) {
 int arrayListIsEmpty(ArrayList *list) {
 
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array list pointer", "array list data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
+        exit(NULL_POINTER);
     }
 
     return list->count == 0;
@@ -480,8 +480,8 @@ int arrayListIsEmpty(ArrayList *list) {
 
 void printArrayList(ArrayList *list, void (*printFun) (const void *)) {
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array list pointer", "array list data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
+        exit(NULL_POINTER);
     } else if (printFun == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "print function pointer", "array list data structure");
         exit(INVALID_ARG);
@@ -505,8 +505,8 @@ void printArrayList(ArrayList *list, void (*printFun) (const void *)) {
 void clearArrayList(ArrayList *list) {
 
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array list pointer", "array list data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "array list pointer", "array list data structure");
+        exit(NULL_POINTER);
     }
 
     for (int i = 0; i < arrayListGetLength(list); i++)

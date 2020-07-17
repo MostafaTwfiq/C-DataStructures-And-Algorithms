@@ -43,20 +43,6 @@ void freeDGraphNode(void *node) {
 
 
 
-/** Comparing values function address.
- * @param val1 the first value address
- * @param s1 the first value size in bytes
- * @param val2 the second value address
- * @param s2 the second value size in bytes
- * @return it will return zero (0) if the two value are equal
- */
-
-//int (*valueCompFun)(const void *val1, const void *val2);
-
-
-
-
-
 
 
 /** Comparing two nodes values function.
@@ -91,6 +77,14 @@ DirectedGraph *directedGraphInitialization(
         void (*freeValue)(void *),
         int (*valueComp)(const void *, const void *)
         ) {
+
+    if (freeValue == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "free function", "directed graph data structure");
+        exit(NULL_POINTER);
+    } else if (valueComp == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "comparator function", "directed graph data structure");
+        exit(NULL_POINTER);
+    }
 
     DirectedGraph *directedGraph = (DirectedGraph *) malloc(sizeof(DirectedGraph));
 

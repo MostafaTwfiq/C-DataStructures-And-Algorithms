@@ -17,7 +17,7 @@
 Vector *vectorInitialization(int initialLength, void (*freeFun)(void *), int (*comparator)(const void *, const void *)) {
     if (freeFun == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "free function", "vector data structure");
-        exit(INVALID_ARG);
+        exit(NULL);
     }
 
     Vector *list = (Vector *) malloc(sizeof(Vector));
@@ -52,8 +52,8 @@ Vector *vectorInitialization(int initialLength, void (*freeFun)(void *), int (*c
 void vectorAdd(Vector *list, void *item) {
 
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
+        exit(NULL_POINTER);
     } else if (item == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "vector data structure");
         exit(INVALID_ARG);
@@ -87,8 +87,8 @@ void vectorAdd(Vector *list, void *item) {
 
 void vectorAddAll(Vector *list, void **array, int arrayLength) {
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
+        exit(NULL_POINTER);
     } else if (array == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "items array", "vector data structure");
         exit(INVALID_ARG);
@@ -110,8 +110,8 @@ void vectorAddAll(Vector *list, void **array, int arrayLength) {
 
 void vectorRemove(Vector *list) {
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
+        exit(NULL_POINTER);
     } else if (vectorIsEmpty(list)) {
         fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "vector data structure");
         exit(EMPTY_DATA_STRUCTURE);
@@ -133,8 +133,8 @@ void vectorRemove(Vector *list) {
 
 void vectorRemoveWtFr(Vector *list) {
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
+        exit(NULL_POINTER);
     } else if (vectorIsEmpty(list)) {
         fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "vector data structure");
         exit(EMPTY_DATA_STRUCTURE);
@@ -157,8 +157,8 @@ void vectorRemoveWtFr(Vector *list) {
 
 void vectorRemoveAtIndex(Vector *list, int index) {
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
+        exit(NULL_POINTER);
     } else if (index < 0 || index >= vectorGetLength(list)) {
         fprintf(stderr, OUT_OF_RANGE_MESSAGE, "vector data structure");
         exit(OUT_OF_RANGE);
@@ -184,8 +184,8 @@ void vectorRemoveAtIndex(Vector *list, int index) {
 
 void vectorRemoveAtIndexWtFr(Vector *list, int index) {
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
+        exit(NULL_POINTER);
     } else if (index < 0 || index >= vectorGetLength(list)) {
         fprintf(stderr, OUT_OF_RANGE_MESSAGE, "vector data structure");
         exit(OUT_OF_RANGE);
@@ -216,8 +216,8 @@ void vectorRemoveAtIndexWtFr(Vector *list, int index) {
 int vectorContains(Vector *list, void *item) {
 
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
+        exit(NULL_POINTER);
     } else if (item == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "vector data structure");
         exit(INVALID_ARG);
@@ -253,8 +253,8 @@ int vectorContains(Vector *list, void *item) {
 int vectorGetIndex(Vector *list, void *item) {
 
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
+        exit(NULL_POINTER);
     } else if (item == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "vector data structure");
         exit(INVALID_ARG);
@@ -290,8 +290,8 @@ int vectorGetIndex(Vector *list, void *item) {
 int vectorGetLastIndex(Vector *list, void *item) {
 
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
+        exit(NULL_POINTER);
     } else if (item == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "vector data structure");
         exit(INVALID_ARG);
@@ -325,8 +325,8 @@ int vectorGetLastIndex(Vector *list, void *item) {
 
 void *vectorGet(Vector *list, int index) {
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
+        exit(NULL_POINTER);
     } else if (index < 0 || index >= vectorGetLength(list)) {
         fprintf(stderr, OUT_OF_RANGE_MESSAGE, "vector data structure");
         exit(OUT_OF_RANGE);
@@ -348,8 +348,8 @@ void *vectorGet(Vector *list, int index) {
 void **vectorToArray(Vector *list) {
 
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
+        exit(NULL_POINTER);
     }
 
     void **array = (void **) malloc(sizeof(void *) * vectorGetLength(list));
@@ -379,8 +379,8 @@ void **vectorToArray(Vector *list) {
 void **vectorToSubArray(Vector *list, int start, int end) {
 
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
+        exit(NULL_POINTER);
     } else if (start < 0 || end > vectorGetLength(list) || start > end) {
         fprintf(stderr, OUT_OF_RANGE_MESSAGE, "vector data structure");
         exit(OUT_OF_RANGE);
@@ -414,8 +414,8 @@ void **vectorToSubArray(Vector *list, int start, int end) {
 
 void vectorSort(Vector *list) {
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
+        exit(NULL_POINTER);
     } else if (list->comparator == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "comparator function", "vector data structure");
         exit(NULL_POINTER);
@@ -439,8 +439,8 @@ void vectorSort(Vector *list) {
 int vectorGetLength(Vector *list) {
 
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
+        exit(NULL_POINTER);
     }
 
     return list->count;
@@ -460,8 +460,8 @@ int vectorGetLength(Vector *list) {
 int vectorIsEmpty(Vector *list) {
 
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
+        exit(NULL_POINTER);
     }
 
     return list->count == 0;
@@ -479,8 +479,8 @@ int vectorIsEmpty(Vector *list) {
 
 void printVector(Vector *list, void (*printFun) (const void *)) {
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
+        exit(NULL_POINTER);
     } else if (printFun == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "print function pointer", "vector data structure");
         exit(INVALID_ARG);
@@ -504,8 +504,8 @@ void printVector(Vector *list, void (*printFun) (const void *)) {
 void clearVector(Vector *list) {
 
     if (list == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "vector pointer", "vector data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
+        exit(NULL_POINTER);
     }
 
     for (int i = 0; i < vectorGetLength(list); i++)

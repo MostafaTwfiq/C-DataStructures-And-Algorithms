@@ -56,14 +56,14 @@ ArrayQueue* arrayQueueInitialization(void (*freeItem)(void *)) {
 void arrayQueueEnqueue(ArrayQueue* arrayQueue, void *data) {
 
     if (arrayQueue == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "queue pointer", "array queue data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "array queue data structure");
+        exit(NULL_POINTER);
     } else if (data == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "data pointer", "array queue data structure");
         exit(INVALID_ARG);
     }
 
-    if(arrayQueue->allocated ==  arrayQueue->rear){
+    if(arrayQueue->allocated ==  arrayQueue->rear) {
         arrayQueue->allocated *= 2;
         void **tempArr = (void **) malloc(sizeof(void *) * arrayQueue->allocated);
         if (tempArr == NULL) {
@@ -97,8 +97,8 @@ void arrayQueueEnqueue(ArrayQueue* arrayQueue, void *data) {
 
 void* arrayQueueDequeue(ArrayQueue* arrayQueue) {
     if (arrayQueue == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "queue pointer", "array queue data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "array queue data structure");
+        exit(NULL_POINTER);
     } else if (arrayQueueIsEmpty(arrayQueue)) {
         fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "array queue data structure");
         exit(EMPTY_DATA_STRUCTURE);
@@ -122,8 +122,8 @@ void* arrayQueueDequeue(ArrayQueue* arrayQueue) {
 
 void arrayQueueDisplay(ArrayQueue* arrayQueue, void (*fptr)(void *)) {
     if (arrayQueue == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "queue pointer", "array queue data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "array queue data structure");
+        exit(NULL_POINTER);
     } else if (fptr) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "printf function pointer", "array queue data structure");
         exit(INVALID_ARG);
@@ -167,8 +167,8 @@ void arrayQueueDestroy(ArrayQueue* arrayQueue) {
 
 void arrayQueueClear(ArrayQueue* arrayQueue) {
     if (arrayQueue == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "queue pointer", "array queue data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "array queue data structure");
+        exit(NULL_POINTER);
     }
 
 
@@ -195,8 +195,8 @@ void arrayQueueClear(ArrayQueue* arrayQueue) {
 
  short arrayQueueIsEmpty(ArrayQueue * arrayQueue) {
     if (arrayQueue == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "queue pointer", "array queue data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "array queue data structure");
+        exit(NULL_POINTER);
     }
 
     return (short ) (arrayQueue->rear == arrayQueue->front);
@@ -217,8 +217,8 @@ void arrayQueueClear(ArrayQueue* arrayQueue) {
 
 uint32_t arrayQueueGetLength(ArrayQueue * arrayQueue){
     if (arrayQueue == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "queue pointer", "array queue data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "array queue data structure");
+        exit(NULL_POINTER);
     }
 
     return arrayQueue->rear - arrayQueue->front;
@@ -241,8 +241,8 @@ uint32_t arrayQueueGetLength(ArrayQueue * arrayQueue){
 void arrayQueueEnqueueAll(ArrayQueue * arrayQueue, void **arr, int arrLength) {
 
     if (arrayQueue == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "queue pointer", "array queue data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "array queue data structure");
+        exit(NULL_POINTER);
     } else if (arr == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "items array", "array queue data structure");
         exit(INVALID_ARG);
@@ -268,8 +268,8 @@ void arrayQueueEnqueueAll(ArrayQueue * arrayQueue, void **arr, int arrLength) {
 
 void *arrayQueuePeek(ArrayQueue * arrayQueue) {
     if (arrayQueue == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "queue pointer", "array queue data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "array queue data structure");
+        exit(NULL_POINTER);
     }
 
     return arrayQueue->memory[arrayQueue->front];
@@ -290,8 +290,8 @@ void *arrayQueuePeek(ArrayQueue * arrayQueue) {
 
 void **arrayQueueToArray(ArrayQueue * arrayQueue){
     if (arrayQueue == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "queue pointer", "array queue data structure");
-        exit(INVALID_ARG);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "array queue data structure");
+        exit(NULL_POINTER);
     }
 
     void **array = (void **) malloc(sizeof(void *) * arrayQueueGetLength(arrayQueue));
