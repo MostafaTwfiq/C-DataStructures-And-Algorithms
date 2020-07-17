@@ -41,7 +41,9 @@ typedef struct BinaryTree {
 } BinaryTree;
 
 
-void DeleteBinaryTreeNode(BinaryTree *binaryTree, void *key);
+void DeleteBinaryTreeNodeWithFree(BinaryTree *binaryTree, void *key);
+
+void DeleteBinaryTreeNodeWithoutFree(BinaryTree *binaryTree, void *key);
 
 int BinaryTreeGetMinSteps(BinaryTreeNode *node);
 

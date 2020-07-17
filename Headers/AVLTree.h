@@ -52,7 +52,9 @@ typedef struct AVLTree {
 } AVLTree;
 
 
-void AVLTreeDeleteNode(AVLTree *avlTree, void *key);
+void AVLTreeDeleteNodeWithFree(AVLTree *avlTree, void *key);
+
+void AVLTreeDeleteNodeWithoutFree(AVLTree *avlTree, void *key);
 
 int32_t AVLTreeGetMinSteps(AVLTreeNode *node);
 

@@ -455,22 +455,78 @@ AVLTreeNode *AVLTreeSearch(AVLTree *avlTree, AVLTreeNode *node, char *key){
 * @param key Key object to add to the AVLTree.
 * @return Returns the new root node of the AVL Tree.
 **/
-AVLTreeNode* AVLTreeDeleteNodeWrapper(AVLTree *avlTree, AVLTreeNode* root, void *key) {
+AVLTreeNode* AVLTreeDeleteNodeWithFreeWrapper(AVLTree *avlTree, AVLTreeNode* root, void *key) {
     if(root==NULL) return root;
-    if ((avlTree->cmp)(key ,root->key)<0) 		    root->left = AVLTreeDeleteNodeWrapper(avlTree, root->left, key);
-    else if ((avlTree->cmp)(key ,root->key)>0)  	root->right = AVLTreeDeleteNodeWrapper(avlTree, root->right, key);
+    if ((avlTree->cmp)(key ,root->key)<0) 		    root->left = AVLTreeDeleteNodeWithFreeWrapper(avlTree, root->left,
+                                                                                                   key);
+    else if ((avlTree->cmp)(key ,root->key)>0)  	root->right = AVLTreeDeleteNodeWithFreeWrapper(avlTree, root->right,
+                                                                                                 key);
     else {
         if( (root->left == NULL) ||(root->right == NULL) ){
             AVLTreeNode *temp = root->left ? root->left : root->right;
             if (temp == NULL) {
                 temp =root;
                 root=NULL;
-            }else {*root = *temp;}
+                avlTree->freeFn(temp->key);
+            }else {
+                AVLTreeNode * old = root;
+                root = temp;
+                avlTree->freeFn(old->key);
+            }
+        }
+        else {
+            AVLTreeNode* temp = AVLTreeMinValueNode(root->right);
+            avlTree->freeFn(root->key);
+            root->key= temp->key;
+            root->right = AVLTreeDeleteNodeWithFreeWrapper(avlTree, root->right, temp->key);
+        }
+        avlTree->nodeCount--;
+    }
+    if(root==NULL) return root;
+    root->height = 1 + max(height(root->left),height(root->right));
+    int balance = AVLGetBalance(root);
+
+    //Left Left Case
+    if(balance > 1 && AVLGetBalance(root->left) >= 0)   return AVLRightRotate(root);
+
+    // Right Right Case
+    if(balance < -1 && AVLGetBalance(root->right) <= 0)	return AVLLeftRotate(root);
+
+    // Left Right Case
+    if(balance > 1 && AVLGetBalance(root->left) < 0)	{
+        root->left = AVLLeftRotate(root->left);
+        return AVLRightRotate(root);
+    }
+
+    //Right Left Case
+    if(balance < -1 && AVLGetBalance(root->right) > 0) {
+        root->right = AVLRightRotate(root->right);
+        return AVLLeftRotate(root);
+    }
+    return root;
+}
+
+
+AVLTreeNode* AVLTreeDeleteNodeWithoutFreeWrapper(AVLTree *avlTree, AVLTreeNode* root, void *key) {
+    if(root==NULL) return root;
+    if ((avlTree->cmp)(key ,root->key)<0) 		    root->left = AVLTreeDeleteNodeWithoutFreeWrapper(avlTree, root->left,
+                                                                                                   key);
+    else if ((avlTree->cmp)(key ,root->key)>0)  	root->right = AVLTreeDeleteNodeWithoutFreeWrapper(avlTree, root->right,
+                                                                                                 key);
+    else {
+        if( (root->left == NULL) ||(root->right == NULL) ){
+            AVLTreeNode *temp = root->left ? root->left : root->right;
+            if (temp == NULL) {
+                temp =root;
+                root=NULL;
+            }else {
+                root = temp;
+            }
         }
         else {
             AVLTreeNode* temp = AVLTreeMinValueNode(root->right);
             root->key= temp->key;
-            root->right = AVLTreeDeleteNodeWrapper(avlTree, root->right, temp->key);
+            root->right = AVLTreeDeleteNodeWithFreeWrapper(avlTree, root->right, temp->key);
         }
         avlTree->nodeCount--;
     }
@@ -501,10 +557,13 @@ AVLTreeNode* AVLTreeDeleteNodeWrapper(AVLTree *avlTree, AVLTreeNode* root, void 
 ///
 /// \param avlTree
 /// \param key
-void AVLTreeDeleteNode(AVLTree *avlTree, void *key) {
-    avlTree->root = AVLTreeDeleteNodeWrapper(avlTree,avlTree->root,key);
+void AVLTreeDeleteNodeWithFree(AVLTree *avlTree, void *key) {
+    avlTree->root = AVLTreeDeleteNodeWithFreeWrapper(avlTree, avlTree->root, key);
 }
 
+void AVLTreeDeleteNodeWithoutFree(AVLTree *avlTree, void *key) {
+    avlTree->root = AVLTreeDeleteNodeWithoutFreeWrapper(avlTree, avlTree->root, key);
+}
 
 /** Adds an array of void pointers to elements of the same type as the nodes of the tree.
 * @param avlTree Reference to the AVL tree.

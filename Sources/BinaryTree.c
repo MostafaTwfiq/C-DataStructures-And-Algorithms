@@ -7,8 +7,8 @@ void BinaryTreeToArrayRecurs(BinaryTreeNode* node , void **arr, int *i,int size 
 BinaryTreeNode* newBinaryTreeNode(void* key);
 void BinaryTreeGetMaxStepsRecurs(BinaryTreeNode * node, int * steps);
 void BinaryTreeGetMinStepsRecurs(BinaryTreeNode * node, int * steps);
-BinaryTreeNode* DeleteBinaryTreeNodeWrapper(BinaryTree *binaryTree, BinaryTreeNode* root, void *key);
-
+BinaryTreeNode* DeleteBinaryTreeNodeWithFreeWrapper(BinaryTree *binaryTree, BinaryTreeNode* root, void *key);
+BinaryTreeNode* DeleteBinaryTreeNodeWithoutFreeWrapper(BinaryTree *binaryTree, BinaryTreeNode* root, void *key);
 /** Prints the Tree Statistics:
   - Number of Nodes,
   - Height,
@@ -344,8 +344,15 @@ BinaryTreeNode* BinaryTreeSearch(BinaryTree* binaryTree, void * key){
 ///
 /// \param binaryTree
 /// \param key
-void DeleteBinaryTreeNode(BinaryTree *binaryTree, void *key) {
-    binaryTree->root = DeleteBinaryTreeNodeWrapper(binaryTree,binaryTree->root,key);
+void DeleteBinaryTreeNodeWithFree(BinaryTree *binaryTree, void *key) {
+    binaryTree->root = DeleteBinaryTreeNodeWithFreeWrapper(binaryTree, binaryTree->root, key);
+}
+
+///
+/// \param binaryTree
+/// \param key
+void DeleteBinaryTreeNodeWithoutFree(BinaryTree *binaryTree, void *key) {
+    binaryTree->root = DeleteBinaryTreeNodeWithoutFreeWrapper(binaryTree, binaryTree->root, key);
 }
 
 /** Given a Tree and it's root deletes a key with the same key and restores the tree order then returns the new node.
@@ -354,22 +361,56 @@ void DeleteBinaryTreeNode(BinaryTree *binaryTree, void *key) {
 * @param key Key object to add to the Binary Tree.
 * @return Returns the new root node of the Binary Tree.
 **/
-BinaryTreeNode* DeleteBinaryTreeNodeWrapper(BinaryTree *binaryTree, BinaryTreeNode* root, void *key) {
+BinaryTreeNode* DeleteBinaryTreeNodeWithFreeWrapper(BinaryTree *binaryTree, BinaryTreeNode* root, void *key) {
     if(root==NULL) return root;
-    if ((binaryTree->cmp)(key ,root->key)<0) 		root->left = DeleteBinaryTreeNodeWrapper(binaryTree, root->left, key);
-    else if ((binaryTree->cmp)(key ,root->key)>0)  	root->right = DeleteBinaryTreeNodeWrapper(binaryTree, root->right, key);
+    if ((binaryTree->cmp)(key ,root->key)<0) 		root->left = DeleteBinaryTreeNodeWithFreeWrapper(binaryTree,
+                                                                                                     root->left, key);
+    else if ((binaryTree->cmp)(key ,root->key)>0)  	root->right = DeleteBinaryTreeNodeWithFreeWrapper(binaryTree,
+                                                                                                       root->right, key);
     else {
         if( (root->left == NULL) ||(root->right == NULL) ){
             BinaryTreeNode *temp = root->left ? root->left : root->right;
             if (temp == NULL) {
                 temp =root;
                 root=NULL;
-            }else {*root = *temp;}
+                binaryTree->freeFn(temp->key);
+            }else {
+                BinaryTreeNode * old = root;
+                root = temp;
+                binaryTree->freeFn(old->key);
+            }
+        }
+        else {
+            BinaryTreeNode* temp = BinaryTreeMinValueNode(root->right);
+            binaryTree->freeFn(root->key);
+            root->key   = temp->key;
+            root->right = DeleteBinaryTreeNodeWithFreeWrapper(binaryTree, root->right, temp->key);
+        }
+        binaryTree->nodeCount--;
+    }
+    return root;
+}
+
+BinaryTreeNode* DeleteBinaryTreeNodeWithoutFreeWrapper(BinaryTree *binaryTree, BinaryTreeNode* root, void *key) {
+    if(root==NULL) return root;
+    if ((binaryTree->cmp)(key ,root->key)<0) 		root->left = DeleteBinaryTreeNodeWithoutFreeWrapper(binaryTree,
+                                                                                                     root->left, key);
+    else if ((binaryTree->cmp)(key ,root->key)>0)  	root->right = DeleteBinaryTreeNodeWithoutFreeWrapper(binaryTree,
+                                                                                                       root->right, key);
+    else {
+        if( (root->left == NULL) ||(root->right == NULL) ){
+            BinaryTreeNode *temp = root->left ? root->left : root->right;
+            if (temp == NULL) {
+                temp =root;
+                root=NULL;
+            }else {
+                *root = *temp;
+            }
         }
         else {
             BinaryTreeNode* temp = BinaryTreeMinValueNode(root->right);
             root->key= temp->key;
-            root->right = DeleteBinaryTreeNodeWrapper(binaryTree, root->right, temp->key);
+            root->right = DeleteBinaryTreeNodeWithoutFreeWrapper(binaryTree, root->right, temp->key);
         }
         binaryTree->nodeCount--;
     }
