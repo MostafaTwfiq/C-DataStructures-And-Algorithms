@@ -1,14 +1,12 @@
 #ifndef C_DATASTRUCTURES_LINKEDLISTQUEUE_H
 #define C_DATASTRUCTURES_LINKEDLISTQUEUE_H
 
-#include "LinkedList.h"
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 typedef struct LinkedListQueue {
-    LinkedList *linkedList;
+    struct LinkedList *linkedList;
 } LinkedListQueue;
 
 LinkedListQueue *linkedListQueueInitialization(void (*freeFun)(void *));

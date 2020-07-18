@@ -1,5 +1,6 @@
 #include "../Headers/LinkedListQueue.h"
 #include "../Headers/Utils.h"
+#include "../Headers/LinkedList.h"
 
 
 
@@ -11,8 +12,15 @@
  */
 
 LinkedListQueue *linkedListQueueInitialization(void (*freeFun)(void *)) {
+    if (freeFun == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "linked list queue data structure");
+        exit(INVALID_ARG);
+    }
 
     LinkedListQueue *queue = (LinkedListQueue *) malloc(sizeof(LinkedListQueue));
+    if (queue == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "queue", "linked list queue data structure");
+    }
 
     queue->linkedList = linkedListInitialization(freeFun, NULL);
 
@@ -31,8 +39,11 @@ LinkedListQueue *linkedListQueueInitialization(void (*freeFun)(void *)) {
 void lLQueueEnqueue(LinkedListQueue *queue, void *item) {
 
     if (queue == NULL) {
-        fprintf(stderr,"Illegal argument, the queue is NULL.");
-        exit(-4);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "linked list queue data structure");
+        exit(NULL_POINTER);
+    } else if (item == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "linked list queue data structure");
+        exit(INVALID_ARG);
     }
 
     linkedListAddLast(queue->linkedList, item);
@@ -51,8 +62,11 @@ void lLQueueEnqueue(LinkedListQueue *queue, void *item) {
 
 void lLQueueEnqueueAll(LinkedListQueue *queue, void **arr, int arrLength) {
     if (queue == NULL) {
-        fprintf(stderr,"Illegal argument, the queue is NULL.");
-        exit(-4);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "linked list queue data structure");
+        exit(NULL_POINTER);
+    } else if (arr == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "items array pointer", "linked list queue data structure");
+        exit(INVALID_ARG);
     }
 
     for (int i = 0; i < arrLength; i++)
@@ -75,11 +89,11 @@ void lLQueueEnqueueAll(LinkedListQueue *queue, void **arr, int arrLength) {
 void *lLQueueDequeue(LinkedListQueue *queue) {
 
     if (queue == NULL) {
-        fprintf(stderr,"Illegal argument, the queue is NULL.");
-        exit(-4);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "linked list queue data structure");
+        exit(NULL_POINTER);
     } else if (lLQueueIsEmpty(queue)) {
-        fprintf(stderr,"Illegal state, the queue is empty.");
-        exit(-4);
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "linked list queue data structure");
+        exit(EMPTY_DATA_STRUCTURE);
     }
 
     void *item = linkedListGetFirst(queue->linkedList);
@@ -102,11 +116,11 @@ void *lLQueueDequeue(LinkedListQueue *queue) {
 void *lLQueuePeek(LinkedListQueue *queue) {
 
     if (queue == NULL) {
-        fprintf(stderr,"Illegal argument, the queue is NULL.");
-        exit(-4);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "linked list queue data structure");
+        exit(NULL_POINTER);
     } else if (lLQueueIsEmpty(queue)) {
-        fprintf(stderr,"Illegal state, the queue is empty.");
-        exit(-4);
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "linked list queue data structure");
+        exit(EMPTY_DATA_STRUCTURE);
     }
 
     void *item = linkedListGetFirst(queue->linkedList);
@@ -128,8 +142,8 @@ void *lLQueuePeek(LinkedListQueue *queue) {
 
 int lLQueueGetLength(LinkedListQueue *queue) {
     if (queue == NULL) {
-        fprintf(stderr,"Illegal argument, the queue is NULL.");
-        exit(-4);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "linked list queue data structure");
+        exit(NULL_POINTER);
     }
 
     return linkedListGetLength(queue->linkedList);
@@ -149,8 +163,8 @@ int lLQueueGetLength(LinkedListQueue *queue) {
 int lLQueueIsEmpty(LinkedListQueue *queue) {
 
     if (queue == NULL) {
-        fprintf(stderr,"Illegal argument, the queue is NULL.");
-        exit(-4);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "linked list queue data structure");
+        exit(NULL_POINTER);
     }
 
     return linkedListIsEmpty(queue->linkedList);
@@ -170,8 +184,8 @@ int lLQueueIsEmpty(LinkedListQueue *queue) {
 void **lLQueueToArray(LinkedListQueue *queue) {
 
     if (queue == NULL) {
-        fprintf(stderr,"Illegal argument, the queue is NULL.");
-        exit(-4);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "linked list queue data structure");
+        exit(NULL_POINTER);
     }
 
     return linkedListToArray(queue->linkedList);
@@ -186,8 +200,8 @@ void **lLQueueToArray(LinkedListQueue *queue) {
 void clearLLQueue(LinkedListQueue *queue) {
 
     if (queue == NULL) {
-        fprintf(stderr,"Illegal argument, the queue is NULL.");
-        exit(-4);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "linked list queue data structure");
+        exit(NULL_POINTER);
     }
 
     linkedListClear(queue->linkedList);
@@ -204,8 +218,8 @@ void clearLLQueue(LinkedListQueue *queue) {
 void destroyLLQueue(LinkedListQueue *queue) {
 
     if (queue == NULL) {
-        fprintf(stderr,"Illegal argument, the queue is NULL.");
-        exit(-4);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "linked list queue data structure");
+        exit(NULL_POINTER);
     }
 
     destroyLinkedList(queue->linkedList);
