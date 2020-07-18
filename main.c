@@ -53,10 +53,12 @@ int main() {
 
     dirGraphAddEdge(graph, "Mostafa", strlen("Mostafa") + 1, "Mohammed", strlen("Mohammed") + 1);
     dirGraphAddEdge(graph, "Mohammed", strlen("Mohammed") + 1, "Tawfiq", strlen("Tawfiq") + 1);
-    dirGraphAddEdge(graph, "Mostafa", strlen("Mostafa") + 1, "Tawfiq", strlen("Tawfiq") + 1);
+    dirGraphAddEdge(graph, "Tawfiq", strlen("Tawfiq") + 1, "Mostafa", strlen("Mostafa") + 1);
 
+    //Mostafa --> Mohammed --> Tawfiq
+    //Mostafa ---------------> Tawfiq
 
-    printf("%d\n\n", dirGraphHasACycle(graph, "Tawfiq", strlen("Mostafa") + 1));
+    printf("%d\n\n", dirGraphHasACycle(graph));
     ArrayList *arrayList = dirGraphTopologicalSort(graph);
     for (int i = 0; i < arrayListGetLength(arrayList); i++)
         printf("%s\n", (char *) arrayListGet(arrayList, i));

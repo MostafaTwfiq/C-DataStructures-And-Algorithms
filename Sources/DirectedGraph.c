@@ -11,7 +11,7 @@
 
 
 void dirGraphTopologicalSortR(DirGraphNode *node, HashSet *visitedNodes, Stack *sortStack);
-int dirGraphHasACycleR(DirGraphNode *node, HashSet *visitedNodes);
+int dirGraphNodePartOfCycleR(DirGraphNode *node, HashSet *visitedNodes);
 
 
 
@@ -787,7 +787,7 @@ void dirGraphTopologicalSortR(DirGraphNode *node, HashSet *visitedNodes, Stack *
  * @return it will return one if the node is a part of a cycle, other wise it will return zero
  */
 
-int dirGraphHasACycle(DirectedGraph *graph, void *startValue, int sizeOfValue) {
+int dirGraphNodePartOfCycle(DirectedGraph *graph, void *startValue, int sizeOfValue) {
 
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
@@ -802,7 +802,7 @@ int dirGraphHasACycle(DirectedGraph *graph, void *startValue, int sizeOfValue) {
         return 0;
 
     HashSet *visitedNodes = hashSetInitialization(freeInt, compInt);
-    int cycleFlag = dirGraphHasACycleR(startNode, visitedNodes);
+    int cycleFlag = dirGraphNodePartOfCycleR(startNode, visitedNodes);
 
     destroyHashSet(visitedNodes);
 
@@ -824,7 +824,7 @@ int dirGraphHasACycle(DirectedGraph *graph, void *startValue, int sizeOfValue) {
  * @return it will return one if there was a cycle, other wise it will return zero
  */
 
-int dirGraphHasACycleR(DirGraphNode *node, HashSet *visitedNodes) {
+int dirGraphNodePartOfCycleR(DirGraphNode *node, HashSet *visitedNodes) {
     int *nodeValueAddress = (int *) malloc(sizeof(int));
     *nodeValueAddress = (int) node->value;
 
@@ -836,12 +836,55 @@ int dirGraphHasACycleR(DirGraphNode *node, HashSet *visitedNodes) {
     hashSetInsert(visitedNodes, nodeValueAddress, sizeof(int));
 
     for (int i = 0; i < arrayListGetLength(node->adjacentNodes); i++) {
-        int cycleFlag = dirGraphHasACycleR(arrayListGet(node->adjacentNodes, i), visitedNodes);
-        if (cycleFlag == 1)
+
+        if (dirGraphNodePartOfCycleR(arrayListGet(node->adjacentNodes, i), visitedNodes))
             return 1;
 
     }
 
+    hashSetDelete(visitedNodes, nodeValueAddress, sizeof(int));
+
+
+    return 0;
+
+}
+
+
+
+
+
+
+
+/** This function will check if the is a cycle in the graph,
+ * and if it was the function will return one (1) other wise it will return zero (0).
+ * @param graph the directed graph address
+ * @return it will return one if the graph has a cycle, other wise it will return zero
+ */
+
+int dirGraphHasACycle(DirectedGraph *graph) {
+
+    if (graph == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
+        exit(NULL_POINTER);
+    }
+
+
+    DirGraphNode **hashMapNodes = (DirGraphNode **) hashMapToArray(graph->nodes);
+    HashSet *visitedNodes = hashSetInitialization(freeInt, compInt);
+
+    for (int i = 0; i < hashMapGetLength(graph->nodes); i++) {
+
+        if (dirGraphNodePartOfCycleR(hashMapNodes[i], visitedNodes)) {
+            destroyHashSet(visitedNodes);
+            free(hashMapNodes);
+            return 1;
+        }
+
+    }
+
+
+    destroyHashSet(visitedNodes);
+    free(hashMapNodes);
 
     return 0;
 
