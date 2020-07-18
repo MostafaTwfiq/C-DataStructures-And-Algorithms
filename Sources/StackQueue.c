@@ -1,4 +1,6 @@
 #include "../Headers/StackQueue.h"
+#include "../Headers/Stack.h"
+#include "../Headers/Utils.h"
 
 
 
@@ -16,7 +18,16 @@ void transferItemsToSecondStack(Stack *fStack, Stack *sStack);
  */
 
 SQueue *stackQueueInitialization(void (*freeItem)(void *)) {
+    if (freeItem == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "stack queue data structure");
+        exit(INVALID_ARG);
+    }
+
     SQueue *queue = (SQueue *) malloc(sizeof(SQueue));
+    if (queue == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "queue", "stack queue data structure");
+        exit(FAILED_ALLOCATION);
+    }
 
     queue->fStack = stackInitialization(freeItem);
     queue->sStack = stackInitialization(freeItem);
@@ -36,8 +47,11 @@ SQueue *stackQueueInitialization(void (*freeItem)(void *)) {
 
 void sQueueEnqueue(SQueue *queue, void *item) {
     if(queue == NULL) {
-        fprintf( stderr , "Illegal argument, queue is null." );
-        exit( NULL_POINTER );
+        fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
+        exit(NULL_POINTER);
+    } else if (item == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "stack queue data structure");
+        exit(INVALID_ARG);
     }
 
     pushStack(queue->fStack, item);
@@ -57,10 +71,12 @@ void sQueueEnqueue(SQueue *queue, void *item) {
 
 void sQueueAddAll(SQueue *queue, void **items, int itemsLength) {
     if(queue == NULL) {
-        fprintf( stderr , "Illegal argument, queue is null." );
-        exit( NULL_POINTER );
-    } else if (items == NULL)
-        return;
+        fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
+        exit(NULL_POINTER);
+    } else if (items == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "items array pointer", "stack queue data structure");
+        exit(INVALID_ARG);
+    }
 
     for (int i = 0; i < itemsLength; i++)
         pushStack(queue->fStack, items[i]);
@@ -79,11 +95,11 @@ void sQueueAddAll(SQueue *queue, void **items, int itemsLength) {
 
 void *sQueueDequeue(SQueue *queue) {
     if(queue == NULL) {
-        fprintf( stderr , "Illegal argument, queue is null." );
-        exit( NULL_POINTER );
+        fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
+        exit(NULL_POINTER);
     } else if (sQueueIsEmpty(queue)) {
-        fprintf( stderr , "queue is empty." );
-        exit(-3);
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "stack queue data structure");
+        exit(EMPTY_DATA_STRUCTURE);
     }
 
     if (isEmptyStack(queue->sStack))
@@ -121,11 +137,11 @@ void transferItemsToSecondStack(Stack *fStack, Stack *sStack) {
 
 void *sQueuePeek(SQueue *queue) {
     if(queue == NULL) {
-        fprintf( stderr , "Illegal argument, queue is null." );
-        exit( NULL_POINTER );
+        fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
+        exit(NULL_POINTER);
     } else if (sQueueIsEmpty(queue)) {
-        fprintf( stderr , "queue is empty." );
-        exit(-3);
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "stack queue data structure");
+        exit(EMPTY_DATA_STRUCTURE);
     }
 
     if (isEmptyStack(queue->sStack))
@@ -147,8 +163,8 @@ void *sQueuePeek(SQueue *queue) {
 int sQueueGetLength(SQueue *queue) {
 
     if(queue == NULL) {
-        fprintf( stderr , "Illegal argument, queue is null." );
-        exit( NULL_POINTER );
+        fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
+        exit(NULL_POINTER);
     }
 
     return getStackLength(queue->fStack) + getStackLength(queue->sStack);
@@ -168,8 +184,8 @@ int sQueueGetLength(SQueue *queue) {
 int sQueueIsEmpty(SQueue *queue) {
 
     if(queue == NULL) {
-        fprintf( stderr , "Illegal argument, queue is null." );
-        exit( NULL_POINTER );
+        fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
+        exit(NULL_POINTER);
     }
 
     return sQueueGetLength(queue) == 0;
@@ -189,12 +205,16 @@ int sQueueIsEmpty(SQueue *queue) {
 void **sQueueToArray(SQueue *queue) {
 
     if(queue == NULL) {
-        fprintf( stderr , "Illegal argument, queue is null." );
-        exit( NULL_POINTER );
+        fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
+        exit(NULL_POINTER);
     }
 
     int length = sQueueGetLength(queue);
     void **arr = (void **) malloc(sizeof(void *) * length);
+    if (arr == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "stack queue data structure");
+        exit(FAILED_ALLOCATION);
+    }
 
     for (int i = 0; i < length; i++) {
 
@@ -224,8 +244,8 @@ void **sQueueToArray(SQueue *queue) {
 void clearSQueue(SQueue *queue) {
 
     if(queue == NULL) {
-        fprintf( stderr , "Illegal argument, queue is null." );
-        exit( NULL_POINTER );
+        fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
+        exit(NULL_POINTER);
     }
 
     StackClear(queue->fStack);

@@ -1,5 +1,5 @@
 #include "../Headers/Stack.h"
-
+#include "../Headers/Utils.h"
 
 
 /** Allocates space for the stack in the memory.

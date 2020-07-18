@@ -1,15 +1,13 @@
 #ifndef C_DATASTRUCTURES_STACKQUEUE_H
 #define C_DATASTRUCTURES_STACKQUEUE_H
 
-#include "Stack.h"
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 typedef struct SQueue {
-    Stack *fStack;
-    Stack *sStack;
+    struct Stack *fStack;
+    struct Stack *sStack;
 } SQueue;
 
 SQueue *stackQueueInitialization(void (*freeItem)(void *item));
