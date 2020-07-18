@@ -1,4 +1,9 @@
 #include "../Headers/HashSet.h"
+#include "../Headers/Utils.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <limits.h>
 
 
 
@@ -29,10 +34,27 @@ HashSet *hashSetInitialization(
         int (*itemComp)(const void *, const void *)
         ) {
 
+    if (freeItem == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "hash set data structure");
+        exit(INVALID_ARG);
+    } else if (itemComp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "hash set data structure");
+        exit(INVALID_ARG);
+    }
+
     HashSet *hashSet = (HashSet *) malloc(sizeof(HashSet));
+    if (hashSet == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "hash set", "hash set data structure");
+        exit(FAILED_ALLOCATION);
+    }
 
     hashSet->length = hashSetGetNextPrime(10);
     hashSet->arr = (void **) calloc(sizeof(void *), hashSet->length);
+    if (hashSet->arr == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "hash set array", "hash set data structure");
+        exit(FAILED_ALLOCATION);
+    }
+
     hashSet->count = 0;
     hashSet->freeItem = freeItem;
     hashSet->bPrime = hashSetCalBPrime(hashSet->length);
@@ -63,14 +85,22 @@ HashSet *hashSetInitialization(
 void hashSetInsert(HashSet *hashSet, void *item, int sizeOfItem) {
 
     if (hashSet == NULL) {
-        fprintf(stderr, "Illegal argument, the hash set is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
+        exit(NULL_POINTER);
+    } else if (item == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "hash set data structure");
+        exit(INVALID_ARG);
     }
 
     if (hashSet->count == hashSet->length) {
         hashSet->length = hashSetGetNextPrime(hashSet->length * 2);
         hashSet->bPrime = hashSetCalBPrime(hashSet->length);
         hashSet->arr = (void **) realloc(hashSet->arr, sizeof(void *) * hashSet->length);
+        if (hashSet->arr == NULL) {
+            fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "hash set array", "hash set data structure");
+            exit(FAILED_REALLOCATION);
+        }
+
         for (int i = hashSet->count; i < hashSet->length; i++)
             hashSet->arr[i] = NULL;
 
@@ -121,11 +151,11 @@ void hashSetInsert(HashSet *hashSet, void *item, int sizeOfItem) {
 
 void hashSetDelete(HashSet *hashSet, void *item, int sizeOfItem) {
     if (hashSet == NULL) {
-        fprintf(stderr, "Illegal argument, the hash set is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
+        exit(NULL_POINTER);
     } else if (item == NULL) {
-        fprintf(stderr, "Illegal argument, the passed item is null.");
-        exit(-3);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "hash set data structure");
+        exit(INVALID_ARG);
     }
 
     unsigned int
@@ -171,11 +201,11 @@ void hashSetDelete(HashSet *hashSet, void *item, int sizeOfItem) {
 
 void *hashSetDeleteWtoFr(HashSet *hashSet, void *item, int sizeOfItem) {
     if (hashSet == NULL) {
-        fprintf(stderr, "Illegal argument, the hash set is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
+        exit(NULL_POINTER);
     } else if (item == NULL) {
-        fprintf(stderr, "Illegal argument, the passed item is null.");
-        exit(-3);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "hash set data structure");
+        exit(INVALID_ARG);
     }
 
     unsigned int
@@ -227,11 +257,11 @@ void *hashSetDeleteWtoFr(HashSet *hashSet, void *item, int sizeOfItem) {
 
 int hashSetContains(HashSet *hashSet, void *item, int sizeOfItem) {
     if (hashSet == NULL) {
-        fprintf(stderr, "Illegal argument, the hash set is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
+        exit(NULL_POINTER);
     } else if (item == NULL) {
-        fprintf(stderr, "Illegal argument, the passed item is null.");
-        exit(-3);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "hash set data structure");
+        exit(INVALID_ARG);
     }
 
     unsigned int
@@ -274,11 +304,16 @@ int hashSetContains(HashSet *hashSet, void *item, int sizeOfItem) {
 
 void **hashSetToArray(HashSet *hashSet) {
     if (hashSet == NULL) {
-        fprintf(stderr, "Illegal argument, the hash set is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
+        exit(NULL_POINTER);
     }
 
     void **array = (void **) malloc(sizeof(void *) * hashSetGetLength(hashSet));
+    if (array == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "hash set data structure");
+        exit(FAILED_ALLOCATION);
+    }
+
     for (int i = 0, index = 0; i < hashSet->length; i++) {
         if (hashSet->arr[i] != NULL)
             array[index++] = hashSet->arr[i];
@@ -302,8 +337,8 @@ void **hashSetToArray(HashSet *hashSet) {
 int hashSetGetLength(HashSet *hashSet) {
 
     if (hashSet == NULL) {
-        fprintf(stderr, "Illegal argument, the hash set is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
+        exit(NULL_POINTER);
     }
 
     return hashSet->count;
@@ -326,8 +361,8 @@ int hashSetGetLength(HashSet *hashSet) {
 int hashSetIsEmpty(HashSet *hashSet) {
 
     if (hashSet == NULL) {
-        fprintf(stderr, "Illegal argument, the hash set is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
+        exit(NULL_POINTER);
     }
 
     return hashSet->count == 0;
@@ -350,8 +385,8 @@ int hashSetIsEmpty(HashSet *hashSet) {
 void clearHashSet(HashSet *hashSet) {
 
     if (hashSet == NULL) {
-        fprintf(stderr, "Illegal argument, the hash set is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
+        exit(NULL_POINTER);
     }
 
     for (int i = 0; i < hashSet->length; i++) {

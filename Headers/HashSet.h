@@ -1,10 +1,6 @@
 #ifndef C_DATASTRUCTURES_HASHSET_H
 #define C_DATASTRUCTURES_HASHSET_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <limits.h>
 
 #ifdef __cplusplus
 extern "C" {
