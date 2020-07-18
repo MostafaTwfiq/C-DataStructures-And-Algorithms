@@ -531,14 +531,9 @@ Entry **hashMapToEntryArray(HashMap *map) {
     }
 
     for (int i = 0, index = 0; i < map->length; i++) {
-        if (map->arr[i] != NULL) {
-            arr[index] = (Entry *) malloc(sizeof(Entry));
-            arr[index]->freeKeyFun = map->freeKeyFun;
-            arr[index]->freeItemFun = map->freeItemFun;
-            arr[index]->key = map->arr[i]->key;
-            arr[index]->item = map->arr[i]->item;
-            index++;
-        }
+        if (map->arr[i] != NULL)
+            arr[index++] = map->arr[i];
+
     }
 
     return arr;

@@ -61,13 +61,34 @@ LinkedListHashMap *linkedListHashMapInitialization(
         int (*keyComp)(const void *key1,  const void *key2)
         ) {
 
-    if (mapLength <= 0)
-        mapLength = 10;
+    if (mapLength <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "hash map initial length", "linked list hash map data structure");
+        exit(INVALID_ARG);
+    } else if (freeKey == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "free key function pointer", "linked list hash map data structure");
+        exit(INVALID_ARG);
+    } else if (freeItem == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "free item function pointer", "linked list hash map data structure");
+        exit(INVALID_ARG);
+    } else if (keyComp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key comparator function pointer", "linked list hash map data structure");
+        exit(INVALID_ARG);
+    }
 
     LinkedListHashMap *hashMap = (LinkedListHashMap *) malloc(sizeof(LinkedListHashMap));
+    if (hashMap == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "hash map", "linked list hash map data structure");
+        exit(FAILED_ALLOCATION);
+    }
+
 
     hashMap->length = mapLength;
     hashMap->arr = (DoublyLinkedList **) calloc(sizeof(DoublyLinkedList *), hashMap->length);
+    if (hashMap->arr == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "hash map linked lists array", "linked list hash map data structure");
+        exit(FAILED_ALLOCATION);
+    }
+
     hashMap->count = 0;
     hashMap->freeKeyFun = freeKey;
     hashMap->freeItemFun = freeItem;
@@ -91,11 +112,14 @@ LinkedListHashMap *linkedListHashMapInitialization(
 
 void lLHashMapInsert(LinkedListHashMap *map, void *key, int sizeOfKey, void *item) {
     if (map == NULL) {
-        fprintf(stderr, "Illegal argument, the hash map is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
+        exit(NULL_POINTER);
     } else if (key == NULL) {
-        fprintf(stderr, "Illegal argument, the passed key is null.");
-        exit(-3);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
+        exit(INVALID_ARG);
+    } else if (item == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "linked list hash map data structure");
+        exit(INVALID_ARG);
     }
 
     unsigned int index = hashCal((unsigned int) key, sizeOfKey, map->length);
@@ -103,6 +127,11 @@ void lLHashMapInsert(LinkedListHashMap *map, void *key, int sizeOfKey, void *ite
         map->arr[index] = doublyLinkedListInitialization(freeEntryFun, entriesCompFun);
 
     Entry *entry = (Entry *) malloc(sizeof(Entry));
+    if (entry == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new entry", "linked list hash map data structure");
+        exit(FAILED_ALLOCATION);
+    }
+
     entry->key = key;
     entry->item = item;
     entry->freeItemFun = map->freeItemFun;
@@ -134,11 +163,11 @@ void lLHashMapInsert(LinkedListHashMap *map, void *key, int sizeOfKey, void *ite
 
 int lLHashMapContains(LinkedListHashMap *map, void *key, int sizeOfKey) {
     if (map == NULL) {
-        fprintf(stderr, "Illegal argument, the hash map is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
+        exit(NULL_POINTER);
     } else if (key == NULL) {
-        fprintf(stderr, "Illegal argument, the passed key is null.");
-        exit(-3);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
+        exit(INVALID_ARG);
     }
 
     unsigned int index = hashCal((unsigned int) key, sizeOfKey, map->length);
@@ -171,11 +200,11 @@ int lLHashMapContains(LinkedListHashMap *map, void *key, int sizeOfKey) {
 
 void *lLHashMapGet(LinkedListHashMap *map, void *key, int sizeOfKey) {
     if (map == NULL) {
-        fprintf(stderr, "Illegal argument, the hash map is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
+        exit(NULL_POINTER);
     } else if (key == NULL) {
-        fprintf(stderr, "Illegal argument, the passed key is null.");
-        exit(-3);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
+        exit(INVALID_ARG);
     }
 
     unsigned int index = hashCal((unsigned int) key, sizeOfKey, map->length);
@@ -211,11 +240,11 @@ void *lLHashMapGet(LinkedListHashMap *map, void *key, int sizeOfKey) {
 
 void *lLHashMapGetKey(LinkedListHashMap *map, void *key, int sizeOfKey) {
     if (map == NULL) {
-        fprintf(stderr, "Illegal argument, the hash map is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
+        exit(NULL_POINTER);
     } else if (key == NULL) {
-        fprintf(stderr, "Illegal argument, the passed key is null.");
-        exit(-3);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
+        exit(INVALID_ARG);
     }
 
     unsigned int index = hashCal((unsigned int) key, sizeOfKey, map->length);
@@ -250,11 +279,11 @@ void *lLHashMapGetKey(LinkedListHashMap *map, void *key, int sizeOfKey) {
 
 void lLHashMapDelete(LinkedListHashMap *map, void *key, int sizeOfKey) {
     if (map == NULL) {
-        fprintf(stderr, "Illegal argument, the hash map is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
+        exit(NULL_POINTER);
     } else if (key == NULL) {
-        fprintf(stderr, "Illegal argument, the passed key is null.");
-        exit(-3);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
+        exit(INVALID_ARG);
     }
 
     unsigned int index = hashCal((unsigned int) key, sizeOfKey, map->length);
@@ -290,11 +319,11 @@ void lLHashMapDelete(LinkedListHashMap *map, void *key, int sizeOfKey) {
 
 void *lLHashMapDeleteWtoFr(LinkedListHashMap *map, void *key, int sizeOfKey) {
     if (map == NULL) {
-        fprintf(stderr, "Illegal argument, the hash map is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
+        exit(NULL_POINTER);
     } else if (key == NULL) {
-        fprintf(stderr, "Illegal argument, the passed key is null.");
-        exit(-3);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
+        exit(INVALID_ARG);
     }
 
     unsigned int index = hashCal((unsigned int) key, sizeOfKey, map->length);
@@ -336,11 +365,11 @@ void *lLHashMapDeleteWtoFr(LinkedListHashMap *map, void *key, int sizeOfKey) {
 
 Entry *lLHashMapDeleteWtoFrAll(LinkedListHashMap *map, void *key, int sizeOfKey) {
     if (map == NULL) {
-        fprintf(stderr, "Illegal argument, the hash map is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
+        exit(NULL_POINTER);
     } else if (key == NULL) {
-        fprintf(stderr, "Illegal argument, the passed key is null.");
-        exit(-3);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
+        exit(INVALID_ARG);
     }
 
     unsigned int index = hashCal((unsigned int) key, sizeOfKey, map->length);
@@ -377,11 +406,16 @@ Entry *lLHashMapDeleteWtoFrAll(LinkedListHashMap *map, void *key, int sizeOfKey)
 
 void **lLHashMapToArray(LinkedListHashMap *map) {
     if (map == NULL) {
-        fprintf(stderr, "Illegal argument, the hash map is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
+        exit(NULL_POINTER);
     }
 
     void **arr = (void **) malloc(sizeof(void *) * map->count);
+    if (arr == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "linked list hash map data structure");
+        exit(FAILED_ALLOCATION);
+    }
+
     int index = 0;
 
     for (int i = 0; i < map->length; i++) {
@@ -412,24 +446,22 @@ void **lLHashMapToArray(LinkedListHashMap *map) {
 
 Entry **lLHashMapToEntryArray(LinkedListHashMap *map) {
     if (map == NULL) {
-        fprintf(stderr, "Illegal argument, the hash map is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
+        exit(NULL_POINTER);
     }
 
     Entry **arr = (Entry **) malloc(sizeof(Entry *) * map->count);
+    if (arr == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to entries array", "linked list hash map data structure");
+        exit(FAILED_ALLOCATION);
+    }
+
     int index = 0;
 
     for (int i = 0; i < map->length; i++) {
         if (map->arr[i] != NULL) {
-            for (int j = 0; j < doublyLinkedListGetLength(map->arr[i]); j++) {
-                Entry *entry = doublyLinkedListGet(map->arr[i], j);
-                arr[index] = (Entry *) malloc(sizeof(Entry));
-                arr[index]->key = entry->key;
-                arr[index]->item = entry->item;
-                arr[index]->freeItemFun = entry->freeItemFun;
-                arr[index]->freeKeyFun = entry->freeItemFun;
-                arr[index]->keyCompFun = entry->keyCompFun;
-            }
+            for (int j = 0; j < doublyLinkedListGetLength(map->arr[i]); j++)
+                arr[index++] = doublyLinkedListGet(map->arr[i], j);
 
         }
 
@@ -451,8 +483,8 @@ Entry **lLHashMapToEntryArray(LinkedListHashMap *map) {
 
 int lLHashMapGetLength(LinkedListHashMap *map) {
     if (map == NULL) {
-        fprintf(stderr, "Illegal argument, the hash map is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
+        exit(NULL_POINTER);
     }
 
     return map->count;
@@ -471,8 +503,8 @@ int lLHashMapGetLength(LinkedListHashMap *map) {
 
 int lLHashMapIsEmpty(LinkedListHashMap *map) {
     if (map == NULL) {
-        fprintf(stderr, "Illegal argument, the hash map is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
+        exit(NULL_POINTER);
     }
 
     return map->count == 0;
@@ -490,8 +522,8 @@ int lLHashMapIsEmpty(LinkedListHashMap *map) {
 
 void clearLLHashMap(LinkedListHashMap *map) {
     if (map == NULL) {
-        fprintf(stderr, "Illegal argument, the hash map is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
+        exit(NULL_POINTER);
     }
 
     for (int i = 0; i < map->length; i++) {
