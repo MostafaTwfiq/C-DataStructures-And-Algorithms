@@ -9,20 +9,24 @@
 
 Stack* stackInitialization(void (*freeItem)(void *)) {
 
-    Stack *s = ( Stack*  )malloc( sizeof( Stack ) );
+    if (freeItem == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "stack data structure");
+        exit(INVALID_ARG);
+    }
 
-    if( !s ) {
-        fprintf( stderr , "Failed At allocating Stack" );
-        exit( FAILED_ALLOCATION );
+    Stack *s = ( Stack*  )malloc( sizeof( Stack ) );
+    if (s == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "stack", "stack data structure");
+        exit(FAILED_ALLOCATION);
     }
 
     s->freeItem =  freeItem;
     s->allocated = 10;
     s->memory = (void **) malloc( sizeof(void *) * s->allocated);
 
-    if( !s->memory ) {
-        fprintf( stderr , "Failed At allocating memory for Stack" );
-        exit( FAILED_ALLOCATION );
+    if(s->memory == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "stack array", "stack data structure" );
+        exit(FAILED_ALLOCATION);
     }
 
     s->top = -1;
@@ -41,19 +45,22 @@ Stack* stackInitialization(void (*freeItem)(void *)) {
  **/
 
 void pushStack( Stack* stack ,  void * data) {
-    if( !stack || !data ) {
-        fprintf( stderr , "Param Cannot be Null" );
-        exit( NULL_POINTER );
+    if (stack == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "stack data structure");
+        exit(NULL_POINTER);
+    } else if (data == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "stack data structure");
+        exit(INVALID_ARG);
     }
 
     if(stack->top == stack->allocated - 1 ) {
         stack->allocated *= 2;
         stack->memory =  (void **) realloc( stack->memory  , sizeof(void *) * stack->allocated );
-
-        if ( !stack->memory ) {
-            fprintf( stderr , "Failed at reallocating the Stack" );
-            exit( FAILED_REALLOCATION );
+        if (stack->memory == NULL) {
+            fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "stack array", "stack data structure");
+            exit(FAILED_REALLOCATION);
         }
+
     }
 
     stack->memory[++stack->top] = data;
@@ -70,9 +77,13 @@ void pushStack( Stack* stack ,  void * data) {
 
 void stackAddAll(Stack *stack, void **array, int arrLength) {
     if (stack == NULL) {
-        fprintf( stderr , "Param Cannot be Null" );
-        exit( NULL_POINTER );
+        fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "stack data structure");
+        exit(NULL_POINTER);
+    } else if (array == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "items array pointer", "stack data structure");
+        exit(INVALID_ARG);
     }
+
     for (int i = 0; i < arrLength; i++)
         pushStack(stack, array[i]);
 
@@ -87,12 +98,16 @@ void stackAddAll(Stack *stack, void **array, int arrLength) {
  */
 
 void **stackToArray(Stack *stack) {
-    if( !stack ) {
-        fprintf( stderr , "Stack Param Cannot be Null" );
-        exit( NULL_POINTER );
+    if (stack == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "stack data structure");
+        exit(NULL_POINTER);
     }
 
     void **arr = (void **) malloc(sizeof(void *) * stack->top + 1);
+    if (arr == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "stack data structure");
+        exit(FAILED_ALLOCATION);
+    }
 
     for (int i = 0; i <= stack->top; i++)
         arr[i] = stack->memory[i];
@@ -107,9 +122,12 @@ void **stackToArray(Stack *stack) {
  *  @return Pointer to data that was stored on top of the stack.
  **/
  void *popStack( Stack* stack ) {
-    if( !stack ) {
-        fprintf( stderr , "Stack Param Cannot be Null" );
-        exit( NULL_POINTER );
+    if (stack == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "stack data structure");
+        exit(NULL_POINTER);
+    } else if (isEmptyStack(stack)) {
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "stack data structure");
+        exit(EMPTY_DATA_STRUCTURE);
     }
 
     return stack->memory[stack->top--];
@@ -125,9 +143,9 @@ void **stackToArray(Stack *stack) {
  **/
 
 short isEmptyStack( Stack* stack ) {
-    if( !stack ) {
-        fprintf( stderr , "Stack Param Cannot be Null" );
-        exit( NULL_POINTER );
+    if (stack == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "stack data structure");
+        exit(NULL_POINTER);
     }
 
     return (short) (stack->top == -1 );
@@ -144,9 +162,9 @@ short isEmptyStack( Stack* stack ) {
 
 int getStackLength(Stack *stack) {
 
-    if( !stack ) {
-        fprintf( stderr , "Stack Param Cannot be Null" );
-        exit( NULL_POINTER );
+    if (stack == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "stack data structure");
+        exit(NULL_POINTER);
     }
 
     return stack->top + 1;
@@ -163,12 +181,11 @@ int getStackLength(Stack *stack) {
  **/
 
 void* peekStack( Stack* stack ) {
-    if( !stack ) {
-        fprintf( stderr , "Stack Param Cannot be Null" );
-        exit( NULL_POINTER );
-    }
-    if (isEmptyStack(stack)) {
-        fprintf( stderr , "Stack is empty." );
+    if (stack == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "stack data structure");
+        exit(NULL_POINTER);
+    } else if (isEmptyStack(stack)) {
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "stack data structure");
         exit(EMPTY_DATA_STRUCTURE);
     }
 
@@ -184,9 +201,9 @@ void* peekStack( Stack* stack ) {
  * @param stack Reference pointer to a Stack.
  **/
 void StackClear( Stack* stack ) {
-    if( !stack ) {
-        fprintf( stderr , "Stack Param Cannot be Null" );
-        exit( NULL_POINTER );
+    if (stack == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "stack data structure");
+        exit(NULL_POINTER);
     }
 
     for (int i = 0; i < getStackLength(stack); i++)
