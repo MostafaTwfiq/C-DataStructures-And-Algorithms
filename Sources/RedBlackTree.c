@@ -1,4 +1,5 @@
 #include "../Headers/RedBlackTree.h"
+#include "../Headers/Utils.h"
 
 typedef enum RotationType{
     NONE, RIGHT, LEFT, RIGHT_LEFT, LEFT_RIGHT
@@ -86,7 +87,20 @@ void *deleteRightNoneNullNodeWtoFr(RBTree *tree, RBNode *root);
  * */
 
 RBTree *redBlackTreeInitialization(void (*freeItem)(void *), int (*cmp)(const void*, const void *)) {
+    if (freeItem == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "red black tree data structure");
+        exit(INVALID_ARG);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "red black tree data structure");
+        exit(INVALID_ARG);
+    }
+
     RBTree *tree = (RBTree *) malloc(sizeof(RBTree));
+    if (tree == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "tree", "red black tree data structure");
+        exit(FAILED_ALLOCATION);
+    }
+
     tree->root = NULL;
     tree->nodeCount = 0;
     tree->freeItem = freeItem;
@@ -125,6 +139,11 @@ RBNode *createRBNode(RBNode *parent, COLOR color, void *item) {
  */
 
 void clearRBTree(RBTree *tree) {
+    if (tree == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
+        exit(NULL_POINTER);
+    }
+
     freeRBTreeNodesR(tree->root, tree->freeItem);
     tree->root = NULL;
     tree->nodeCount = 0;
@@ -196,6 +215,14 @@ void destroyRBTree(RBTree *tree) {
 **/
 
 void rBTreeInsert(RBTree *tree, void *item) {
+    if (tree == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
+        exit(NULL_POINTER);
+    } else if (item == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "red black tree data structure");
+        exit(INVALID_ARG);
+    }
+
     tree->root = rBTreeInsertR(tree->root, NULL, item, tree->cmp);
     tree->nodeCount++;
     tree->root->color = BLACK;
@@ -249,6 +276,15 @@ RBNode *rBTreeInsertR(RBNode *root, RBNode *parent, void *item, int (*cmp)(const
 **/
 
 void rBTreeDelete(RBTree *tree, void *item) {
+
+    if (tree == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
+        exit(NULL_POINTER);
+    } else if (item == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "red black tree data structure");
+        exit(INVALID_ARG);
+    }
+
     rBTreeDeleteR(tree, tree->root, item);
 }
 
@@ -425,6 +461,15 @@ void deleteRightNoneNullNode(RBTree *tree, RBNode *root) {
 **/
 
 void *rBTreeDeleteWtoFr(RBTree *tree, void *item) {
+
+    if (tree == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
+        exit(NULL_POINTER);
+    } else if (item == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "red black tree data structure");
+        exit(INVALID_ARG);
+    }
+
     return rBTreeDeleteRWtoFr(tree, tree->root, item);
 }
 
@@ -932,6 +977,15 @@ COLOR getNodeColor(RBNode *node) {
 **/
 
 void rBPreOrderTraversal(RBTree *tree, void (*printFun)(const void *, COLOR)) {
+
+    if (tree == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
+        exit(NULL_POINTER);
+    } else if (printFun == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "print function pointer", "red black tree data structure");
+        exit(INVALID_ARG);
+    }
+
     rBPreOrderTraversalR(tree->root, printFun);
 }
 
@@ -972,6 +1026,15 @@ void rBPreOrderTraversalR(RBNode *root, void (*printFun)(const void *, COLOR)) {
 **/
 
 void rBInOrderTraversal(RBTree *tree, void (*printFun)(const void *, COLOR)) {
+
+    if (tree == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
+        exit(NULL_POINTER);
+    } else if (printFun == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "print function pointer", "red black tree data structure");
+        exit(INVALID_ARG);
+    }
+
     rBInOrderTraversalR(tree->root, printFun);
 }
 
@@ -1010,6 +1073,15 @@ void rBInOrderTraversalR(RBNode *root, void (*printFun)(const void *, COLOR)) {
 **/
 
 void rBPostOrderTraversal(RBTree *tree, void (*printFun)(const void *, COLOR)) {
+
+    if (tree == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
+        exit(NULL_POINTER);
+    } else if (printFun == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "print function pointer", "red black tree data structure");
+        exit(INVALID_ARG);
+    }
+
     rBPostOrderTraversalR(tree->root, printFun);
 }
 
@@ -1046,6 +1118,15 @@ void rBPostOrderTraversalR(RBNode *root, void (*printFun)(const void *, COLOR)) 
 **/
 
 void rBTreePrint(RBTree *tree, void (*printFun)(const void *, COLOR)) {
+
+    if (tree == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
+        exit(NULL_POINTER);
+    } else if (printFun == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "print function pointer", "red black tree data structure");
+        exit(INVALID_ARG);
+    }
+
     printRBTreeHelper(tree->root, 0, printFun);
 }
 
@@ -1062,7 +1143,7 @@ void rBTreePrint(RBTree *tree, void (*printFun)(const void *, COLOR)) {
  * @param printFn Pointer to the print function.
 **/
 
-void printRBTreeHelper(RBNode *root, int space, void (*printFun)(const void *item, COLOR color)){
+void printRBTreeHelper(RBNode *root, int space, void (*printFun)(const void *, COLOR)){
     if (root == NULL){
         return;
     }
@@ -1088,6 +1169,15 @@ void printRBTreeHelper(RBNode *root, int space, void (*printFun)(const void *ite
  */
 
 void *rbTreeGet(RBTree *tree, char *item) {
+
+    if (tree == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
+        exit(NULL_POINTER);
+    } else if (item == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "red black tree data structure");
+        exit(INVALID_ARG);
+    }
+
     return rbTreeGetR(tree, tree->root, item);
 }
 
@@ -1132,6 +1222,15 @@ void *rbTreeGetR(RBTree *rbTree, RBNode *node, char *item) {
 **/
 
 void rBInsertAll(RBTree* rbTree, void** array, int length) {
+
+    if (rbTree == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
+        exit(NULL_POINTER);
+    } else if (array == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "items array pointer", "red black tree data structure");
+        exit(INVALID_ARG);
+    }
+
     for(int i = 0; i < length; i++)
         rBTreeInsert(rbTree, array[i]);
 
@@ -1151,7 +1250,18 @@ void rBInsertAll(RBTree* rbTree, void** array, int length) {
 **/
 
 void **rBTreeToArray(RBTree *rbTree){
+
+    if (rbTree == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
+        exit(NULL_POINTER);
+    }
+
     void **array = (void **) malloc(sizeof(void *) * rbTree->nodeCount);
+    if (array == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "red black tree data structure");
+        exit(FAILED_ALLOCATION);
+    }
+
     int i = 0;
 
     RBTreeToArrayRecurs(rbTree->root, array, &i);
@@ -1196,6 +1306,12 @@ void RBTreeToArrayRecurs(RBNode* node , void **arr, int *i) {
  */
 
 int rBTreeGetSize(RBTree *tree){
+
+    if (tree == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
+        exit(NULL_POINTER);
+    }
+
     return tree->nodeCount;
 
 }
@@ -1214,6 +1330,15 @@ int rBTreeGetSize(RBTree *tree){
  */
 
 int rBTreeContains(RBTree *tree, void *item) {
+
+    if (tree == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
+        exit(NULL_POINTER);
+    } else if (item == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "red black tree data structure");
+        exit(INVALID_ARG);
+    }
+
     return rBTreeContainsR(tree, tree->root, item);
 
 }

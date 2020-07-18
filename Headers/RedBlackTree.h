@@ -1,6 +1,5 @@
 #ifndef C_DATASTRUCTURES_REDBLACKTREE_H
 #define C_DATASTRUCTURES_REDBLACKTREE_H
-#include "Utils.h"
 
 #ifdef __cplusplus
 extern "C" {
