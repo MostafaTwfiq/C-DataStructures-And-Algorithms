@@ -1,17 +1,26 @@
 #include "../Headers/DLinkedListStack.h"
 #include "../Headers/DoublyLinkedList.h"
+#include "../Headers/Utils.h"
 
 
 
 /** This function will take the size of the items in the stack as a parameters,
-    then it will initialize the stack and return it's address.
+ * then it will initialize the stack and return it's address.
  * @param freeFun the free function address thar will be called to free the stack items
  * @return it will return the new stack address
  */
 
 DLinkedListStack *dlStackInitialization(void (*freeFun)(void *)) {
+    if (freeFun == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "doubly linked list stack data structure");
+        exit(INVALID_ARG);
+    }
 
     DLinkedListStack *stack = (DLinkedListStack *) malloc(sizeof(DLinkedListStack));
+    if (stack == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "stack", "doubly linked list stack data structure");
+        exit(FAILED_ALLOCATION);
+    }
 
     stack->linkedList = doublyLinkedListInitialization(freeFun, NULL);
 
@@ -31,8 +40,11 @@ DLinkedListStack *dlStackInitialization(void (*freeFun)(void *)) {
 
 void dlStackPush(DLinkedListStack *stack, void *item) {
     if (stack == NULL) {
-         fprintf(stderr,"Illegal argument, the stack is NULL.");
-        exit(-4);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
+        exit(NULL_POINTER);
+    } else if (item == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "doubly linked list stack data structure");
+        exit(INVALID_ARG);
     }
 
     doublyLinkedListAddLast(stack->linkedList, item);
@@ -52,8 +64,11 @@ void dlStackPush(DLinkedListStack *stack, void *item) {
 
 void dlStackAddAll(DLinkedListStack *stack, void **arr, int arrLength) {
     if (stack == NULL) {
-        fprintf(stderr,"Illegal argument, the stack is NULL.");
-        exit(-4);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
+        exit(NULL_POINTER);
+    } else if (arr == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item array pointer", "doubly linked list stack data structure");
+        exit(INVALID_ARG);
     }
 
 
@@ -77,11 +92,11 @@ void dlStackAddAll(DLinkedListStack *stack, void **arr, int arrLength) {
 void *dlStackPop(DLinkedListStack *stack) {
 
     if (stack == NULL) {
-         fprintf(stderr,"Illegal argument, the stack is NULL.");
-        exit(-4);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
+        exit(NULL_POINTER);
     } else if (dlStackIsEmpty(stack)) {
-         fprintf(stderr,"Illegal state, the stack is empty.");
-        exit(-4);
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "doubly linked list stack data structure");
+        exit(EMPTY_DATA_STRUCTURE);
     }
 
     void *item = doublyLinkedListGetLast(stack->linkedList);
@@ -104,8 +119,8 @@ void *dlStackPop(DLinkedListStack *stack) {
 void **dlStackToArray(DLinkedListStack *stack) {
 
     if (stack == NULL) {
-        fprintf(stderr,"Illegal argument, the stack is NULL.");
-        exit(-4);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
+        exit(NULL_POINTER);
     }
 
     return doublyLinkedListToArray(stack->linkedList);
@@ -128,11 +143,11 @@ void **dlStackToArray(DLinkedListStack *stack) {
 void *dlStackPeek(DLinkedListStack *stack) {
 
     if (stack == NULL) {
-         fprintf(stderr,"Illegal argument, the stack is NULL.");
-        exit(-4);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
+        exit(NULL_POINTER);
     } else if (dlStackIsEmpty(stack)) {
-         fprintf(stderr,"Illegal state, the stack is empty.");
-        exit(-4);
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "doubly linked list stack data structure");
+        exit(EMPTY_DATA_STRUCTURE);
     }
 
     void *item = doublyLinkedListGetLast(stack->linkedList);
@@ -151,6 +166,12 @@ void *dlStackPeek(DLinkedListStack *stack) {
  */
 
 int dlStackGetLength(DLinkedListStack *stack) {
+
+    if (stack == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
+        exit(NULL_POINTER);
+    }
+
     return stack->linkedList->length;
 }
 
@@ -168,6 +189,12 @@ int dlStackGetLength(DLinkedListStack *stack) {
  */
 
 int dlStackIsEmpty(DLinkedListStack *stack) {
+
+    if (stack == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
+        exit(NULL_POINTER);
+    }
+
     return doublyLinkedListIsEmpty(stack->linkedList);
 }
 
@@ -181,6 +208,12 @@ int dlStackIsEmpty(DLinkedListStack *stack) {
  */
 
 void clearDLStack(DLinkedListStack *stack) {
+
+    if (stack == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
+        exit(NULL_POINTER);
+    }
+
     doublyLinkedListClear(stack->linkedList);
 }
 
@@ -195,6 +228,11 @@ void clearDLStack(DLinkedListStack *stack) {
  */
 
 void destroyDLStack(DLinkedListStack *stack) {
+    if (stack == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
+        exit(NULL_POINTER);
+    }
+
     destroyDoublyLinkedList(stack->linkedList);
     free(stack);
 }

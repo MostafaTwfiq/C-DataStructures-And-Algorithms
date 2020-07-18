@@ -1,6 +1,4 @@
 #include "../Headers/DirectedGraph.h"
-
-
 #include "../Headers/ArrayList.h"
 #include "../Headers/HashMap.h"
 #include "../Headers/HashSet.h"
@@ -10,8 +8,18 @@
 
 
 
+
+
+
+
 void dirGraphTopologicalSortR(DirGraphNode *node, HashSet *visitedNodes, Stack *sortStack);
-int dirGraphNodePartOfCycleR(DirGraphNode *node, HashSet *visitedNodes);
+
+
+int dirGraphNodeIsPartOfCycleR(DirGraphNode *node, HashSet *visitedNodes);
+
+
+
+
 
 
 
@@ -498,7 +506,7 @@ void destroyDirGraph(DirectedGraph *graph) {
 
 
 /** This function will print all the graph values in this from,
- * >>
+ * <<
  * The node: //the node name
  * Is connected to:
  * // the connected nodes names
@@ -787,7 +795,7 @@ void dirGraphTopologicalSortR(DirGraphNode *node, HashSet *visitedNodes, Stack *
  * @return it will return one if the node is a part of a cycle, other wise it will return zero
  */
 
-int dirGraphNodePartOfCycle(DirectedGraph *graph, void *startValue, int sizeOfValue) {
+int dirGraphNodeIsPartOfCycle(DirectedGraph *graph, void *startValue, int sizeOfValue) {
 
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
@@ -802,7 +810,7 @@ int dirGraphNodePartOfCycle(DirectedGraph *graph, void *startValue, int sizeOfVa
         return 0;
 
     HashSet *visitedNodes = hashSetInitialization(freeInt, compInt);
-    int cycleFlag = dirGraphNodePartOfCycleR(startNode, visitedNodes);
+    int cycleFlag = dirGraphNodeIsPartOfCycleR(startNode, visitedNodes);
 
     destroyHashSet(visitedNodes);
 
@@ -824,7 +832,7 @@ int dirGraphNodePartOfCycle(DirectedGraph *graph, void *startValue, int sizeOfVa
  * @return it will return one if there was a cycle, other wise it will return zero
  */
 
-int dirGraphNodePartOfCycleR(DirGraphNode *node, HashSet *visitedNodes) {
+int dirGraphNodeIsPartOfCycleR(DirGraphNode *node, HashSet *visitedNodes) {
     int *nodeValueAddress = (int *) malloc(sizeof(int));
     *nodeValueAddress = (int) node->value;
 
@@ -837,7 +845,7 @@ int dirGraphNodePartOfCycleR(DirGraphNode *node, HashSet *visitedNodes) {
 
     for (int i = 0; i < arrayListGetLength(node->adjacentNodes); i++) {
 
-        if (dirGraphNodePartOfCycleR(arrayListGet(node->adjacentNodes, i), visitedNodes))
+        if (dirGraphNodeIsPartOfCycleR(arrayListGet(node->adjacentNodes, i), visitedNodes))
             return 1;
 
     }
@@ -874,7 +882,7 @@ int dirGraphHasACycle(DirectedGraph *graph) {
 
     for (int i = 0; i < hashMapGetLength(graph->nodes); i++) {
 
-        if (dirGraphNodePartOfCycleR(hashMapNodes[i], visitedNodes)) {
+        if (dirGraphNodeIsPartOfCycleR(hashMapNodes[i], visitedNodes)) {
             destroyHashSet(visitedNodes);
             free(hashMapNodes);
             return 1;
