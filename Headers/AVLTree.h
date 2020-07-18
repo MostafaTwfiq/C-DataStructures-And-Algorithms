@@ -41,7 +41,7 @@ typedef struct AVLTree {
     AVLTreeNode *root;
     uint32_t nodeCount;
     uint32_t sizeOfType;
-    int16_t (*cmp)(const void *, const void *);
+    int (*cmp)(const void *, const void *);
     void    (*freeFn)(void *);
 } AVLTree;
 

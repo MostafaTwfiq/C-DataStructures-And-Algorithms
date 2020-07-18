@@ -4,6 +4,7 @@
 #include "../Headers/HashSet.h"
 #include "../Headers/Stack.h"
 #include "../Headers/ArrayQueue.h"
+#include "../Headers/Utils.h"
 
 
 

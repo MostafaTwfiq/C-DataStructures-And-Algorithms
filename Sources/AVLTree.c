@@ -1,4 +1,5 @@
 #include "../Headers/AVLTree.h"
+#include "../Headers/Utils.h"
 
 
 void printAVLTreeHelper(AVLTreeNode *root, int space, void (printFn)(void *));

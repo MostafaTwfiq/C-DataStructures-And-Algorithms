@@ -11,8 +11,23 @@
  */
 
 String *stringInitialization(int initialLength) {
+    if (initialLength <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "initial length", "string data structure");
+        exit(INVALID_ARG);
+    }
+
     String *myString = (String *) malloc(sizeof(String));
+    if (myString == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "string", "string data structure");
+        exit(FAILED_ALLOCATION);
+    }
+
     myString->string = (char *) malloc(sizeof(char) * (initialLength + 1) );
+    if (myString->string == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "string array", "string data structure");
+        exit(FAILED_ALLOCATION);
+    }
+
     myString->string[0] = '\0';
     myString->count = 0;
     myString->length = initialLength;
@@ -31,13 +46,18 @@ String *stringInitialization(int initialLength) {
 
 void stringAddCharAtLast(String *myString, char c) {
     if (myString == NULL) {
-         fprintf(stderr,"Illegal argument, the string is NULL.");
-        exit(-2);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        exit(NULL_POINTER);
     }
 
     if (myString->count == myString->length) {
         myString->length *= 2;
         myString->string = realloc(myString->string, sizeof(char) * (myString->length + 1));
+        if (myString->string == NULL) {
+            fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "string array", "string data structure");
+            exit(FAILED_REALLOCATION);
+        }
+
     }
 
     myString->string[myString->count++] = c;
@@ -57,11 +77,11 @@ void stringAddCharAtLast(String *myString, char c) {
 
 void stringAddCharAtIndex(String *myString, int index, char c) {
     if (myString == NULL) {
-         fprintf(stderr,"Illegal argument, the string is NULL.");
-        exit(-2);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        exit(NULL_POINTER);
     } else if (myString->count <= index || index < 0) {
-         fprintf(stderr,"index is out of the string range.");
-        exit(-2);
+        fprintf(stderr, OUT_OF_RANGE_MESSAGE, "string data structure");
+        exit(OUT_OF_RANGE);
     }
 
     myString->string[index] = c;
@@ -80,11 +100,11 @@ void stringAddCharAtIndex(String *myString, int index, char c) {
 
 void stringRemoveCharAtIndex(String *myString, int index) {
     if (myString == NULL) {
-         fprintf(stderr,"Illegal argument, the string is NULL.");
-        exit(-2);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        exit(NULL_POINTER);
     } else if (myString->count <= index || index < 0) {
-         fprintf(stderr,"index is out of the string range.");
-        exit(-2);
+        fprintf(stderr, OUT_OF_RANGE_MESSAGE, "string data structure");
+        exit(OUT_OF_RANGE);
     }
 
     for (int i = index; i < myString->count; i++)
@@ -103,9 +123,12 @@ void stringRemoveCharAtIndex(String *myString, int index) {
  */
 
 void stringAddStringAtLast(String *myString, char *newString) {
-    if (myString == NULL || newString == NULL) {
-         fprintf(stderr,"Illegal argument, the string is NULL.");
-        exit(-2);
+    if (myString == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        exit(NULL_POINTER);
+    } else if (newString == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new string pointer", "string data structure");
+        exit(INVALID_ARG);
     }
 
     char *currentChar = newString;
@@ -126,9 +149,12 @@ void stringAddStringAtLast(String *myString, char *newString) {
  */
 
 void stringChangeStringByCharArray(String *string, char *newString) {
-    if (string == NULL || newString == NULL) {
-         fprintf(stderr,"Illegal argument, the string is NULL.");
-        exit(-2);
+    if (string == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        exit(NULL_POINTER);
+    } else if (newString == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new string pointer", "string data structure");
+        exit(INVALID_ARG);
     }
 
     string->count = 0;
@@ -147,9 +173,12 @@ void stringChangeStringByCharArray(String *string, char *newString) {
  */
 
 void stringChangeStringByString(String *string, String *newString) {
-    if (string == NULL || newString == NULL) {
-         fprintf(stderr,"Illegal argument, the string is NULL.");
-        exit(-2);
+    if (string == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        exit(NULL_POINTER);
+    } else if (newString == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new string pointer", "string data structure");
+        exit(INVALID_ARG);
     }
 
     string->count = 0;
@@ -174,8 +203,8 @@ void stringChangeStringByString(String *string, String *newString) {
 
 int stringFindCharIndex(String *myString, char c) {
     if (myString == NULL) {
-         fprintf(stderr,"Illegal argument, the string is NULL.");
-        exit(-2);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        exit(NULL_POINTER);
     }
 
     for (int i = 0; i < myString->count; i++) {
@@ -200,11 +229,11 @@ int stringFindCharIndex(String *myString, char c) {
 
 char stringGetCharAtIndex(String *myString, int index) {
     if (myString == NULL) {
-         fprintf(stderr,"Illegal argument, the string is NULL.");
-        exit(-2);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        exit(NULL_POINTER);
     } else if (myString->count <= index || index < 0) {
-         fprintf(stderr,"index is out of the string range.");
-        exit(-2);
+        fprintf(stderr, OUT_OF_RANGE_MESSAGE, "string data structure");
+        exit(OUT_OF_RANGE);
     }
 
     return myString->string[index];
@@ -222,14 +251,17 @@ char stringGetCharAtIndex(String *myString, int index) {
  */
 
 int stringSubString(String *myString, char *string) {
-    if (myString == NULL || string == NULL) {
-         fprintf(stderr,"Illegal argument, the string is NULL.");
-        exit(-2);
+    if (myString == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        exit(NULL_POINTER);
+    } else if (string == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "second string pointer", "string data structure");
+        exit(INVALID_ARG);
     }
 
     int stringLength = strlen(string);
 
-    if (string == NULL || stringLength > myString->count)
+    if (stringLength > myString->count)
         return 0;
 
     for (int i = 0; i <= myString->count - stringLength; i++) {
@@ -257,11 +289,15 @@ int stringSubString(String *myString, char *string) {
 
 char *stringToArrayOfCharacters(String *myString) {
     if (myString == NULL) {
-         fprintf(stderr,"Illegal argument, the string is NULL.");
-        exit(-2);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        exit(NULL_POINTER);
     }
 
     char *arrayOfCharacters = (char *) malloc(sizeof(char) * (myString->count + 1) );
+    if (arrayOfCharacters == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array of characters", "string data structure");
+        exit(FAILED_ALLOCATION);
+    }
 
     for (int i = 0; i <= myString->count; i++)
         arrayOfCharacters[i] = myString->string[i];
@@ -283,18 +319,24 @@ char *stringToArrayOfCharacters(String *myString) {
 
 char *stringGetStringBetweenTwoIndices(String *myString, int startIndex, int endIndex) {
     if (myString == NULL) {
-         fprintf(stderr,"Illegal argument, the string is NULL.");
-        exit(-2);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        exit(NULL_POINTER);
     }
 
     if (startIndex > endIndex
         || startIndex < 0 || startIndex >= myString->count
         || endIndex < 0 || endIndex >= myString->count) {
 
-        return NULL;
+        fprintf(stderr, OUT_OF_RANGE_MESSAGE, "string data structure");
+        exit(OUT_OF_RANGE);
     }
 
     char *string = (char *) malloc(sizeof(char) * (endIndex - startIndex + 2) );
+    if (string == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "string between to indices", "string data structure");
+        exit(FAILED_ALLOCATION);
+    }
+
     string[endIndex - startIndex + 1] = '\0';
     for (int i = 0; i <= endIndex - startIndex; i++)
         string[i] = myString->string[startIndex + i];
@@ -314,8 +356,8 @@ char *stringGetStringBetweenTwoIndices(String *myString, int startIndex, int end
 
 int stringGetLength(String *myString) {
     if (myString == NULL) {
-         fprintf(stderr,"Illegal argument, the string is NULL.");
-        exit(-2);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        exit(NULL_POINTER);
     }
 
     return myString->count;
@@ -334,8 +376,11 @@ int stringGetLength(String *myString) {
 
 int stringIsEqualsToCharArray(String *myString, char *string) {
     if (myString == NULL) {
-         fprintf(stderr,"Illegal argument, the string is NULL.");
-        exit(-2);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        exit(NULL_POINTER);
+    } else if (string == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "second string pointer", "string data structure");
+        exit(INVALID_ARG);
     }
 
     int stringLength = strlen(string);
@@ -364,13 +409,16 @@ int stringIsEqualsToCharArray(String *myString, char *string) {
  */
 
 int stringIsEqualsToMyString(String *myString, String *string) {
-    if (myString == NULL || string == NULL) {
-         fprintf(stderr,"Illegal argument, the string is NULL.");
-        exit(-2);
+    if (myString == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        exit(NULL_POINTER);
+    } else if (string == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "second string pointer", "string data structure");
+        exit(INVALID_ARG);
     }
 
     int stringLength = stringGetLength(string);
-    if (string == NULL || myString->count != stringLength)
+    if (myString->count != stringLength)
         return 0;
 
     for (int i = 0; i < stringLength; i++) {
@@ -392,8 +440,10 @@ int stringIsEqualsToMyString(String *myString, String *string) {
  */
 
 void stringTrim(String *myString) {
-    if (myString == NULL)
-        return;
+    if (myString == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        exit(NULL_POINTER);
+    }
 
     while (1) {
         if (*myString->string == ' ' || *myString->string == '\t') {
@@ -432,10 +482,9 @@ void stringTrim(String *myString) {
 
 void stringFGetS(String *myString) {
     if (myString == NULL) {
-         fprintf(stderr,"Illegal argument, the string is NULL.");
-        exit(-2);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        exit(NULL_POINTER);
     }
-
 
     char c;
 
@@ -462,7 +511,14 @@ void stringFGetS(String *myString) {
  */
 
 void printString(String *string) {
+
+    if (string == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        exit(NULL_POINTER);
+    }
+
     fprintf(stdout, "%s", string->string);
+
 }
 
 
@@ -476,8 +532,8 @@ void printString(String *string) {
 
 void destroyString(String *myString) {
     if (myString == NULL) {
-         fprintf(stderr,"Illegal argument, the string is NULL.");
-        exit(-2);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        exit(NULL_POINTER);
     }
 
     free(myString->string);
