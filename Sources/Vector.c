@@ -18,6 +18,9 @@ Vector *vectorInitialization(int initialLength, void (*freeFun)(void *), int (*c
     if (freeFun == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "free function", "vector data structure");
         exit(INVALID_ARG);
+    } else if (initialLength <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "initial length", "vector list data structure");
+        exit(INVALID_ARG);
     }
 
     Vector *list = (Vector *) malloc(sizeof(Vector));

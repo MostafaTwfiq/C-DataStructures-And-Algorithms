@@ -1,6 +1,9 @@
 #include "../Headers/Trie.h"
 #include "../Headers/ArrayList.h"
 #include "../Headers/String.h"
+#include "../Headers/Utils.h"
+#include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 
 typedef struct Node {
@@ -55,6 +58,10 @@ int wordsComparator(const void *word1, const void *word2);
 
 Trie *trieInitialization() {
     Trie *trie = (Trie *) malloc(sizeof(Trie));
+    if (trie == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "trie", "trie data structure");
+        exit(FAILED_ALLOCATION);
+    }
 
     trie->root = createNode('\0', 0);
 
@@ -77,10 +84,12 @@ Trie *trieInitialization() {
 void trieAddWord(Trie *trie, char *word) {
 
     if (trie == NULL) {
-        fprintf(stderr, "Illegal argument, the trie is null.");
-        exit(-3);
-    } else if (word == NULL)
-        return;
+        fprintf(stderr, NULL_POINTER_MESSAGE , "trie", "trie data structure");
+        exit(NULL_POINTER);
+    } else if (word == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "word", "trie data structure");
+        exit(INVALID_ARG);
+    }
 
     char *currentChar = word;
     Node *root = trie->root;
@@ -89,12 +98,15 @@ void trieAddWord(Trie *trie, char *word) {
     while (*currentChar != '\0') {
         index = toLowerCase(*currentChar) - 'a';
 
-        if (root->characters[index] != NULL)
-            root = root->characters[index];
+        if (index >= 0 && index < 26) {
 
-        else
-            root = root->characters[index] = createNode(*currentChar, 0);
+            if (root->characters[index] != NULL)
+                root = root->characters[index];
 
+            else
+                root = root->characters[index] = createNode(*currentChar, 0);
+
+        }
 
         currentChar++;
 
@@ -120,21 +132,27 @@ void trieAddWord(Trie *trie, char *word) {
 int trieContains(Trie *trie, char *word) {
 
     if (trie == NULL) {
-        fprintf(stderr, "Illegal argument, the trie is null.");
-        exit(-3);
-    } else if (word == NULL)
-        return 0;
+        fprintf(stderr, NULL_POINTER_MESSAGE , "trie", "trie data structure");
+        exit(NULL_POINTER);
+    } else if (word == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "word", "trie data structure");
+        exit(INVALID_ARG);
+    }
 
     char *currentChar = word;
     Node *root = trie->root;
 
     while (*currentChar != '\0') {
 
-        if (root->characters[toLowerCase(*currentChar) - 'a'] != NULL)
-            root = root->characters[toLowerCase(*currentChar) - 'a'];
+        int index = toLowerCase(*currentChar) - 'a';
 
-        else
-            return 0;
+        if (index >= 0 && index < 26) {
+            if (root->characters[index] != NULL)
+                root = root->characters[toLowerCase(*currentChar) - 'a'];
+
+            else
+                return 0;
+        }
 
         currentChar++;
 
@@ -157,16 +175,21 @@ int trieContains(Trie *trie, char *word) {
 void trieRemoveWord(Trie *trie, char *word) {
 
     if (trie == NULL) {
-        fprintf(stderr, "Illegal argument, the trie is null.");
-        exit(-3);
-    } else if (word == NULL)
-        return;
+        fprintf(stderr, NULL_POINTER_MESSAGE , "trie", "trie data structure");
+        exit(NULL_POINTER);
+    } else if (word == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "word", "trie data structure");
+        exit(INVALID_ARG);
+    }
 
     Node *root = trie->root;
     int index = toLowerCase(*word) - 'a';
 
-    if (root->characters[index] != NULL)
-        trie->root->characters[index] = trieRemoveWordR(root->characters[index], word + 1);
+    if (index >= 0 && index < 26) {
+        if (root->characters[index] != NULL)
+            trie->root->characters[index] = trieRemoveWordR(root->characters[index], word + 1);
+
+    }
 
 }
 
@@ -197,6 +220,9 @@ Node *trieRemoveWordR(Node *root, const char *currentChar) {
     }
 
     int index = toLowerCase(*currentChar) - 'a';
+    if (index < 0 || index >= 26) {
+        return root;
+    }
 
     if (root->characters[index] != NULL)
         root->characters[index] = trieRemoveWordR(root->characters[index], currentChar + 1);
@@ -244,10 +270,15 @@ int wordsComparator(const void *word1, const void *word2) {
 ArrayList *trieAutoCompletion(Trie *trie, char *word, int numOfSuggestion) {
 
     if (trie == NULL) {
-        fprintf(stderr, "Illegal argument, the trie is null.");
-        exit(-3);
-    } else if (word == NULL)
-        return NULL;
+        fprintf(stderr, NULL_POINTER_MESSAGE , "trie", "trie data structure");
+        exit(NULL_POINTER);
+    } else if (word == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "word", "trie data structure");
+        exit(INVALID_ARG);
+    } else if (numOfSuggestion <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "number of suggestions", "trie data structure");
+        exit(INVALID_ARG);
+    }
 
     ArrayList *wordsList = arrayListInitialization(numOfSuggestion, freeFun, wordsComparator);
     String *string = stringInitialization(10);
@@ -287,6 +318,10 @@ void trieAutoCompletionR(Node *root, char *currentChar, int numOfSuggestion, Str
     }
 
     int index = toLowerCase(*currentChar) - 'a';
+    if (index < 0 || index >= 26) {
+        return;
+    }
+
     if (*currentChar!= '\0' && root->characters[index] != NULL) {
         trieAutoCompletionR(root->characters[index], currentChar + 1, numOfSuggestion, string, wordsList);
     } else {
@@ -316,10 +351,15 @@ void trieAutoCompletionR(Node *root, char *currentChar, int numOfSuggestion, Str
 ArrayList *trieSuggestion(Trie *trie, char *word, int numOfSuggestion) {
 
     if (trie == NULL) {
-        fprintf(stderr, "Illegal argument, the trie is null.");
-        exit(-3);
-    } else if (word == NULL)
-        return NULL;
+        fprintf(stderr, NULL_POINTER_MESSAGE , "trie", "trie data structure");
+        exit(NULL_POINTER);
+    } else if (word == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "word", "trie data structure");
+        exit(INVALID_ARG);
+    } else if (numOfSuggestion <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "number of suggestions", "trie data structure");
+        exit(INVALID_ARG);
+    }
 
     String *string = stringInitialization(10);
     ArrayList *wordsList = arrayListInitialization(numOfSuggestion, freeFun, wordsComparator);
@@ -364,6 +404,9 @@ void trieSuggestionR(Node *root, char *word, String *string, ArrayList *wordsLis
     }
 
     int *indices = generateIndexes(toLowerCase(*word));
+    if (indices == NULL)
+        return;
+    
     for (int i = 0; i < 26; i++) {
         if (root->characters[indices[i]] != NULL)
             trieSuggestionR(root->characters[indices[i]], word + (*word == '\0' ? 0 : 1) , string, wordsList, numOfSuggestion);
@@ -389,8 +432,8 @@ void trieSuggestionR(Node *root, char *word, String *string, ArrayList *wordsLis
 void triePrintAllWords(Trie *trie) {
 
     if (trie == NULL) {
-        fprintf(stderr, "Illegal argument, the trie is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE , "trie", "trie data structure");
+        exit(NULL_POINTER);
     }
 
     String *string = stringInitialization(10);
@@ -448,8 +491,8 @@ void triePrintAllWordsR(Node *root, String *string) {
 void clearTrie(Trie *trie) {
 
     if (trie == NULL) {
-        fprintf(stderr, "Illegal argument, the trie is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE , "trie", "trie data structure");
+        exit(NULL_POINTER);
     }
 
     for (int i = 0; i < 26; i++) {
@@ -472,8 +515,8 @@ void clearTrie(Trie *trie) {
 void destroyTrie(Trie *trie) {
 
     if (trie == NULL) {
-        fprintf(stderr, "Illegal argument, the trie is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE , "trie", "trie data structure");
+        exit(NULL_POINTER);
     }
 
     trie->root = destroyTrieNodes(trie->root);
@@ -558,10 +601,16 @@ int nodeHasChildren(Node *node) {
 
 Node *createNode(char value, int EOW) {
     Node *node = (Node *) malloc(sizeof(Node));
+    if (node == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new node", "trie data structure");
+        exit(FAILED_ALLOCATION);
+    }
 
-    node->characters = (Node **) malloc(sizeof(void *) * 26);
-    for (int i = 0; i < 26; i++)
-        node->characters[i] = NULL;
+    node->characters = (Node **) calloc(sizeof(void *), 26);
+    if (node->characters == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new node characters array", "trie data structure");
+        exit(FAILED_ALLOCATION);
+    }
 
     node->value = value;
     node->EOW = EOW;
@@ -610,6 +659,8 @@ int *generateIndexes(char c) {
             arr[i] = i;
 
         return arr;
+    } else if ( ! (c >= 'a' && c <= 'z') ) {
+        return NULL;
     }
 
     char matrix[3][10] = {

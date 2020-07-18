@@ -19,6 +19,9 @@ ArrayList *arrayListInitialization(int initialLength, void (*freeFun)(void *), i
     if (freeFun == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "free function", "array list data structure");
         exit(INVALID_ARG);
+    } else if (initialLength <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "initial length", "array list data structure");
+        exit(INVALID_ARG);
     }
 
     ArrayList *list = (ArrayList *) malloc(sizeof(ArrayList));
