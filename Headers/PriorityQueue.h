@@ -1,10 +1,6 @@
 #ifndef C_DATASTRUCTURES_PRIORITYQUEUE_H
 #define C_DATASTRUCTURES_PRIORITYQUEUE_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 #ifdef __cplusplus
 extern "C" {
 #endif

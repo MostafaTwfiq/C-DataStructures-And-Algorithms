@@ -1,4 +1,8 @@
 #include "../Headers/PriorityQueue.h"
+#include "../Headers/Utils.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 
 
@@ -17,10 +21,27 @@ void swapItems(void **arr, int index1, int index2);
  */
 
 PriorityQueue *priorityQueueInitialization(void (*freeItem)(void *), int (*comp)(const void *, const void *)) {
+    if (freeItem == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "priority queue data structure");
+        exit(INVALID_ARG);
+    } else if (comp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "priority queue data structure");
+        exit(INVALID_ARG);
+    }
+
     PriorityQueue *queue = (PriorityQueue *) malloc(sizeof(PriorityQueue));
+    if (queue == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "queue", "priority queue data structure");
+        exit(FAILED_ALLOCATION);
+    }
 
     queue->length = 10;
     queue->arr = (void **) malloc(sizeof(void *) * queue->length);
+    if (queue->arr == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "queue array", "priority queue data structure");
+        exit(FAILED_ALLOCATION);
+    }
+
     queue->count = queue->fPointer = 0;
     queue->freeItem = freeItem;
     queue->comp = comp;
@@ -42,10 +63,27 @@ PriorityQueue *priorityQueueInitialization(void (*freeItem)(void *), int (*comp)
  */
 
 void pQueueEnqueue(PriorityQueue *queue, void *item) {
+    if (queue == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue pointer", "priority queue data structure");
+        exit(NULL_POINTER);
+    } else if (item == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "priority queue data structure");
+        exit(INVALID_ARG);
+    }
+
     if (queue->count == queue->length) {
         queue->length *= 2;
         void **tempArr = (void **) malloc(sizeof(void *) * queue->length);
-        memcpy(tempArr, queue->arr + sizeof(void *) * queue->fPointer, sizeof(void *) * (queue->count - queue->fPointer));
+        if (tempArr == NULL) {
+            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "queue array", "priority queue data structure");
+            exit(FAILED_ALLOCATION);
+        }
+
+        if (!memcpy(tempArr, queue->arr + sizeof(void *) * queue->fPointer, sizeof(void *) * (queue->count - queue->fPointer))) {
+            fprintf(stderr, FAILED_COPY_MESSAGE, "new queue array", "priority queue data structure");
+            exit(FAILED_COPY);
+        }
+
         free(queue->arr);
         queue->arr = tempArr;
         queue->count -= queue->fPointer;
@@ -82,6 +120,14 @@ void pQueueEnqueue(PriorityQueue *queue, void *item) {
 
 void pQueueEnqueueAll(PriorityQueue *queue, void **items, int arrLength) {
 
+    if (queue == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue pointer", "priority queue data structure");
+        exit(NULL_POINTER);
+    } else if (items == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "items array pointer", "priority queue data structure");
+        exit(INVALID_ARG);
+    }
+
     for (int i = 0; i < arrLength; i++)
         pQueueEnqueue(queue, items[i]);
 
@@ -100,9 +146,13 @@ void pQueueEnqueueAll(PriorityQueue *queue, void **items, int arrLength) {
  */
 
 void *pQueueDequeue(PriorityQueue *queue) {
-    if (pQueueIsEmpty(queue)) {
-        fprintf(stderr, "Illegal statement, queue is empty.");
-        exit(-3);
+
+    if (queue == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue pointer", "priority queue data structure");
+        exit(NULL_POINTER);
+    } else if (pQueueIsEmpty(queue)) {
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "priority queue data structure");
+        exit(EMPTY_DATA_STRUCTURE);
     }
 
     return queue->arr[queue->fPointer++];
@@ -122,9 +172,12 @@ void *pQueueDequeue(PriorityQueue *queue) {
  */
 
 void *pQueuePeek(PriorityQueue *queue) {
-    if (pQueueIsEmpty(queue)) {
-        fprintf(stderr, "Illegal statement, queue is empty.");
-        exit(-3);
+    if (queue == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue pointer", "priority queue data structure");
+        exit(NULL_POINTER);
+    } else if (pQueueIsEmpty(queue)) {
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "priority queue data structure");
+        exit(EMPTY_DATA_STRUCTURE);
     }
 
     return queue->arr[queue->fPointer];
@@ -144,6 +197,12 @@ void *pQueuePeek(PriorityQueue *queue) {
  */
 
 int pQueueGetLength(PriorityQueue *queue) {
+
+    if (queue == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue pointer", "priority queue data structure");
+        exit(NULL_POINTER);
+    }
+
     return queue->count - queue->fPointer;
 }
 
@@ -161,6 +220,12 @@ int pQueueGetLength(PriorityQueue *queue) {
  */
 
 int pQueueIsEmpty(PriorityQueue *queue) {
+
+    if (queue == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue pointer", "priority queue data structure");
+        exit(NULL_POINTER);
+    }
+
     return queue->count == queue->fPointer;
 }
 
@@ -178,7 +243,16 @@ int pQueueIsEmpty(PriorityQueue *queue) {
 
 void **pQueueToArray(PriorityQueue *queue) {
 
+    if (queue == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue pointer", "priority queue data structure");
+        exit(NULL_POINTER);
+    }
+
     void **arr = (void **) malloc(sizeof(void *) * pQueueGetLength(queue));
+    if (arr == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "priority queue data structure");
+        exit(FAILED_ALLOCATION);
+    }
 
     for (int i = queue->fPointer; i < queue->count; i++)
         arr[i - queue->fPointer] = queue->arr[i];
@@ -199,6 +273,11 @@ void **pQueueToArray(PriorityQueue *queue) {
  */
 
 void clearPQueue(PriorityQueue *queue) {
+
+    if (queue == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue pointer", "priority queue data structure");
+        exit(NULL_POINTER);
+    }
 
     while (queue->count != queue->fPointer)
         queue->freeItem(pQueueDequeue(queue));

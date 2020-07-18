@@ -21,7 +21,7 @@ typedef enum ERROR {
 
 #define         FAILED_ALLOCATION_MESSAGE           "The %s allocation in %s failed."
 #define         FAILED_REALLOCATION_MESSAGE         "The %s reallocation in %s failed."
-#define         FAILED_COPY_MESSAGE                 "Copying failed in %s."
+#define         FAILED_COPY_MESSAGE                 "Copying %s in %s failed."
 #define         INVALID_ARG_MESSAGE                 "The passed arg %s in %s is invalid."
 #define         NULL_POINTER_MESSAGE                "The %s pointer in %s is NULL."
 #define         OUT_OF_RANGE_MESSAGE                "The passed index is out of the %s range."
