@@ -40,18 +40,6 @@ void freeEntryFun(void *entry) {
 }
 
 
- /*/** The comparing keys function address variable.
- * Note: if the function returned zero then the two key are equal.
- * @param key1 the first key address
- * @param s1 the size of the first key in bytes
- * @param key2 the second key address
- * @param s2 the second key size in bytes
- * @return it will return zero if the two key are equal, other wise it will return any other integer.
-
-int (*keyCompFun)(const void *key1, const void *key2);
-*/
-
-
 
 
 
@@ -74,7 +62,7 @@ LinkedListHashMap *linkedListHashMapInitialization(
         ) {
 
     if (mapLength <= 0)
-        mapLength = 1;
+        mapLength = 10;
 
     LinkedListHashMap *hashMap = (LinkedListHashMap *) malloc(sizeof(LinkedListHashMap));
 
@@ -211,6 +199,46 @@ void *lLHashMapGet(LinkedListHashMap *map, void *key, int sizeOfKey) {
 
 
 
+/** This function will take the hash map address, the key address, and the size if the key as a parameters,
+ * then it will return the key pointer that equals to the provided key,
+ * other wise if the function didn't find that key it will return NULL.
+ * Note: this function will not free the passed key after it's done.
+ * @param map the hash map address
+ * @param key the key address
+ * @param sizeOfKey the size of the key
+ * @return it will return the key that equals to the provided key if found, other wise it will return NULL
+ */
+
+void *lLHashMapGetKey(LinkedListHashMap *map, void *key, int sizeOfKey) {
+    if (map == NULL) {
+        fprintf(stderr, "Illegal argument, the hash map is null.");
+        exit(-3);
+    } else if (key == NULL) {
+        fprintf(stderr, "Illegal argument, the passed key is null.");
+        exit(-3);
+    }
+
+    unsigned int index = hashCal((unsigned int) key, sizeOfKey, map->length);
+    if (map->arr[index] == NULL)
+        return 0;
+
+    Entry *entry = (Entry *) malloc(sizeof(Entry));
+    entry->key = key;
+
+    int itemIndex = doublyLinkedListGetIndex(map->arr[index], entry);
+    free(entry);
+    if (itemIndex == -1)
+        return NULL;
+
+    void *returnKey = ((Entry *) doublyLinkedListGet(map->arr[index], itemIndex))->key;
+
+    return returnKey;
+
+}
+
+
+
+
 
 /** This function will take the hash map address, the key address, and the size of the key as a parameters,
     then it will remove the item with the provided key from the hash map.
@@ -251,14 +279,16 @@ void lLHashMapDelete(LinkedListHashMap *map, void *key, int sizeOfKey) {
 
 
 /** This function will take the hash map address, the key address, and the size of the key as a parameters,
-    then it will remove the item with the provided key from the hash map without freeing it.
- * Note: this function will not free the key after it's done.
+ * then it will remove the item with the provided key from the hash map without freeing it.
+ * Note: the function will free the key without the item.
+ * Note: this function will not free the passed key after it's done.
  * @param map the hash map address
  * @param key the key address
  * @param sizeOfKey the size of the key
+ * @return it will return the deleted item pointer if found, other wise it will return NULL
  */
 
-void lLHashMapDeleteWtoFr(LinkedListHashMap *map, void *key, int sizeOfKey) {
+void *lLHashMapDeleteWtoFr(LinkedListHashMap *map, void *key, int sizeOfKey) {
     if (map == NULL) {
         fprintf(stderr, "Illegal argument, the hash map is null.");
         exit(-3);
@@ -269,7 +299,7 @@ void lLHashMapDeleteWtoFr(LinkedListHashMap *map, void *key, int sizeOfKey) {
 
     unsigned int index = hashCal((unsigned int) key, sizeOfKey, map->length);
     if (map->arr[index] == NULL)
-        return;
+        return NULL;
 
     Entry *entry = (Entry *) malloc(sizeof(Entry));
     entry->key = key;
@@ -277,12 +307,64 @@ void lLHashMapDeleteWtoFr(LinkedListHashMap *map, void *key, int sizeOfKey) {
     int itemIndex = doublyLinkedListGetIndex(map->arr[index], entry);
     free(entry);
     if (itemIndex == -1)
-        return;
+        return NULL;
 
-    doublyLinkedListDeleteAtIndexWtoFr(map->arr[index], itemIndex);
+    Entry *deletedEntry = doublyLinkedListDeleteAtIndexWtoFr(map->arr[index], itemIndex);
+    map->freeKeyFun(entry->key);
+    void *returnItem = deletedEntry->item;
+    free(deletedEntry);
+
     map->count--;
 
+    return returnItem;
 }
+
+
+
+
+
+
+/** This function will take the hash map address, the key address, and the size of the key as a parameters,
+ * then it will remove the item with the provided key from the hash map without freeing it.
+ * Note: the function will not free the key and the item.
+ * Note: this function will not free the passed key after it's done.
+ * @param map the hash map address
+ * @param key the key address
+ * @param sizeOfKey the size of the key
+ * @return it will return the deleted entry pointer if found, other wise it will return NULL
+ */
+
+Entry *lLHashMapDeleteWtoFrAll(LinkedListHashMap *map, void *key, int sizeOfKey) {
+    if (map == NULL) {
+        fprintf(stderr, "Illegal argument, the hash map is null.");
+        exit(-3);
+    } else if (key == NULL) {
+        fprintf(stderr, "Illegal argument, the passed key is null.");
+        exit(-3);
+    }
+
+    unsigned int index = hashCal((unsigned int) key, sizeOfKey, map->length);
+    if (map->arr[index] == NULL)
+        return NULL;
+
+    Entry *entry = (Entry *) malloc(sizeof(Entry));
+    entry->key = key;
+
+    int itemIndex = doublyLinkedListGetIndex(map->arr[index], entry);
+    free(entry);
+    if (itemIndex == -1)
+        return NULL;
+
+    Entry *deletedEntry = doublyLinkedListDeleteAtIndexWtoFr(map->arr[index], itemIndex);
+
+    map->count--;
+
+    return deletedEntry;
+
+}
+
+
+
 
 
 

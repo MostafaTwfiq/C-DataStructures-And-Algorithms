@@ -35,9 +35,13 @@ int lLHashMapContains(LinkedListHashMap *map, void *key, int sizeOfKey);
 
 void *lLHashMapGet(LinkedListHashMap *map, void *key, int sizeOfKey);
 
+void *lLHashMapGetKey(LinkedListHashMap *map, void *key, int sizeOfKey);
+
 void lLHashMapDelete(LinkedListHashMap *map, void *key, int sizeOfKey);
 
-void lLHashMapDeleteWtoFr(LinkedListHashMap *map, void *key, int sizeOfKey);
+void *lLHashMapDeleteWtoFr(LinkedListHashMap *map, void *key, int sizeOfKey);
+
+Entry *lLHashMapDeleteWtoFrAll(LinkedListHashMap *map, void *key, int sizeOfKey);
 
 void **lLHashMapToArray(LinkedListHashMap *map);
 
