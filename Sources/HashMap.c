@@ -1,4 +1,7 @@
 #include "../Headers/HashMap.h"
+#include "../Headers/Utils.h"
+#include <stdio.h>
+#include <stdlib.h>
 #include "limits.h"
 #include <string.h>
 
@@ -59,10 +62,30 @@ HashMap *hashMapInitialization(
         , int (*keyComp)(const void *, const void *)
         ) {
 
+    if (freeKey == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "free key function pointer", "hash map data structure");
+        exit(INVALID_ARG);
+    } else if (freeItem == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "free item function pointer", "hash map data structure");
+        exit(INVALID_ARG);
+    } else if (keyComp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key comparator function pointer", "hash map data structure");
+        exit(INVALID_ARG);
+    }
+
     HashMap *map = (HashMap *) malloc(sizeof(HashMap));
+    if (map == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "hash map", "hash map data structure");
+        exit(FAILED_ALLOCATION);
+    }
 
     map->length = getNextPrime(10); //the length of the map array should always be a prime number.
     map->arr = (Entry **) calloc(sizeof(Entry *), map->length);
+    if (map == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "hash map entries array", "hash map data structure");
+        exit(FAILED_ALLOCATION);
+    }
+
     map->count = 0;
     map->bPrime = calBPrime(map->length);
     map->freeItemFun = freeItem;
@@ -88,16 +111,23 @@ HashMap *hashMapInitialization(
 
 void hashMapInsert(HashMap *map, void *key, int sizeOfKey, void *item) {
     if (map == NULL) {
-        fprintf(stderr, "Illegal argument, the hash map is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "hash map data structure");
+        exit(NULL_POINTER);
     } else if (key == NULL) {
-        fprintf(stderr, "Illegal argument, the passed key is null.");
-        exit(-3);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
+        exit(INVALID_ARG);
+    } else if (item == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "hash map data structure");
+        exit(INVALID_ARG);
     }
 
     if (map->count == map->length) {
         map->length = getNextPrime(map->length * 2); //the length of the map array should always be a prime number.
         map->arr = (Entry **) realloc(map->arr, sizeof(Entry *) * map->length);
+        if (map->arr == NULL) {
+            fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "entries array", "hash map data structure");
+            exit(FAILED_REALLOCATION);
+        }
 
         for (int i = map->count; i < map->length; i++)
             map->arr[i] = NULL;
@@ -128,6 +158,11 @@ void hashMapInsert(HashMap *map, void *key, int sizeOfKey, void *item) {
     }
 
     Entry *newEntry = (Entry *) malloc(sizeof(Entry));
+    if (newEntry == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new entry", "hash map data structure");
+        exit(FAILED_ALLOCATION);
+    }
+
     newEntry->key = key;
     newEntry->item = item;
     newEntry->freeItemFun = map->freeItemFun;
@@ -154,11 +189,11 @@ void hashMapInsert(HashMap *map, void *key, int sizeOfKey, void *item) {
 
 int hashMapContains(HashMap *map, void *key, int sizeOfKey) {
     if (map == NULL) {
-        fprintf(stderr, "Illegal argument, the hash map is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "hash map data structure");
+        exit(NULL_POINTER);
     } else if (key == NULL) {
-        fprintf(stderr, "Illegal argument, the passed key is null.");
-        exit(-3);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
+        exit(INVALID_ARG);
     }
 
     unsigned int
@@ -202,11 +237,11 @@ int hashMapContains(HashMap *map, void *key, int sizeOfKey) {
 
 void *hashMapGet(HashMap *map, void *key, int sizeOfKey) {
     if (map == NULL) {
-        fprintf(stderr, "Illegal argument, the hash map is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "hash map data structure");
+        exit(NULL_POINTER);
     } else if (key == NULL) {
-        fprintf(stderr, "Illegal argument, the passed key is null.");
-        exit(-3);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
+        exit(INVALID_ARG);
     }
 
     unsigned int
@@ -251,11 +286,11 @@ void *hashMapGet(HashMap *map, void *key, int sizeOfKey) {
 
 void *hashMapGetKey(HashMap *map, void *key, int sizeOfKey) {
     if (map == NULL) {
-        fprintf(stderr, "Illegal argument, the hash map is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "hash map data structure");
+        exit(NULL_POINTER);
     } else if (key == NULL) {
-        fprintf(stderr, "Illegal argument, the passed key is null.");
-        exit(-3);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
+        exit(INVALID_ARG);
     }
 
     unsigned int
@@ -297,11 +332,11 @@ void *hashMapGetKey(HashMap *map, void *key, int sizeOfKey) {
 
 void hashMapDelete(HashMap *map, void *key, int sizeOfKey) {
     if (map == NULL) {
-        fprintf(stderr, "Illegal argument, the hash map is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "hash map data structure");
+        exit(NULL_POINTER);
     } else if (key == NULL) {
-        fprintf(stderr, "Illegal argument, the passed key is null.");
-        exit(-3);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
+        exit(INVALID_ARG);
     }
 
     unsigned int
@@ -351,11 +386,11 @@ void hashMapDelete(HashMap *map, void *key, int sizeOfKey) {
 
 void *hashMapDeleteWtoFr(HashMap *map, void *key, int sizeOfKey) {
     if (map == NULL) {
-        fprintf(stderr, "Illegal argument, the hash map is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "hash map data structure");
+        exit(NULL_POINTER);
     } else if (key == NULL) {
-        fprintf(stderr, "Illegal argument, the passed key is null.");
-        exit(-3);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
+        exit(INVALID_ARG);
     }
 
     unsigned int
@@ -404,11 +439,11 @@ void *hashMapDeleteWtoFr(HashMap *map, void *key, int sizeOfKey) {
 
 Entry *hashMapDeleteWtoFrAll(HashMap *map, void *key, int sizeOfKey) {
     if (map == NULL) {
-        fprintf(stderr, "Illegal argument, the hash map is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "hash map data structure");
+        exit(NULL_POINTER);
     } else if (key == NULL) {
-        fprintf(stderr, "Illegal argument, the passed key is null.");
-        exit(-3);
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
+        exit(INVALID_ARG);
     }
 
     unsigned int
@@ -453,11 +488,16 @@ Entry *hashMapDeleteWtoFrAll(HashMap *map, void *key, int sizeOfKey) {
 
 void **hashMapToArray(HashMap *map) {
     if (map == NULL) {
-        fprintf(stderr, "Illegal argument, the hash map is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "hash map data structure");
+        exit(NULL_POINTER);
     }
 
     void **arr = (void **) malloc(sizeof(void *) * map->count);
+    if (arr == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "hash map data structure");
+        exit(FAILED_ALLOCATION);
+    }
+
     for (int i = 0, index = 0; i < map->length; i++) {
 
         if (map->arr[i] != NULL)
@@ -480,11 +520,15 @@ void **hashMapToArray(HashMap *map) {
 
 Entry **hashMapToEntryArray(HashMap *map) {
     if (map == NULL) {
-        fprintf(stderr, "Illegal argument, the hash map is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "hash map data structure");
+        exit(NULL_POINTER);
     }
 
     Entry **arr = (Entry **) malloc(sizeof(Entry *) * map->count);
+    if (arr == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to entries array", "hash map data structure");
+        exit(FAILED_ALLOCATION);
+    }
 
     for (int i = 0, index = 0; i < map->length; i++) {
         if (map->arr[i] != NULL) {
@@ -512,8 +556,8 @@ Entry **hashMapToEntryArray(HashMap *map) {
 
 int hashMapGetLength(HashMap *map) {
     if (map == NULL) {
-        fprintf(stderr, "Illegal argument, the hash map is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "hash map data structure");
+        exit(NULL_POINTER);
     }
 
     return map->count;
@@ -532,8 +576,8 @@ int hashMapGetLength(HashMap *map) {
 
 int hashMapIsEmpty(HashMap *map) {
     if (map == NULL) {
-        fprintf(stderr, "Illegal argument, the hash map is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "hash map data structure");
+        exit(NULL_POINTER);
     }
 
     return map->count == 0;
@@ -550,8 +594,8 @@ int hashMapIsEmpty(HashMap *map) {
 
 void clearHashMap(HashMap *map) {
     if (map == NULL) {
-        fprintf(stderr, "Illegal argument, the hash map is null.");
-        exit(-3);
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "hash map data structure");
+        exit(NULL_POINTER);
     }
 
     for (int i = 0; i < map->length; i++) {

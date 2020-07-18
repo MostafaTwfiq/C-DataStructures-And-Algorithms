@@ -1,9 +1,6 @@
 #ifndef C_DATASTRUCTURES_HASHMAP_H
 #define C_DATASTRUCTURES_HASHMAP_H
 
-#include <stdio.h>
-#include <stdlib.h>
-
 #ifdef __cplusplus
 extern "C" {
 #endif
