@@ -33,9 +33,13 @@ int hashMapContains(HashMap *map, void *key, int sizeOfKey);
 
 void *hashMapGet(HashMap *map, void *key, int sizeOfKey);
 
+void *hashMapGetKey(HashMap *map, void *key, int sizeOfKey);
+
 void hashMapDelete(HashMap *map, void *key, int sizeOfKey);
 
 void *hashMapDeleteWtoFr(HashMap *map, void *key, int sizeOfKey);
+
+Entry *hashMapDeleteWtoFrAll(HashMap *map, void *key, int sizeOfKey);
 
 void **hashMapToArray(HashMap *map);
 

@@ -56,6 +56,7 @@ int main() {
     dirGraphAddEdge(graph, "Mostafa", strlen("Mostafa") + 1, "Tawfiq", strlen("Tawfiq") + 1);
 
 
+    printf("%d\n\n", dirGraphHasACycle(graph, "Tawfiq", strlen("Mostafa") + 1));
     ArrayList *arrayList = dirGraphTopologicalSort(graph);
     for (int i = 0; i < arrayListGetLength(arrayList); i++)
         printf("%s\n", (char *) arrayListGet(arrayList, i));

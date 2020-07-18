@@ -239,6 +239,54 @@ void *hashMapGet(HashMap *map, void *key, int sizeOfKey) {
 
 
 
+/** This function will take the map address, the key address, and the key size as a parameter,
+ * then it will return the key address if the key existed,
+ * other wise it will return NULL.
+ * Note: this function will not free the passed key
+ * @param map the hash map address
+ * @param key the key address
+ * @param sizeOfKey the size of the key in bytes
+ * @return it will return the item with the provided key if found other wise it will return NULL
+ */
+
+void *hashMapGetKey(HashMap *map, void *key, int sizeOfKey) {
+    if (map == NULL) {
+        fprintf(stderr, "Illegal argument, the hash map is null.");
+        exit(-3);
+    } else if (key == NULL) {
+        fprintf(stderr, "Illegal argument, the passed key is null.");
+        exit(-3);
+    }
+
+    unsigned int
+            fHash = fHashCal( (unsigned int) key, sizeOfKey, map->length)
+    , sHash = sHashCal( (unsigned int) key, sizeOfKey, map->bPrime);
+
+    unsigned int pHashIndex = 1;
+    unsigned int index = calIndex(fHash, sHash, pHashIndex, map->length);
+    unsigned int firstIndex = index;
+
+    do {
+
+        if (map->arr[index] != NULL) {
+            if (map->keyComp(key, map->arr[index]->key) == 0)
+                return map->arr[index]->key;
+
+        }
+
+        pHashIndex++;
+        index = calIndex(fHash, sHash, pHashIndex, map->length);
+
+    } while (firstIndex != index);
+
+    return NULL;
+
+}
+
+
+
+
+
 /** This function will take the map address, the key address, and the size of the key as a parameters,
     then it will delete and free the key and the item that linked to the key.
  * Note: if the key didn't found in the hash map, then the function will fo nothing.
@@ -294,7 +342,7 @@ void hashMapDelete(HashMap *map, void *key, int sizeOfKey) {
 
 /** This function will take the map address, the key address, and the size of the key as a parameters,
     then it will delete and free the key without freeing the item that linked to that key.
- * Note: if the key didn't found in the hash map, then the function will fo nothing.
+ * Note: if the key didn't found in the hash map, then the function will do nothing.
  * @param map the hash map address
  * @param key the key address
  * @param sizeOfKey the size of the key in bytes
@@ -323,10 +371,62 @@ void *hashMapDeleteWtoFr(HashMap *map, void *key, int sizeOfKey) {
         if (map->arr[index] != NULL) {
             if (map->keyComp(key, map->arr[index]->key) == 0) {
                 void *returnItem = map->arr[index]->item;
+                map->freeKeyFun(map->arr[index]->key);
                 free(map->arr[index]);
                 map->arr[index] = NULL;
                 map->count--;
                 return returnItem;
+            }
+
+        }
+
+        pHashIndex++;
+        index = calIndex(fHash, sHash, pHashIndex, map->length);
+
+    } while (firstIndex != index);
+
+    return NULL;
+
+}
+
+
+
+
+
+/** This function will take the map address, the key address, and the size of the key as a parameters,
+    then it will delete the entry without freeing the key and the item that linked to that key.
+ * Note: if the key didn't found in the hash map, then the function will do nothing.
+ * @param map the hash map address
+ * @param key the key address
+ * @param sizeOfKey the size of the key in bytes
+ * @return it will return the entry pointer if found, other wise it will return NULL
+ */
+
+Entry *hashMapDeleteWtoFrAll(HashMap *map, void *key, int sizeOfKey) {
+    if (map == NULL) {
+        fprintf(stderr, "Illegal argument, the hash map is null.");
+        exit(-3);
+    } else if (key == NULL) {
+        fprintf(stderr, "Illegal argument, the passed key is null.");
+        exit(-3);
+    }
+
+    unsigned int
+            fHash = fHashCal( (unsigned int) key, sizeOfKey, map->length)
+    , sHash = sHashCal( (unsigned int) key, sizeOfKey, map->bPrime);
+
+    unsigned int pHashIndex = 1;
+    unsigned int index = calIndex(fHash, sHash, pHashIndex, map->length);
+    unsigned int firstIndex = index;
+
+    do {
+
+        if (map->arr[index] != NULL) {
+            if (map->keyComp(key, map->arr[index]->key) == 0) {
+                Entry *returnEntry = map->arr[index];
+                map->arr[index] = NULL;
+                map->count--;
+                return returnEntry;
             }
 
         }

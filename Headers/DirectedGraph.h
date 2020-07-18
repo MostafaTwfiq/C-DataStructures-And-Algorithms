@@ -49,6 +49,8 @@ void dirGraphBreadthFirstTraversal(DirectedGraph *graph, void *startVal, int siz
 
 struct ArrayList *dirGraphTopologicalSort(DirectedGraph *graph);
 
+int dirGraphHasACycle(DirectedGraph *graph, void *startValue, int sizeOfValue);
+
 #ifdef __cplusplus
 }
 #endif
