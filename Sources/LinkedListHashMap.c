@@ -1,5 +1,6 @@
 #include "../Headers/LinkedListHashMap.h"
 #include "../Headers/DoublyLinkedList.h"
+#include "../Headers/Utils.h"
 
 
 //TODO: Please please check if it working and if it has any memory leaks.

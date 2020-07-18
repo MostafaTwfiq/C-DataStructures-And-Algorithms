@@ -1,4 +1,5 @@
 #include "../Headers/DoublyLinkedList.h"
+#include "../Headers/Utils.h"
 
 
 typedef struct Node {

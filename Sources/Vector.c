@@ -404,24 +404,24 @@ void **vectorToSubArray(Vector *list, int start, int end) {
 
 
 /** This function will take the vector address, and the sort comparator function as a parameter,
-    then it will sort the vector using qsort algorithm.
+ * then it will sort the vector using qsort algorithm.
  * Note: the pointer will be sent to the sort comparator function will be a double void pointer (void **) of an vector item.
- * @param list the vector address
  * Example of comparator function if the items are integers:
- * int comp(const void *item1, const void *item2) {
-    return *(int *)(*(void **)item1)->item - *(int *)(*(void **)item2)->item;}
+ * int comp(const void *item1, const void *item2) { return *(int *)(*(void **)item1)->item - *(int *)(*(void **)item2)->item; }
+ * @param list the vector address
+ * @param sortComp the sort comparator function address
  */
 
-void vectorSort(Vector *list) {
+void vectorSort(Vector *list, int (*sortComp)(const void*, const void*)) {
     if (list == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
         exit(NULL_POINTER);
-    } else if (list->comparator == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "comparator function", "vector data structure");
+    } else if (sortComp == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "sort comparator function", "vector data structure");
         exit(NULL_POINTER);
     }
 
-    qsort(list->arr, vectorGetLength(list), sizeof(void *), list->comparator);
+    qsort(list->arr, vectorGetLength(list), sizeof(void *), sortComp);
 
 }
 

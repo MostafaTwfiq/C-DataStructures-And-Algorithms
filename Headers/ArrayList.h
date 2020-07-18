@@ -41,7 +41,7 @@ void **arrayListToArray(ArrayList *list);
 
 void **arrayListToSubArray(ArrayList *list, int start, int end);
 
-void arrayListSort(ArrayList *list);
+void arrayListSort(ArrayList *list, int (*sortComp)(const void*, const void*));
 
 int arrayListGetLength(ArrayList *list);
 

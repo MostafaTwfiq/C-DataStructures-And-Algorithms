@@ -1,6 +1,5 @@
 #ifndef C_DATASTRUCTURES_DOUBLYLINKEDLIST_H
 #define C_DATASTRUCTURES_DOUBLYLINKEDLIST_H
-#include "Utils.h"
 
 #ifdef __cplusplus
 extern "C" {

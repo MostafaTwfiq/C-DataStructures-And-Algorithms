@@ -39,7 +39,7 @@ void **vectorToArray(Vector *list);
 
 void **vectorToSubArray(Vector *list, int start, int end);
 
-void vectorSort(Vector *list);
+void vectorSort(Vector *list, int (*sortComp)(const void*, const void*));
 
 int vectorGetLength(Vector *list);
 

@@ -406,23 +406,23 @@ void **arrayListToSubArray(ArrayList *list, int start, int end) {
 /** This function will take the array list address, and the sort comparator function as a parameter,
     then it will sort the array list using qsort algorithm.
  * Note: the pointer will be sent to the sort comparator function will be a double void pointer (void **) of an array list item.
- * @param list the array list address
  * Example of comparator function if the items are integers:
- * int comp(const void *item1, const void *item2) {
-    return *(int *)(*(void **)item1)->item - *(int *)(*(void **)item2)->item;}
+ * int comp(const void *item1, const void *item2) { return *(int *)(*(void **)item1)->item - *(int *)(*(void **)item2)->item; }
+ * @param list the array list address
+ * @param sortComp the sorting comparator function address
  */
 
-void arrayListSort(ArrayList *list) {
+void arrayListSort(ArrayList *list, int (*sortComp)(const void*, const void*)) {
 
     if (list == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
         exit(NULL_POINTER);
-    } else if (list->comparator == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "comparator function", "array list data structure");
+    } else if (sortComp == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "sort comparator function", "array list data structure");
         exit(NULL_POINTER);
     }
 
-    qsort(list->arr, arrayListGetLength(list), sizeof(void *), list->comparator);
+    qsort(list->arr, arrayListGetLength(list), sizeof(void *), sortComp);
 
 }
 
