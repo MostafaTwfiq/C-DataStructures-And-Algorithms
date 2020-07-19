@@ -35,7 +35,6 @@ typedef struct BinaryTreeNode {
 typedef struct BinaryTree {
     BinaryTreeNode *root;
     uint32_t nodeCount;
-    uint32_t sizeOfType;
     int (*cmp)(const void *, const void *);
     void (*freeFn)(void *);
 } BinaryTree;
