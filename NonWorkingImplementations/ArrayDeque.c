@@ -1,4 +1,11 @@
-#include "../Headers/ArrayDeque.h"
+#include "ArrayDeque.h"
+#include "../Headers/Utils.h"
+
+
+
+
+
+
 
 
 /** Copies a source array from a beginning index to the destination array from the mentioned index. Number of arguments to be copied is decided by len argument.
@@ -8,15 +15,24 @@
  * @param destinationIndex index to start copying into in the destination array.
  * @param len number of elements to copy from the source to the destination.
 **/
+
 void arrayCopy(void **source, int32_t sourceIndex, void **destination, int32_t destinationIndex, uint32_t len){
     int max = sourceIndex + len;
     while(sourceIndex < max)
         destination[destinationIndex++]=source[sourceIndex++];
 }
 
+
+
+
+
+
+
+
 /** Doubles the size of the ArrayDeque copying the contents of the previously allocated Deque to the new one.
 ** @param ad Reference pointer to the ArrayDeque.
 **/
+
 void doubleSize(ArrayDeque* ad){
     //THe length of the Deque
     uint32_t n = ArrayDequeLength(ad);
@@ -41,21 +57,37 @@ void doubleSize(ArrayDeque* ad){
     // the rear remains the same since it always increments from the start index zero.
 }
 
+
+
+
+
+
+
 /** Determines if a an Array Dequeue is full or not.
  * @param  arrayDeque Reference to preallocated Deque.
  * @return Return short int 1 if full else 0.
 **/
+
 uint16_t  ArrayDequeIsFull(ArrayDeque* arrayDeque){
     return ((arrayDeque->front == 0 && arrayDeque->rear == arrayDeque->size-1)
             ||arrayDeque->front == arrayDeque->rear+1);
 }
+
+
+
+
+
+
+
+
 
 /** Allocates space for a deque with an array of size set by the initialSize param on the heap and ret
 urns a pointer to the deque structure.
  * @param initialSize Size of the intial deque array.
  * @return Pointer to the newly allocated deque on the heap.
  **/
-ArrayDeque* ArrayDequeInitialize(uint32_t initialSize,void(*freeFn)(void*)){
+
+ArrayDeque* ArrayDequeInitialize(uint32_t initialSize, void(*freeFn)(void*)){
     ArrayDeque* ad =  (ArrayDeque*) malloc(sizeof(*ad));
     ad->size       =  initialSize;
     ad->front      = -1;
@@ -65,10 +97,20 @@ ArrayDeque* ArrayDequeInitialize(uint32_t initialSize,void(*freeFn)(void*)){
     return ad;
 }
 
+
+
+
+
+
+
+
+
+
 /**
  * @param arrayDeque Reference to preallocated Deque.
  * @param key  Pointer to key to stored in the deque.
  **/
+
 void ArrayDequeInsertFront(ArrayDeque* arrayDeque,void* key ) {
     if (ArrayDequeIsFull(arrayDeque)) {
         doubleSize(arrayDeque);

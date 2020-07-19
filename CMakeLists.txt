@@ -67,8 +67,8 @@ add_executable(C_DataStructures main.c
         Sources/RedBlackTree.c
         Headers/RedBlackTree.h
 
-        Sources/ArrayDeque.c
-        Headers/ArrayDeque.h
+        NonWorkingImplementations/ArrayDeque.c
+        NonWorkingImplementations/ArrayDeque.h
 
         Sources/HashSet.c
         Headers/HashSet.h
@@ -84,4 +84,4 @@ add_executable(C_DataStructures main.c
         "Unit Test/CuTest/CuTestTest.c"
         "Unit Test/CuTest/CuTest.h"
 ]]
-        )
+        Sources/Deque.c Headers/Deque.h)

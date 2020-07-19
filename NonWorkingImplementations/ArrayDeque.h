@@ -1,6 +1,7 @@
 #ifndef C_DATASTRUCTURES_ARRAYDEQUE_H
 #define C_DATASTRUCTURES_ARRAYDEQUE_H
-#include "Utils.h"
+
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {

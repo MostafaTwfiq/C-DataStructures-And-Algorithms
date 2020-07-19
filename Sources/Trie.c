@@ -406,7 +406,7 @@ void trieSuggestionR(Node *root, char *word, String *string, ArrayList *wordsLis
     int *indices = generateIndexes(toLowerCase(*word));
     if (indices == NULL)
         return;
-    
+
     for (int i = 0; i < 26; i++) {
         if (root->characters[indices[i]] != NULL)
             trieSuggestionR(root->characters[indices[i]], word + (*word == '\0' ? 0 : 1) , string, wordsList, numOfSuggestion);
