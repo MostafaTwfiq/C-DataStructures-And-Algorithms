@@ -1,6 +1,6 @@
 #ifndef C_DATASTRUCTURES_BINARYTREE_H
 #define C_DATASTRUCTURES_BINARYTREE_H
-#include "Utils.h"
+#include "stdint.h"
 #define COUNT 10
 
 #ifdef __cplusplus
@@ -35,7 +35,6 @@ typedef struct BinaryTreeNode {
 typedef struct BinaryTree {
     BinaryTreeNode *root;
     uint32_t nodeCount;
-    uint32_t sizeOfType;
     int (*cmp)(const void *, const void *);
     void (*freeFn)(void *);
 } BinaryTree;
@@ -55,7 +54,7 @@ int BinaryTreeIsPresent(BinaryTree *binaryTree, void *searchKey);
 
 void BinaryTreePrint(BinaryTreeNode *root, void (printFn)(void *));
 
-BinaryTreeNode* BinaryTreeInOrderPredecessor(BinaryTree *binaryTree,BinaryTreeNode *referenceNode);
+BinaryTreeNode* BinaryTreeInOrderPredecessor(BinaryTree *binaryTree, BinaryTreeNode *referenceNode);
 
 BinaryTreeNode* BinaryTreeInOrderSuccessor(BinaryTree *binaryTree, BinaryTreeNode *referenceNode);
 
@@ -65,9 +64,9 @@ BinaryTreeNode* BinaryTreeSearch(BinaryTree* binaryTree, void * key);
 
 void **BinaryTreeToArray(BinaryTree *binaryTree);
 
-void BinaryTreeFree(BinaryTree* binaryTree);
+void destroyBinaryTree(BinaryTree* binaryTree);
 
-BinaryTree *BinaryTreeInitialize(int size, int(*cmp)(const void *, const void *),  void (*freeFn)(void *));
+BinaryTree* binaryTreeInitialization(void (*freeFn)(void *), int (*cmp)(const void*, const void*));
 
 void printBinaryTreeStats(BinaryTree *tree);
 

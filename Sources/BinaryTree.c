@@ -1,14 +1,36 @@
 #include "../Headers/BinaryTree.h"
+#include "../Headers/Utils.h"
+
+
+
+
+
+
 
 void freeBinaryTreeNode(BinaryTreeNode **node,void (*freeFn)(void *));
+
 void printBinaryTreeHelper(BinaryTreeNode *root, int space, void (printFn)(void *));
+
 void BinaryTreeIsPresentRecurs(BinaryTree *binaryTree, BinaryTreeNode *root, void *searchValue, int* found );
-void BinaryTreeToArrayRecurs(BinaryTreeNode* node , void **arr, int *i,int size );
+
+void BinaryTreeToArrayRecurs(BinaryTreeNode* node , void **arr, int *i);
+
 BinaryTreeNode* newBinaryTreeNode(void* key);
+
 void BinaryTreeGetMaxStepsRecurs(BinaryTreeNode * node, int * steps);
+
 void BinaryTreeGetMinStepsRecurs(BinaryTreeNode * node, int * steps);
+
 BinaryTreeNode* DeleteBinaryTreeNodeWithFreeWrapper(BinaryTree *binaryTree, BinaryTreeNode* root, void *key);
+
 BinaryTreeNode* DeleteBinaryTreeNodeWithoutFreeWrapper(BinaryTree *binaryTree, BinaryTreeNode* root, void *key);
+
+
+
+
+
+
+
 /** Prints the Tree Statistics:
   - Number of Nodes,
   - Height,
@@ -20,6 +42,7 @@ BinaryTreeNode* DeleteBinaryTreeNodeWithoutFreeWrapper(BinaryTree *binaryTree, B
             where h is the height of the tree.
 * @param tree Reference to the Binary tree.
 **/
+
 void printBinaryTreeStats(BinaryTree *tree){
     if(tree&&tree->root){
         printf("............................\n");
@@ -35,65 +58,137 @@ void printBinaryTreeStats(BinaryTree *tree){
     }
 }
 
-/** Initialization Function for Binary Tree. A comparison function must be provided
-  for the tree to be able to level its Nodes. Returns a reference to an allocated BinaryTree pointer on the heap.
+
+
+
+
+
+/** Initialization Function for Binary Tree. A comparison and free functions must be provided
+  for the tree to be able to level its Nodes and freeing them. Returns a reference to an allocated BinaryTree pointer on the heap.
+* @param freeFn the freeing function address
 * @param cmp Reference to the comparator function.
 * @return Pointer to the allocated Binary tree on the heap.
 **/
-BinaryTree* BinaryTreeInitialize( int size, int(*cmp)(const void*, const void*), void (*freeFn)(void *)){
-    BinaryTree *t = (BinaryTree *) malloc(sizeof(BinaryTree));
-    if(!t){
-        fprintf(stderr,"Failed at allocating tree\n");
-        exit(-1);
+
+BinaryTree* binaryTreeInitialization(void (*freeFn)(void *), int (*cmp)(const void*, const void*)) {
+
+    if (freeFn == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "binary tree data structure");
+        exit(INVALID_ARG);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparison function pointer", "binary tree data structure");
+        exit(INVALID_ARG);
     }
+
+    BinaryTree *t = (BinaryTree *) malloc(sizeof(BinaryTree));
+    if (t == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "tree", "binary tree data structure");
+        exit(FAILED_ALLOCATION);
+    }
+
     t->root = NULL;
-    t->sizeOfType =size;
     t->cmp = cmp;
-    t->nodeCount =0;
+    t->nodeCount = 0;
     t->freeFn = freeFn;
+
     return t;
+
 }
 
+
+
+
+
+
+
+
 /** Creates a new Binary TreeNode for a given key.
-* @param key Reference pointer to preallocated key.
+* @param key Reference pointer to pre allocated key.
 * @return Returns a pointer to an allocated node on the heap.
 **/
+
 BinaryTreeNode* newBinaryTreeNode(void* key){
     BinaryTreeNode *p =  (BinaryTreeNode*)malloc(sizeof(BinaryTreeNode));
-    if(!p){
-        printf("Failed at allocating node\n");
-        exit(-1);
+    if (p == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new node", "binary tree data structure");
+        exit(FAILED_ALLOCATION);
     }
+
     p->key = key;
-    p->left=NULL;
-    p->right=NULL;
+    p->left = NULL;
+    p->right = NULL;
+
     return p;
+
 }
+
+
+
+
+
+
 
 /** Given an Binary Tree's root node it frees it's elements recursively.Setting the root node to Null.
 * @param node Exact Reference to root node to start freeing at.
 **/
-void BinaryTreeFreeWrapper(BinaryTreeNode** node,void (*freeFn)(void*)){
-    if (*node==NULL) return;
-    BinaryTreeFreeWrapper(&(*node)->left,freeFn);
-    BinaryTreeFreeWrapper(&(*node)->right,freeFn);
-    freeBinaryTreeNode(node,freeFn);
-    *node=NULL;
+void BinaryTreeFreeWrapper(BinaryTreeNode** node, void (*freeFn)(void*)){
+    if (*node == NULL)
+        return;
+
+    BinaryTreeFreeWrapper(&(*node)->left, freeFn);
+    BinaryTreeFreeWrapper(&(*node)->right, freeFn);
+    freeBinaryTreeNode(node, freeFn);
+
+    *node = NULL;
+
 }
 
-void BinaryTreeFree(BinaryTree* binaryTree){
-    BinaryTreeFreeWrapper(&binaryTree->root,binaryTree->freeFn);
+
+
+
+/** This function will take the binary tree pointer,
+ * then it will destroy and free the tree and it's nodes.
+ * @param binaryTree the binary tree pointer
+ */
+
+void destroyBinaryTree(BinaryTree* binaryTree){
+
+    if (binaryTree == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree pointer", "binary tree data structure");
+        exit(NULL_POINTER);
+    }
+
+    BinaryTreeFreeWrapper(&binaryTree->root, binaryTree->freeFn);
+    free(binaryTree);
+
 }
+
+
+
+
+
+
+
 
 /** Given a node it frees it's Key and the node. Setting both to Null.
 * @param node Exact Reference for node to Free.
 **/
+
 void freeBinaryTreeNode(BinaryTreeNode **node,void (*freeFn)(void *)){
-    if(*node) return;
+    if(*node)
+        return;
+
     freeFn((*node)->key);
     (*node)->key = NULL;
     free(*node);
 }
+
+
+
+
+
+
+
 
 /** Inserts a node at the a reference node (preferably the root) with the provided key if not present
   in the tree and returns a reference to the new node.
@@ -102,16 +197,28 @@ void freeBinaryTreeNode(BinaryTreeNode **node,void (*freeFn)(void *)){
 * @param key Reference to key to inset in the Tree.
 * @return Returns reference to the new root.
 **/
-BinaryTreeNode* BinaryTreeInsertWrapper(BinaryTree * binaryTree, BinaryTreeNode *node, void *key) {
+
+BinaryTreeNode* binaryTreeInsertWrapper(BinaryTree *binaryTree, BinaryTreeNode *node, void *key) {
     if (node == NULL) {
         binaryTree->nodeCount++;
         return newBinaryTreeNode(key);
     }
-    if ( (binaryTree->cmp)(key ,node->key)<0) node->left = BinaryTreeInsertWrapper(binaryTree, node->left, key);
-    else if ((binaryTree->cmp)(key ,node->key)>0) node->right = BinaryTreeInsertWrapper(binaryTree, node->right, key);
+
+    if ( binaryTree->cmp(key ,node->key) < 0 )
+        node->left = binaryTreeInsertWrapper(binaryTree, node->left, key);
+
+    else if ((binaryTree->cmp)(key ,node->key)>0)
+        node->right = binaryTreeInsertWrapper(binaryTree, node->right, key);
 
     return node;
+
 }
+
+
+
+
+
+
 
 /** Given a root node (i.e a to start search at for the reference node n) find the reference node
  and stores to inorder Successor for that node in the leftMost param.
@@ -123,11 +230,14 @@ BinaryTreeNode* BinaryTreeInsertWrapper(BinaryTree * binaryTree, BinaryTreeNode 
 void BinaryTreeInOrderSuccessorWrapper(BinaryTree *binaryTree, BinaryTreeNode* root, BinaryTreeNode* referenceNode, BinaryTreeNode **leftMost) {
     if (root == NULL) {
         leftMost = NULL;
-        return;}
+        return;
+    }
+
     if ((binaryTree->cmp)(root->key, referenceNode->key) == 0){
         if (root->right)
             *leftMost = BinaryTreeMinValueNode(root->right);
     }
+
     else if ((binaryTree->cmp)(referenceNode->key, root->key) < 0){
         *leftMost = root;
         BinaryTreeInOrderSuccessorWrapper(binaryTree, root->left, referenceNode, leftMost);
@@ -135,7 +245,13 @@ void BinaryTreeInOrderSuccessorWrapper(BinaryTree *binaryTree, BinaryTreeNode* r
     else{
         BinaryTreeInOrderSuccessorWrapper(binaryTree, root->right, referenceNode, leftMost);
     }
+
 }
+
+
+
+
+
 
 /** Given a root node (i.e a to start search at for the reference node n) find the reference node
  and stores to inorder Predecessor for that node in the rightMost param.
@@ -161,6 +277,15 @@ void BinaryTreeInOrderPredecessorWrapper(BinaryTree *binaryTree, BinaryTreeNode 
     }
 }
 
+
+
+
+
+
+
+
+
+
 /** Prints a tree in 2 space of the console.
 * @param root Reference to the root node.
 * @param printFn Pointer to the print function.
@@ -168,6 +293,17 @@ void BinaryTreeInOrderPredecessorWrapper(BinaryTree *binaryTree, BinaryTreeNode 
 void BinaryTreePrint(BinaryTreeNode *root, void (printFn)(void *)){
     printBinaryTreeHelper(root, 0, printFn);
 }
+
+
+
+
+
+
+
+
+
+
+
 
 /** Helper function for printing the tree in 2d space.
 * @param root Reference to the root node.
@@ -302,7 +438,7 @@ void BinaryTreePrintInOrder(BinaryTreeNode* node, void (printFn)(void *)){
 void **BinaryTreeToArray(BinaryTree *binaryTree){
     void **array = (void **) malloc(sizeof(void *) * binaryTree->nodeCount);
     int i = 0;
-    BinaryTreeToArrayRecurs(binaryTree->root, array, &i,binaryTree->sizeOfType);
+    BinaryTreeToArrayRecurs(binaryTree->root, array, &i);
     return array;
 }
 
@@ -311,14 +447,19 @@ void **BinaryTreeToArray(BinaryTree *binaryTree){
 * @param arr Preallocated array to start storing at.
 * @param i index to insert at in the array.
 **/
-void BinaryTreeToArrayRecurs(BinaryTreeNode* node , void **arr, int *i,int size ){
+
+void BinaryTreeToArrayRecurs(BinaryTreeNode* node , void **arr, int *i){
     if(!node) return;
-    BinaryTreeToArrayRecurs(node->left, arr, i,size);
-    arr[*i] = malloc(size);
-    memcpy(arr+*i,node->key,size);
+    BinaryTreeToArrayRecurs(node->left, arr, i);
+    arr[*i] = node->key;
     *i += 1;
-    BinaryTreeToArrayRecurs(node->right, arr, i,size);
+    BinaryTreeToArrayRecurs(node->right, arr, i);
 }
+
+
+
+
+
 
 /** Given a tree and a reference node to start searching at (preferably the root) searches for node with the same key and return it.
 * @param binaryTree Reference to the Binary tree.
@@ -452,5 +593,15 @@ BinaryTreeNode* BinaryTreeInOrderSuccessor(BinaryTree *binaryTree, BinaryTreeNod
 /// \param key
 /// \return
 void BinaryTreeInsert(BinaryTree *binaryTree, void *key){
-    binaryTree->root = BinaryTreeInsertWrapper(binaryTree,binaryTree->root,key);
+
+    if (binaryTree == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree pointer", "binary tree data structure");
+        exit(NULL_POINTER);
+    } else if (key == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "binary tree data structure");
+        exit(INVALID_ARG);
+    }
+
+    binaryTree->root = binaryTreeInsertWrapper(binaryTree, binaryTree->root, key);
+
 }

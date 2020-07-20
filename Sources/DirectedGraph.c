@@ -283,7 +283,8 @@ void dirGraphAddEdge(DirectedGraph *graph, void *fromVal, int sizeOfFromVal, voi
         return;
 
 
-    arrayListAdd(fromNode->adjacentNodes, toNode);
+    if (!arrayListContains(fromNode->adjacentNodes, toNode))
+        arrayListAdd(fromNode->adjacentNodes, toNode);
 
 }
 
@@ -631,7 +632,8 @@ void dirGraphDepthFirstTraversal(DirectedGraph *graph, void *startVal, int sizeO
             if (!hashSetContains(visitedNodes, adjNodeValAddress, sizeof(int))) {
                 pushStack(nodesStack, adjNode);
                 hashSetInsert(visitedNodes, adjNodeValAddress, sizeof(int));
-            }
+            } else
+                free(adjNodeValAddress);
 
         }
 
@@ -696,7 +698,8 @@ void dirGraphBreadthFirstTraversal(DirectedGraph *graph, void *startVal, int siz
             if (!hashSetContains(visitedNodes, adjNodeValAddress, sizeof(int))) {
                 arrayQueueEnqueue(nodesQueue, adjNode);
                 hashSetInsert(visitedNodes, adjNodeValAddress, sizeof(int));
-            }
+            } else
+                free(adjNodeValAddress);
 
         }
 

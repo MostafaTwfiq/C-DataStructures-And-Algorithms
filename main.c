@@ -20,7 +20,7 @@
 
 #include "Headers/DirectedGraph.h"
 #include "Headers/ArrayList.h"
-#include "Headers/Deque.h"
+#include "UndirectedGraph.h"
 
 void freeItem(void *item) {
     free(item);
@@ -36,72 +36,35 @@ void print(void *item) {
 
 int main() {
 
-    Deque *deque = dequeInitialization(freeItem);
-    int *item1;
+    UndirectedGraph *graph = undirectedGraphInitialization(freeItem, comp);
+    char *item;
 
-    item1 = (int *) malloc(sizeof(int));
-    *item1 = 10;
-    dequeInsertRear(deque, item1);
+    item = (char *) malloc(sizeof(char ) * (strlen("Mostafa") + 1));
+    strcpy(item, "Mostafa");
+    UDGraphAddNode(graph, item, strlen(item) + 1);
 
-    item1 = (int *) malloc(sizeof(int));
-    *item1 = 20;
-    dequeInsertRear(deque, item1);
+    item = (char *) malloc(sizeof(char ) * (strlen("Mohammed") + 1));
+    strcpy(item, "Mohammed");
+    UDGraphAddNode(graph, item, strlen(item) + 1);
 
-    item1 = (int *) malloc(sizeof(int));
-    *item1 = 30;
-    dequeInsertRear(deque, item1);
+    item = (char *) malloc(sizeof(char ) * (strlen("Tawfiq") + 1));
+    strcpy(item, "Tawfiq");
+    UDGraphAddNode(graph, item, strlen(item) + 1);
 
-    item1 = (int *) malloc(sizeof(int));
-    *item1 = 40;
-    dequeInsertRear(deque, item1);
+    UDGraphAddEdge(graph, "Mostafa", strlen("Mostafa") + 1, "Mohammed", strlen("Mohammed") + 1, 1);
+    UDGraphAddEdge(graph, "Mostafa", strlen("Mostafa") + 1, "Tawfiq", strlen("Tawfiq") + 1, 2);
+    UDGraphAddEdge(graph, "Mohammed", strlen("Mohammed") + 1, "Tawfiq", strlen("Tawfiq") + 1, 1);
 
-    // 10 20 30 40
+    UDGraphRemoveEdge(graph, "Mostafa", strlen("Mostafa") + 1, "Mohammed", strlen("Mohammed") + 1);
+    UDGraphRemoveNode(graph, "Mostafa", strlen("Mostafa") + 1);
 
-    printf("%d\n", *(int *)dequeGetRear(deque));
-    printf("%d\n\n", *(int *)dequeGetFront(deque));
+    //printf("Add");
 
-    // 20 30
+    printUDGraph(graph, print);
 
-    item1 = (int *) malloc(sizeof(int));
-    *item1 = 50;
-    dequeInsertFront(deque, item1);
+    destroyUDGraph(graph);
 
-    item1 = (int *) malloc(sizeof(int));
-    *item1 = 60;
-    dequeInsertFront(deque, item1);
-
-    item1 = (int *) malloc(sizeof(int));
-    *item1 = 70;
-    dequeInsertFront(deque, item1);
-
-    // 70 60 50 20 30
-
-    while (!dequeIsEmpty(deque)) {
-        printf("%d\n", *(int *)dequeGetRear(deque));
-        //printf("%d\n", *(int *)dequeGetFront(deque));
-    }
-
-    destroyDeque(deque);
-    exit(0);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    DirectedGraph *graph = directedGraphInitialization(freeItem, comp);
+    /*DirectedGraph *graph = directedGraphInitialization(freeItem, comp);
     char *item;
 
     item = (char *) malloc(sizeof(char ) * (strlen("Mostafa") + 1));
@@ -129,6 +92,7 @@ int main() {
     for (int i = 0; i < arrayListGetLength(arrayList); i++)
         printf("%s\n", (char *) arrayListGet(arrayList, i));
 
+     */
     return 0;
 
 }

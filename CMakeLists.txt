@@ -84,4 +84,4 @@ add_executable(C_DataStructures main.c
         "Unit Test/CuTest/CuTestTest.c"
         "Unit Test/CuTest/CuTest.h"
 ]]
-        Sources/Deque.c Headers/Deque.h)
+        Sources/Deque.c Headers/Deque.h UndirectedGraph.c UndirectedGraph.h)
