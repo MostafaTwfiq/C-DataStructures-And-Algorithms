@@ -1,6 +1,10 @@
 #ifndef C_DATASTRUCTURES_UNDIRECTEDGRAPH_H
 #define C_DATASTRUCTURES_UNDIRECTEDGRAPH_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "Headers/HashMap.h"
 #include "Headers/ArrayList.h"
 
@@ -20,6 +24,9 @@ typedef struct UDGraphEdge {
 
 
 typedef struct UndirectedGraph {
+#ifdef Cutest
+    int errorCode;
+#endif
     HashMap *nodes;
     void (*freeFun)(void *);
     int (*compFun)(const void *, const void*);
@@ -53,5 +60,19 @@ int UDGraphIsEmpty(UndirectedGraph *graph);
 void clearUDGraph(UndirectedGraph *graph);
 
 void destroyUDGraph(UndirectedGraph *graph);
+
+int UDGraphGetShortestDistance(UndirectedGraph *graph, void *startVal, int sizeOfStartVal, void *endVal, int sizeOfEndVal);
+
+ArrayList *UDGraphGetShortestPath(UndirectedGraph *graph, void *startVal, int sizeOfStartVal, void *endVal, int sizeOfEndVal);
+
+int UDGraphNodePartOfCycle(UndirectedGraph *graph, void *startVal, int sizeOfStartVal);
+
+int UDGraphHasCycle(UndirectedGraph *graph);
+
+UndirectedGraph *UDGraphMinimumSpanningGraph(UndirectedGraph *graph, void *startVal, int valSizeGetter(const void *));
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //C_DATASTRUCTURES_UNDIRECTEDGRAPH_H

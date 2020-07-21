@@ -449,6 +449,7 @@ void **BinaryTreeToArray(BinaryTree *binaryTree){
 **/
 
 void BinaryTreeToArrayRecurs(BinaryTreeNode* node , void **arr, int *i){
+
     if(!node) return;
     BinaryTreeToArrayRecurs(node->left, arr, i);
     arr[*i] = node->key;
@@ -564,15 +565,33 @@ BinaryTreeNode* DeleteBinaryTreeNodeWithoutFreeWrapper(BinaryTree *binaryTree, B
 * @param length The Length of the array to add from.
 **/
 void  BinaryTreeInsertAll(BinaryTree* binaryTree, void** array, uint32_t length){
+    if (binaryTree == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "binary Tree", "BinaryTreeInsertAll");
+        exit(NULL_POINTER);
+    }
+    if (array == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "array", "BinaryTreeInsertAll");
+        exit(NULL_POINTER);
+    }
+
     for(uint32_t i=0;i<length;i++)
         BinaryTreeInsert(binaryTree, array[i]);
-
 }
 ///
 /// \param binaryTree
 /// \param referenceNode
 /// \return
 BinaryTreeNode* BinaryTreeInOrderPredecessor(BinaryTree *binaryTree,BinaryTreeNode *referenceNode){
+    if (binaryTree == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "binary Tree", "BinaryTreeInOrderPredecessor");
+        exit(NULL_POINTER);
+    }
+
+    if (referenceNode == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "reference Node", "BinaryTreeInOrderPredecessor");
+        exit(NULL_POINTER);
+    }
+
     BinaryTreeNode * rightMost  = malloc(sizeof(*rightMost));
     BinaryTreeInOrderPredecessorWrapper(binaryTree,binaryTree->root,referenceNode,&rightMost);
     return rightMost;
@@ -583,6 +602,14 @@ BinaryTreeNode* BinaryTreeInOrderPredecessor(BinaryTree *binaryTree,BinaryTreeNo
 /// \param referenceNode
 /// \return
 BinaryTreeNode* BinaryTreeInOrderSuccessor(BinaryTree *binaryTree, BinaryTreeNode *referenceNode){
+    if (binaryTree == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "binary Tree", "BinaryTreeInOrderSuccessor");
+        exit(NULL_POINTER);
+    }
+    if (referenceNode == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "reference Node", "BinaryTreeInOrderSuccessor");
+        exit(NULL_POINTER);
+    }
     BinaryTreeNode * leftMost  = malloc(sizeof(*leftMost));
     BinaryTreeInOrderSuccessorWrapper(binaryTree, binaryTree->root,referenceNode,&leftMost);
     return leftMost;
@@ -595,13 +622,13 @@ BinaryTreeNode* BinaryTreeInOrderSuccessor(BinaryTree *binaryTree, BinaryTreeNod
 void BinaryTreeInsert(BinaryTree *binaryTree, void *key){
 
     if (binaryTree == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "tree pointer", "binary tree data structure");
+        fprintf(stderr, NULL_POINTER_MESSAGE, "binary Tree", "BinaryTreeInsert");
         exit(NULL_POINTER);
-    } else if (key == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "binary tree data structure");
-        exit(INVALID_ARG);
     }
-
-    binaryTree->root = binaryTreeInsertWrapper(binaryTree, binaryTree->root, key);
+    if (key == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "key", "BinaryTreeInsert");
+        exit(NULL_POINTER);
+    }
+    binaryTree->root = binaryTreeInsertWrapper(binaryTree,binaryTree->root,key);
 
 }

@@ -34,35 +34,58 @@ void print(void *item) {
     printf("%s", (char *)item);
 }
 
+int getSize(const void *item) {
+    return strlen((char *)item) + 1;
+}
+
 int main() {
 
     UndirectedGraph *graph = undirectedGraphInitialization(freeItem, comp);
     char *item;
 
-    item = (char *) malloc(sizeof(char ) * (strlen("Mostafa") + 1));
-    strcpy(item, "Mostafa");
+    /*item = (char *) malloc(sizeof(char ) * (strlen("A") + 1));
+    strcpy(item, "A");
     UDGraphAddNode(graph, item, strlen(item) + 1);
 
-    item = (char *) malloc(sizeof(char ) * (strlen("Mohammed") + 1));
-    strcpy(item, "Mohammed");
+    item = (char *) malloc(sizeof(char ) * (strlen("B") + 1));
+    strcpy(item, "B");
     UDGraphAddNode(graph, item, strlen(item) + 1);
 
-    item = (char *) malloc(sizeof(char ) * (strlen("Tawfiq") + 1));
-    strcpy(item, "Tawfiq");
+    item = (char *) malloc(sizeof(char ) * (strlen("C") + 1));
+    strcpy(item, "C");
     UDGraphAddNode(graph, item, strlen(item) + 1);
 
-    UDGraphAddEdge(graph, "Mostafa", strlen("Mostafa") + 1, "Mohammed", strlen("Mohammed") + 1, 1);
-    UDGraphAddEdge(graph, "Mostafa", strlen("Mostafa") + 1, "Tawfiq", strlen("Tawfiq") + 1, 2);
-    UDGraphAddEdge(graph, "Mohammed", strlen("Mohammed") + 1, "Tawfiq", strlen("Tawfiq") + 1, 1);
+    item = (char *) malloc(sizeof(char ) * (strlen("D") + 1));
+    strcpy(item, "D");
+    UDGraphAddNode(graph, item, strlen(item) + 1);
 
-    UDGraphRemoveEdge(graph, "Mostafa", strlen("Mostafa") + 1, "Mohammed", strlen("Mohammed") + 1);
-    UDGraphRemoveNode(graph, "Mostafa", strlen("Mostafa") + 1);
+    item = (char *) malloc(sizeof(char ) * (strlen("E") + 1));
+    strcpy(item, "E");
+    UDGraphAddNode(graph, item, strlen(item) + 1);*/
+
+    /*UDGraphAddEdge(graph, "A", strlen("A") + 1, "B", strlen("B") + 1, 3);
+    UDGraphAddEdge(graph, "A", strlen("A") + 1, "C", strlen("C") + 1, 1);
+    //UDGraphAddEdge(graph, "A", strlen("A") + 1, "D", strlen("D") + 1, 2);
+    UDGraphAddEdge(graph, "D", strlen("D") + 1, "B", strlen("B") + 1, 4);
+    UDGraphAddEdge(graph, "D", strlen("D") + 1, "C", strlen("C") + 1, 5);
+    UDGraphAddEdge(graph, "B", strlen("B") + 1, "C", strlen("C") + 1, 2);*/
+    //UDGraphAddEdge(graph, "D", strlen("D") + 1, "E", strlen("E") + 1, 5);
+    //UDGraphAddEdge(graph, "B", strlen("B") + 1, "E", strlen("E") + 1, 1);
+
+    //UDGraphRemoveEdge(graph, "Mostafa", strlen("Mostafa") + 1, "Mohammed", strlen("Mohammed") + 1);
+    //UDGraphRemoveNode(graph, "Mostafa", strlen("Mostafa") + 1);
 
     //printf("Add");
 
-    printUDGraph(graph, print);
+    /*ArrayList *list = UDGraphGetShortestPath(graph, "A", strlen("A") + 1, "A", strlen("A") + 1);
+    for (int i = 0; i < arrayListGetLength(list); i++)
+        printf("%s ", arrayListGet(list, i));
 
-    destroyUDGraph(graph);
+    printf("\n\n");
+    printf("%d", UDGraphNodePartOfCycle(graph, "A", strlen("A") + 1));*/
+    printUDGraph(UDGraphMinimumSpanningGraph(graph, "A", getSize), print);
+
+    //destroyUDGraph(graph);
 
     /*DirectedGraph *graph = directedGraphInitialization(freeItem, comp);
     char *item;

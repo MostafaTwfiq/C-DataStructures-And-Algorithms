@@ -885,8 +885,9 @@ int dirGraphHasACycle(DirectedGraph *graph) {
     HashSet *visitedNodes = hashSetInitialization(freeInt, compInt);
 
     for (int i = 0; i < hashMapGetLength(graph->nodes); i++) {
-
-        if (dirGraphNodeIsPartOfCycleR(hashMapNodes[i], visitedNodes)) {
+        int currentNodeValAddress = (int) hashMapNodes[i]->value;
+        if (!hashSetContains(visitedNodes, &currentNodeValAddress, sizeof(int))
+        && dirGraphNodeIsPartOfCycleR(hashMapNodes[i], visitedNodes)) {
             destroyHashSet(visitedNodes);
             free(hashMapNodes);
             return 1;

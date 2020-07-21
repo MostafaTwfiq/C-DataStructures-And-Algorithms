@@ -67,9 +67,6 @@ add_executable(C_DataStructures main.c
         Sources/RedBlackTree.c
         Headers/RedBlackTree.h
 
-        NonWorkingImplementations/ArrayDeque.c
-        NonWorkingImplementations/ArrayDeque.h
-
         Sources/HashSet.c
         Headers/HashSet.h
 

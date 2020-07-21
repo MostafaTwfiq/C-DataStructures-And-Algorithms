@@ -50,8 +50,8 @@ void freeEntry(void *entry) {
 /** This function will take the freeing item function address, the freeing key function address, and the key comparator function as a parameters,
    then it will initialize a new hash map,
    then the function will return the address of the hash map.
- * @param freeItem the freeing item function address that will be called to free the hash map items
  * @param freeKey the freeing key function address that will be called to free the items keys
+ * @param freeItem the freeing item function address that will be called to free the hash map items
  * @param keyComp the function that will be called to compare the keys
  * @return it will return the new initialized hash map address
  */
