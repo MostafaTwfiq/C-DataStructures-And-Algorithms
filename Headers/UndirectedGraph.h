@@ -5,33 +5,19 @@
 extern "C" {
 #endif
 
-#include "Headers/HashMap.h"
-#include "Headers/ArrayList.h"
 
 
-typedef struct UDGraphNode {
-    void *value;
-    ArrayList *adjacentNodes;
-    void (*freeFun)(void *);
-    int (*compFun)(const void *, const void*);
-} UDGraphNode;
-
-
-typedef struct UDGraphEdge {
-    UDGraphNode *node;
-    int weight;
-} UDGraphEdge;
 
 
 typedef struct UndirectedGraph {
-#ifdef Cutest
-    int errorCode;
-#endif
-    HashMap *nodes;
+    struct HashMap *nodes;
     void (*freeFun)(void *);
     int (*compFun)(const void *, const void*);
 
 } UndirectedGraph;
+
+
+
 
 
 
@@ -63,7 +49,7 @@ void destroyUDGraph(UndirectedGraph *graph);
 
 int UDGraphGetShortestDistance(UndirectedGraph *graph, void *startVal, int sizeOfStartVal, void *endVal, int sizeOfEndVal);
 
-ArrayList *UDGraphGetShortestPath(UndirectedGraph *graph, void *startVal, int sizeOfStartVal, void *endVal, int sizeOfEndVal);
+struct ArrayList *UDGraphGetShortestPath(UndirectedGraph *graph, void *startVal, int sizeOfStartVal, void *endVal, int sizeOfEndVal);
 
 int UDGraphNodePartOfCycle(UndirectedGraph *graph, void *startVal, int sizeOfStartVal);
 

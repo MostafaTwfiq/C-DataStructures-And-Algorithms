@@ -20,7 +20,7 @@
 
 #include "Headers/DirectedGraph.h"
 #include "Headers/ArrayList.h"
-#include "UndirectedGraph.h"
+#include "Headers/UndirectedGraph.h"
 
 void freeItem(void *item) {
     free(item);
