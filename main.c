@@ -22,6 +22,7 @@
 #include "DataStructure/Lists/Headers/ArrayList.h"
 #include "DataStructure/Graphs/Headers/UndirectedGraph.h"
 #include "DataStructure/Lists/Headers/Vector.h"
+#include "DataStructure/Deque/Headers/DLinkedListDeque.h"
 
 void freeItem(void *item) {
     free(item);
@@ -41,25 +42,55 @@ int getSize(const void *item) {
 
 int main() {
 
-    Vector *vector = vectorInitialization(1, freeItem, comp);
-    char *item1;
+    DLDeque *deque = dlDequeInitialization(freeItem);
+    int *value;
 
-    item1 = (char *) malloc(sizeof(char ) * (strlen("Tawfiq") + 1));
-    strcpy(item1, "Tawfiq");
-    vectorAdd(vector, item1);
+    value = (int *) malloc(sizeof(int));
+    *value = 30;
+    dLDequeInsertFront(deque, value);
 
-    item1 = (char *) malloc(sizeof(char ) * (strlen("Mostafa") + 1));
-    strcpy(item1, "Mostafa");
-    vectorAddAtIndex(vector, item1, 0);
+    value = (int *) malloc(sizeof(int));
+    *value = 20;
+    dLDequeInsertFront(deque, value);
 
-    item1 = (char *) malloc(sizeof(char ) * (strlen("Mohammed") + 1));
-    strcpy(item1, "Mohammed");
-    vectorAddAtIndex(vector, item1, 1);
+    value = (int *) malloc(sizeof(int));
+    *value = 10;
+    dLDequeInsertFront(deque, value);
 
-    for (int i = 0; i < vectorGetLength(vector); i++)
-        printf("%s\n", (char *) vectorGet(vector, i));
+    value = (int *) malloc(sizeof(int));
+    *value = 40;
+    dLDequeInsertRear(deque, value);
+
+    value = (int *) malloc(sizeof(int));
+    *value = 50;
+    dLDequeInsertRear(deque, value);
+
+    value = (int *) malloc(sizeof(int));
+    *value = 60;
+    dLDequeInsertRear(deque, value);
+
+
+    int **arr = (int **) dLDequeToArray(deque);
+
+    for (int i = 0; i < dLDequeGetLength(deque); i++) {
+        printf("%d\n", arr[i][0]);
+    }
+
+    //60
+    //10
+    //50
+    //20
+    //40
+    //30
+
+
+
 
     exit(0);
+
+
+
+
     UndirectedGraph *graph = undirectedGraphInitialization(freeItem, comp);
     char *item;
 
