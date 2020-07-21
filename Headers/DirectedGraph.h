@@ -5,17 +5,15 @@
 extern "C" {
 #endif
 
-typedef struct DirGraphNode {
-    void *value;
-    struct ArrayList *adjacentNodes;
-    int (*valueCompFun)(const void *, const void *);
-} DirGraphNode;
+
 
 typedef struct DirectedGraph {
     struct HashMap *nodes;
     void (*freeValue)(void *);
     int (*valueComp)(const void *, const void *);
 } DirectedGraph;
+
+
 
 DirectedGraph *directedGraphInitialization(void (*freeValue)(void *), int (*valueComp)(const void *, const void *));
 

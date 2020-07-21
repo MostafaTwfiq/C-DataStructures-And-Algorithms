@@ -21,6 +21,7 @@
 #include "Headers/DirectedGraph.h"
 #include "Headers/ArrayList.h"
 #include "Headers/UndirectedGraph.h"
+#include "Headers/Vector.h"
 
 void freeItem(void *item) {
     free(item);
@@ -40,10 +41,29 @@ int getSize(const void *item) {
 
 int main() {
 
+    Vector *vector = vectorInitialization(1, freeItem, comp);
+    char *item1;
+
+    item1 = (char *) malloc(sizeof(char ) * (strlen("Tawfiq") + 1));
+    strcpy(item1, "Tawfiq");
+    vectorAdd(vector, item1);
+
+    item1 = (char *) malloc(sizeof(char ) * (strlen("Mostafa") + 1));
+    strcpy(item1, "Mostafa");
+    vectorAddAtIndex(vector, item1, 0);
+
+    item1 = (char *) malloc(sizeof(char ) * (strlen("Mohammed") + 1));
+    strcpy(item1, "Mohammed");
+    vectorAddAtIndex(vector, item1, 1);
+
+    for (int i = 0; i < vectorGetLength(vector); i++)
+        printf("%s\n", (char *) vectorGet(vector, i));
+
+    exit(0);
     UndirectedGraph *graph = undirectedGraphInitialization(freeItem, comp);
     char *item;
 
-    /*item = (char *) malloc(sizeof(char ) * (strlen("A") + 1));
+    item = (char *) malloc(sizeof(char ) * (strlen("A") + 1));
     strcpy(item, "A");
     UDGraphAddNode(graph, item, strlen(item) + 1);
 
@@ -61,14 +81,14 @@ int main() {
 
     item = (char *) malloc(sizeof(char ) * (strlen("E") + 1));
     strcpy(item, "E");
-    UDGraphAddNode(graph, item, strlen(item) + 1);*/
+    UDGraphAddNode(graph, item, strlen(item) + 1);
 
-    /*UDGraphAddEdge(graph, "A", strlen("A") + 1, "B", strlen("B") + 1, 3);
+    UDGraphAddEdge(graph, "A", strlen("A") + 1, "B", strlen("B") + 1, 3);
     UDGraphAddEdge(graph, "A", strlen("A") + 1, "C", strlen("C") + 1, 1);
     //UDGraphAddEdge(graph, "A", strlen("A") + 1, "D", strlen("D") + 1, 2);
     UDGraphAddEdge(graph, "D", strlen("D") + 1, "B", strlen("B") + 1, 4);
     UDGraphAddEdge(graph, "D", strlen("D") + 1, "C", strlen("C") + 1, 5);
-    UDGraphAddEdge(graph, "B", strlen("B") + 1, "C", strlen("C") + 1, 2);*/
+    UDGraphAddEdge(graph, "B", strlen("B") + 1, "C", strlen("C") + 1, 2);
     //UDGraphAddEdge(graph, "D", strlen("D") + 1, "E", strlen("E") + 1, 5);
     //UDGraphAddEdge(graph, "B", strlen("B") + 1, "E", strlen("E") + 1, 1);
 

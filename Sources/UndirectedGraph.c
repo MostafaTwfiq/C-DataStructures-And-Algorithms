@@ -64,6 +64,11 @@ int UDGraphNodePartOfCycleR(UDGraphNode *prevNode, UDGraphNode *currentNode, Has
 
 
 
+
+
+
+
+
 /** This function take a node as it's parameter,
  * then it will free the node without freeing it's value
  * @param node the node address
@@ -81,6 +86,9 @@ void UDGraphNodeFreeFun(void *node) {
 
 
 
+
+
+
 /** This function will take an edge as it's parameter,
  * then it will free the edge without freeing it's node.
  * @param edge the edge pointer
@@ -90,6 +98,9 @@ void UDGraphEdgeFreeFun(void *edge) {
     UDGraphEdge *edgeToFree = (UDGraphEdge *) edge;
     free(edgeToFree);
 }
+
+
+
 
 
 
@@ -116,6 +127,9 @@ int UDGraphEdgeComp(const void *e1, const void *e2) {
 
 
 
+
+
+
 /** This function will take two nodes then it will compare them by there value.
  * @param n1 the first node pointer
  * @param n2 the second node pointer
@@ -129,6 +143,9 @@ int UDGraphNodeComp(const void *n1, const void *n2) {
     int returnValue = node1->compFun(node1->value, node2->value);
     return returnValue;
 }
+
+
+
 
 
 
@@ -209,6 +226,7 @@ void UDGraphAddNode(UndirectedGraph *graph, void *value, int sizeOfValue) {
     hashMapInsert(graph->nodes, value, sizeOfValue, newNode);
 
 }
+
 
 
 
@@ -326,6 +344,8 @@ void UDGraphRemoveNode(UndirectedGraph *graph, void *value, int sizeOfValue) {
 
 
 
+
+
 /** This function will take a node value,
  * then it will remove and free the node from the graph without freeing the node value.
  * Note: the function will not free the passed value.
@@ -366,6 +386,9 @@ void *UDGraphRemoveNodeWtoFr(UndirectedGraph *graph, void *value, int sizeOfValu
     return returnValue;
 
 }
+
+
+
 
 
 
@@ -426,6 +449,8 @@ void UDGraphRemoveEdge(UndirectedGraph *graph, void *fValue, int fSize, void *sV
 
 
 
+
+
 /** This function will check if the passed value exist in the graph or not.
  * The function will return one (1) if the value exists, other wise it will return zero (0).
  * Note: the function will not free the passed value.
@@ -447,6 +472,8 @@ int UDGraphContainsNode(UndirectedGraph *graph, void *value, int sizeOfValue) {
     return hashMapContains(graph->nodes, value, sizeOfValue);
 
 }
+
+
 
 
 
@@ -508,6 +535,8 @@ int UDGraphContainsEdge(UndirectedGraph *graph, void *fValue, int fSize, void *s
 
 
 
+
+
 /** This function will print the graph nodes as following:
  * <<
  * The node: //the node name
@@ -547,6 +576,9 @@ void printUDGraph(UndirectedGraph *graph, void (*printFun)(void *)) {
 
 
 
+
+
+
 /** This function will return the number of nodes in the graph,
  * @param graph the graph pointer
  * @return it will return the number of nodes in the graph
@@ -561,6 +593,8 @@ int UDGraphGetSize(UndirectedGraph *graph) {
     return hashMapGetLength(graph->nodes);
 
 }
+
+
 
 
 
@@ -587,6 +621,9 @@ int UDGraphIsEmpty(UndirectedGraph *graph) {
 
 
 
+
+
+
 /** This function will clear and free the graph nodes and value,
  * without freeing the graph.
  * @param graph the graph pointer
@@ -600,6 +637,7 @@ void clearUDGraph(UndirectedGraph *graph) {
 
     clearHashMap(graph->nodes);
 }
+
 
 
 
@@ -629,6 +667,8 @@ void destroyUDGraph(UndirectedGraph *graph) {
 
 
 
+
+
 /** This function will take an integer pointer as a parameter,
  * then it will free it.
  * This function will be useful in traversal functions.
@@ -638,6 +678,9 @@ void destroyUDGraph(UndirectedGraph *graph) {
 void UDGFreeInt(void *integer) {
     free(integer);
 }
+
+
+
 
 
 
@@ -658,6 +701,7 @@ void UDGFreeInt(void *integer) {
 int UDGCompInt(const void *int1, const void *int2) {
     return *(int *)int1 - *(int *)int2;
 }
+
 
 
 
@@ -728,6 +772,8 @@ void UDGraphDepthFirstTraversal(UndirectedGraph *graph, void *startVal, int size
 
 
 
+
+
 /** This function will breadth first traverse the graph.
  * Note: actually you can do more than printing values, the printing function will take the value as a parameter.
  * @param graph the graph address
@@ -789,6 +835,8 @@ void UDGraphBreadthFirstTraversal(UndirectedGraph *graph, void *startVal, int si
 
 
 
+
+
 /** This function will take two distances holders,
  * then it will compare them with the distance.
  * Note: this function should only be called from the undirected graph functions.
@@ -805,6 +853,9 @@ int distanceHolderComp(const void *holder1, const void *holder2) {
 
 
 
+
+
+
 /**  This function takes a distanceHolder, then it frees it.
  * Note: this function should only be called from the undirected graph functions.
  * @param holder the distance holder pointer
@@ -813,6 +864,10 @@ int distanceHolderComp(const void *holder1, const void *holder2) {
 void distanceHolderFreeFun(void *holder) {
     free(holder);
 }
+
+
+
+
 
 
 
@@ -845,6 +900,10 @@ int *generateNodeValAddress(UDGraphNode *node) {
 
 
 
+
+
+
+
 /** This function will allocate a new distance holder in the memory,
  * and return it's pointer.
  * Note: this function should only be called from the undirected graph functions.
@@ -868,6 +927,13 @@ DistanceHolder *generateDisHolder(UDGraphNode *fromNode, UDGraphNode *toNode, in
 
 
 
+
+
+
+
+
+
+
 /** This function will take a holder pointer,
  * then it will update it's content.
  * Note: this function should only be called from the undirected graph functions.
@@ -882,6 +948,11 @@ void updateDisHolder(DistanceHolder *holder, UDGraphNode *fromNode, UDGraphNode 
     holder->toNode = toNode;
     holder->distance = distance;
 }
+
+
+
+
+
 
 
 
@@ -927,6 +998,10 @@ int UDGraphGetShortestDistance(UndirectedGraph *graph, void *startVal, int sizeO
     return ans;
 
 }
+
+
+
+
 
 
 
@@ -1003,11 +1078,15 @@ ArrayList *UDGraphGetShortestPath(UndirectedGraph *graph, void *startVal, int si
 
 
 
+
+
+
+
 /** This function will take a node as it's parameter,
  * then it will return a hash map the contains all the the shortest paths between all the nodes starts from the passed node.
  * Note: this function should only be called from the undirected graph functions.
  *
- * >>> The function used the Dijkstra's algorithm <<<.
+ * >>> The function uses the Dijkstra's algorithm <<<.
  *
  * The hash map will represented like this:-
  *
@@ -1102,6 +1181,8 @@ HashMap *UDGraphGenerateDistancesMap(UDGraphNode *startNode) {
 
 
 
+
+
 /** This function will check if the passed node it a part of a cycle or it leads to a cycle,
  * if it was the function will return oen (1), other wise the function will return zero (0).
  * Note: the function will not free the passed value.
@@ -1132,6 +1213,7 @@ int UDGraphNodePartOfCycle(UndirectedGraph *graph, void *startVal, int sizeOfSta
 
     return cycleFlag;
 }
+
 
 
 
@@ -1187,6 +1269,7 @@ int UDGraphHasCycle(UndirectedGraph *graph) {
 
 
 
+
 /** This function will check if the passed node is a part of a cycle recursively,
  * and if it was the function will return one (1), other wise it will return zero (0).
  * Note: this function should only be called from the undirected graph functions.
@@ -1225,6 +1308,9 @@ int UDGraphNodePartOfCycleR(UDGraphNode *prevNode, UDGraphNode *currentNode, Has
 
 
 
+
+
+
 /** This function will take two edges,
  * then it will compare them by there weight.
  * @param e1 the first edge pointer
@@ -1241,9 +1327,14 @@ int edgeCompDis(const void *e1, const void *e2) {
 
 
 
+
+
+
+
 /** This function will take a start node value and a function pointer that take a value and then return it's size,
  * then this function will return a new undirectedGraph pointer that consist of the minimum spanning of the original graph.
  * Note: the new graph has the same values pointers of the original graph (be careful).
+ * >>> The function uses the Prim's algorithm <<<.
  * @param graph the graph pointer
  * @param startVal the start value pointer
  * @param valSizeGetter the getting size function pointer

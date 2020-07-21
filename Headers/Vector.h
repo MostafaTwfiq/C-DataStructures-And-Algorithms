@@ -17,6 +17,8 @@ Vector *vectorInitialization(int initialLength, void (*freeFun)(void *), int (*c
 
 void vectorAdd(Vector *list, void *item);
 
+void vectorAddAtIndex(Vector *list, void *item, int index);
+
 void vectorAddAll(Vector *list, void **array, int arrayLength);
 
 void vectorRemove(Vector *list);

@@ -19,6 +19,8 @@ arrayListInitialization(int initialLength, void (*freeFun)(void *), int (*compar
 
 void arrayListAdd(ArrayList *list, void *item);
 
+void arrayListAddAtIndex(ArrayList *list, void *item, int index);
+
 void arrayListAddAll(ArrayList *list, void **array, int arrayLength);
 
 void arrayListRemove(ArrayList *list);

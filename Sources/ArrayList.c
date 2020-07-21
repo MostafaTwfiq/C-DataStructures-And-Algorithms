@@ -81,6 +81,56 @@ void arrayListAdd(ArrayList *list, void *item) {
 
 
 
+
+
+
+/** This function will take the array list address, and the item address as a parameters,
+    then it will put the new item in provided index.
+ * @param list the array list address
+ * @param item the item address
+ * @param index the index of the new item
+ */
+
+void arrayListAddAtIndex(ArrayList *list, void *item, int index) {
+    if (list == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
+        exit(NULL_POINTER);
+    } else if (item == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "array list data structure");
+        exit(INVALID_ARG);
+    } else if (index < 0 || index >= arrayListGetLength(list)) {
+        fprintf(stderr, OUT_OF_RANGE_MESSAGE, "array list data structure");
+        exit(OUT_OF_RANGE);
+    }
+
+    if (list->count == list->length) {
+        list->length = (int) ceil(list->length * 1.5);
+
+        list->arr = (void **) realloc(list->arr, sizeof(void *) * list->length);
+        if (list->arr == NULL) {
+            fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "items memory", "array list data structure");
+            exit(FAILED_REALLOCATION);
+        }
+
+    }
+
+
+    for (int i = list->count++; i > index; i--)
+        list->arr[i] = list->arr[i - 1];
+
+
+    list->arr[index] = item;
+
+}
+
+
+
+
+
+
+
+
+
 /** This function will take the array list address, the items array, and the length of items array as a parameters,
     then it will copy the items array into the array list.
  * @param list the array list address

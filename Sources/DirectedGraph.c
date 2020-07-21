@@ -11,6 +11,14 @@
 
 
 
+typedef struct DirGraphNode {
+    void *value;
+    struct ArrayList *adjacentNodes;
+    int (*valueCompFun)(const void *, const void *);
+} DirGraphNode;
+
+
+
 
 
 void dirGraphTopologicalSortR(DirGraphNode *node, HashSet *visitedNodes, Stack *sortStack);
