@@ -18,10 +18,10 @@
 #define ANSI_COLOR_WHITE    "\x1b[37m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
-#include "Headers/DirectedGraph.h"
-#include "Headers/ArrayList.h"
-#include "Headers/UndirectedGraph.h"
-#include "Headers/Vector.h"
+#include "DataStructure/Graphs/Headers/DirectedGraph.h"
+#include "DataStructure/Lists/Headers/ArrayList.h"
+#include "DataStructure/Graphs/Headers/UndirectedGraph.h"
+#include "DataStructure/Lists/Headers/Vector.h"
 
 void freeItem(void *item) {
     free(item);

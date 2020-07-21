@@ -5,73 +5,73 @@ set(CMAKE_C_STANDARD 99)
 
 add_executable(C_DataStructures main.c
 
-        Sources/Stack.c
-        Headers/Stack.h
+        DataStructure/Stacks/Sources/Stack.c
+        DataStructure/Stacks/Headers/Stack.h
 
-        Sources/LinkedList.c
-        Headers/LinkedList.h
+        DataStructure/LinkedLists/Sources/LinkedList.c
+        DataStructure/LinkedLists/Headers/LinkedList.h
 
-        Sources/DoublyLinkedList.c
-        Headers/DoublyLinkedList.h
+        DataStructure/LinkedLists/Sources/DoublyLinkedList.c
+        DataStructure/LinkedLists/Headers/DoublyLinkedList.h
 
-        Sources/String.c
-        Headers/String.h
+        DataStructure/Strings/Sources/String.c
+        DataStructure/Strings/Headers/String.h
 
-        Sources/ArrayList.c
-        Headers/ArrayList.h
+        DataStructure/Lists/Sources/ArrayList.c
+        DataStructure/Lists/Headers/ArrayList.h
 
-        Sources/Vector.c
-        Headers/Vector.h
+        DataStructure/Lists/Sources/Vector.c
+        DataStructure/Lists/Headers/Vector.h
 
-        Sources/DLinkedListStack.c
-        Headers/DLinkedListStack.h
+        DataStructure/Stacks/Sources/DLinkedListStack.c
+        DataStructure/Stacks/Headers/DLinkedListStack.h
 
-        Sources/LinkedListQueue.c
-        Headers/LinkedListQueue.h
+        DataStructure/Queues/Sources/LinkedListQueue.c
+        DataStructure/Queues/Headers/LinkedListQueue.h
 
-        Sources/ArrayQueue.c
-        Headers/ArrayQueue.h
+        DataStructure/Queues/Sources/ArrayQueue.c
+        DataStructure/Queues/Headers/ArrayQueue.h
 
-        Sources/BinaryTree.c
-        Headers/BinaryTree.h
+        DataStructure/Trees/Sources/BinaryTree.c
+        DataStructure/Trees/Headers/BinaryTree.h
 
-        Sources/AVLTree.c
-        Headers/AVLTree.h
+        DataStructure/Trees/Sources/AVLTree.c
+        DataStructure/Trees/Headers/AVLTree.h
 
-        Sources/SplayTree.c
-        Headers/SplayTree.h
+        DataStructure/Trees/Sources/SplayTree.c
+        DataStructure/Trees/Headers/SplayTree.h
 
-        Sources/BinaryMinHeap.c
-        Headers/BinaryMinHeap.h
+        DataStructure/Trees/Sources/BinaryMinHeap.c
+        DataStructure/Trees/Headers/BinaryMinHeap.h
 
-        Sources/BinaryMaxHeap.c
-        Headers/BinaryMaxHeap.h
+        DataStructure/Trees/Sources/BinaryMaxHeap.c
+        DataStructure/Trees/Headers/BinaryMaxHeap.h
 
-        Headers/Utils.h
+        System/Utils.h
 
-        Sources/Trie.c
-        Headers/Trie.h
+        DataStructure/Trees/Sources/Trie.c
+        DataStructure/Trees/Headers/Trie.h
 
-        Sources/StackQueue.c
-        Headers/StackQueue.h
+        DataStructure/Queues/Sources/StackQueue.c
+        DataStructure/Queues/Headers/StackQueue.h
 
-        Sources/HashMap.c
-        Headers/HashMap.h
+        DataStructure/Tables/Sources/HashMap.c
+        DataStructure/Tables/Headers/HashMap.h
 
-        Sources/PriorityQueue.c
-        Headers/PriorityQueue.h
+        DataStructure/Queues/Sources/PriorityQueue.c
+        DataStructure/Queues/Headers/PriorityQueue.h
 
-        Sources/LinkedListHashMap.c
-        Headers/LinkedListHashMap.h
+        DataStructure/Tables/Sources/LinkedListHashMap.c
+        DataStructure/Tables/Headers/LinkedListHashMap.h
 
-        Sources/RedBlackTree.c
-        Headers/RedBlackTree.h
+        DataStructure/Trees/Sources/RedBlackTree.c
+        DataStructure/Trees/Headers/RedBlackTree.h
 
-        Sources/HashSet.c
-        Headers/HashSet.h
+        DataStructure/Tables/Sources/HashSet.c
+        DataStructure/Tables/Headers/HashSet.h
 
-        Sources/DirectedGraph.c
-        Headers/DirectedGraph.h
+        DataStructure/Graphs/Sources/DirectedGraph.c
+        DataStructure/Graphs/Headers/DirectedGraph.h
 
 
         #[["Unit Test/CuTest"
@@ -81,4 +81,4 @@ add_executable(C_DataStructures main.c
         "Unit Test/CuTest/CuTestTest.c"
         "Unit Test/CuTest/CuTest.h"
 ]]
-        Sources/Deque.c Headers/Deque.h Sources/UndirectedGraph.c Headers/UndirectedGraph.h)
+        DataStructure/Deque/Sources/Deque.c DataStructure/Deque/Headers/Deque.h DataStructure/Graphs/Sources/UndirectedGraph.c DataStructure/Graphs/Headers/UndirectedGraph.h)
