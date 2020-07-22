@@ -23,6 +23,7 @@
 #include "DataStructure/Graphs/Headers/UndirectedGraph.h"
 #include "DataStructure/Lists/Headers/Vector.h"
 #include "DataStructure/Deque/Headers/DLinkedListDeque.h"
+#include "Algorithms/Sorting/SortingAlg.h"
 
 void freeItem(void *item) {
     free(item);
@@ -40,9 +41,21 @@ int getSize(const void *item) {
     return strlen((char *)item) + 1;
 }
 
+
+int intCmp(const void *p1, const void *p2) {
+    return *(int *)p1 - *(int *)p2;
+}
+
 int main() {
 
-    DLDeque *deque = dlDequeInitialization(freeItem);
+
+    int arr[] = {55, 4, 33, 2, 0, 1, 3};
+    bubbleSort(arr, 7, sizeof(int), intCmp);
+    for (int i = 0; i < 7; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    /*DLDeque *deque = dlDequeInitialization(freeItem);
     int *value;
 
     value = (int *) malloc(sizeof(int));
@@ -84,7 +97,7 @@ int main() {
     //30
 
 
-
+*/
 
     exit(0);
 
