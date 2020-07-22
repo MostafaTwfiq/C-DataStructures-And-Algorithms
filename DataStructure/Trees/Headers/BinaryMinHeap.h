@@ -35,21 +35,21 @@ typedef struct BinaryMinHeap {
 
 BinaryMinHeap *MinHeapInitialize(int32_t (*cmp)(const void *, const void *), void (*freeFn)(void *));
 
-void MinHeapInsert(BinaryMinHeap *pMinHeap, void *value);
+void MinHeapInsert(BinaryMinHeap *binaryMinHeap, void *value);
 
 BinaryMinHeap *MinHeapify(void *arr, uint32_t size, int32_t (*cmp)(const void *, const void *));
 
-void MinHeapDestroy(BinaryMinHeap *pMinHeap);
+void MinHeapDestroy(BinaryMinHeap *binaryMinHeap);
 
-void printMinHeap(BinaryMinHeap *pMinHeap, void (*printfn)(void *));
+void printMinHeap(BinaryMinHeap *binaryMinHeap, void (*printfn)(void *));
 
-void MinHeapifyDown(BinaryMinHeap *pMinHeap, int index);
+void MinHeapifyDown(BinaryMinHeap *binaryMinHeap, int index);
 
-void MinHeapDelete(BinaryMinHeap *pMinHeap, void **res);
+void MinHeapDelete(BinaryMinHeap *binaryMinHeap, void **res);
 
-void MinHeapAddAll(BinaryMinHeap *pMinHeap, void **arr, uint32_t size);
+void MinHeapAddAll(BinaryMinHeap *binaryMinHeap, void **arr, uint32_t size);
 
-void MinHeapClear(BinaryMinHeap *pMinHeap);
+void MinHeapClear(BinaryMinHeap *binaryMinHeap);
 
 #ifdef __cplusplus
 }

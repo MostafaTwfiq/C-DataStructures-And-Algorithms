@@ -44,6 +44,11 @@ BinaryTreeNode* DeleteBinaryTreeNodeWithoutFreeWrapper(BinaryTree *binaryTree, B
 **/
 
 void printBinaryTreeStats(BinaryTree *tree){
+    if (tree == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "tree", "printBinaryTreeStats" );
+        exit(INVALID_ARG);
+    }
+
     if(tree&&tree->root){
         printf("............................\n");
         printf("Size = %d\n", tree->nodeCount);
@@ -224,26 +229,26 @@ BinaryTreeNode* binaryTreeInsertWrapper(BinaryTree *binaryTree, BinaryTreeNode *
  and stores to inorder Successor for that node in the leftMost param.
 * @param binaryTree Reference to the binary tree.
 * @param root Reference to the root node.
-* @param referenceNode  Reference node to get the in-order successor for.
+* @param key  Key to get the in-order successor for.
 * @param leftMost Pointer to store the inorder successor for that node.
 **/
-void BinaryTreeInOrderSuccessorWrapper(BinaryTree *binaryTree, BinaryTreeNode* root, BinaryTreeNode* referenceNode, BinaryTreeNode **leftMost) {
+void BinaryTreeInOrderSuccessorWrapper(BinaryTree *binaryTree, BinaryTreeNode* root, void *key, BinaryTreeNode **leftMost) {
     if (root == NULL) {
         leftMost = NULL;
         return;
     }
 
-    if ((binaryTree->cmp)(root->key, referenceNode->key) == 0){
+    if ((binaryTree->cmp)(root->key, key) == 0){
         if (root->right)
             *leftMost = BinaryTreeMinValueNode(root->right);
     }
 
-    else if ((binaryTree->cmp)(referenceNode->key, root->key) < 0){
+    else if ((binaryTree->cmp)(key, root->key) < 0){
         *leftMost = root;
-        BinaryTreeInOrderSuccessorWrapper(binaryTree, root->left, referenceNode, leftMost);
+        BinaryTreeInOrderSuccessorWrapper(binaryTree, root->left, key, leftMost);
     }
     else{
-        BinaryTreeInOrderSuccessorWrapper(binaryTree, root->right, referenceNode, leftMost);
+        BinaryTreeInOrderSuccessorWrapper(binaryTree, root->right, key, leftMost);
     }
 
 }
@@ -257,23 +262,23 @@ void BinaryTreeInOrderSuccessorWrapper(BinaryTree *binaryTree, BinaryTreeNode* r
  and stores to inorder Predecessor for that node in the rightMost param.
 * @param binaryTree Reference to the Binary tree.
 * @param root Reference to the root node.
-* @param referenceNode Reference node to get the in-order Predecessor for.
+* @param key Key to get the in-order Predecessor for.
 * @param rightMost Pointer to store the inorder Predecessor for that node.
 **/
-void BinaryTreeInOrderPredecessorWrapper(BinaryTree *binaryTree, BinaryTreeNode *root, BinaryTreeNode *referenceNode, BinaryTreeNode **rightMost){
+void BinaryTreeInOrderPredecessorWrapper(BinaryTree *binaryTree, BinaryTreeNode *root, void *key, BinaryTreeNode **rightMost){
     if (root == NULL) {
         rightMost = NULL;
         return;}
-    if ((binaryTree->cmp)(root->key, referenceNode->key) == 0){
+    if ((binaryTree->cmp)(root->key, key) == 0){
         if (root->left)
             *rightMost = maxValueBinaryTreeNode(root->left);
     }
-    else if ((binaryTree->cmp)(referenceNode->key, root->key) < 0){
-        BinaryTreeInOrderPredecessorWrapper(binaryTree, root->left, referenceNode, rightMost);
+    else if ((binaryTree->cmp)(key, root->key) < 0){
+        BinaryTreeInOrderPredecessorWrapper(binaryTree, root->left, key, rightMost);
     }
     else{
         *rightMost = root;
-        BinaryTreeInOrderPredecessorWrapper(binaryTree, root->right, referenceNode, rightMost);
+        BinaryTreeInOrderPredecessorWrapper(binaryTree, root->right, key, rightMost);
     }
 }
 
@@ -579,39 +584,39 @@ void  BinaryTreeInsertAll(BinaryTree* binaryTree, void** array, uint32_t length)
 }
 ///
 /// \param binaryTree
-/// \param referenceNode
+/// \param key
 /// \return
-BinaryTreeNode* BinaryTreeInOrderPredecessor(BinaryTree *binaryTree,BinaryTreeNode *referenceNode){
+BinaryTreeNode* BinaryTreeInOrderPredecessor(BinaryTree *binaryTree, void *key){
     if (binaryTree == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "binary Tree", "BinaryTreeInOrderPredecessor");
         exit(NULL_POINTER);
     }
 
-    if (referenceNode == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "reference Node", "BinaryTreeInOrderPredecessor");
+    if (key == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "key", "BinaryTreeInOrderPredecessor");
         exit(NULL_POINTER);
     }
 
     BinaryTreeNode * rightMost  = malloc(sizeof(*rightMost));
-    BinaryTreeInOrderPredecessorWrapper(binaryTree,binaryTree->root,referenceNode,&rightMost);
+    BinaryTreeInOrderPredecessorWrapper(binaryTree, binaryTree->root, key, &rightMost);
     return rightMost;
 }
 
 ///
 /// \param binaryTree
-/// \param referenceNode
+/// \param key
 /// \return
-BinaryTreeNode* BinaryTreeInOrderSuccessor(BinaryTree *binaryTree, BinaryTreeNode *referenceNode){
+BinaryTreeNode* BinaryTreeInOrderSuccessor(BinaryTree *binaryTree, void *key){
     if (binaryTree == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "binary Tree", "BinaryTreeInOrderSuccessor");
         exit(NULL_POINTER);
     }
-    if (referenceNode == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "reference Node", "BinaryTreeInOrderSuccessor");
+    if (key == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "key", "BinaryTreeInOrderSuccessor");
         exit(NULL_POINTER);
     }
     BinaryTreeNode * leftMost  = malloc(sizeof(*leftMost));
-    BinaryTreeInOrderSuccessorWrapper(binaryTree, binaryTree->root,referenceNode,&leftMost);
+    BinaryTreeInOrderSuccessorWrapper(binaryTree, binaryTree->root, key, &leftMost);
     return leftMost;
 }
 

@@ -8,10 +8,14 @@ void SplayTreeToArrayRecurs(SplayNode* node , void **arr, int *i);
 * @return Returns a pointer to an allocated node on the heap.
 **/
 SplayNode* newSplayNode(void* key){
+    if (key == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key", "newSplayNode");
+        exit(INVALID_ARG);
+    }
     SplayNode *p =  (SplayNode*)malloc(sizeof(SplayNode));
     if(!p){
-        printf("Failed at allocating node\n");
-        exit(-1);
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "SplayNode", "newSplayNode");
+        exit(FAILED_ALLOCATION);
     }
     p->key = key;
     p->left=NULL;
@@ -24,15 +28,26 @@ SplayNode* newSplayNode(void* key){
 * @param cmp Reference to the comparator function.
 * @return Pointer to the allocated Splay tree on the heap.
 **/
-SplayTree* SplayTreeInitialize( int16_t (*cmp)(const void*, const void*)){
+SplayTree *SplayTreeInitialize(int16_t (*cmp)(const void *, const void *), void (*freeFn)(void *)) {
+
+    if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "cmp", "SplayTreeInitialize");
+        exit(INVALID_ARG);
+    }
+    if (freeFn == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "freeFn", "SplayTreeInitialize");
+        exit(INVALID_ARG);
+    }
+
     SplayTree *t = (SplayTree *) malloc(sizeof(SplayTree));
     if(!t){
-        fprintf(stderr,"Failed at allocating tree\n");
-        exit(-1);
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "SplayTree", "SplayTreeInitialize");
+        exit(FAILED_ALLOCATION);
     }
     t->root = NULL;
     t->cmp = cmp;
     t->nodeCount =0;
+    t->freeFn = freeFn;
     return t;
 }
 
@@ -112,6 +127,14 @@ SplayNode *splay(SplayTree *splayTree, SplayNode* root, void *key) {
  * @return Returns the found node.
  **/
 SplayNode* SplayTreeSearch(SplayTree* splayTree,void *key){
+    if (splayTree == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "splayTree", "SplayTreeSearch");
+        exit(INVALID_ARG);
+    }
+    if (key == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key", "SplayTreeSearch");
+        exit(INVALID_ARG);
+    }
     return splay(splayTree,splayTree->root,key);
 }
 
@@ -121,6 +144,16 @@ SplayNode* SplayTreeSearch(SplayTree* splayTree,void *key){
  * @param key Reference to key to inset in the Tree.
  **/
 void SplayTreeInsert(SplayTree* splayTree, void *key){
+    if (splayTree == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "splayTree", "SplayTreeInsert");
+        exit(INVALID_ARG);
+    }
+
+    if (key == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key", "SplayTreeInsert");
+        exit(INVALID_ARG);
+    }
+
     if(splayTree->root==NULL) {
         splayTree->root= newSplayNode(key);
         splayTree->nodeCount++;
@@ -145,6 +178,16 @@ void SplayTreeInsert(SplayTree* splayTree, void *key){
  * @param key Key object to add to the Binary Tree.
  **/
 void SplayTreeDeleteWithFree(SplayTree* splayTree, void *key){
+    if (splayTree == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "splayTree", "SplayTreeDeleteWithFree");
+        exit(INVALID_ARG);
+    }
+
+    if (key == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key", "SplayTreeDeleteWithFree");
+        exit(INVALID_ARG);
+    }
+
     if (splayTree->root==NULL) return;
     splayTree->root = splay(splayTree,splayTree->root,key);
     if((splayTree->cmp)(splayTree->root->key,key)!=0) return;
@@ -165,6 +208,15 @@ void SplayTreeDeleteWithFree(SplayTree* splayTree, void *key){
 /// \param splayTree
 /// \param key
 void SplayTreeDeleteWithoutFree(SplayTree* splayTree, void *key){
+    if (splayTree == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "splayTree", "SplayTreeDeleteWithoutFree");
+        exit(INVALID_ARG);
+    }
+
+    if (key == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key", "SplayTreeDeleteWithoutFree");
+        exit(INVALID_ARG);
+    }
     if (splayTree->root==NULL) return;
     splayTree->root = splay(splayTree,splayTree->root,key);
     if((splayTree->cmp)(splayTree->root->key,key)!=0) return;
@@ -193,31 +245,66 @@ void freeSplayNode(SplayNode **node, void (*freeFn)(void*)){
 /** Given an splay Tree's root node it frees it's elements recursively.Setting the root node to Null.
 * @param root Exact Reference to root node to start freeing at.
 **/
-void SplayTreeFree(SplayNode** root,void (*freeFn)(void*)){
+void SplayTreeFreeWrapper(SplayNode **root,void (*freeFn)(void*)) {
     if (*root == NULL) return;
-    SplayTreeFree(&(*root)->left,freeFn);
-    SplayTreeFree(&(*root)->right,freeFn);
+    SplayTreeFreeWrapper(&(*root)->left,freeFn);
+    SplayTreeFreeWrapper(&(*root)->right,freeFn);
     freeSplayNode(root, NULL);
     *root=NULL;
+}
+///
+/// \param splayTree
+void SplayTreeFree(SplayTree *splayTree){
+    if (splayTree == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "splayTree", "SplayTreeFree");
+        exit(INVALID_ARG);
+    }
+    SplayTreeFreeWrapper(splayTree->root,splayTree->freeFn);
 }
 
 /** Takes a print function and starts printing from using the provided print function.
 * @param node Reference node to start printing from.
 * @param printFn print function to use for printing node keys.
 **/
-void printInOrderSplayTree(SplayNode* node, void (printFn)(void *)){
+void printInOrderSplayTreeWrapper(SplayNode* node, void (printFn)(void *)){
     if(node==NULL)return;
-    printInOrderSplayTree(node->left, printFn);
+    printInOrderSplayTreeWrapper(node->left, printFn);
     (printFn)(node->key);
-    printInOrderSplayTree(node->right, printFn);
+    printInOrderSplayTreeWrapper(node->right, printFn);
 }
 
+///
+/// \param splayTree
+/// \param printFn
+void printInOrderSplayTree(SplayTree *splayTree, void (printFn)(void *)){
+    if (splayTree == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "splayTree", "printInOrderSplayTree");
+        exit(INVALID_ARG);
+    }
+
+    if (printFn == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "printFn", "printInOrderSplayTree");
+        exit(INVALID_ARG);
+    }
+
+    printInOrderSplayTreeWrapper(splayTree->root,printFn);
+}
 
 /** Prints a tree in 2 space of the console.
 * @param root Reference to the root node.
 * @param printFn Pointer to the print function.
 **/
 void printSplayTree(SplayNode *root, void (printFn)(void *)){
+    if (root == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "root", "printSplayTree");
+        exit(INVALID_ARG);
+    }
+
+    if (printFn == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "printFn", "printSplayTree");
+        exit(INVALID_ARG);
+    }
+
     printSplayTreeHelper(root, 0, printFn);
 }
 
@@ -243,6 +330,21 @@ void printSplayTreeHelper(SplayNode *root, int space, void (printFn)(void *)){
 * @param length The Length of the array to add from.
 **/
 void SplayTreeInsertAll(SplayTree* splayTree, void** array, int length){
+    if (splayTree == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "splayTree", "SplayTreeInsertAll");
+        exit(INVALID_ARG);
+    }
+
+    if (array == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array", "SplayTreeInsertAll");
+        exit(INVALID_ARG);
+    }
+
+    if (length == 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "length", "SplayTreeInsertAll");
+        exit(INVALID_ARG);
+    }
+
     for(int i=0;i<length;i++){
         SplayTreeInsert(splayTree,array[i]);
     }
@@ -253,6 +355,10 @@ void SplayTreeInsertAll(SplayTree* splayTree, void** array, int length){
 * @return returns an array of pointer references to keys that were stored in the tree.
 **/
 void **SplayTreeToArray(SplayTree *splayTree){
+    if (splayTree == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "avlTree", "SplayTreeToArray");
+        exit(INVALID_ARG);
+    }
     void **array = (void **) malloc(sizeof(void *) * splayTree->nodeCount);
     int i = 0;
     SplayTreeToArrayRecurs(splayTree->root, array, &i);

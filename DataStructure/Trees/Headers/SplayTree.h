@@ -41,7 +41,7 @@ typedef struct SplayTree {
 
 SplayNode *newSplayNode(void *key);
 
-SplayTree *SplayTreeInitialize(int16_t (*cmp)(const void *, const void *));
+SplayTree *SplayTreeInitialize(int16_t (*cmp)(const void *, const void *), void (*freeFn)(void *));
 
 SplayNode *SplayRightRotate(SplayNode *x);
 
@@ -59,9 +59,9 @@ void SplayTreeDeleteWithoutFree(SplayTree* splayTree, void *key);
 
 void freeSplayNode(SplayNode **node, void (*pFunction)(void *));
 
-void SplayTreeFree(SplayNode **root, void (*pFunction)(void *));
+void SplayTreeFree(SplayTree *splayTree);
 
-void printInOrderSplayTree(SplayNode *node, void (printFn)(void *));
+void printInOrderSplayTree(SplayTree *splayTree, void (printFn)(void *));
 
 void printSplayTree(SplayNode *root, void (printFn)(void *));
 

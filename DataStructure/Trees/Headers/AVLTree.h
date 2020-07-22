@@ -40,7 +40,6 @@ typedef struct AVLTreeNode {
 typedef struct AVLTree {
     AVLTreeNode *root;
     uint32_t nodeCount;
-    uint32_t sizeOfType;
     int (*cmp)(const void *, const void *);
     void    (*freeFn)(void *);
 } AVLTree;
@@ -60,19 +59,19 @@ int32_t AVLTreeIsPresent(AVLTree *avlTree, void *searchKey);
 
 void AVLTreePrint(AVLTreeNode *root, void (printFn)(void *));
 
-AVLTreeNode* AVLInOrderPredecessor(AVLTree *avlTree,AVLTreeNode *referenceNode);
+AVLTreeNode* AVLInOrderPredecessor(AVLTree *avlTree,void *referenceNode);
 
-AVLTreeNode* AVLInOrderSuccessor(AVLTree *avlTree, AVLTreeNode *referenceNode);
+AVLTreeNode* AVLInOrderSuccessor(AVLTree *avlTree, void *referenceNode);
 
 void AVLTreeInsert(AVLTree *avlTree, void *key);
 
-AVLTreeNode *AVLTreeSearch(AVLTree *avlTree, AVLTreeNode *node, char *key);
+AVLTreeNode *AVLTreeSearch(AVLTree *avlTree,  char *key);
 
 void **AVLTreeToArray(AVLTree *avlTree);
 
 void AVLTreeFree(AVLTree* avlTree);
 
-AVLTree *AVLTreeInitialize(int32_t size, int32_t (*cmp)(const void *, const void *), void (*freeFn)(void *));
+AVLTree *AVLTreeInitialize(int (*cmp)(const void *, const void *), void (*freeFn)(void *));
 
 void AVLTreePrintStats(AVLTree *tree);
 

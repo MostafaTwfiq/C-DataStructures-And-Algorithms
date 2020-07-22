@@ -54,9 +54,9 @@ int BinaryTreeIsPresent(BinaryTree *binaryTree, void *searchKey);
 
 void BinaryTreePrint(BinaryTreeNode *root, void (printFn)(void *));
 
-BinaryTreeNode* BinaryTreeInOrderPredecessor(BinaryTree *binaryTree, BinaryTreeNode *referenceNode);
+BinaryTreeNode* BinaryTreeInOrderPredecessor(BinaryTree *binaryTree, void *key);
 
-BinaryTreeNode* BinaryTreeInOrderSuccessor(BinaryTree *binaryTree, BinaryTreeNode *referenceNode);
+BinaryTreeNode* BinaryTreeInOrderSuccessor(BinaryTree *binaryTree, void *key);
 
 void BinaryTreeInsert(BinaryTree *binaryTree, void *key);
 

@@ -5,7 +5,7 @@
 void printAVLTreeHelper(AVLTreeNode *root, int space, void (printFn)(void *));
 void AVLTreeIsPresentRecurs(AVLTree *avlTree, AVLTreeNode *root, void *searchValue, int* found );
 int max(int a,int b);
-void AVLTreeToArrayRecurs(AVLTreeNode* node, void **arr, int *i, int size);
+void AVLTreeToArrayRecurs(AVLTreeNode *node, void **arr, int *i);
 void freeAVLTreeNode(AVLTreeNode **node, void (*freeFn)(void *));
 AVLTreeNode* newBinaryTreeNode(void* key);
 int height(AVLTreeNode *node);
@@ -52,6 +52,11 @@ int AVLGetBalance(AVLTreeNode *n);
 * @param tree Reference to the AVL tree.
 **/
 void AVLTreePrintStats(AVLTree *tree){
+    if (tree == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "tree", "AVLTreePrintStats");
+        exit(INVALID_ARG);
+    }
+
     if(tree&&tree->root){
         printf("............................\n");
         printf("Size = %d\n", tree->nodeCount);
@@ -86,14 +91,22 @@ void AVLTreePrintStats(AVLTree *tree){
 * @param cmp Reference to the comparator function.
 * @return Pointer to the allocated AVL tree on the heap.
 **/
-AVLTree* AVLTreeInitialize(int size ,int(*cmp)(const void*, const void*), void (*freeFn)(void *)){
+AVLTree *AVLTreeInitialize(int (*cmp)(const void *, const void *), void (*freeFn)(void *)) {
+    if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "cmp", "AVLTreeInitialize");
+        exit(INVALID_ARG);
+    }
+    if (freeFn == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "freeFn", "AVLTreeInitialize");
+        exit(INVALID_ARG);
+    }
+
     AVLTree *t = (AVLTree *) malloc(sizeof(AVLTree));
     if(!t){
-        fprintf(stderr,"Failed at allocating tree\n");
-        exit(-1);
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "AVLTree", "AVLTreeInitialize");
+        exit(FAILED_ALLOCATION);
     }
     t->root = NULL;
-    t->sizeOfType = size;
     t->cmp = cmp;
     t->nodeCount=0;
     t->freeFn = freeFn;
@@ -105,10 +118,16 @@ AVLTree* AVLTreeInitialize(int size ,int(*cmp)(const void*, const void*), void (
 * @return Returns a pointer to an allocated node on the heap.
 **/
 AVLTreeNode* newAVLTreeNode(void* key){
+
+    if (key == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key", "newAVLTreeNode");
+        exit(INVALID_ARG);
+    }
+
     AVLTreeNode *p =  (AVLTreeNode*)malloc(sizeof(AVLTreeNode));
     if(!p){
-        printf("Failed at allocating node\n");
-        exit(-1);
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "AVLTreeNode", "newAVLTreeNode");
+        exit(FAILED_ALLOCATION);
     }
     p->key = key;
     p->left=NULL;
@@ -121,6 +140,7 @@ AVLTreeNode* newAVLTreeNode(void* key){
 * @param node Exact Reference to root node to start freeing at.
 **/
 void AVLTreeFreeWrapper(AVLTreeNode** node, void (*freeFn)(void *)){
+
     if (*node==NULL) return;
     AVLTreeFreeWrapper(&(*node)->left,freeFn);
     AVLTreeFreeWrapper(&(*node)->right,freeFn);
@@ -129,6 +149,11 @@ void AVLTreeFreeWrapper(AVLTreeNode** node, void (*freeFn)(void *)){
 }
 
 void AVLTreeFree(AVLTree* avlTree){
+    if (avlTree == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "avlTree", "AVLTreeFree");
+        exit(INVALID_ARG);
+    }
+
     AVLTreeFreeWrapper(&avlTree->root,avlTree->freeFn);
 }
 
@@ -185,6 +210,17 @@ AVLTreeNode* AVLTreeInsertWrapper(AVLTree * avlTree, AVLTreeNode *node, void *ke
 }
 
 void AVLTreeInsert(AVLTree *avlTree, void *key){
+    if (avlTree == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "avlTree", "AVL data structure");
+        exit(INVALID_ARG);
+    }
+
+    if (key == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key", "AVL data structure");
+        exit(INVALID_ARG);
+    }
+
+
     avlTree->root = AVLTreeInsertWrapper(avlTree,avlTree->root,key);
 }
 
@@ -237,15 +273,15 @@ int AVLGetBalance(AVLTreeNode *n){
 * @param referenceNode  Reference node to get the in-order successor for.
 * @param leftMost Pointer to store the inorder successor for that node.
 **/
-void AVLTreeInOrderSuccessorWrapper(AVLTree *avlTree, AVLTreeNode* root, AVLTreeNode* referenceNode, AVLTreeNode **leftMost) {
+void AVLTreeInOrderSuccessorWrapper(AVLTree *avlTree, AVLTreeNode* root, void * referenceNode, AVLTreeNode **leftMost) {
     if (root == NULL) {
         leftMost = NULL;
         return;}
-    if ((avlTree->cmp)(root->key, referenceNode->key) == 0){
+    if ((avlTree->cmp)(root->key, referenceNode) == 0){
         if (root->right)
             *leftMost = AVLTreeMinValueNode(root->right);
     }
-    else if ((avlTree->cmp)(referenceNode->key, root->key) < 0){
+    else if ((avlTree->cmp)(referenceNode, root->key) < 0){
         *leftMost = root;
         AVLTreeInOrderSuccessorWrapper(avlTree, root->left, referenceNode, leftMost);
     }
@@ -258,24 +294,24 @@ void AVLTreeInOrderSuccessorWrapper(AVLTree *avlTree, AVLTreeNode* root, AVLTree
  and stores to inorder Predecessor for that node in the rightMost param.
 * @param avlTree Reference to the AVL tree.
 * @param root Reference to the root node.
-* @param referenceNode Reference node to get the in-order Predecessor for.
+* @param key Reference node to get the in-order Predecessor for.
 * @param rightMost Pointer to store the inorder Predecessor for that node.
 **/
-void AVLTreeInOrderPredecessorWrapper(AVLTree *avlTree, AVLTreeNode *root, AVLTreeNode *referenceNode, AVLTreeNode **rightMost){
+void AVLTreeInOrderPredecessorWrapper(AVLTree *avlTree, AVLTreeNode *root, void *key, AVLTreeNode **rightMost){
     if (root == NULL) {
         rightMost = NULL;
         return;
     }
-    if ((avlTree->cmp)(root->key, referenceNode->key) == 0){
+    if ((avlTree->cmp)(root->key, key) == 0){
         if (root->left)
             *rightMost = AVLTreeMaxValueNode(root->left);
     }
-    else if ((avlTree->cmp)(referenceNode->key, root->key) < 0){
-        AVLTreeInOrderPredecessorWrapper(avlTree, root->left, referenceNode, rightMost);
+    else if ((avlTree->cmp)(key, root->key) < 0){
+        AVLTreeInOrderPredecessorWrapper(avlTree, root->left, key, rightMost);
     }
     else{
         *rightMost = root;
-        AVLTreeInOrderPredecessorWrapper(avlTree, root->right, referenceNode, rightMost);
+        AVLTreeInOrderPredecessorWrapper(avlTree, root->right, key, rightMost);
     }
 }
 
@@ -284,6 +320,16 @@ void AVLTreeInOrderPredecessorWrapper(AVLTree *avlTree, AVLTreeNode *root, AVLTr
 * @param printFn Pointer to the print function.
 **/
 void AVLTreePrint(AVLTreeNode *root, void (printFn)(void *)){
+    if (root == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "root", "AVL data structure");
+        exit(INVALID_ARG);
+    }
+
+    if (printFn == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "printFn", "AVL data structure");
+        exit(INVALID_ARG);
+    }
+
     printAVLTreeHelper(root, 0, printFn);
 }
 
@@ -309,6 +355,16 @@ void printAVLTreeHelper(AVLTreeNode *root, int space, void (printFn)(void *)){
 * @return returns int as bool. Returns 1 if is found else returns 0.
 **/
 int AVLTreeIsPresent(AVLTree *avlTree, void* searchKey){
+    if (avlTree == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "avlTree", "AVL data structure");
+        exit(INVALID_ARG);
+    }
+
+    if (searchKey == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "searchKey", "AVL data structure");
+        exit(INVALID_ARG);
+    }
+
     int found = 0;
     AVLTreeIsPresentRecurs(avlTree, avlTree->root, searchKey, &found);
     return found;
@@ -406,6 +462,10 @@ void AVLTreeGetMaxStepsRecurs(AVLTreeNode* node, int *steps){
 * @param printFn print function to use for printing node keys.
 **/
 void AVLTreePrintInOrder(AVLTreeNode* node, void (printFn)(void *)){
+    if (printFn == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "printFn", "AVLTreePrintInOrder");
+        exit(INVALID_ARG);
+    }
     if(!node)return;
     AVLTreePrintInOrder(node->left, printFn);
     (printFn)(node->key);
@@ -417,9 +477,13 @@ void AVLTreePrintInOrder(AVLTreeNode* node, void (printFn)(void *)){
 * @return returns an array of pointer references to keys that were stored in the tree.
 **/
 void **AVLTreeToArray(AVLTree *avlTree){
+    if (avlTree == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "avlTree", "AVLTreeToArray");
+        exit(INVALID_ARG);
+    }
     void **array = (void **) malloc(sizeof(void *) * avlTree->nodeCount);
     int i = 0;
-    AVLTreeToArrayRecurs(avlTree->root,array, &i,avlTree->sizeOfType);
+    AVLTreeToArrayRecurs(avlTree->root, array, &i);
     return array;
 }
 
@@ -428,13 +492,12 @@ void **AVLTreeToArray(AVLTree *avlTree){
 * @param arr Preallocated array to start storing at.
 * @param i index to insert at in the array.
 **/
-void AVLTreeToArrayRecurs(AVLTreeNode* node, void **arr, int *i, int size){
+void AVLTreeToArrayRecurs(AVLTreeNode *node, void **arr, int *i) {
     if(!node) return;
-    AVLTreeToArrayRecurs(node->left, arr, i,size);
-    arr[*i] = malloc(size);
-    memcpy(arr+*i,node->key,size);
+    AVLTreeToArrayRecurs(node->left, arr, i);
+    arr[*i] = node->key;
     *i += 1;
-    AVLTreeToArrayRecurs(node->right, arr, i,size);
+    AVLTreeToArrayRecurs(node->right, arr, i);
 }
 
 /** Given a tree and a reference node to start searching at (preferably the root) searches for node with the same key and return it.
@@ -443,11 +506,25 @@ void AVLTreeToArrayRecurs(AVLTreeNode* node, void **arr, int *i, int size){
 * @param key Key object to search for in the AVLTree.
 * @return Returns the found node.
 **/
-AVLTreeNode *AVLTreeSearch(AVLTree *avlTree, AVLTreeNode *node, char *key){
+AVLTreeNode *AVLTreeSearchWrapper(AVLTree *avlTree, AVLTreeNode *node, char *key){
     if(!node) return NULL;
     if (((avlTree->cmp)(key,node->key)==0))return node;
-    if ((avlTree->cmp)(key,node->key)<0) return AVLTreeSearch(avlTree, node->left, key);
-    if ((avlTree->cmp)(key,node->key)>0) return AVLTreeSearch(avlTree, node->right, key);
+    if ((avlTree->cmp)(key,node->key)<0) return AVLTreeSearchWrapper(avlTree, node->left, key);
+    if ((avlTree->cmp)(key,node->key)>0) return AVLTreeSearchWrapper(avlTree, node->right, key);
+}
+
+AVLTreeNode *AVLTreeSearch(AVLTree *avlTree, char *key){
+    if (avlTree == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "avlTree", "AVLTreeSearch");
+        exit(INVALID_ARG);
+    }
+
+    if (key == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key", "AVLTreeSearch");
+        exit(INVALID_ARG);
+    }
+
+    return AVLTreeSearchWrapper(avlTree,avlTree->root,key);
 }
 
 /** Given a Tree and it's root deletes a key with the same key and restores the tree order then returns the new node.
@@ -559,10 +636,28 @@ AVLTreeNode* AVLTreeDeleteNodeWithoutFreeWrapper(AVLTree *avlTree, AVLTreeNode* 
 /// \param avlTree
 /// \param key
 void AVLTreeDeleteNodeWithFree(AVLTree *avlTree, void *key) {
+    if (avlTree == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "avlTree", "AVLTreeDeleteNodeWithFree");
+        exit(INVALID_ARG);
+    }
+
+    if (key == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key", "AVLTreeDeleteNodeWithFree");
+        exit(INVALID_ARG);
+    }
     avlTree->root = AVLTreeDeleteNodeWithFreeWrapper(avlTree, avlTree->root, key);
 }
 
 void AVLTreeDeleteNodeWithoutFree(AVLTree *avlTree, void *key) {
+    if (avlTree == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "avlTree", "AVLTreeDeleteNodeWithoutFree");
+        exit(INVALID_ARG);
+    }
+
+    if (key == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key", "AVLTreeDeleteNodeWithoutFree");
+        exit(INVALID_ARG);
+    }
     avlTree->root = AVLTreeDeleteNodeWithoutFreeWrapper(avlTree, avlTree->root, key);
 }
 
@@ -573,19 +668,53 @@ void AVLTreeDeleteNodeWithoutFree(AVLTree *avlTree, void *key) {
 * @return Returns the new root node.
 **/
 AVLTreeNode * AVLTreeInsertAll(AVLTree* avlTree, void **array, uint32_t length){
+    if (avlTree == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "avlTree", "AVLTreeInsertAll");
+        exit(INVALID_ARG);
+    }
+
+    if (array == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array", "AVLTreeInsertAll");
+        exit(INVALID_ARG);
+    }
+
+    if (length == 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "length", "AVLTreeInsertAll");
+        exit(INVALID_ARG);
+    }
+
     for(uint32_t i =0; i<length;i++)
       AVLTreeInsert(avlTree,array[i]);
     return avlTree->root;
 }
 
-AVLTreeNode* AVLInOrderPredecessor(AVLTree *avlTree,AVLTreeNode *referenceNode){
+AVLTreeNode* AVLInOrderPredecessor(AVLTree *avlTree,void *referenceNode){
+    if (avlTree == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "avlTree", "AVLInOrderPredecessor");
+        exit(INVALID_ARG);
+    }
+
+    if (referenceNode == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "referenceNode", "AVLInOrderPredecessor");
+        exit(INVALID_ARG);
+    }
+
     AVLTreeNode * rightMost  = malloc(sizeof(*rightMost));
     AVLTreeInOrderPredecessorWrapper(avlTree,avlTree->root,referenceNode,&rightMost);
     return rightMost;
 }
 
 
-AVLTreeNode* AVLInOrderSuccessor(AVLTree *avlTree, AVLTreeNode *referenceNode){
+AVLTreeNode* AVLInOrderSuccessor(AVLTree *avlTree, void *referenceNode){
+    if (avlTree == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "avlTree", "AVLInOrderSuccessor");
+        exit(INVALID_ARG);
+    }
+
+    if (referenceNode == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "referenceNode", "AVLInOrderSuccessor");
+        exit(INVALID_ARG);
+    }
     AVLTreeNode * leftMost  = malloc(sizeof(*leftMost));
     AVLTreeInOrderSuccessorWrapper(avlTree, avlTree->root,referenceNode,&leftMost);
     return leftMost;

@@ -36,19 +36,19 @@ typedef struct BinaryMaxHeap {
 
 BinaryMaxHeap *MaxHeapInitialize(int32_t (*cmp)(const void *, const void *), void (*freeFn)(void *));
 
-void MaxHeapInsert(BinaryMaxHeap *h, void *value);
+void MaxHeapInsert(BinaryMaxHeap *binaryMaxHeap, void *value);
 
 BinaryMaxHeap *MaxHeapify(void **arr, uint32_t size, int32_t (*cmp)(const void *, const void *));
 
-void printMaxHeap(BinaryMaxHeap *h, void (*printfn)(void *));
+void printMaxHeap(BinaryMaxHeap *binaryMaxHeap, void (*printfn)(void *));
 
-void MaxHeapifyDown(BinaryMaxHeap *h, int32_t index);
+void MaxHeapifyDown(BinaryMaxHeap *binaryMaxHeap, int32_t index);
 
 void MaxHeapPrint(BinaryMaxHeap *MaxHeap, int32_t i, void (*printfn)(void *));
 
-void MaxHeapDelete(BinaryMaxHeap *heap, void **res);
+void MaxHeapDelete(BinaryMaxHeap *binaryMaxHeap, void **res);
 
-void MaxHeapClear(BinaryMaxHeap *pMaxHeap);
+void MaxHeapClear(BinaryMaxHeap *binaryMaxHeap);
 
 void MaxHeapAddAll(BinaryMaxHeap *binaryMaxHeap, void **arr, uint32_t size);
 
