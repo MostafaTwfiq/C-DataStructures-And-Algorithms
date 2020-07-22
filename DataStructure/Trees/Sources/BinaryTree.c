@@ -46,7 +46,12 @@ BinaryTreeNode* DeleteBinaryTreeNodeWithoutFreeWrapper(BinaryTree *binaryTree, B
 void printBinaryTreeStats(BinaryTree *tree){
     if (tree == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "tree", "printBinaryTreeStats" );
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if(tree&&tree->root){
@@ -79,16 +84,31 @@ BinaryTree* binaryTreeInitialization(void (*freeFn)(void *), int (*cmp)(const vo
 
     if (freeFn == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "binary tree data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     } else if (cmp == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "comparison function pointer", "binary tree data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     BinaryTree *t = (BinaryTree *) malloc(sizeof(BinaryTree));
     if (t == NULL) {
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "tree", "binary tree data structure");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
 
     t->root = NULL;
@@ -116,7 +136,12 @@ BinaryTreeNode* newBinaryTreeNode(void* key){
     BinaryTreeNode *p =  (BinaryTreeNode*)malloc(sizeof(BinaryTreeNode));
     if (p == NULL) {
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new node", "binary tree data structure");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
 
     p->key = key;
@@ -160,7 +185,12 @@ void destroyBinaryTree(BinaryTree* binaryTree){
 
     if (binaryTree == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "tree pointer", "binary tree data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     BinaryTreeFreeWrapper(&binaryTree->root, binaryTree->freeFn);
@@ -572,11 +602,21 @@ BinaryTreeNode* DeleteBinaryTreeNodeWithoutFreeWrapper(BinaryTree *binaryTree, B
 void  BinaryTreeInsertAll(BinaryTree* binaryTree, void** array, uint32_t length){
     if (binaryTree == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "binary Tree", "BinaryTreeInsertAll");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
     if (array == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "array", "BinaryTreeInsertAll");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     for(uint32_t i=0;i<length;i++)
@@ -589,12 +629,22 @@ void  BinaryTreeInsertAll(BinaryTree* binaryTree, void** array, uint32_t length)
 BinaryTreeNode* BinaryTreeInOrderPredecessor(BinaryTree *binaryTree, void *key){
     if (binaryTree == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "binary Tree", "BinaryTreeInOrderPredecessor");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     if (key == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "key", "BinaryTreeInOrderPredecessor");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     BinaryTreeNode * rightMost  = malloc(sizeof(*rightMost));
@@ -609,11 +659,21 @@ BinaryTreeNode* BinaryTreeInOrderPredecessor(BinaryTree *binaryTree, void *key){
 BinaryTreeNode* BinaryTreeInOrderSuccessor(BinaryTree *binaryTree, void *key){
     if (binaryTree == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "binary Tree", "BinaryTreeInOrderSuccessor");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
     if (key == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "key", "BinaryTreeInOrderSuccessor");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
     BinaryTreeNode * leftMost  = malloc(sizeof(*leftMost));
     BinaryTreeInOrderSuccessorWrapper(binaryTree, binaryTree->root, key, &leftMost);
@@ -628,11 +688,21 @@ void BinaryTreeInsert(BinaryTree *binaryTree, void *key){
 
     if (binaryTree == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "binary Tree", "BinaryTreeInsert");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
     if (key == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "key", "BinaryTreeInsert");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
     binaryTree->root = binaryTreeInsertWrapper(binaryTree,binaryTree->root,key);
 

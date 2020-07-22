@@ -7,7 +7,12 @@
 void MaxHeapifyUP(BinaryMaxHeap* binaryMaxHeap, int index){
     if (binaryMaxHeap == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "binaryMaxHeap ", "MaxHeapifyUP");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
     if(!index) return;
     int p = PARENT(index);
@@ -27,7 +32,12 @@ void MaxHeapifyUP(BinaryMaxHeap* binaryMaxHeap, int index){
 void MaxHeapifyDown(BinaryMaxHeap *binaryMaxHeap, int index) {
     if (binaryMaxHeap == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "binaryMaxHeap ", "MaxHeapifyDown");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if (index < 0) return;
@@ -69,17 +79,32 @@ BinaryMaxHeap *MaxHeapInitialize( int32_t (*cmp)(const void*, const void*),void 
 
     if (cmp == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "cmp", "MaxHeapInitialize");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
     if (freeFn == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "freeFn", "MaxHeapInitialize");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     BinaryMaxHeap *h = malloc(sizeof(*h));
     if(h==NULL){
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "BinaryMaxHeap", "MaxHeapInitialize");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
 
     h->capacity      = 10;
@@ -87,7 +112,12 @@ BinaryMaxHeap *MaxHeapInitialize( int32_t (*cmp)(const void*, const void*),void 
 
     if(harr==NULL){
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "Heap Array", "MaxHeapInitialize");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
 
     h->memory        = harr;
@@ -105,11 +135,21 @@ void MaxHeapInsert(BinaryMaxHeap* binaryMaxHeap, void* value) {
 
     if (binaryMaxHeap == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "binaryMaxHeap ", "MaxHeapInsert");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
     if (value == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "value", "MaxHeapInsert");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if(binaryMaxHeap->size == binaryMaxHeap->capacity){
@@ -127,11 +167,21 @@ void MaxHeapInsert(BinaryMaxHeap* binaryMaxHeap, void* value) {
 void MaxHeapDelete(BinaryMaxHeap* binaryMaxHeap, void ** res) {
     if (binaryMaxHeap == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "binaryMaxHeap ", "MaxHeapDelete");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
     if (res == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "res", "MaxHeapDelete");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     *res = binaryMaxHeap->memory[0];
@@ -151,23 +201,43 @@ BinaryMaxHeap *MaxHeapify(void **arr, uint32_t size,int32_t (*cmp)(const void*, 
 
     if (arr == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "arr ", "MaxHeapify");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
     if (size == 0 || size < 0) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "size", "MaxHeapify");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if (cmp == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "cmp", "MaxHeapify");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     BinaryMaxHeap *h = malloc(sizeof(*h));
 
     if(h==NULL){
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "BinaryMaxHeap", "MaxHeapInitialize");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
 
     h->capacity = 10;
@@ -175,7 +245,12 @@ BinaryMaxHeap *MaxHeapify(void **arr, uint32_t size,int32_t (*cmp)(const void*, 
 
     if(harr==NULL){
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "Heap Array", "MaxHeapInitialize");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
 
     h->memory = harr;
@@ -195,16 +270,31 @@ BinaryMaxHeap *MaxHeapify(void **arr, uint32_t size,int32_t (*cmp)(const void*, 
 void  MaxHeapAddAll(BinaryMaxHeap *binaryMaxHeap,void **arr, uint32_t size){
     if (binaryMaxHeap == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "binaryMaxHeap ", "MaxHeapAddAll");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
     if (size == 0|| size < 0) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "size", "MaxHeapAddAll");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if (arr == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "arr", "MaxHeapAddAll");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     for(int i=0;i<size;i++){
@@ -219,11 +309,21 @@ void  MaxHeapAddAll(BinaryMaxHeap *binaryMaxHeap,void **arr, uint32_t size){
 void printMaxHeap(BinaryMaxHeap *binaryMaxHeap, void (*printfn)(void *)) {
     if (binaryMaxHeap == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "binaryMaxHeap ", "printMaxHeap");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
     if (printfn == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "printfn", "printMaxHeap");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
 
@@ -240,12 +340,22 @@ void printMaxHeap(BinaryMaxHeap *binaryMaxHeap, void (*printfn)(void *)) {
 void destroyMaxHeap(BinaryMaxHeap * binaryMaxHeap) {
     if (binaryMaxHeap == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "binaryMaxHeap ", "destroyMaxHeap");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if (binaryMaxHeap->freeFn == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "free function ", "destroyMaxHeap");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     MaxHeapClear(binaryMaxHeap);
@@ -260,12 +370,22 @@ void destroyMaxHeap(BinaryMaxHeap * binaryMaxHeap) {
 void MaxHeapClear(BinaryMaxHeap * binaryMaxHeap){
     if (binaryMaxHeap == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "binaryMaxHeap ", "MaxHeapClear");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if (binaryMaxHeap->freeFn == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "free function ", "MaxHeapClear");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     for(int i =0; i < binaryMaxHeap->size; i++){
@@ -273,7 +393,6 @@ void MaxHeapClear(BinaryMaxHeap * binaryMaxHeap){
         binaryMaxHeap->memory[i] =NULL;
     }
 }
-
 
 
 

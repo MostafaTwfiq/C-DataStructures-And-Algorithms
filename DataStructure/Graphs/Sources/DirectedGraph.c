@@ -98,16 +98,31 @@ DirectedGraph *directedGraphInitialization(
 
     if (freeValue == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "directed graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     } else if (valueComp == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "directed graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     DirectedGraph *directedGraph = (DirectedGraph *) malloc(sizeof(DirectedGraph));
     if (directedGraph == NULL) {
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "directed graph", "directed graph data structure");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
 
     directedGraph->valueComp = valueComp;
@@ -138,10 +153,20 @@ void dirGraphAddNode(DirectedGraph *graph, void *value, int sizeOfValue) {
 
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (value == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "directed graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
 
@@ -177,10 +202,20 @@ void dirGraphRemoveNode(DirectedGraph *graph, void *value, int sizeOfValue) {
 
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (value == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "directed graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
 
@@ -224,10 +259,20 @@ void *dirGraphRemoveNodeWtoFr(DirectedGraph *graph, void *value, int sizeOfValue
 
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (value == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "directed graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
 
@@ -274,13 +319,28 @@ void *dirGraphRemoveNodeWtoFr(DirectedGraph *graph, void *value, int sizeOfValue
 void dirGraphAddEdge(DirectedGraph *graph, void *fromVal, int sizeOfFromVal, void *toVal, int sizeOfToVal) {
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (fromVal == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "from value pointer", "directed graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     } else if (toVal == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "to value pointer", "directed graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
 
@@ -317,13 +377,28 @@ void dirGraphAddEdge(DirectedGraph *graph, void *fromVal, int sizeOfFromVal, voi
 void dirGraphRemoveEdge(DirectedGraph *graph, void *fromVal, int sizeOfFromVal, void *toVal, int sizeOfToVal) {
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (fromVal == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "from value pointer", "directed graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     } else if (toVal == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "to value pointer", "directed graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
 
@@ -359,10 +434,20 @@ void dirGraphRemoveEdge(DirectedGraph *graph, void *fromVal, int sizeOfFromVal, 
 int dirGraphContainsNode(DirectedGraph *graph, void *value, int sizeOfValue) {
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (value == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "directed graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     return hashMapContains(graph->nodes, value, sizeOfValue);
@@ -392,13 +477,28 @@ int dirGraphContainsEdge(DirectedGraph *graph, void *fromVal, int sizeOfFromVal,
 
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (fromVal == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "from value pointer", "directed graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     } else if (toVal == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "to value pointer", "directed graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     DirGraphNode *fromNode = hashMapGet(graph->nodes, fromVal, sizeOfFromVal);
@@ -428,7 +528,12 @@ int dirGraphContainsEdge(DirectedGraph *graph, void *fromVal, int sizeOfFromVal,
 int dirGraphGetNumOfNodes(DirectedGraph *graph) {
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     return hashMapGetLength(graph->nodes);
@@ -452,7 +557,12 @@ int dirGraphGetNumOfNodes(DirectedGraph *graph) {
 int dirGraphIsEmpty(DirectedGraph *graph) {
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     return hashMapGetLength(graph->nodes) == 0;
@@ -475,7 +585,12 @@ void clearDirGraph(DirectedGraph *graph) {
 
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     clearHashMap(graph->nodes);
@@ -499,7 +614,12 @@ void destroyDirGraph(DirectedGraph *graph) {
 
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     destroyHashMap(graph->nodes);
@@ -530,10 +650,20 @@ void dirGraphPrint(DirectedGraph *graph, void (*printVal)(void *)) {
 
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (printVal == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "print function pointer", "directed graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     DirGraphNode **arr = (DirGraphNode **) hashMapToArray(graph->nodes);
@@ -606,13 +736,28 @@ int compInt(const void *int1, const void *int2) {
 void dirGraphDepthFirstTraversal(DirectedGraph *graph, void *startVal, int sizeOfValue, void (*printVal)(void *)) {
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (startVal == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "start value pointer", "directed graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     } else if (printVal == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "print function pointer", "directed graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     DirGraphNode *startNode = hashMapGet(graph->nodes, startVal, sizeOfValue);
@@ -672,13 +817,28 @@ void dirGraphDepthFirstTraversal(DirectedGraph *graph, void *startVal, int sizeO
 void dirGraphBreadthFirstTraversal(DirectedGraph *graph, void *startVal, int sizeOfValue, void (*printVal)(void *)) {
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (startVal == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "start value pointer", "directed graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     } else if (printVal == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "print function pointer", "directed graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     DirGraphNode *startNode = hashMapGet(graph->nodes, startVal, sizeOfValue);
@@ -734,7 +894,12 @@ void dirGraphBreadthFirstTraversal(DirectedGraph *graph, void *startVal, int siz
 ArrayList *dirGraphTopologicalSort(DirectedGraph *graph) {
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
 
@@ -811,10 +976,20 @@ int dirGraphNodeIsPartOfCycle(DirectedGraph *graph, void *startValue, int sizeOf
 
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (startValue == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "start value pointer", "directed graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     DirGraphNode *startNode = hashMapGet(graph->nodes, startValue, sizeOfValue);
@@ -885,7 +1060,12 @@ int dirGraphHasACycle(DirectedGraph *graph) {
 
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
 

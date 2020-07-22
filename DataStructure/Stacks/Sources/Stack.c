@@ -11,13 +11,23 @@ Stack* stackInitialization(void (*freeItem)(void *)) {
 
     if (freeItem == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "stack data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     Stack *s = ( Stack*  )malloc( sizeof( Stack ) );
     if (s == NULL) {
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "stack", "stack data structure");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
 
     s->freeItem =  freeItem;
@@ -26,7 +36,12 @@ Stack* stackInitialization(void (*freeItem)(void *)) {
 
     if(s->memory == NULL) {
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "stack array", "stack data structure" );
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
 
     s->top = -1;
@@ -47,10 +62,20 @@ Stack* stackInitialization(void (*freeItem)(void *)) {
 void pushStack( Stack* stack ,  void * data) {
     if (stack == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "stack data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (data == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "stack data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if(stack->top == stack->allocated - 1 ) {
@@ -58,7 +83,12 @@ void pushStack( Stack* stack ,  void * data) {
         stack->memory =  (void **) realloc( stack->memory  , sizeof(void *) * stack->allocated );
         if (stack->memory == NULL) {
             fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "stack array", "stack data structure");
-            exit(FAILED_REALLOCATION);
+            #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_REALLOCATION;
+     	#else
+     		exit(FAILED_REALLOCATION);
+     	#endif
+
         }
 
     }
@@ -78,10 +108,20 @@ void pushStack( Stack* stack ,  void * data) {
 void stackAddAll(Stack *stack, void **array, int arrLength) {
     if (stack == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "stack data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (array == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "items array pointer", "stack data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     for (int i = 0; i < arrLength; i++)
@@ -100,13 +140,23 @@ void stackAddAll(Stack *stack, void **array, int arrLength) {
 void **stackToArray(Stack *stack) {
     if (stack == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "stack data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     void **arr = (void **) malloc(sizeof(void *) * stack->top + 1);
     if (arr == NULL) {
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "stack data structure");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
 
     for (int i = 0; i <= stack->top; i++)
@@ -124,10 +174,20 @@ void **stackToArray(Stack *stack) {
  void *popStack( Stack* stack ) {
     if (stack == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "stack data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (isEmptyStack(stack)) {
         fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "stack data structure");
-        exit(EMPTY_DATA_STRUCTURE);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+     	#else
+     		exit(EMPTY_DATA_STRUCTURE);
+     	#endif
+
     }
 
     return stack->memory[stack->top--];
@@ -145,7 +205,12 @@ void **stackToArray(Stack *stack) {
 short isEmptyStack( Stack* stack ) {
     if (stack == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "stack data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     return (short) (stack->top == -1 );
@@ -164,7 +229,12 @@ int getStackLength(Stack *stack) {
 
     if (stack == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "stack data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     return stack->top + 1;
@@ -183,10 +253,20 @@ int getStackLength(Stack *stack) {
 void* peekStack( Stack* stack ) {
     if (stack == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "stack data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (isEmptyStack(stack)) {
         fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "stack data structure");
-        exit(EMPTY_DATA_STRUCTURE);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+     	#else
+     		exit(EMPTY_DATA_STRUCTURE);
+     	#endif
+
     }
 
     return stack->memory[stack->top];
@@ -203,7 +283,12 @@ void* peekStack( Stack* stack ) {
 void StackClear( Stack* stack ) {
     if (stack == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "stack data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     for (int i = 0; i < getStackLength(stack); i++)

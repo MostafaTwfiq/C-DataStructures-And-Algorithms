@@ -163,16 +163,31 @@ UndirectedGraph *undirectedGraphInitialization(void (*freeFun)(void *), int (*co
 
     if (freeFun == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "freeing function pointer", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     } else if (compFun == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "comparing function pointer", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     UndirectedGraph *graph = (UndirectedGraph *) malloc(sizeof(UndirectedGraph));
     if (graph == NULL) {
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "graph", "undirected graph data structure");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
 
     graph->nodes = hashMapInitialization(freeFun, UDGraphNodeFreeFun, compFun);
@@ -201,10 +216,20 @@ UndirectedGraph *undirectedGraphInitialization(void (*freeFun)(void *), int (*co
 void UDGraphAddNode(UndirectedGraph *graph, void *value, int sizeOfValue) {
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     } else if (value == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if (hashMapContains(graph->nodes, value, sizeOfValue)) {
@@ -215,7 +240,12 @@ void UDGraphAddNode(UndirectedGraph *graph, void *value, int sizeOfValue) {
     UDGraphNode *newNode = (UDGraphNode *) malloc(sizeof(UDGraphNode));
     if (newNode == NULL) {
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new node", "undirected graph data structure");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
 
     newNode->value = value;
@@ -249,13 +279,28 @@ void UDGraphAddNode(UndirectedGraph *graph, void *value, int sizeOfValue) {
 void UDGraphAddEdge(UndirectedGraph *graph, void *fValue, int fSize, void *sValue, int sSize, int edgeWeight) {
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     } else if (fValue == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "first value pointer", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     } else if (sValue == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "second value pointer", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     UDGraphNode *fNode = hashMapGet(graph->nodes, fValue, fSize);
@@ -267,7 +312,12 @@ void UDGraphAddEdge(UndirectedGraph *graph, void *fValue, int fSize, void *sValu
     UDGraphEdge *sNewEdge = (UDGraphEdge *) malloc(sizeof(UDGraphEdge));
     if (fNewEdge == NULL || sNewEdge == NULL) {
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new edge", "undirected graph data structure");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
 
 
@@ -313,10 +363,20 @@ void UDGraphRemoveNode(UndirectedGraph *graph, void *value, int sizeOfValue) {
 
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     } else if (value == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     UDGraphNode *node = hashMapGet(graph->nodes, value, sizeOfValue);
@@ -358,10 +418,20 @@ void *UDGraphRemoveNodeWtoFr(UndirectedGraph *graph, void *value, int sizeOfValu
 
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     } else if (value == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     UDGraphNode *node = hashMapGet(graph->nodes, value, sizeOfValue);
@@ -408,13 +478,28 @@ void *UDGraphRemoveNodeWtoFr(UndirectedGraph *graph, void *value, int sizeOfValu
 void UDGraphRemoveEdge(UndirectedGraph *graph, void *fValue, int fSize, void *sValue, int sSize) {
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     } else if (fValue == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "fist value pointer", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     } else if (sValue == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "second value pointer", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     UDGraphNode *fNode = hashMapGet(graph->nodes, fValue, fSize);
@@ -463,10 +548,20 @@ void UDGraphRemoveEdge(UndirectedGraph *graph, void *fValue, int fSize, void *sV
 int UDGraphContainsNode(UndirectedGraph *graph, void *value, int sizeOfValue) {
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     } else if (value == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     return hashMapContains(graph->nodes, value, sizeOfValue);
@@ -495,13 +590,28 @@ int UDGraphContainsNode(UndirectedGraph *graph, void *value, int sizeOfValue) {
 int UDGraphContainsEdge(UndirectedGraph *graph, void *fValue, int fSize, void *sValue, int sSize) {
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     } else if (fValue == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "first value pointer", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     } else if (sValue == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "second value pointer", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     UDGraphNode *fNode = hashMapGet(graph->nodes, fValue, fSize);
@@ -552,7 +662,12 @@ void printUDGraph(UndirectedGraph *graph, void (*printFun)(void *)) {
 
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     UDGraphNode **nodesArray = (UDGraphNode **) hashMapToArray(graph->nodes);
@@ -587,7 +702,12 @@ void printUDGraph(UndirectedGraph *graph, void (*printFun)(void *)) {
 int UDGraphGetSize(UndirectedGraph *graph) {
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     return hashMapGetLength(graph->nodes);
@@ -609,7 +729,12 @@ int UDGraphGetSize(UndirectedGraph *graph) {
 int UDGraphIsEmpty(UndirectedGraph *graph) {
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     return hashMapIsEmpty(graph->nodes);
@@ -632,7 +757,12 @@ int UDGraphIsEmpty(UndirectedGraph *graph) {
 void clearUDGraph(UndirectedGraph *graph) {
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     clearHashMap(graph->nodes);
@@ -722,13 +852,28 @@ int UDGCompInt(const void *int1, const void *int2) {
 void UDGraphDepthFirstTraversal(UndirectedGraph *graph, void *startVal, int sizeOfValue, void (*printFun)(void *)) {
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     } else if (startVal == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "start value pointer", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     } else if (printFun == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "print function pointer", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     UDGraphNode *startNode = hashMapGet(graph->nodes, startVal, sizeOfValue);
@@ -786,13 +931,28 @@ void UDGraphDepthFirstTraversal(UndirectedGraph *graph, void *startVal, int size
 void UDGraphBreadthFirstTraversal(UndirectedGraph *graph, void *startVal, int sizeOfValue, void (*printFun)(void *)) {
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     } else if (startVal == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "start value pointer", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     } else if (printFun == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "print function pointer", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     UDGraphNode *startNode = hashMapGet(graph->nodes, startVal, sizeOfValue);
@@ -889,7 +1049,12 @@ int *generateNodeValAddress(UDGraphNode *node) {
     int *valAddress = (int *) malloc(sizeof(int));
     if (valAddress == NULL) {
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new node value address pointer", "undirected graph data structure");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
 
     *valAddress = (int) node->value;
@@ -919,7 +1084,12 @@ DistanceHolder *generateDisHolder(UDGraphNode *fromNode, UDGraphNode *toNode, in
     DistanceHolder *holder = (DistanceHolder *) malloc(sizeof(DistanceHolder));
     if (holder == NULL) {
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new distance holder pointer", "undirected graph data structure");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
 
     holder->fromNode = fromNode;
@@ -976,13 +1146,28 @@ int UDGraphGetShortestDistance(UndirectedGraph *graph, void *startVal, int sizeO
 
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     } else if (startVal == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "start value pointer", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     } else if (endVal == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "end value pointer", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     UDGraphNode *startNode = hashMapGet(graph->nodes, startVal, sizeOfStartVal);
@@ -1026,13 +1211,28 @@ ArrayList *UDGraphGetShortestPath(UndirectedGraph *graph, void *startVal, int si
 
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     } else if (startVal == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "start value pointer", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     } else if (endVal == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "end value pointer", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     UDGraphNode *startNode = hashMapGet(graph->nodes, startVal, sizeOfStartVal);
@@ -1197,10 +1397,20 @@ HashMap *UDGraphGenerateDistancesMap(UDGraphNode *startNode) {
 int UDGraphNodePartOfCycle(UndirectedGraph *graph, void *startVal, int sizeOfStartVal) {
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     } else if (startVal == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "start value pointer", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     UDGraphNode *startNode = hashMapGet(graph->nodes, startVal, sizeOfStartVal);
@@ -1237,7 +1447,12 @@ int UDGraphHasCycle(UndirectedGraph *graph) {
 
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "undirected graph data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     UDGraphNode **nodesArray = (UDGraphNode **) hashMapToArray(graph->nodes);

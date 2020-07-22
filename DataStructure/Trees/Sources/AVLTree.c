@@ -54,7 +54,12 @@ int AVLGetBalance(AVLTreeNode *n);
 void AVLTreePrintStats(AVLTree *tree){
     if (tree == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "tree", "AVLTreePrintStats");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if(tree&&tree->root){
@@ -94,17 +99,32 @@ void AVLTreePrintStats(AVLTree *tree){
 AVLTree *AVLTreeInitialize(int (*cmp)(const void *, const void *), void (*freeFn)(void *)) {
     if (cmp == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "cmp", "AVLTreeInitialize");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
     if (freeFn == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "freeFn", "AVLTreeInitialize");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     AVLTree *t = (AVLTree *) malloc(sizeof(AVLTree));
     if(!t){
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "AVLTree", "AVLTreeInitialize");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
     t->root = NULL;
     t->cmp = cmp;
@@ -121,13 +141,23 @@ AVLTreeNode* newAVLTreeNode(void* key){
 
     if (key == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "key", "newAVLTreeNode");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     AVLTreeNode *p =  (AVLTreeNode*)malloc(sizeof(AVLTreeNode));
     if(!p){
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "AVLTreeNode", "newAVLTreeNode");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
     p->key = key;
     p->left=NULL;
@@ -151,7 +181,12 @@ void AVLTreeFreeWrapper(AVLTreeNode** node, void (*freeFn)(void *)){
 void AVLTreeFree(AVLTree* avlTree){
     if (avlTree == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "avlTree", "AVLTreeFree");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     AVLTreeFreeWrapper(&avlTree->root,avlTree->freeFn);
@@ -212,12 +247,22 @@ AVLTreeNode* AVLTreeInsertWrapper(AVLTree * avlTree, AVLTreeNode *node, void *ke
 void AVLTreeInsert(AVLTree *avlTree, void *key){
     if (avlTree == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "avlTree", "AVL data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if (key == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "key", "AVL data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
 
@@ -322,12 +367,22 @@ void AVLTreeInOrderPredecessorWrapper(AVLTree *avlTree, AVLTreeNode *root, void 
 void AVLTreePrint(AVLTreeNode *root, void (printFn)(void *)){
     if (root == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "root", "AVL data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if (printFn == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "printFn", "AVL data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     printAVLTreeHelper(root, 0, printFn);
@@ -357,12 +412,22 @@ void printAVLTreeHelper(AVLTreeNode *root, int space, void (printFn)(void *)){
 int AVLTreeIsPresent(AVLTree *avlTree, void* searchKey){
     if (avlTree == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "avlTree", "AVL data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if (searchKey == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "searchKey", "AVL data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     int found = 0;
@@ -464,7 +529,12 @@ void AVLTreeGetMaxStepsRecurs(AVLTreeNode* node, int *steps){
 void AVLTreePrintInOrder(AVLTreeNode* node, void (printFn)(void *)){
     if (printFn == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "printFn", "AVLTreePrintInOrder");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
     if(!node)return;
     AVLTreePrintInOrder(node->left, printFn);
@@ -479,7 +549,12 @@ void AVLTreePrintInOrder(AVLTreeNode* node, void (printFn)(void *)){
 void **AVLTreeToArray(AVLTree *avlTree){
     if (avlTree == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "avlTree", "AVLTreeToArray");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
     void **array = (void **) malloc(sizeof(void *) * avlTree->nodeCount);
     int i = 0;
@@ -516,12 +591,22 @@ AVLTreeNode *AVLTreeSearchWrapper(AVLTree *avlTree, AVLTreeNode *node, char *key
 AVLTreeNode *AVLTreeSearch(AVLTree *avlTree, char *key){
     if (avlTree == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "avlTree", "AVLTreeSearch");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if (key == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "key", "AVLTreeSearch");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     return AVLTreeSearchWrapper(avlTree,avlTree->root,key);
@@ -638,12 +723,22 @@ AVLTreeNode* AVLTreeDeleteNodeWithoutFreeWrapper(AVLTree *avlTree, AVLTreeNode* 
 void AVLTreeDeleteNodeWithFree(AVLTree *avlTree, void *key) {
     if (avlTree == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "avlTree", "AVLTreeDeleteNodeWithFree");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if (key == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "key", "AVLTreeDeleteNodeWithFree");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
     avlTree->root = AVLTreeDeleteNodeWithFreeWrapper(avlTree, avlTree->root, key);
 }
@@ -651,12 +746,22 @@ void AVLTreeDeleteNodeWithFree(AVLTree *avlTree, void *key) {
 void AVLTreeDeleteNodeWithoutFree(AVLTree *avlTree, void *key) {
     if (avlTree == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "avlTree", "AVLTreeDeleteNodeWithoutFree");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if (key == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "key", "AVLTreeDeleteNodeWithoutFree");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
     avlTree->root = AVLTreeDeleteNodeWithoutFreeWrapper(avlTree, avlTree->root, key);
 }
@@ -670,17 +775,32 @@ void AVLTreeDeleteNodeWithoutFree(AVLTree *avlTree, void *key) {
 AVLTreeNode * AVLTreeInsertAll(AVLTree* avlTree, void **array, uint32_t length){
     if (avlTree == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "avlTree", "AVLTreeInsertAll");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if (array == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "array", "AVLTreeInsertAll");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if (length == 0) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "length", "AVLTreeInsertAll");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     for(uint32_t i =0; i<length;i++)
@@ -691,12 +811,22 @@ AVLTreeNode * AVLTreeInsertAll(AVLTree* avlTree, void **array, uint32_t length){
 AVLTreeNode* AVLInOrderPredecessor(AVLTree *avlTree,void *referenceNode){
     if (avlTree == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "avlTree", "AVLInOrderPredecessor");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if (referenceNode == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "referenceNode", "AVLInOrderPredecessor");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     AVLTreeNode * rightMost  = malloc(sizeof(*rightMost));
@@ -708,12 +838,22 @@ AVLTreeNode* AVLInOrderPredecessor(AVLTree *avlTree,void *referenceNode){
 AVLTreeNode* AVLInOrderSuccessor(AVLTree *avlTree, void *referenceNode){
     if (avlTree == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "avlTree", "AVLInOrderSuccessor");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if (referenceNode == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "referenceNode", "AVLInOrderSuccessor");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
     AVLTreeNode * leftMost  = malloc(sizeof(*leftMost));
     AVLTreeInOrderSuccessorWrapper(avlTree, avlTree->root,referenceNode,&leftMost);

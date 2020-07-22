@@ -36,23 +36,43 @@ HashSet *hashSetInitialization(
 
     if (freeItem == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "hash set data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     } else if (itemComp == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "hash set data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     HashSet *hashSet = (HashSet *) malloc(sizeof(HashSet));
     if (hashSet == NULL) {
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "hash set", "hash set data structure");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
 
     hashSet->length = hashSetGetNextPrime(10);
     hashSet->arr = (void **) calloc(sizeof(void *), hashSet->length);
     if (hashSet->arr == NULL) {
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "hash set array", "hash set data structure");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
 
     hashSet->count = 0;
@@ -86,10 +106,20 @@ void hashSetInsert(HashSet *hashSet, void *item, int sizeOfItem) {
 
     if (hashSet == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (item == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "hash set data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if (hashSet->count == hashSet->length) {
@@ -98,7 +128,12 @@ void hashSetInsert(HashSet *hashSet, void *item, int sizeOfItem) {
         hashSet->arr = (void **) realloc(hashSet->arr, sizeof(void *) * hashSet->length);
         if (hashSet->arr == NULL) {
             fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "hash set array", "hash set data structure");
-            exit(FAILED_REALLOCATION);
+            #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_REALLOCATION;
+     	#else
+     		exit(FAILED_REALLOCATION);
+     	#endif
+
         }
 
         for (int i = hashSet->count; i < hashSet->length; i++)
@@ -152,10 +187,20 @@ void hashSetInsert(HashSet *hashSet, void *item, int sizeOfItem) {
 void hashSetDelete(HashSet *hashSet, void *item, int sizeOfItem) {
     if (hashSet == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (item == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "hash set data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     unsigned int
@@ -202,10 +247,20 @@ void hashSetDelete(HashSet *hashSet, void *item, int sizeOfItem) {
 void *hashSetDeleteWtoFr(HashSet *hashSet, void *item, int sizeOfItem) {
     if (hashSet == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (item == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "hash set data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     unsigned int
@@ -258,10 +313,20 @@ void *hashSetDeleteWtoFr(HashSet *hashSet, void *item, int sizeOfItem) {
 int hashSetContains(HashSet *hashSet, void *item, int sizeOfItem) {
     if (hashSet == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (item == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "hash set data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     unsigned int
@@ -305,13 +370,23 @@ int hashSetContains(HashSet *hashSet, void *item, int sizeOfItem) {
 void **hashSetToArray(HashSet *hashSet) {
     if (hashSet == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     void **array = (void **) malloc(sizeof(void *) * hashSetGetLength(hashSet));
     if (array == NULL) {
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "hash set data structure");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
 
     for (int i = 0, index = 0; i < hashSet->length; i++) {
@@ -338,7 +413,12 @@ int hashSetGetLength(HashSet *hashSet) {
 
     if (hashSet == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     return hashSet->count;
@@ -362,7 +442,12 @@ int hashSetIsEmpty(HashSet *hashSet) {
 
     if (hashSet == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     return hashSet->count == 0;
@@ -386,7 +471,12 @@ void clearHashSet(HashSet *hashSet) {
 
     if (hashSet == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     for (int i = 0; i < hashSet->length; i++) {
@@ -550,5 +640,4 @@ int hashSetGetNextPrime(int num) {
     return 1;
 
 }
-
 

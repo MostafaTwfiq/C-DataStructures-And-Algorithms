@@ -7,24 +7,44 @@
 BinaryMinHeap *MinHeapInitialize(int32_t (*cmp)(const void*, const void*),void (*freeFn)(void*) ){
     if (cmp == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "cmp", "MinHeapInitialize");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
     if (freeFn == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "freeFn", "MinHeapInitialize");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     BinaryMinHeap *h = malloc(sizeof(*h));
     h->capacity      = 10;
     if(h==NULL){
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "BinaryMinHeap", "MinHeapInitialize");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
     void **harr      = (void **)malloc(sizeof(void*)*h->capacity);
 
     if(harr==NULL){
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "Heap Array", "MinHeapInitialize");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
 
     h->memory        = harr;
@@ -41,11 +61,21 @@ BinaryMinHeap *MinHeapInitialize(int32_t (*cmp)(const void*, const void*),void (
 void MinHeapDelete(BinaryMinHeap* binaryMinHeap, void ** res) {
     if (binaryMinHeap == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "binaryMinHeap ", "MinHeapDelete");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
     if (res == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "res", "MinHeapDelete");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
     *res = binaryMinHeap->memory[0];
     binaryMinHeap->memory[0] = binaryMinHeap->memory[binaryMinHeap->size - 1];
@@ -61,7 +91,12 @@ void MinHeapDelete(BinaryMinHeap* binaryMinHeap, void ** res) {
 void MinHeapifyUP(BinaryMinHeap* binaryMinHeap, int index) {
     if (binaryMinHeap == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "binaryMinHeap ", "MinHeapifyUP");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
     if(!index) return;
     int p = PARENT(index);
@@ -80,11 +115,21 @@ void MinHeapifyUP(BinaryMinHeap* binaryMinHeap, int index) {
 void MinHeapInsert(BinaryMinHeap* binaryMinHeap, void* value){
     if (binaryMinHeap == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "binaryMinHeap ", "MinHeapInsert");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
     if (value == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "value", "MinHeapInsert");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if(binaryMinHeap->size == binaryMinHeap->capacity){
@@ -103,7 +148,12 @@ void MinHeapifyDown(BinaryMinHeap *binaryMinHeap, int index) {
 
     if (binaryMinHeap == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "binaryMinHeap ", "MinHeapifyDown");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if (index < 0) return;
@@ -142,29 +192,54 @@ void MinHeapifyDown(BinaryMinHeap *binaryMinHeap, int index) {
 BinaryMinHeap *MinHeapify(void *arr, uint32_t size,int32_t (*cmp)(const void*, const void*)){
     if (arr == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "arr ", "MinHeapify");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
     if (size == 0 || size < 0) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "size", "MinHeapify");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if (cmp == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "cmp", "MinHeapify");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     BinaryMinHeap *h = malloc(sizeof(BinaryMinHeap));
     if(h==NULL){
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "BinaryMinHeap", "MinHeapInitialize");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
     h->capacity = size;
     void **harr = malloc(sizeof(void*)*h->capacity);
 
     if(harr==NULL){
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "Heap Array", "MinHeapInitialize");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
 
     h->memory = harr;
@@ -183,11 +258,21 @@ BinaryMinHeap *MinHeapify(void *arr, uint32_t size,int32_t (*cmp)(const void*, c
 void printMinHeap(BinaryMinHeap *binaryMinHeap, void (*printfn)(void *)){
     if (binaryMinHeap == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "binaryMinHeap ", "printMinHeap");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
     if (printfn == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "printfn", "printMinHeap");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     for (int i = 0; i < binaryMinHeap->size; ++i) {
@@ -204,16 +289,31 @@ void printMinHeap(BinaryMinHeap *binaryMinHeap, void (*printfn)(void *)){
 void MinHeapAddAll(BinaryMinHeap *binaryMinHeap, void **arr, uint32_t size){
     if (binaryMinHeap == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "binaryMinHeap ", "MinHeapAddAll");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
     if (size == 0|| size < 0) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "size", "MinHeapAddAll");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if (arr == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "arr", "MinHeapAddAll");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     for(int i=0;i<size;i++){
@@ -228,12 +328,22 @@ void MinHeapAddAll(BinaryMinHeap *binaryMinHeap, void **arr, uint32_t size){
 void MinHeapDestroy(BinaryMinHeap * binaryMinHeap) {
     if (binaryMinHeap == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "binaryMinHeap ", "MinHeapDestroy");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if (binaryMinHeap->freeFn == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "free function ", "MinHeapDestroy");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
     MinHeapClear(binaryMinHeap);
     free(binaryMinHeap->memory);
@@ -247,12 +357,22 @@ void MinHeapDestroy(BinaryMinHeap * binaryMinHeap) {
 void MinHeapClear(BinaryMinHeap * binaryMinHeap){
     if (binaryMinHeap == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "binaryMinHeap ", "MinHeapClear");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if (binaryMinHeap->freeFn == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "free function ", "MinHeapClear");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
     for(int i =0; i < binaryMinHeap->size; i++){
         binaryMinHeap->freeFn(binaryMinHeap->memory[i]);

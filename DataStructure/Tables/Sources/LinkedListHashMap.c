@@ -63,22 +63,47 @@ LinkedListHashMap *linkedListHashMapInitialization(
 
     if (mapLength <= 0) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "hash map initial length", "linked list hash map data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     } else if (freeKey == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "free key function pointer", "linked list hash map data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     } else if (freeItem == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "free item function pointer", "linked list hash map data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     } else if (keyComp == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "key comparator function pointer", "linked list hash map data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     LinkedListHashMap *hashMap = (LinkedListHashMap *) malloc(sizeof(LinkedListHashMap));
     if (hashMap == NULL) {
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "hash map", "linked list hash map data structure");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
 
 
@@ -86,7 +111,12 @@ LinkedListHashMap *linkedListHashMapInitialization(
     hashMap->arr = (DoublyLinkedList **) calloc(sizeof(DoublyLinkedList *), hashMap->length);
     if (hashMap->arr == NULL) {
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "hash map linked lists array", "linked list hash map data structure");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
 
     hashMap->count = 0;
@@ -113,13 +143,28 @@ LinkedListHashMap *linkedListHashMapInitialization(
 void lLHashMapInsert(LinkedListHashMap *map, void *key, int sizeOfKey, void *item) {
     if (map == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (key == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     } else if (item == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "linked list hash map data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     unsigned int index = hashCal((unsigned int) key, sizeOfKey, map->length);
@@ -129,7 +174,12 @@ void lLHashMapInsert(LinkedListHashMap *map, void *key, int sizeOfKey, void *ite
     Entry *entry = (Entry *) malloc(sizeof(Entry));
     if (entry == NULL) {
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new entry", "linked list hash map data structure");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
 
     entry->key = key;
@@ -164,10 +214,20 @@ void lLHashMapInsert(LinkedListHashMap *map, void *key, int sizeOfKey, void *ite
 int lLHashMapContains(LinkedListHashMap *map, void *key, int sizeOfKey) {
     if (map == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (key == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     unsigned int index = hashCal((unsigned int) key, sizeOfKey, map->length);
@@ -201,10 +261,20 @@ int lLHashMapContains(LinkedListHashMap *map, void *key, int sizeOfKey) {
 void *lLHashMapGet(LinkedListHashMap *map, void *key, int sizeOfKey) {
     if (map == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (key == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     unsigned int index = hashCal((unsigned int) key, sizeOfKey, map->length);
@@ -241,10 +311,20 @@ void *lLHashMapGet(LinkedListHashMap *map, void *key, int sizeOfKey) {
 void *lLHashMapGetKey(LinkedListHashMap *map, void *key, int sizeOfKey) {
     if (map == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (key == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     unsigned int index = hashCal((unsigned int) key, sizeOfKey, map->length);
@@ -280,10 +360,20 @@ void *lLHashMapGetKey(LinkedListHashMap *map, void *key, int sizeOfKey) {
 void lLHashMapDelete(LinkedListHashMap *map, void *key, int sizeOfKey) {
     if (map == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (key == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     unsigned int index = hashCal((unsigned int) key, sizeOfKey, map->length);
@@ -320,10 +410,20 @@ void lLHashMapDelete(LinkedListHashMap *map, void *key, int sizeOfKey) {
 void *lLHashMapDeleteWtoFr(LinkedListHashMap *map, void *key, int sizeOfKey) {
     if (map == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (key == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     unsigned int index = hashCal((unsigned int) key, sizeOfKey, map->length);
@@ -366,10 +466,20 @@ void *lLHashMapDeleteWtoFr(LinkedListHashMap *map, void *key, int sizeOfKey) {
 Entry *lLHashMapDeleteWtoFrAll(LinkedListHashMap *map, void *key, int sizeOfKey) {
     if (map == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (key == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     unsigned int index = hashCal((unsigned int) key, sizeOfKey, map->length);
@@ -407,13 +517,23 @@ Entry *lLHashMapDeleteWtoFrAll(LinkedListHashMap *map, void *key, int sizeOfKey)
 void **lLHashMapToArray(LinkedListHashMap *map) {
     if (map == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     void **arr = (void **) malloc(sizeof(void *) * map->count);
     if (arr == NULL) {
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "linked list hash map data structure");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
 
     int index = 0;
@@ -447,13 +567,23 @@ void **lLHashMapToArray(LinkedListHashMap *map) {
 Entry **lLHashMapToEntryArray(LinkedListHashMap *map) {
     if (map == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     Entry **arr = (Entry **) malloc(sizeof(Entry *) * map->count);
     if (arr == NULL) {
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to entries array", "linked list hash map data structure");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
 
     int index = 0;
@@ -484,7 +614,12 @@ Entry **lLHashMapToEntryArray(LinkedListHashMap *map) {
 int lLHashMapGetLength(LinkedListHashMap *map) {
     if (map == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     return map->count;
@@ -504,7 +639,12 @@ int lLHashMapGetLength(LinkedListHashMap *map) {
 int lLHashMapIsEmpty(LinkedListHashMap *map) {
     if (map == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     return map->count == 0;
@@ -523,7 +663,12 @@ int lLHashMapIsEmpty(LinkedListHashMap *map) {
 void clearLLHashMap(LinkedListHashMap *map) {
     if (map == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     for (int i = 0; i < map->length; i++) {

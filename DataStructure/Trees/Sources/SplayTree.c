@@ -10,12 +10,22 @@ void SplayTreeToArrayRecurs(SplayNode* node , void **arr, int *i);
 SplayNode* newSplayNode(void* key){
     if (key == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "key", "newSplayNode");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
     SplayNode *p =  (SplayNode*)malloc(sizeof(SplayNode));
     if(!p){
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "SplayNode", "newSplayNode");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
     p->key = key;
     p->left=NULL;
@@ -32,17 +42,32 @@ SplayTree *SplayTreeInitialize(int16_t (*cmp)(const void *, const void *), void 
 
     if (cmp == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "cmp", "SplayTreeInitialize");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
     if (freeFn == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "freeFn", "SplayTreeInitialize");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     SplayTree *t = (SplayTree *) malloc(sizeof(SplayTree));
     if(!t){
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "SplayTree", "SplayTreeInitialize");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
     t->root = NULL;
     t->cmp = cmp;
@@ -129,11 +154,21 @@ SplayNode *splay(SplayTree *splayTree, SplayNode* root, void *key) {
 SplayNode* SplayTreeSearch(SplayTree* splayTree,void *key){
     if (splayTree == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "splayTree", "SplayTreeSearch");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
     if (key == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "key", "SplayTreeSearch");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
     return splay(splayTree,splayTree->root,key);
 }
@@ -146,12 +181,22 @@ SplayNode* SplayTreeSearch(SplayTree* splayTree,void *key){
 void SplayTreeInsert(SplayTree* splayTree, void *key){
     if (splayTree == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "splayTree", "SplayTreeInsert");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if (key == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "key", "SplayTreeInsert");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if(splayTree->root==NULL) {
@@ -180,12 +225,22 @@ void SplayTreeInsert(SplayTree* splayTree, void *key){
 void SplayTreeDeleteWithFree(SplayTree* splayTree, void *key){
     if (splayTree == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "splayTree", "SplayTreeDeleteWithFree");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if (key == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "key", "SplayTreeDeleteWithFree");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if (splayTree->root==NULL) return;
@@ -210,12 +265,22 @@ void SplayTreeDeleteWithFree(SplayTree* splayTree, void *key){
 void SplayTreeDeleteWithoutFree(SplayTree* splayTree, void *key){
     if (splayTree == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "splayTree", "SplayTreeDeleteWithoutFree");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if (key == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "key", "SplayTreeDeleteWithoutFree");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
     if (splayTree->root==NULL) return;
     splayTree->root = splay(splayTree,splayTree->root,key);
@@ -257,7 +322,12 @@ void SplayTreeFreeWrapper(SplayNode **root,void (*freeFn)(void*)) {
 void SplayTreeFree(SplayTree *splayTree){
     if (splayTree == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "splayTree", "SplayTreeFree");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
     SplayTreeFreeWrapper(splayTree->root,splayTree->freeFn);
 }
@@ -279,12 +349,22 @@ void printInOrderSplayTreeWrapper(SplayNode* node, void (printFn)(void *)){
 void printInOrderSplayTree(SplayTree *splayTree, void (printFn)(void *)){
     if (splayTree == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "splayTree", "printInOrderSplayTree");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if (printFn == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "printFn", "printInOrderSplayTree");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     printInOrderSplayTreeWrapper(splayTree->root,printFn);
@@ -297,12 +377,22 @@ void printInOrderSplayTree(SplayTree *splayTree, void (printFn)(void *)){
 void printSplayTree(SplayNode *root, void (printFn)(void *)){
     if (root == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "root", "printSplayTree");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if (printFn == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "printFn", "printSplayTree");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     printSplayTreeHelper(root, 0, printFn);
@@ -332,17 +422,32 @@ void printSplayTreeHelper(SplayNode *root, int space, void (printFn)(void *)){
 void SplayTreeInsertAll(SplayTree* splayTree, void** array, int length){
     if (splayTree == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "splayTree", "SplayTreeInsertAll");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if (array == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "array", "SplayTreeInsertAll");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     if (length == 0) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "length", "SplayTreeInsertAll");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     for(int i=0;i<length;i++){
@@ -357,7 +462,12 @@ void SplayTreeInsertAll(SplayTree* splayTree, void** array, int length){
 void **SplayTreeToArray(SplayTree *splayTree){
     if (splayTree == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "avlTree", "SplayTreeToArray");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
     void **array = (void **) malloc(sizeof(void *) * splayTree->nodeCount);
     int i = 0;
@@ -377,4 +487,3 @@ void SplayTreeToArrayRecurs(SplayNode* node , void **arr, int *i){
     *i += 1;
     SplayTreeToArrayRecurs(node->right, arr, i);
 }
-

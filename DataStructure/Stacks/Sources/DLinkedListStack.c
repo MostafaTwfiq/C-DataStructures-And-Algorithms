@@ -13,13 +13,23 @@
 DLinkedListStack *dlStackInitialization(void (*freeFun)(void *)) {
     if (freeFun == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "doubly linked list stack data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     DLinkedListStack *stack = (DLinkedListStack *) malloc(sizeof(DLinkedListStack));
     if (stack == NULL) {
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "stack", "doubly linked list stack data structure");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
 
     stack->linkedList = doublyLinkedListInitialization(freeFun, NULL);
@@ -41,10 +51,20 @@ DLinkedListStack *dlStackInitialization(void (*freeFun)(void *)) {
 void dlStackPush(DLinkedListStack *stack, void *item) {
     if (stack == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (item == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "doubly linked list stack data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     doublyLinkedListAddLast(stack->linkedList, item);
@@ -65,10 +85,20 @@ void dlStackPush(DLinkedListStack *stack, void *item) {
 void dlStackAddAll(DLinkedListStack *stack, void **arr, int arrLength) {
     if (stack == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (arr == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "item array pointer", "doubly linked list stack data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
 
@@ -93,10 +123,20 @@ void *dlStackPop(DLinkedListStack *stack) {
 
     if (stack == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (dlStackIsEmpty(stack)) {
         fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "doubly linked list stack data structure");
-        exit(EMPTY_DATA_STRUCTURE);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+     	#else
+     		exit(EMPTY_DATA_STRUCTURE);
+     	#endif
+
     }
 
     void *item = doublyLinkedListGetLast(stack->linkedList);
@@ -120,7 +160,12 @@ void **dlStackToArray(DLinkedListStack *stack) {
 
     if (stack == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     return doublyLinkedListToArray(stack->linkedList);
@@ -144,10 +189,20 @@ void *dlStackPeek(DLinkedListStack *stack) {
 
     if (stack == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (dlStackIsEmpty(stack)) {
         fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "doubly linked list stack data structure");
-        exit(EMPTY_DATA_STRUCTURE);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+     	#else
+     		exit(EMPTY_DATA_STRUCTURE);
+     	#endif
+
     }
 
     void *item = doublyLinkedListGetLast(stack->linkedList);
@@ -169,7 +224,12 @@ int dlStackGetLength(DLinkedListStack *stack) {
 
     if (stack == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     return stack->linkedList->length;
@@ -192,7 +252,12 @@ int dlStackIsEmpty(DLinkedListStack *stack) {
 
     if (stack == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     return doublyLinkedListIsEmpty(stack->linkedList);
@@ -211,7 +276,12 @@ void clearDLStack(DLinkedListStack *stack) {
 
     if (stack == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     doublyLinkedListClear(stack->linkedList);
@@ -230,7 +300,12 @@ void clearDLStack(DLinkedListStack *stack) {
 void destroyDLStack(DLinkedListStack *stack) {
     if (stack == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     destroyDoublyLinkedList(stack->linkedList);

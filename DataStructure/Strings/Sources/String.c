@@ -14,19 +14,34 @@
 String *stringInitialization(int initialLength) {
     if (initialLength <= 0) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "initial length", "string data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     String *myString = (String *) malloc(sizeof(String));
     if (myString == NULL) {
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "string", "string data structure");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
 
     myString->string = (char *) malloc(sizeof(char) * (initialLength + 1) );
     if (myString->string == NULL) {
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "string array", "string data structure");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
 
     myString->string[0] = '\0';
@@ -48,7 +63,12 @@ String *stringInitialization(int initialLength) {
 void stringAddCharAtLast(String *myString, char c) {
     if (myString == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     if (myString->count == myString->length) {
@@ -56,7 +76,12 @@ void stringAddCharAtLast(String *myString, char c) {
         myString->string = realloc(myString->string, sizeof(char) * (myString->length + 1));
         if (myString->string == NULL) {
             fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "string array", "string data structure");
-            exit(FAILED_REALLOCATION);
+            #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_REALLOCATION;
+     	#else
+     		exit(FAILED_REALLOCATION);
+     	#endif
+
         }
 
     }
@@ -79,10 +104,20 @@ void stringAddCharAtLast(String *myString, char c) {
 void stringAddCharAtIndex(String *myString, int index, char c) {
     if (myString == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (myString->count <= index || index < 0) {
         fprintf(stderr, OUT_OF_RANGE_MESSAGE, "string data structure");
-        exit(OUT_OF_RANGE);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = OUT_OF_RANGE;
+     	#else
+     		exit(OUT_OF_RANGE);
+     	#endif
+
     }
 
     myString->string[index] = c;
@@ -102,10 +137,20 @@ void stringAddCharAtIndex(String *myString, int index, char c) {
 void stringRemoveCharAtIndex(String *myString, int index) {
     if (myString == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (myString->count <= index || index < 0) {
         fprintf(stderr, OUT_OF_RANGE_MESSAGE, "string data structure");
-        exit(OUT_OF_RANGE);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = OUT_OF_RANGE;
+     	#else
+     		exit(OUT_OF_RANGE);
+     	#endif
+
     }
 
     for (int i = index; i < myString->count; i++)
@@ -126,10 +171,20 @@ void stringRemoveCharAtIndex(String *myString, int index) {
 void stringAddStringAtLast(String *myString, char *newString) {
     if (myString == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (newString == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "new string pointer", "string data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     char *currentChar = newString;
@@ -152,10 +207,20 @@ void stringAddStringAtLast(String *myString, char *newString) {
 void stringChangeStringByCharArray(String *string, char *newString) {
     if (string == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (newString == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "new string pointer", "string data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     string->count = 0;
@@ -176,10 +241,20 @@ void stringChangeStringByCharArray(String *string, char *newString) {
 void stringChangeStringByString(String *string, String *newString) {
     if (string == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (newString == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "new string pointer", "string data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     string->count = 0;
@@ -205,7 +280,12 @@ void stringChangeStringByString(String *string, String *newString) {
 int stringFindCharIndex(String *myString, char c) {
     if (myString == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     for (int i = 0; i < myString->count; i++) {
@@ -231,10 +311,20 @@ int stringFindCharIndex(String *myString, char c) {
 char stringGetCharAtIndex(String *myString, int index) {
     if (myString == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (myString->count <= index || index < 0) {
         fprintf(stderr, OUT_OF_RANGE_MESSAGE, "string data structure");
-        exit(OUT_OF_RANGE);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = OUT_OF_RANGE;
+     	#else
+     		exit(OUT_OF_RANGE);
+     	#endif
+
     }
 
     return myString->string[index];
@@ -254,10 +344,20 @@ char stringGetCharAtIndex(String *myString, int index) {
 int stringSubString(String *myString, char *string) {
     if (myString == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (string == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "second string pointer", "string data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     int stringLength = strlen(string);
@@ -291,13 +391,23 @@ int stringSubString(String *myString, char *string) {
 char *stringToArrayOfCharacters(String *myString) {
     if (myString == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     char *arrayOfCharacters = (char *) malloc(sizeof(char) * (myString->count + 1) );
     if (arrayOfCharacters == NULL) {
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array of characters", "string data structure");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
 
     for (int i = 0; i <= myString->count; i++)
@@ -321,7 +431,12 @@ char *stringToArrayOfCharacters(String *myString) {
 char *stringGetStringBetweenTwoIndices(String *myString, int startIndex, int endIndex) {
     if (myString == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     if (startIndex > endIndex
@@ -329,13 +444,23 @@ char *stringGetStringBetweenTwoIndices(String *myString, int startIndex, int end
         || endIndex < 0 || endIndex >= myString->count) {
 
         fprintf(stderr, OUT_OF_RANGE_MESSAGE, "string data structure");
-        exit(OUT_OF_RANGE);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = OUT_OF_RANGE;
+     	#else
+     		exit(OUT_OF_RANGE);
+     	#endif
+
     }
 
     char *string = (char *) malloc(sizeof(char) * (endIndex - startIndex + 2) );
     if (string == NULL) {
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "string between to indices", "string data structure");
-        exit(FAILED_ALLOCATION);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     	#else
+     		exit(FAILED_ALLOCATION);
+     	#endif
+
     }
 
     string[endIndex - startIndex + 1] = '\0';
@@ -358,7 +483,12 @@ char *stringGetStringBetweenTwoIndices(String *myString, int startIndex, int end
 int stringGetLength(String *myString) {
     if (myString == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     return myString->count;
@@ -378,10 +508,20 @@ int stringGetLength(String *myString) {
 int stringIsEqualsToCharArray(String *myString, char *string) {
     if (myString == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (string == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "second string pointer", "string data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     int stringLength = strlen(string);
@@ -412,10 +552,20 @@ int stringIsEqualsToCharArray(String *myString, char *string) {
 int stringIsEqualsToMyString(String *myString, String *string) {
     if (myString == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     } else if (string == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "second string pointer", "string data structure");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     	#else
+     		exit(INVALID_ARG);
+     	#endif
+
     }
 
     int stringLength = stringGetLength(string);
@@ -443,7 +593,12 @@ int stringIsEqualsToMyString(String *myString, String *string) {
 void stringTrim(String *myString) {
     if (myString == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     while (1) {
@@ -484,7 +639,12 @@ void stringTrim(String *myString) {
 void stringFGetS(String *myString) {
     if (myString == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     char c;
@@ -515,7 +675,12 @@ void printString(String *string) {
 
     if (string == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     fprintf(stdout, "%s", string->string);
@@ -534,7 +699,12 @@ void printString(String *string) {
 void destroyString(String *myString) {
     if (myString == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     	#else
+     		exit(NULL_POINTER);
+     	#endif
+
     }
 
     free(myString->string);
