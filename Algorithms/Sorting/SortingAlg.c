@@ -7,6 +7,8 @@ void swap(void *first, void *second, int elemSize);
 
 void mergeSortHelper(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *));
 
+void quickSortHelper(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *));
+
 
 
 
@@ -94,6 +96,8 @@ void selectionSort(void *arr, int length, int elemSize, int (*cmp)(const void *,
             swap(arr + i * elemSize, currentElement, elemSize);
 
     }
+
+
 }
 
 
@@ -180,8 +184,6 @@ void mergeSortHelper(void *arr, int length, int elemSize, int (*cmp)(const void 
     mergeSortHelper(arr, middleLength, elemSize, cmp);
     mergeSortHelper(arr + middleLength * elemSize, secondHalfLength, elemSize, cmp);
 
-    //bubbleSort(arr, length, elemSize, cmp);
-
     for (int i = middleLength - 1; i >= 0; i--) {
 
         for (int j = i; j < length - 1; j++) {
@@ -194,6 +196,54 @@ void mergeSortHelper(void *arr, int length, int elemSize, int (*cmp)(const void 
         }
 
     }
+
+}
+
+
+
+void quickSort(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "selection sort");
+        exit(NULL_POINTER);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "selection sort");
+        exit(INVALID_ARG);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "selection sort");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "selection sort");
+        exit(INVALID_ARG);
+    }
+
+    quickSortHelper(arr, length, elemSize, cmp);
+
+    //TODO: try to improve the quick sort because the worst case << O(n^2) >>.
+
+}
+
+void quickSortHelper(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *)) {
+    if (length <= 0)
+        return;
+
+    void *boundaryPointer = arr - elemSize;
+
+
+    for (int i = 0; i < length; i++) {
+        if ( cmp(arr + (length - 1) * elemSize, arr + i * elemSize) >= 0) {
+            boundaryPointer += elemSize;
+            swap(boundaryPointer, arr + i * elemSize, elemSize);
+        }
+
+    }
+
+    int firstHalfLength = ( (boundaryPointer - arr) / elemSize);
+    int secondHalfLength = length - firstHalfLength - 1;
+
+
+    quickSortHelper(arr, firstHalfLength, elemSize, cmp);
+    quickSortHelper(boundaryPointer + elemSize, secondHalfLength, elemSize, cmp);
 
 }
 

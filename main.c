@@ -50,7 +50,7 @@ int main() {
 
 
     int arr[] = {55, 4, 33, 2, 0, 1, 3};
-    mergeSort(arr, 7, sizeof(int), intCmp);
+    qsort(arr, 7, sizeof(int), intCmp);
     for (int i = 0; i < 7; i++) {
         printf("%d ", arr[i]);
     }
