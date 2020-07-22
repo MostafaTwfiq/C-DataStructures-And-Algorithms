@@ -7,6 +7,13 @@ void swap(void *first, void *second, int elemSize);
 
 
 
+
+
+
+
+
+
+
 void bubbleSort(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *)) {
     if (arr == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "bubble sort");
@@ -46,6 +53,14 @@ void bubbleSort(void *arr, int length, int elemSize, int (*cmp)(const void *, co
 
 
 
+
+
+
+
+
+
+
+
 void selectionSort(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (arr == NULL) {
@@ -78,6 +93,58 @@ void selectionSort(void *arr, int length, int elemSize, int (*cmp)(const void *,
 
     }
 }
+
+
+
+
+
+
+
+
+
+void insertionSort(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "selection sort");
+        exit(NULL_POINTER);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "selection sort");
+        exit(INVALID_ARG);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "selection sort");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "selection sort");
+        exit(INVALID_ARG);
+    }
+
+    for (int i = 0; i < length; i++) {
+        void *currentElement = (void *) malloc(elemSize);
+        memcpy(currentElement, arr + i * elemSize, elemSize);
+        int rightIndex = 0;
+        for (int j = 0; j < i; j++) {
+            if ( cmp(currentElement, arr + j * elemSize) <= 0) {
+                rightIndex = j;
+                break;
+            }
+
+        }
+
+        for (int j = i; j > rightIndex; j--)
+            memcpy(arr + j * elemSize, arr + (j - 1) * elemSize, elemSize);
+
+        memcpy(arr + rightIndex * elemSize, currentElement, elemSize);
+
+    }
+
+
+
+}
+
+
+
+
+
 
 
 
