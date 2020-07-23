@@ -1,6 +1,7 @@
-#include "SortingAlg.h"
-#include "../../System/Utils.h"
-#include "../../DataStructure/Tables/Headers/HashMap.h"
+#include "../Header/SortingAlg.h"
+#include "../../../System/Utils.h"
+#include "../../../DataStructure/Tables/Headers/HashMap.h"
+//#include "../../DataStructure/Lists/Headers/Vector.h"
 
 
 
@@ -287,15 +288,15 @@ void countingSortA(unsigned int *arr, int length, unsigned int rangeStart, unsig
 
 
 
-void intFreeFun(void *n) {
+void intFreeFunSoAl(void *n) {
     free(n);
 }
 
-int intCmpAl(const void *n1, const void * n2) {
+int intCmpSoAl(const void *n1, const void * n2) {
     return *(int *)n1 - *(int *)n2;
 }
 
-unsigned int *generateIntPointer(unsigned int *num) {
+unsigned int *generateIntPointerSoAl(unsigned int *num) {
     unsigned int *newInt = (unsigned int *) malloc(sizeof(unsigned int));
     memcpy(newInt, num, sizeof(unsigned int));
 
@@ -316,19 +317,19 @@ void countingSortH(unsigned int *arr, int length, unsigned int rangeStart, unsig
         exit(INVALID_ARG);
     }
 
-    HashMap *countingMap = hashMapInitialization(intFreeFun, intFreeFun, intCmpAl);
+    HashMap *countingMap = hashMapInitialization(intFreeFunSoAl, intFreeFunSoAl, intCmpSoAl);
 
     for (int i = 0; i < length; i++) {
-        unsigned int *newNumPointer = generateIntPointer(arr + i );
+        unsigned int *newNumPointer = generateIntPointerSoAl(arr + i);
 
         if (!hashMapContains(countingMap, newNumPointer, sizeof(unsigned int))) {
             unsigned int initialCount = 1;
-            unsigned int *countPointer = generateIntPointer(&initialCount);
+            unsigned int *countPointer = generateIntPointerSoAl(&initialCount);
             hashMapInsert(countingMap, newNumPointer, sizeof(unsigned int), countPointer);
         } else {
             unsigned int *currentCount = hashMapGet(countingMap, newNumPointer, sizeof(unsigned int));
             *currentCount += 1;
-            unsigned int *newCount = generateIntPointer(currentCount);
+            unsigned int *newCount = generateIntPointerSoAl(currentCount);
             hashMapInsert(countingMap, newNumPointer, sizeof(unsigned int), newCount);
         }
 
@@ -349,6 +350,60 @@ void countingSortH(unsigned int *arr, int length, unsigned int rangeStart, unsig
 
 
 }
+
+
+
+
+
+
+
+
+
+/*void bucketSortFreeFun(void *item) {
+    //this function will do nothing,
+    // it's here because i can't pass a NULL function to the vector initialization.
+}
+
+
+void bucketSort(void *arr, int length, int elemSize, int numOfBuckets, int (*cmp)(const void *, const void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "bucket sort");
+        exit(NULL_POINTER);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "bucket sort");
+        exit(INVALID_ARG);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "bucket sort");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "bucket sort");
+        exit(INVALID_ARG);
+    }
+
+    Vector **buckets = (Vector **) malloc(sizeof(Vector *) * numOfBuckets);
+    for (int i = 0; i < numOfBuckets; i++)
+        buckets[i] = vectorInitialization(length/numOfBuckets, bucketSortFreeFun, cmp);
+
+    for (int i = 0; i < length; i++) {
+        vectorAdd(buckets[(int) (arr + i * elemSize) % numOfBuckets], arr + i * elemSize);
+    }
+
+    for (int i = 0; i < numOfBuckets; i++) {
+        vectorSort(buckets[i], cmp);
+        for (int j = 0; j < vectorGetLength(buckets[i]); j++) {
+
+        }
+
+    }
+
+
+
+}
+*/
+
+
+
 
 
 

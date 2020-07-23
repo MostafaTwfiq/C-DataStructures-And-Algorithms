@@ -81,4 +81,4 @@ add_executable(C_DataStructures main.c
         "Unit Test/CuTest/CuTestTest.c"
         "Unit Test/CuTest/CuTest.h"
 ]]
-        DataStructure/Deque/Sources/Deque.c DataStructure/Deque/Headers/Deque.h DataStructure/Graphs/Sources/UndirectedGraph.c DataStructure/Graphs/Headers/UndirectedGraph.h DataStructure/Deque/Sources/DLinkedListDeque.c DataStructure/Deque/Headers/DLinkedListDeque.h Algorithms/Sorting/SortingAlg.c Algorithms/Sorting/SortingAlg.h)
+        DataStructure/Deque/Sources/Deque.c DataStructure/Deque/Headers/Deque.h DataStructure/Graphs/Sources/UndirectedGraph.c DataStructure/Graphs/Headers/UndirectedGraph.h DataStructure/Deque/Sources/DLinkedListDeque.c DataStructure/Deque/Headers/DLinkedListDeque.h Algorithms/Sorting/Source/SortingAlg.c Algorithms/Sorting/Header/SortingAlg.h Algorithms/Searching/Source/SearchingAlg.c Algorithms/Searching/Header/SearchingAlg.h)

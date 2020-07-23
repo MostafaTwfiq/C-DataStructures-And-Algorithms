@@ -23,7 +23,8 @@
 #include "DataStructure/Graphs/Headers/UndirectedGraph.h"
 #include "DataStructure/Lists/Headers/Vector.h"
 #include "DataStructure/Deque/Headers/DLinkedListDeque.h"
-#include "Algorithms/Sorting/SortingAlg.h"
+#include "Algorithms/Sorting/Header/SortingAlg.h"
+#include "Algorithms/Searching/Header/SearchingAlg.h"
 
 void freeItem(void *item) {
     free(item);
@@ -49,9 +50,16 @@ int intCmp(const void *p1, const void *p2) {
 int main() {
 
 
-    unsigned int arr[] = {55, 4, 33, 2, 0, 1, 3};
+    unsigned int arr[] = {55, 4, 33, 33, 0, 1, 3};
     //quickSort(arr, 7, sizeof(int), intCmp);
     countingSortH(arr, 7, 0, 55);
+
+    int value = 33;
+    Vector *vector = linearSearchGetAll(arr, &value, 7, sizeof(int), intCmp);
+    for (int i = 0; i < vectorGetLength(vector); i++)
+        printf("%d\n", *(int *)vectorGet(vector, i));
+
+    printf("\n\n");
     for (int i = 0; i < 7; i++) {
         printf("%d ", arr[i]);
     }
