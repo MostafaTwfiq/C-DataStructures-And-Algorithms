@@ -1,6 +1,7 @@
 #include "../Header/SearchingAlg.h"
 #include "../../../System/Utils.h"
 #include "../../../DataStructure/Lists/Headers/Vector.h"
+#include <math.h>
 
 
 
@@ -310,6 +311,63 @@ int ternarySearchHelper(void *arr, void *value, int fIndex, int lIndex, int elem
     else
         return ternarySearchHelper(arr, value, fMiddle + 1, sMiddle - 1, elemSize, cmp);
 
+
+}
+
+
+
+
+
+int jumpSearch(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "jump search");
+        exit(NULL_POINTER);
+    } else if (value == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "jump search");
+        exit(INVALID_ARG);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "jump search");
+        exit(INVALID_ARG);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "jump search");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "jump search");
+        exit(INVALID_ARG);
+    }
+
+
+    int partitionSize = (int) sqrt(length);
+    void *partStart = arr;
+    void *nextPartStart = arr + elemSize * partitionSize;
+
+    while (partStart < arr + length * elemSize) {
+        if (nextPartStart > arr + length * elemSize)
+            nextPartStart = arr + length * elemSize;
+
+        if (cmp(value, nextPartStart - elemSize) <= 0 ) {
+
+            for (   void *currentPointer = partStart;
+                    currentPointer < nextPartStart;
+                    currentPointer += elemSize)
+            {
+
+                if ( cmp(value, currentPointer) == 0 )
+                    return (currentPointer - arr) / elemSize;
+
+            }
+
+            return -1;
+
+        }
+
+        partStart = nextPartStart;
+        nextPartStart += partitionSize * elemSize;
+
+    }
+
+    return -1;
 
 }
 
