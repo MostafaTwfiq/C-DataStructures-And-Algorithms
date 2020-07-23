@@ -374,4 +374,42 @@ int jumpSearch(void *arr, void *value, int length, int elemSize, int (*cmp)(cons
 
 
 
+int exponentialSearch(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "exponential search");
+        exit(NULL_POINTER);
+    } else if (value == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "exponential search");
+        exit(INVALID_ARG);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "exponential search");
+        exit(INVALID_ARG);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "exponential search");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "exponential search");
+        exit(INVALID_ARG);
+    }
+
+    void *fPointer = arr, *lPointer = arr;
+    while ( cmp(value, lPointer) > 0 ) {
+        int partitionLength = lPointer - fPointer + 1;
+        fPointer = lPointer;
+        lPointer += partitionLength * 2 * elemSize;
+        if (lPointer >= arr + length * elemSize) {
+            lPointer = arr + (length - 1) * elemSize;
+            break;
+        }
+
+    }
+
+    int index = binarySearchI(fPointer, value, lPointer - fPointer, elemSize, cmp);
+    return index == -1 ? -1 : index + (fPointer - arr) / elemSize;
+
+}
+
+
+
 

@@ -54,8 +54,8 @@ int main() {
     //quickSort(arr, 7, sizeof(int), intCmp);
     countingSortH(arr, 8, 0, 55);
 
-    int value = 0;
-    printf("%d\n\n", jumpSearch(arr, &value, 1, sizeof(int), intCmp));
+    int value = 33;
+    printf("%d\n\n", exponentialSearch(arr, &value, 8, sizeof(int), intCmp));
 
     for (int i = 0; i < 8; i++) {
         printf("%d ", arr[i]);
