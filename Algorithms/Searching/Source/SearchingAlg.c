@@ -3,6 +3,12 @@
 #include "../../../DataStructure/Lists/Headers/Vector.h"
 
 
+
+int binarySearchHelper(void *arr, void *value, int fIndex, int sIndex, int elemSize, int (*cmp)(const void *, const void *));
+
+
+
+
 int linearSearch(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (arr == NULL) {
@@ -108,5 +114,96 @@ Vector *linearSearchGetAll(void *arr, void *value, int length, int elemSize, int
     }
 
     return indicesVector;
+
+}
+
+
+
+
+
+
+
+
+
+int binarySearchI(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "linear search");
+        exit(NULL_POINTER);
+    } else if (value == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "linear search");
+        exit(INVALID_ARG);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "linear search");
+        exit(INVALID_ARG);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "linear search");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "linear search");
+        exit(INVALID_ARG);
+    }
+
+    if (length == 0)
+        return -1;
+
+
+    int fIndex = 0, sIndex = length, middleIndex;
+    while (fIndex <= sIndex) {
+        middleIndex = (fIndex + sIndex) / 2;
+
+        if ( cmp(value, arr + middleIndex * elemSize) == 0 )
+            return middleIndex;
+        else if ( cmp(value, arr + middleIndex * elemSize) < 0 )
+            sIndex = middleIndex - 1;
+        else
+            fIndex = middleIndex + 1;
+    }
+
+    return -1;
+
+}
+
+
+
+int binarySearchR(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "linear search");
+        exit(NULL_POINTER);
+    } else if (value == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "linear search");
+        exit(INVALID_ARG);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "linear search");
+        exit(INVALID_ARG);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "linear search");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "linear search");
+        exit(INVALID_ARG);
+    }
+
+    if (length == 0)
+        return -1;
+
+    return binarySearchHelper(arr, value, 0, length, elemSize, cmp);
+
+}
+
+int binarySearchHelper(void *arr, void *value, int fIndex, int sIndex, int elemSize, int (*cmp)(const void *, const void *)) {
+    if (fIndex > sIndex)
+        return -1;
+
+    int middleIndex = (fIndex + sIndex) / 2;
+
+    if ( cmp(value, arr + middleIndex * elemSize) == 0 )
+        return middleIndex;
+    else if ( cmp(value, arr + middleIndex * elemSize) < 0 )
+        return binarySearchHelper(arr, value, fIndex, middleIndex - 1, elemSize, cmp);
+    else
+        return binarySearchHelper(arr, value, middleIndex + 1, sIndex, elemSize, cmp);
+
 
 }

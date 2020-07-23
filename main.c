@@ -50,16 +50,13 @@ int intCmp(const void *p1, const void *p2) {
 int main() {
 
 
-    unsigned int arr[] = {55, 4, 33, 33, 0, 1, 3};
+    unsigned int arr[] = {55, 4, 33, 2, 0, 1, 3};
     //quickSort(arr, 7, sizeof(int), intCmp);
     countingSortH(arr, 7, 0, 55);
 
-    int value = 33;
-    Vector *vector = linearSearchGetAll(arr, &value, 7, sizeof(int), intCmp);
-    for (int i = 0; i < vectorGetLength(vector); i++)
-        printf("%d\n", *(int *)vectorGet(vector, i));
+    int value = 0;
+    printf("%d\n\n", binarySearchR(arr, &value, 1, sizeof(int), intCmp));
 
-    printf("\n\n");
     for (int i = 0; i < 7; i++) {
         printf("%d ", arr[i]);
     }
