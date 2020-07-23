@@ -1,5 +1,6 @@
 #include "SortingAlg.h"
 #include "../../System/Utils.h"
+#include "../../DataStructure/Tables/Headers/HashMap.h"
 
 
 
@@ -111,16 +112,16 @@ void selectionSort(void *arr, int length, int elemSize, int (*cmp)(const void *,
 void insertionSort(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (arr == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "selection sort");
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "insertion sort");
         exit(NULL_POINTER);
     } else if (cmp == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "selection sort");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "insertion sort");
         exit(INVALID_ARG);
     } else if (length < 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "selection sort");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "insertion sort");
         exit(INVALID_ARG);
     } else if (elemSize <= 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "selection sort");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "insertion sort");
         exit(INVALID_ARG);
     }
 
@@ -156,16 +157,16 @@ void insertionSort(void *arr, int length, int elemSize, int (*cmp)(const void *,
 void mergeSort(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (arr == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "selection sort");
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "merge sort");
         exit(NULL_POINTER);
     } else if (cmp == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "selection sort");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "merge sort");
         exit(INVALID_ARG);
     } else if (length < 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "selection sort");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "merge sort");
         exit(INVALID_ARG);
     } else if (elemSize <= 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "selection sort");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "merge sort");
         exit(INVALID_ARG);
     }
 
@@ -204,16 +205,16 @@ void mergeSortHelper(void *arr, int length, int elemSize, int (*cmp)(const void 
 void quickSort(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (arr == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "selection sort");
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "quick sort");
         exit(NULL_POINTER);
     } else if (cmp == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "selection sort");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "quick sort");
         exit(INVALID_ARG);
     } else if (length < 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "selection sort");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "quick sort");
         exit(INVALID_ARG);
     } else if (elemSize <= 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "selection sort");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "quick sort");
         exit(INVALID_ARG);
     }
 
@@ -238,7 +239,7 @@ void quickSortHelper(void *arr, int length, int elemSize, int (*cmp)(const void 
 
     }
 
-    int firstHalfLength = ( (boundaryPointer - arr) / elemSize);
+    int firstHalfLength = ( (boundaryPointer - arr) / elemSize );
     int secondHalfLength = length - firstHalfLength - 1;
 
 
@@ -248,6 +249,106 @@ void quickSortHelper(void *arr, int length, int elemSize, int (*cmp)(const void 
 }
 
 
+
+
+void countingSortA(unsigned int *arr, int length, unsigned int rangeStart, unsigned int rangeEnd) {
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "counting sort");
+        exit(NULL_POINTER);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "counting sort");
+        exit(INVALID_ARG);
+    } else if (rangeEnd < rangeStart) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "start and end range", "counting sort");
+        exit(INVALID_ARG);
+    }
+
+    unsigned int countingArrLength = rangeEnd - rangeStart + 1;
+    unsigned int *countingArr = (unsigned int *) calloc(sizeof(unsigned int ), countingArrLength);
+    for (int i = 0; i < length; i++)
+        countingArr[arr[i] - rangeStart]++;
+
+    int index = 0;
+    for (int i = 0; i < countingArrLength; i++) {
+
+        while (countingArr[i] != 0) {
+            arr[index++] = i + rangeStart;
+            countingArr[i]--;
+        }
+
+    }
+
+
+}
+
+
+
+
+
+
+
+void intFreeFun(void *n) {
+    free(n);
+}
+
+int intCmpAl(const void *n1, const void * n2) {
+    return *(int *)n1 - *(int *)n2;
+}
+
+unsigned int *generateIntPointer(unsigned int *num) {
+    unsigned int *newInt = (unsigned int *) malloc(sizeof(unsigned int));
+    memcpy(newInt, num, sizeof(unsigned int));
+
+    return newInt;
+}
+
+
+
+void countingSortH(unsigned int *arr, int length, unsigned int rangeStart, unsigned int rangeEnd) {
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "counting sort");
+        exit(NULL_POINTER);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "counting sort");
+        exit(INVALID_ARG);
+    } else if (rangeEnd < rangeStart) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "start and end range", "counting sort");
+        exit(INVALID_ARG);
+    }
+
+    HashMap *countingMap = hashMapInitialization(intFreeFun, intFreeFun, intCmpAl);
+
+    for (int i = 0; i < length; i++) {
+        unsigned int *newNumPointer = generateIntPointer(arr + i );
+
+        if (!hashMapContains(countingMap, newNumPointer, sizeof(unsigned int))) {
+            unsigned int initialCount = 1;
+            unsigned int *countPointer = generateIntPointer(&initialCount);
+            hashMapInsert(countingMap, newNumPointer, sizeof(unsigned int), countPointer);
+        } else {
+            unsigned int *currentCount = hashMapGet(countingMap, newNumPointer, sizeof(unsigned int));
+            *currentCount += 1;
+            unsigned int *newCount = generateIntPointer(currentCount);
+            hashMapInsert(countingMap, newNumPointer, sizeof(unsigned int), newCount);
+        }
+
+    }
+
+    for (unsigned int i = rangeStart, index = 0; i <= rangeEnd; i++) {
+
+        unsigned int *currentCount = (unsigned int *) hashMapGet(countingMap, &i, sizeof(unsigned int));
+
+        while (currentCount != NULL && *currentCount > 0) {
+            arr[index++] = i;
+            *currentCount -= 1;
+        }
+
+    }
+
+    destroyHashMap(countingMap);
+
+
+}
 
 
 
@@ -261,3 +362,6 @@ void swap(void *first, void *second, int elemSize) {
     free(temp);
 
 }
+
+
+

@@ -49,8 +49,9 @@ int intCmp(const void *p1, const void *p2) {
 int main() {
 
 
-    int arr[] = {55, 4, 33, 2, 0, 1, 3};
-    qsort(arr, 7, sizeof(int), intCmp);
+    unsigned int arr[] = {55, 4, 33, 2, 0, 1, 3};
+    //quickSort(arr, 7, sizeof(int), intCmp);
+    countingSortH(arr, 7, 0, 55);
     for (int i = 0; i < 7; i++) {
         printf("%d ", arr[i]);
     }
