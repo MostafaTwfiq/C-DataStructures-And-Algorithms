@@ -12,4 +12,8 @@ int binarySearchI(void *arr, void *value, int length, int elemSize, int (*cmp)(c
 
 int binarySearchR(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *));
 
+int ternarySearchI(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *));
+
+int ternarySearchR(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *));
+
 #endif //C_DATASTRUCTURES_SEARCHINGALG_H
