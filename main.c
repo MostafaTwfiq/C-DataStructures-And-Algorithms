@@ -26,6 +26,7 @@
 #include "Algorithms/Sorting/Headers/Sorting.h"
 #include "Algorithms/Searching/Headers/Searching.h"
 #include "Algorithms/ArraysAlgo/Headers/ArraysAlg.h"
+#include "Algorithms/ArraysAlgo/Headers/CharArrayAlg.h"
 
 void freeItem(void *item) {
     free(item);
@@ -51,7 +52,8 @@ int intCmp(const void *p1, const void *p2) {
 int main() {
 
 
-    unsigned int arr[] = {55, 4, 4, 2, 0, 1, 3, 10};
+    printf("is substring: %d", isSubString("mostafa", 0, "mostafa", 0));
+    /*unsigned int arr[] = {55, 4, 4, 2, 0, 1, 3, 10};
     insertionSort(arr, 8, sizeof(int), intCmp);
     //mergeSort(arr, 8, 0, 55);
 
@@ -63,7 +65,7 @@ int main() {
 
     for (int i = 0; i < 8; i++) {
         printf("%d ", arr[i]);
-    }
+    }*/
 
     /*DLDeque *deque = dlDequeInitialization(freeItem);
     int *value;
