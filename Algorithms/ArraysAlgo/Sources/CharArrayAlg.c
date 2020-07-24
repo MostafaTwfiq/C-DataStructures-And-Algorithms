@@ -82,7 +82,9 @@ int isInteger(const char *string, int length) {
     }
 
     for (int i = 0; i < length; i++) {
-        if ( !(string[i] >= '0' && string[i] <= '9') )
+        if ( i == 0 && ( string[i] == '-' || string[i] == '+' ) )
+            continue;
+        else if ( !(string[i] >= '0' && string[i] <= '9') )
             return 0;
 
     }
@@ -118,7 +120,11 @@ int isFloatingPointNum(const char *string, int length) {
     short dotFlag = 0;
 
     for (int i = 0; i < length; i++) {
-        if (string[i] == '.') {
+
+        if ( i == 0 && ( string[i] == '-' || string[i] == '+' ) )
+            continue;
+
+        else if (string[i] == '.') {
 
             if (dotFlag == 0)
                 dotFlag = 1;
