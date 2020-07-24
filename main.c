@@ -24,7 +24,7 @@
 #include "DataStructure/Lists/Headers/Vector.h"
 #include "DataStructure/Deque/Headers/DLinkedListDeque.h"
 //#include "Algorithms/Sorting/Header/SortingAlg.h"
-#include "Algorithms/Searching/Header/SearchingAlg.h"
+#include "Algorithms/Searching/Header/Searching.h"
 #include "Algorithms/Sorting/Header/InsertionSort.h"
 
 void freeItem(void *item) {
