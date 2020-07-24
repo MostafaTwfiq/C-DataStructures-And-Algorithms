@@ -348,9 +348,10 @@ int jumpSearch(void *arr, void *value, int length, int elemSize, int (*cmp)(cons
 
         if (cmp(value, nextPartStart - elemSize) <= 0 ) {
 
-            for (   void *currentPointer = partStart;
-                    currentPointer < nextPartStart;
-                    currentPointer += elemSize)
+            for             (   void *currentPointer = partStart;
+                                currentPointer < nextPartStart;
+                                currentPointer += elemSize
+                            )
             {
 
                 if ( cmp(value, currentPointer) == 0 )
