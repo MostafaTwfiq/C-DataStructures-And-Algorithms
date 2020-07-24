@@ -1,4 +1,4 @@
-#include "../Header/JumpSearch.h"
+#include "../Headers/JumpSearch.h"
 #include "../../../System/Utils.h"
 #include <math.h>
 

@@ -1,4 +1,4 @@
-#include "../Header/TernarySearch.h"
+#include "../Headers/TernarySearch.h"
 #include "../../../System/Utils.h"
 
 

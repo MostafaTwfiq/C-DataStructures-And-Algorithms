@@ -1,4 +1,4 @@
-#include "../Header/LinearSearch.h"
+#include "../Headers/LinearSearch.h"
 #include "../../../System/Utils.h"
 #include "../../../DataStructure/Lists/Headers/Vector.h"
 

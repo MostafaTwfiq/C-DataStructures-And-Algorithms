@@ -1,5 +1,5 @@
-#include "../Header/QuickSort.h"
-#include "../Header/SwapFunction.h"
+#include "../Headers/QuickSort.h"
+#include "../Headers/SwapFunction.h"
 #include "../../../System/Utils.h"
 
 

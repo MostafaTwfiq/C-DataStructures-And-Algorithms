@@ -1,5 +1,5 @@
-#include "../Header/MergeSort.h"
-#include "../Header/SwapFunction.h"
+#include "../Headers/MergeSort.h"
+#include "../Headers/SwapFunction.h"
 #include "../../../System/Utils.h"
 
 

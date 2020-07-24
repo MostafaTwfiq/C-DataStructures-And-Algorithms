@@ -1,5 +1,5 @@
 #include "../Headers/ArraysAlg.h"
-#include "../Sorting/Header/SwapFunction.h"
+#include "../../Sorting/Headers/SwapFunction.h"
 #include "../../../System/Utils.h"
 #include "../../../DataStructure/Tables/Headers/HashMap.h"
 

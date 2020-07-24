@@ -1,5 +1,5 @@
-#include "../Header/SelectionSort.h"
-#include "../Header/SwapFunction.h"
+#include "../Headers/SelectionSort.h"
+#include "../Headers/SwapFunction.h"
 #include "../../../System/Utils.h"
 
 

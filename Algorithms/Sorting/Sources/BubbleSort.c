@@ -1,5 +1,5 @@
-#include "../Header/BubbleSort.h"
-#include "../Header/SwapFunction.h"
+#include "../Headers/BubbleSort.h"
+#include "../Headers/SwapFunction.h"
 #include "../../../System/Utils.h"
 
 

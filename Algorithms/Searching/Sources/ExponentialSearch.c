@@ -1,6 +1,6 @@
-#include "../Header/ExponentialSearch.h"
+#include "../Headers/ExponentialSearch.h"
 #include "../../../System/Utils.h"
-#include "../Header/BinarySearch.h"
+#include "../Headers/BinarySearch.h"
 
 
 

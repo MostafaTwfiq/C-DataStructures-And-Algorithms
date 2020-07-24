@@ -23,8 +23,8 @@
 #include "DataStructure/Graphs/Headers/UndirectedGraph.h"
 #include "DataStructure/Lists/Headers/Vector.h"
 #include "DataStructure/Deque/Headers/DLinkedListDeque.h"
-#include "Algorithms/Sorting/Header/Sorting.h"
-#include "Algorithms/Searching/Header/Searching.h"
+#include "Algorithms/Sorting/Headers/Sorting.h"
+#include "Algorithms/Searching/Headers/Searching.h"
 #include "Algorithms/ArraysAlgo/Headers/ArraysAlg.h"
 
 void freeItem(void *item) {
