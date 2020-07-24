@@ -393,3 +393,164 @@ void *arrCopyOfRangeC(void *arr, int length, int elemSize, int startIndex, int e
     return newArr;
 
 }
+
+
+
+
+
+
+
+
+
+
+/** This function will take an array and a value,
+ * then it will fill all the array with that value.
+ * Note: the function will memory copy the value into the array.
+ * @param arr the array pointer
+ * @param fillValue the target value pointer
+ * @param length the length of the array
+ * @param elemSize the size of the array elements
+ */
+
+void fillArr(void *arr, void *fillValue, int length, int elemSize) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "fill array function");
+        exit(NULL_POINTER);
+    }else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "fill array function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "fill array function");
+        exit(INVALID_ARG);
+    }
+
+    for (int i = 0; i <= length; i++)
+        memcpy(arr + i * elemSize, fillValue, elemSize);
+
+}
+
+
+
+
+
+
+
+
+/** This function will take an array and a value,
+ * then it will fill all the array with that value.
+ * Note: the passed copy function will take two parameters, the first one will be a pointer to the,
+ * new space that should the second parameter (the value) be copied into it.
+ * @param arr the array pointer
+ * @param fillValue the target value pointer
+ * @param length the length of the array
+ * @param elemSize the size of the array elements in bytes
+ * @param copyFun the copy function pointer, that will be called to copy the values in the array
+ */
+
+void fillArrC(void *arr, void *fillValue, int length, int elemSize, void *copyFun(const void *, const void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "fill array custom function");
+        exit(NULL_POINTER);
+    } else if (copyFun == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "copy function pointer", "fill array custom function");
+        exit(INVALID_ARG);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "fill array custom function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "fill array custom function");
+        exit(INVALID_ARG);
+    }
+
+    for (int i = 0; i <= length; i++)
+        copyFun(arr + i * elemSize, fillValue);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/** This function will fill the passed array with the passed value,
+ * in the provided range.
+ * @param arr the array pointer
+ * @param fillValue the target value pointer
+ * @param length the length of the array
+ * @param elemSize the array elements size in bytes
+ * @param startIndex the range start index
+ * @param endIndex the range end index
+ */
+
+void fillArrOfRange(void *arr, void *fillValue, int length, int elemSize, int startIndex, int endIndex) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "fill array of range function");
+        exit(NULL_POINTER);
+    }else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "fill array of range function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "fill array of range function");
+        exit(INVALID_ARG);
+    } else if (startIndex < 0 || startIndex > endIndex || endIndex >= length) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "range of copy", "fill array of range function");
+        exit(INVALID_ARG);
+    }
+
+    for (int i = startIndex; i <= endIndex; i++)
+        memcpy(arr + i * elemSize, fillValue, elemSize);
+
+}
+
+
+
+
+
+
+
+
+
+/** This function will fill the passed array with the passed value,
+ * in the provided range.
+ * Note: the passed copy function will take two parameters, the first one will be a pointer to the,
+ * new space that should the second parameter (the value) be copied into it.
+ * @param arr the array pointer
+ * @param fillValue the target value pointer
+ * @param length the length of the array
+ * @param elemSize the size of the array elements in bytes
+ * @param startIndex the range start index
+ * @param endIndex the range end index
+ * @param copyFun the copy function pointer, that will be called to copy the values in the array
+ */
+
+void fillArrOfRangeC(void *arr, void *fillValue, int length, int elemSize, int startIndex, int endIndex, void *copyFun(const void *, const void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "fill array of range custom function");
+        exit(NULL_POINTER);
+    } else if (copyFun == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "copy function pointer", "fill array of range custom function");
+        exit(INVALID_ARG);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "fill array of range custom function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "fill array of range custom function");
+        exit(INVALID_ARG);
+    } else if (startIndex < 0 || startIndex > endIndex || endIndex >= length) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "range of copy", "fill array of range custom function");
+        exit(INVALID_ARG);
+    }
+
+    for (int i = startIndex; i <= endIndex; i++)
+        copyFun(arr + i * elemSize, fillValue);
+
+}

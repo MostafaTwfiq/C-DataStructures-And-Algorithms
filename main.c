@@ -71,7 +71,9 @@ int main() {
     reverseArray(arr, 8, sizeof(int));
     printf("most freq: %d\n\n", *(int *)mostFrequentArrValue(arr, 8, sizeof(int), intCmp));
 
-    printArr(arrCopyOfRange(arr, 8, sizeof(int), 0, 5), 6, sizeof(int), printInt);
+
+    fillArrOfRange(arr, &value, 8, sizeof(int), 0, 5);
+    printArr(arrCopyOfRange(arr, 8, sizeof(int), 0, 7), 8, sizeof(int), printInt);
 
     /*DLDeque *deque = dlDequeInitialization(freeItem);
     int *value;
