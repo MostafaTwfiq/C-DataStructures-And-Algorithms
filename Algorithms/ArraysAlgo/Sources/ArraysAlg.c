@@ -119,16 +119,16 @@ void reverseArray(void *arr, int length, int elemSize) {
 
 void *mostFrequentArrValue(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *)) {
     if (arr == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "merge sort");
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "most frequent value algorithm");
         exit(NULL_POINTER);
     } else if (cmp == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "merge sort");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "most frequent value algorithm");
         exit(INVALID_ARG);
     } else if (length < 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "merge sort");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "most frequent value algorithm");
         exit(INVALID_ARG);
     } else if (elemSize <= 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "merge sort");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "most frequent value algorithm");
         exit(INVALID_ARG);
     }
 
@@ -167,5 +167,48 @@ void *mostFrequentArrValue(void *arr, int length, int elemSize, int (*cmp)(const
     destroyHashMap(countingMap);
 
     return mostFreqValue;
+
+}
+
+
+
+
+
+
+/** This function will take an array then it will print it.
+ * The printing will be like this:
+ * [element1, element2, ...]
+ * The passed printing function should only print the value without any increases.
+ * The function will use the stdout file to print the array.
+ * @param arr the array pointer
+ * @param length the length of the array
+ * @param elemSize the array elements size in bytes
+ * @param printFun the values printing funciton pointer
+ */
+
+void printArr(void *arr, int length, int elemSize, void (*printFun)(void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "printing array");
+        exit(NULL_POINTER);
+    } else if (printFun == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "printing function pointer", "printing array");
+        exit(INVALID_ARG);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "printing array");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "printing array");
+        exit(INVALID_ARG);
+    }
+
+    fprintf(stdout, "[");
+    for (int i = 0; i < length; i++) {
+        printFun(arr + i * elemSize);
+        if (i != length - 1)
+            fprintf(stdout, ", ");
+
+    }
+    fprintf(stdout, "]");
 
 }
