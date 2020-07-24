@@ -34,7 +34,6 @@ int getNextPrime(int num);
 void freeEntry(void *entry) {
     Entry *entryToFree = (Entry *) entry;
     entryToFree->freeItemFun(entryToFree->item);
-    free(entryToFree->item);
     entryToFree->freeKeyFun(entryToFree->key);
     free(entryToFree);
 

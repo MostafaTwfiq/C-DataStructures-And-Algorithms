@@ -23,9 +23,9 @@
 #include "DataStructure/Graphs/Headers/UndirectedGraph.h"
 #include "DataStructure/Lists/Headers/Vector.h"
 #include "DataStructure/Deque/Headers/DLinkedListDeque.h"
-//#include "Algorithms/Sorting/Header/SortingAlg.h"
+#include "Algorithms/Sorting/Header/Sorting.h"
 #include "Algorithms/Searching/Header/Searching.h"
-#include "Algorithms/Sorting/Header/InsertionSort.h"
+#include "Algorithms/ArraysAlgo/Headers/ArraysAlg.h"
 
 void freeItem(void *item) {
     free(item);
@@ -51,12 +51,15 @@ int intCmp(const void *p1, const void *p2) {
 int main() {
 
 
-    unsigned int arr[] = {55, 4, 33, 2, 0, 1, 3, 10};
+    unsigned int arr[] = {55, 4, 4, 2, 0, 1, 3, 10};
     insertionSort(arr, 8, sizeof(int), intCmp);
     //mergeSort(arr, 8, 0, 55);
 
     int value = 33;
-    //printf("%d\n\n", exponentialSearch(arr, &value, 8, sizeof(int), intCmp));
+    printf("%d\n\n", exponentialSearch(arr, &value, 8, sizeof(int), intCmp));
+
+    reverseArray(arr, 8, sizeof(int));
+    printf("most freq: %d\n\n", *(int *)mostFrequentArrValue(arr, 8, sizeof(int), intCmp));
 
     for (int i = 0; i < 8; i++) {
         printf("%d ", arr[i]);
