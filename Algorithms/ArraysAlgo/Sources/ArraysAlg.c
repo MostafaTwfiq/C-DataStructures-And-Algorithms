@@ -212,3 +212,184 @@ void printArr(void *arr, int length, int elemSize, void (*printFun)(void *)) {
     fprintf(stdout, "]");
 
 }
+
+
+
+
+
+
+
+
+
+
+
+/** This function will take an array,
+ * then it will allocate a new array and copy the original one in the new array.
+ * Note: this function will memory copy the original array.
+ * @param arr the array pointer
+ * @param length the length of the array
+ * @param elemSize the size of the array elements in bytes
+ * @return it will return the new copied array pointer
+ */
+
+void *arrCopy(void *arr, int length, int elemSize) {
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array copy function");
+        exit(NULL_POINTER);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array copy function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array copy function");
+        exit(INVALID_ARG);
+    }
+
+    void *newArr = (void *) malloc(elemSize * length);
+    for (int i = 0; i < length; i++)
+        memcpy(newArr + i * elemSize, arr + i * elemSize, elemSize);
+
+    return newArr;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/** This function will take an array,
+ * then it will allocate a new array and copy the original array into the new one.
+ * Note: the passed copy function will take two parameters, the first one will be a pointer to the,
+ * new space that should the second parameter be copied into it.
+ * @param arr the array pointer
+ * @param length the length of the array
+ * @param elemSize the size of the array elements in bytes
+ * @param copyFun the copy function pointer, that will be called to copy the original array value into the new one
+ * @return it will return the new copied array pointer
+ */
+
+void *arrCopyC(void *arr, int length, int elemSize, void *copyFun(const void *, const void *)) {
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array custom copy function");
+        exit(NULL_POINTER);
+    } else if (copyFun == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "copying function pointer", "array custom copy function");
+        exit(INVALID_ARG);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array custom copy function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array custom copy function");
+        exit(INVALID_ARG);
+    }
+
+    void *newArr = (void *) malloc(elemSize * length);
+    for (int i = 0; i < length; i++)
+        copyFun(newArr + i * elemSize, arr + i * elemSize);
+
+    return newArr;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/** This function will take an array and a range,
+ * then it will copy the passed range from the original array into a new allocated array.
+ * @param arr the array length
+ * @param length the length of the array
+ * @param elemSize the size of the array elements
+ * @param startIndex the range start index
+ * @param endIndex the range end index
+ * @return it will return the new copied array
+ */
+
+void *arrCopyOfRange(void *arr, int length, int elemSize, int startIndex, int endIndex) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array copy of range function");
+        exit(NULL_POINTER);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array copy of range function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array copy of range function");
+        exit(INVALID_ARG);
+    } else if (startIndex < 0 || startIndex > endIndex || endIndex >= length) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "range of copy", "array copy of range function");
+        exit(INVALID_ARG);
+    }
+
+
+    void *newArr = (void *) malloc(elemSize * (endIndex - startIndex + 1) );
+    for (int i = startIndex; i <= endIndex; i++)
+        memcpy(newArr + (i - startIndex) * elemSize, arr + i * elemSize, elemSize);
+
+    return newArr;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/** This function will take an array and a range,
+ * then it will copy the passed range from the original array into a new allocated array.
+ * Note: the passed copy function will take two parameters, the first one will be a pointer to the,
+ * new space that should the second parameter be copied into it.
+ * @param arr the array length
+ * @param length the length of the array
+ * @param elemSize the size of the array elements
+ * @param startIndex the range start index
+ * @param endIndex the range end index
+ * @param copyFun copyFun the copy function pointer, that will be called to copy the original array value into the new one
+ * @return it will return the new copied array
+ */
+
+void *arrCopyOfRangeC(void *arr, int length, int elemSize, int startIndex, int endIndex, void *copyFun(const void *, const void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array custom copy of range function");
+        exit(NULL_POINTER);
+    } else if (copyFun == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "copying function pointer", "array custom copy of range function");
+        exit(INVALID_ARG);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array custom copy of range function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array custom copy of range function");
+        exit(INVALID_ARG);
+    } else if (startIndex < 0 || startIndex > endIndex || endIndex >= length) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "range of copy", "array custom copy of range function");
+        exit(INVALID_ARG);
+    }
+
+
+    void *newArr = (void *) malloc(elemSize * (endIndex - startIndex + 1) );
+    for (int i = startIndex; i <= endIndex; i++)
+        copyFun(newArr + (i - startIndex) * elemSize, arr + i * elemSize);
+
+    return newArr;
+
+}

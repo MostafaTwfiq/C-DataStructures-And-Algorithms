@@ -23,6 +23,9 @@ int integerNumOfDigits(int num) {
 
 
 
+
+
+
 /** This function will take an integer number,
  * then it will return a char array pointer, that consist of the passed integer.
  * @param num the number value

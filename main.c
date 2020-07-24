@@ -57,8 +57,8 @@ void printInt(void *item) {
 
 int main() {
 
-    printf("%d", isFloatingPointNum("134", strlen("134")));
-    exit(0);
+    //printf("%d", isFloatingPointNum("134", strlen("134")));
+    //exit(0);
 
     //printf("is substring: %d", isSubString("mostafa", 0, "mostafa", 0));
     unsigned int arr[] = {55, 4, 4, 2, 0, 1, 3, 10};
@@ -71,7 +71,7 @@ int main() {
     reverseArray(arr, 8, sizeof(int));
     printf("most freq: %d\n\n", *(int *)mostFrequentArrValue(arr, 8, sizeof(int), intCmp));
 
-    printArr(arr, 8, sizeof(int), printInt);
+    printArr(arrCopyOfRange(arr, 8, sizeof(int), 0, 5), 6, sizeof(int), printInt);
 
     /*DLDeque *deque = dlDequeInitialization(freeItem);
     int *value;
