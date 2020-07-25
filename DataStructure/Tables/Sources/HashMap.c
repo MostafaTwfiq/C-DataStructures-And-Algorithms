@@ -3,14 +3,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "limits.h"
-#include <string.h>
 
 
 
-unsigned int fHashCal(unsigned int address, unsigned int sizeOfKey, unsigned int length);
+unsigned int hashMapFHashCal(int (*hashFun)(const void *), void *key, unsigned int length);
 
 
-unsigned int sHashCal(unsigned int address, unsigned int sizeOfKey, unsigned int bPrime);
+unsigned int hashMapSHashCal(int (*hashFun)(const void *), void *key, unsigned int bPrime);
 
 
 unsigned int calIndex(unsigned int fHash, unsigned int sHash, unsigned int index, unsigned int length);
@@ -46,12 +45,13 @@ void freeEntry(void *entry) {
 
 
 
-/** This function will take the freeing item function address, the freeing key function address, and the key comparator function as a parameters,
+/** This function will take the freeing item function address, the freeing key function address, the key comparator function, and the hash function as a parameters,
    then it will initialize a new hash map,
    then the function will return the address of the hash map.
  * @param freeKey the freeing key function address that will be called to free the items keys
  * @param freeItem the freeing item function address that will be called to free the hash map items
  * @param keyComp the function that will be called to compare the keys
+ * @param hashFun the hashing function that will return a unique integer representing the hash map key
  * @return it will return the new initialized hash map address
  */
 
@@ -59,6 +59,7 @@ HashMap *hashMapInitialization(
         void (*freeKey)(void *)
         , void (*freeItem)(void *)
         , int (*keyComp)(const void *, const void *)
+        , int (*hashFun)(const void *)
         ) {
 
     if (freeKey == NULL) {
@@ -84,6 +85,14 @@ HashMap *hashMapInitialization(
      	#else
      		exit(INVALID_ARG);
      	#endif
+
+    } else if (hashFun == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "hash function pointer", "hash map data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+            exit(INVALID_ARG);
+        #endif
 
     }
 
@@ -115,6 +124,7 @@ HashMap *hashMapInitialization(
     map->freeItemFun = freeItem;
     map->freeKeyFun = freeKey;
     map->keyComp = keyComp;
+    map->hashFun = hashFun;
 
     return map;
 
@@ -124,16 +134,15 @@ HashMap *hashMapInitialization(
 
 
 
-/** This function will take the map address, the key address, the size of the key in bytes, and the item address as a parameters,
+/** This function will take the map address, the key address, and the item address as a parameters,
  * then it will insert the item in the map.
  * Note: if the key is already in the map then the map will override the data and free the old item and it's key.
  * @param map the hash map address
  * @param key the key address
- * @param sizeOfKey the size of the key in bytes
  * @param item the item address
  */
 
-void hashMapInsert(HashMap *map, void *key, int sizeOfKey, void *item) {
+void hashMapInsert(HashMap *map, void *key, void *item) {
     if (map == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "hash map data structure");
         #ifdef CU_TEST_H
@@ -179,9 +188,8 @@ void hashMapInsert(HashMap *map, void *key, int sizeOfKey, void *item) {
         map->bPrime = calBPrime(map->length);
     }
 
-    unsigned int
-            fHash = fHashCal( (unsigned int) key, sizeOfKey, map->length)
-            , sHash = sHashCal( (unsigned int) key, sizeOfKey, map->bPrime);
+    unsigned int fHash = hashMapFHashCal(map->hashFun, key, map->length),
+    sHash = hashMapSHashCal(map->hashFun, key, map->bPrime);
 
     unsigned int pHashIndex = 1;
     unsigned int index = calIndex(fHash, sHash, pHashIndex, map->length);
@@ -226,17 +234,16 @@ void hashMapInsert(HashMap *map, void *key, int sizeOfKey, void *item) {
 
 
 
-/** This function will take the map address, the key address, and the key size as a parameters,
+/** This function will take the map address, and the key address as a parameters,
     then it will return (1) if the key is in the map,
     other wise it will return zero (0).
  * Note: this function will not free the passed key.
  * @param map the hash map address
  * @param key the key address
- * @param sizeOfKey the size of the key in bytes
  * @return it will return one if the provided key is in the hash map, other wise it will return zero
  */
 
-int hashMapContains(HashMap *map, void *key, int sizeOfKey) {
+int hashMapContains(HashMap *map, void *key) {
     if (map == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "hash map data structure");
         #ifdef CU_TEST_H
@@ -255,9 +262,8 @@ int hashMapContains(HashMap *map, void *key, int sizeOfKey) {
 
     }
 
-    unsigned int
-            fHash = fHashCal( (unsigned int) key, sizeOfKey, map->length)
-    , sHash = sHashCal( (unsigned int) key, sizeOfKey, map->bPrime);
+    unsigned int fHash = hashMapFHashCal(map->hashFun, key, map->length),
+    sHash = hashMapSHashCal(map->hashFun, key, map->bPrime);
 
     unsigned int pHashIndex = 1;
     unsigned int index = calIndex(fHash, sHash, pHashIndex, map->length);
@@ -284,17 +290,16 @@ int hashMapContains(HashMap *map, void *key, int sizeOfKey) {
 
 
 
-/** This function will take the map address, the key address, and the key size as a parameter,
+/** This function will take the map address, and the key address as a parameter,
     then it will return the item address if the key existed,
     other wise it will return NULL.
  * Note: this function will not free the passed key
  * @param map the hash map address
  * @param key the key address
- * @param sizeOfKey the size of the key in bytes
  * @return it will return the item with the provided key if found other wise it will return NULL
  */
 
-void *hashMapGet(HashMap *map, void *key, int sizeOfKey) {
+void *hashMapGet(HashMap *map, void *key) {
     if (map == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "hash map data structure");
         #ifdef CU_TEST_H
@@ -313,9 +318,8 @@ void *hashMapGet(HashMap *map, void *key, int sizeOfKey) {
 
     }
 
-    unsigned int
-            fHash = fHashCal( (unsigned int) key, sizeOfKey, map->length)
-    , sHash = sHashCal( (unsigned int) key, sizeOfKey, map->bPrime);
+    unsigned int fHash = hashMapFHashCal(map->hashFun, key, map->length),
+    sHash = hashMapSHashCal(map->hashFun, key, map->bPrime);
 
     unsigned int pHashIndex = 1;
     unsigned int index = calIndex(fHash, sHash, pHashIndex, map->length);
@@ -343,17 +347,16 @@ void *hashMapGet(HashMap *map, void *key, int sizeOfKey) {
 
 
 
-/** This function will take the map address, the key address, and the key size as a parameter,
+/** This function will take the map address, and the key address as a parameter,
  * then it will return the key address if the key existed,
  * other wise it will return NULL.
  * Note: this function will not free the passed key
  * @param map the hash map address
  * @param key the key address
- * @param sizeOfKey the size of the key in bytes
  * @return it will return the item with the provided key if found other wise it will return NULL
  */
 
-void *hashMapGetKey(HashMap *map, void *key, int sizeOfKey) {
+void *hashMapGetKey(HashMap *map, void *key) {
     if (map == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "hash map data structure");
         #ifdef CU_TEST_H
@@ -372,9 +375,8 @@ void *hashMapGetKey(HashMap *map, void *key, int sizeOfKey) {
 
     }
 
-    unsigned int
-            fHash = fHashCal( (unsigned int) key, sizeOfKey, map->length)
-    , sHash = sHashCal( (unsigned int) key, sizeOfKey, map->bPrime);
+    unsigned int fHash = hashMapFHashCal(map->hashFun, key, map->length),
+    sHash = hashMapSHashCal(map->hashFun, key, map->bPrime);
 
     unsigned int pHashIndex = 1;
     unsigned int index = calIndex(fHash, sHash, pHashIndex, map->length);
@@ -401,15 +403,14 @@ void *hashMapGetKey(HashMap *map, void *key, int sizeOfKey) {
 
 
 
-/** This function will take the map address, the key address, and the size of the key as a parameters,
+/** This function will take the map address, and the key address as a parameters,
     then it will delete and free the key and the item that linked to the key.
  * Note: if the key didn't found in the hash map, then the function will fo nothing.
  * @param map the hash map address
  * @param key the key address
- * @param sizeOfKey the size of the key in bytes
  */
 
-void hashMapDelete(HashMap *map, void *key, int sizeOfKey) {
+void hashMapDelete(HashMap *map, void *key) {
     if (map == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "hash map data structure");
         #ifdef CU_TEST_H
@@ -428,9 +429,8 @@ void hashMapDelete(HashMap *map, void *key, int sizeOfKey) {
 
     }
 
-    unsigned int
-            fHash = fHashCal( (unsigned int) key, sizeOfKey, map->length)
-    , sHash = sHashCal( (unsigned int) key, sizeOfKey, map->bPrime);
+    unsigned int fHash = hashMapFHashCal(map->hashFun, key, map->length),
+    sHash = hashMapSHashCal(map->hashFun, key, map->bPrime);
 
     unsigned int pHashIndex = 1;
     unsigned int index = calIndex(fHash, sHash, pHashIndex, map->length);
@@ -464,16 +464,15 @@ void hashMapDelete(HashMap *map, void *key, int sizeOfKey) {
 
 
 
-/** This function will take the map address, the key address, and the size of the key as a parameters,
+/** This function will take the map address, and the key address as a parameters,
     then it will delete and free the key without freeing the item that linked to that key.
  * Note: if the key didn't found in the hash map, then the function will do nothing.
  * @param map the hash map address
  * @param key the key address
- * @param sizeOfKey the size of the key in bytes
  * @return it will return the deleted item pointer if found, other wise it will return NULL
  */
 
-void *hashMapDeleteWtoFr(HashMap *map, void *key, int sizeOfKey) {
+void *hashMapDeleteWtoFr(HashMap *map, void *key) {
     if (map == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "hash map data structure");
         #ifdef CU_TEST_H
@@ -492,9 +491,8 @@ void *hashMapDeleteWtoFr(HashMap *map, void *key, int sizeOfKey) {
 
     }
 
-    unsigned int
-            fHash = fHashCal( (unsigned int) key, sizeOfKey, map->length)
-    , sHash = sHashCal( (unsigned int) key, sizeOfKey, map->bPrime);
+    unsigned int fHash = hashMapFHashCal(map->hashFun, key, map->length),
+    sHash = hashMapSHashCal(map->hashFun, key, map->bPrime);
 
     unsigned int pHashIndex = 1;
     unsigned int index = calIndex(fHash, sHash, pHashIndex, map->length);
@@ -527,16 +525,15 @@ void *hashMapDeleteWtoFr(HashMap *map, void *key, int sizeOfKey) {
 
 
 
-/** This function will take the map address, the key address, and the size of the key as a parameters,
+/** This function will take the map address, and the key address as a parameters,
     then it will delete the entry without freeing the key and the item that linked to that key.
  * Note: if the key didn't found in the hash map, then the function will do nothing.
  * @param map the hash map address
  * @param key the key address
- * @param sizeOfKey the size of the key in bytes
  * @return it will return the entry pointer if found, other wise it will return NULL
  */
 
-Entry *hashMapDeleteWtoFrAll(HashMap *map, void *key, int sizeOfKey) {
+Entry *hashMapDeleteWtoFrAll(HashMap *map, void *key) {
     if (map == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "hash map data structure");
         #ifdef CU_TEST_H
@@ -555,9 +552,8 @@ Entry *hashMapDeleteWtoFrAll(HashMap *map, void *key, int sizeOfKey) {
 
     }
 
-    unsigned int
-            fHash = fHashCal( (unsigned int) key, sizeOfKey, map->length)
-    , sHash = sHashCal( (unsigned int) key, sizeOfKey, map->bPrime);
+    unsigned int fHash = hashMapFHashCal(map->hashFun, key, map->length),
+    sHash = hashMapSHashCal(map->hashFun, key, map->bPrime);
 
     unsigned int pHashIndex = 1;
     unsigned int index = calIndex(fHash, sHash, pHashIndex, map->length);
@@ -767,45 +763,37 @@ void destroyHashMap(HashMap *map) {
 
 
 
-
-
-/** This function will take the key address as an integer, the size of the key and the length of the map,
-    as a parameters, then it will return the first hash of this key.
+/** This function will take the hash function pointer, the key pointer, and the hash map array length as a parameters,
+ * then it will return the first hash of this key.
  * Note: this function should only be called from the hash map functions.
- * @param address the address of the key represented as an unsigned integer
- * @param sizeOfKey the size of the key in bytes
+ * @param hashFun the hash function pointer
+ * @param key the key pointer
  * @param length the length of the hash map array
  * @return it will return the first hashed key
  */
 
-unsigned int fHashCal(unsigned int address, unsigned int sizeOfKey, unsigned int length) {
-    unsigned int *key = (int *) calloc(sizeof(int), 1);
-    memcpy(key, (void *) address, sizeOfKey > 4 ? 4 : sizeOfKey);
-    unsigned int hash = (*key % length);
-    free(key);
-    return hash;
+unsigned int hashMapFHashCal(int (*hashFun)(const void *), void *key, unsigned int length) {
+    return (hashFun(key) % length);
 }
 
 
 
 
 
-/** This function will take the key address as an integer, the size of the key and the biggest prime number,
-    that smaller than the map array length as a parameters, then it will return the second hash of this key.
+
+
+
+/** This function will take the hash function pointer, the key address, and the biggest prime number,
+ * that smaller than the set array length as a parameters, then it will return the second hash of this key.
  * Note: this function should only be called from the hash map functions.
- * @param address the address of the key represented as an unsigned integer
- * @param sizeOfKey the size of the key in bytes
- * @param length the length of the hash map array
+ * @param hashFun the hash function pointer
+ * @param key the key pointer
+ * @param bPrime the biggest prime number, that smaller than the map array length
  * @return it will return the second hashed key
  */
 
-unsigned int sHashCal(unsigned int address, unsigned int sizeOfKey, unsigned int bPrime) {
-    unsigned int *key = (int *) calloc(sizeof(int), 1);
-    memcpy(key, (void *) address, sizeOfKey > 4 ? 4 : sizeOfKey);
-    unsigned int hash = (bPrime - (*key % bPrime));
-    free(key);
-    return hash;
-
+unsigned int hashMapSHashCal(int (*hashFun)(const void *), void *key, unsigned int bPrime) {
+    return (bPrime - (hashFun(key) % bPrime));
 }
 
 

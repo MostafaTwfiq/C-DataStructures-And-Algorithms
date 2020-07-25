@@ -5,7 +5,7 @@
 
 //TODO: Please please check if it working and if it has any memory leaks.
 
-unsigned int hashCal(unsigned int address, unsigned int sizeOfKey, unsigned int length);
+unsigned int LLHashMapFHashCal(int (*hashFun)(const void *), void *key, unsigned int length);
 
 
 
@@ -51,14 +51,16 @@ void freeEntryFun(void *entry) {
  * @param mapLength the hash map length
  * @param freeFun the free function address, that will be called to free the hash map items
  * @param keyComp the key comparator function address, that will be called to compare two keys
+ * @param hashFun the hashing function that will return a unique integer representing the hash map key
  * @return it will return the new hash map address
  */
 
 LinkedListHashMap *linkedListHashMapInitialization(
         int mapLength,
-        void (*freeKey)(void *key),
-        void (*freeItem)(void *item),
-        int (*keyComp)(const void *key1,  const void *key2)
+        void (*freeKey)(void *),
+        void (*freeItem)(void *),
+        int (*keyComp)(const void *,  const void *),
+        int (*hashFun)(const void *)
         ) {
 
     if (mapLength <= 0) {
@@ -93,6 +95,13 @@ LinkedListHashMap *linkedListHashMapInitialization(
      		exit(INVALID_ARG);
      	#endif
 
+    } else if (keyComp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "hash function pointer", "linked list hash map data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+            exit(INVALID_ARG);
+        #endif
     }
 
     LinkedListHashMap *hashMap = (LinkedListHashMap *) malloc(sizeof(LinkedListHashMap));
@@ -123,6 +132,7 @@ LinkedListHashMap *linkedListHashMapInitialization(
     hashMap->freeKeyFun = freeKey;
     hashMap->freeItemFun = freeItem;
     hashMap->keyCompFun = keyComp;
+    hashMap->hashFun = hashFun;
 
     return hashMap;
 
@@ -132,15 +142,14 @@ LinkedListHashMap *linkedListHashMapInitialization(
 
 
 
-/** This function will take the hash map address, the key address, the size of the key, and the item address as a parameters,
+/** This function will take the hash map address, the key address, and the item address as a parameters,
     then it will add the item and it's key in the hash map.
  * @param map the hash map address
  * @param key the key address
- * @param sizeOfKey the size of the key in bytes
  * @param item the new item address
  */
 
-void lLHashMapInsert(LinkedListHashMap *map, void *key, int sizeOfKey, void *item) {
+void lLHashMapInsert(LinkedListHashMap *map, void *key, void *item) {
     if (map == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
         #ifdef CU_TEST_H
@@ -167,7 +176,7 @@ void lLHashMapInsert(LinkedListHashMap *map, void *key, int sizeOfKey, void *ite
 
     }
 
-    unsigned int index = hashCal((unsigned int) key, sizeOfKey, map->length);
+    unsigned int index = LLHashMapFHashCal(map->hashFun, key, map->length);
     if (map->arr[index] == NULL)
         map->arr[index] = doublyLinkedListInitialization(freeEntryFun, entriesCompFun);
 
@@ -201,17 +210,16 @@ void lLHashMapInsert(LinkedListHashMap *map, void *key, int sizeOfKey, void *ite
 
 
 
-/** This function will take the hash map address, the key address, and the size of the key as a parameters,
+/** This function will take the hash map address, and the key address as a parameters,
     then it will return one (1) if the key is in the tree,
     other wise it will return zero (0).
  * Note: this function will not free the key after it's done.
  * @param map the hash map address
  * @param key the key address
- * @param sizeOfKey the size of the key
  * @return it will return one if the key is in the hash map, other wise it will return zero
  */
 
-int lLHashMapContains(LinkedListHashMap *map, void *key, int sizeOfKey) {
+int lLHashMapContains(LinkedListHashMap *map, void *key) {
     if (map == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
         #ifdef CU_TEST_H
@@ -230,7 +238,7 @@ int lLHashMapContains(LinkedListHashMap *map, void *key, int sizeOfKey) {
 
     }
 
-    unsigned int index = hashCal((unsigned int) key, sizeOfKey, map->length);
+    unsigned int index = LLHashMapFHashCal(map->hashFun, key, map->length);
     if (map->arr[index] == NULL)
         return 0;
 
@@ -248,17 +256,16 @@ int lLHashMapContains(LinkedListHashMap *map, void *key, int sizeOfKey) {
 
 
 
-/** This function will take the hash map address, the key address, and the size if the key as a parameters,
+/** This function will take the hash map address, and the key address as a parameters,
     then it will return the item with the provided key,
     other wise if the function didn't find that key it will return NULL.
  * Note: this function will not free the key after it's done.
  * @param map the hash map address
  * @param key the key address
- * @param sizeOfKey the size of the key
  * @return it will return the item with the provided key if found, other wise it will return NULL
  */
 
-void *lLHashMapGet(LinkedListHashMap *map, void *key, int sizeOfKey) {
+void *lLHashMapGet(LinkedListHashMap *map, void *key) {
     if (map == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
         #ifdef CU_TEST_H
@@ -277,7 +284,7 @@ void *lLHashMapGet(LinkedListHashMap *map, void *key, int sizeOfKey) {
 
     }
 
-    unsigned int index = hashCal((unsigned int) key, sizeOfKey, map->length);
+    unsigned int index = LLHashMapFHashCal(map->hashFun, key, map->length);
     if (map->arr[index] == NULL)
         return 0;
 
@@ -298,17 +305,16 @@ void *lLHashMapGet(LinkedListHashMap *map, void *key, int sizeOfKey) {
 
 
 
-/** This function will take the hash map address, the key address, and the size if the key as a parameters,
+/** This function will take the hash map address, and the key address as a parameters,
  * then it will return the key pointer that equals to the provided key,
  * other wise if the function didn't find that key it will return NULL.
  * Note: this function will not free the passed key after it's done.
  * @param map the hash map address
  * @param key the key address
- * @param sizeOfKey the size of the key
  * @return it will return the key that equals to the provided key if found, other wise it will return NULL
  */
 
-void *lLHashMapGetKey(LinkedListHashMap *map, void *key, int sizeOfKey) {
+void *lLHashMapGetKey(LinkedListHashMap *map, void *key) {
     if (map == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
         #ifdef CU_TEST_H
@@ -327,7 +333,7 @@ void *lLHashMapGetKey(LinkedListHashMap *map, void *key, int sizeOfKey) {
 
     }
 
-    unsigned int index = hashCal((unsigned int) key, sizeOfKey, map->length);
+    unsigned int index = LLHashMapFHashCal(map->hashFun, key, map->length);
     if (map->arr[index] == NULL)
         return 0;
 
@@ -349,15 +355,14 @@ void *lLHashMapGetKey(LinkedListHashMap *map, void *key, int sizeOfKey) {
 
 
 
-/** This function will take the hash map address, the key address, and the size of the key as a parameters,
+/** This function will take the hash map address, and the key address as a parameters,
     then it will remove the item with the provided key from the hash map.
  * Note: this function will not free the key after it's done.
  * @param map the hash map address
  * @param key the key address
- * @param sizeOfKey the size of the key
  */
 
-void lLHashMapDelete(LinkedListHashMap *map, void *key, int sizeOfKey) {
+void lLHashMapDelete(LinkedListHashMap *map, void *key) {
     if (map == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
         #ifdef CU_TEST_H
@@ -376,7 +381,7 @@ void lLHashMapDelete(LinkedListHashMap *map, void *key, int sizeOfKey) {
 
     }
 
-    unsigned int index = hashCal((unsigned int) key, sizeOfKey, map->length);
+    unsigned int index = LLHashMapFHashCal(map->hashFun, key, map->length);
     if (map->arr[index] == NULL)
         return;
 
@@ -397,17 +402,16 @@ void lLHashMapDelete(LinkedListHashMap *map, void *key, int sizeOfKey) {
 
 
 
-/** This function will take the hash map address, the key address, and the size of the key as a parameters,
+/** This function will take the hash map address, and the key address as a parameters,
  * then it will remove the item with the provided key from the hash map without freeing it.
  * Note: the function will free the key without the item.
  * Note: this function will not free the passed key after it's done.
  * @param map the hash map address
  * @param key the key address
- * @param sizeOfKey the size of the key
  * @return it will return the deleted item pointer if found, other wise it will return NULL
  */
 
-void *lLHashMapDeleteWtoFr(LinkedListHashMap *map, void *key, int sizeOfKey) {
+void *lLHashMapDeleteWtoFr(LinkedListHashMap *map, void *key) {
     if (map == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
         #ifdef CU_TEST_H
@@ -426,7 +430,7 @@ void *lLHashMapDeleteWtoFr(LinkedListHashMap *map, void *key, int sizeOfKey) {
 
     }
 
-    unsigned int index = hashCal((unsigned int) key, sizeOfKey, map->length);
+    unsigned int index = LLHashMapFHashCal(map->hashFun, key, map->length);
     if (map->arr[index] == NULL)
         return NULL;
 
@@ -453,17 +457,16 @@ void *lLHashMapDeleteWtoFr(LinkedListHashMap *map, void *key, int sizeOfKey) {
 
 
 
-/** This function will take the hash map address, the key address, and the size of the key as a parameters,
+/** This function will take the hash map address, and the key address as a parameters,
  * then it will remove the item with the provided key from the hash map without freeing it.
  * Note: the function will not free the key and the item.
  * Note: this function will not free the passed key after it's done.
  * @param map the hash map address
  * @param key the key address
- * @param sizeOfKey the size of the key
  * @return it will return the deleted entry pointer if found, other wise it will return NULL
  */
 
-Entry *lLHashMapDeleteWtoFrAll(LinkedListHashMap *map, void *key, int sizeOfKey) {
+Entry *lLHashMapDeleteWtoFrAll(LinkedListHashMap *map, void *key) {
     if (map == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
         #ifdef CU_TEST_H
@@ -482,7 +485,7 @@ Entry *lLHashMapDeleteWtoFrAll(LinkedListHashMap *map, void *key, int sizeOfKey)
 
     }
 
-    unsigned int index = hashCal((unsigned int) key, sizeOfKey, map->length);
+    unsigned int index = LLHashMapFHashCal(map->hashFun, key, map->length);
     if (map->arr[index] == NULL)
         return NULL;
 
@@ -703,19 +706,16 @@ void destroyLLHashMap(LinkedListHashMap *map) {
 
 
 
-/** This function will take the address of the key, the size of the key, the length of the hash map array as a parameters,
-    then it will return the hashed index.
- * Note: this function should only be called from the linked hash map functions.
- * @param address the key address represented as an unsigned integer
- * @param sizeOfKey the size of the key in bytes
+
+/** This function will take the hash function pointer, the key pointer, and the hash map array length as a parameters,
+ * then it will return the first hash of this key.
+ * Note: this function should only be called from the hash map functions.
+ * @param hashFun the hash function pointer
+ * @param key the key pointer
  * @param length the length of the hash map array
- * @return it will return the first hashed key (it will represent the index)
+ * @return it will return the first hashed key
  */
 
-unsigned int hashCal(unsigned int address, unsigned int sizeOfKey, unsigned int length) {
-    unsigned int *key = (int *) calloc(sizeof(int), 1);
-    memcpy(key, (void *) address, sizeOfKey > 4 ? 4 : sizeOfKey);
-    unsigned int hash = (*key % length);
-    free(key);
-    return hash;
+unsigned int LLHashMapFHashCal(int (*hashFun)(const void *), void *key, unsigned int length) {
+    return (hashFun(key) % length);
 }

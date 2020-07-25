@@ -100,7 +100,7 @@ This function will take the map address as a parameter, then it will destroy and
 \mbox{\Hypertarget{_hash_map_8c_aecb423bde4df1346086f68df00ab14db}\label{_hash_map_8c_aecb423bde4df1346086f68df00ab14db}} 
 \index{HashMap.c@{HashMap.c}!fHashCal@{fHashCal}}
 \index{fHashCal@{fHashCal}!HashMap.c@{HashMap.c}}
-\doxysubsubsection{\texorpdfstring{fHashCal()}{fHashCal()}}
+\doxysubsubsection{\texorpdfstring{fHashCal()}{hashMapFHashCal()}}
 {\footnotesize\ttfamily unsigned \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} f\+Hash\+Cal (\begin{DoxyParamCaption}\item[{unsigned \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{address,  }\item[{unsigned \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{size\+Of\+Key,  }\item[{unsigned \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{length }\end{DoxyParamCaption})}
 
 This function will take the key address as an integer, the size of the key and the length of the map, as a parameters, then it will return the first hash of this key. Note\+: this function should only be called from the hash map functions. 
@@ -270,7 +270,7 @@ This function will take the map address as a parameter, then it will return an e
 \mbox{\Hypertarget{_hash_map_8c_af89b7abe3395e2ddeb1e830e81fb6856}\label{_hash_map_8c_af89b7abe3395e2ddeb1e830e81fb6856}} 
 \index{HashMap.c@{HashMap.c}!sHashCal@{sHashCal}}
 \index{sHashCal@{sHashCal}!HashMap.c@{HashMap.c}}
-\doxysubsubsection{\texorpdfstring{sHashCal()}{sHashCal()}}
+\doxysubsubsection{\texorpdfstring{sHashCal()}{hashMapSHashCal()}}
 {\footnotesize\ttfamily unsigned \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}} s\+Hash\+Cal (\begin{DoxyParamCaption}\item[{unsigned \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{address,  }\item[{unsigned \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{size\+Of\+Key,  }\item[{unsigned \mbox{\hyperlink{_c_make_cache_8txt_ae5ddf38bc47713b2bcad41253d69d372}{int}}}]{b\+Prime }\end{DoxyParamCaption})}
 
 This function will take the key address as an integer, the size of the key and the biggest prime number, that smaller than the map array length as a parameters, then it will return the second hash of this key. Note\+: this function should only be called from the hash map functions. 

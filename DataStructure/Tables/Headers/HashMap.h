@@ -20,23 +20,24 @@ typedef struct HashMap {
     void (*freeItemFun)(void *);
     void (*freeKeyFun)(void *);
     int (*keyComp)(const void *, const void *);
+    int (*hashFun)(const void *);
 } HashMap;
 
-HashMap *hashMapInitialization(void (*freeKey)(void *), void (*freeItem)(void *), int (*keyComp)(const void *, const void *));
+HashMap *hashMapInitialization(void (*freeKey)(void *), void (*freeItem)(void *), int (*keyComp)(const void *, const void *), int (*hashFun)(const void *));
 
-void hashMapInsert(HashMap *map, void *key, int sizeOfKey, void *item);
+void hashMapInsert(HashMap *map, void *key, void *item);
 
-int hashMapContains(HashMap *map, void *key, int sizeOfKey);
+int hashMapContains(HashMap *map, void *key);
 
-void *hashMapGet(HashMap *map, void *key, int sizeOfKey);
+void *hashMapGet(HashMap *map, void *key);
 
-void *hashMapGetKey(HashMap *map, void *key, int sizeOfKey);
+void *hashMapGetKey(HashMap *map, void *key);
 
-void hashMapDelete(HashMap *map, void *key, int sizeOfKey);
+void hashMapDelete(HashMap *map, void *key);
 
-void *hashMapDeleteWtoFr(HashMap *map, void *key, int sizeOfKey);
+void *hashMapDeleteWtoFr(HashMap *map, void *key);
 
-Entry *hashMapDeleteWtoFrAll(HashMap *map, void *key, int sizeOfKey);
+Entry *hashMapDeleteWtoFrAll(HashMap *map, void *key);
 
 void **hashMapToArray(HashMap *map);
 
