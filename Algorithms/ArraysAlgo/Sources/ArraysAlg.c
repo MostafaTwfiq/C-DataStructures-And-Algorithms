@@ -554,3 +554,228 @@ void fillArrOfRangeC(void *arr, void *fillValue, int length, int elemSize, int s
         copyFun(arr + i * elemSize, fillValue);
 
 }
+
+
+
+
+
+
+
+
+
+
+
+/** This function will take two arrays,
+ * then it will compare there values, and it will return one if the two arrays are equal,
+ * other wise it will return zero.
+ * @param fArr the first array pointer
+ * @param fLength the first array length
+ * @param sArr the second array pointer
+ * @param sLength the second array length
+ * @param elemSize the size of the arrays elements in bytes
+ * @param cmp the comparator function pointer, that will be called to compare the arrays values
+ * @return it will return one if the two arrays are equal, other wise it will return zero
+ */
+
+int arrCompare(void *fArr, int fLength, void *sArr, int sLength, int elemSize, int (*cmp)(const void *, const void *)) {
+
+    if (fArr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "first passed array", "array compare function");
+        exit(NULL_POINTER);
+    } else if (fArr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "second passed array", "array compare function");
+        exit(NULL_POINTER);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array compare function");
+        exit(INVALID_ARG);
+    } else if (fLength < 0 || sLength < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "arrays length", "array compare function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array compare function");
+        exit(INVALID_ARG);
+    }
+
+    if (fLength != sLength)
+        return 0;
+
+    for (int i = 0; i < fLength; i++) {
+
+        if ( cmp(fArr + i * elemSize, sArr + i * elemSize) != 0 )
+            return 0;
+
+    }
+
+    return 1;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/** This function will take two array,
+ * then it will compare them between the passed two indices,
+ * if there value between the two indices are equal the function will return one (1),
+ * other wise it will return zero (0).
+ * @param fArr the first array pointer
+ * @param fLength the first array length
+ * @param sArr the second array pointer
+ * @param sLength the second array length
+ * @param elemSize the size of the arrays elements in bytes
+ * @param startIndex the comparing start index
+ * @param endIndex the comparing end index
+ * @param cmp the comparator function pointer, that will be called to compare the arrays values
+ * @return it will return one if the values between the indices are equal, other wise it will return zero
+ */
+
+int arrCompareOfRange(void *fArr, int fLength, void *sArr, int sLength, int elemSize, int startIndex, int endIndex, int (*cmp)(const void *, const void *)) {
+
+    if (fArr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "first passed array", "array compare of range function");
+        exit(NULL_POINTER);
+    } else if (fArr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "second passed array", "array compare of range function");
+        exit(NULL_POINTER);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array compare of range function");
+        exit(INVALID_ARG);
+    } else if (fLength < 0 || sLength < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "arrays length", "array compare of range function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array compare of range function");
+        exit(INVALID_ARG);
+    } else if (startIndex < 0 || startIndex > endIndex || endIndex >= fLength || endIndex >= sLength) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "range of compare", "array compare of range function");
+        exit(INVALID_ARG);
+    }
+
+    for (int i = startIndex; i <= endIndex; i++) {
+
+        if ( cmp(fArr + i * elemSize, sArr + i * elemSize) != 0 )
+            return 0;
+
+    }
+
+    return 1;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/** This function will take two arrays,
+ * then it will search for the first element that mismatch between the two arrays,
+ * if the mismatch found the function will return the mismatch index,
+ * other wise it will return minus one (-1).
+ * Note: if the two array hasn't the same length the function will check for smallest length.
+ * @param fArr the first array pointer
+ * @param fLength the first array length
+ * @param sArr the second array pointer
+ * @param sLength the second array length
+ * @param elemSize the size of the arrays elements in bytes
+ * @param cmp the comparator function pointer, that will be called to compare the arrays values
+ * @return it will return the index of the first mismatch if found, other wise it will return -1
+ */
+
+int arrMismatch(void *fArr, int fLength, void *sArr, int sLength, int elemSize, int (*cmp)(const void *, const void *)) {
+
+    if (fArr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "first passed array", "array mismatch function");
+        exit(NULL_POINTER);
+    } else if (fArr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "second passed array", "array mismatch function");
+        exit(NULL_POINTER);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array mismatch function");
+        exit(INVALID_ARG);
+    } else if (fLength < 0 || sLength < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "arrays length", "array mismatch function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array mismatch function");
+        exit(INVALID_ARG);
+    }
+
+
+    for (int i = 0; i < ( fLength < sLength ? fLength : sLength ); i++) {
+
+        if ( cmp(fArr + i * elemSize, sArr + i * elemSize) != 0 )
+            return i;
+
+    }
+
+    return -1;
+
+}
+
+
+
+
+
+
+
+
+
+
+/** This function will take two arrays,
+ * then it will search for the first element that mismatch between the two arrays between the provided range,
+ * if the mismatch found the function will return the mismatch index,
+ * other wise it will return minus one (-1).
+ * @param fArr the first array pointer
+ * @param fLength the first array length
+ * @param sArr the second array pointer
+ * @param sLength the second array length
+ * @param elemSize the size of the arrays elements in bytes
+ * @param startIndex the checking start index
+ * @param endIndex the checking end index
+ * @param cmp the comparator function pointer, that will be called to compare the arrays values
+ * @return it will return the index of the first mismatch if found, other wise it will return -1
+ */
+
+int arrMismatchOfRange(void *fArr, int fLength, void *sArr, int sLength, int elemSize, int startIndex, int endIndex, int (*cmp)(const void *, const void *)) {
+
+    if (fArr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "first passed array", "array mismatch of range function");
+        exit(NULL_POINTER);
+    } else if (fArr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "second passed array", "array mismatch of range function");
+        exit(NULL_POINTER);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array mismatch of range function");
+        exit(INVALID_ARG);
+    } else if (fLength < 0 || sLength < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "arrays length", "array mismatch of range function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array mismatch of range function");
+        exit(INVALID_ARG);
+    } else if (startIndex < 0 || startIndex > endIndex || endIndex >= fLength || endIndex >= sLength) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "range of compare", "array mismatch of range function");
+        exit(INVALID_ARG);
+    }
+
+    for (int i = startIndex; i <= endIndex; i++) {
+
+        if ( cmp(fArr + i * elemSize, sArr + i * elemSize) != 0 )
+            return i;
+
+    }
+
+    return -1;
+
+}

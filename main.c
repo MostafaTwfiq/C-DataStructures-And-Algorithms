@@ -57,23 +57,9 @@ void printInt(void *item) {
 
 int main() {
 
-    //printf("%d", isFloatingPointNum("134", strlen("134")));
-    //exit(0);
-
-    //printf("is substring: %d", isSubString("mostafa", 0, "mostafa", 0));
-    unsigned int arr[] = {55, 4, 4, 2, 0, 1, 3, 10};
-    insertionSort(arr, 8, sizeof(int), intCmp);
-    //mergeSort(arr, 8, 0, 55);
-
-    int value = 33;
-    printf("%d\n\n", exponentialSearch(arr, &value, 8, sizeof(int), intCmp));
-
-    reverseArray(arr, 8, sizeof(int));
-    printf("most freq: %d\n\n", *(int *)mostFrequentArrValue(arr, 8, sizeof(int), intCmp));
-
-
-    fillArrOfRange(arr, &value, 8, sizeof(int), 0, 5);
-    printArr(arrCopyOfRange(arr, 8, sizeof(int), 0, 7), 8, sizeof(int), printInt);
+    int arr1[] = {1, 2, 3, 4, 5};
+    int arr2[] = {1, 2, 3, 6, 5};
+    printf("%d", arrMismatch(arr1, 5, arr2, 5, sizeof(int), intCmp));
 
     /*DLDeque *deque = dlDequeInitialization(freeItem);
     int *value;
