@@ -835,7 +835,16 @@ int UDGCompInt(const void *int1, const void *int2) {
 
 
 
+/** This function will take an integer pointer as a parameter,
+ * then it will return the value of the integer.
+ * Note: this function will be useful to use in the hash map and hash set data structures
+ * @param item the integer pointer
+ * @return it will return the value of the integer as the unique hash key
+ */
 
+int intHashFunUDirG(const void *item) {
+    return *(int *)item;
+}
 
 
 
@@ -878,12 +887,12 @@ void UDGraphDepthFirstTraversal(UndirectedGraph *graph, void *startVal, int size
 
     UDGraphNode *startNode = hashMapGet(graph->nodes, startVal, sizeOfValue);
     Stack *nodesStack = stackInitialization(UDGraphNodeFreeFun);
-    HashSet *visitedNodes = hashSetInitialization(UDGFreeInt, UDGCompInt);
+    HashSet *visitedNodes = hashSetInitialization(UDGFreeInt, UDGCompInt, intHashFunUDirG);
 
     pushStack(nodesStack, startNode);
     int *startNodeValAddress = (int *) malloc(sizeof(int));
     *startNodeValAddress = (int) startNode->value;
-    hashSetInsert(visitedNodes, startNodeValAddress, sizeof(int));
+    hashSetInsert(visitedNodes, startNodeValAddress);
 
 
     while (!isEmptyStack(nodesStack)) {
@@ -894,9 +903,9 @@ void UDGraphDepthFirstTraversal(UndirectedGraph *graph, void *startVal, int size
             UDGraphNode *adjNode = ((UDGraphEdge *) arrayListGet(tempNode->adjacentNodes, i))->node;
             int *adjNodeValAddress = (int *) malloc(sizeof(int));
             *adjNodeValAddress = (int) adjNode->value;
-            if (!hashSetContains(visitedNodes, adjNodeValAddress, sizeof(int))) {
+            if (!hashSetContains(visitedNodes, adjNodeValAddress)) {
                 pushStack(nodesStack, adjNode);
-                hashSetInsert(visitedNodes, adjNodeValAddress, sizeof(int));
+                hashSetInsert(visitedNodes, adjNodeValAddress);
             } else
                 free(adjNodeValAddress);
 
@@ -957,12 +966,12 @@ void UDGraphBreadthFirstTraversal(UndirectedGraph *graph, void *startVal, int si
 
     UDGraphNode *startNode = hashMapGet(graph->nodes, startVal, sizeOfValue);
     ArrayQueue *nodesQueue = arrayQueueInitialization(UDGraphNodeFreeFun);
-    HashSet *visitedNodes = hashSetInitialization(UDGFreeInt, UDGCompInt);
+    HashSet *visitedNodes = hashSetInitialization(UDGFreeInt, UDGCompInt, intHashFunUDirG);
 
     arrayQueueEnqueue(nodesQueue, startNode);
     int *startNodeValAddress = (int *) malloc(sizeof(int));
     *startNodeValAddress = (int) startNode->value;
-    hashSetInsert(visitedNodes, startNodeValAddress, sizeof(int));
+    hashSetInsert(visitedNodes, startNodeValAddress);
 
 
     while (!arrayQueueIsEmpty(nodesQueue)) {
@@ -973,9 +982,9 @@ void UDGraphBreadthFirstTraversal(UndirectedGraph *graph, void *startVal, int si
             UDGraphNode *adjNode = ((UDGraphEdge *) arrayListGet(tempNode->adjacentNodes, i))->node;
             int *adjNodeValAddress = (int *) malloc(sizeof(int));
             *adjNodeValAddress = (int) adjNode->value;
-            if (!hashSetContains(visitedNodes, adjNodeValAddress, sizeof(int))) {
+            if (!hashSetContains(visitedNodes, adjNodeValAddress)) {
                 arrayQueueEnqueue(nodesQueue, adjNode);
-                hashSetInsert(visitedNodes, adjNodeValAddress, sizeof(int));
+                hashSetInsert(visitedNodes, adjNodeValAddress);
             } else
                 free(adjNodeValAddress);
 
@@ -1316,10 +1325,10 @@ HashMap *UDGraphGenerateDistancesMap(UDGraphNode *startNode) {
     PriorityQueue *distanceHolderPQueue = priorityQueueInitialization(distanceHolderFreeFun, distanceHolderComp);
 
     // visitingNodes hash set will represent the nodes that are in the queue.
-    HashSet *visitingNodes = hashSetInitialization(UDGFreeInt, UDGCompInt);
+    HashSet *visitingNodes = hashSetInitialization(UDGFreeInt, UDGCompInt, intHashFunUDirG);
 
     // visitedNodes hash set will represent the nodes that are visited (dequeued from the queue).
-    HashSet *visitedNodes = hashSetInitialization(UDGFreeInt, UDGCompInt);
+    HashSet *visitedNodes = hashSetInitialization(UDGFreeInt, UDGCompInt, intHashFunUDirG);
 
     // This hash map will hold the shortest distance to all the nodes
     HashMap *distancesMap = hashMapInitialization(UDGFreeInt, distanceHolderFreeFun, UDGCompInt);
@@ -1327,19 +1336,19 @@ HashMap *UDGraphGenerateDistancesMap(UDGraphNode *startNode) {
 
     DistanceHolder *startNodeHolder = generateDisHolder(startNode, startNode, 0);
     pQueueEnqueue(distanceHolderPQueue, startNodeHolder);
-    hashSetInsert(visitingNodes, generateNodeValAddress(startNode), sizeof(int));
+    hashSetInsert(visitingNodes, generateNodeValAddress(startNode));
     hashMapInsert(distancesMap, generateNodeValAddress(startNode), sizeof(int), startNodeHolder);
 
     while (!pQueueIsEmpty(distanceHolderPQueue)) {
         DistanceHolder *currentHolder = pQueueDequeue(distanceHolderPQueue);
         UDGraphNode *currentNode = currentHolder->toNode;
-        hashSetInsert(visitedNodes, generateNodeValAddress(currentNode), sizeof(int));
+        hashSetInsert(visitedNodes, generateNodeValAddress(currentNode));
 
         for (int i = 0; i < arrayListGetLength(currentNode->adjacentNodes); i++) {
             UDGraphEdge *edge = (UDGraphEdge *) arrayListGet(currentNode->adjacentNodes, i);
             int *childNodeValAddress = generateNodeValAddress(edge->node);
 
-            if (!hashSetContains(visitedNodes, childNodeValAddress, sizeof(int))) {
+            if (!hashSetContains(visitedNodes, childNodeValAddress)) {
                 DistanceHolder *holder = hashMapGet(distancesMap, childNodeValAddress, sizeof(int));
 
                 if (holder != NULL) {
@@ -1353,9 +1362,9 @@ HashMap *UDGraphGenerateDistancesMap(UDGraphNode *startNode) {
                     hashMapInsert(distancesMap, generateNodeValAddress(edge->node), sizeof(int), holder);
                 }
 
-                if (!hashSetContains(visitingNodes, childNodeValAddress, sizeof(int))) {
+                if (!hashSetContains(visitingNodes, childNodeValAddress)) {
                     pQueueEnqueue(distanceHolderPQueue, holder);
-                    hashSetInsert(visitingNodes, generateNodeValAddress(currentNode), sizeof(int));
+                    hashSetInsert(visitingNodes, generateNodeValAddress(currentNode));
                 }
 
             }
@@ -1417,7 +1426,7 @@ int UDGraphNodePartOfCycle(UndirectedGraph *graph, void *startVal, int sizeOfSta
     if (startVal == NULL)
         return 0;
 
-    HashSet *visitedNodes = hashSetInitialization(UDGFreeInt, UDGCompInt);
+    HashSet *visitedNodes = hashSetInitialization(UDGFreeInt, UDGCompInt, intHashFunUDirG);
 
     int cycleFlag = UDGraphNodePartOfCycleR(NULL, startNode, visitedNodes);
 
@@ -1456,12 +1465,12 @@ int UDGraphHasCycle(UndirectedGraph *graph) {
     }
 
     UDGraphNode **nodesArray = (UDGraphNode **) hashMapToArray(graph->nodes);
-    HashSet *visitedNodes = hashSetInitialization(UDGFreeInt, UDGCompInt);
+    HashSet *visitedNodes = hashSetInitialization(UDGFreeInt, UDGCompInt, intHashFunUDirG);
 
     int cycleFlag = 0;
     for (int i = 0; i < hashMapGetLength(graph->nodes); i++) {
         int currentNodeValAddress = (int) nodesArray[i]->value;
-        if (!hashSetContains(visitedNodes, &currentNodeValAddress, sizeof(int))
+        if (!hashSetContains(visitedNodes, &currentNodeValAddress)
         && UDGraphNodePartOfCycleR(NULL, nodesArray[i], visitedNodes)) {
 
             cycleFlag = 1;
@@ -1498,12 +1507,12 @@ int UDGraphHasCycle(UndirectedGraph *graph) {
 
 int UDGraphNodePartOfCycleR(UDGraphNode *prevNode, UDGraphNode *currentNode, HashSet *visitedNodes) {
     int *currentNodeValAddress = generateNodeValAddress(currentNode);
-    if (hashSetContains(visitedNodes, currentNodeValAddress, sizeof(int))) {
+    if (hashSetContains(visitedNodes, currentNodeValAddress)) {
         free(currentNodeValAddress);
         return 1;
     }
 
-    hashSetInsert(visitedNodes, currentNodeValAddress, sizeof(int));
+    hashSetInsert(visitedNodes, currentNodeValAddress);
 
     for (int i = 0; i < arrayListGetLength(currentNode->adjacentNodes); i++) {
         UDGraphEdge *edge = (UDGraphEdge *) arrayListGet(currentNode->adjacentNodes, i);

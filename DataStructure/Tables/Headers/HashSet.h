@@ -13,18 +13,19 @@ typedef struct HashSet {
     int bPrime;
     void (*freeItem)(void *);
     int (*itemComp)(const void *, const void *);
+    int (*hashFun)(const void *);
 } HashSet;
 
 
-HashSet *hashSetInitialization(void (*freeItem)(void *), int (*itemComp)(const void *, const void *));
+HashSet *hashSetInitialization(void (*freeItem)(void *), int (*itemComp)(const void *, const void *), int (*hashFun)(const void *));
 
-void hashSetInsert(HashSet *hashSet, void *item, int sizeOfItem);
+void hashSetInsert(HashSet *hashSet, void *item);
 
-void hashSetDelete(HashSet *hashSet, void *item, int sizeOfItem);
+void hashSetDelete(HashSet *hashSet, void *item);
 
-void *hashSetDeleteWtoFr(HashSet *hashSet, void *item, int sizeOfItem);
+void *hashSetDeleteWtoFr(HashSet *hashSet, void *item);
 
-int hashSetContains(HashSet *hashSet, void *item, int sizeOfItem);
+int hashSetContains(HashSet *hashSet, void *item);
 
 void **hashSetToArray(HashSet *hashSet);
 

@@ -217,7 +217,191 @@ void printArr(void *arr, int length, int elemSize, void (*printFun)(void *)) {
 
 
 
+/** This function will take an array with a new length,
+ * then it will allocate a new array with the provided new length,
+ * and it will copy the values in the original array into the new array, and finally return the new array pointer.
+ * Note: this function will memory copy the original array.
+ * @param arr the array pointer
+ * @param length the length of the array
+ * @param elemSize the size of the array elements in bytes
+ * @param newLength the new length of the new array
+ * @return it will return a pointer to the new array
+ */
 
+void *arrResize(void *arr, int length, int elemSize, int newLength) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array resize function");
+        exit(NULL_POINTER);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array resize function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array resize function");
+        exit(INVALID_ARG);
+    } else if (newLength < length) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new length", "array resize function");
+        exit(INVALID_ARG);
+    }
+
+    void *newArr = (void *) malloc(elemSize * newLength);
+    memcpy(newArr, arr, elemSize * length);
+
+    return newArr;
+
+}
+
+
+
+
+
+
+
+
+
+/** This function will take an array with a new length,
+ * then it will allocate a new array with the provided new length,
+ * and it will copy the values between the provided two indices in the original array into the new array, and finally return the new array pointer.
+ * Note: this function will memory copy the original array.
+ * @param arr the array pointer
+ * @param length the length of the array
+ * @param elemSize the array elements size in bytes
+ * @param startIndex the copying start index
+ * @param endIndex the copying end index
+ * @param newLength the new array length
+ * @return it will return the new array pointer
+ */
+
+void *arrResizeOfRange(void *arr, int length, int elemSize, int startIndex, int endIndex, int newLength) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array resize of range function");
+        exit(NULL_POINTER);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array resize of range function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array resize of range function");
+        exit(INVALID_ARG);
+    } else if (startIndex < 0 || startIndex > endIndex || endIndex >= length) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "range of copy", "array resize of range function");
+        exit(INVALID_ARG);
+    } else if (newLength < (endIndex - startIndex + 1)) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new length", "array resize of range function");
+        exit(INVALID_ARG);
+    }
+
+
+    void *newArr = (void *) malloc(elemSize * newLength);
+    memcpy(newArr, arr + startIndex * elemSize, elemSize * (endIndex - startIndex + 1));
+
+    return newArr;
+
+}
+
+
+
+
+
+
+
+
+
+
+/** This function will take an array with a new length,
+ * then it will allocate a new array with the provided new length,
+ * and it will copy the values in the original array into the new array using the passed copy function,
+ * and finally return the new array pointer.
+ * Note: the first parameter of the copying function will be the space that the second parameter will be copied into it.
+ * @param arr the array pointer
+ * @param length the array length
+ * @param elemSize the size of the array elements in bytes
+ * @param newLength the new array length
+ * @param copyFun the copying function pointer, that will be called to copy the values
+ * @return it will return the new array pointer
+ */
+
+void *arrResizeC(void *arr, int length, int elemSize, int newLength, void (*copyFun)(const void *, const void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "custom array resize function");
+        exit(NULL_POINTER);
+    } else if (copyFun == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "copying function pointer", "custom array resize function");
+        exit(INVALID_ARG);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "custom array resize function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "custom array resize function");
+        exit(INVALID_ARG);
+    } else if (newLength < length) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new length", "custom array resize function");
+        exit(INVALID_ARG);
+    }
+
+    void *newArr = (void *) malloc(elemSize * newLength);
+
+    for (int i = 0; i < length; i++)
+        copyFun(newArr + i * elemSize, arr + i * elemSize);
+
+    return newArr;
+
+}
+
+
+
+
+
+
+
+
+
+/** This function will take an array with a new length,
+ * then it will allocate a new array with the provided new length,
+ * and it will copy the values between the provided two indices in the original array into the new array using the passed copy function,
+ * and finally return the new array pointer.
+ * Note: the first parameter of the copying function will be the space that the second parameter will be copied into it.
+ * @param arr the array pointer
+ * @param length the array length
+ * @param elemSize the size of the array elements in bytes
+ * @param startIndex the copying start index
+ * @param endIndex the copying end index
+ * @param newLength the length of the new array
+ * @param copyFun the copying function pointer, that will be called to copy the values
+ * @return it will return the new array pointer
+ */
+
+void *arrResizeOfRangeC(void *arr, int length, int elemSize, int startIndex, int endIndex, int newLength, void (*copyFun)(const void *, const void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "custom array resize of range function");
+        exit(NULL_POINTER);
+    } else if (copyFun == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "copying function pointer", "custom array resize of range function");
+        exit(INVALID_ARG);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "custom array resize of range function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "custom array resize of range function");
+        exit(INVALID_ARG);
+    } else if (startIndex < 0 || startIndex > endIndex || endIndex >= length) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "range of copy", "custom array resize of range function");
+        exit(INVALID_ARG);
+    } else if (newLength < (endIndex - startIndex + 1)) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new length", "custom array resize of range function");
+        exit(INVALID_ARG);
+    }
+
+
+    void *newArr = (void *) malloc(elemSize * newLength);
+    for (int i = startIndex; i <= endIndex; i++)
+        copyFun(newArr + (i - startIndex) * elemSize, arr + i * elemSize);
+
+    return newArr;
+
+}
 
 
 
@@ -273,7 +457,7 @@ void *arrCopy(void *arr, int length, int elemSize) {
  * @return it will return the new copied array pointer
  */
 
-void *arrCopyC(void *arr, int length, int elemSize, void *copyFun(const void *, const void *)) {
+void *arrCopyC(void *arr, int length, int elemSize, void (*copyFun)(const void *, const void *)) {
     if (arr == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array custom copy function");
         exit(NULL_POINTER);
@@ -366,7 +550,7 @@ void *arrCopyOfRange(void *arr, int length, int elemSize, int startIndex, int en
  * @return it will return the new copied array
  */
 
-void *arrCopyOfRangeC(void *arr, int length, int elemSize, int startIndex, int endIndex, void *copyFun(const void *, const void *)) {
+void *arrCopyOfRangeC(void *arr, int length, int elemSize, int startIndex, int endIndex, void (*copyFun)(const void *, const void *)) {
 
     if (arr == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array custom copy of range function");
@@ -448,7 +632,7 @@ void fillArr(void *arr, void *fillValue, int length, int elemSize) {
  * @param copyFun the copy function pointer, that will be called to copy the values in the array
  */
 
-void fillArrC(void *arr, void *fillValue, int length, int elemSize, void *copyFun(const void *, const void *)) {
+void fillArrC(void *arr, void *fillValue, int length, int elemSize, void (*copyFun)(const void *, const void *)) {
 
     if (arr == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "fill array custom function");
@@ -531,7 +715,7 @@ void fillArrOfRange(void *arr, void *fillValue, int length, int elemSize, int st
  * @param copyFun the copy function pointer, that will be called to copy the values in the array
  */
 
-void fillArrOfRangeC(void *arr, void *fillValue, int length, int elemSize, int startIndex, int endIndex, void *copyFun(const void *, const void *)) {
+void fillArrOfRangeC(void *arr, void *fillValue, int length, int elemSize, int startIndex, int endIndex, void (*copyFun)(const void *, const void *)) {
 
     if (arr == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "fill array of range custom function");

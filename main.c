@@ -22,6 +22,7 @@
 #include "DataStructure/Lists/Headers/ArrayList.h"
 #include "DataStructure/Graphs/Headers/UndirectedGraph.h"
 #include "DataStructure/Lists/Headers/Vector.h"
+#include "DataStructure/Tables/Headers/HashSet.h"
 #include "DataStructure/Deque/Headers/DLinkedListDeque.h"
 #include "Algorithms/Sorting/Headers/Sorting.h"
 #include "Algorithms/Searching/Headers/Searching.h"
@@ -55,137 +56,37 @@ void printInt(void *item) {
     printf("%d", *(int *)item);
 }
 
+void copyInt(const void *int1, const void *int2) {
+    memcpy((void *) int1, int2, sizeof(int));
+}
+
+int comparatorFun(const void *i1, const void *i2) {
+    return *(int *)*(int **)i1 - *(int *)*(int **)i2;
+}
+
+
+int intHashFun(const void *item) {
+    return **(int **)item;
+}
+
 int main() {
 
-    int arr1[] = {1, 2, 3, 4, 5};
-    int arr2[] = {1, 2, 3, 6, 5};
-    printf("%d", arrMismatch(arr1, 5, arr2, 5, sizeof(int), intCmp));
+    HashSet *hashSet = hashSetInitialization(freeItem, comparatorFun, intHashFun);
+    int **item;
 
-    /*DLDeque *deque = dlDequeInitialization(freeItem);
-    int *value;
+    item = (int **) malloc(sizeof(int **));
+    *item = (int *) malloc(sizeof(int));
+    **item = 10;
+    hashSetInsert(hashSet, item);
 
-    value = (int *) malloc(sizeof(int));
-    *value = 30;
-    dLDequeInsertFront(deque, value);
+    item = (int **) malloc(sizeof(int **));
+    *item = (int *) malloc(sizeof(int));
+    **item = 10;
+    hashSetInsert(hashSet, item);
 
-    value = (int *) malloc(sizeof(int));
-    *value = 20;
-    dLDequeInsertFront(deque, value);
+    for (int i = 0; i < hashSetGetLength(hashSet); i++)
+        printf("%d\n\n", **(int **)hashSetToArray(hashSet)[i]);
 
-    value = (int *) malloc(sizeof(int));
-    *value = 10;
-    dLDequeInsertFront(deque, value);
-
-    value = (int *) malloc(sizeof(int));
-    *value = 40;
-    dLDequeInsertRear(deque, value);
-
-    value = (int *) malloc(sizeof(int));
-    *value = 50;
-    dLDequeInsertRear(deque, value);
-
-    value = (int *) malloc(sizeof(int));
-    *value = 60;
-    dLDequeInsertRear(deque, value);
-
-
-    int **arr = (int **) dLDequeToArray(deque);
-
-    for (int i = 0; i < dLDequeGetLength(deque); i++) {
-        printf("%d\n", arr[i][0]);
-    }
-
-    //60
-    //10
-    //50
-    //20
-    //40
-    //30
-
-
-*/
-
-    exit(0);
-
-
-
-
-    UndirectedGraph *graph = undirectedGraphInitialization(freeItem, comp);
-    char *item;
-
-    item = (char *) malloc(sizeof(char ) * (strlen("A") + 1));
-    strcpy(item, "A");
-    UDGraphAddNode(graph, item, strlen(item) + 1);
-
-    item = (char *) malloc(sizeof(char ) * (strlen("B") + 1));
-    strcpy(item, "B");
-    UDGraphAddNode(graph, item, strlen(item) + 1);
-
-    item = (char *) malloc(sizeof(char ) * (strlen("C") + 1));
-    strcpy(item, "C");
-    UDGraphAddNode(graph, item, strlen(item) + 1);
-
-    item = (char *) malloc(sizeof(char ) * (strlen("D") + 1));
-    strcpy(item, "D");
-    UDGraphAddNode(graph, item, strlen(item) + 1);
-
-    item = (char *) malloc(sizeof(char ) * (strlen("E") + 1));
-    strcpy(item, "E");
-    UDGraphAddNode(graph, item, strlen(item) + 1);
-
-    UDGraphAddEdge(graph, "A", strlen("A") + 1, "B", strlen("B") + 1, 3);
-    UDGraphAddEdge(graph, "A", strlen("A") + 1, "C", strlen("C") + 1, 1);
-    //UDGraphAddEdge(graph, "A", strlen("A") + 1, "D", strlen("D") + 1, 2);
-    UDGraphAddEdge(graph, "D", strlen("D") + 1, "B", strlen("B") + 1, 4);
-    UDGraphAddEdge(graph, "D", strlen("D") + 1, "C", strlen("C") + 1, 5);
-    UDGraphAddEdge(graph, "B", strlen("B") + 1, "C", strlen("C") + 1, 2);
-    //UDGraphAddEdge(graph, "D", strlen("D") + 1, "E", strlen("E") + 1, 5);
-    //UDGraphAddEdge(graph, "B", strlen("B") + 1, "E", strlen("E") + 1, 1);
-
-    //UDGraphRemoveEdge(graph, "Mostafa", strlen("Mostafa") + 1, "Mohammed", strlen("Mohammed") + 1);
-    //UDGraphRemoveNode(graph, "Mostafa", strlen("Mostafa") + 1);
-
-    //printf("Add");
-
-    /*ArrayList *list = UDGraphGetShortestPath(graph, "A", strlen("A") + 1, "A", strlen("A") + 1);
-    for (int i = 0; i < arrayListGetLength(list); i++)
-        printf("%s ", arrayListGet(list, i));
-
-    printf("\n\n");
-    printf("%d", UDGraphNodePartOfCycle(graph, "A", strlen("A") + 1));*/
-    printUDGraph(UDGraphMinimumSpanningGraph(graph, "A", getSize), print);
-
-    //destroyUDGraph(graph);
-
-    /*DirectedGraph *graph = directedGraphInitialization(freeItem, comp);
-    char *item;
-
-    item = (char *) malloc(sizeof(char ) * (strlen("Mostafa") + 1));
-    strcpy(item, "Mostafa");
-    dirGraphAddNode(graph, item, strlen(item) + 1);
-
-    item = (char *) malloc(sizeof(char ) * (strlen("Mohammed") + 1));
-    strcpy(item, "Mohammed");
-    dirGraphAddNode(graph, item, strlen(item) + 1);
-
-    item = (char *) malloc(sizeof(char ) * (strlen("Tawfiq") + 1));
-    strcpy(item, "Tawfiq");
-    dirGraphAddNode(graph, item, strlen(item) + 1);
-
-
-    dirGraphAddEdge(graph, "Mostafa", strlen("Mostafa") + 1, "Mohammed", strlen("Mohammed") + 1);
-    dirGraphAddEdge(graph, "Mohammed", strlen("Mohammed") + 1, "Tawfiq", strlen("Tawfiq") + 1);
-    dirGraphAddEdge(graph, "Tawfiq", strlen("Tawfiq") + 1, "Mostafa", strlen("Mostafa") + 1);
-
-    //Mostafa --> Mohammed --> Tawfiq
-    //Mostafa ---------------> Tawfiq
-
-    printf("%d\n\n", dirGraphHasACycle(graph));
-    ArrayList *arrayList = dirGraphTopologicalSort(graph);
-    for (int i = 0; i < arrayListGetLength(arrayList); i++)
-        printf("%s\n", (char *) arrayListGet(arrayList, i));
-
-     */
     return 0;
 
 }

@@ -2,7 +2,6 @@
 #include "../../../System/Utils.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <limits.h>
 
 
@@ -11,9 +10,9 @@ int hashSetCalBPrime(int length);
 
 int hashSetGetNextPrime(int num);
 
-unsigned int hashSetFHashCal(unsigned int address, unsigned int sizeOfKey, unsigned int length);
+unsigned int hashSetFHashCal(int (*hashFun)(const void *), void *key, unsigned int length);
 
-unsigned int hashSetSHashCal(unsigned int address, unsigned int sizeOfKey, unsigned int bPrime);
+unsigned int hashSetSHashCal(int (*hashFun)(const void *), void *key, unsigned int bPrime);
 
 unsigned int hashSetCalIndex(unsigned int fHash, unsigned int sHash, unsigned int index, unsigned int length);
 
@@ -26,12 +25,14 @@ unsigned int hashSetCalIndex(unsigned int fHash, unsigned int sHash, unsigned in
  * then it will return a new hash set address.
  * @param freeItem the freeing item function address, that will be called to free the hash set items
  * @param itemComp the comparing item function address, that will be called to compare two items.
+ * @param hashFun the hashing function that will return a unique integer representing the hash set item
  * @return it will return a new hash set pointer
  */
 
 HashSet *hashSetInitialization(
         void (*freeItem)(void *),
-        int (*itemComp)(const void *, const void *)
+        int (*itemComp)(const void *, const void *),
+        int (*hashFun)(const void *)
         ) {
 
     if (freeItem == NULL) {
@@ -50,6 +51,13 @@ HashSet *hashSetInitialization(
      		exit(INVALID_ARG);
      	#endif
 
+    } else if (hashFun == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "hash function pointer", "hash set data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+            exit(INVALID_ARG);
+        #endif
     }
 
     HashSet *hashSet = (HashSet *) malloc(sizeof(HashSet));
@@ -81,6 +89,7 @@ HashSet *hashSetInitialization(
 
     hashSet->itemComp = itemComp;
     hashSet->freeItem = freeItem;
+    hashSet->hashFun = hashFun;
 
     return hashSet;
 
@@ -94,15 +103,14 @@ HashSet *hashSetInitialization(
 
 
 
-/** This function will take the hash set address, the new item address, and the size of the item as a parameters,
+/** This function will take the hash set address, and the new item address as a parameters,
  * then it will insert the provided item into the hash set.
  * Note: the hash set will hold the provided item address (it will not copy the item data into the hash set).
  * @param hashSet the hash set address
  * @param item the new item address
- * @param sizeOfItem the size of the new item in bytes
  */
 
-void hashSetInsert(HashSet *hashSet, void *item, int sizeOfItem) {
+void hashSetInsert(HashSet *hashSet, void *item) {
 
     if (hashSet == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
@@ -142,9 +150,8 @@ void hashSetInsert(HashSet *hashSet, void *item, int sizeOfItem) {
     }
 
 
-    unsigned int
-            fHash = hashSetFHashCal( (unsigned int) item, sizeOfItem, hashSet->length)
-    , sHash = hashSetSHashCal( (unsigned int) item, sizeOfItem, hashSet->bPrime);
+    unsigned int fHash = hashSetFHashCal( hashSet->hashFun, item, hashSet->length),
+    sHash = hashSetSHashCal( hashSet->hashFun, item, hashSet->bPrime);
 
     unsigned int pHashIndex = 1;
     unsigned int index = hashSetCalIndex(fHash, sHash, pHashIndex, hashSet->length);
@@ -175,16 +182,15 @@ void hashSetInsert(HashSet *hashSet, void *item, int sizeOfItem) {
 
 
 
-/** This function will take the hash set address, the item address, and the size of the item as a parameters,
+/** This function will take the hash set address, and the item address as a parameters,
  * then it will delete and free the provided item from the hash set.
  * Note: if the item was found in the hash set, then the function will free the item in the hash set,
  * without freeing the provided one in the parameters.
  * @param hashSet the hash set address
  * @param item the item address that hash the same data as the item that will be deleted
- * @param sizeOfItem the size of provided item in bytes
  */
 
-void hashSetDelete(HashSet *hashSet, void *item, int sizeOfItem) {
+void hashSetDelete(HashSet *hashSet, void *item) {
     if (hashSet == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
         #ifdef CU_TEST_H
@@ -203,9 +209,8 @@ void hashSetDelete(HashSet *hashSet, void *item, int sizeOfItem) {
 
     }
 
-    unsigned int
-            fHash = hashSetFHashCal( (unsigned int) item, sizeOfItem, hashSet->length)
-    , sHash = hashSetSHashCal( (unsigned int) item, sizeOfItem, hashSet->bPrime);
+    unsigned int fHash = hashSetFHashCal( hashSet->hashFun, item, hashSet->length),
+    sHash = hashSetSHashCal( hashSet->hashFun, item, hashSet->bPrime);
 
     unsigned int pHashIndex = 1;
     unsigned int index = hashSetCalIndex(fHash, sHash, pHashIndex, hashSet->length);
@@ -235,16 +240,15 @@ void hashSetDelete(HashSet *hashSet, void *item, int sizeOfItem) {
 
 
 
-/** This function will take the hash set address, the item address, and the size of the item as a parameters,
+/** This function will take the hash set address, and the item address, as a parameters,
  * then it will delete the provided item from the hash set without freeing it.
  * Note: the function will not free the passed item.
  * @param hashSet the hash set address
  * @param item the item address that hash the same data as the item that will be deleted
- * @param sizeOfItem the size of provided item in bytes
  * @return it will return the deleted item pointer if found, other wise it will return NULL
  */
 
-void *hashSetDeleteWtoFr(HashSet *hashSet, void *item, int sizeOfItem) {
+void *hashSetDeleteWtoFr(HashSet *hashSet, void *item) {
     if (hashSet == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
         #ifdef CU_TEST_H
@@ -263,9 +267,8 @@ void *hashSetDeleteWtoFr(HashSet *hashSet, void *item, int sizeOfItem) {
 
     }
 
-    unsigned int
-            fHash = hashSetFHashCal( (unsigned int) item, sizeOfItem, hashSet->length)
-    , sHash = hashSetSHashCal( (unsigned int) item, sizeOfItem, hashSet->bPrime);
+    unsigned int fHash = hashSetFHashCal( hashSet->hashFun, item, hashSet->length),
+    sHash = hashSetSHashCal( hashSet->hashFun, item, hashSet->bPrime);
 
     unsigned int pHashIndex = 1;
     unsigned int index = hashSetCalIndex(fHash, sHash, pHashIndex, hashSet->length);
@@ -300,17 +303,16 @@ void *hashSetDeleteWtoFr(HashSet *hashSet, void *item, int sizeOfItem) {
 
 
 
-/** This function will take the hash set address, the item address, and the size of the item as a parameters,
+/** This function will take the hash set address, and the item address, as a parameters,
  * then it will return one (1) if the provided item is in the hash set,
  * other wise it will return zero (0).
  * Note: the function will not free the passed item
  * @param hashSet the hash set address
  * @param item the item address that has the same data as the one that you are searching for.
- * @param sizeOfItem the size of the provided item
  * @return it will return one if the provided item is in the hash set, other wise it will return zero
  */
 
-int hashSetContains(HashSet *hashSet, void *item, int sizeOfItem) {
+int hashSetContains(HashSet *hashSet, void *item) {
     if (hashSet == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
         #ifdef CU_TEST_H
@@ -329,9 +331,8 @@ int hashSetContains(HashSet *hashSet, void *item, int sizeOfItem) {
 
     }
 
-    unsigned int
-            fHash = hashSetFHashCal( (unsigned int) item, sizeOfItem, hashSet->length)
-    , sHash = hashSetSHashCal( (unsigned int) item, sizeOfItem, hashSet->bPrime);
+    unsigned int fHash = hashSetFHashCal( hashSet->hashFun, item, hashSet->length),
+    sHash = hashSetSHashCal( hashSet->hashFun, item, hashSet->bPrime);
 
     unsigned int pHashIndex = 1;
     unsigned int index = hashSetCalIndex(fHash, sHash, pHashIndex, hashSet->length);
@@ -518,21 +519,17 @@ void destroyHashSet(HashSet *hashSet) {
 
 
 
-/** This function will take the key address as an integer, the size of the key and the length of the hash set,
-    as a parameters, then it will return the first hash of this key.
+/** This function will take the hash function pointer, the key pointer, and the hash set array length as a parameters,
+ * then it will return the first hash of this key.
  * Note: this function should only be called from the hash set functions.
- * @param address the address of the item presented as an unsigned integer number
- * @param sizeOfKey the size of the hash set items
+ * @param hashFun the hash function pointer
+ * @param key the key pointer
  * @param length the length of the hash set array
  * @return it will return the first hashed key
  */
 
-unsigned int hashSetFHashCal(unsigned int address, unsigned int sizeOfKey, unsigned int length) {
-    unsigned int *key = (int *) calloc(sizeof(int), 1);
-    memcpy(key, (void *) address, sizeOfKey > 4 ? 4 : sizeOfKey);
-    unsigned int hash = (*key % length);
-    free(key);
-    return hash;
+unsigned int hashSetFHashCal(int (*hashFun)(const void *), void *key, unsigned int length) {
+    return (hashFun(key) % length);
 }
 
 
@@ -542,22 +539,17 @@ unsigned int hashSetFHashCal(unsigned int address, unsigned int sizeOfKey, unsig
 
 
 
-/** This function will take the key address as an integer, the size of the key and the biggest prime number,
-    that smaller than the map array length as a parameters, then it will return the second hash of this key.
- * Note: this function should only be called from the hash map functions.
- * @param address
- * @param sizeOfKey
- * @param length
- * @return
+/** This function will take the hash function pointer, the key address, and the biggest prime number,
+ * that smaller than the set array length as a parameters, then it will return the second hash of this key.
+ * Note: this function should only be called from the hash set functions.
+ * @param hashFun the hash function pointer
+ * @param key the key pointer
+ * @param bPrime the biggest prime number, that smaller than the set array length
+ * @return it will return the second hashed key
  */
 
-unsigned int hashSetSHashCal(unsigned int address, unsigned int sizeOfKey, unsigned int bPrime) {
-    unsigned int *key = (int *) calloc(sizeof(int), 1);
-    memcpy(key, (void *) address, sizeOfKey > 4 ? 4 : sizeOfKey);
-    unsigned int hash = (bPrime - (*key % bPrime));
-    free(key);
-    return hash;
-
+unsigned int hashSetSHashCal(int (*hashFun)(const void *), void *key, unsigned int bPrime) {
+    return (bPrime - (hashFun(key) % bPrime));
 }
 
 
