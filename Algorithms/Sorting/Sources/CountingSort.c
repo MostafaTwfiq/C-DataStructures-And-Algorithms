@@ -50,6 +50,18 @@ unsigned int *generateIntPointerCountSort(unsigned int *num) {
 }
 
 
+/** This function will take an integer pointer as a parameter,
+ * then it will return the value of the integer.
+ * Note: this function will be useful to use in the hash map data structure.
+ * @param item the integer pointer
+ * @return it will return the value of the integer as the unique hash key
+ */
+
+int intHashFunCountSort(const void *item) {
+    return *(int *)item;
+}
+
+
 
 
 
@@ -128,27 +140,27 @@ void countingSortH(unsigned int *arr, int length, unsigned int rangeStart, unsig
         exit(INVALID_ARG);
     }
 
-    HashMap *countingMap = hashMapInitialization(intFreeFunCountSort, intFreeFunCountSort, intCmpCountSort);
+    HashMap *countingMap = hashMapInitialization(intFreeFunCountSort, intFreeFunCountSort, intCmpCountSort, intHashFunCountSort);
 
     for (int i = 0; i < length; i++) {
         unsigned int *newNumPointer = generateIntPointerCountSort(arr + i);
 
-        if (!hashMapContains(countingMap, newNumPointer, sizeof(unsigned int))) {
+        if (!hashMapContains(countingMap, newNumPointer)) {
             unsigned int initialCount = 1;
             unsigned int *countPointer = generateIntPointerCountSort(&initialCount);
-            hashMapInsert(countingMap, newNumPointer, sizeof(unsigned int), countPointer);
+            hashMapInsert(countingMap, newNumPointer, countPointer);
         } else {
-            unsigned int *currentCount = hashMapGet(countingMap, newNumPointer, sizeof(unsigned int));
+            unsigned int *currentCount = hashMapGet(countingMap, newNumPointer);
             *currentCount += 1;
             unsigned int *newCount = generateIntPointerCountSort(currentCount);
-            hashMapInsert(countingMap, newNumPointer, sizeof(unsigned int), newCount);
+            hashMapInsert(countingMap, newNumPointer, newCount);
         }
 
     }
 
     for (unsigned int i = rangeStart, index = 0; i <= rangeEnd; i++) {
 
-        unsigned int *currentCount = (unsigned int *) hashMapGet(countingMap, &i, sizeof(unsigned int));
+        unsigned int *currentCount = (unsigned int *) hashMapGet(countingMap, &i);
 
         while (currentCount != NULL && *currentCount > 0) {
             arr[index++] = i;

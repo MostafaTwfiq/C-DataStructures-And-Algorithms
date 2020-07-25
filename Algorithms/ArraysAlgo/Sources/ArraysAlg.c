@@ -103,6 +103,7 @@ void reverseArray(void *arr, int length, int elemSize) {
 
 /** This function will take an array then,
  * it will return a pointer to the most frequent value in the array.
+ * Note: because the function uses hash map, you need to pass the hashing function.
  * Note: the function will return null if the array are empty.
  * Note: if there is more than one value that has the same frequent, then the function only will return one of them,
  * without knowing which one << it depends on the hashing function in the hash map >>.
@@ -114,10 +115,11 @@ void reverseArray(void *arr, int length, int elemSize) {
  * @param length the length of the array
  * @param elemSize the array elements size in bytes
  * @param cmp the elements comparator function pointer
+ * @param hashFun the hashing function that will return a unique integer representing the hash map key
  * @return it will return the most frequent value in the array, or it will return NULL if the array are empty
  */
 
-void *mostFrequentArrValue(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *)) {
+void *mostFrequentArrValue(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *), int (*hashFun)(const void *)) {
     if (arr == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "most frequent value algorithm");
         exit(NULL_POINTER);
@@ -130,18 +132,21 @@ void *mostFrequentArrValue(void *arr, int length, int elemSize, int (*cmp)(const
     } else if (elemSize <= 0) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "most frequent value algorithm");
         exit(INVALID_ARG);
+    } else if (hashFun == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "hash function pointer", "most frequent value algorithm");
+        exit(INVALID_ARG);
     }
 
-    HashMap *countingMap = hashMapInitialization(nullFreeFunArrAlg, intFreeFunArrAlg, cmp);
+    HashMap *countingMap = hashMapInitialization(nullFreeFunArrAlg, intFreeFunArrAlg, cmp, hashFun);
     unsigned int oneValue = 1;
 
     for (int i = 0; i < length; i++) {
 
         void *currentItem = arr + i * elemSize;
-        int *currentFreq = (int *) hashMapGet(countingMap, currentItem, elemSize);
+        int *currentFreq = (int *) hashMapGet(countingMap, currentItem);
 
         if (currentFreq == NULL)
-            hashMapInsert(countingMap, currentItem, elemSize, generateIntPointerArrAlg(&oneValue));
+            hashMapInsert(countingMap, currentItem, generateIntPointerArrAlg(&oneValue));
         else
             *currentFreq += 1;
 
@@ -159,7 +164,7 @@ void *mostFrequentArrValue(void *arr, int length, int elemSize, int (*cmp)(const
             mostFreq = *(int *)mapEntries[i]->item;
         }
 
-        hashMapDelete(countingMap, mapEntries[i]->key, elemSize);
+        hashMapDelete(countingMap, mapEntries[i]->key);
 
     }
 

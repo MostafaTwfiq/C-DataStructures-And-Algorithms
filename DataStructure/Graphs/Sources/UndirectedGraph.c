@@ -154,12 +154,14 @@ int UDGraphNodeComp(const void *n1, const void *n2) {
 
 /** This function will initialize a new undirected graph in the memory,
  * then return it.
+ * Note: because the graph is implemented by hash map, you need to pass the hashing function.
  * @param freeFun the values freeing function pointer
  * @param compFun the values comparing function pointer
+ * @param hashFun the hashing function that will return a unique integer representing the hash map key
  * @return it will return the new initialized graph pointer
  */
 
-UndirectedGraph *undirectedGraphInitialization(void (*freeFun)(void *), int (*compFun)(const void*, const void*)) {
+UndirectedGraph *undirectedGraphInitialization(void (*freeFun)(void *), int (*compFun)(const void*, const void*), int (*hashFun)(const void *)) {
 
     if (freeFun == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "freeing function pointer", "undirected graph data structure");
@@ -177,6 +179,13 @@ UndirectedGraph *undirectedGraphInitialization(void (*freeFun)(void *), int (*co
      		exit(INVALID_ARG);
      	#endif
 
+    } else if (compFun == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "hash function pointer", "undirected graph data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+            exit(INVALID_ARG);
+        #endif
     }
 
     UndirectedGraph *graph = (UndirectedGraph *) malloc(sizeof(UndirectedGraph));
@@ -190,7 +199,7 @@ UndirectedGraph *undirectedGraphInitialization(void (*freeFun)(void *), int (*co
 
     }
 
-    graph->nodes = hashMapInitialization(freeFun, UDGraphNodeFreeFun, compFun);
+    graph->nodes = hashMapInitialization(freeFun, UDGraphNodeFreeFun, compFun, hashFun);
     graph->freeFun = freeFun;
     graph->compFun = compFun;
 
@@ -210,10 +219,9 @@ UndirectedGraph *undirectedGraphInitialization(void (*freeFun)(void *), int (*co
  * Note: if the node is already exist in the graph, then the function will free the passed value
  * @param graph the graph pointer
  * @param value the new value pointer
- * @param sizeOfValue the size of the new value
  */
 
-void UDGraphAddNode(UndirectedGraph *graph, void *value, int sizeOfValue) {
+void UDGraphAddNode(UndirectedGraph *graph, void *value) {
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "undirected graph data structure");
         #ifdef CU_TEST_H
@@ -232,7 +240,7 @@ void UDGraphAddNode(UndirectedGraph *graph, void *value, int sizeOfValue) {
 
     }
 
-    if (hashMapContains(graph->nodes, value, sizeOfValue)) {
+    if (hashMapContains(graph->nodes, value)) {
         graph->freeFun(value);
         return;
     }
@@ -253,7 +261,7 @@ void UDGraphAddNode(UndirectedGraph *graph, void *value, int sizeOfValue) {
     newNode->compFun = graph->compFun;
     newNode->adjacentNodes = arrayListInitialization(5, UDGraphEdgeFreeFun, UDGraphEdgeComp);
 
-    hashMapInsert(graph->nodes, value, sizeOfValue, newNode);
+    hashMapInsert(graph->nodes, value, newNode);
 
 }
 
@@ -270,13 +278,11 @@ void UDGraphAddNode(UndirectedGraph *graph, void *value, int sizeOfValue) {
  * Note: the function will note free the passed values.
  * @param graph the graph pointer
  * @param fValue the first value pointer
- * @param fSize the size of the first value in bytes
  * @param sValue the second value pointer
- * @param sSize the size of the second value in bytes
  * @param edgeWeight the weight of the new edge
  */
 
-void UDGraphAddEdge(UndirectedGraph *graph, void *fValue, int fSize, void *sValue, int sSize, int edgeWeight) {
+void UDGraphAddEdge(UndirectedGraph *graph, void *fValue, void *sValue, int edgeWeight) {
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "undirected graph data structure");
         #ifdef CU_TEST_H
@@ -303,8 +309,8 @@ void UDGraphAddEdge(UndirectedGraph *graph, void *fValue, int fSize, void *sValu
 
     }
 
-    UDGraphNode *fNode = hashMapGet(graph->nodes, fValue, fSize);
-    UDGraphNode *sNode = hashMapGet(graph->nodes, sValue, sSize);
+    UDGraphNode *fNode = hashMapGet(graph->nodes, fValue);
+    UDGraphNode *sNode = hashMapGet(graph->nodes, sValue);
     if (fNode == NULL || sNode == NULL)
         return;
 
@@ -356,10 +362,9 @@ void UDGraphAddEdge(UndirectedGraph *graph, void *fValue, int fSize, void *sValu
  * Note: the function will not free the passed value.
  * @param graph the graph pointer
  * @param value the value pointer
- * @param sizeOfValue the size of the passed value in bytes
  */
 
-void UDGraphRemoveNode(UndirectedGraph *graph, void *value, int sizeOfValue) {
+void UDGraphRemoveNode(UndirectedGraph *graph, void *value) {
 
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "undirected graph data structure");
@@ -379,7 +384,7 @@ void UDGraphRemoveNode(UndirectedGraph *graph, void *value, int sizeOfValue) {
 
     }
 
-    UDGraphNode *node = hashMapGet(graph->nodes, value, sizeOfValue);
+    UDGraphNode *node = hashMapGet(graph->nodes, value);
 
     if (node == NULL)
         return;
@@ -394,7 +399,7 @@ void UDGraphRemoveNode(UndirectedGraph *graph, void *value, int sizeOfValue) {
     }
 
     free(tempNodeEdge);
-    hashMapDelete(graph->nodes, value, sizeOfValue);
+    hashMapDelete(graph->nodes, value);
 
 }
 
@@ -411,10 +416,9 @@ void UDGraphRemoveNode(UndirectedGraph *graph, void *value, int sizeOfValue) {
  * Note: the function will not free the passed value.
  * @param graph the graph pointer
  * @param value the value pointer
- * @param sizeOfValue the size of the passed value in bytes
  */
 
-void *UDGraphRemoveNodeWtoFr(UndirectedGraph *graph, void *value, int sizeOfValue) {
+void *UDGraphRemoveNodeWtoFr(UndirectedGraph *graph, void *value) {
 
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "undirected graph data structure");
@@ -434,7 +438,7 @@ void *UDGraphRemoveNodeWtoFr(UndirectedGraph *graph, void *value, int sizeOfValu
 
     }
 
-    UDGraphNode *node = hashMapGet(graph->nodes, value, sizeOfValue);
+    UDGraphNode *node = hashMapGet(graph->nodes, value);
 
     if (node == NULL)
         return NULL;
@@ -449,7 +453,7 @@ void *UDGraphRemoveNodeWtoFr(UndirectedGraph *graph, void *value, int sizeOfValu
     }
 
     free(tempNodeEdge);
-    hashMapDeleteWtoFrAll(graph->nodes, value, sizeOfValue);
+    hashMapDeleteWtoFrAll(graph->nodes, value);
     void *returnValue = node->value;
     UDGraphNodeFreeFun(node);
 
@@ -470,12 +474,10 @@ void *UDGraphRemoveNodeWtoFr(UndirectedGraph *graph, void *value, int sizeOfValu
  * Note: the function will not free the passed values.
  * @param graph the graph pointer
  * @param fValue the fist value pointer
- * @param fSize the size of the first value in bytes
  * @param sValue the second value pointer
- * @param sSize the size of the second value in butes
  */
 
-void UDGraphRemoveEdge(UndirectedGraph *graph, void *fValue, int fSize, void *sValue, int sSize) {
+void UDGraphRemoveEdge(UndirectedGraph *graph, void *fValue, void *sValue) {
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "undirected graph data structure");
         #ifdef CU_TEST_H
@@ -502,8 +504,8 @@ void UDGraphRemoveEdge(UndirectedGraph *graph, void *fValue, int fSize, void *sV
 
     }
 
-    UDGraphNode *fNode = hashMapGet(graph->nodes, fValue, fSize);
-    UDGraphNode *sNode = hashMapGet(graph->nodes, sValue, sSize);
+    UDGraphNode *fNode = hashMapGet(graph->nodes, fValue);
+    UDGraphNode *sNode = hashMapGet(graph->nodes, sValue);
     if (fNode == NULL || sNode == NULL)
         return;
 
@@ -541,11 +543,10 @@ void UDGraphRemoveEdge(UndirectedGraph *graph, void *fValue, int fSize, void *sV
  * Note: the function will not free the passed value.
  * @param graph the graph pointer
  * @param value the value pointer
- * @param sizeOfValue the size of the passed value in bytes
- * @return it will return one if the value exists in the graph, ohter wise it will return zero
+ * @return it will return one if the value exists in the graph, other wise it will return zero
  */
 
-int UDGraphContainsNode(UndirectedGraph *graph, void *value, int sizeOfValue) {
+int UDGraphContainsNode(UndirectedGraph *graph, void *value) {
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "undirected graph data structure");
         #ifdef CU_TEST_H
@@ -564,7 +565,7 @@ int UDGraphContainsNode(UndirectedGraph *graph, void *value, int sizeOfValue) {
 
     }
 
-    return hashMapContains(graph->nodes, value, sizeOfValue);
+    return hashMapContains(graph->nodes, value);
 
 }
 
@@ -581,13 +582,11 @@ int UDGraphContainsNode(UndirectedGraph *graph, void *value, int sizeOfValue) {
  * Note: the function will not free the passed values.
  * @param graph the graph pointer
  * @param fValue the first value pointer
- * @param fSize the first value size in bytes
  * @param sValue the second value pointer
- * @param sSize the second value size in bytes
- * @return it will return one if the edge exist, other wise it wil lreturn zero
+ * @return it will return one if the edge exist, other wise it will return zero
  */
 
-int UDGraphContainsEdge(UndirectedGraph *graph, void *fValue, int fSize, void *sValue, int sSize) {
+int UDGraphContainsEdge(UndirectedGraph *graph, void *fValue, void *sValue) {
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "undirected graph data structure");
         #ifdef CU_TEST_H
@@ -614,8 +613,8 @@ int UDGraphContainsEdge(UndirectedGraph *graph, void *fValue, int fSize, void *s
 
     }
 
-    UDGraphNode *fNode = hashMapGet(graph->nodes, fValue, fSize);
-    UDGraphNode *sNode = hashMapGet(graph->nodes, sValue, sSize);
+    UDGraphNode *fNode = hashMapGet(graph->nodes, fValue);
+    UDGraphNode *sNode = hashMapGet(graph->nodes, sValue);
     if (fNode == NULL || sNode == NULL)
         return 0;
 
@@ -854,11 +853,10 @@ int intHashFunUDirG(const void *item) {
  * Note: actually you can do more than printing values, the printing function will take the value as a parameter.
  * @param graph the graph address
  * @param startVal the start node value address
- * @param the start value size in bytes
  * @param printVal the printing function address, that will be called to print the value
  */
 
-void UDGraphDepthFirstTraversal(UndirectedGraph *graph, void *startVal, int sizeOfValue, void (*printFun)(void *)) {
+void UDGraphDepthFirstTraversal(UndirectedGraph *graph, void *startVal, void (*printFun)(void *)) {
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "undirected graph data structure");
         #ifdef CU_TEST_H
@@ -885,7 +883,7 @@ void UDGraphDepthFirstTraversal(UndirectedGraph *graph, void *startVal, int size
 
     }
 
-    UDGraphNode *startNode = hashMapGet(graph->nodes, startVal, sizeOfValue);
+    UDGraphNode *startNode = hashMapGet(graph->nodes, startVal);
     Stack *nodesStack = stackInitialization(UDGraphNodeFreeFun);
     HashSet *visitedNodes = hashSetInitialization(UDGFreeInt, UDGCompInt, intHashFunUDirG);
 
@@ -933,11 +931,10 @@ void UDGraphDepthFirstTraversal(UndirectedGraph *graph, void *startVal, int size
  * Note: actually you can do more than printing values, the printing function will take the value as a parameter.
  * @param graph the graph address
  * @param startVal the start node value address
- * @param the start value size in bytes
  * @param printVal the printing function address, that will be called to print the value
  */
 
-void UDGraphBreadthFirstTraversal(UndirectedGraph *graph, void *startVal, int sizeOfValue, void (*printFun)(void *)) {
+void UDGraphBreadthFirstTraversal(UndirectedGraph *graph, void *startVal, void (*printFun)(void *)) {
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "undirected graph data structure");
         #ifdef CU_TEST_H
@@ -964,7 +961,7 @@ void UDGraphBreadthFirstTraversal(UndirectedGraph *graph, void *startVal, int si
 
     }
 
-    UDGraphNode *startNode = hashMapGet(graph->nodes, startVal, sizeOfValue);
+    UDGraphNode *startNode = hashMapGet(graph->nodes, startVal);
     ArrayQueue *nodesQueue = arrayQueueInitialization(UDGraphNodeFreeFun);
     HashSet *visitedNodes = hashSetInitialization(UDGFreeInt, UDGCompInt, intHashFunUDirG);
 
@@ -1145,13 +1142,11 @@ void updateDisHolder(DistanceHolder *holder, UDGraphNode *fromNode, UDGraphNode 
  * Note: the function will note free the passed values.
  * @param graph the graph pointer
  * @param startVal the start value pointer
- * @param sizeOfStartVal the size of the start value in bytes
  * @param endVal the end value pointer
- * @param sizeOfEndVal the size of the end value in bytes
  * @return it will return the shortest distance between the two nodes if found, other wise it will return -1
  */
 
-int UDGraphGetShortestDistance(UndirectedGraph *graph, void *startVal, int sizeOfStartVal, void *endVal, int sizeOfEndVal) {
+int UDGraphGetShortestDistance(UndirectedGraph *graph, void *startVal, void *endVal) {
 
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "undirected graph data structure");
@@ -1179,15 +1174,15 @@ int UDGraphGetShortestDistance(UndirectedGraph *graph, void *startVal, int sizeO
 
     }
 
-    UDGraphNode *startNode = hashMapGet(graph->nodes, startVal, sizeOfStartVal);
-    UDGraphNode *endNode = hashMapGet(graph->nodes, endVal, sizeOfEndVal);
+    UDGraphNode *startNode = hashMapGet(graph->nodes, startVal);
+    UDGraphNode *endNode = hashMapGet(graph->nodes, endVal);
     if (startNode == NULL || endNode == NULL)
         return -1;
 
     HashMap *distancesMap = UDGraphGenerateDistancesMap(startNode);
 
     int endValAddress = (int) endNode->value;
-    DistanceHolder *holder = hashMapGet(distancesMap, &endValAddress, sizeof(int));
+    DistanceHolder *holder = hashMapGet(distancesMap, &endValAddress);
     int ans = holder != NULL ? holder->distance : -1;
 
     destroyHashMap(distancesMap);
@@ -1210,13 +1205,11 @@ int UDGraphGetShortestDistance(UndirectedGraph *graph, void *startVal, int sizeO
  * Note: the function will not free the passed values.
  * @param graph the graph pointer
  * @param startVal the start value pointer
- * @param sizeOfStartVal the size of the start value in bytes
  * @param endVal the end value pointer
- * @param sizeOfEndVal the size of the end value in bytes
  * @return it will return an array list that consist of the values of the shortest path
  */
 
-ArrayList *UDGraphGetShortestPath(UndirectedGraph *graph, void *startVal, int sizeOfStartVal, void *endVal, int sizeOfEndVal) {
+ArrayList *UDGraphGetShortestPath(UndirectedGraph *graph, void *startVal, void *endVal) {
 
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "undirected graph data structure");
@@ -1244,15 +1237,15 @@ ArrayList *UDGraphGetShortestPath(UndirectedGraph *graph, void *startVal, int si
 
     }
 
-    UDGraphNode *startNode = hashMapGet(graph->nodes, startVal, sizeOfStartVal);
-    UDGraphNode *endNode = hashMapGet(graph->nodes, endVal, sizeOfEndVal);
+    UDGraphNode *startNode = hashMapGet(graph->nodes, startVal);
+    UDGraphNode *endNode = hashMapGet(graph->nodes, endVal);
     if (startNode == NULL || endNode == NULL)
         return NULL;
 
     HashMap *distancesMap = UDGraphGenerateDistancesMap(startNode);
 
     int endValAddress = (int) endNode->value;
-    if (!hashMapContains(distancesMap, &endValAddress, sizeof(int))) {
+    if (!hashMapContains(distancesMap, &endValAddress)) {
         destroyHashMap(distancesMap);
         return NULL;
     }
@@ -1265,7 +1258,7 @@ ArrayList *UDGraphGetShortestPath(UndirectedGraph *graph, void *startVal, int si
     DistanceHolder *tempHolder;
 
     do {
-        tempHolder = hashMapGet(distancesMap, &currentValAddress, sizeof(int));
+        tempHolder = hashMapGet(distancesMap, &currentValAddress);
         tempNode = tempHolder->fromNode;
         currentValAddress = (int) tempNode->value;
         pushStack(pathStack, tempHolder->toNode->value);
@@ -1331,13 +1324,13 @@ HashMap *UDGraphGenerateDistancesMap(UDGraphNode *startNode) {
     HashSet *visitedNodes = hashSetInitialization(UDGFreeInt, UDGCompInt, intHashFunUDirG);
 
     // This hash map will hold the shortest distance to all the nodes
-    HashMap *distancesMap = hashMapInitialization(UDGFreeInt, distanceHolderFreeFun, UDGCompInt);
+    HashMap *distancesMap = hashMapInitialization(UDGFreeInt, distanceHolderFreeFun, UDGCompInt, intHashFunUDirG);
 
 
     DistanceHolder *startNodeHolder = generateDisHolder(startNode, startNode, 0);
     pQueueEnqueue(distanceHolderPQueue, startNodeHolder);
     hashSetInsert(visitingNodes, generateNodeValAddress(startNode));
-    hashMapInsert(distancesMap, generateNodeValAddress(startNode), sizeof(int), startNodeHolder);
+    hashMapInsert(distancesMap, generateNodeValAddress(startNode), startNodeHolder);
 
     while (!pQueueIsEmpty(distanceHolderPQueue)) {
         DistanceHolder *currentHolder = pQueueDequeue(distanceHolderPQueue);
@@ -1349,7 +1342,7 @@ HashMap *UDGraphGenerateDistancesMap(UDGraphNode *startNode) {
             int *childNodeValAddress = generateNodeValAddress(edge->node);
 
             if (!hashSetContains(visitedNodes, childNodeValAddress)) {
-                DistanceHolder *holder = hashMapGet(distancesMap, childNodeValAddress, sizeof(int));
+                DistanceHolder *holder = hashMapGet(distancesMap, childNodeValAddress);
 
                 if (holder != NULL) {
                     if (currentHolder->distance + edge->weight < holder->distance) {
@@ -1359,7 +1352,7 @@ HashMap *UDGraphGenerateDistancesMap(UDGraphNode *startNode) {
                     }
                 } else {
                     holder = generateDisHolder(currentNode, edge->node, edge->weight + currentHolder->distance);//(DistanceHolder *) malloc(sizeof(DistanceHolder));
-                    hashMapInsert(distancesMap, generateNodeValAddress(edge->node), sizeof(int), holder);
+                    hashMapInsert(distancesMap, generateNodeValAddress(edge->node), holder);
                 }
 
                 if (!hashSetContains(visitingNodes, childNodeValAddress)) {
@@ -1399,11 +1392,10 @@ HashMap *UDGraphGenerateDistancesMap(UDGraphNode *startNode) {
  * Note: the function will not free the passed value.
  * @param graph the graph pointer
  * @param startVal the start node value pointer
- * @param sizeOfStartVal the size of the start node value in bytes
  * @return it will return one if the passed value is a part of a cycle, other wise it will return zero
  */
 
-int UDGraphNodePartOfCycle(UndirectedGraph *graph, void *startVal, int sizeOfStartVal) {
+int UDGraphNodePartOfCycle(UndirectedGraph *graph, void *startVal) {
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "undirected graph data structure");
         #ifdef CU_TEST_H
@@ -1422,7 +1414,7 @@ int UDGraphNodePartOfCycle(UndirectedGraph *graph, void *startVal, int sizeOfSta
 
     }
 
-    UDGraphNode *startNode = hashMapGet(graph->nodes, startVal, sizeOfStartVal);
+    UDGraphNode *startNode = hashMapGet(graph->nodes, startVal);
     if (startVal == NULL)
         return 0;
 
@@ -1563,18 +1555,17 @@ int edgeCompDis(const void *e1, const void *e2) {
  * >>> The function uses the Prim's algorithm <<<.
  * @param graph the graph pointer
  * @param startVal the start value pointer
- * @param valSizeGetter the getting size function pointer
- * @return
+ * @return it will return the minimum spanning graph pointer
  */
 
-UndirectedGraph *UDGraphMinimumSpanningGraph(UndirectedGraph *graph, void *startVal, int valSizeGetter(const void *)) {
+UndirectedGraph *UDGraphMinimumSpanningGraph(UndirectedGraph *graph, void *startVal) {
     if (graph == NULL) {
 
     }
 
-    UndirectedGraph *newGraph = undirectedGraphInitialization(graph->freeFun, graph->compFun);
+    UndirectedGraph *newGraph = undirectedGraphInitialization(graph->freeFun, graph->compFun, graph->nodes->hashFun);
 
-    UDGraphNode *startNode = hashMapGet(graph->nodes, startVal, valSizeGetter(startVal));
+    UDGraphNode *startNode = hashMapGet(graph->nodes, startVal);
     if (startNode == NULL)
         return newGraph;
 
@@ -1586,26 +1577,24 @@ UndirectedGraph *UDGraphMinimumSpanningGraph(UndirectedGraph *graph, void *start
         pQueueEnqueue(disHolderPQueue, holder);
     }
 
-    UDGraphAddNode(newGraph, startVal, valSizeGetter(startVal));
+    UDGraphAddNode(newGraph, startVal);
 
     while (!pQueueIsEmpty(disHolderPQueue)) {
         DistanceHolder *currentHolder = pQueueDequeue(disHolderPQueue);
 
-        if (UDGraphContainsNode(newGraph, currentHolder->toNode->value, valSizeGetter(currentHolder->toNode->value))) {
+        if (UDGraphContainsNode(newGraph, currentHolder->toNode->value)) {
             distanceHolderFreeFun(currentHolder);
             continue;
         }
 
-        UDGraphAddNode(newGraph, currentHolder->toNode->value, valSizeGetter(currentHolder->toNode->value));
+        UDGraphAddNode(newGraph, currentHolder->toNode->value);
 
-        UDGraphAddEdge(newGraph, currentHolder->fromNode->value, valSizeGetter(currentHolder->fromNode->value),
-                currentHolder->toNode->value, valSizeGetter(currentHolder->toNode->value),
-                currentHolder->distance);
+        UDGraphAddEdge(newGraph, currentHolder->fromNode->value, currentHolder->toNode->value, currentHolder->distance);
 
         for (int i = 0; i < arrayListGetLength(currentHolder->toNode->adjacentNodes); i++) {
             UDGraphEdge *edge = (UDGraphEdge *) arrayListGet(currentHolder->toNode->adjacentNodes, i);
 
-            if (!UDGraphContainsNode(newGraph, edge->node->value, valSizeGetter(edge->node->value))) {
+            if (!UDGraphContainsNode(newGraph, edge->node->value)) {
                 DistanceHolder *holder = generateDisHolder(currentHolder->toNode, edge->node, edge->weight);
                 pQueueEnqueue(disHolderPQueue, holder);
             }

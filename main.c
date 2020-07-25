@@ -66,26 +66,25 @@ int comparatorFun(const void *i1, const void *i2) {
 
 
 int intHashFun(const void *item) {
-    return **(int **)item;
+    return *(int *)item;
+}
+
+
+int stringHashFun(const void *item) {
+    char *string = (char *) item;
+    int counter = 0;
+    for (int i = 0; i < strlen(string); i++)
+        counter += string[i];
+
+    return counter;
+
+}
+
+int stringCmp(const void *s1, const void *s2) {
+    return strcmp(s1, s2);
 }
 
 int main() {
-
-    HashSet *hashSet = hashSetInitialization(freeItem, comparatorFun, intHashFun);
-    int **item;
-
-    item = (int **) malloc(sizeof(int **));
-    *item = (int *) malloc(sizeof(int));
-    **item = 10;
-    hashSetInsert(hashSet, item);
-
-    item = (int **) malloc(sizeof(int **));
-    *item = (int *) malloc(sizeof(int));
-    **item = 10;
-    hashSetInsert(hashSet, item);
-
-    for (int i = 0; i < hashSetGetLength(hashSet); i++)
-        printf("%d\n\n", **(int **)hashSetToArray(hashSet)[i]);
 
     return 0;
 

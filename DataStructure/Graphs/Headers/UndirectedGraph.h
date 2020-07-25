@@ -21,21 +21,21 @@ typedef struct UndirectedGraph {
 
 
 
-UndirectedGraph *undirectedGraphInitialization(void (*freeFun)(void *), int (*compFun)(const void*, const void*));
+UndirectedGraph *undirectedGraphInitialization(void (*freeFun)(void *), int (*compFun)(const void*, const void*), int (*hashFun)(const void *));
 
-void UDGraphAddNode(UndirectedGraph *graph, void *value, int sizeOfValue);
+void UDGraphAddNode(UndirectedGraph *graph, void *value);
 
-void UDGraphAddEdge(UndirectedGraph *graph, void *fValue, int fSize, void *sValue, int sSize, int edgeWeight);
+void UDGraphAddEdge(UndirectedGraph *graph, void *fValue, void *sValue, int edgeWeight);
 
-void UDGraphRemoveNode(UndirectedGraph *graph, void *value, int sizeOfValue);
+void UDGraphRemoveNode(UndirectedGraph *graph, void *value);
 
-void *UDGraphRemoveNodeWtoFr(UndirectedGraph *graph, void *value, int sizeOfValue);
+void *UDGraphRemoveNodeWtoFr(UndirectedGraph *graph, void *value);
 
-void UDGraphRemoveEdge(UndirectedGraph *graph, void *fValue, int fSize, void *sValue, int sSize);
+void UDGraphRemoveEdge(UndirectedGraph *graph, void *fValue, void *sValue);
 
-int UDGraphContainsNode(UndirectedGraph *graph, void *value, int sizeOfValue);
+int UDGraphContainsNode(UndirectedGraph *graph, void *value);
 
-int UDGraphContainsEdge(UndirectedGraph *graph, void *fValue, int fSize, void *sValue, int sSize);
+int UDGraphContainsEdge(UndirectedGraph *graph, void *fValue, void *sValue);
 
 void printUDGraph(UndirectedGraph *graph, void (*printFun)(void *));
 
@@ -47,15 +47,15 @@ void clearUDGraph(UndirectedGraph *graph);
 
 void destroyUDGraph(UndirectedGraph *graph);
 
-int UDGraphGetShortestDistance(UndirectedGraph *graph, void *startVal, int sizeOfStartVal, void *endVal, int sizeOfEndVal);
+int UDGraphGetShortestDistance(UndirectedGraph *graph, void *startVal, void *endVal);
 
-struct ArrayList *UDGraphGetShortestPath(UndirectedGraph *graph, void *startVal, int sizeOfStartVal, void *endVal, int sizeOfEndVal);
+struct ArrayList *UDGraphGetShortestPath(UndirectedGraph *graph, void *startVal, void *endVal);
 
-int UDGraphNodePartOfCycle(UndirectedGraph *graph, void *startVal, int sizeOfStartVal);
+int UDGraphNodePartOfCycle(UndirectedGraph *graph, void *startVal);
 
 int UDGraphHasCycle(UndirectedGraph *graph);
 
-UndirectedGraph *UDGraphMinimumSpanningGraph(UndirectedGraph *graph, void *startVal, int valSizeGetter(const void *));
+UndirectedGraph *UDGraphMinimumSpanningGraph(UndirectedGraph *graph, void *startVal);
 
 #ifdef __cplusplus
 }

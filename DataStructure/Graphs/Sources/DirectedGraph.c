@@ -86,14 +86,17 @@ int dGraphNodeComp (const void *n1, const void *n2) {
 
 
 /** This function will initialize the directed graph then it will return a pointer to the graph address.
+ * Note: because the graph is implemented by hash map, you need to pass the hashing function.
  * @param freeValue the freeing value function address
  * @param valueComp the comparing values function address
+ * @param hashFun the hashing function that will return a unique integer representing the hash map key
  * @return it will return the initialized graph address
  */
 
 DirectedGraph *directedGraphInitialization(
         void (*freeValue)(void *),
-        int (*valueComp)(const void *, const void *)
+        int (*valueComp)(const void *, const void *),
+        int (*hashFun)(const void *)
         ) {
 
     if (freeValue == NULL) {
@@ -112,6 +115,13 @@ DirectedGraph *directedGraphInitialization(
      		exit(INVALID_ARG);
      	#endif
 
+    } else if (hashFun == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "hash function pointer", "directed graph data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+            exit(INVALID_ARG);
+        #endif
     }
 
     DirectedGraph *directedGraph = (DirectedGraph *) malloc(sizeof(DirectedGraph));
@@ -128,7 +138,7 @@ DirectedGraph *directedGraphInitialization(
     directedGraph->valueComp = valueComp;
     directedGraph->freeValue = freeValue;
 
-    directedGraph->nodes = hashMapInitialization(freeValue, freeDGraphNode, valueComp);
+    directedGraph->nodes = hashMapInitialization(freeValue, freeDGraphNode, valueComp, hashFun);
 
     return directedGraph;
 
@@ -146,10 +156,9 @@ DirectedGraph *directedGraphInitialization(
  * Note: if the value is already in the graph, then the graph will free the passed value immediately.
  * @param graph the graph address
  * @param value the new value address
- * @param sizeOfValue the size of the new value in bytes
  */
 
-void dirGraphAddNode(DirectedGraph *graph, void *value, int sizeOfValue) {
+void dirGraphAddNode(DirectedGraph *graph, void *value) {
 
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
@@ -170,7 +179,7 @@ void dirGraphAddNode(DirectedGraph *graph, void *value, int sizeOfValue) {
     }
 
 
-    if (hashMapContains(graph->nodes, value, sizeOfValue)) {
+    if (hashMapContains(graph->nodes, value)) {
         graph->freeValue(value);
         return;
     }
@@ -179,7 +188,7 @@ void dirGraphAddNode(DirectedGraph *graph, void *value, int sizeOfValue) {
     DirGraphNode *newNode = (DirGraphNode *) malloc(sizeof(DirGraphNode));
     newNode->value = value;
     newNode->adjacentNodes = arrayListInitialization(5, freeDGraphNode, dGraphNodeComp);
-    hashMapInsert(graph->nodes, value, sizeOfValue, newNode);
+    hashMapInsert(graph->nodes, value, newNode);
 
 }
 
@@ -195,10 +204,9 @@ void dirGraphAddNode(DirectedGraph *graph, void *value, int sizeOfValue) {
  * Note: the function will not free the passed value
  * @param graph the graph address
  * @param value the value address
- * @param sizeOfValue the size of the passed value in bytes
  */
 
-void dirGraphRemoveNode(DirectedGraph *graph, void *value, int sizeOfValue) {
+void dirGraphRemoveNode(DirectedGraph *graph, void *value) {
 
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
@@ -219,7 +227,7 @@ void dirGraphRemoveNode(DirectedGraph *graph, void *value, int sizeOfValue) {
     }
 
 
-    DirGraphNode *nodeToDelete = (DirGraphNode *) hashMapGet(graph->nodes, value, sizeOfValue);
+    DirGraphNode *nodeToDelete = (DirGraphNode *) hashMapGet(graph->nodes, value);
 
     if (nodeToDelete == NULL)
         return;
@@ -236,7 +244,7 @@ void dirGraphRemoveNode(DirectedGraph *graph, void *value, int sizeOfValue) {
 
     free(hashMapNodes);
 
-    hashMapDelete(graph->nodes, value, sizeOfValue);
+    hashMapDelete(graph->nodes, value);
 
 }
 
@@ -251,11 +259,10 @@ void dirGraphRemoveNode(DirectedGraph *graph, void *value, int sizeOfValue) {
  * Note: the function will not free the passed value
  * @param graph the graph address
  * @param value the value address
- * @param sizeOfValue the size of the passed value in bytes
  * @return it will return the deleted value if found, other wise it will return NULL
  */
 
-void *dirGraphRemoveNodeWtoFr(DirectedGraph *graph, void *value, int sizeOfValue) {
+void *dirGraphRemoveNodeWtoFr(DirectedGraph *graph, void *value) {
 
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
@@ -276,7 +283,7 @@ void *dirGraphRemoveNodeWtoFr(DirectedGraph *graph, void *value, int sizeOfValue
     }
 
 
-    DirGraphNode *nodeToDelete = (DirGraphNode *) hashMapGet(graph->nodes, value, sizeOfValue);
+    DirGraphNode *nodeToDelete = (DirGraphNode *) hashMapGet(graph->nodes, value);
 
     if (nodeToDelete == NULL)
         return NULL;
@@ -293,7 +300,7 @@ void *dirGraphRemoveNodeWtoFr(DirectedGraph *graph, void *value, int sizeOfValue
 
     free(hashMapNodes);
 
-    return hashMapDeleteWtoFrAll(graph->nodes, value, sizeOfValue)->key;
+    return hashMapDeleteWtoFrAll(graph->nodes, value)->key;
 
 }
 
@@ -311,12 +318,10 @@ void *dirGraphRemoveNodeWtoFr(DirectedGraph *graph, void *value, int sizeOfValue
  * Note: The function will not free the two passed values.
  * @param graph the graph address
  * @param fromVal the first value address
- * @param sizeOfFromVal the first value size in bytes
  * @param toVal the second value address
- * @param sizeOfToVal the second value size in bytes
  */
 
-void dirGraphAddEdge(DirectedGraph *graph, void *fromVal, int sizeOfFromVal, void *toVal, int sizeOfToVal) {
+void dirGraphAddEdge(DirectedGraph *graph, void *fromVal, void *toVal) {
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
         #ifdef CU_TEST_H
@@ -344,8 +349,8 @@ void dirGraphAddEdge(DirectedGraph *graph, void *fromVal, int sizeOfFromVal, voi
     }
 
 
-    DirGraphNode *fromNode = hashMapGet(graph->nodes, fromVal, sizeOfFromVal);
-    DirGraphNode *toNode = hashMapGet(graph->nodes, toVal, sizeOfToVal);
+    DirGraphNode *fromNode = hashMapGet(graph->nodes, fromVal);
+    DirGraphNode *toNode = hashMapGet(graph->nodes, toVal);
 
     if(fromNode == NULL || toNode == NULL)
         return;
@@ -369,12 +374,10 @@ void dirGraphAddEdge(DirectedGraph *graph, void *fromVal, int sizeOfFromVal, voi
  * Note: The function will not free the passed values.
  * @param graph the graph address
  * @param fromVal the first value address
- * @param sizeOfFromVal the first value size in bytes
  * @param toVal the second value address
- * @param sizeOfToVal the second value size in bytes
  */
 
-void dirGraphRemoveEdge(DirectedGraph *graph, void *fromVal, int sizeOfFromVal, void *toVal, int sizeOfToVal) {
+void dirGraphRemoveEdge(DirectedGraph *graph, void *fromVal, void *toVal) {
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
         #ifdef CU_TEST_H
@@ -402,8 +405,8 @@ void dirGraphRemoveEdge(DirectedGraph *graph, void *fromVal, int sizeOfFromVal, 
     }
 
 
-    DirGraphNode *fromNode = hashMapGet(graph->nodes, fromVal, sizeOfFromVal);
-    DirGraphNode *toNode = hashMapGet(graph->nodes, toVal, sizeOfToVal);
+    DirGraphNode *fromNode = hashMapGet(graph->nodes, fromVal);
+    DirGraphNode *toNode = hashMapGet(graph->nodes, toVal);
 
     if (fromNode == NULL || toNode == NULL)
         return;
@@ -427,11 +430,10 @@ void dirGraphRemoveEdge(DirectedGraph *graph, void *fromVal, int sizeOfFromVal, 
  * and if it was then the function will return one (1), other wise it will return zero.
  * @param graph the graph address
  * @param value the value address
- * @param sizeOfValue the value size in bytes
  * @return it will return one if the value found, other wise in will return zero
  */
 
-int dirGraphContainsNode(DirectedGraph *graph, void *value, int sizeOfValue) {
+int dirGraphContainsNode(DirectedGraph *graph, void *value) {
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
         #ifdef CU_TEST_H
@@ -450,7 +452,7 @@ int dirGraphContainsNode(DirectedGraph *graph, void *value, int sizeOfValue) {
 
     }
 
-    return hashMapContains(graph->nodes, value, sizeOfValue);
+    return hashMapContains(graph->nodes, value);
 
 }
 
@@ -467,13 +469,11 @@ int dirGraphContainsNode(DirectedGraph *graph, void *value, int sizeOfValue) {
  * Note: the function will not free the passed two values.
  * @param graph the graph address
  * @param fromVal the first value address
- * @param sizeOfFromVal the first value size in bytes
  * @param toVal the second value address
- * @param sizeOfToVal the second value size in bytes
  * @return it will return one it there was an edge between the two values, other wise it will return zero
  */
 
-int dirGraphContainsEdge(DirectedGraph *graph, void *fromVal, int sizeOfFromVal, void *toVal, int sizeOfToVal) {
+int dirGraphContainsEdge(DirectedGraph *graph, void *fromVal, void *toVal) {
 
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
@@ -501,8 +501,8 @@ int dirGraphContainsEdge(DirectedGraph *graph, void *fromVal, int sizeOfFromVal,
 
     }
 
-    DirGraphNode *fromNode = hashMapGet(graph->nodes, fromVal, sizeOfFromVal);
-    DirGraphNode *toNode = hashMapGet(graph->nodes, toVal, sizeOfToVal);
+    DirGraphNode *fromNode = hashMapGet(graph->nodes, fromVal);
+    DirGraphNode *toNode = hashMapGet(graph->nodes, toVal);
 
     if (fromNode == NULL || toNode == NULL)
         return 0;
@@ -522,7 +522,7 @@ int dirGraphContainsEdge(DirectedGraph *graph, void *fromVal, int sizeOfFromVal,
 
 /** This function will return the number of nodes in the graph.
  * @param graph the graph address
- * @return it will reutrn the numebr of nodes in the graph
+ * @return it will return the number of nodes in the graph
  */
 
 int dirGraphGetNumOfNodes(DirectedGraph *graph) {
@@ -549,7 +549,7 @@ int dirGraphGetNumOfNodes(DirectedGraph *graph) {
 
 
 /** This function will check if the graph is empty,
- * and return one (1) if it was, other wise in will retyrn zero (0).
+ * and return one (1) if it was, other wise in will return zero (0).
  * @param graph the graph address
  * @return it will return one if the graph was empty, other wise in will return zero
  */
@@ -741,12 +741,11 @@ int intHashFunDirG(const void *item) {
  * Note: actually you can do more than printing values, the printing function will take the value as a parameter.
  * @param graph the graph address
  * @param startVal the start node value address
- * @param the start value size in bytes
  * @param printVal the printing function address, that will be called to print the value
  */
 
 
-void dirGraphDepthFirstTraversal(DirectedGraph *graph, void *startVal, int sizeOfValue, void (*printVal)(void *)) {
+void dirGraphDepthFirstTraversal(DirectedGraph *graph, void *startVal, void (*printVal)(void *)) {
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
         #ifdef CU_TEST_H
@@ -773,7 +772,7 @@ void dirGraphDepthFirstTraversal(DirectedGraph *graph, void *startVal, int sizeO
 
     }
 
-    DirGraphNode *startNode = hashMapGet(graph->nodes, startVal, sizeOfValue);
+    DirGraphNode *startNode = hashMapGet(graph->nodes, startVal);
     if (startNode == NULL)
         return;
 
@@ -823,11 +822,10 @@ void dirGraphDepthFirstTraversal(DirectedGraph *graph, void *startVal, int sizeO
  * Note: actually you can do more than printing values, the printing function will take the value as a parameter.
  * @param graph the graph address
  * @param startVal the start node value address
- * @param the start value size in bytes
  * @param printVal the printing function address, that will be called to print the value
  */
 
-void dirGraphBreadthFirstTraversal(DirectedGraph *graph, void *startVal, int sizeOfValue, void (*printVal)(void *)) {
+void dirGraphBreadthFirstTraversal(DirectedGraph *graph, void *startVal, void (*printVal)(void *)) {
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
         #ifdef CU_TEST_H
@@ -854,7 +852,7 @@ void dirGraphBreadthFirstTraversal(DirectedGraph *graph, void *startVal, int siz
 
     }
 
-    DirGraphNode *startNode = hashMapGet(graph->nodes, startVal, sizeOfValue);
+    DirGraphNode *startNode = hashMapGet(graph->nodes, startVal);
     if (startNode == NULL)
         return;
 
@@ -981,11 +979,10 @@ void dirGraphTopologicalSortR(DirGraphNode *node, HashSet *visitedNodes, Stack *
  * Note: the passed item will not be freed in the end of the function.
  * @param graph the directed graph address
  * @param startValue the start value address
- * @param sizeOfValue the size of the passed value in bytes
  * @return it will return one if the node is a part of a cycle, other wise it will return zero
  */
 
-int dirGraphNodeIsPartOfCycle(DirectedGraph *graph, void *startValue, int sizeOfValue) {
+int dirGraphNodeIsPartOfCycle(DirectedGraph *graph, void *startValue) {
 
     if (graph == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "directed graph data structure");
@@ -1005,7 +1002,7 @@ int dirGraphNodeIsPartOfCycle(DirectedGraph *graph, void *startValue, int sizeOf
 
     }
 
-    DirGraphNode *startNode = hashMapGet(graph->nodes, startValue, sizeOfValue);
+    DirGraphNode *startNode = hashMapGet(graph->nodes, startValue);
     if (startNode == NULL)
         return 0;
 
