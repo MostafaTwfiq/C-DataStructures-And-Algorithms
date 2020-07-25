@@ -2,6 +2,7 @@
 #include "../../Sorting/Headers/SwapFunction.h"
 #include "../../../System/Utils.h"
 #include "../../../DataStructure/Tables/Headers/HashMap.h"
+#include "../../../DataStructure/Tables/Headers/HashSet.h"
 
 
 
@@ -188,7 +189,7 @@ void *mostFrequentArrValue(void *arr, int length, int elemSize, int (*cmp)(const
  * @param arr the array pointer
  * @param length the length of the array
  * @param elemSize the array elements size in bytes
- * @param printFun the values printing funciton pointer
+ * @param printFun the values printing function pointer
  */
 
 void printArr(void *arr, int length, int elemSize, void (*printFun)(void *)) {
@@ -871,7 +872,9 @@ int arrCompareOfRange(void *fArr, int fLength, void *sArr, int sLength, int elem
  * then it will search for the first element that mismatch between the two arrays,
  * if the mismatch found the function will return the mismatch index,
  * other wise it will return minus one (-1).
+ *
  * Note: if the two array hasn't the same length the function will check for smallest length.
+ *
  * @param fArr the first array pointer
  * @param fLength the first array length
  * @param sArr the second array pointer
@@ -966,5 +969,82 @@ int arrMismatchOfRange(void *fArr, int fLength, void *sArr, int sLength, int ele
     }
 
     return -1;
+
+}
+
+
+
+
+
+
+
+
+
+/** This function will take an array,
+ * then it will remove all the duplicates values from the array.
+ *
+ * Note: the function will memory copy the value index i + 1 to remove the value in index i,
+ * so if the value need to be freed first then pass the free function, other wise pass NULL function pointer.
+ *
+ * Note: the function needs a hash value function because the function uses hash set data structure,
+ * to detect the duplicates with less complexity.
+ *
+ * @param arr the array pointer
+ * @param length the length of the array
+ * @param elemSize the array elements size in bytes
+ * @param cmp the comparator function pointer, that will be called to compare two value
+ * @param hashFun the hashing function that will return a unique integer representing the hash map key
+ * @param freeFun the free function pointer, that will be called to free the value before removing it from the array
+ * @return it will return the new length of the array after removing the duplicates
+ */
+
+int arrRemoveDuplicates(void *arr, int length, int elemSize,
+                        int (*cmp)(const void *, const void *),
+                        int (*hashFun)(const void *),
+                        int (*freeFun)(const void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array remove duplicates function");
+        exit(NULL_POINTER);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array remove duplicates function");
+        exit(INVALID_ARG);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array remove duplicates function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array remove duplicates function");
+        exit(INVALID_ARG);
+    } else if (hashFun == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "hash function pointer", "array remove duplicates function");
+        exit(INVALID_ARG);
+    }
+
+    HashSet *valuesSet = hashSetInitialization(nullFreeFunArrAlg, cmp, hashFun);
+    int index = 0;
+
+    while (index < length) {
+        void *currentValue = arr + index * elemSize;
+        int valueExistFlag = hashSetContains(valuesSet, currentValue);
+        if (valueExistFlag) {
+
+            length--;
+
+            if (freeFun != NULL)
+                freeFun(currentValue);
+
+            for (int i = index; i < length; i++) // this loop is to shift the values to delete the duplicated value
+                memcpy(arr + i * elemSize, arr + (i + 1) * elemSize, elemSize);
+
+        } else {
+            hashSetInsert(valuesSet, currentValue);
+            index++;
+        }
+
+    }
+
+    destroyHashSet(valuesSet);
+
+    return length;
 
 }

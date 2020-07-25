@@ -40,5 +40,6 @@ int arrMismatch(void *fArr, int fLength, void *sArr, int sLength, int elemSize, 
 
 int arrMismatchOfRange(void *fArr, int fLength, void *sArr, int sLength, int elemSize, int startIndex, int endIndex, int (*cmp)(const void *, const void *));
 
+int arrRemoveDuplicates(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *), int (*hashFun)(const void *), int (*freeFun)(const void *));
 
 #endif //C_DATASTRUCTURES_ARRAYSALG_H

@@ -86,6 +86,9 @@ int stringCmp(const void *s1, const void *s2) {
 
 int main() {
 
+    int arr[] = {1, 2, 3, 4, 5, 5, 3, 3, 2, 10}; // length = 10;
+    int newLength = arrRemoveDuplicates(arr, 10, sizeof(int), intCmp, intHashFun, NULL);
+    printArr(arr, newLength, sizeof(int), printInt);
     return 0;
 
 }
