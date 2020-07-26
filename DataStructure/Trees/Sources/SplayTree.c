@@ -310,10 +310,10 @@ void freeSplayNode(SplayNode **node, void (*freeFn)(void*)){
 /** Given an splay Tree's root node it frees it's elements recursively.Setting the root node to Null.
 * @param root Exact Reference to root node to start freeing at.
 **/
-void SplayTreeFreeWrapper(SplayNode **root,void (*freeFn)(void*)) {
+void SplayTreeFreeHelper(SplayNode **root,void (*freeFn)(void*)) {
     if (*root == NULL) return;
-    SplayTreeFreeWrapper(&(*root)->left,freeFn);
-    SplayTreeFreeWrapper(&(*root)->right,freeFn);
+    SplayTreeFreeHelper(&(*root)->left,freeFn);
+    SplayTreeFreeHelper(&(*root)->right,freeFn);
     freeSplayNode(root, NULL);
     *root=NULL;
 }
@@ -329,18 +329,18 @@ void SplayTreeFree(SplayTree *splayTree){
      	#endif
 
     }
-    SplayTreeFreeWrapper(splayTree->root,splayTree->freeFn);
+    SplayTreeFreeHelper(splayTree->root,splayTree->freeFn);
 }
 
 /** Takes a print function and starts printing from using the provided print function.
 * @param node Reference node to start printing from.
 * @param printFn print function to use for printing node keys.
 **/
-void printInOrderSplayTreeWrapper(SplayNode* node, void (printFn)(void *)){
+void printInOrderSplayTreeHelper(SplayNode* node, void (printFn)(void *)){
     if(node==NULL)return;
-    printInOrderSplayTreeWrapper(node->left, printFn);
+    printInOrderSplayTreeHelper(node->left, printFn);
     (printFn)(node->key);
-    printInOrderSplayTreeWrapper(node->right, printFn);
+    printInOrderSplayTreeHelper(node->right, printFn);
 }
 
 ///
@@ -367,7 +367,7 @@ void printInOrderSplayTree(SplayTree *splayTree, void (printFn)(void *)){
 
     }
 
-    printInOrderSplayTreeWrapper(splayTree->root,printFn);
+    printInOrderSplayTreeHelper(splayTree->root,printFn);
 }
 
 /** Prints a tree in 2 space of the console.
@@ -505,7 +505,7 @@ void isEqualHelper(SplayNode* node1,SplayNode* node2,int (*cmpFn)(const void *, 
     if(!flag) return;
     if (node1 == NULL || node2 ==NULL) return;
     isEqualHelper(node1->right, node2->right,cmpFn,flag);
-    if(!(cmpFn)(node1->key,node2->key)) *flag = 1;
+    if((cmpFn)(node1->key,node2->key)) *flag = 1;
     isEqualHelper(node1->left, node2->left, cmpFn,flag);
 }
 
