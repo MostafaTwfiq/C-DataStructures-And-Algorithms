@@ -4,8 +4,45 @@
 
 int isSubString(const char *fString, int fLength, const char *sString, int sLength);
 
+void charArrayReverseWords(char *charArr);
+
+void charArrTrimStartC(char *charArr, char *specialCharacters);
+
+void charArrTrimStart(char *charArr);
+
+void charArrTrimEndC(char *charArr, char *specialCharacters);
+
+void charArrTrimEnd(char *charArr);
+
+void charArrayTrim(char *charArr);
+
+void charArrayTrimC(char *charArr, char *specialCharacters);
+
+int charArrContainsChar(char *charArr, char c);
+
+void charArrRemoveCharacters(char *charArr, char *specialCharactersToRemove);
+
 int isInteger(const char *string, int length);
 
 int isFloatingPointNum(const char *string, int length);
+
+int charArrSumASCII(char *ch);
+
+int charArrSumASCII(char *ch);
+
+int charArrHashFun(char *ch);
+
+char *generateCharPointerP(char *ch, int length);
+
+char *generateCharPointerC(char c);
+
+char *generateCharPointerP(char *ch, int length);
+
+char *generateCharPointerC(char c);
+
+int isAlphabetC(char c);
+
+int isAlphabetP(const char *c);
+
 
 #endif //C_DATASTRUCTURES_CHARARRAYALG_H
