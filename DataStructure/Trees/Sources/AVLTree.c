@@ -859,3 +859,48 @@ AVLTreeNode* AVLInOrderSuccessor(AVLTree *avlTree, void *referenceNode){
     AVLTreeInOrderSuccessorWrapper(avlTree, avlTree->root,referenceNode,&leftMost);
     return leftMost;
 }
+
+void isEqualHelper(AVLTreeNode* node1,AVLTreeNode* node2,int (*cmpFn)(const void *, const void *), int * flag){
+    if (cmpFn == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "cmpFn", "isEqualHelper");
+        #ifdef CU_TEST_H
+                DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+                exit(INVALID_ARG);
+        #endif
+    }
+    if(!flag) return;
+    if (node1 == NULL || node2 ==NULL) return;
+    isEqualHelper(node1->right, node2->right,cmpFn,flag);
+    if(!(cmpFn)(node1->key,node2->key)) *flag = 1;
+    isEqualHelper(node1->left, node2->right, cmpFn,flag);
+}
+
+uint32_t isEqual(AVLTree *avlTree,AVLTree *avlTree2){
+    if (avlTree == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "avlTree", "isEqual");
+        #ifdef CU_TEST_H
+                DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+                exit(INVALID_ARG);
+        #endif
+
+    }
+
+    if (avlTree2 == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "avlTree2", "isEqual");
+        #ifdef CU_TEST_H
+                DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+                exit(INVALID_ARG);
+        #endif
+    }
+
+    if(avlTree->nodeCount < avlTree2->nodeCount) return -1;
+    if(avlTree->nodeCount > avlTree2->nodeCount) return  1;
+    else {
+        uint32_t areEqual = 0;
+        isEqualHelper(avlTree->root,avlTree2->root,avlTree->cmp, &areEqual);
+        return areEqual;
+    }
+}

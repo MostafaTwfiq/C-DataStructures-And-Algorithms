@@ -705,5 +705,51 @@ void BinaryTreeInsert(BinaryTree *binaryTree, void *key){
 
     }
     binaryTree->root = binaryTreeInsertWrapper(binaryTree,binaryTree->root,key);
+}
 
+
+
+void isEqualHelper(BinaryTreeNode* node1,BinaryTreeNode* node2,int (*cmpFn)(const void *, const void *), int * flag){
+    if (cmpFn == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "cmpFn", "isEqualHelper");
+        #ifdef CU_TEST_H
+                DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+                exit(INVALID_ARG);
+        #endif
+    }
+    if(!flag) return;
+    if (node1 == NULL || node2 ==NULL) return;
+    isEqualHelper(node1->right, node2->right,cmpFn,flag);
+    if(!(cmpFn)(node1->key,node2->key)) *flag = 1;
+    isEqualHelper(node1->left, node2->right, cmpFn,flag);
+}
+
+uint32_t isEqual(BinaryTree *binaryTree,BinaryTree *binaryTree2){
+    if (binaryTree == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "binaryTree", "isEqual");
+        #ifdef CU_TEST_H
+                DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+                exit(INVALID_ARG);
+        #endif
+
+    }
+
+    if (binaryTree2 == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "binaryTree2", "isEqual");
+        #ifdef CU_TEST_H
+                DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+                exit(INVALID_ARG);
+        #endif
+    }
+
+    if(binaryTree->nodeCount < binaryTree2->nodeCount) return -1;
+    if(binaryTree->nodeCount > binaryTree2->nodeCount) return  1;
+    else {
+        uint32_t areEqual = 0;
+        isEqualHelper(binaryTree->root,binaryTree2->root,binaryTree->cmp, &areEqual);
+        return areEqual;
+    }
 }
