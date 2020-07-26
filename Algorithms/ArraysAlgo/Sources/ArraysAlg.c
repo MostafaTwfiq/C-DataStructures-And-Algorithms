@@ -8,6 +8,11 @@
 #include "../../Searching/Headers/Searching.h"
 
 
+
+
+
+
+
 /** This function is an empty function,
  * will be useful to use the hash map without freeing the keys
  * @param item
@@ -20,7 +25,9 @@ void nullFreeFunArrAlg(void *item) {}
 
 /** This function takes an integer pointer,
  * and then freeing it.
+ *
  * Note: this function will be useful to use the hash map.
+ *
  * @param n the integer pointer
  */
 
@@ -32,7 +39,9 @@ void intFreeFunArrAlg(void *n) {
 
 /** This function will take two integers pointers,
  * then it will compare them.
+ *
  * Note: this function will be useful to use the hash map.
+ *
  * @param n1 the first integer pointer
  * @param n2 the second integer pointer
  * @return it will return the result of the comparison, zero if they are equal, minus integer if the second bigger, and positive integer if the first bigger
@@ -49,7 +58,9 @@ int intCmpArrAlg(const void *n1, const void * n2) {
 /** This function takes an integer number pointer,
  * then it will allocate a new integer space and copy the passed integer in the new space,
  * and finally return the new integer pointer.
+ *
  * Note: this function will be useful to use the hash map.
+ *
  * @param num the number pointer
  * @return it will return the new allocated pointer
  */
@@ -67,8 +78,9 @@ unsigned int *generateIntPointerArrAlg(unsigned int *num) {
 
 /** This function will take an array then it will reverse the array.
  *
- * Time Complexity: O (n)
- * Space Complexity: O (1)
+ * Time Complexity: O (n).
+ *
+ * Space Complexity: O (1).
  *
  * @param arr the array pointer
  * @param length the length of the array
@@ -116,6 +128,7 @@ void reverseArray(void *arr, int length, int elemSize) {
  * Note: this function will use hash map to detect the duplicates.
  *
  * Time Complexity: O (n).
+ *
  * Space Complexity: O (k) and k is the different values in the array.
  *
  * @param arr the array pointer
@@ -202,6 +215,7 @@ void *mostFrequentArrValueH(void *arr, int length, int elemSize, int (*cmp)(cons
  * Note: this function will uses arrays to detect the duplicates.
  *
  * Time Complexity: O (n ^ 2).
+ *
  * Space Complexity: O (2n).
  *
  * @param arr the array pointer
@@ -278,10 +292,14 @@ void *mostFrequentArrValueA(void *arr, int length, int elemSize, int (*cmp)(cons
 
 
 /** This function will take an array then it will print it.
+ *
  * The printing will be like this:
  * [element1, element2, ...]
+ *
  * The passed printing function should only print the value without any increases.
+ *
  * The function will use the stdout file to print the array.
+ *
  * @param arr the array pointer
  * @param length the length of the array
  * @param elemSize the array elements size in bytes
@@ -322,7 +340,9 @@ void printArr(void *arr, int length, int elemSize, void (*printFun)(void *)) {
 /** This function will take an array with a new length,
  * then it will allocate a new array with the provided new length,
  * and it will copy the values in the original array into the new array, and finally return the new array pointer.
+ *
  * Note: this function will memory copy the original array.
+ *
  * @param arr the array pointer
  * @param length the length of the array
  * @param elemSize the size of the array elements in bytes
@@ -363,8 +383,11 @@ void *arrResize(void *arr, int length, int elemSize, int newLength) {
 
 /** This function will take an array with a new length,
  * then it will allocate a new array with the provided new length,
- * and it will copy the values between the provided two indices in the original array into the new array, and finally return the new array pointer.
+ * and it will copy the values between the provided two indices in the original array into the new array,
+ * and finally return the new array pointer.
+ *
  * Note: this function will memory copy the original array.
+ *
  * @param arr the array pointer
  * @param length the length of the array
  * @param elemSize the array elements size in bytes
@@ -414,7 +437,9 @@ void *arrResizeOfRange(void *arr, int length, int elemSize, int startIndex, int 
  * then it will allocate a new array with the provided new length,
  * and it will copy the values in the original array into the new array using the passed copy function,
  * and finally return the new array pointer.
+ *
  * Note: the first parameter of the copying function will be the space that the second parameter will be copied into it.
+ *
  * @param arr the array pointer
  * @param length the array length
  * @param elemSize the size of the array elements in bytes
@@ -463,7 +488,9 @@ void *arrResizeC(void *arr, int length, int elemSize, int newLength, void (*copy
  * then it will allocate a new array with the provided new length,
  * and it will copy the values between the provided two indices in the original array into the new array using the passed copy function,
  * and finally return the new array pointer.
+ *
  * Note: the first parameter of the copying function will be the space that the second parameter will be copied into it.
+ *
  * @param arr the array pointer
  * @param length the array length
  * @param elemSize the size of the array elements in bytes
@@ -511,7 +538,9 @@ void *arrResizeOfRangeC(void *arr, int length, int elemSize, int startIndex, int
 
 /** This function will take an array,
  * then it will allocate a new array and copy the original one in the new array.
+ *
  * Note: this function will memory copy the original array.
+ *
  * @param arr the array pointer
  * @param length the length of the array
  * @param elemSize the size of the array elements in bytes
@@ -550,8 +579,10 @@ void *arrCopy(void *arr, int length, int elemSize) {
 
 /** This function will take an array,
  * then it will allocate a new array and copy the original array into the new one.
+ *
  * Note: the passed copy function will take two parameters, the first one will be a pointer to the,
  * new space that should the second parameter be copied into it.
+ *
  * @param arr the array pointer
  * @param length the length of the array
  * @param elemSize the size of the array elements in bytes
@@ -641,8 +672,10 @@ void *arrCopyOfRange(void *arr, int length, int elemSize, int startIndex, int en
 
 /** This function will take an array and a range,
  * then it will copy the passed range from the original array into a new allocated array.
+ *
  * Note: the passed copy function will take two parameters, the first one will be a pointer to the,
  * new space that should the second parameter be copied into it.
+ *
  * @param arr the array length
  * @param length the length of the array
  * @param elemSize the size of the array elements
@@ -691,7 +724,9 @@ void *arrCopyOfRangeC(void *arr, int length, int elemSize, int startIndex, int e
 
 /** This function will take an array and a value,
  * then it will fill all the array with that value.
+ *
  * Note: the function will memory copy the value into the array.
+ *
  * @param arr the array pointer
  * @param fillValue the target value pointer
  * @param length the length of the array
@@ -725,8 +760,10 @@ void fillArr(void *arr, void *fillValue, int length, int elemSize) {
 
 /** This function will take an array and a value,
  * then it will fill all the array with that value.
+ *
  * Note: the passed copy function will take two parameters, the first one will be a pointer to the,
  * new space that should the second parameter (the value) be copied into it.
+ *
  * @param arr the array pointer
  * @param fillValue the target value pointer
  * @param length the length of the array
