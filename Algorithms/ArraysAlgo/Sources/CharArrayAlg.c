@@ -177,7 +177,7 @@ void charArrTrimStart(char *charArr) {
 
 /** This function will take an char array,
  * then it will removes characters specified in the second array of characters parameter,
- * from the end of a first array of characters parameter.
+ * from the end of the first array of characters parameter.
  *
  * ex of specialCharacters array: " \t\n", the function will remove any ' ', '\t', ' ' character from the end.
  *
@@ -226,7 +226,7 @@ void charArrTrimEnd(char *charArr) {
  * @param charArr the characters array pointer
  */
 
-void charArrayTrim(char *charArr) {
+void charArrTrim(char *charArr) {
     charArrTrimStartC(charArr, " \n\t");
     charArrTrimEndC(charArr, " \n\t");
 }
@@ -239,7 +239,7 @@ void charArrayTrim(char *charArr) {
 
 /** This function will take an char array,
  * then it will removes characters specified in the second array of characters parameter,
- * from the beginning and the end of a first array of characters parameter.
+ * from the beginning and the end of the first array of characters parameter.
  *
  * ex of specialCharacters array: " \t\n", the function will remove any ' ', '\t', ' ' character from the end.
  *
@@ -247,7 +247,7 @@ void charArrayTrim(char *charArr) {
  * @param specialCharacters the special characters array pointer
  */
 
-void charArrayTrimC(char *charArr, char *specialCharacters) {
+void charArrTrimC(char *charArr, char *specialCharacters) {
     charArrTrimStartC(charArr, specialCharacters);
     charArrTrimEndC(charArr, specialCharacters);
 }

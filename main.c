@@ -23,6 +23,7 @@
 #include "DataStructure/Graphs/Headers/UndirectedGraph.h"
 #include "DataStructure/Lists/Headers/Vector.h"
 #include "DataStructure/Tables/Headers/HashSet.h"
+#include "DataStructure/Strings/Headers/String.h"
 #include "DataStructure/Deque/Headers/DLinkedListDeque.h"
 #include "Algorithms/Sorting/Headers/Sorting.h"
 #include "Algorithms/Searching/Headers/Searching.h"
@@ -86,16 +87,22 @@ int stringCmp(const void *s1, const void *s2) {
 
 int main() {
 
-    /*char *string = (char *) malloc(sizeof(char) * (strlen(" \t\n   mostafa    \n  \t  ") + 1) );
-    strcpy(string, " \t\n   mostafa    \n  \t  ");
-    charArrRemoveCharacters(string, "\t \nmta");
-    printf("%s", string);*/
-    int arr[] = {1, 2, 3, 4, 5, 5, 3, 3, 2, 10}; // length = 10;
+    //char *string = (char *) malloc(sizeof(char) * (strlen(" \t\n   mostafa    \n  \t  ") + 1) );
+    //strcpy(string, " \t\n   mostafa    \n  \t  ");
+    //charArrRemoveCharacters(string, "\t \nmta");
+    //printf("%s", string);
+    String *string = stringInitialization(1);
+    stringChangeStringByCharArray(string, " \t\n   mostafa    \n  \t  ");
+    stringTrim(string);
+    stringAddStringAtLast(string, " mohammed");
+    printString(string);
+    printf("\n%d", stringGetLength(string));
+    /*int arr[] = {1, 2, 3, 4, 5, 5, 3, 3, 2, 10}; // length = 10;
     int values[] = {3,5};
     //printf("Most frequent: %d\n\n", *(int*)mostFrequentArrValueA(arr, 10, sizeof(int), intCmp));
     //int newLength = arrRemoveDuplicatesA(arr, 10, sizeof(int), intCmp, NULL);
     int newLength = arrRemoveValues(arr, 10, values, 2, sizeof(int), intCmp, NULL);
-    printArr(arr, newLength, sizeof(int), printInt);
+    printArr(arr, newLength, sizeof(int), printInt);*/
     return 0;
 
 }

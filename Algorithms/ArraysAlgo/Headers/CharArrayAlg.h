@@ -14,9 +14,9 @@ void charArrTrimEndC(char *charArr, char *specialCharacters);
 
 void charArrTrimEnd(char *charArr);
 
-void charArrayTrim(char *charArr);
+void charArrTrim(char *charArr);
 
-void charArrayTrimC(char *charArr, char *specialCharacters);
+void charArrTrimC(char *charArr, char *specialCharacters);
 
 int charArrContainsChar(char *charArr, char c);
 

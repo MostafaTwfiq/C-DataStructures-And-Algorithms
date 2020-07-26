@@ -41,7 +41,19 @@ int stringIsEqualsToMyString(String *myString, String *string);
 
 int stringGetLength(String *myString);
 
+//void stringTrim(String *myString);
+
+void stringTrimStartC(String *myString, char *specialCharacters);
+
+void stringTrimStart(String *myString);
+
+void stringTrimEndC(String *myString, char *specialCharacters);
+
+void stringTrimEnd(String *myString);
+
 void stringTrim(String *myString);
+
+void stringTrimC(String *myString, char *specialCharacters);
 
 void destroyString(String *myString);
 
