@@ -12,7 +12,6 @@
 
 
 
-
 /** This function is an empty function,
  * will be useful to use the hash map without freeing the keys
  * @param item
@@ -128,7 +127,10 @@ void reverseArray(void *arr, int length, int elemSize) {
  * Note: this function will use hash map to detect the duplicates.
  *
  * Time Complexity: O (n).
+<<<<<<< HEAD
  *
+=======
+>>>>>>> 5155eef... Implemented detecting most frequent value, and remove duplicates functions using arrays.
  * Space Complexity: O (k) and k is the different values in the array.
  *
  * @param arr the array pointer
@@ -215,7 +217,10 @@ void *mostFrequentArrValueH(void *arr, int length, int elemSize, int (*cmp)(cons
  * Note: this function will uses arrays to detect the duplicates.
  *
  * Time Complexity: O (n ^ 2).
+<<<<<<< HEAD
  *
+=======
+>>>>>>> 5155eef... Implemented detecting most frequent value, and remove duplicates functions using arrays.
  * Space Complexity: O (2n).
  *
  * @param arr the array pointer
@@ -1251,7 +1256,6 @@ int arrRemoveDuplicatesA(void *arr, int length, int elemSize,
     destroyVector(valuesVector);
 
     return length;
-
 }
 
 

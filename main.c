@@ -108,6 +108,10 @@ int main() {
     int fArr[] = {1, 2, 3, 2, 1};
     int sArr[] = {11};
     printf("%d", arrIsPalindrome(fArr, 5, sizeof(int), intCmp));
+    int arr[] = {1, 2, 3, 4, 5, 5, 3, 3, 2, 10}; // length = 10;
+    printf("Most frequent: %d\n\n", *(int*)mostFrequentArrValueA(arr, 10, sizeof(int), intCmp));
+    int newLength = arrRemoveDuplicatesA(arr, 10, sizeof(int), intCmp, NULL);
+    printArr(arr, newLength, sizeof(int), printInt);
     return 0;
 
 }
