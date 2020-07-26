@@ -506,7 +506,7 @@ void isEqualHelper(SplayNode* node1,SplayNode* node2,int (*cmpFn)(const void *, 
     if (node1 == NULL || node2 ==NULL) return;
     isEqualHelper(node1->right, node2->right,cmpFn,flag);
     if(!(cmpFn)(node1->key,node2->key)) *flag = 1;
-    isEqualHelper(node1->left, node2->right, cmpFn,flag);
+    isEqualHelper(node1->left, node2->left, cmpFn,flag);
 }
 
 
