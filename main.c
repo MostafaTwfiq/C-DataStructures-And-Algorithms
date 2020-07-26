@@ -39,7 +39,7 @@ int comp(const void *p1, const void *p2) {
 }
 
 void print(void *item) {
-    printf("%s", (char *)item);
+    printf("%s", *(char **)item);
 }
 
 int getSize(const void *item) {
