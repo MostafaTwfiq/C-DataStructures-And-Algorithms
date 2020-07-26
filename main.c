@@ -86,14 +86,16 @@ int stringCmp(const void *s1, const void *s2) {
 
 int main() {
 
-    char *string = (char *) malloc(sizeof(char) * (strlen(" \t\n   mostafa    \n  \t  ") + 1) );
+    /*char *string = (char *) malloc(sizeof(char) * (strlen(" \t\n   mostafa    \n  \t  ") + 1) );
     strcpy(string, " \t\n   mostafa    \n  \t  ");
     charArrRemoveCharacters(string, "\t \nmta");
-    printf("%s", string);
-    /*int arr[] = {1, 2, 3, 4, 5, 5, 3, 3, 2, 10}; // length = 10;
-    printf("Most frequent: %d\n\n", *(int*)mostFrequentArrValueA(arr, 10, sizeof(int), intCmp));
-    int newLength = arrRemoveDuplicatesA(arr, 10, sizeof(int), intCmp, NULL);
+    printf("%s", string);*/
+    int arr[] = {1, 2, 3, 4, 5, 5, 3, 3, 2, 10}; // length = 10;
+    int values[] = {3,5};
+    //printf("Most frequent: %d\n\n", *(int*)mostFrequentArrValueA(arr, 10, sizeof(int), intCmp));
+    //int newLength = arrRemoveDuplicatesA(arr, 10, sizeof(int), intCmp, NULL);
+    int newLength = arrRemoveValues(arr, 10, values, 2, sizeof(int), intCmp, NULL);
     printArr(arr, newLength, sizeof(int), printInt);
-    return 0;*/
+    return 0;
 
 }
