@@ -4,7 +4,9 @@
 
 void reverseArray(void *arr, int length, int elemSize);
 
-void *mostFrequentArrValue(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *), int (*hashFun)(const void *));
+void *mostFrequentArrValueH(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *), int (*hashFun)(const void *));
+
+void *mostFrequentArrValueA(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *));
 
 void printArr(void *arr, int length, int elemSize, void (*printFun)(void *));
 
@@ -40,6 +42,8 @@ int arrMismatch(void *fArr, int fLength, void *sArr, int sLength, int elemSize, 
 
 int arrMismatchOfRange(void *fArr, int fLength, void *sArr, int sLength, int elemSize, int startIndex, int endIndex, int (*cmp)(const void *, const void *));
 
-int arrRemoveDuplicates(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *), int (*hashFun)(const void *), int (*freeFun)(const void *));
+int arrRemoveDuplicatesH(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *), int (*hashFun)(const void *), void (*freeFun)(void *));
+
+int arrRemoveDuplicatesA(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *), void (*freeFun)(void *));
 
 #endif //C_DATASTRUCTURES_ARRAYSALG_H

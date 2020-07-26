@@ -3,8 +3,7 @@
 #include "../../../System/Utils.h"
 #include "../../../DataStructure/Tables/Headers/HashMap.h"
 #include "../../../DataStructure/Tables/Headers/HashSet.h"
-
-
+#include "../../../DataStructure/Lists/Headers/Vector.h"
 
 
 /** This function is an empty function,
@@ -104,13 +103,18 @@ void reverseArray(void *arr, int length, int elemSize) {
 
 /** This function will take an array then,
  * it will return a pointer to the most frequent value in the array.
+ *
  * Note: because the function uses hash map, you need to pass the hashing function.
+ *
  * Note: the function will return null if the array are empty.
+ *
  * Note: if there is more than one value that has the same frequent, then the function only will return one of them,
  * without knowing which one << it depends on the hashing function in the hash map >>.
  *
- * Time Complexity: O (n)
- * Space Complexity: O (k) and k is the different values in the array
+ * Note: this function will use hash map to detect the duplicates.
+ *
+ * Time Complexity: O (n).
+ * Space Complexity: O (k) and k is the different values in the array.
  *
  * @param arr the array pointer
  * @param length the length of the array
@@ -120,7 +124,7 @@ void reverseArray(void *arr, int length, int elemSize) {
  * @return it will return the most frequent value in the array, or it will return NULL if the array are empty
  */
 
-void *mostFrequentArrValue(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *), int (*hashFun)(const void *)) {
+void *mostFrequentArrValueH(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *), int (*hashFun)(const void *)) {
     if (arr == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "most frequent value algorithm");
         exit(NULL_POINTER);
@@ -175,6 +179,96 @@ void *mostFrequentArrValue(void *arr, int length, int elemSize, int (*cmp)(const
     return mostFreqValue;
 
 }
+
+
+
+
+
+
+
+
+
+
+
+/** This function will take an array then,
+ * it will return a pointer to the most frequent value in the array.
+ *
+ * Note: the function will return null if the array are empty.
+ *
+ * Note: if there is more than one value that has the same frequent, then the function only will return the first one.
+ *
+ * Note: this function will uses arrays to detect the duplicates.
+ *
+ * Time Complexity: O (n ^ 2).
+ * Space Complexity: O (2n).
+ *
+ * @param arr the array pointer
+ * @param length the length of the array
+ * @param elemSize the array elements size in bytes
+ * @param cmp the elements comparator function pointer
+ * @return it will return the most frequent value in the array, or it will return NULL if the array are empty
+ */
+
+void *mostFrequentArrValueA(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *)) {
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "most frequent value algorithm");
+        exit(NULL_POINTER);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "most frequent value algorithm");
+        exit(INVALID_ARG);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "most frequent value algorithm");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "most frequent value algorithm");
+        exit(INVALID_ARG);
+    }
+
+    Vector *valuesVector = vectorInitialization( length / 2 == 0  ? 1 : length / 2, nullFreeFunArrAlg, cmp);
+    Vector *counterVector = vectorInitialization( length / 2 == 0  ? 1 : length / 2, intFreeFunArrAlg, intCmpArrAlg);
+    unsigned int oneValue = 1;
+
+    for (int i = 0; i < length; i++) {
+
+        void *currentItem = arr + i * elemSize;
+        int currentItemIndex = vectorGetIndex(valuesVector, currentItem);
+
+        if (currentItemIndex == -1) {
+            vectorAdd(valuesVector, currentItem);
+            vectorAdd(counterVector, generateIntPointerArrAlg(&oneValue));
+        }
+        else {
+            int *currentFreq = vectorGet(counterVector, currentItemIndex);
+            *currentFreq += 1;
+        }
+
+    }
+
+    void *mostFreqValue = NULL;
+    int mostFreq = -1;
+    int mostFreqValueIndex = -1;
+
+    for (int i = 0; i < vectorGetLength(counterVector); i++) {
+
+        if (mostFreq < *(int *) vectorGet(counterVector, i)) {
+            mostFreq = *(int *) vectorGet(counterVector, i);
+            mostFreqValueIndex = i;
+        }
+
+    }
+
+
+    if (mostFreqValueIndex != -1)
+        mostFreqValue = vectorGet(valuesVector, mostFreqValueIndex);
+
+    destroyVector(valuesVector);
+    destroyVector(counterVector);
+
+    return mostFreqValue;
+
+}
+
+
 
 
 
@@ -986,6 +1080,8 @@ int arrMismatchOfRange(void *fArr, int fLength, void *sArr, int sLength, int ele
  * Note: the function will memory copy the value index i + 1 to remove the value in index i,
  * so if the value need to be freed first then pass the free function, other wise pass NULL function pointer.
  *
+ * Note: this function will use hash set to detect the duplicates.
+ *
  * Note: the function needs a hash value function because the function uses hash set data structure,
  * to detect the duplicates with less complexity.
  *
@@ -998,10 +1094,10 @@ int arrMismatchOfRange(void *fArr, int fLength, void *sArr, int sLength, int ele
  * @return it will return the new length of the array after removing the duplicates
  */
 
-int arrRemoveDuplicates(void *arr, int length, int elemSize,
-                        int (*cmp)(const void *, const void *),
-                        int (*hashFun)(const void *),
-                        int (*freeFun)(const void *)) {
+int arrRemoveDuplicatesH(void *arr, int length, int elemSize,
+                         int (*cmp)(const void *, const void *),
+                         int (*hashFun)(const void *),
+                         void (*freeFun)(void *)) {
 
     if (arr == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array remove duplicates function");
@@ -1044,6 +1140,76 @@ int arrRemoveDuplicates(void *arr, int length, int elemSize,
     }
 
     destroyHashSet(valuesSet);
+
+    return length;
+
+}
+
+
+
+
+
+
+
+
+
+/** This function will take an array,
+ * then it will remove all the duplicates values from the array.
+ *
+ * Note: the function will memory copy the value index i + 1 to remove the value in index i,
+ * so if the value need to be freed first then pass the free function, other wise pass NULL function pointer.
+ *
+ * Note: this function will use an array to detect the duplicates.
+ *
+ * @param arr the array pointer
+ * @param length the length of the array
+ * @param elemSize the array elements size in bytes
+ * @param cmp the comparator function pointer, that will be called to compare two value
+ * @param freeFun the free function pointer, that will be called to free the value before removing it from the array
+ * @return it will return the new length of the array after removing the duplicates
+ */
+
+int arrRemoveDuplicatesA(void *arr, int length, int elemSize,
+                         int (*cmp)(const void *, const void *),
+                         void (*freeFun)(void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array remove duplicates function");
+        exit(NULL_POINTER);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array remove duplicates function");
+        exit(INVALID_ARG);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array remove duplicates function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array remove duplicates function");
+        exit(INVALID_ARG);
+    }
+
+    Vector *valuesVector = vectorInitialization(length / 2 == 0 ? 1 : length / 2, nullFreeFunArrAlg, cmp);
+    int index = 0;
+
+    while (index < length) {
+        void *currentValue = arr + index * elemSize;
+        if (vectorContains(valuesVector, currentValue)) {
+
+            length--;
+
+            if (freeFun != NULL)
+                freeFun(currentValue);
+
+            for (int i = index; i < length; i++) // this loop is to shift the values to delete the duplicated value
+                memcpy(arr + i * elemSize, arr + (i + 1) * elemSize, elemSize);
+
+        } else {
+            vectorAdd(valuesVector, currentValue);
+            index++;
+        }
+
+    }
+
+    destroyVector(valuesVector);
 
     return length;
 

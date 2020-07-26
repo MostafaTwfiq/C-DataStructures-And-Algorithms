@@ -87,7 +87,8 @@ int stringCmp(const void *s1, const void *s2) {
 int main() {
 
     int arr[] = {1, 2, 3, 4, 5, 5, 3, 3, 2, 10}; // length = 10;
-    int newLength = arrRemoveDuplicates(arr, 10, sizeof(int), intCmp, intHashFun, NULL);
+    printf("Most frequent: %d\n\n", *(int*)mostFrequentArrValueA(arr, 10, sizeof(int), intCmp));
+    int newLength = arrRemoveDuplicatesA(arr, 10, sizeof(int), intCmp, NULL);
     printArr(arr, newLength, sizeof(int), printInt);
     return 0;
 
