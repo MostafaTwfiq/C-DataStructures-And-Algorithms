@@ -616,7 +616,7 @@ int stringContainsChar(char *charArr, char c) {
  * then it will removes characters specified in the second array of characters parameter,
  * from the beginning of the string.
  *
- * ex of specialCharacters array: " \t\n", the function will remove any ' ', '\t', ' ' character from the beginning.
+ * ex of specialCharacters array: " \t\n", the function will remove any ' ', '\t', and '\n' characters from the beginning.
  *
  * @param myString the string pointer
  * @param specialCharacters the special characters array pointer
@@ -694,7 +694,7 @@ void stringTrimStart(String *myString) {
  * then it will removes characters specified in the second array of characters parameter,
  * from the end of the string.
  *
- * ex of specialCharacters array: " \t\n", the function will remove any ' ', '\t', ' ' character from the end.
+ * ex of specialCharacters array: " \t\n", the function will remove any ' ', '\t', and '\n' characters from the end.
  *
  * @param myString the string pointer
  * @param specialCharacters the special characters array pointer
@@ -794,7 +794,7 @@ void stringTrim(String *myString) {
  * then it will removes characters specified in the second array of characters parameter,
  * from the beginning and the end of the string.
  *
- * ex of specialCharacters array: " \t\n", the function will remove any ' ', '\t', ' ' character from the end.
+ * ex of specialCharacters array: " \t\n", the function will remove any ' ', '\t', and '\n' characters from the beginning and the end.
  *
  * @param myString the string pointer
  * @param specialCharacters the special characters array pointer

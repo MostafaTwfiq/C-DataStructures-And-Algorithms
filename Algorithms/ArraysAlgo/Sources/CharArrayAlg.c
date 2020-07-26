@@ -125,7 +125,7 @@ void charArrayReverseWords(char *charArr) {
  * then it will removes characters specified in the second array of characters parameter,
  * from the beginning of a first array of characters parameter.
  *
- * ex of specialCharacters array: " \t\n", the function will remove any ' ', '\t', ' ' character from the beginning.
+ * ex of specialCharacters array: " \t\n", the function will remove any ' ', '\t', and '\n' characters from the beginning.
  *
  * @param charArr the characters array pointer
  * @param specialCharacters the special characters array pointer
@@ -179,7 +179,7 @@ void charArrTrimStart(char *charArr) {
  * then it will removes characters specified in the second array of characters parameter,
  * from the end of the first array of characters parameter.
  *
- * ex of specialCharacters array: " \t\n", the function will remove any ' ', '\t', ' ' character from the end.
+ * ex of specialCharacters array: " \t\n", the function will remove any ' ', '\t', and '\n' characters from the end.
  *
  * @param charArr the characters array pointer
  * @param specialCharacters the special characters array pointer
@@ -241,7 +241,7 @@ void charArrTrim(char *charArr) {
  * then it will removes characters specified in the second array of characters parameter,
  * from the beginning and the end of the first array of characters parameter.
  *
- * ex of specialCharacters array: " \t\n", the function will remove any ' ', '\t', ' ' character from the end.
+ * ex of specialCharacters array: " \t\n", the function will remove any ' ', '\t', and '\n' characters from the beginning and the end.
  *
  * @param charArr the characters array pointer
  * @param specialCharacters the special characters array pointer
