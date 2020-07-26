@@ -753,3 +753,45 @@ uint32_t isEqual(BinaryTree *binaryTree,BinaryTree *binaryTree2){
         return areEqual;
     }
 }
+
+///
+/// \param tree
+/// \param root
+/// \param item
+/// \return
+uint32_t binaryTreeContainsHelper(BinaryTree * tree, BinaryTreeNode* root, void *item){
+    if (root == NULL) return 0;
+    if (tree->cmp(item, root->key) == 0) return 1;
+    else if (tree->cmp(item, root->key) < 0)
+        return binaryTreeContainsHelper(tree, root->left, item);
+
+    else
+        return binaryTreeContainsHelper(tree, root->right, item);
+}
+
+///
+/// \param tree
+/// \param item
+/// \return
+uint32_t binaryTreeContains(BinaryTree * tree, void *item){
+
+    if (tree == NULL) {
+            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "binaryTreeContains");
+            #ifdef CU_TEST_H
+                    DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            #else
+                    exit(NULL_POINTER);
+            #endif
+
+    } else if (item == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item", "binaryTreeContains");
+        #ifdef CU_TEST_H
+                DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+                exit(INVALID_ARG);
+        #endif
+    }
+
+    return binaryTreeContainsHelper(tree, tree->root, item);
+}
+

@@ -510,7 +510,10 @@ void isEqualHelper(SplayNode* node1,SplayNode* node2,int (*cmpFn)(const void *, 
 }
 
 
-
+///
+/// \param splayTree
+/// \param splayTree2
+/// \return
 uint32_t isEqual(SplayTree *splayTree, SplayTree *splayTree2){
     if (splayTree == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "splayTree", "isEqual");
@@ -537,4 +540,45 @@ uint32_t isEqual(SplayTree *splayTree, SplayTree *splayTree2){
         isEqualHelper(splayTree->root, splayTree2->root, splayTree->cmp, &areEqual);
         return areEqual;
     }
+}
+
+///
+/// \param tree
+/// \param root
+/// \param item
+/// \return
+uint32_t SplayTreeContainsHelper(SplayTree * tree, SplayNode* root,void *item){
+    if (root == NULL) return 0;
+    if (tree->cmp(item, root->key) == 0) return 1;
+    else if (tree->cmp(item, root->key) < 0)
+        return SplayTreeContainsHelper(tree, root->left, item);
+
+    else
+        return SplayTreeContainsHelper(tree, root->right, item);
+}
+
+///
+/// \param tree
+/// \param item
+/// \return
+uint32_t SplayTreeContains(SplayTree * tree, void *item){
+
+    if (tree == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "SplayTreeContains");
+        #ifdef CU_TEST_H
+                DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #else
+                exit(NULL_POINTER);
+        #endif
+
+    } else if (item == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item", "SplayTreeContains");
+        #ifdef CU_TEST_H
+                DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+                exit(INVALID_ARG);
+        #endif
+    }
+
+    return SplayTreeContainsHelper(tree, tree->root, item);
 }

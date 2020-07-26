@@ -860,6 +860,11 @@ AVLTreeNode* AVLInOrderSuccessor(AVLTree *avlTree, void *referenceNode){
     return leftMost;
 }
 
+///
+/// \param node1
+/// \param node2
+/// \param cmpFn
+/// \param flag
 void isEqualHelper(AVLTreeNode* node1,AVLTreeNode* node2,int (*cmpFn)(const void *, const void *), int * flag){
     if (cmpFn == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "cmpFn", "isEqualHelper");
@@ -876,6 +881,10 @@ void isEqualHelper(AVLTreeNode* node1,AVLTreeNode* node2,int (*cmpFn)(const void
     isEqualHelper(node1->left, node2->left, cmpFn,flag);
 }
 
+///
+/// \param avlTree
+/// \param avlTree2
+/// \return
 uint32_t isEqual(AVLTree *avlTree,AVLTree *avlTree2){
     if (avlTree == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "avlTree", "isEqual");
@@ -904,3 +913,47 @@ uint32_t isEqual(AVLTree *avlTree,AVLTree *avlTree2){
         return areEqual;
     }
 }
+
+///
+/// \param tree
+/// \param root
+/// \param item
+/// \return
+uint32_t AVLTreeContainsHelper(AVLTree * tree, AVLTreeNode* root, void *item){
+    if (root == NULL) return 0;
+    if (tree->cmp(item, root->key) == 0) return 1;
+    else if (tree->cmp(item, root->key) < 0)
+        return AVLTreeContainsHelper(tree, root->left, item);
+
+    else
+        return AVLTreeContainsHelper(tree, root->right, item);
+}
+
+///
+/// \param tree
+/// \param item
+/// \return
+uint32_t AVLTreeContains(AVLTree * tree, void *item){
+
+    if (tree == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "AVLTreeContains");
+        #ifdef CU_TEST_H
+                DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #else
+                exit(NULL_POINTER);
+        #endif
+
+    } else if (item == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item", "AVLTreeContains");
+        #ifdef CU_TEST_H
+                DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+                exit(INVALID_ARG);
+        #endif
+    }
+
+    return AVLTreeContainsHelper(tree, tree->root, item);
+}
+
+
+
