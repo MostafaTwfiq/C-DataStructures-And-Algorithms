@@ -458,22 +458,35 @@ uint32_t BinaryMaxHeapContains(BinaryMaxHeap * binaryMaxHeap, void *item){
     }
 }
 
-void BinaryMaxHeapMirrorHelper(void ** mem, int index, int size){
+
+int intCmp1(const void *p1, const void *p2) {
+    return *(int *)p1 - *(int *)p2;
+}
+
+
+void printInt1(void *item) {
+    printf("%d->", *(int *)item);
+}
+
+
+void BinaryMaxHeapMirrorHelper(BinaryMaxHeap * binaryMaxHeap, int index, int size){
     if(size-1<index) return;
-    BinaryMaxHeapMirrorHelper(mem,LCHILD(index),size);
-    BinaryMaxHeapMirrorHelper(mem,RCHILD(index),size);
+    BinaryMaxHeapMirrorHelper(binaryMaxHeap,LCHILD(index),size);
+    BinaryMaxHeapMirrorHelper(binaryMaxHeap,RCHILD(index),size);
 
     void * temp;
-    void * RChild = mem[RCHILD(index)];
-    void * LChild= mem[LCHILD(index)];
+    void * RChild = binaryMaxHeap->memory[RCHILD(index)];
+    void * LChild= binaryMaxHeap->memory[LCHILD(index)];
 
     temp = RChild;
     RChild = LChild;
     LChild = temp;
 }
 
+
+
 void BinaryMaxHeapMirror(BinaryMaxHeap * binaryMaxHeap){
-     BinaryMaxHeapMirrorHelper(binaryMaxHeap->memory,0,binaryMaxHeap->size);
+     BinaryMaxHeapMirrorHelper(binaryMaxHeap,0,binaryMaxHeap->size);
 }
 
 
