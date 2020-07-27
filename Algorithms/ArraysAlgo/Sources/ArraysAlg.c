@@ -2,6 +2,12 @@
 #include "../../Sorting/Headers/SwapFunction.h"
 #include "../../../System/Utils.h"
 #include "../../../DataStructure/Tables/Headers/HashMap.h"
+#include "../../../DataStructure/Tables/Headers/HashSet.h"
+#include "../../../DataStructure/Lists/Headers/Vector.h"
+#include "../../Sorting/Headers/Sorting.h"
+#include "../../Searching/Headers/Searching.h"
+
+
 
 
 
@@ -18,7 +24,9 @@ void nullFreeFunArrAlg(void *item) {}
 
 /** This function takes an integer pointer,
  * and then freeing it.
+ *
  * Note: this function will be useful to use the hash map.
+ *
  * @param n the integer pointer
  */
 
@@ -30,7 +38,9 @@ void intFreeFunArrAlg(void *n) {
 
 /** This function will take two integers pointers,
  * then it will compare them.
+ *
  * Note: this function will be useful to use the hash map.
+ *
  * @param n1 the first integer pointer
  * @param n2 the second integer pointer
  * @return it will return the result of the comparison, zero if they are equal, minus integer if the second bigger, and positive integer if the first bigger
@@ -47,7 +57,9 @@ int intCmpArrAlg(const void *n1, const void * n2) {
 /** This function takes an integer number pointer,
  * then it will allocate a new integer space and copy the passed integer in the new space,
  * and finally return the new integer pointer.
+ *
  * Note: this function will be useful to use the hash map.
+ *
  * @param num the number pointer
  * @return it will return the new allocated pointer
  */
@@ -65,8 +77,9 @@ unsigned int *generateIntPointerArrAlg(unsigned int *num) {
 
 /** This function will take an array then it will reverse the array.
  *
- * Time Complexity: O (n)
- * Space Complexity: O (1)
+ * Time Complexity: O (n).
+ *
+ * Space Complexity: O (1).
  *
  * @param arr the array pointer
  * @param length the length of the array
@@ -103,13 +116,18 @@ void reverseArray(void *arr, int length, int elemSize) {
 
 /** This function will take an array then,
  * it will return a pointer to the most frequent value in the array.
- * Note: because the function uses hash map, you need to pass the hashing function.
- * Note: the function will return null if the array are empty.
- * Note: if there is more than one value that has the same frequent, then the function only will return one of them,
- * without knowing which one << it depends on the hashing function in the hash map >>.
  *
- * Time Complexity: O (n)
- * Space Complexity: O (k) and k is the different values in the array
+ * Note: because the function uses hash map, you need to pass the hashing function.
+ *
+ * Note: the function will return null if the array are empty.
+ *
+ * Note: if there is more than one value that has the same frequent, then the function only will return one of them,
+ * without knowing which one it depends on the hashing function in the hash map >>.
+ *
+ * Note: this function will use hash map to detect the duplicates.
+ *
+ * Time Complexity: O (n).
+ * Space Complexity: O (k) and k is the different values in the array.
  *
  * @param arr the array pointer
  * @param length the length of the array
@@ -119,7 +137,7 @@ void reverseArray(void *arr, int length, int elemSize) {
  * @return it will return the most frequent value in the array, or it will return NULL if the array are empty
  */
 
-void *mostFrequentArrValue(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *), int (*hashFun)(const void *)) {
+void *mostFrequentArrValueH(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *), int (*hashFun)(const void *)) {
     if (arr == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "most frequent value algorithm");
         exit(NULL_POINTER);
@@ -180,15 +198,109 @@ void *mostFrequentArrValue(void *arr, int length, int elemSize, int (*cmp)(const
 
 
 
-/** This function will take an array then it will print it.
- * The printing will be like this:
- * [element1, element2, ...]
- * The passed printing function should only print the value without any increases.
- * The function will use the stdout file to print the array.
+
+
+
+
+
+/** This function will take an array then,
+ * it will return a pointer to the most frequent value in the array.
+ *
+ * Note: the function will return null if the array are empty.
+ *
+ * Note: if there is more than one value that has the same frequent, then the function only will return the first one.
+ *
+ * Note: this function will uses arrays to detect the duplicates.
+ *
+ * Time Complexity: O (n ^ 2).
+ * Space Complexity: O (2n).
+ *
  * @param arr the array pointer
  * @param length the length of the array
  * @param elemSize the array elements size in bytes
- * @param printFun the values printing funciton pointer
+ * @param cmp the elements comparator function pointer
+ * @return it will return the most frequent value in the array, or it will return NULL if the array are empty
+ */
+
+void *mostFrequentArrValueA(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *)) {
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "most frequent value algorithm");
+        exit(NULL_POINTER);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "most frequent value algorithm");
+        exit(INVALID_ARG);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "most frequent value algorithm");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "most frequent value algorithm");
+        exit(INVALID_ARG);
+    }
+
+    Vector *valuesVector = vectorInitialization( length / 2 == 0  ? 1 : length / 2, nullFreeFunArrAlg, cmp);
+    Vector *counterVector = vectorInitialization( length / 2 == 0  ? 1 : length / 2, intFreeFunArrAlg, intCmpArrAlg);
+    unsigned int oneValue = 1;
+
+    for (int i = 0; i < length; i++) {
+
+        void *currentItem = arr + i * elemSize;
+        int currentItemIndex = vectorGetIndex(valuesVector, currentItem);
+
+        if (currentItemIndex == -1) {
+            vectorAdd(valuesVector, currentItem);
+            vectorAdd(counterVector, generateIntPointerArrAlg(&oneValue));
+        }
+        else {
+            int *currentFreq = vectorGet(counterVector, currentItemIndex);
+            *currentFreq += 1;
+        }
+
+    }
+
+    void *mostFreqValue = NULL;
+    int mostFreq = -1;
+    int mostFreqValueIndex = -1;
+
+    for (int i = 0; i < vectorGetLength(counterVector); i++) {
+
+        if (mostFreq < *(int *) vectorGet(counterVector, i)) {
+            mostFreq = *(int *) vectorGet(counterVector, i);
+            mostFreqValueIndex = i;
+        }
+
+    }
+
+
+    if (mostFreqValueIndex != -1)
+        mostFreqValue = vectorGet(valuesVector, mostFreqValueIndex);
+
+    destroyVector(valuesVector);
+    destroyVector(counterVector);
+
+    return mostFreqValue;
+
+}
+
+
+
+
+
+
+
+
+/** This function will take an array then it will print it.
+ *
+ * The printing will be like this:
+ * [element1, element2, ...]
+ *
+ * The passed printing function should only print the value without any increases.
+ *
+ * The function will use the stdout file to print the array.
+ *
+ * @param arr the array pointer
+ * @param length the length of the array
+ * @param elemSize the array elements size in bytes
+ * @param printFun the values printing function pointer
  */
 
 void printArr(void *arr, int length, int elemSize, void (*printFun)(void *)) {
@@ -225,7 +337,9 @@ void printArr(void *arr, int length, int elemSize, void (*printFun)(void *)) {
 /** This function will take an array with a new length,
  * then it will allocate a new array with the provided new length,
  * and it will copy the values in the original array into the new array, and finally return the new array pointer.
+ *
  * Note: this function will memory copy the original array.
+ *
  * @param arr the array pointer
  * @param length the length of the array
  * @param elemSize the size of the array elements in bytes
@@ -266,8 +380,11 @@ void *arrResize(void *arr, int length, int elemSize, int newLength) {
 
 /** This function will take an array with a new length,
  * then it will allocate a new array with the provided new length,
- * and it will copy the values between the provided two indices in the original array into the new array, and finally return the new array pointer.
+ * and it will copy the values between the provided two indices in the original array into the new array,
+ * and finally return the new array pointer.
+ *
  * Note: this function will memory copy the original array.
+ *
  * @param arr the array pointer
  * @param length the length of the array
  * @param elemSize the array elements size in bytes
@@ -317,7 +434,9 @@ void *arrResizeOfRange(void *arr, int length, int elemSize, int startIndex, int 
  * then it will allocate a new array with the provided new length,
  * and it will copy the values in the original array into the new array using the passed copy function,
  * and finally return the new array pointer.
+ *
  * Note: the first parameter of the copying function will be the space that the second parameter will be copied into it.
+ *
  * @param arr the array pointer
  * @param length the array length
  * @param elemSize the size of the array elements in bytes
@@ -366,7 +485,9 @@ void *arrResizeC(void *arr, int length, int elemSize, int newLength, void (*copy
  * then it will allocate a new array with the provided new length,
  * and it will copy the values between the provided two indices in the original array into the new array using the passed copy function,
  * and finally return the new array pointer.
+ *
  * Note: the first parameter of the copying function will be the space that the second parameter will be copied into it.
+ *
  * @param arr the array pointer
  * @param length the array length
  * @param elemSize the size of the array elements in bytes
@@ -414,7 +535,9 @@ void *arrResizeOfRangeC(void *arr, int length, int elemSize, int startIndex, int
 
 /** This function will take an array,
  * then it will allocate a new array and copy the original one in the new array.
+ *
  * Note: this function will memory copy the original array.
+ *
  * @param arr the array pointer
  * @param length the length of the array
  * @param elemSize the size of the array elements in bytes
@@ -453,8 +576,10 @@ void *arrCopy(void *arr, int length, int elemSize) {
 
 /** This function will take an array,
  * then it will allocate a new array and copy the original array into the new one.
+ *
  * Note: the passed copy function will take two parameters, the first one will be a pointer to the,
  * new space that should the second parameter be copied into it.
+ *
  * @param arr the array pointer
  * @param length the length of the array
  * @param elemSize the size of the array elements in bytes
@@ -544,8 +669,10 @@ void *arrCopyOfRange(void *arr, int length, int elemSize, int startIndex, int en
 
 /** This function will take an array and a range,
  * then it will copy the passed range from the original array into a new allocated array.
+ *
  * Note: the passed copy function will take two parameters, the first one will be a pointer to the,
  * new space that should the second parameter be copied into it.
+ *
  * @param arr the array length
  * @param length the length of the array
  * @param elemSize the size of the array elements
@@ -594,7 +721,9 @@ void *arrCopyOfRangeC(void *arr, int length, int elemSize, int startIndex, int e
 
 /** This function will take an array and a value,
  * then it will fill all the array with that value.
+ *
  * Note: the function will memory copy the value into the array.
+ *
  * @param arr the array pointer
  * @param fillValue the target value pointer
  * @param length the length of the array
@@ -628,8 +757,10 @@ void fillArr(void *arr, void *fillValue, int length, int elemSize) {
 
 /** This function will take an array and a value,
  * then it will fill all the array with that value.
+ *
  * Note: the passed copy function will take two parameters, the first one will be a pointer to the,
  * new space that should the second parameter (the value) be copied into it.
+ *
  * @param arr the array pointer
  * @param fillValue the target value pointer
  * @param length the length of the array
@@ -871,7 +1002,9 @@ int arrCompareOfRange(void *fArr, int fLength, void *sArr, int sLength, int elem
  * then it will search for the first element that mismatch between the two arrays,
  * if the mismatch found the function will return the mismatch index,
  * other wise it will return minus one (-1).
+ *
  * Note: if the two array hasn't the same length the function will check for smallest length.
+ *
  * @param fArr the first array pointer
  * @param fLength the first array length
  * @param sArr the second array pointer
@@ -1002,5 +1135,724 @@ int32_t arrIsEqualNoOrder(void *fArr, int fLength, void *sArr, int sLength, int 
         if ( cmp(fArr + i * elemSize, sArr + i * elemSize) != 0 )
             return 0;
     }
+    return 1;
+
+
+
+
+
+
+
+
+/** This function will take an array,
+ * then it will remove all the duplicates values from the array.
+ *
+ * Note: the function will memory copy the value index i + 1 to remove the value in index i,
+ * so if the value need to be freed first then pass the free function, other wise pass NULL function pointer.
+ *
+ * Note: this function will use hash set to detect the duplicates.
+ *
+ * Note: the function needs a hash value function because the function uses hash set data structure,
+ * to detect the duplicates with less complexity.
+ *
+ * @param arr the array pointer
+ * @param length the length of the array
+ * @param elemSize the array elements size in bytes
+ * @param cmp the comparator function pointer, that will be called to compare two value
+ * @param hashFun the hashing function that will return a unique integer representing the hash map key
+ * @param freeFun the free function pointer, that will be called to free the value before removing it from the array
+ * @return it will return the new length of the array after removing the duplicates
+ */
+
+int arrRemoveDuplicatesH(void *arr, int length, int elemSize,
+                         int (*cmp)(const void *, const void *),
+                         int (*hashFun)(const void *),
+                         void (*freeFun)(void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array remove duplicates function");
+        exit(NULL_POINTER);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array remove duplicates function");
+        exit(INVALID_ARG);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array remove duplicates function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array remove duplicates function");
+        exit(INVALID_ARG);
+    } else if (hashFun == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "hash function pointer", "array remove duplicates function");
+        exit(INVALID_ARG);
+    }
+
+    HashSet *valuesSet = hashSetInitialization(nullFreeFunArrAlg, cmp, hashFun);
+    int index = 0;
+
+    while (index < length) {
+        void *currentValue = arr + index * elemSize;
+        int valueExistFlag = hashSetContains(valuesSet, currentValue);
+        if (valueExistFlag) {
+
+            length--;
+
+            if (freeFun != NULL)
+                freeFun(currentValue);
+
+            for (int i = index; i < length; i++) // this loop is to shift the values to delete the duplicated value
+                memcpy(arr + i * elemSize, arr + (i + 1) * elemSize, elemSize);
+
+        } else {
+            hashSetInsert(valuesSet, currentValue);
+            index++;
+        }
+
+    }
+
+    destroyHashSet(valuesSet);
+
+    return length;
+
+}
+
+
+
+
+
+
+
+
+
+/** This function will take an array,
+ * then it will remove all the duplicates values from the array.
+ *
+ * Note: the function will memory copy the value index i + 1 to remove the value in index i,
+ * so if the value need to be freed first then pass the free function, other wise pass NULL function pointer.
+ *
+ * Note: this function will use an array to detect the duplicates.
+ *
+ * @param arr the array pointer
+ * @param length the length of the array
+ * @param elemSize the array elements size in bytes
+ * @param cmp the comparator function pointer, that will be called to compare two value
+ * @param freeFun the free function pointer, that will be called to free the value before removing it from the array
+ * @return it will return the new length of the array after removing the duplicates
+ */
+
+int arrRemoveDuplicatesA(void *arr, int length, int elemSize,
+                         int (*cmp)(const void *, const void *),
+                         void (*freeFun)(void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array remove duplicates function");
+        exit(NULL_POINTER);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array remove duplicates function");
+        exit(INVALID_ARG);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array remove duplicates function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array remove duplicates function");
+        exit(INVALID_ARG);
+    }
+
+    Vector *valuesVector = vectorInitialization(length / 2 == 0 ? 1 : length / 2, nullFreeFunArrAlg, cmp);
+    int index = 0;
+
+    while (index < length) {
+        void *currentValue = arr + index * elemSize;
+        if (vectorContains(valuesVector, currentValue)) {
+
+            length--;
+
+            if (freeFun != NULL)
+                freeFun(currentValue);
+
+            for (int i = index; i < length; i++) // this loop is to shift the values to delete the duplicated value
+                memcpy(arr + i * elemSize, arr + (i + 1) * elemSize, elemSize);
+
+        } else {
+            vectorAdd(valuesVector, currentValue);
+            index++;
+        }
+
+    }
+
+    destroyVector(valuesVector);
+
+    return length;
+}
+
+
+
+
+
+
+
+
+
+
+/** This function will take an array and a values array,
+ * then it will remove any value in the values array from the first array,
+ * and finally the function will return the new length of the array.
+ *
+ * Note: the function will memory copy the value index i + 1 to remove the value in index i,
+ * so if the value need to be freed first then pass the free function, other wise pass NULL function pointer.
+ *
+ * @param arr the array pointer
+ * @param arrLength the length of the array
+ * @param values the values array
+ * @param valuesArrLength the length of the values array
+ * @param elemSize the size of the values elements
+ * @param cmp the comparator function pointer, that will be called to compare values
+ * @param freeFun the free function pointer, that will be called to free the value before removing them
+ * @return it will return the new length of the array after deleting the values
+ */
+
+int arrRemoveValues(void *arr, int arrLength, void *values, int valuesArrLength, int elemSize,
+                         int (*cmp)(const void *, const void *),
+                         void (*freeFun)(void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array remove values function");
+        exit(NULL_POINTER);
+    } else if (values == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed values array", "array remove values function");
+        exit(NULL_POINTER);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array remove values function");
+        exit(INVALID_ARG);
+    } else if (arrLength < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array remove values function");
+        exit(INVALID_ARG);
+    } else if (valuesArrLength < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "values array length", "array remove values function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array remove values function");
+        exit(INVALID_ARG);
+    }
+
+
+    for (int i = 0; i < arrLength; i++) {
+
+        if ( arrContains(values, arr + i * elemSize, valuesArrLength, elemSize, cmp) ) {
+
+            arrRemoveAtIndex(arr, i, arrLength, elemSize, freeFun);
+            arrLength--;
+            i--;
+
+        }
+
+    }
+
+    return arrLength;
+
+}
+
+
+
+
+
+
+/** This function will take an array and a values array,
+ * then it will count the number of values in the first array that exist in the values array.
+ * @param arr the array pointer
+ * @param arrLength the length of the array
+ * @param values the values array
+ * @param valuesArrLength the length of the values array
+ * @param elemSize the size of the values elements
+ * @param cmp the comparator function pointer, that will be called to compare values
+ * @return it will return the number of values in the first array that exist in the values array
+ */
+
+int arrCountValues(void *arr, int arrLength, void *values, int valuesArrLength, int elemSize,
+                    int (*cmp)(const void *, const void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array count values function");
+        exit(NULL_POINTER);
+    } else if (values == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed values array", "array count values function");
+        exit(NULL_POINTER);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array count values function");
+        exit(INVALID_ARG);
+    } else if (arrLength < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array count values function");
+        exit(INVALID_ARG);
+    } else if (valuesArrLength < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "values array length", "array count values function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array count values function");
+        exit(INVALID_ARG);
+    }
+
+
+    int counter = 0;
+    for (int i = 0; i < arrLength; i++) {
+
+        if ( arrContains(values, arr + i * elemSize, valuesArrLength, elemSize, cmp) )
+            counter++;
+
+    }
+
+    return counter;
+
+}
+
+
+
+
+
+
+
+/** This function will check if the passed values array,
+ * is a sub array from the original array, and if it was the function will return one (1),
+ * other wise it will return zero (0).
+ * @param arr the array pointer
+ * @param arrLength the length of the array
+ * @param values the values array
+ * @param valuesArrLength the length of the values array
+ * @param elemSize the size of the values elements
+ * @param cmp the comparator function pointer, that will be called to compare values
+ * @return it will return 1 if the values array is a sub array from the original array, other wise it will return 0
+ */
+
+int isSubArr(void *arr, int arrLength, void *values, int valuesArrLength, int elemSize,
+                   int (*cmp)(const void *, const void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "is sub array function");
+        exit(NULL_POINTER);
+    } else if (values == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed values array", "is sub array function");
+        exit(NULL_POINTER);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "is sub array function");
+        exit(INVALID_ARG);
+    } else if (arrLength < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "is sub array function");
+        exit(INVALID_ARG);
+    } else if (valuesArrLength < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "values array length", "is sub array function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "is sub array function");
+        exit(INVALID_ARG);
+    }
+
+
+    for (int i = 0; i <= arrLength - valuesArrLength; i++) {
+
+        if ( cmp(arr + i * elemSize, values) == 0) {
+
+            for (int j = 0; j < valuesArrLength; j++) {
+
+                if (j == valuesArrLength - 1 && cmp(arr + (i + j) * elemSize, values + j * elemSize) == 0)
+                    return 1;
+                else if (cmp(arr + (i + j) * elemSize, values + j * elemSize) != 0)
+                    break;
+
+            }
+
+        }
+
+    }
+
+    return 0;
+
+}
+
+
+
+
+
+
+
+/** This function will check if the passed values array,
+ * is a sub array from the original array, and if it was the function will return the start index,
+ * other wise it will return minus one (-1).
+ * @param arr the array pointer
+ * @param arrLength the length of the array
+ * @param values the values array
+ * @param valuesArrLength the length of the values array
+ * @param elemSize the size of the values elements
+ * @param cmp the comparator function pointer, that will be called to compare values
+ * @return it will return the start index of the sub array if the values array is a sub array from the original array, other wise it will return -1
+ */
+
+int arrGetStartIndex(void *arr, int arrLength, void *values, int valuesArrLength, int elemSize,
+         int (*cmp)(const void *, const void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array get start index function");
+        exit(NULL_POINTER);
+    } else if (values == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed values array", "array get start index function");
+        exit(NULL_POINTER);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array get start index function");
+        exit(INVALID_ARG);
+    } else if (arrLength < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array get start index function");
+        exit(INVALID_ARG);
+    } else if (valuesArrLength < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "values array length", "array get start index function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array get start index function");
+        exit(INVALID_ARG);
+    }
+
+
+    for (int i = 0; i <= arrLength - valuesArrLength; i++) {
+
+        if ( cmp(arr + i * elemSize, values) == 0) {
+
+            for (int j = 0; j < valuesArrLength; j++) {
+
+                if (j == valuesArrLength - 1 && cmp(arr + (i + j) * elemSize, values + j * elemSize) == 0)
+                    return i;
+                else if (cmp(arr + (i + j) * elemSize, values + j * elemSize) != 0)
+                    break;
+
+            }
+
+        }
+
+    }
+
+    return -1;
+
+}
+
+
+
+
+
+
+
+/** This function will take an array and value,
+ * then it will return one (1) if the values is in the array, other wise it will return zero (0).
+ * @param arr the array pointer
+ * @param value the value pointer
+ * @param length the length of the array
+ * @param elemSize the size of the array elements in bytes
+ * @param cmp the comparator function pointer, that will be called to compare the values
+ * @return it will return 1 if the values exist in the array, other wise it will return 0
+ */
+
+int arrContains(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array contains function");
+        exit(NULL_POINTER);
+    } else if (value == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed value", "array contains function");
+        exit(NULL_POINTER);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array contains function");
+        exit(INVALID_ARG);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array contains function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array contains function");
+        exit(INVALID_ARG);
+    }
+
+
+    for (int i = 0; i < length; i++) {
+
+        if ( cmp(value, arr + i * elemSize) == 0 )
+            return 1;
+
+    }
+
+    return 0;
+
+}
+
+
+
+
+
+
+
+
+/** This function will take an array and index,
+ * then it will remove the value in the given index.
+ *
+ * Note: the function will memory copy the value index i + 1 to remove the value in index i,
+ * so if the value need to be freed first then pass the free function, other wise pass NULL function pointer.
+ *
+ * @param arr the array pointer
+ * @param index the index of the value
+ * @param length the length of the array
+ * @param elemSize the size of the array elements in bytes
+ * @param freeFun the free function pointer, that will be called to free the value before removing it from the array
+ */
+
+void arrRemoveAtIndex(void *arr, int index, int length, int elemSize, void (*freeFun)(void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array remove function");
+        exit(NULL_POINTER);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array remove function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array remove function");
+        exit(INVALID_ARG);
+    } else if (index < 0 || index >= length) {
+        fprintf(stderr, OUT_OF_RANGE_MESSAGE, "remove at index function array");
+        exit(OUT_OF_RANGE);
+    }
+
+    if (freeFun != NULL)
+        freeFun(arr + index * elemSize);
+
+    for (int i = index; i < length - 1; i++)
+        memcpy(arr + i * elemSize, arr + (i + 1) * elemSize, elemSize);
+
+}
+
+
+
+
+
+
+
+
+/** This function will take an array,
+ * then it will sort the array using quick sort algorithm.
+ * @param arr the array pointer
+ * @param length the length of the array
+ * @param elemSize the size of the array elements
+ * @param cmp the comparator function pointer, that will be called to compare the values
+ */
+
+void arrSort(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array sort function");
+        exit(NULL_POINTER);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array sort function");
+        exit(INVALID_ARG);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array sort function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array sort function");
+        exit(INVALID_ARG);
+    }
+
+    quickSort(arr, length, elemSize, cmp);
+}
+
+
+
+
+
+
+
+
+/** This function will take an array and a value,
+ * then it will return the index of the first occurrence of the value in the array if found,
+ * other wise it will return minus one (-1).
+ * @param arr the array pointer
+ * @param value the value pointer
+ * @param length the length of the array
+ * @param elemSize the size of the array elements in bytes
+ * @param cmp the comparator function pointer, that will be called to compare the values
+ * @return it will return the index of the first occurrence of the value if found, other wise it will return -1
+ */
+
+int arrGetFirst(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array get first function");
+        exit(NULL_POINTER);
+    } else if (value == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "array get first function");
+        exit(INVALID_ARG);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array get first function");
+        exit(INVALID_ARG);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array get first function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array get first function");
+        exit(INVALID_ARG);
+    }
+
+    return linearSearch(arr, value, length, elemSize, cmp);
+
+}
+
+
+
+
+
+
+/** This function will take an array and a value,
+ * then it will return the index of the last occurrence of the value in the array if found,
+ * other wise it will return minus one (-1).
+ * @param arr the array pointer
+ * @param value the value pointer
+ * @param length the length of the array
+ * @param elemSize the size of the array elements in bytes
+ * @param cmp the comparator function pointer, that will be called to compare the values
+ * @return it will return the index of the last occurrence of the value if found, other wise it will return -1
+ */
+
+int arrGetLast(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array get last function");
+        exit(NULL_POINTER);
+    } else if (value == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "array get last function");
+        exit(INVALID_ARG);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array get last function");
+        exit(INVALID_ARG);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array get last function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array get last function");
+        exit(INVALID_ARG);
+    }
+
+    return linearSearchGetLast(arr, value, length, elemSize, cmp);
+
+}
+
+
+
+
+
+
+
+
+
+/** This function will take an array and a value,
+ * then it will return a vector that contains all the occurrence indices of the value in the array.
+ * @param arr the array pointer
+ * @param value the value pointer
+ * @param length the length of the array
+ * @param elemSize the size of the array elements in bytes
+ * @param cmp the comparator function pointer, that will be called to compare the values
+ * @return it will return a vector that contains all the occurrence indices of the value in the array.
+ */
+
+Vector *arrGetAll(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array get all function");
+        exit(NULL_POINTER);
+    } else if (value == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "array get all function");
+        exit(INVALID_ARG);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array get all function");
+        exit(INVALID_ARG);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array get all function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array get all function");
+        exit(INVALID_ARG);
+    }
+
+    return linearSearchGetAll(arr, value, length, elemSize, cmp);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/** This function will take an array and a value,
+ * then it will search for the value using binary search algorithm,
+ * and finally return the index of the value if found, other wise it will return minus one (-1).
+ * @param arr the array pointer
+ * @param value the value pointer
+ * @param length the length of the array
+ * @param elemSize the size of the array elements in bytes
+ * @param cmp the comparator function pointer, that will be called to compare the value
+ * @return it will return the index of the value if found, other wise it will return -1
+ */
+
+int arrBinarySearch(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array binary search function");
+        exit(NULL_POINTER);
+    } else if (value == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "array binary search function");
+        exit(INVALID_ARG);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array binary search function");
+        exit(INVALID_ARG);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array binary search function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array binary search function");
+        exit(INVALID_ARG);
+    }
+
+    return binarySearchI(arr, value, length, elemSize, cmp);
+
+}
+
+
+
+
+/** This function will check if the passed array is a palindrome or not,
+ * and if it was the function will return one (1), other wise it will return zero (0).
+ * @param arr the array pointer
+ * @param length the length of the array
+ * @param elemSize the size of the array elements in bytes
+ * @param cmp the comparator function pointer, that will be called to compare the array values
+ * @return it will return 1 if the array is a palindrome, other wise it will return 0
+ */
+
+int arrIsPalindrome(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array is palindrome function");
+        exit(NULL_POINTER);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array is palindrome function");
+        exit(INVALID_ARG);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array is palindrome function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array is palindrome function");
+        exit(INVALID_ARG);
+    }
+
+    for (int i = 0; i < length / 2; i++) {
+
+        if ( cmp(arr + i * elemSize, arr + (length - 1 - i) * elemSize) != 0)
+            return 0;
+
+    }
+
     return 1;
 }

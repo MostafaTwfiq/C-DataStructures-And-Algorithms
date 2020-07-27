@@ -120,4 +120,5 @@ add_executable(C_DataStructures main.c
         Algorithms/ArraysAlgo/Headers/CharArrayAlg.h
         Algorithms/IntegersAlg/Sources/IntegerAlg.c
         Algorithms/IntegersAlg/Headers/IntegerAlg.h
-        )
+        Algorithms/Sorting/Sources/HeapSort.c 
+        Algorithms/Sorting/Headers/HeapSort.h)    

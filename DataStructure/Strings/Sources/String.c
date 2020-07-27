@@ -585,48 +585,248 @@ int stringIsEqualsToMyString(String *myString, String *string) {
 
 
 
-/** This function will take the string address as a parameter,
-    then it will trim this string (remove spaces and tabs).
- * @param myString the string address
+
+
+/** This function will return one (1) if the passed characters is a part of the passed character array,
+ * other wise if will return zero (0).
+ * @param charArr the char array pointer
+ * @param c the character value, that the function will search for
+ * @return it will return one if the character value exist in the char array, other wise it will return zero
  */
 
-void stringTrim(String *myString) {
+int stringContainsChar(char *charArr, char c) {
+
+    while (*charArr != '\0') {
+        if (*charArr++ == c)
+            return 1;
+
+    }
+
+    return 0;
+
+}
+
+
+
+
+
+
+
+/** This function will take string pointer,
+ * then it will removes characters specified in the second array of characters parameter,
+ * from the beginning of the string.
+ *
+ * ex of specialCharacters array: " \t\n", the function will remove any ' ', '\t', and '\n' characters from the beginning.
+ *
+ * @param myString the string pointer
+ * @param specialCharacters the special characters array pointer
+ */
+
+void stringTrimStartC(String *myString, char *specialCharacters) {
+
     if (myString == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
         #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
-     		exit(NULL_POINTER);
-     	#endif
-
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #else
+            exit(NULL_POINTER);
+        #endif
+    } else if (specialCharacters == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "special characters array", "string data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #else
+            exit(INVALID_ARG);
+        #endif
     }
 
-    while (1) {
-        if (*myString->string == ' ' || *myString->string == '\t') {
+    char *charArr = myString->string;
+    while (*charArr != '\0') {
 
-            for (int i = 0; i < stringGetLength(myString); i++)
-                myString->string[i] = myString->string[i + 1];
+        if (stringContainsChar(specialCharacters, *charArr)) {
+            char *tempPointer = charArr;
+
+            do {
+                *tempPointer = *(tempPointer + 1);
+            } while (*tempPointer++ != '\0');
 
             myString->count--;
 
-        }
-
-        else
+        } else
             break;
 
     }
 
-    for (int i = stringGetLength(myString) - 1; i >= 0; i--) {
 
-        if (myString->string[i] == ' ' || *myString->string == '\t') {
-            myString->string[i] = '\0';
-            myString->count--;
-        }
-        else
-            break;
-
-    }
 }
+
+
+
+
+/** This function will take string pointer,
+ * then it will remove ' ', '\t' and '\n' characters,
+ * from the beginning of the string.
+ *
+ * @param myString the string pointer
+ */
+
+void stringTrimStart(String *myString) {
+
+    if (myString == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #else
+            exit(NULL_POINTER);
+        #endif
+    }
+
+    stringTrimStartC(myString, " \n\t");
+}
+
+
+
+
+
+
+
+/** This function will take string pointer,
+ * then it will removes characters specified in the second array of characters parameter,
+ * from the end of the string.
+ *
+ * ex of specialCharacters array: " \t\n", the function will remove any ' ', '\t', and '\n' characters from the end.
+ *
+ * @param myString the string pointer
+ * @param specialCharacters the special characters array pointer
+ */
+
+void stringTrimEndC(String *myString, char *specialCharacters) {
+
+    if (myString == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #else
+            exit(NULL_POINTER);
+        #endif
+    } else if (specialCharacters == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "special characters array", "string data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #else
+            exit(INVALID_ARG);
+        #endif
+    }
+
+    char *charArr = myString->string;
+    char *startPointer = myString->string;
+
+    while (*charArr != '\0')
+        charArr++;
+
+    while ( startPointer - sizeof(char) != --charArr && stringContainsChar(specialCharacters, *charArr) ) {
+        *charArr = '\0';
+        myString->count--;
+    }
+
+}
+
+
+
+/** This function will take string pointer,
+ * then it will remove ' ', '\t' and '\n' characters,
+ * from the end of the string.
+ *
+ *
+ * @param myString the string pointer
+ */
+
+void stringTrimEnd(String *myString) {
+
+    if (myString == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #else
+            exit(NULL_POINTER);
+        #endif
+    }
+
+    stringTrimEndC(myString, " \n\t");
+}
+
+
+
+
+
+
+/** This function will take string pointer,
+ * then it will remove ' ', '\t' and '\n' characters,
+ * from the beginning and the end of the string.
+ *
+ *
+ * @param myString the string pointer
+ */
+
+void stringTrim(String *myString) {
+
+    if (myString == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #else
+            exit(NULL_POINTER);
+        #endif
+    }
+
+    stringTrimStartC(myString, " \n\t");
+    stringTrimEndC(myString, " \n\t");
+
+}
+
+
+
+
+
+
+
+/** This function will take string pointer,
+ * then it will removes characters specified in the second array of characters parameter,
+ * from the beginning and the end of the string.
+ *
+ * ex of specialCharacters array: " \t\n", the function will remove any ' ', '\t', and '\n' characters from the beginning and the end.
+ *
+ * @param myString the string pointer
+ * @param specialCharacters the special characters array pointer
+ */
+
+void stringTrimC(String *myString, char *specialCharacters) {
+
+    if (myString == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #else
+            exit(NULL_POINTER);
+        #endif
+    } else if (specialCharacters == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "special characters array", "string data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #else
+            exit(INVALID_ARG);
+        #endif
+    }
+
+    stringTrimStartC(myString, specialCharacters);
+    stringTrimEndC(myString, specialCharacters);
+
+}
+
+
+
+
+
 
 
 

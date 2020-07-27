@@ -4,7 +4,9 @@
 
 void reverseArray(void *arr, int length, int elemSize);
 
-void *mostFrequentArrValue(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *), int (*hashFun)(const void *));
+void *mostFrequentArrValueH(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *), int (*hashFun)(const void *));
+
+void *mostFrequentArrValueA(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *));
 
 void printArr(void *arr, int length, int elemSize, void (*printFun)(void *));
 
@@ -40,5 +42,32 @@ int arrMismatch(void *fArr, int fLength, void *sArr, int sLength, int elemSize, 
 
 int arrMismatchOfRange(void *fArr, int fLength, void *sArr, int sLength, int elemSize, int startIndex, int endIndex, int (*cmp)(const void *, const void *));
 
+int arrRemoveDuplicatesH(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *), int (*hashFun)(const void *), void (*freeFun)(void *));
+
+int arrRemoveDuplicatesA(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *), void (*freeFun)(void *));
+
+int arrRemoveValues(void *arr, int arrLength, void *values, int valuesArrLength, int elemSize, int (*cmp)(const void *, const void *), void (*freeFun)(void *));
+
+int arrCountValues(void *arr, int arrLength, void *values, int valuesArrLength, int elemSize, int (*cmp)(const void *, const void *));
+
+int isSubArr(void *arr, int arrLength, void *values, int valuesArrLength, int elemSize, int (*cmp)(const void *, const void *));
+
+int arrGetStartIndex(void *arr, int arrLength, void *values, int valuesArrLength, int elemSize, int (*cmp)(const void *, const void *));
+
+int arrContains(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *));
+
+void arrRemoveAtIndex(void *arr, int index, int length, int elemSize, void (*freeFun)(void *));
+
+void arrSort(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *));
+
+int arrGetFirst(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *));
+
+int arrGetLast(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *));
+
+struct Vector *arrGetAll(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *));
+
+int arrBinarySearch(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *));
+
+int arrIsPalindrome(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *));
 
 #endif //C_DATASTRUCTURES_ARRAYSALG_H
