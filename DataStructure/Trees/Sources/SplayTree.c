@@ -329,7 +329,7 @@ void SplayTreeFree(SplayTree *splayTree){
      	#endif
 
     }
-    SplayTreeFreeHelper(splayTree->root,splayTree->freeFn);
+    SplayTreeFreeHelper(&splayTree->root,splayTree->freeFn);
 }
 
 /** Takes a print function and starts printing from using the provided print function.
