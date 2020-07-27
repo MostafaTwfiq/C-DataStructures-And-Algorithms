@@ -1,6 +1,6 @@
-#include "HeapSort.h"
-#include "Headers/SwapFunction.h"
-#include "../../System/Utils.h"
+#include "../Headers/HeapSort.h"
+#include "../Headers/SwapFunction.h"
+#include "../../../System/Utils.h"
 
 
 
@@ -138,10 +138,10 @@ void heapDown(void *arr, int length, int index, int elemSize, int (*cmp)(const v
 
 
     // if the current element in smaller than his children.
-    if ( cmp(arr + index * elemSize, arr + firstChildIndex * elemSize) < 0
-    && cmp(arr + index * elemSize, arr + secondChildIndex * elemSize) < 0
-    && firstChildIndex < length
-    && secondChildIndex < length) {
+    if ( firstChildIndex < length
+    && secondChildIndex < length
+    && cmp(arr + index * elemSize, arr + firstChildIndex * elemSize) < 0
+    && cmp(arr + index * elemSize, arr + secondChildIndex * elemSize) < 0) {
 
         // the biggest child index.
         int biggestChildIndex = cmp(arr + firstChildIndex * elemSize, arr + secondChildIndex * elemSize) > 0
@@ -154,8 +154,7 @@ void heapDown(void *arr, int length, int index, int elemSize, int (*cmp)(const v
     }
 
     // if the current element is only less that his first child.
-    else if ( cmp(arr + index * elemSize, arr + firstChildIndex * elemSize) < 0
-    && firstChildIndex < length) {
+    else if ( firstChildIndex < length && cmp(arr + index * elemSize, arr + firstChildIndex * elemSize) < 0 ) {
 
         swap(arr + index * elemSize, arr + firstChildIndex * elemSize, elemSize);
         heapDown(arr, length, firstChildIndex, elemSize, cmp);
@@ -163,8 +162,7 @@ void heapDown(void *arr, int length, int index, int elemSize, int (*cmp)(const v
     }
 
     // if the current element is only less that his second child.
-    else if ( cmp(arr + index * elemSize, arr + secondChildIndex * elemSize) < 0
-    && secondChildIndex < length) {
+    else if ( secondChildIndex < length && cmp(arr + index * elemSize, arr + secondChildIndex * elemSize) < 0 ) {
 
         swap(arr + index * elemSize, arr + secondChildIndex * elemSize, elemSize);
         heapDown(arr, length, secondChildIndex, elemSize, cmp);

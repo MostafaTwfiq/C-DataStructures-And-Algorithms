@@ -48,6 +48,12 @@ int arrRemoveDuplicatesA(void *arr, int length, int elemSize, int (*cmp)(const v
 
 int arrRemoveValues(void *arr, int arrLength, void *values, int valuesArrLength, int elemSize, int (*cmp)(const void *, const void *), void (*freeFun)(void *));
 
+int arrCountValues(void *arr, int arrLength, void *values, int valuesArrLength, int elemSize, int (*cmp)(const void *, const void *));
+
+int isSubArr(void *arr, int arrLength, void *values, int valuesArrLength, int elemSize, int (*cmp)(const void *, const void *));
+
+int arrGetStartIndex(void *arr, int arrLength, void *values, int valuesArrLength, int elemSize, int (*cmp)(const void *, const void *));
+
 int arrContains(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *));
 
 void arrRemoveAtIndex(void *arr, int index, int length, int elemSize, void (*freeFun)(void *));

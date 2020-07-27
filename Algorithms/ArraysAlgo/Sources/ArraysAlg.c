@@ -1326,6 +1326,182 @@ int arrRemoveValues(void *arr, int arrLength, void *values, int valuesArrLength,
 
 
 
+/** This function will take an array and a values array,
+ * then it will count the number of values in the first array that exist in the values array.
+ * @param arr the array pointer
+ * @param arrLength the length of the array
+ * @param values the values array
+ * @param valuesArrLength the length of the values array
+ * @param elemSize the size of the values elements
+ * @param cmp the comparator function pointer, that will be called to compare values
+ * @return it will return the number of values in the first array that exist in the values array
+ */
+
+int arrCountValues(void *arr, int arrLength, void *values, int valuesArrLength, int elemSize,
+                    int (*cmp)(const void *, const void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array count values function");
+        exit(NULL_POINTER);
+    } else if (values == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed values array", "array count values function");
+        exit(NULL_POINTER);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array count values function");
+        exit(INVALID_ARG);
+    } else if (arrLength < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array count values function");
+        exit(INVALID_ARG);
+    } else if (valuesArrLength < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "values array length", "array count values function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array count values function");
+        exit(INVALID_ARG);
+    }
+
+
+    int counter = 0;
+    for (int i = 0; i < arrLength; i++) {
+
+        if ( arrContains(values, arr + i * elemSize, valuesArrLength, elemSize, cmp) )
+            counter++;
+
+    }
+
+    return counter;
+
+}
+
+
+
+
+
+
+
+/** This function will check if the passed values array,
+ * is a sub array from the original array, and if it was the function will return one (1),
+ * other wise it will return zero (0).
+ * @param arr the array pointer
+ * @param arrLength the length of the array
+ * @param values the values array
+ * @param valuesArrLength the length of the values array
+ * @param elemSize the size of the values elements
+ * @param cmp the comparator function pointer, that will be called to compare values
+ * @return it will return 1 if the values array is a sub array from the original array, other wise it will return 0
+ */
+
+int isSubArr(void *arr, int arrLength, void *values, int valuesArrLength, int elemSize,
+                   int (*cmp)(const void *, const void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "is sub array function");
+        exit(NULL_POINTER);
+    } else if (values == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed values array", "is sub array function");
+        exit(NULL_POINTER);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "is sub array function");
+        exit(INVALID_ARG);
+    } else if (arrLength < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "is sub array function");
+        exit(INVALID_ARG);
+    } else if (valuesArrLength < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "values array length", "is sub array function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "is sub array function");
+        exit(INVALID_ARG);
+    }
+
+
+    for (int i = 0; i <= arrLength - valuesArrLength; i++) {
+
+        if ( cmp(arr + i * elemSize, values) == 0) {
+
+            for (int j = 0; j < valuesArrLength; j++) {
+
+                if (j == valuesArrLength - 1 && cmp(arr + (i + j) * elemSize, values + j * elemSize) == 0)
+                    return 1;
+                else if (cmp(arr + (i + j) * elemSize, values + j * elemSize) != 0)
+                    break;
+
+            }
+
+        }
+
+    }
+
+    return 0;
+
+}
+
+
+
+
+
+
+
+/** This function will check if the passed values array,
+ * is a sub array from the original array, and if it was the function will return the start index,
+ * other wise it will return minus one (-1).
+ * @param arr the array pointer
+ * @param arrLength the length of the array
+ * @param values the values array
+ * @param valuesArrLength the length of the values array
+ * @param elemSize the size of the values elements
+ * @param cmp the comparator function pointer, that will be called to compare values
+ * @return it will return the start index of the sub array if the values array is a sub array from the original array, other wise it will return -1
+ */
+
+int arrGetStartIndex(void *arr, int arrLength, void *values, int valuesArrLength, int elemSize,
+         int (*cmp)(const void *, const void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array get start index function");
+        exit(NULL_POINTER);
+    } else if (values == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed values array", "array get start index function");
+        exit(NULL_POINTER);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array get start index function");
+        exit(INVALID_ARG);
+    } else if (arrLength < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array get start index function");
+        exit(INVALID_ARG);
+    } else if (valuesArrLength < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "values array length", "array get start index function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array get start index function");
+        exit(INVALID_ARG);
+    }
+
+
+    for (int i = 0; i <= arrLength - valuesArrLength; i++) {
+
+        if ( cmp(arr + i * elemSize, values) == 0) {
+
+            for (int j = 0; j < valuesArrLength; j++) {
+
+                if (j == valuesArrLength - 1 && cmp(arr + (i + j) * elemSize, values + j * elemSize) == 0)
+                    return i;
+                else if (cmp(arr + (i + j) * elemSize, values + j * elemSize) != 0)
+                    break;
+
+            }
+
+        }
+
+    }
+
+    return -1;
+
+}
+
+
+
+
 
 
 
