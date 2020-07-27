@@ -902,7 +902,7 @@ int arrCompare(void *fArr, int fLength, void *sArr, int sLength, int elemSize, i
     if (fArr == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "first passed array", "array compare function");
         exit(NULL_POINTER);
-    } else if (fArr == NULL) {
+    } else if (sArr == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "second passed array", "array compare function");
         exit(NULL_POINTER);
     } else if (cmp == NULL) {
@@ -960,7 +960,7 @@ int arrCompareOfRange(void *fArr, int fLength, void *sArr, int sLength, int elem
     if (fArr == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "first passed array", "array compare of range function");
         exit(NULL_POINTER);
-    } else if (fArr == NULL) {
+    } else if (sArr == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "second passed array", "array compare of range function");
         exit(NULL_POINTER);
     } else if (cmp == NULL) {
@@ -1019,7 +1019,7 @@ int arrMismatch(void *fArr, int fLength, void *sArr, int sLength, int elemSize, 
     if (fArr == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "first passed array", "array mismatch function");
         exit(NULL_POINTER);
-    } else if (fArr == NULL) {
+    } else if (sArr == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "second passed array", "array mismatch function");
         exit(NULL_POINTER);
     } else if (cmp == NULL) {
@@ -1074,7 +1074,7 @@ int arrMismatchOfRange(void *fArr, int fLength, void *sArr, int sLength, int ele
     if (fArr == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "first passed array", "array mismatch of range function");
         exit(NULL_POINTER);
-    } else if (fArr == NULL) {
+    } else if (sArr == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "second passed array", "array mismatch of range function");
         exit(NULL_POINTER);
     } else if (cmp == NULL) {
@@ -1117,7 +1117,7 @@ int32_t arrIsEqualNoOrder(void *fArr, int fLength, void *sArr, int sLength, int 
     if (fArr == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "first passed array", "aarrIsSetOf");
         exit(NULL_POINTER);
-    } else if (fArr == NULL) {
+    } else if (sArr == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "second passed array", "arrIsSetOf");
         exit(NULL_POINTER);
     } else if (cmp == NULL) {
@@ -1861,5 +1861,85 @@ int arrIsPalindrome(void *arr, int length, int elemSize, int (*cmp)(const void *
     }
 
     return 1;
+
+}
+
+
+
+
+
+
+
+
+
+/** This function will take two array,
+ * then it will return one (1) if the the first and second arrays are equal but they are rotation of each other,
+ * other wise it will return zero (0).
+ *
+ * Ex of rotation arrays:
+ *
+ * first array:     [1, 2, 3, 4, 5].
+ *
+ * second array:    [3, 4, 5, 1, 2].
+ *
+ * @param fArr the first array pointer
+ * @param fLength the first array length
+ * @param sArr the second array pointer
+ * @param sLength the second array length
+ * @param elemSize the size of the arrays elements in bytes
+ * @param cmp the comparator function pointer, that will be called to compare the arrays elements
+ * @return it will return 1 if the first and second array is rotation of each other, otherwise it will return 0
+ */
+
+int arrIsRotation(void *fArr, int fLength, void *sArr, int sLength, int elemSize, int (*cmp)(const void *, const void *)) {
+
+    if (fArr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "first passed array", "array is rotation function");
+        exit(NULL_POINTER);
+    } else if (sArr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "second passed array", "array is rotation function");
+        exit(NULL_POINTER);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array is rotation function");
+        exit(INVALID_ARG);
+    } else if (fLength < 0 || sLength < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "arrays length", "array is rotation function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array is rotation function");
+        exit(INVALID_ARG);
+    }
+
+    if (fLength != sLength)
+        return 0;
+
+    for (int i = 0; i < fLength; i++) {
+
+        if ( cmp(fArr + i * elemSize, sArr) == 0 ) {
+
+            int firstArrIndex = i;
+            int secondArrIndex = 0;
+            int isRotationFlag = 1;
+
+            while (secondArrIndex != sLength) {
+
+                if ( cmp(fArr + firstArrIndex * elemSize, sArr + secondArrIndex * elemSize) != 0 ) {
+                    isRotationFlag = 0;
+                    break;
+                }
+
+                firstArrIndex = (firstArrIndex + 1) % fLength;
+                secondArrIndex++;
+
+            }
+
+            if (isRotationFlag)
+                return 1;
+
+        }
+
+    }
+
+    return 0;
 
 }

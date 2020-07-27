@@ -13,6 +13,7 @@
 // 5, 3, 4, 10, 6
 
 // Step 1: build a valid heap
+// **we don't need to allocate a new array we can use the original array to convert it to a valid heap**
 
 // add 5
 // 5
@@ -38,12 +39,17 @@
 
 
 // Step 2: delete the tree root and balance the heap the number of times the length of the array.
+
 // 10, 6, 4, 3, 5
+
 // 5, 6, 4, 3, 10
 // 6, 5, 4, 3, 10
+
 // 3, 5, 4, 6, 10
 // 5, 3, 4, 6, 10
+
 // 4, 3, 5, 6, 10
+
 // 3, 4, 5, 6, 10
 
 

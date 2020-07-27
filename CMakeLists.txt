@@ -114,10 +114,10 @@ add_executable(C_DataStructures main.c
         Algorithms/Searching/Headers/JumpSearch.h
         Algorithms/Searching/Sources/ExponentialSearch.c
         Algorithms/Searching/Headers/ExponentialSearch.h
-        Algorithms/ArraysAlgo/Sources/ArraysAlg.c
-        Algorithms/ArraysAlgo/Headers/ArraysAlg.h
-        Algorithms/ArraysAlgo/Sources/CharArrayAlg.c
-        Algorithms/ArraysAlgo/Headers/CharArrayAlg.h
+        Algorithms/ArraysAlg/Sources/ArraysAlg.c
+        Algorithms/ArraysAlg/Headers/ArraysAlg.h
+        Algorithms/ArraysAlg/Sources/CharArrayAlg.c
+        Algorithms/ArraysAlg/Headers/CharArrayAlg.h
         Algorithms/IntegersAlg/Sources/IntegerAlg.c
         Algorithms/IntegersAlg/Headers/IntegerAlg.h
         Algorithms/Sorting/Sources/HeapSort.c 

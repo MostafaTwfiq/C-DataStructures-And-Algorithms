@@ -26,8 +26,8 @@
 #include "DataStructure/Trees/Headers/BinaryMaxHeap.h"
 #include "Algorithms/Sorting/Headers/Sorting.h"
 #include "Algorithms/Searching/Headers/Searching.h"
-#include "Algorithms/ArraysAlgo/Headers/ArraysAlg.h"
-#include "Algorithms/ArraysAlgo/Headers/CharArrayAlg.h"
+#include "Algorithms/ArraysAlg/Headers/ArraysAlg.h"
+#include "Algorithms/ArraysAlg/Headers/CharArrayAlg.h"
 #include "Algorithms/IntegersAlg/Headers/IntegerAlg.h"
 #include "Algorithms/Sorting/Headers/HeapSort.h"
 #include "DataStructure/Trees/Headers/BinaryMaxHeap.h"
@@ -55,7 +55,7 @@ int intCmp(const void *p1, const void *p2) {
 
 
 void printInt(void *item) {
-    printf("%d->", *(int *)item);
+    printf("%d", *(int *)item);
 }
 
 void copyInt(const void *int1, const void *int2) {
@@ -86,6 +86,18 @@ int stringCmp(const void *s1, const void *s2) {
     return strcmp(s1, s2);
 }
 
+
+
+int main() {
+
+    int fArr[] = {1, 2, 3, 3, 4, 3, 6};
+    int sArr[] = {4, 3, 6, 1, 2, 3, 3};
+    //printf("%d\n", arrIsPalindrome(fArr, 5, sizeof(int), intCmp));
+    printf("%d", arrIsRotation(fArr, 7, sArr, 7, sizeof(int), intCmp));
+    //printArr(arr, newLength, sizeof(int), printInt);
+    return 0;
+}
+
 // ██████████████                      ████████████   ██████████████                      ██████████████ ██████
 // ██░░░░░░░░░░██                      ██░░░░░░░░████ ██░░░░░░░░░░██                      ██░░░░░░░░░░██ ██░░██
 // ██░░██████████                      ██░░████░░░░██ ██░░██████████                      ██░░██████░░██ ██░░██
@@ -97,17 +109,3 @@ int stringCmp(const void *s1, const void *s2) {
 // ██░░██████████                      ██░░████░░░░██ ██████████░░██                      ██░░██  ██░░██ ██░░██████████
 // ██░░░░░░░░░░██                      ██░░░░░░░░████ ██░░░░░░░░░░██                      ██░░██  ██░░██ ██░░░░░░░░░░██
 // ██████████████                      ████████████   ██████████████                      ██████  ██████ ██████████████
-
-
-
-int main() {
-
-    int fArr[] = {1, 2, 3, 2, 1};
-    int sArr[] = {11};
-    printf("%d", arrIsPalindrome(fArr, 5, sizeof(int), intCmp));
-    int arr[] = {1, 2, 3, 4, 5, 5, 3, 3, 2, 10}; // length = 10;
-    printf("Most frequent: %d\n\n", *(int*)mostFrequentArrValueA(arr, 10, sizeof(int), intCmp));
-    int newLength = arrRemoveDuplicatesA(arr, 10, sizeof(int), intCmp, NULL);
-    printArr(arr, newLength, sizeof(int), printInt);
-    return 0;
-}

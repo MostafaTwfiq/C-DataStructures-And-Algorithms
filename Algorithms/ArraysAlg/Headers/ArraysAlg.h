@@ -70,4 +70,6 @@ int arrBinarySearch(void *arr, void *value, int length, int elemSize, int (*cmp)
 
 int arrIsPalindrome(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *));
 
+int arrIsRotation(void *fArr, int fLength, void *sArr, int sLength, int elemSize, int (*cmp)(const void *, const void *));
+
 #endif //C_DATASTRUCTURES_ARRAYSALG_H
