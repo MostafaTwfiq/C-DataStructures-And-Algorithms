@@ -1110,7 +1110,7 @@ int arrMismatchOfRange(void *fArr, int fLength, void *sArr, int sLength, int ele
 /// \param elemSize
 /// \param cmp
 /// \return
-int32_t arrIsEqualNoOrder(void *fArr, int fLength, void *sArr, int sLength, int elemSize, int (*cmp)(const void *, const void *)){
+int32_t arrIsEqualNoOrder(void *fArr, int fLength, void *sArr, int sLength, int elemSize, int (*cmp)(const void *, const void *)) {
     if (fArr == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "first passed array", "aarrIsSetOf");
         exit(NULL_POINTER);
@@ -1128,15 +1128,15 @@ int32_t arrIsEqualNoOrder(void *fArr, int fLength, void *sArr, int sLength, int 
         exit(INVALID_ARG);
     }
 
-    qsort(fArr,fLength,elemSize,cmp);
-    qsort(sArr,sLength,elemSize,cmp);
+    qsort(fArr, fLength, elemSize, cmp);
+    qsort(sArr, sLength, elemSize, cmp);
 
-    for (int i = 0; i < ( fLength < sLength ? fLength : sLength ); i++) {
-        if ( cmp(fArr + i * elemSize, sArr + i * elemSize) != 0 )
+    for (int i = 0; i < (fLength < sLength ? fLength : sLength); i++) {
+        if (cmp(fArr + i * elemSize, sArr + i * elemSize) != 0)
             return 0;
     }
     return 1;
-
+}
 
 
 

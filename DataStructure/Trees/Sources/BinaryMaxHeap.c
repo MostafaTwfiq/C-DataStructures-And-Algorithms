@@ -458,6 +458,24 @@ uint32_t BinaryMaxHeapContains(BinaryMaxHeap * binaryMaxHeap, void *item){
     }
 }
 
+void BinaryMaxHeapMirrorHelper(void ** mem, int index, int size){
+    if(size-1<index) return;
+    BinaryMaxHeapMirrorHelper(mem,LCHILD(index),size);
+    BinaryMaxHeapMirrorHelper(mem,RCHILD(index),size);
+
+    void * temp;
+    void * RChild = mem[RCHILD(index)];
+    void * LChild= mem[LCHILD(index)];
+
+    temp = RChild;
+    RChild = LChild;
+    LChild = temp;
+}
+
+void BinaryMaxHeapMirror(BinaryMaxHeap * binaryMaxHeap){
+     BinaryMaxHeapMirrorHelper(binaryMaxHeap->memory,0,binaryMaxHeap->size);
+}
+
 
 
 

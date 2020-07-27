@@ -56,6 +56,8 @@ uint32_t isEqual(BinaryMaxHeap *binaryMaxHeap,BinaryMaxHeap *binaryMaxHeap2);
 
 uint32_t BinaryMaxHeapContains(BinaryMaxHeap * binaryMaxHeap, void *item);
 
+void BinaryMaxHeapMirror(BinaryMaxHeap * binaryMaxHeap);
+
 #ifdef __cplusplus
 }
 #endif

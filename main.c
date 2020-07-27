@@ -30,7 +30,7 @@
 #include "Algorithms/ArraysAlgo/Headers/CharArrayAlg.h"
 #include "Algorithms/IntegersAlg/Headers/IntegerAlg.h"
 #include "Algorithms/Sorting/Headers/HeapSort.h"
-
+#include "DataStructure/Trees/Headers/BinaryMaxHeap.h"
 
 void freeItem(void *item) {
     free(item);
@@ -55,7 +55,7 @@ int intCmp(const void *p1, const void *p2) {
 
 
 void printInt(void *item) {
-    printf("%d", *(int *)item);
+    printf("%d->", *(int *)item);
 }
 
 void copyInt(const void *int1, const void *int2) {
@@ -105,13 +105,35 @@ int stringCmp(const void *s1, const void *s2) {
 
 int main() {
 
-    int fArr[] = {1, 2, 3, 2, 1};
+/*    int fArr[] = {1, 2, 3, 2, 1};
     int sArr[] = {11};
     printf("%d", arrIsPalindrome(fArr, 5, sizeof(int), intCmp));
     int arr[] = {1, 2, 3, 4, 5, 5, 3, 3, 2, 10}; // length = 10;
     printf("Most frequent: %d\n\n", *(int*)mostFrequentArrValueA(arr, 10, sizeof(int), intCmp));
     int newLength = arrRemoveDuplicatesA(arr, 10, sizeof(int), intCmp, NULL);
-    printArr(arr, newLength, sizeof(int), printInt);
-    return 0;
+    printArr(arr, newLength, sizeof(int), printInt);*/
+    BinaryMaxHeap  *h = MaxHeapInitialize(intCmp,freeItem);
+    int *item1;
 
+    item1 = (int *) malloc(sizeof(int));
+    *item1 = 10;
+    MaxHeapInsert(h,item1);
+
+    item1 = (int *) malloc(sizeof(int));
+    *item1 = 20;
+    MaxHeapInsert(h,item1);
+
+    item1 = (int *) malloc(sizeof(int));
+    *item1 = 30;
+    MaxHeapInsert(h,item1);
+
+    item1 = (int *) malloc(sizeof(int));
+    *item1 = 40;
+    MaxHeapInsert(h,item1);
+
+    printMaxHeap(h,printInt);
+
+    BinaryMaxHeapMirror(h);
+    printMaxHeap(h,printInt);
+    return 0;
 }

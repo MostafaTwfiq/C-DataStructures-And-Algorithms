@@ -5,7 +5,7 @@ set(CMAKE_C_STANDARD 99)
 
 add_executable(C_DataStructures main.c
 
-        DataStructure/Stacks/Sources/Stack.c
+#[[        DataStructure/Stacks/Sources/Stack.c
         DataStructure/Stacks/Headers/Stack.h
 
         DataStructure/LinkedLists/Sources/LinkedList.c
@@ -42,12 +42,12 @@ add_executable(C_DataStructures main.c
         DataStructure/Trees/Headers/SplayTree.h
 
         DataStructure/Trees/Sources/BinaryMinHeap.c
-        DataStructure/Trees/Headers/BinaryMinHeap.h
+        DataStructure/Trees/Headers/BinaryMinHeap.h]]
 
         DataStructure/Trees/Sources/BinaryMaxHeap.c
         DataStructure/Trees/Headers/BinaryMaxHeap.h
 
-        System/Utils.h
+       #[[ System/Utils.h
 
         DataStructure/Trees/Sources/Trie.c
         DataStructure/Trees/Headers/Trie.h
@@ -74,12 +74,12 @@ add_executable(C_DataStructures main.c
         DataStructure/Graphs/Headers/DirectedGraph.h
 
 
-        #[["Unit Test/CuTest"
+        #[=["Unit Test/CuTest"
         "Unit Test/testExample.c"
        # "Unit Test/CuTest/AllTests.c"
         "Unit Test/CuTest/CuTest.c"
         "Unit Test/CuTest/CuTestTest.c"
-        "Unit Test/CuTest/CuTest.h"]]
+        "Unit Test/CuTest/CuTest.h"]=]
 
         DataStructure/Deque/Sources/Deque.c
         DataStructure/Deque/Headers/Deque.h
@@ -121,4 +121,4 @@ add_executable(C_DataStructures main.c
         Algorithms/IntegersAlg/Sources/IntegerAlg.c
         Algorithms/IntegersAlg/Headers/IntegerAlg.h
         Algorithms/Sorting/Sources/HeapSort.c 
-        Algorithms/Sorting/Headers/HeapSort.h)    
+        Algorithms/Sorting/Headers/HeapSort.h]])
