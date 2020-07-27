@@ -1200,9 +1200,11 @@ int UDGraphGetShortestDistance(UndirectedGraph *graph, void *startVal, void *end
 
 
 
-/** This function will take two nodes and then it will return an array list that contains the value,
+/** This function will take two nodes and then it will return an array list that contains the values,
  * of the shortest path between them.
+ *
  * Note: the function will not free the passed values.
+ *
  * @param graph the graph pointer
  * @param startVal the start value pointer
  * @param endVal the end value pointer
