@@ -105,9 +105,9 @@ int stringCmp(const void *s1, const void *s2) {
 
 int main() {
 
-    int fArr[] = {1, 2, 3, 4, 5, 6};
+    int fArr[] = {1, 2, 3, 2, 1};
     int sArr[] = {11};
-    printf("%d", arrCountValues(fArr, 6, sArr, 1, sizeof(int), intCmp));
+    printf("%d", arrIsPalindrome(fArr, 5, sizeof(int), intCmp));
     return 0;
 
 }

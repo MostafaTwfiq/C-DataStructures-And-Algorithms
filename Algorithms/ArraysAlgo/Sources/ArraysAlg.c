@@ -1788,3 +1788,42 @@ int arrBinarySearch(void *arr, void *value, int length, int elemSize, int (*cmp)
     return binarySearchI(arr, value, length, elemSize, cmp);
 
 }
+
+
+
+
+/** This function will check if the passed array is a palindrome or not,
+ * and if it was the function will return one (1), other wise it will return zero (0).
+ * @param arr the array pointer
+ * @param length the length of the array
+ * @param elemSize the size of the array elements in bytes
+ * @param cmp the comparator function pointer, that will be called to compare the array values
+ * @return it will return 1 if the array is a palindrome, other wise it will return 0
+ */
+
+int arrIsPalindrome(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array is palindrome function");
+        exit(NULL_POINTER);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array is palindrome function");
+        exit(INVALID_ARG);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array is palindrome function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array is palindrome function");
+        exit(INVALID_ARG);
+    }
+
+    for (int i = 0; i < length / 2; i++) {
+
+        if ( cmp(arr + i * elemSize, arr + (length - 1 - i) * elemSize) != 0)
+            return 0;
+
+    }
+
+    return 1;
+
+}
