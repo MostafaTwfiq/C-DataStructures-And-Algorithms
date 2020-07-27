@@ -8,6 +8,7 @@
 #include "MergeSort.h"
 #include "QuickSort.h"
 #include "CountingSort.h"
+#include "HeapSort.h"
 #include "SwapFunction.h"
 
 

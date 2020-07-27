@@ -1622,6 +1622,7 @@ void arrSort(void *arr, int length, int elemSize, int (*cmp)(const void *, const
     }
 
     quickSort(arr, length, elemSize, cmp);
+
 }
 
 
@@ -1788,6 +1789,10 @@ int arrBinarySearch(void *arr, void *value, int length, int elemSize, int (*cmp)
     return binarySearchI(arr, value, length, elemSize, cmp);
 
 }
+
+
+
+
 
 
 
