@@ -78,6 +78,12 @@ void BinaryTreePrintInOrder(BinaryTreeNode *node, void (printFn)(void *));
 
 void BinaryTreeInsertAll(BinaryTree *binaryTree, void **array, uint32_t length);
 
+uint32_t BinaryTreeContains(BinaryTree * tree, void *item);
+
+uint32_t isEqual(BinaryTree *binaryTree,BinaryTree *binaryTree2);
+
+void BinaryTreeMirror(BinaryTree* tree);
+
 #ifdef __cplusplus
 }
 #endif

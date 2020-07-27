@@ -79,6 +79,46 @@ add_executable(C_DataStructures main.c
        # "Unit Test/CuTest/AllTests.c"
         "Unit Test/CuTest/CuTest.c"
         "Unit Test/CuTest/CuTestTest.c"
-        "Unit Test/CuTest/CuTest.h"
-]]
-        DataStructure/Deque/Sources/Deque.c DataStructure/Deque/Headers/Deque.h DataStructure/Graphs/Sources/UndirectedGraph.c DataStructure/Graphs/Headers/UndirectedGraph.h DataStructure/Deque/Sources/DLinkedListDeque.c DataStructure/Deque/Headers/DLinkedListDeque.h Algorithms/Sorting/Headers/Sorting.h Algorithms/Searching/Headers/Searching.h Algorithms/Sorting/Sources/BubbleSort.c Algorithms/Sorting/Headers/BubbleSort.h Algorithms/Sorting/Sources/SwapFunction.c Algorithms/Sorting/Headers/SwapFunction.h Algorithms/Sorting/Sources/SelectionSort.c Algorithms/Sorting/Headers/SelectionSort.h Algorithms/Sorting/Sources/InsertionSort.c Algorithms/Sorting/Headers/InsertionSort.h Algorithms/Sorting/Sources/MergeSort.c Algorithms/Sorting/Headers/MergeSort.h Algorithms/Sorting/Sources/QuickSort.c Algorithms/Sorting/Headers/QuickSort.h Algorithms/Sorting/Sources/CountingSort.c Algorithms/Sorting/Headers/CountingSort.h Algorithms/Searching/Sources/LinearSearch.c Algorithms/Searching/Headers/LinearSearch.h Algorithms/Searching/Sources/BinarySearch.c Algorithms/Searching/Headers/BinarySearch.h Algorithms/Searching/Sources/TernarySearch.c Algorithms/Searching/Headers/TernarySearch.h Algorithms/Searching/Sources/JumpSearch.c Algorithms/Searching/Headers/JumpSearch.h Algorithms/Searching/Sources/ExponentialSearch.c Algorithms/Searching/Headers/ExponentialSearch.h Algorithms/ArraysAlgo/Sources/ArraysAlg.c Algorithms/ArraysAlgo/Headers/ArraysAlg.h Algorithms/ArraysAlgo/Sources/CharArrayAlg.c Algorithms/ArraysAlgo/Headers/CharArrayAlg.h Algorithms/IntegersAlg/Sources/IntegerAlg.c Algorithms/IntegersAlg/Headers/IntegerAlg.h Algorithms/Sorting/Sources/HeapSort.c Algorithms/Sorting/Headers/HeapSort.h)
+        "Unit Test/CuTest/CuTest.h"]]
+
+        DataStructure/Deque/Sources/Deque.c
+        DataStructure/Deque/Headers/Deque.h
+        DataStructure/Graphs/Sources/UndirectedGraph.c
+        DataStructure/Graphs/Headers/UndirectedGraph.h
+        DataStructure/Deque/Sources/DLinkedListDeque.c
+        DataStructure/Deque/Headers/DLinkedListDeque.h
+
+        Algorithms/Sorting/Headers/Sorting.h
+        Algorithms/Searching/Headers/Searching.h
+        Algorithms/Sorting/Sources/BubbleSort.c
+        Algorithms/Sorting/Headers/BubbleSort.h
+        Algorithms/Sorting/Sources/SwapFunction.c
+        Algorithms/Sorting/Headers/SwapFunction.h
+        Algorithms/Sorting/Sources/SelectionSort.c
+        Algorithms/Sorting/Headers/SelectionSort.h
+        Algorithms/Sorting/Sources/InsertionSort.c
+        Algorithms/Sorting/Headers/InsertionSort.h
+        Algorithms/Sorting/Sources/MergeSort.c
+        Algorithms/Sorting/Headers/MergeSort.h
+        Algorithms/Sorting/Sources/QuickSort.c
+        Algorithms/Sorting/Headers/QuickSort.h
+        Algorithms/Sorting/Sources/CountingSort.c
+        Algorithms/Sorting/Headers/CountingSort.h
+        Algorithms/Searching/Sources/LinearSearch.c
+        Algorithms/Searching/Headers/LinearSearch.h
+        Algorithms/Searching/Sources/BinarySearch.c
+        Algorithms/Searching/Headers/BinarySearch.h
+        Algorithms/Searching/Sources/TernarySearch.c
+        Algorithms/Searching/Headers/TernarySearch.h
+        Algorithms/Searching/Sources/JumpSearch.c
+        Algorithms/Searching/Headers/JumpSearch.h
+        Algorithms/Searching/Sources/ExponentialSearch.c
+        Algorithms/Searching/Headers/ExponentialSearch.h
+        Algorithms/ArraysAlgo/Sources/ArraysAlg.c
+        Algorithms/ArraysAlgo/Headers/ArraysAlg.h
+        Algorithms/ArraysAlgo/Sources/CharArrayAlg.c
+        Algorithms/ArraysAlgo/Headers/CharArrayAlg.h
+        Algorithms/IntegersAlg/Sources/IntegerAlg.c
+        Algorithms/IntegersAlg/Headers/IntegerAlg.h
+        Algorithms/Sorting/Sources/HeapSort.c 
+        Algorithms/Sorting/Headers/HeapSort.h)    

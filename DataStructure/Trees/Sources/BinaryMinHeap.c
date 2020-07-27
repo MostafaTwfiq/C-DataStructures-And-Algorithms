@@ -379,3 +379,69 @@ void MinHeapClear(BinaryMinHeap * binaryMinHeap){
         binaryMinHeap->memory[i] =NULL;
     }
 }
+
+uint32_t isEqual(BinaryMinHeap *binaryMinHeap,BinaryMinHeap *binaryMinHeap2){
+    if (binaryMinHeap == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "binaryMinHeap", "isEqual");
+        #ifdef CU_TEST_H
+                DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+                exit(INVALID_ARG);
+        #endif
+
+    }
+
+    if (binaryMinHeap2 == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "binaryMinHeap2", "isEqual");
+        #ifdef CU_TEST_H
+                DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+                exit(INVALID_ARG);
+        #endif
+    }
+
+    if(binaryMinHeap->size < binaryMinHeap2->size) return -1;
+    if(binaryMinHeap->size > binaryMinHeap2->size) return  1;
+    else {
+        for(int i = binaryMinHeap->size;i>=0;--i){
+            if(binaryMinHeap->cmpFn(binaryMinHeap->memory[i],binaryMinHeap2->memory[i])){
+                return 1;
+            }
+        }
+        return 0;
+    }
+}
+
+///
+/// \param tree
+/// \param item
+/// \return
+uint32_t BinaryMinHeapContains(BinaryMinHeap * binaryMinHeap, void *item){
+
+    if (binaryMinHeap == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "binaryMinHeap", "BinaryMinHeapContains");
+        #ifdef CU_TEST_H
+                DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #else
+                exit(NULL_POINTER);
+        #endif
+
+    } else if (item == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item", "BinaryMinHeapContains");
+        #ifdef CU_TEST_H
+                DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+                exit(INVALID_ARG);
+        #endif
+    }
+
+    for(int i = binaryMinHeap->size-1;i>=0;--i){
+        if(binaryMinHeap->cmpFn(binaryMinHeap->memory[i],item))
+            continue;
+        else
+            return 1;
+    }
+}
+
+
+

@@ -83,6 +83,12 @@ void AVLTreePrintInOrder(AVLTreeNode *node, void (printFn)(void *));
 
 AVLTreeNode *AVLTreeInsertAll(AVLTree *avlTree, void **array, uint32_t length);
 
+uint32_t AVLTreeContains(AVLTree * tree, void *item);
+
+uint32_t isEqual(AVLTree *avlTree,AVLTree *avlTree2);
+
+void AVLTreeMirror(AVLTree* avlTree);
+
 #ifdef __cplusplus
 }
 #endif

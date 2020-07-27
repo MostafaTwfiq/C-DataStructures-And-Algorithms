@@ -12,7 +12,6 @@
 
 
 
-
 /** This function is an empty function,
  * will be useful to use the hash map without freeing the keys
  * @param item
@@ -123,12 +122,11 @@ void reverseArray(void *arr, int length, int elemSize) {
  * Note: the function will return null if the array are empty.
  *
  * Note: if there is more than one value that has the same frequent, then the function only will return one of them,
- * without knowing which one << it depends on the hashing function in the hash map >>.
+ * without knowing which one it depends on the hashing function in the hash map >>.
  *
  * Note: this function will use hash map to detect the duplicates.
  *
  * Time Complexity: O (n).
- *
  * Space Complexity: O (k) and k is the different values in the array.
  *
  * @param arr the array pointer
@@ -215,7 +213,6 @@ void *mostFrequentArrValueH(void *arr, int length, int elemSize, int (*cmp)(cons
  * Note: this function will uses arrays to detect the duplicates.
  *
  * Time Complexity: O (n ^ 2).
- *
  * Space Complexity: O (2n).
  *
  * @param arr the array pointer
@@ -1105,6 +1102,40 @@ int arrMismatchOfRange(void *fArr, int fLength, void *sArr, int sLength, int ele
 
 }
 
+///
+/// \param fArr
+/// \param fLength
+/// \param sArr
+/// \param sLength
+/// \param elemSize
+/// \param cmp
+/// \return
+int32_t arrIsEqualNoOrder(void *fArr, int fLength, void *sArr, int sLength, int elemSize, int (*cmp)(const void *, const void *)){
+    if (fArr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "first passed array", "aarrIsSetOf");
+        exit(NULL_POINTER);
+    } else if (fArr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "second passed array", "arrIsSetOf");
+        exit(NULL_POINTER);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "arrIsSetOf");
+        exit(INVALID_ARG);
+    } else if (fLength < 0 || sLength < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "arrays length", "arrIsSetOf");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array mismatch function");
+        exit(INVALID_ARG);
+    }
+
+    qsort(fArr,fLength,elemSize,cmp);
+    qsort(sArr,sLength,elemSize,cmp);
+
+    for (int i = 0; i < ( fLength < sLength ? fLength : sLength ); i++) {
+        if ( cmp(fArr + i * elemSize, sArr + i * elemSize) != 0 )
+            return 0;
+    }
+    return 1;
 
 
 
@@ -1251,7 +1282,6 @@ int arrRemoveDuplicatesA(void *arr, int length, int elemSize,
     destroyVector(valuesVector);
 
     return length;
-
 }
 
 
@@ -1830,5 +1860,4 @@ int arrIsPalindrome(void *arr, int length, int elemSize, int (*cmp)(const void *
     }
 
     return 1;
-
 }

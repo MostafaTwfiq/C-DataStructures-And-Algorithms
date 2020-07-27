@@ -51,6 +51,10 @@ void MinHeapAddAll(BinaryMinHeap *binaryMinHeap, void **arr, uint32_t size);
 
 void MinHeapClear(BinaryMinHeap *binaryMinHeap);
 
+uint32_t isEqual(BinaryMinHeap *binaryMinHeap,BinaryMinHeap *binaryMinHeap2);
+
+uint32_t BinaryMinHeapContains(BinaryMinHeap * binaryMinHeap, void *item);
+
 #ifdef __cplusplus
 }
 #endif

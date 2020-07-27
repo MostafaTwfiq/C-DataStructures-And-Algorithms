@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-
 #define ANSI_COLOR_RED     "\x1b[31m"
 #define ANSI_COLOR_BOLD_RED     "\x1b[1;31m"
 #define ANSI_COLOR_GREEN   "\x1b[32m"
@@ -32,6 +30,7 @@
 #include "Algorithms/ArraysAlgo/Headers/CharArrayAlg.h"
 #include "Algorithms/IntegersAlg/Headers/IntegerAlg.h"
 #include "Algorithms/Sorting/Headers/HeapSort.h"
+
 
 void freeItem(void *item) {
     free(item);
@@ -100,11 +99,16 @@ int stringCmp(const void *s1, const void *s2) {
 // ██████████████                      ████████████   ██████████████                      ██████  ██████ ██████████████
 
 
+
 int main() {
 
     int fArr[] = {1, 2, 3, 2, 1};
     int sArr[] = {11};
     printf("%d", arrIsPalindrome(fArr, 5, sizeof(int), intCmp));
+    int arr[] = {1, 2, 3, 4, 5, 5, 3, 3, 2, 10}; // length = 10;
+    printf("Most frequent: %d\n\n", *(int*)mostFrequentArrValueA(arr, 10, sizeof(int), intCmp));
+    int newLength = arrRemoveDuplicatesA(arr, 10, sizeof(int), intCmp, NULL);
+    printArr(arr, newLength, sizeof(int), printInt);
     return 0;
 
 }

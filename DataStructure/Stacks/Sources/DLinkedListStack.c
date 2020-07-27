@@ -1,5 +1,5 @@
-#include "../Headers/DLinkedListStack.h"
 #include "../../LinkedLists/Headers/DoublyLinkedList.h"
+#include "../Headers/DLinkedListStack.h"
 #include "../../../System/Utils.h"
 
 
@@ -311,3 +311,5 @@ void destroyDLStack(DLinkedListStack *stack) {
     destroyDoublyLinkedList(stack->linkedList);
     free(stack);
 }
+
+
