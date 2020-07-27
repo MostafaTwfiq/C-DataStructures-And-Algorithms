@@ -82,6 +82,8 @@ uint32_t BinaryTreeContains(BinaryTree * tree, void *item);
 
 uint32_t isEqual(BinaryTree *binaryTree,BinaryTree *binaryTree2);
 
+void BinaryTreeMirror(BinaryTree* tree);
+
 #ifdef __cplusplus
 }
 #endif
