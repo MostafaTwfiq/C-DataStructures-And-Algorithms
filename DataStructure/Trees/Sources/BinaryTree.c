@@ -717,3 +717,33 @@ uint32_t binaryTreeContains(BinaryTree * tree, void *item){
     return binaryTreeContainsHelper(tree, tree->root, item);
 }
 
+BinaryTreeNode * BinaryTreeMirrorHelper(BinaryTreeNode* root){
+    if (root==NULL) return root;
+    else{
+        BinaryTreeNode* temp;
+
+        root->left  = BinaryTreeMirrorHelper(root->left);
+        root->right = BinaryTreeMirrorHelper(root->right);
+
+
+        temp        = root->left;
+        root->left  = root->right;
+        root->right = temp;
+    }
+    return root;
+}
+
+///
+/// \param tree
+void BinaryTreeMirror(BinaryTree* tree){
+    if (tree == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "BinaryTreeMirror");
+        #ifdef CU_TEST_H
+                DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #else
+                exit(NULL_POINTER);
+        #endif
+    }
+    tree->root = BinaryTreeMirrorHelper(tree->root);
+}
+

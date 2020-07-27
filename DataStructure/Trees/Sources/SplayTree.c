@@ -582,3 +582,34 @@ uint32_t SplayTreeContains(SplayTree * tree, void *item){
 
     return SplayTreeContainsHelper(tree, tree->root, item);
 }
+
+
+SplayNode* SplayTreeMirrorHelper(SplayNode* root){
+    if (root==NULL) return root;
+    else{
+        SplayNode* temp;
+
+        root->left  = SplayTreeMirrorHelper(root->left);
+        root->right = SplayTreeMirrorHelper(root->right);
+
+
+        temp        = root->left;
+        root->left  = root->right;
+        root->right = temp;
+    }
+    return root;
+}
+
+///
+/// \param tree
+void SplayTreeMirror(SplayTree* tree){
+    if (tree == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "SplayTreeMirror");
+        #ifdef CU_TEST_H
+                DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #else
+                exit(NULL_POINTER);
+        #endif
+    }
+    tree->root = SplayTreeMirrorHelper(tree->root);
+}

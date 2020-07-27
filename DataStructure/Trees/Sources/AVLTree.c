@@ -11,7 +11,7 @@ AVLTreeNode* newBinaryTreeNode(void* key);
 int height(AVLTreeNode *node);
 void AVLTreeGetMaxStepsRecurs(AVLTreeNode * node, int * steps);
 void AVLTreeGetMinStepsRecurs(AVLTreeNode * node, int * steps);
-
+AVLTreeNode* AVLTreeMirrorHelper(AVLTreeNode* root);
 
 /** This function calculates the max between two integers. 
  * @param a Reference int of comparision.
@@ -955,5 +955,34 @@ uint32_t AVLTreeContains(AVLTree * tree, void *item){
     return AVLTreeContainsHelper(tree, tree->root, item);
 }
 
+AVLTreeNode* AVLTreeMirrorHelper(AVLTreeNode* root){
+    if (root==NULL) return root;
+    else{
+        AVLTreeNode* temp;
+
+        root->left = AVLTreeMirrorHelper(root->left);
+        root->right = AVLTreeMirrorHelper(root->right);
+
+
+        temp        = root->left;
+        root->left  = root->right;
+        root->right = temp;
+    }
+    return root;
+}
+
+///
+/// \param avlTree
+void AVLTreeMirror(AVLTree* avlTree){
+    if (avlTree == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "avlTree", "AVLTreeMirror");
+        #ifdef CU_TEST_H
+                DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #else
+                exit(NULL_POINTER);
+        #endif
+    }
+        avlTree->root = AVLTreeMirrorHelper(avlTree->root);
+}
 
 
