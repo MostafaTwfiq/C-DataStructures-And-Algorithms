@@ -1102,6 +1102,9 @@ int arrMismatchOfRange(void *fArr, int fLength, void *sArr, int sLength, int ele
 
 }
 
+
+
+
 ///
 /// \param fArr
 /// \param fLength
@@ -1138,7 +1141,7 @@ int32_t arrIsEqualNoOrder(void *fArr, int fLength, void *sArr, int sLength, int 
     return 1;
 }
 
-
+}
 
 
 
@@ -1652,6 +1655,7 @@ void arrSort(void *arr, int length, int elemSize, int (*cmp)(const void *, const
     }
 
     quickSort(arr, length, elemSize, cmp);
+
 }
 
 
@@ -1822,6 +1826,10 @@ int arrBinarySearch(void *arr, void *value, int length, int elemSize, int (*cmp)
 
 
 
+
+
+
+
 /** This function will check if the passed array is a palindrome or not,
  * and if it was the function will return one (1), other wise it will return zero (0).
  * @param arr the array pointer
@@ -1855,4 +1863,5 @@ int arrIsPalindrome(void *arr, int length, int elemSize, int (*cmp)(const void *
     }
 
     return 1;
+
 }
