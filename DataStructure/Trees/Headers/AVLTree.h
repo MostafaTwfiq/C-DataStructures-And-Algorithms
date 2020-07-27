@@ -85,7 +85,7 @@ AVLTreeNode *AVLTreeInsertAll(AVLTree *avlTree, void **array, uint32_t length);
 
 uint32_t AVLTreeContains(AVLTree * tree, void *item);
 
-uint32_t isEqual(AVLTree *avlTree,AVLTree *avlTree2);
+uint32_t avlTreeIsEqual(AVLTree *avlTree,AVLTree *avlTree2);
 
 void AVLTreeMirror(AVLTree* avlTree);
 

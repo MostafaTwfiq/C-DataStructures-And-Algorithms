@@ -318,7 +318,7 @@ void StackDestroy( Stack* stack ) {
 /// \param stack1
 /// \param cmp
 /// \return
-uint32_t isEqual(Stack * stack, Stack * stack1, int (*cmp)(void *,void*)){
+uint32_t stackIsEqual(Stack * stack, Stack * stack1, int (*cmp)(void *,void*)){
     if(stack->top < stack1->top) return -1;
     if(stack->top > stack1->top)return  1;
     else{

@@ -48,7 +48,7 @@ void StackDestroy(Stack *stack);
 
 uint32_t StackContains(Stack *stack, void *item,int (*cmp)(void *,void*));
 
-uint32_t isEqual(Stack * stack, Stack * stack1, int (*cmp)(void *,void*));
+uint32_t stackIsEqual(Stack * stack, Stack * stack1, int (*cmp)(void *,void*));
 
 #ifdef __cplusplus
 }

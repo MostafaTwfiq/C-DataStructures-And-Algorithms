@@ -1141,8 +1141,6 @@ int32_t arrIsEqualNoOrder(void *fArr, int fLength, void *sArr, int sLength, int 
     return 1;
 }
 
-}
-
 
 
 

@@ -395,7 +395,7 @@ void MaxHeapClear(BinaryMaxHeap * binaryMaxHeap){
 }
 
 
-uint32_t isEqual(BinaryMaxHeap *binaryMaxHeap,BinaryMaxHeap *binaryMaxHeap2){
+uint32_t bMaxHeapIsEqual(BinaryMaxHeap *binaryMaxHeap,BinaryMaxHeap *binaryMaxHeap2){
     if (binaryMaxHeap == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "binaryMaxHeap", "isEqual");
         #ifdef CU_TEST_H

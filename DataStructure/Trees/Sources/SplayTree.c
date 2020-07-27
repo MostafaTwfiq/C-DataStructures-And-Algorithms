@@ -493,7 +493,7 @@ void SplayTreeToArrayRecurs(SplayNode* node , void **arr, int *i){
 /// \param node2
 /// \param cmpFn
 /// \param flag
-void isEqualHelper(SplayNode* node1,SplayNode* node2,int (*cmpFn)(const void *, const void *), int * flag){
+void splayTreeIsEqualHelper(SplayNode* node1,SplayNode* node2,int (*cmpFn)(const void *, const void *), int * flag){
     if (cmpFn == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "cmpFn", "isEqualHelper");
         #ifdef CU_TEST_H
@@ -504,9 +504,9 @@ void isEqualHelper(SplayNode* node1,SplayNode* node2,int (*cmpFn)(const void *, 
     }
     if(!flag) return;
     if (node1 == NULL || node2 ==NULL) return;
-    isEqualHelper(node1->right, node2->right,cmpFn,flag);
+    splayTreeIsEqualHelper(node1->right, node2->right,cmpFn,flag);
     if((cmpFn)(node1->key,node2->key)) *flag = 1;
-    isEqualHelper(node1->left, node2->left, cmpFn,flag);
+    splayTreeIsEqualHelper(node1->left, node2->left, cmpFn,flag);
 }
 
 
@@ -514,7 +514,7 @@ void isEqualHelper(SplayNode* node1,SplayNode* node2,int (*cmpFn)(const void *, 
 /// \param splayTree
 /// \param splayTree2
 /// \return
-uint32_t isEqual(SplayTree *splayTree, SplayTree *splayTree2){
+uint32_t splayTreeIsEqual(SplayTree *splayTree, SplayTree *splayTree2){
     if (splayTree == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "splayTree", "isEqual");
         #ifdef CU_TEST_H
@@ -537,7 +537,7 @@ uint32_t isEqual(SplayTree *splayTree, SplayTree *splayTree2){
     if(splayTree->nodeCount > splayTree2->nodeCount) return  1;
     else {
         uint32_t areEqual = 0;
-        isEqualHelper(splayTree->root, splayTree2->root, splayTree->cmp, &areEqual);
+        splayTreeIsEqualHelper(splayTree->root, splayTree2->root, splayTree->cmp, &areEqual);
         return areEqual;
     }
 }

@@ -380,7 +380,7 @@ void MinHeapClear(BinaryMinHeap * binaryMinHeap){
     }
 }
 
-uint32_t isEqual(BinaryMinHeap *binaryMinHeap,BinaryMinHeap *binaryMinHeap2){
+uint32_t bMHeapIsEqual(BinaryMinHeap *binaryMinHeap,BinaryMinHeap *binaryMinHeap2){
     if (binaryMinHeap == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "binaryMinHeap", "isEqual");
         #ifdef CU_TEST_H

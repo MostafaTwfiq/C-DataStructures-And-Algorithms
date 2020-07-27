@@ -631,7 +631,7 @@ void BinaryTreeInsert(BinaryTree *binaryTree, void *key){
 
 
 
-void isEqualHelper(BinaryTreeNode* node1,BinaryTreeNode* node2,int (*cmpFn)(const void *, const void *), int * flag){
+void binaryTreeIsEqualHelper(BinaryTreeNode* node1,BinaryTreeNode* node2,int (*cmpFn)(const void *, const void *), int * flag){
     if (cmpFn == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "cmpFn", "isEqualHelper");
         #ifdef CU_TEST_H
@@ -642,12 +642,12 @@ void isEqualHelper(BinaryTreeNode* node1,BinaryTreeNode* node2,int (*cmpFn)(cons
     }
     if(!flag) return;
     if (node1 == NULL || node2 ==NULL) return;
-    isEqualHelper(node1->right, node2->right,cmpFn,flag);
+    binaryTreeIsEqualHelper(node1->right, node2->right,cmpFn,flag);
     if((cmpFn)(node1->key,node2->key)) *flag = 1;
-    isEqualHelper(node1->left, node2->left, cmpFn,flag);
+    binaryTreeIsEqualHelper(node1->left, node2->left, cmpFn,flag);
 }
 
-uint32_t isEqual(BinaryTree *binaryTree,BinaryTree *binaryTree2){
+uint32_t binaryTreeIsEqual(BinaryTree *binaryTree,BinaryTree *binaryTree2){
     if (binaryTree == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "binaryTree", "isEqual");
         #ifdef CU_TEST_H
@@ -671,7 +671,7 @@ uint32_t isEqual(BinaryTree *binaryTree,BinaryTree *binaryTree2){
     if(binaryTree->nodeCount > binaryTree2->nodeCount) return  1;
     else {
         uint32_t areEqual = 0;
-        isEqualHelper(binaryTree->root,binaryTree2->root,binaryTree->cmp, &areEqual);
+        binaryTreeIsEqualHelper(binaryTree->root,binaryTree2->root,binaryTree->cmp, &areEqual);
         return areEqual;
     }
 }

@@ -71,7 +71,7 @@ void **SplayTreeToArray(SplayTree *splayTree);
 
 uint32_t SplayTreeContains(SplayTree * tree, void *item);
 
-uint32_t isEqual(SplayTree *splayTree, SplayTree *splayTree2);
+uint32_t splayTreeIsEqual(SplayTree *splayTree, SplayTree *splayTree2);
 
 void SplayTreeMirror(SplayTree* tree);
 
