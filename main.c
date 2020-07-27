@@ -90,16 +90,10 @@ int stringCmp(const void *s1, const void *s2) {
 
 int main() {
 
-    int *arr = (int *) malloc(sizeof(int) * 6);
-    for (int i = 0; i < 6; i++)
-        arr[i] = i + 1;
-
-    arr = arrResize(arr, sizeof(int), 10);
-
-    int newValues[] = {100, 200, 300, 400};
-    arrAddAll(arr, 6, newValues, 4, sizeof(int), 3);
-
-    printArr(arr, 10, sizeof(int), printInt);
+    int fArr[] = {1, 2, 3, 4, 5, 6};
+    int sArr[] = {4, 3, 2, 1, 6, 5};
+    printf("%d\n", arrAnagramsS(fArr, 6, sArr, 6, sizeof(int), intCmp));
+    printArr(sArr, 6, sizeof(int), printInt);
     return 0;
 }
 

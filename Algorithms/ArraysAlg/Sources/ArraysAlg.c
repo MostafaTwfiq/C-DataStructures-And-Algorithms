@@ -127,6 +127,7 @@ void reverseArray(void *arr, int length, int elemSize) {
  * Note: this function will use hash map to detect the duplicates.
  *
  * Time Complexity: O (n).
+ *
  * Space Complexity: O (k) and k is the different values in the array.
  *
  * @param arr the array pointer
@@ -1158,32 +1159,122 @@ int arrMismatchOfRange(void *fArr, int fLength, void *sArr, int sLength, int ele
  * @return it will return 1 if the two array has the same values, other wise it will return 0
  */
 
-int32_t arrIsEqualNoOrder(void *fArr, int fLength, void *sArr, int sLength, int elemSize, int (*cmp)(const void *, const void *)) {
+int arrAnagramsS(void *fArr, int fLength, void *sArr, int sLength, int elemSize, int (*cmp)(const void *, const void *)) {
+
     if (fArr == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "first passed array", "aarrIsSetOf");
+        fprintf(stderr, NULL_POINTER_MESSAGE, "first passed array", "arrAnagramsS function");
         exit(NULL_POINTER);
     } else if (sArr == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "second passed array", "arrIsSetOf");
+        fprintf(stderr, NULL_POINTER_MESSAGE, "second passed array", "arrAnagramsS function");
         exit(NULL_POINTER);
     } else if (cmp == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "arrIsSetOf");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "arrAnagramsS function");
         exit(INVALID_ARG);
     } else if (fLength < 0 || sLength < 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "arrays length", "arrIsSetOf");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "arrays length", "arrAnagramsS function");
         exit(INVALID_ARG);
     } else if (elemSize <= 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array mismatch function");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "arrAnagramsS function");
         exit(INVALID_ARG);
     }
+
+    if (fLength != sLength)
+        return 0;
 
     qsort(fArr, fLength, elemSize, cmp);
     qsort(sArr, sLength, elemSize, cmp);
 
-    for (int i = 0; i < (fLength < sLength ? fLength : sLength); i++) {
-        if (cmp(fArr + i * elemSize, sArr + i * elemSize) != 0)
+    for (int i = 0; i < fLength; i++) {
+        if ( cmp(fArr + i * elemSize, sArr + i * elemSize) != 0 )
             return 0;
+
     }
+
     return 1;
+
+}
+
+
+
+
+
+
+
+
+
+/** This function will take two array,
+ * then it will check if the two arrays has the same values or not,
+ * and if they are the function will return one (1), other wise it will return zero (0).
+ *
+ * Note: this function will use hash map data structure, so it need the hash function.
+ *
+ * Time Complexity: O (n).
+ *
+ * Space Complexity: O (n).
+ *
+ * @param fArr the first array pointer
+ * @param fLength the length of the first array
+ * @param sArr the second array pointer
+ * @param sLength the length of the second array
+ * @param elemSize the size of the arrays elements in bytes
+ * @param cmp the comparator function pointer, that will be called to compare the arrays values.
+ * @param hashFun the hashing function that will return a unique integer representing the hash map key
+ * @return it will return 1 if the two array has the same values, other wise it will return 0
+ */
+
+int arrAnagramsH(void *fArr, int fLength, void *sArr, int sLength, int elemSize, int (*cmp)(const void *, const void *), int (*hashFun)(const void *)) {
+
+    if (fArr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "first passed array", "arrAnagramsH function");
+        exit(NULL_POINTER);
+    } else if (sArr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "second passed array", "arrAnagramsH function");
+        exit(NULL_POINTER);
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "arrAnagramsH function");
+        exit(INVALID_ARG);
+    } else if (hashFun == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "hash function pointer", "arrAnagramsH function");
+        exit(INVALID_ARG);
+    } else if (fLength < 0 || sLength < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "arrays length", "arrAnagramsH function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "arrAnagramsH function");
+        exit(INVALID_ARG);
+    }
+
+
+    if (fLength != sLength)
+        return 0;
+
+    HashMap *valuesCounterMap = hashMapInitialization(nullFreeFunArrAlg, intFreeFunArrAlg, cmp, hashFun);
+    unsigned int oneValue = 1;
+
+    for (int i = 0; i < fLength; i++) {
+        void *currentItem = fArr + i * elemSize;
+        int *currentItemCount = (int *) hashMapGet(valuesCounterMap, currentItem);
+
+        if (currentItemCount == NULL)
+            hashMapInsert(valuesCounterMap, currentItem, generateIntPointerArrAlg(&oneValue));
+        else
+            *currentItemCount += 1;
+
+    }
+
+    for (int i = 0; i < sLength; i++) {
+        void *currentItem = sArr + i * elemSize;
+        int *currentItemCount = (int *) hashMapGet(valuesCounterMap, currentItem);
+
+        if (currentItemCount == NULL || *currentItemCount <= 0)
+            return 0;
+        else
+            *currentItemCount -= 1;
+
+    }
+
+    return 1;
+
 }
 
 
@@ -2003,12 +2094,12 @@ int arrIsRotation(void *fArr, int fLength, void *sArr, int sLength, int elemSize
  *
  * Note: if the items don't need to be freed, then pass a NULL free function.
  *
- * @param arr
- * @param value
- * @param length
- * @param elemSize
- * @param index
- * @param freeFun
+ * @param arr the array pointer
+ * @param value the new value pointer
+ * @param length the length of the array
+ * @param elemSize the size of the array elements in bytes
+ * @param index the index of the value that will be updated
+ * @param freeFun the freeing function pointer, that will be called to free the value before updating it
  */
 
 void arrUpdateElem(void *arr, void *value, int length, int elemSize, int index, void (*freeFun)(void *)) {
