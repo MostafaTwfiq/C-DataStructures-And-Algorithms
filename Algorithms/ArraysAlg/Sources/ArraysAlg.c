@@ -334,6 +334,40 @@ void printArr(void *arr, int length, int elemSize, void (*printFun)(void *)) {
 
 
 
+
+
+/** This function will take an array and resize it using realloc function,
+ * then it will return the new pointer of the realloc.
+ *
+ * Note: the realloc function could allocate the new space without changing the start address, but not always.
+ *
+ * @param arr the array pointer
+ * @param elemSize the size of the array elements
+ * @param newLength the new length of the array
+ * @return it will return the new pointer of the array
+ */
+
+void *arrResize(void *arr, int elemSize, int newLength) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "arr resize function");
+        exit(NULL_POINTER);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "arr resize function");
+        exit(INVALID_ARG);
+    } else if (newLength <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new Length", "arr resize function");
+        exit(INVALID_ARG);
+    }
+
+    return realloc(arr, newLength * elemSize);
+
+}
+
+
+
+
+
 /** This function will take an array with a new length,
  * then it will allocate a new array with the provided new length,
  * and it will copy the values in the original array into the new array, and finally return the new array pointer.
@@ -347,19 +381,19 @@ void printArr(void *arr, int length, int elemSize, void (*printFun)(void *)) {
  * @return it will return a pointer to the new array
  */
 
-void *arrResize(void *arr, int length, int elemSize, int newLength) {
+void *arrResizeAndCpy(void *arr, int length, int elemSize, int newLength) {
 
     if (arr == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array resize function");
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array resize and copy function");
         exit(NULL_POINTER);
     } else if (length < 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array resize function");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array resize and copy function");
         exit(INVALID_ARG);
     } else if (elemSize <= 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array resize function");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array resize and copy function");
         exit(INVALID_ARG);
     } else if (newLength < length) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "new length", "array resize function");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new length", "array resize and copy function");
         exit(INVALID_ARG);
     }
 
@@ -394,22 +428,22 @@ void *arrResize(void *arr, int length, int elemSize, int newLength) {
  * @return it will return the new array pointer
  */
 
-void *arrResizeOfRange(void *arr, int length, int elemSize, int startIndex, int endIndex, int newLength) {
+void *arrResizeOfRangeAndCpy(void *arr, int length, int elemSize, int startIndex, int endIndex, int newLength) {
 
     if (arr == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array resize of range function");
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array resize of range and copy function");
         exit(NULL_POINTER);
     } else if (length < 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array resize of range function");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array resize of range and copy function");
         exit(INVALID_ARG);
     } else if (elemSize <= 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array resize of range function");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array resize of range and copy function");
         exit(INVALID_ARG);
     } else if (startIndex < 0 || startIndex > endIndex || endIndex >= length) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "range of copy", "array resize of range function");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "range of copy", "array resize of range and copy function");
         exit(INVALID_ARG);
     } else if (newLength < (endIndex - startIndex + 1)) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "new length", "array resize of range function");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new length", "array resize of range and copy function");
         exit(INVALID_ARG);
     }
 
@@ -445,22 +479,22 @@ void *arrResizeOfRange(void *arr, int length, int elemSize, int startIndex, int 
  * @return it will return the new array pointer
  */
 
-void *arrResizeC(void *arr, int length, int elemSize, int newLength, void (*copyFun)(const void *, const void *)) {
+void *arrResizeAndCpyC(void *arr, int length, int elemSize, int newLength, void (*copyFun)(const void *, const void *)) {
 
     if (arr == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "custom array resize function");
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "custom array resize and copy function");
         exit(NULL_POINTER);
     } else if (copyFun == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "copying function pointer", "custom array resize function");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "copying function pointer", "custom array resize and copy function");
         exit(INVALID_ARG);
     } else if (length < 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "custom array resize function");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "custom array resize and copy function");
         exit(INVALID_ARG);
     } else if (elemSize <= 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "custom array resize function");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "custom array resize and copy function");
         exit(INVALID_ARG);
     } else if (newLength < length) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "new length", "custom array resize function");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new length", "custom array resize and copy function");
         exit(INVALID_ARG);
     }
 
@@ -498,25 +532,25 @@ void *arrResizeC(void *arr, int length, int elemSize, int newLength, void (*copy
  * @return it will return the new array pointer
  */
 
-void *arrResizeOfRangeC(void *arr, int length, int elemSize, int startIndex, int endIndex, int newLength, void (*copyFun)(const void *, const void *)) {
+void *arrResizeOfRangeAndCpyC(void *arr, int length, int elemSize, int startIndex, int endIndex, int newLength, void (*copyFun)(const void *, const void *)) {
 
     if (arr == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "custom array resize of range function");
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "custom array resize of range and copy function");
         exit(NULL_POINTER);
     } else if (copyFun == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "copying function pointer", "custom array resize of range function");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "copying function pointer", "custom array resize of range and copy function");
         exit(INVALID_ARG);
     } else if (length < 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "custom array resize of range function");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "custom array resize of range and copy function");
         exit(INVALID_ARG);
     } else if (elemSize <= 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "custom array resize of range function");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "custom array resize of range and copy function");
         exit(INVALID_ARG);
     } else if (startIndex < 0 || startIndex > endIndex || endIndex >= length) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "range of copy", "custom array resize of range function");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "range of copy", "custom array resize of range and copy function");
         exit(INVALID_ARG);
     } else if (newLength < (endIndex - startIndex + 1)) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "new length", "custom array resize of range function");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new length", "custom array resize of range and copy function");
         exit(INVALID_ARG);
     }
 
@@ -1105,14 +1139,25 @@ int arrMismatchOfRange(void *fArr, int fLength, void *sArr, int sLength, int ele
 
 
 
-///
-/// \param fArr
-/// \param fLength
-/// \param sArr
-/// \param sLength
-/// \param elemSize
-/// \param cmp
-/// \return
+
+
+
+
+/** This function will take two array,
+ * then it will check if the two arrays has the same values or not,
+ * and if they are the function will return one (1), other wise it will return zero (0).
+ *
+ * Note: this function will sort the arrays.
+ *
+ * @param fArr the first array pointer
+ * @param fLength the first array length
+ * @param sArr the second array pointer
+ * @param sLength the second array length
+ * @param elemSize the size of the arrays elements in bytes
+ * @param cmp the comparator function pointer, that will be called to compare the arrays values.
+ * @return it will return 1 if the two array has the same values, other wise it will return 0
+ */
+
 int32_t arrIsEqualNoOrder(void *fArr, int fLength, void *sArr, int sLength, int elemSize, int (*cmp)(const void *, const void *)) {
     if (fArr == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "first passed array", "aarrIsSetOf");
@@ -1140,6 +1185,9 @@ int32_t arrIsEqualNoOrder(void *fArr, int fLength, void *sArr, int sLength, int 
     }
     return 1;
 }
+
+
+
 
 
 
@@ -1941,5 +1989,150 @@ int arrIsRotation(void *fArr, int fLength, void *sArr, int sLength, int elemSize
     }
 
     return 0;
+
+}
+
+
+
+
+
+
+
+/** This function will take an array, index and value,
+ * then it will free int item in the passed index, then memory copy the passed value in the index.
+ *
+ * Note: if the items don't need to be freed, then pass a NULL free function.
+ *
+ * @param arr
+ * @param value
+ * @param length
+ * @param elemSize
+ * @param index
+ * @param freeFun
+ */
+
+void arrUpdateElem(void *arr, void *value, int length, int elemSize, int index, void (*freeFun)(void *)) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "arr update element function");
+        exit(NULL_POINTER);
+    } else if (value == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "passed value", "arr update element function");
+        exit(INVALID_ARG);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "arr update element function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "arr update element function");
+        exit(INVALID_ARG);
+    } else if (index < 0 || index >= length) {
+        fprintf(stderr, OUT_OF_RANGE_MESSAGE, "array add function");
+        exit(OUT_OF_RANGE);
+    }
+
+    if (freeFun != NULL)
+        freeFun(arr + index * elemSize);
+
+    memcpy(arr + index * elemSize, value, elemSize);
+
+}
+
+
+
+
+
+
+
+
+/** This function will take an array and a value,
+ * then it will insert the new value in the given index.
+ *
+ * Note: the array should have a free space at the end.
+ *
+ * Note: this function will memory copy the new value.
+ *
+ * @param arr the array pointer
+ * @param value the new value pointer
+ * @param length the length of the array
+ * @param elemSize the size of the array elements in bytes
+ * @param index the index that the new value will be inserted in.
+ */
+
+void arrAdd(void *arr, void *value, int length, int elemSize, int index) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array add function");
+        exit(NULL_POINTER);
+    } else if (value == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "passed value", "array add function");
+        exit(INVALID_ARG);
+    } else if (length < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array add function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array add function");
+        exit(INVALID_ARG);
+    } else if (index < 0 || index >= length) {
+        fprintf(stderr, OUT_OF_RANGE_MESSAGE, "array add function");
+        exit(OUT_OF_RANGE);
+    }
+
+    for (int i = length + 1; i > index; i--)
+        memcpy(arr + i * elemSize, arr + (i - 1) * elemSize, elemSize);
+
+    memcpy(arr + index * elemSize, value, elemSize);
+
+}
+
+
+
+
+
+
+
+
+
+/** This function will take an array and a values array,
+ * then it will insert the values in the values array into the original array in the given index.
+ *
+ * Note: the array should have a free space at the end.
+ *
+ * Note: this function will memory copy the new values.
+ *
+ * @param arr the array pointer
+ * @param arrLength the length of the array
+ * @param values the values array pointer
+ * @param valuesArrLength the length of the values array
+ * @param elemSize the size of the values in bytes
+ * @param index the index that the new values will be inserted in
+ */
+
+void arrAddAll(void *arr, int arrLength, void *values, int valuesArrLength, int elemSize, int index) {
+
+    if (arr == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array add all function");
+        exit(NULL_POINTER);
+    } else if (values == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed values array", "array add all function");
+        exit(NULL_POINTER);
+    }  else if (arrLength < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array add all function");
+        exit(INVALID_ARG);
+    } else if (valuesArrLength < 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "values array length", "array add all function");
+        exit(INVALID_ARG);
+    } else if (elemSize <= 0) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array add all function");
+        exit(INVALID_ARG);
+    } else if (index < 0 || index >= arrLength) {
+        fprintf(stderr, OUT_OF_RANGE_MESSAGE, "array add all function");
+        exit(OUT_OF_RANGE);
+    }
+
+    for (int i = arrLength + valuesArrLength; i > index; i--)
+        memcpy(arr + i * elemSize, arr + (i - valuesArrLength) * elemSize, elemSize);
+
+    for (int i = 0; i < valuesArrLength; i++)
+        memcpy(arr + (index + i) * elemSize, values + i * elemSize, elemSize);
 
 }

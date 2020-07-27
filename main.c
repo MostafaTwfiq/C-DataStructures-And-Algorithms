@@ -90,11 +90,16 @@ int stringCmp(const void *s1, const void *s2) {
 
 int main() {
 
-    int fArr[] = {1, 2, 3, 3, 4, 3, 6};
-    int sArr[] = {4, 3, 6, 1, 2, 3, 3};
-    //printf("%d\n", arrIsPalindrome(fArr, 5, sizeof(int), intCmp));
-    printf("%d", arrIsRotation(fArr, 7, sArr, 7, sizeof(int), intCmp));
-    //printArr(arr, newLength, sizeof(int), printInt);
+    int *arr = (int *) malloc(sizeof(int) * 6);
+    for (int i = 0; i < 6; i++)
+        arr[i] = i + 1;
+
+    arr = arrResize(arr, sizeof(int), 10);
+
+    int newValues[] = {100, 200, 300, 400};
+    arrAddAll(arr, 6, newValues, 4, sizeof(int), 3);
+
+    printArr(arr, 10, sizeof(int), printInt);
     return 0;
 }
 

@@ -10,13 +10,15 @@ void *mostFrequentArrValueA(void *arr, int length, int elemSize, int (*cmp)(cons
 
 void printArr(void *arr, int length, int elemSize, void (*printFun)(void *));
 
-void *arrResize(void *arr, int length, int elemSize, int newLength);
+void *arrResize(void *arr, int elemSize, int newLength);
 
-void *arrResizeOfRange(void *arr, int length, int elemSize, int startIndex, int endIndex, int newLength);
+void *arrResizeAndCpy(void *arr, int length, int elemSize, int newLength);
 
-void *arrResizeC(void *arr, int length, int elemSize, int newLength, void (*copyFun)(const void *, const void *));
+void *arrResizeOfRangeAndCpy(void *arr, int length, int elemSize, int startIndex, int endIndex, int newLength);
 
-void *arrResizeOfRangeC(void *arr, int length, int elemSize, int startIndex, int endIndex, int newLength, void (*copyFun)(const void *, const void *));
+void *arrResizeAndCpyC(void *arr, int length, int elemSize, int newLength, void (*copyFun)(const void *, const void *));
+
+void *arrResizeOfRangeAndCpyC(void *arr, int length, int elemSize, int startIndex, int endIndex, int newLength, void (*copyFun)(const void *, const void *));
 
 void *arrCopy(void *arr, int length, int elemSize);
 
@@ -71,5 +73,11 @@ int arrBinarySearch(void *arr, void *value, int length, int elemSize, int (*cmp)
 int arrIsPalindrome(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *));
 
 int arrIsRotation(void *fArr, int fLength, void *sArr, int sLength, int elemSize, int (*cmp)(const void *, const void *));
+
+void arrUpdateElem(void *arr, void *value, int length, int elemSize, int index, void (*freeFun)(void *));
+
+void arrAdd(void *arr, void *value, int length, int elemSize, int index);
+
+void arrAddAll(void *arr, int arrLength, void *values, int valuesArrLength, int elemSize, int index);
 
 #endif //C_DATASTRUCTURES_ARRAYSALG_H
