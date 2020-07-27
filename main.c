@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-
 #define ANSI_COLOR_RED     "\x1b[31m"
 #define ANSI_COLOR_BOLD_RED     "\x1b[1;31m"
 #define ANSI_COLOR_GREEN   "\x1b[32m"
@@ -32,6 +30,7 @@
 #include "Algorithms/ArraysAlgo/Headers/CharArrayAlg.h"
 #include "Algorithms/IntegersAlg/Headers/IntegerAlg.h"
 #include "Algorithms/Sorting/Headers/HeapSort.h"
+
 
 void freeItem(void *item) {
     free(item);
@@ -101,6 +100,7 @@ int stringCmp(const void *s1, const void *s2) {
 // ██████████████                      ████████████   ██████████████                      ██████  ██████ ██████████████
 
 */
+
 
 
 int main() {

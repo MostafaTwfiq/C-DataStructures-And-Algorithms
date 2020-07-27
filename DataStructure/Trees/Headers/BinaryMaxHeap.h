@@ -52,6 +52,9 @@ void MaxHeapClear(BinaryMaxHeap *binaryMaxHeap);
 
 void MaxHeapAddAll(BinaryMaxHeap *binaryMaxHeap, void **arr, uint32_t size);
 
+uint32_t isEqual(BinaryMaxHeap *binaryMaxHeap,BinaryMaxHeap *binaryMaxHeap2);
+
+uint32_t BinaryMaxHeapContains(BinaryMaxHeap * binaryMaxHeap, void *item);
 
 #ifdef __cplusplus
 }

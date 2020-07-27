@@ -312,3 +312,33 @@ void StackDestroy( Stack* stack ) {
     free( stack );
 
 }
+
+///
+/// \param stack
+/// \param stack1
+/// \param cmp
+/// \return
+uint32_t isEqual(Stack * stack, Stack * stack1, int (*cmp)(void *,void*)){
+    if(stack->top < stack1->top) return -1;
+    if(stack->top > stack1->top)return  1;
+    else{
+        for(int i = 0; i<stack->top;i++){
+            if(cmp(stack->memory[i],stack1->memory[i]))
+                return 1;
+        }
+        return 0;
+    }
+}
+
+///
+/// \param stack
+/// \param item
+/// \param cmp
+/// \return
+uint32_t StackContains(Stack *stack, void *item,int (*cmp)(void *,void*)){
+    for(int i = 0; i<stack->top;i++){
+        if(cmp(stack->memory[i], item)==0)
+            return 1;
+    }
+    return 0;
+}

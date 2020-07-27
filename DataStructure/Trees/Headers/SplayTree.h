@@ -69,6 +69,12 @@ void SplayTreeInsertAll(SplayTree *splayTree, void **array, int length);
 
 void **SplayTreeToArray(SplayTree *splayTree);
 
+uint32_t SplayTreeContains(SplayTree * tree, void *item);
+
+uint32_t isEqual(SplayTree *splayTree, SplayTree *splayTree2);
+
+void SplayTreeMirror(SplayTree* tree);
+
 #ifdef __cplusplus
 }
 #endif

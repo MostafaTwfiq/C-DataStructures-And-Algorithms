@@ -310,10 +310,10 @@ void freeSplayNode(SplayNode **node, void (*freeFn)(void*)){
 /** Given an splay Tree's root node it frees it's elements recursively.Setting the root node to Null.
 * @param root Exact Reference to root node to start freeing at.
 **/
-void SplayTreeFreeWrapper(SplayNode **root,void (*freeFn)(void*)) {
+void SplayTreeFreeHelper(SplayNode **root,void (*freeFn)(void*)) {
     if (*root == NULL) return;
-    SplayTreeFreeWrapper(&(*root)->left,freeFn);
-    SplayTreeFreeWrapper(&(*root)->right,freeFn);
+    SplayTreeFreeHelper(&(*root)->left,freeFn);
+    SplayTreeFreeHelper(&(*root)->right,freeFn);
     freeSplayNode(root, NULL);
     *root=NULL;
 }
@@ -329,18 +329,18 @@ void SplayTreeFree(SplayTree *splayTree){
      	#endif
 
     }
-    SplayTreeFreeWrapper(splayTree->root,splayTree->freeFn);
+    SplayTreeFreeHelper(splayTree->root,splayTree->freeFn);
 }
 
 /** Takes a print function and starts printing from using the provided print function.
 * @param node Reference node to start printing from.
 * @param printFn print function to use for printing node keys.
 **/
-void printInOrderSplayTreeWrapper(SplayNode* node, void (printFn)(void *)){
+void printInOrderSplayTreeHelper(SplayNode* node, void (printFn)(void *)){
     if(node==NULL)return;
-    printInOrderSplayTreeWrapper(node->left, printFn);
+    printInOrderSplayTreeHelper(node->left, printFn);
     (printFn)(node->key);
-    printInOrderSplayTreeWrapper(node->right, printFn);
+    printInOrderSplayTreeHelper(node->right, printFn);
 }
 
 ///
@@ -367,7 +367,7 @@ void printInOrderSplayTree(SplayTree *splayTree, void (printFn)(void *)){
 
     }
 
-    printInOrderSplayTreeWrapper(splayTree->root,printFn);
+    printInOrderSplayTreeHelper(splayTree->root,printFn);
 }
 
 /** Prints a tree in 2 space of the console.
@@ -486,4 +486,130 @@ void SplayTreeToArrayRecurs(SplayNode* node , void **arr, int *i){
     arr[*i] = node->key;
     *i += 1;
     SplayTreeToArrayRecurs(node->right, arr, i);
+}
+
+///
+/// \param node1
+/// \param node2
+/// \param cmpFn
+/// \param flag
+void isEqualHelper(SplayNode* node1,SplayNode* node2,int (*cmpFn)(const void *, const void *), int * flag){
+    if (cmpFn == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "cmpFn", "isEqualHelper");
+        #ifdef CU_TEST_H
+                DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+                exit(INVALID_ARG);
+        #endif
+    }
+    if(!flag) return;
+    if (node1 == NULL || node2 ==NULL) return;
+    isEqualHelper(node1->right, node2->right,cmpFn,flag);
+    if((cmpFn)(node1->key,node2->key)) *flag = 1;
+    isEqualHelper(node1->left, node2->left, cmpFn,flag);
+}
+
+
+///
+/// \param splayTree
+/// \param splayTree2
+/// \return
+uint32_t isEqual(SplayTree *splayTree, SplayTree *splayTree2){
+    if (splayTree == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "splayTree", "isEqual");
+        #ifdef CU_TEST_H
+                DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+                exit(INVALID_ARG);
+        #endif
+    }
+
+    if (splayTree2 == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "splayTree2", "isEqual");
+        #ifdef CU_TEST_H
+                DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+                exit(INVALID_ARG);
+        #endif
+    }
+
+    if(splayTree->nodeCount < splayTree2->nodeCount) return -1;
+    if(splayTree->nodeCount > splayTree2->nodeCount) return  1;
+    else {
+        uint32_t areEqual = 0;
+        isEqualHelper(splayTree->root, splayTree2->root, splayTree->cmp, &areEqual);
+        return areEqual;
+    }
+}
+
+///
+/// \param tree
+/// \param root
+/// \param item
+/// \return
+uint32_t SplayTreeContainsHelper(SplayTree * tree, SplayNode* root,void *item){
+    if (root == NULL) return 0;
+    if (tree->cmp(item, root->key) == 0) return 1;
+    else if (tree->cmp(item, root->key) < 0)
+        return SplayTreeContainsHelper(tree, root->left, item);
+
+    else
+        return SplayTreeContainsHelper(tree, root->right, item);
+}
+
+///
+/// \param tree
+/// \param item
+/// \return
+uint32_t SplayTreeContains(SplayTree * tree, void *item){
+
+    if (tree == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "SplayTreeContains");
+        #ifdef CU_TEST_H
+                DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #else
+                exit(NULL_POINTER);
+        #endif
+
+    } else if (item == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item", "SplayTreeContains");
+        #ifdef CU_TEST_H
+                DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+                exit(INVALID_ARG);
+        #endif
+    }
+
+    return SplayTreeContainsHelper(tree, tree->root, item);
+}
+
+
+SplayNode* SplayTreeMirrorHelper(SplayNode* root){
+    if (root==NULL) return root;
+    else{
+        SplayNode* temp;
+
+        root->left  = SplayTreeMirrorHelper(root->left);
+        root->right = SplayTreeMirrorHelper(root->right);
+
+
+        temp        = root->left;
+        root->left  = root->right;
+        root->right = temp;
+    }
+    return root;
+}
+
+///
+/// \param tree
+void SplayTreeMirror(SplayTree* tree){
+    if (tree == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "SplayTreeMirror");
+        #ifdef CU_TEST_H
+                DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #else
+                exit(NULL_POINTER);
+        #endif
+    }
+    tree->root = SplayTreeMirrorHelper(tree->root);
 }

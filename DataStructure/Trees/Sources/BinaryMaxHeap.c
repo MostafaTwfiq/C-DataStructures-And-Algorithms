@@ -395,6 +395,69 @@ void MaxHeapClear(BinaryMaxHeap * binaryMaxHeap){
 }
 
 
+uint32_t isEqual(BinaryMaxHeap *binaryMaxHeap,BinaryMaxHeap *binaryMaxHeap2){
+    if (binaryMaxHeap == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "binaryMaxHeap", "isEqual");
+        #ifdef CU_TEST_H
+                DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+                exit(INVALID_ARG);
+        #endif
+
+    }
+
+    if (binaryMaxHeap2 == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "binaryMaxHeap2", "isEqual");
+        #ifdef CU_TEST_H
+                DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+                exit(INVALID_ARG);
+        #endif
+    }
+
+    if(binaryMaxHeap->size < binaryMaxHeap2->size) return -1;
+    if(binaryMaxHeap->size > binaryMaxHeap2->size) return  1;
+    else {
+        for(int i = binaryMaxHeap->size;i>=0;--i){
+            if(binaryMaxHeap->cmpFn(binaryMaxHeap->memory[i],binaryMaxHeap2->memory[i])){
+                return 1;
+            }
+        }
+        return 0;
+    }
+}
+
+///
+/// \param tree
+/// \param item
+/// \return
+uint32_t BinaryMaxHeapContains(BinaryMaxHeap * binaryMaxHeap, void *item){
+
+    if (binaryMaxHeap == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "binaryMaxHeap", "BinaryMaxHeapContains");
+        #ifdef CU_TEST_H
+                DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #else
+                exit(NULL_POINTER);
+        #endif
+
+    } else if (item == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item", "BinaryMaxHeapContains");
+        #ifdef CU_TEST_H
+                DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+                exit(INVALID_ARG);
+        #endif
+    }
+
+    for(int i = binaryMaxHeap->size-1;i>=0;--i){
+        if(binaryMaxHeap->cmpFn(binaryMaxHeap->memory[i],item))
+            continue;
+        else
+            return 1;
+    }
+}
+
 
 
 

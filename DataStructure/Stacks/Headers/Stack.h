@@ -1,6 +1,8 @@
 #ifndef C_DATASTRUCTURES_STACK_H
 #define C_DATASTRUCTURES_STACK_H
 
+#include <stdint.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -43,6 +45,10 @@ int getStackLength(Stack *stack);
 void StackClear(Stack *stack);
 
 void StackDestroy(Stack *stack);
+
+uint32_t StackContains(Stack *stack, void *item,int (*cmp)(void *,void*));
+
+uint32_t isEqual(Stack * stack, Stack * stack1, int (*cmp)(void *,void*));
 
 #ifdef __cplusplus
 }
