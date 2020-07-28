@@ -31,7 +31,7 @@
 #include "Algorithms/IntegersAlg/Headers/IntegerAlg.h"
 #include "Algorithms/Sorting/Headers/HeapSort.h"
 #include "DataStructure/Trees/Headers/BinaryMaxHeap.h"
-#include "Files/TxtFileLoader.h"
+#include "Files/Headers/TxtFileLoader.h"
 
 void freeItem(void *item) {
     free(item);
@@ -87,27 +87,50 @@ int stringCmp(const void *s1, const void *s2) {
     return strcmp(s1, s2);
 }
 
-
+void fr(void *item){}
 
 int main() {
 
-    /*TxtFileLoader *loader = txtFileLoaderInitialization("C:\\Users\\mosta\\CLionProjects\\C-Data-structures\\temp.txt");
-    Vector *fileLines = txtLoaderReadFileLines(loader);
-    for (int i = 0; i < vectorGetLength(fileLines); i++) {
-        printString(vectorGet(fileLines, i));
-        printf("\n");
-    }*/
+    TxtFileLoader *loader = txtFileLoaderInitialization("C:\\Users\\mosta\\CLionProjects\\C-Data-structures\\Files\\textFile.txt");
 
-    String *string = stringInitialization(1);
-    stringChangeStringByCharArray(string, "Mostafa\nMohammed\tTawfiq Ali");
-    Vector *splitVector = stringSplit(string, " \t\nm");
-    for (int i = 0; i < vectorGetLength(splitVector); i++) {
-        printString(vectorGet(splitVector, i));
-        printf("\n");
-    }
+    String *string = stringInitialization(5);
+    stringChangeStringByCharArray(string, "string");
+
+    txtLoaderWriteC(loader, "Nice");
+    txtLoaderAppendC(loader, "char");
+    txtLoaderAppendS(loader, string);
+
+    Vector *newLinesC = vectorInitialization(1, fr, NULL);
+    vectorAdd(newLinesC, "one");
+    vectorAdd(newLinesC, "two");
+    vectorAdd(newLinesC, "three");
+
+    Vector *newLinesS = vectorInitialization(1, fr, NULL);
+    String *s1 = stringInitialization(1);
+    stringChangeStringByCharArray(s1, "oneS");
+    vectorAdd(newLinesS, s1);
+
+    String *s2 = stringInitialization(1);
+    stringChangeStringByCharArray(s2, "twoS");
+    vectorAdd(newLinesS, s2);
+
+    String *s3 = stringInitialization(1);
+    stringChangeStringByCharArray(s3, "threeS");
+    vectorAdd(newLinesS, s3);
 
 
-    destroyVector(splitVector);
+    txtLoaderAddAllC(loader, newLinesC, 0);
+    txtLoaderAddAllS(loader, newLinesS, 3);
+
+    txtLoaderRemoveLine(loader, 6);
+
+    txtLoaderUpdateLineC(loader, "one wow", 0);
+    txtLoaderUpdateLineS(loader, s1, 2);
+
+    txtLoaderAppendToLineC(loader, " and nice too", 0);
+    txtLoaderAppendToLineS(loader, s2, 2);
+
+    printf("File Data: %s", txtLoaderReadFileC(loader));
 
     return 0;
 }

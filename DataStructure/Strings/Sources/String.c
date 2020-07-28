@@ -164,13 +164,13 @@ void stringRemoveCharAtIndex(String *myString, int index) {
 
 
 
-/** This function will take the string address, and the new char pointer array as a parameters,
-    then it will add the new array of characters in the end of the string.
+/** This function will take the string address, and the new char array pointer as a parameters,
+    then it will add the new array of characters at the end of the original string.
  * @param myString the string address
- * @param newString the char array address
+ * @param charArr the char array address
  */
 
-void stringAddStringAtLast(String *myString, char *newString) {
+void stringAddCharArrayAtLast(String *myString, char *charArr) {
     if (myString == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
         #ifdef CU_TEST_H
@@ -179,8 +179,8 @@ void stringAddStringAtLast(String *myString, char *newString) {
      		exit(NULL_POINTER);
      	#endif
 
-    } else if (newString == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "new string pointer", "string data structure");
+    } else if (charArr == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "char array pointer", "string data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
      	#else
@@ -189,13 +189,53 @@ void stringAddStringAtLast(String *myString, char *newString) {
 
     }
 
-    char *currentChar = newString;
+    char *currentChar = charArr;
     while (*currentChar != '\0') {
         stringAddCharAtLast(myString, *currentChar);
         currentChar++;
     }
 
 }
+
+
+
+
+
+
+
+/** This function will take the string address, and the new string pointer array as a parameters,
+    then it will add the new string at the end of the original string.
+ * @param myString the string address
+ * @param newString the string pointer
+ */
+
+void stringAddStringAtLast(String *myString, String *newString) {
+    if (myString == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #else
+            exit(NULL_POINTER);
+        #endif
+
+    } else if (newString == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "string pointer", "string data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+            exit(INVALID_ARG);
+        #endif
+
+    }
+
+    char *currentChar = newString->string;
+    while (*currentChar != '\0') {
+        stringAddCharAtLast(myString, *currentChar);
+        currentChar++;
+    }
+
+}
+
 
 
 
@@ -924,7 +964,7 @@ Vector *stringSplit(String *string, char *splitCharacters) {
     } else if (splitCharacters == NULL) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "split characters array", "string data structure");
         #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
         #else
             exit(INVALID_ARG);
         #endif

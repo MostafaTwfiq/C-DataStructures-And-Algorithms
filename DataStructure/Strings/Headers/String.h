@@ -19,7 +19,9 @@ void stringAddCharAtIndex(String *myString, int index, char c);
 
 void stringRemoveCharAtIndex(String *myString, int index);
 
-void stringAddStringAtLast(String *myString, char *newString);
+void stringAddCharArrayAtLast(String *myString, char *charArr);
+
+void stringAddStringAtLast(String *myString, String *newString);
 
 void stringChangeStringByCharArray(String *string, char *newString);
 

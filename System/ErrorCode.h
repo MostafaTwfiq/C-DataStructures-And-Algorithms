@@ -14,7 +14,8 @@ typedef enum ERROR {
     INVALID_ARG                   = -83384987,
     NULL_POINTER                  = -83386157,
     OUT_OF_RANGE                  = -83385991,
-    EMPTY_DATA_STRUCTURE          = -833816740
+    EMPTY_DATA_STRUCTURE          = -833816740,
+    SOMETHING_WENT_WRONG          = -833816834
 }ERROR;
 
 
@@ -26,6 +27,7 @@ typedef enum ERROR {
 #define         NULL_POINTER_MESSAGE                "The %s pointer in %s is NULL."
 #define         OUT_OF_RANGE_MESSAGE                "The passed index is out of the %s range."
 #define         EMPTY_DATA_STRUCTURE_MESSAGE        "The passed %s pointer is empty."
+#define         SOMETHING_WENT_WRONG_MESSAGE        "Can't %s in %s."
 
 
 #endif //C_DATASTRUCTURES_ERRORCODE_H
