@@ -121,4 +121,4 @@ add_executable(C_DataStructures main.c
         Algorithms/IntegersAlg/Sources/IntegerAlg.c
         Algorithms/IntegersAlg/Headers/IntegerAlg.h
         Algorithms/Sorting/Sources/HeapSort.c 
-        Algorithms/Sorting/Headers/HeapSort.h)
+        Algorithms/Sorting/Headers/HeapSort.h Files/TxtFileLoader.c Files/TxtFileLoader.h)

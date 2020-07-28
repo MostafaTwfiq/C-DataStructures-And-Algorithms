@@ -55,11 +55,15 @@ void stringTrim(String *myString);
 
 void stringTrimC(String *myString, char *specialCharacters);
 
-void destroyString(String *myString);
-
 void stringFGetS(String *myString);
 
 void printString(String *string);
+
+struct Vector *stringSplit(String *string, char *splitCharacters);
+
+void clearString (String *string);
+
+void destroyString(String *myString);
 
 #ifdef __cplusplus
 }

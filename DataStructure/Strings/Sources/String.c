@@ -1,8 +1,6 @@
 #include "../Headers/String.h"
 #include "../../../System/Utils.h"
-
-
-
+#include "../../Lists/Headers/Vector.h"
 
 
 /** This function will take the initial length of the string as a parameter,
@@ -127,6 +125,8 @@ void stringAddCharAtIndex(String *myString, int index, char c) {
 
 
 
+
+
 /** This function will take the string address, and the index as a parameter,
     then it will remove the character in the given index.
  * If the index is out of the string range the program will terminate.
@@ -158,6 +158,8 @@ void stringRemoveCharAtIndex(String *myString, int index) {
 
     myString->count--;
 }
+
+
 
 
 
@@ -733,6 +735,11 @@ void stringTrimEndC(String *myString, char *specialCharacters) {
 
 
 
+
+
+
+
+
 /** This function will take string pointer,
  * then it will remove ' ', '\t' and '\n' characters,
  * from the end of the string.
@@ -886,6 +893,94 @@ void printString(String *string) {
     fprintf(stdout, "%s", string->string);
 
 }
+
+
+
+
+
+
+
+
+
+/** This function will take a string,
+ * then it will split by the passed split characters array.
+ *
+ * ex of split characters array: " \t\n", the function will split the string when ever it see ' ', '\t', or '\n' characters.
+ *
+ * @param string the string pointer
+ * @param splitCharacters the split characters array pointer
+ * @return it will return a vector contains the strings after split
+ */
+
+Vector *stringSplit(String *string, char *splitCharacters) {
+
+    if (string == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #else
+            exit(NULL_POINTER);
+        #endif
+    } else if (splitCharacters == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "split characters array", "string data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #else
+            exit(INVALID_ARG);
+        #endif
+    }
+
+
+    Vector *stringsVector = vectorInitialization(5, destroyString, stringIsEqualsToMyString);
+    vectorAdd(stringsVector, stringInitialization(5));
+
+    for (int i = 0; i < stringGetLength(string); i++) {
+
+        if ( stringContainsChar(splitCharacters, stringGetCharAtIndex(string, i)) ) {
+
+            if ( stringGetLength(vectorGet(stringsVector, vectorGetLength(stringsVector) - 1)) != 0)
+                vectorAdd(stringsVector, stringInitialization(5));
+
+            continue;
+        }
+
+        stringAddCharAtLast(vectorGet(stringsVector, vectorGetLength(stringsVector) - 1), stringGetCharAtIndex(string, i));
+
+    }
+
+    return stringsVector;
+
+}
+
+
+
+
+
+
+
+
+/** This function will clear the string.
+ * @param string the string pointer
+ */
+
+void clearString (String *string) {
+
+    if (string == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #else
+            exit(NULL_POINTER);
+        #endif
+
+    }
+
+    string->count = 0;
+    string->string[string->count] = '\0';
+
+}
+
+
 
 
 

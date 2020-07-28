@@ -31,6 +31,7 @@
 #include "Algorithms/IntegersAlg/Headers/IntegerAlg.h"
 #include "Algorithms/Sorting/Headers/HeapSort.h"
 #include "DataStructure/Trees/Headers/BinaryMaxHeap.h"
+#include "Files/TxtFileLoader.h"
 
 void freeItem(void *item) {
     free(item);
@@ -90,10 +91,24 @@ int stringCmp(const void *s1, const void *s2) {
 
 int main() {
 
-    int fArr[] = {1, 2, 3, 4, 5, 6};
-    int sArr[] = {4, 3, 2, 1, 6, 5};
-    printf("%d\n", arrAnagramsS(fArr, 6, sArr, 6, sizeof(int), intCmp));
-    printArr(sArr, 6, sizeof(int), printInt);
+    /*TxtFileLoader *loader = txtFileLoaderInitialization("C:\\Users\\mosta\\CLionProjects\\C-Data-structures\\temp.txt");
+    Vector *fileLines = txtLoaderReadFileLines(loader);
+    for (int i = 0; i < vectorGetLength(fileLines); i++) {
+        printString(vectorGet(fileLines, i));
+        printf("\n");
+    }*/
+
+    String *string = stringInitialization(1);
+    stringChangeStringByCharArray(string, "Mostafa\nMohammed\tTawfiq Ali");
+    Vector *splitVector = stringSplit(string, " \t\nm");
+    for (int i = 0; i < vectorGetLength(splitVector); i++) {
+        printString(vectorGet(splitVector, i));
+        printf("\n");
+    }
+
+
+    destroyVector(splitVector);
+
     return 0;
 }
 

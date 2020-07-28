@@ -2168,6 +2168,7 @@ void arrAdd(void *arr, void *value, int length, int elemSize, int index) {
         exit(OUT_OF_RANGE);
     }
 
+
     for (int i = length + 1; i > index; i--)
         memcpy(arr + i * elemSize, arr + (i - 1) * elemSize, elemSize);
 
