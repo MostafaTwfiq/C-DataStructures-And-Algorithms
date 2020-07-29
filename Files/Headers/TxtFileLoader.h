@@ -1,7 +1,8 @@
 #ifndef C_DATASTRUCTURES_TXTFILELOADER_H
 #define C_DATASTRUCTURES_TXTFILELOADER_H
 
-#include "../../System/Utils.h"
+
+#include <stdio.h>
 
 
 
@@ -9,6 +10,8 @@ typedef struct TxtFileLoader {
     char *dir;
     FILE *fileP;
 } TxtFileLoader;
+
+
 
 
 TxtFileLoader *txtFileLoaderInitialization(char *fileDir);

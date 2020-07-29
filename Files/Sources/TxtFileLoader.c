@@ -1,6 +1,7 @@
 #include "../Headers/TxtFileLoader.h"
 #include "../../DataStructure/Strings/Headers/String.h"
 #include "../../DataStructure/Lists/Headers/Vector.h"
+#include "../../System/Utils.h"
 
 
 
