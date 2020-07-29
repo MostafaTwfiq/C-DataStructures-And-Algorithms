@@ -539,6 +539,10 @@ int stringGetLength(String *myString) {
 
 
 
+
+
+
+
 /** This function will take the string address, and a char pointer array as a parameters,
     then it will return one (1) if the string is equal to the char array,
     other wise it will return zero (0).
@@ -566,19 +570,25 @@ int stringIsEqualsToCharArray(String *myString, char *string) {
 
     }
 
-    int stringLength = strlen(string);
-    if (myString->count != stringLength)
-        return 0;
+    char *fS = myString->string;
+    char *sS = string;
 
-    for (int i = 0; i < myString->count; i++) {
+    while (*fS != '\0' && *sS != '\0') {
 
-        if (myString->string[i] != string[i])
+        if (*fS != *sS)
             return 0;
+
+        fS++;
+        sS++;
 
     }
 
-    return 1;
+    return *fS == '\0' && *sS == '\0' ? 1 : 0;
+
 }
+
+
+
 
 
 
@@ -623,6 +633,127 @@ int stringIsEqualsToMyString(String *myString, String *string) {
 
     return 1;
 }
+
+
+
+
+
+
+
+
+
+
+
+/** This function will take the string address, and a char pointer array as a parameters,
+    then it will compare the then and it will return a zero if they are equal,
+    negative number if the second one is bigger, and positive number if the first is bigger.
+ * @param myString the string address
+ * @param string a character array pointer
+ * @return it will return a zero if they are equal, negative number if the second one is bigger, and positive number if the first is bigger.
+*/
+
+int stringCompareToCharArray(String *myString, char *string) {
+    if (myString == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #else
+            exit(NULL_POINTER);
+        #endif
+
+    } else if (string == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "second string pointer", "string data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+            exit(INVALID_ARG);
+        #endif
+
+    }
+
+    char *fS = myString->string;
+    char *sS = string;
+
+    while (*fS != '\0' && *sS != '\0') {
+
+        if (*fS != *sS)
+            return *fS - *sS;
+
+        fS++;
+        sS++;
+
+    }
+
+    if (*fS == '\0' && *sS == '\0')
+        return 0;
+
+    return *fS == '\0' ? -1 * (int) *sS : (int) *fS;
+
+}
+
+
+
+
+
+
+
+
+/** This function will take the string address, and second string address as a parameters,
+    then it will compare the then and it will return a zero if they are equal,
+    negative number if the second one is bigger, and positive number if the first is bigger.
+ * @param myString the string address
+ * @param string the other string address
+ * @return it will return a zero if they are equal, negative number if the second one is bigger, and positive number if the first is bigger.
+*/
+
+int stringCompareToString(String *myString, String *string) {
+    if (myString == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #else
+            exit(NULL_POINTER);
+        #endif
+
+    } else if (string == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "second string pointer", "string data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+            exit(INVALID_ARG);
+        #endif
+
+    }
+
+    char *fS = myString->string;
+    char *sS = string->string;
+
+    while (*fS != '\0' && *sS != '\0') {
+
+        if (*fS != *sS)
+            return *fS - *sS;
+
+        fS++;
+        sS++;
+
+    }
+
+    if (*fS == '\0' && *sS == '\0')
+        return 0;
+
+    return *fS == '\0' ? -1 * (int) *sS : (int) *fS;
+
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -943,7 +1074,7 @@ void printString(String *string) {
 
 
 /** This function will take a string,
- * then it will split by the passed split characters array.
+ * then it will split it by the passed split characters array.
  *
  * ex of split characters array: " \t\n", the function will split the string when ever it see ' ', '\t', or '\n' characters.
  *
@@ -971,14 +1102,14 @@ Vector *stringSplit(String *string, char *splitCharacters) {
     }
 
 
-    Vector *stringsVector = vectorInitialization(5, destroyString, stringIsEqualsToMyString);
+    Vector *stringsVector = vectorInitialization(5, destroyString, stringCompareToString);
     vectorAdd(stringsVector, stringInitialization(5));
 
     for (int i = 0; i < stringGetLength(string); i++) {
 
         if ( stringContainsChar(splitCharacters, stringGetCharAtIndex(string, i)) ) {
 
-            if ( stringGetLength(vectorGet(stringsVector, vectorGetLength(stringsVector) - 1)) != 0)
+            if ( stringGetLength(vectorGet(stringsVector, vectorGetLength(stringsVector) - 1)) != 0 )
                 vectorAdd(stringsVector, stringInitialization(5));
 
             continue;

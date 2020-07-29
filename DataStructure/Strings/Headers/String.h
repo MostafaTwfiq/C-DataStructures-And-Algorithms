@@ -41,9 +41,11 @@ int stringIsEqualsToCharArray(String *myString, char *string);
 
 int stringIsEqualsToMyString(String *myString, String *string);
 
-int stringGetLength(String *myString);
+int stringCompareToCharArray(String *myString, char *string);
 
-//void stringTrim(String *myString);
+int stringCompareToString(String *myString, String *string);
+
+int stringGetLength(String *myString);
 
 void stringTrimStartC(String *myString, char *specialCharacters);
 

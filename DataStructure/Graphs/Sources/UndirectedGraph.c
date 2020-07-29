@@ -1290,6 +1290,7 @@ ArrayList *UDGraphGetShortestPath(UndirectedGraph *graph, void *startVal, void *
 
 /** This function will take a node as it's parameter,
  * then it will return a hash map the contains all the the shortest paths between all the nodes starts from the passed node.
+ *
  * Note: this function should only be called from the undirected graph functions.
  *
  * >>> The function uses the Dijkstra's algorithm <<<.

@@ -33,6 +33,7 @@
 #include "DataStructure/Trees/Headers/BinaryMaxHeap.h"
 #include "Files/Headers/TxtFileLoader.h"
 #include "Files/Headers/InputScanner.h"
+#include "DataStructure/Matrices/Headers/Matrix.h"
 
 void freeItem(void *item) {
     free(item);
@@ -92,12 +93,66 @@ void fr(void *item){}
 
 int main() {
 
-    while (1) {
-        printf("please enter: ");
-        char *db = scanStrC();
-        printf("%s\n\n", db);
-    }
+    Matrix *matrix = matrixInitialization(2, 2, free, intCmp);
+
+    matrixInsert(matrix, generateIntPointerI(1), 0, 0);
+    matrixInsert(matrix, generateIntPointerI(2), 0, 1);
+    matrixInsert(matrix, generateIntPointerI(3), 1, 0);
+    matrixInsert(matrix, generateIntPointerI(4), 1, 1);
+
+    printMatrix(matrix, printInt);
+    printf("\n\n");
+
+    matrixAddCol(matrix);
+    matrixInsert(matrix, generateIntPointerI(6), 0, 2);
+    matrixInsert(matrix, generateIntPointerI(7), 1, 2);
+
+    printMatrix(matrix, printInt);
+    printf("\n\n");
+
+    matrixAddRow(matrix);
+    matrixInsert(matrix, generateIntPointerI(6), 2, 0);
+    matrixInsert(matrix, generateIntPointerI(7), 2, 1);
+
+    printMatrix(matrix, printInt);
+    printf("\n\n");
+
+    matrixRemoveCol(matrix, 0);
+
+    printMatrix(matrix, printInt);
+    printf("\n\n");
+
+    matrixRemoveRow(matrix, 1);
+
+    printMatrix(matrix, printInt);
+    printf("\n\n");
+
+
+    matrixAddRowAtIndex(matrix, 0);
+    printMatrix(matrix, printInt);
+    printf("\n\n");
+
+    matrixAddColAtIndex(matrix, 0);
+    printMatrix(matrix, printInt);
+    printf("\n\n");
+
+    int value = 2;
+    printf("Contains 2: %d\n\n", matrixContains(matrix, &value));
+
+    //clearMatrix(matrix);
+    int **arr = (int **) matrixToArray(matrix);
+    for (int i = 0; i < matrixGetSize(matrix); i++)
+        printf("%d\n", *(int *)arr[i]);
+
+
+    printf("size: %d\n", matrixGetSize(matrix));
+
+    MatrixIndex *matrixIndex = matrixGetIndex(matrix, &value);
+    printf("Row: %d , Col: %d\n\n", matrixIndex->row, matrixIndex->col);
+    destroyMatrix(matrix);
+
     return 0;
+
 }
 
 // ██████████████                      ████████████   ██████████████                      ██████████████ ██████

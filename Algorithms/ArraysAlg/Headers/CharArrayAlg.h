@@ -30,7 +30,7 @@ int charArrSumASCII(char *ch);
 
 int charArrSumASCII(char *ch);
 
-int charArrHashFun(char *ch);
+int charArrHashFun(const void *ch);
 
 char *generateCharPointerP(char *ch, int length);
 
@@ -44,5 +44,14 @@ int isAlphabetC(char c);
 
 int isAlphabetP(const char *c);
 
+int charComparatorP(const void *c1, const void *c2);
+
+int charComparator(char c1, char c2);
+
+struct Vector *charArrSplitS(char *string, char *splitCharacters);
+
+struct Vector *charArrSplitC(char *string, char *splitCharacters);
+
+char mostRepeatedCharacter(char *string);
 
 #endif //C_DATASTRUCTURES_CHARARRAYALG_H

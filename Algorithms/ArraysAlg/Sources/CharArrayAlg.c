@@ -2,6 +2,7 @@
 #include "../../../System/Utils.h"
 #include "../../../DataStructure/Strings/Headers/String.h"
 #include "../../../DataStructure/Lists/Headers/Vector.h"
+#include "../Headers/ArraysAlg.h"
 
 
 
@@ -440,8 +441,8 @@ int charArrSumASCII(char *ch) {
  * @return it will return the sum of the ASCII value of the array characters.
  */
 
-int charArrHashFun(char *ch) {
-    charArrSumASCII(ch);
+int charArrHashFun(const void *ch) {
+    return charArrSumASCII((char *)ch);
 }
 
 
@@ -543,3 +544,173 @@ int isAlphabetC(char c) {
 int isAlphabetP(const char *c) {
     return (*c >= 'a' && *c <= 'z') || ( *c >= 'A' && *c <= 'Z');
 }
+
+
+
+
+/**  This function will take two characters pointers,
+ * then it will compare the two characters.
+ *
+ * The function will return negative number if the first character is bigger in ASCII,
+ * zero if they are equal, and positive number of the first character bigger.
+ *
+ * @param c1 the first character pointer
+ * @param c2 te second character pointer
+ * @return it will return negative number if the first character is bigger in ASCII, zero if they are equal, and positive number of the first character bigger
+ */
+
+int charComparatorP(const void *c1, const void *c2) {
+    return *(char *) c1 - *(char *) c2;
+}
+
+
+
+
+
+
+
+
+/** This function will take two characters,
+ * then it will compare the two characters.
+ *
+ * The function will return negative number if the first character is bigger in ASCII,
+ * zero if they are equal, and positive number of the first character bigger.
+ *
+ * @param c1 the first character value
+ * @param c2 the second character value
+ * @return it will return negative number if the first character is bigger in ASCII, zero if they are equal, and positive number of the first character bigger
+ */
+
+int charComparator(char c1, char c2) {
+    return c1 - c2;
+}
+
+
+
+
+
+
+
+
+
+/** This function will take a char array,
+ * then it will split it by the passed split characters array.
+ *
+ * ex of split characters array: " \t\n", the function will split the string when ever it see ' ', '\t', or '\n' characters.
+ *
+ * @param string the char array pointer
+ * @param splitCharacters the split characters array pointer
+ * @return it will return a vector contains a strings after split
+ */
+
+Vector *charArrSplitS(char *string, char *splitCharacters) {
+
+    if (string == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "char array", "char array split function");
+        exit(NULL_POINTER);
+    } else if (splitCharacters == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "split characters array", "char array split function");
+        exit(INVALID_ARG);
+    }
+
+
+    Vector *wordsVector = vectorInitialization(5, destroyString, stringCompareToString);
+    vectorAdd(wordsVector, stringInitialization(5));
+
+    while (*string != '\0') {
+
+        if (charArrContainsChar(splitCharacters, *string)) {
+
+            if ( stringGetLength(vectorGet(wordsVector, vectorGetLength(wordsVector) - 1)) != 0 )
+                vectorAdd(wordsVector, stringInitialization(5));
+
+        } else
+            stringAddCharAtLast(vectorGet(wordsVector, vectorGetLength(wordsVector) - 1), *string);
+
+        string++;
+    }
+
+    return wordsVector;
+
+}
+
+
+
+
+
+
+
+/** This function will take a char array,
+ * then it will split it by the passed split characters array.
+ *
+ * ex of split characters array: " \t\n", the function will split the string when ever it see ' ', '\t', or '\n' characters.
+ *
+ * @param string the char array pointer
+ * @param splitCharacters the split characters array pointer
+ * @return it will return a vector contains a char arrays after split
+ */
+
+Vector *charArrSplitC(char *string, char *splitCharacters) {
+
+    if (string == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "char array", "char array split function");
+        exit(NULL_POINTER);
+    } else if (splitCharacters == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "split characters array", "char array split function");
+        exit(INVALID_ARG);
+    }
+
+
+    Vector *wordsVector = vectorInitialization(5, free, strcmp);
+    String *currentWord = stringInitialization(10);
+
+    while (*string != '\0') {
+
+        if (charArrContainsChar(splitCharacters, *string)) {
+
+            if ( stringGetLength(currentWord) != 0 ) {
+                vectorAdd(wordsVector, stringToArrayOfCharacters(currentWord));
+                clearString(currentWord);
+            }
+
+        } else
+            stringAddCharAtLast(currentWord, *string);
+
+        string++;
+
+    }
+
+    if ( stringGetLength(currentWord) != 0 )
+        vectorAdd(wordsVector, stringToArrayOfCharacters(currentWord));
+
+    destroyString(currentWord);
+
+    return wordsVector;
+
+}
+
+
+
+
+
+
+
+/** This function will take a char array,
+ * then it will return the most repeated character.
+ *
+ * @param string the char array pointer
+ * @return it will return the most repeated character
+ */
+
+char mostRepeatedCharacter(char *string) {
+
+    if (string == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "char array", "most repeated character function");
+        exit(NULL_POINTER);
+    }
+
+    return *(char *) mostFrequentArrValueH(string, strlen(string), sizeof(char), charComparatorP, charArrHashFun);
+
+}
+
+

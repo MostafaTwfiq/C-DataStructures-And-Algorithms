@@ -190,7 +190,7 @@ Vector *txtLoaderReadFileLines(TxtFileLoader *txtFileLoader) {
 
     txtLoaderOpenFile(txtFileLoader, "r");
 
-    Vector *linesVector = vectorInitialization(10, destroyString, stringIsEqualsToMyString);
+    Vector *linesVector = vectorInitialization(10, destroyString, stringCompareToString);
     vectorAdd(linesVector, stringInitialization(10));
     int stringIndex = 0;
     char c;
