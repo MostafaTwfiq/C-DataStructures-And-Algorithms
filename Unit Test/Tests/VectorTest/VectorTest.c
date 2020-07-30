@@ -712,7 +712,107 @@ void testDestroyVector(CuTest *cuTest) {
 
 
 
+
+
+
+typedef struct VectorTestStruct {
+
+    int iData;
+    char *cData;
+
+} VectorTestStruct;
+
+void freeVectorTestStruct(void *item) {
+    VectorTestStruct *v = (VectorTestStruct *) item;
+    free(v->cData);
+    free(v);
+}
+
+
+int vectorTestStructComp(const void *item1, const void *item2) {
+    VectorTestStruct *v1 = (VectorTestStruct *) item1;
+    VectorTestStruct *v2 = (VectorTestStruct *) item2;
+
+    int iDataFlag = v1->iData == v2->iData;
+    int cDataFlag = strcmp(v1->cData, v2->cData);
+
+    return !iDataFlag || cDataFlag;
+
+}
+
+
 void generalVectorTest(CuTest *cuTest) {
+    Vector *vector = vectorInitialization(5, freeVectorTestStruct, vectorTestStructComp);
+    char numbersStr[10][6] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"};
+    VectorTestStruct *item;
+
+    CuAssertIntEquals(cuTest, 1 , vectorIsEmpty(vector));
+
+    item = (VectorTestStruct *) malloc(sizeof(VectorTestStruct));
+    item->iData = 1;
+    item->cData = (char *) malloc(sizeof(char) * (strlen("one") + 1) );
+    strcpy(item->cData, "one");
+    vectorAdd(vector, item);
+
+    item = (VectorTestStruct *) malloc(sizeof(VectorTestStruct));
+    item->iData = 3;
+    item->cData = (char *) malloc(sizeof(char) * (strlen("three") + 1) );
+    strcpy(item->cData, "three");
+    vectorAdd(vector, item);
+
+    item = (VectorTestStruct *) malloc(sizeof(VectorTestStruct));
+    item->iData = 2;
+    item->cData = (char *) malloc(sizeof(char) * (strlen("two") + 1) );
+    strcpy(item->cData, "two");
+    vectorAddAtIndex(vector, item, 1);
+
+    CuAssertIntEquals(cuTest, 3 , vectorGetLength(vector));
+
+    VectorTestStruct **itemsArr = (VectorTestStruct **) malloc(sizeof(VectorTestStruct *) * 3);
+
+    item = (VectorTestStruct *) malloc(sizeof(VectorTestStruct));
+    item->iData = 4;
+    item->cData = (char *) malloc(sizeof(char) * (strlen("four") + 1) );
+    strcpy(item->cData, "four");
+    itemsArr[0] = item;
+
+    item = (VectorTestStruct *) malloc(sizeof(VectorTestStruct));
+    item->iData = 5;
+    item->cData = (char *) malloc(sizeof(char) * (strlen("five") + 1) );
+    strcpy(item->cData, "five");
+    itemsArr[1] = item;
+
+    item = (VectorTestStruct *) malloc(sizeof(VectorTestStruct));
+    item->iData = 6;
+    item->cData = (char *) malloc(sizeof(char) * (strlen("six") + 1) );
+    strcpy(item->cData, "six");
+    itemsArr[2] = item;
+
+    vectorAddAll(vector, (void **) itemsArr, 3);
+
+    CuAssertIntEquals(cuTest, 6 , vectorGetLength(vector));
+
+    for (int i = 0; i < vectorGetLength(vector); i++) {
+        item = (VectorTestStruct *) vectorGet(vector, i);
+        CuAssertIntEquals(cuTest, i + 1 , item->iData);
+        CuAssertStrEquals(cuTest, numbersStr[i], item->cData);
+        CuAssertIntEquals(cuTest, i , vectorGetIndex(vector, item));
+        CuAssertIntEquals(cuTest, i , vectorGetLastIndex(vector, item));
+    }
+
+    CuAssertIntEquals(cuTest, 0 , vectorIsEmpty(vector));
+
+    for (int i = 0; i < vectorGetLength(vector);) {
+        item = (VectorTestStruct *) vectorGet(vector, i);
+        CuAssertIntEquals(cuTest, 1 , vectorContains(vector, item));
+        vectorRemoveAtIndex(vector, i);
+        CuAssertIntEquals(cuTest, 0 , vectorContains(vector, item));
+    }
+
+    clearVector(vector);
+
+    free(itemsArr);
+    destroyVector(vector);
 
 }
 
