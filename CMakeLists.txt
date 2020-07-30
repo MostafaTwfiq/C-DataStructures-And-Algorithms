@@ -121,4 +121,4 @@ add_executable(C_DataStructures main.c
         Algorithms/IntegersAlg/Sources/IntegerAlg.c
         Algorithms/IntegersAlg/Headers/IntegerAlg.h
         Algorithms/Sorting/Sources/HeapSort.c 
-        Algorithms/Sorting/Headers/HeapSort.h Files/Sources/TxtFileLoader.c Files/Headers/TxtFileLoader.h Files/Sources/InputScanner.c Files/Headers/InputScanner.h DataStructure/Matrices/Sources/Matrix.c DataStructure/Matrices/Headers/Matrix.h)
+        Algorithms/Sorting/Headers/HeapSort.h Files/Sources/TxtFileLoader.c Files/Headers/TxtFileLoader.h Files/Sources/InputScanner.c Files/Headers/InputScanner.h DataStructure/Matrices/Sources/Matrix.c DataStructure/Matrices/Headers/Matrix.h "Unit Test/Tests/VectorTest/VectorTest.c")
