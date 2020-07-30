@@ -1,5 +1,6 @@
 #include "../Headers/Vector.h"
 #include "../../../System/Utils.h"
+#include "../../../Unit Test/CuTest/CuTest.h"
 
 
 
@@ -19,6 +20,7 @@ Vector *vectorInitialization(int initialLength, void (*freeFun)(void *), int (*c
         fprintf(stderr, INVALID_ARG_MESSAGE, "free function", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     		return NULL;
      	#else
      		exit(INVALID_ARG);
      	#endif
@@ -27,6 +29,7 @@ Vector *vectorInitialization(int initialLength, void (*freeFun)(void *), int (*c
         fprintf(stderr, INVALID_ARG_MESSAGE, "initial length", "vector list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     		return NULL;
      	#else
      		exit(INVALID_ARG);
      	#endif
@@ -38,6 +41,7 @@ Vector *vectorInitialization(int initialLength, void (*freeFun)(void *), int (*c
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "data structure", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     		return NULL;
      	#else
      		exit(FAILED_ALLOCATION);
      	#endif
@@ -49,6 +53,7 @@ Vector *vectorInitialization(int initialLength, void (*freeFun)(void *), int (*c
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "items memory", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     		return NULL;
      	#else
      		exit(FAILED_ALLOCATION);
      	#endif
@@ -78,6 +83,7 @@ void vectorAdd(Vector *list, void *item) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -86,6 +92,7 @@ void vectorAdd(Vector *list, void *item) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
      	#else
      		exit(INVALID_ARG);
      	#endif
@@ -100,6 +107,7 @@ void vectorAdd(Vector *list, void *item) {
             fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "items memory", "vector data structure");
             #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_REALLOCATION;
+            return;
      	#else
      		exit(FAILED_REALLOCATION);
      	#endif
@@ -132,6 +140,7 @@ void vectorAddAtIndex(Vector *list, void *item, int index) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -140,6 +149,7 @@ void vectorAddAtIndex(Vector *list, void *item, int index) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     		return;
      	#else
      		exit(INVALID_ARG);
      	#endif
@@ -148,6 +158,7 @@ void vectorAddAtIndex(Vector *list, void *item, int index) {
         fprintf(stderr, OUT_OF_RANGE_MESSAGE, "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = OUT_OF_RANGE;
+     		return;
      	#else
      		exit(OUT_OF_RANGE);
      	#endif
@@ -162,6 +173,7 @@ void vectorAddAtIndex(Vector *list, void *item, int index) {
             fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "items memory", "vector data structure");
             #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_REALLOCATION;
+     		return;
      	#else
      		exit(FAILED_REALLOCATION);
      	#endif
@@ -198,6 +210,7 @@ void vectorAddAll(Vector *list, void **array, int arrayLength) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -206,6 +219,7 @@ void vectorAddAll(Vector *list, void **array, int arrayLength) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "items array", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     		return;
      	#else
      		exit(INVALID_ARG);
      	#endif
@@ -231,6 +245,7 @@ void vectorRemove(Vector *list) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -239,6 +254,7 @@ void vectorRemove(Vector *list) {
         fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+     		return;
      	#else
      		exit(EMPTY_DATA_STRUCTURE);
      	#endif
@@ -264,6 +280,7 @@ void vectorRemoveWtFr(Vector *list) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -272,6 +289,7 @@ void vectorRemoveWtFr(Vector *list) {
         fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+     		return;
      	#else
      		exit(EMPTY_DATA_STRUCTURE);
      	#endif
@@ -298,6 +316,7 @@ void vectorRemoveAtIndex(Vector *list, int index) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -306,6 +325,7 @@ void vectorRemoveAtIndex(Vector *list, int index) {
         fprintf(stderr, OUT_OF_RANGE_MESSAGE, "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = OUT_OF_RANGE;
+     		return;
      	#else
      		exit(OUT_OF_RANGE);
      	#endif
@@ -335,6 +355,7 @@ void vectorRemoveAtIndexWtFr(Vector *list, int index) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -343,6 +364,7 @@ void vectorRemoveAtIndexWtFr(Vector *list, int index) {
         fprintf(stderr, OUT_OF_RANGE_MESSAGE, "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = OUT_OF_RANGE;
+     		return;
      	#else
      		exit(OUT_OF_RANGE);
      	#endif
@@ -377,6 +399,7 @@ int vectorContains(Vector *list, void *item) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return 0;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -385,6 +408,7 @@ int vectorContains(Vector *list, void *item) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     		return 0;
      	#else
      		exit(INVALID_ARG);
      	#endif
@@ -393,6 +417,7 @@ int vectorContains(Vector *list, void *item) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "comparator function", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return 0;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -429,6 +454,7 @@ int vectorGetIndex(Vector *list, void *item) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return -1;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -437,6 +463,7 @@ int vectorGetIndex(Vector *list, void *item) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     		return -1;
      	#else
      		exit(INVALID_ARG);
      	#endif
@@ -445,6 +472,7 @@ int vectorGetIndex(Vector *list, void *item) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "comparator function", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        return -1;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -481,6 +509,7 @@ int vectorGetLastIndex(Vector *list, void *item) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return -1;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -489,6 +518,7 @@ int vectorGetLastIndex(Vector *list, void *item) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     		return -1;
      	#else
      		exit(INVALID_ARG);
      	#endif
@@ -497,6 +527,7 @@ int vectorGetLastIndex(Vector *list, void *item) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "comparator function", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return -1;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -531,6 +562,7 @@ void *vectorGet(Vector *list, int index) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return NULL;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -539,6 +571,7 @@ void *vectorGet(Vector *list, int index) {
         fprintf(stderr, OUT_OF_RANGE_MESSAGE, "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = OUT_OF_RANGE;
+     		return NULL;
      	#else
      		exit(OUT_OF_RANGE);
      	#endif
@@ -564,6 +597,7 @@ void **vectorToArray(Vector *list) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return NULL;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -575,6 +609,7 @@ void **vectorToArray(Vector *list) {
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     		return NULL;
      	#else
      		exit(FAILED_ALLOCATION);
      	#endif
@@ -605,6 +640,7 @@ void **vectorToSubArray(Vector *list, int start, int end) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return NULL;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -613,6 +649,7 @@ void **vectorToSubArray(Vector *list, int start, int end) {
         fprintf(stderr, OUT_OF_RANGE_MESSAGE, "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = OUT_OF_RANGE;
+     		return NULL;
      	#else
      		exit(OUT_OF_RANGE);
      	#endif
@@ -624,6 +661,7 @@ void **vectorToSubArray(Vector *list, int start, int end) {
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     		return NULL;
      	#else
      		exit(FAILED_ALLOCATION);
      	#endif
@@ -655,6 +693,7 @@ void vectorSort(Vector *list, int (*sortComp)(const void*, const void*)) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -663,6 +702,7 @@ void vectorSort(Vector *list, int (*sortComp)(const void*, const void*)) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "sort comparator function", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -690,6 +730,7 @@ int vectorGetLength(Vector *list) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return -1;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -716,6 +757,7 @@ int vectorIsEmpty(Vector *list) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return -1;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -740,6 +782,7 @@ void printVector(Vector *list, void (*printFun) (const void *)) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -748,6 +791,7 @@ void printVector(Vector *list, void (*printFun) (const void *)) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "print function pointer", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     		return;
      	#else
      		exit(INVALID_ARG);
      	#endif
@@ -775,6 +819,7 @@ void clearVector(Vector *list) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return;
      	#else
      		exit(NULL_POINTER);
      	#endif

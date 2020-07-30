@@ -4,6 +4,14 @@
 #include <setjmp.h>
 #include <stdarg.h>
 
+
+typedef struct TestStruct{
+    int errorCode;
+}TestStruct;
+
+TestStruct *DUMMY_TEST_DATASTRUCTURE;
+
+
 #define CUTEST_VERSION  "CuTest 1.5"
 
 /* CuString */
@@ -114,3 +122,7 @@ void CuSuiteSummary(CuSuite* testSuite, CuString* summary);
 void CuSuiteDetails(CuSuite* testSuite, CuString* details);
 
 #endif /* CU_TEST_H */
+
+
+
+#define CuSuiteDetailsL(u,t) CuSuiteDetails(__LINE__,u,t)

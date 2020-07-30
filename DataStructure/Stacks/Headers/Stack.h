@@ -15,8 +15,8 @@ extern "C" {
  *  Member 'allocated' holds the current max allocated size for the stack.
  *  @var Stack::top
  *  Member 'top' holds the index to the top most stored item.
- *  @var Stack::sizeOfItem
- *  Member 'sizeOfItem' the size of the data stored in the stack.
+ *  @var Stack::freeItem
+ *  Member 'freeItem' the freeing item function pointer
  */
 
 typedef struct Stack {

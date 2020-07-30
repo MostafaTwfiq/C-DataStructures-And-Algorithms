@@ -3,7 +3,7 @@ project(C_DataStructures C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(C_DataStructures main.c
+add_executable(C_DataStructures #main.c
 
         DataStructure/Stacks/Sources/Stack.c
         DataStructure/Stacks/Headers/Stack.h
@@ -74,12 +74,13 @@ add_executable(C_DataStructures main.c
         DataStructure/Graphs/Headers/DirectedGraph.h
 
 
-        #[["Unit Test/CuTest"
-        "Unit Test/testExample.c"
-       # "Unit Test/CuTest/AllTests.c"
+        "Unit Test/CuTest"
+        #"Unit Test/testExample.c"
+        #"Unit Test/CuTest/AllTests.c"
         "Unit Test/CuTest/CuTest.c"
         "Unit Test/CuTest/CuTestTest.c"
-        "Unit Test/CuTest/CuTest.h"]]
+        "Unit Test/CuTest/CuTest.h"
+        "Unit Test/Tests/VectorTest/VectorTest.c"
 
         DataStructure/Deque/Sources/Deque.c
         DataStructure/Deque/Headers/Deque.h

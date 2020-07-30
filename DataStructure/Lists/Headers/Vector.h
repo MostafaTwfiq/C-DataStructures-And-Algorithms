@@ -5,6 +5,22 @@
 extern "C" {
 #endif
 
+
+
+/** @struct Vector
+*  @brief This structure implements a basic generic vector.
+*  @var Vector:: arr
+*  Member 'arr' is a pointer to the the vector items.
+*  @var Vector::length
+*  Member 'length' holds the current allocated length of the vector.
+*  @var Vector::count
+*  Member 'count' holds the index to a free space to the next item.
+*  @var Vector::freeItem
+*  Member 'freeItem' the freeing item function pointer
+ * @var Vector::comparator
+ * Member 'comparator' the items comparator function pointer
+*/
+
 typedef struct Vector {
     void **arr;
     int length;
