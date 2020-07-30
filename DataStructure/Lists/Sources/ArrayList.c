@@ -1,5 +1,6 @@
 #include "../Headers/ArrayList.h"
 #include "../../../System/Utils.h"
+#include "../../../Unit Test/CuTest/CuTest.h"
 #include <math.h>
 
 
@@ -20,6 +21,7 @@ ArrayList *arrayListInitialization(int initialLength, void (*freeFun)(void *), i
         fprintf(stderr, INVALID_ARG_MESSAGE, "free function", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return NULL;
      	#else
      		exit(INVALID_ARG);
      	#endif
@@ -28,6 +30,7 @@ ArrayList *arrayListInitialization(int initialLength, void (*freeFun)(void *), i
         fprintf(stderr, INVALID_ARG_MESSAGE, "initial length", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     		return NULL;
      	#else
      		exit(INVALID_ARG);
      	#endif
@@ -39,6 +42,7 @@ ArrayList *arrayListInitialization(int initialLength, void (*freeFun)(void *), i
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "data structure", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     		return NULL;
      	#else
      		exit(FAILED_ALLOCATION);
      	#endif
@@ -50,6 +54,7 @@ ArrayList *arrayListInitialization(int initialLength, void (*freeFun)(void *), i
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "items memory", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     		return NULL;
      	#else
      		exit(FAILED_ALLOCATION);
      	#endif
@@ -78,6 +83,7 @@ void arrayListAdd(ArrayList *list, void *item) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -86,6 +92,7 @@ void arrayListAdd(ArrayList *list, void *item) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     		return;
      	#else
      		exit(INVALID_ARG);
      	#endif
@@ -99,10 +106,11 @@ void arrayListAdd(ArrayList *list, void *item) {
         if (list->arr == NULL) {
             fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "items memory", "array list data structure");
             #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_REALLOCATION;
-     	#else
-     		exit(FAILED_REALLOCATION);
-     	#endif
+     		    DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_REALLOCATION;
+     		    return;
+     	    #else
+     		    exit(FAILED_REALLOCATION);
+            #endif
 
         }
 
@@ -131,6 +139,7 @@ void arrayListAddAtIndex(ArrayList *list, void *item, int index) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -139,6 +148,7 @@ void arrayListAddAtIndex(ArrayList *list, void *item, int index) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     		return;
      	#else
      		exit(INVALID_ARG);
      	#endif
@@ -147,6 +157,7 @@ void arrayListAddAtIndex(ArrayList *list, void *item, int index) {
         fprintf(stderr, OUT_OF_RANGE_MESSAGE, "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = OUT_OF_RANGE;
+     		return;
      	#else
      		exit(OUT_OF_RANGE);
      	#endif
@@ -161,6 +172,7 @@ void arrayListAddAtIndex(ArrayList *list, void *item, int index) {
             fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "items memory", "array list data structure");
             #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_REALLOCATION;
+     		return;
      	#else
      		exit(FAILED_REALLOCATION);
      	#endif
@@ -198,6 +210,7 @@ void arrayListAddAll(ArrayList *list, void **array, int arrayLength) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -206,6 +219,7 @@ void arrayListAddAll(ArrayList *list, void **array, int arrayLength) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "items array", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     		return;
      	#else
      		exit(INVALID_ARG);
      	#endif
@@ -231,6 +245,7 @@ void arrayListRemove(ArrayList *list) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -239,6 +254,7 @@ void arrayListRemove(ArrayList *list) {
         fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+     		return;
      	#else
      		exit(EMPTY_DATA_STRUCTURE);
      	#endif
@@ -264,6 +280,7 @@ void arrayListRemoveWtFr(ArrayList *list) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -272,6 +289,7 @@ void arrayListRemoveWtFr(ArrayList *list) {
         fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+     		return;
      	#else
      		exit(EMPTY_DATA_STRUCTURE);
      	#endif
@@ -298,6 +316,7 @@ void arrayListRemoveAtIndex(ArrayList *list, int index) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -306,6 +325,7 @@ void arrayListRemoveAtIndex(ArrayList *list, int index) {
         fprintf(stderr, OUT_OF_RANGE_MESSAGE, "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = OUT_OF_RANGE;
+     		return;
      	#else
      		exit(OUT_OF_RANGE);
      	#endif
@@ -335,6 +355,7 @@ void arrayListRemoveAtIndexWtFr(ArrayList *list, int index) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -343,6 +364,7 @@ void arrayListRemoveAtIndexWtFr(ArrayList *list, int index) {
         fprintf(stderr, OUT_OF_RANGE_MESSAGE, "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = OUT_OF_RANGE;
+     		return;
      	#else
      		exit(OUT_OF_RANGE);
      	#endif
@@ -377,6 +399,7 @@ int arrayListContains(ArrayList *list, void *item) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return -1;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -385,6 +408,7 @@ int arrayListContains(ArrayList *list, void *item) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     		return -1;
      	#else
      		exit(INVALID_ARG);
      	#endif
@@ -393,6 +417,7 @@ int arrayListContains(ArrayList *list, void *item) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "comparator function", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return -1;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -429,6 +454,7 @@ int arrayListGetIndex(ArrayList *list, void *item) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return -1;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -437,6 +463,7 @@ int arrayListGetIndex(ArrayList *list, void *item) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     		return -1;
      	#else
      		exit(INVALID_ARG);
      	#endif
@@ -445,6 +472,7 @@ int arrayListGetIndex(ArrayList *list, void *item) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "comparator function", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return -1;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -481,6 +509,7 @@ int arrayListGetLastIndex(ArrayList *list, void *item) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return -1;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -489,6 +518,7 @@ int arrayListGetLastIndex(ArrayList *list, void *item) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     		return -1;
      	#else
      		exit(INVALID_ARG);
      	#endif
@@ -497,6 +527,7 @@ int arrayListGetLastIndex(ArrayList *list, void *item) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "comparator function", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return -1;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -531,6 +562,7 @@ void *arrayListGet(ArrayList *list, int index) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return NULL;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -539,6 +571,7 @@ void *arrayListGet(ArrayList *list, int index) {
         fprintf(stderr, OUT_OF_RANGE_MESSAGE, "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = OUT_OF_RANGE;
+     		return NULL;
      	#else
      		exit(OUT_OF_RANGE);
      	#endif
@@ -564,6 +597,7 @@ void **arrayListToArray(ArrayList *list) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return NULL;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -575,6 +609,7 @@ void **arrayListToArray(ArrayList *list) {
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     		return NULL;
      	#else
      		exit(FAILED_ALLOCATION);
      	#endif
@@ -605,6 +640,7 @@ void **arrayListToSubArray(ArrayList *list, int start, int end) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return NULL;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -613,6 +649,7 @@ void **arrayListToSubArray(ArrayList *list, int start, int end) {
         fprintf(stderr, OUT_OF_RANGE_MESSAGE, "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = OUT_OF_RANGE;
+     		return NULL;
      	#else
      		exit(OUT_OF_RANGE);
      	#endif
@@ -624,6 +661,7 @@ void **arrayListToSubArray(ArrayList *list, int start, int end) {
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+     		return NULL;
      	#else
      		exit(FAILED_ALLOCATION);
      	#endif
@@ -656,6 +694,7 @@ void arrayListSort(ArrayList *list, int (*sortComp)(const void*, const void*)) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -664,6 +703,7 @@ void arrayListSort(ArrayList *list, int (*sortComp)(const void*, const void*)) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "sort comparator function", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     		return;
      	#else
      		exit(INVALID_ARG);
      	#endif
@@ -691,6 +731,7 @@ int arrayListGetLength(ArrayList *list) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return -1;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -717,6 +758,7 @@ int arrayListIsEmpty(ArrayList *list) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return -1;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -741,6 +783,7 @@ void printArrayList(ArrayList *list, void (*printFun) (const void *)) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -749,6 +792,7 @@ void printArrayList(ArrayList *list, void (*printFun) (const void *)) {
         fprintf(stderr, INVALID_ARG_MESSAGE, "print function pointer", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     		return;
      	#else
      		exit(INVALID_ARG);
      	#endif
@@ -776,6 +820,7 @@ void clearArrayList(ArrayList *list) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "array list pointer", "array list data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return;
      	#else
      		exit(NULL_POINTER);
      	#endif
@@ -802,6 +847,7 @@ void destroyArrayList(ArrayList *list) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "array list pointer", "array list data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
         #else
             exit(NULL_POINTER);
         #endif

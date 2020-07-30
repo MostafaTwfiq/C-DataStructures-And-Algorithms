@@ -5,6 +5,21 @@
 extern "C" {
 #endif
 
+
+/** @struct ArrayList
+*  @brief This structure implements a basic generic ArrayList.
+*  @var ArrayList:: arr
+*  Member 'arr' is a pointer to the the ArrayList items.
+*  @var ArrayList::length
+*  Member 'length' holds the current allocated length of the ArrayList.
+*  @var ArrayList::count
+*  Member 'count' holds the index to a free space to the next item.
+*  @var ArrayList::freeItem
+*  Member 'freeItem' the freeing item function pointer
+* @var ArrayList::comparator
+* Member 'comparator' the items comparator function pointer
+*/
+
 typedef struct ArrayList {
     void **arr;
     int length;

@@ -1,4 +1,4 @@
-#include "vectorTest.h"
+#include "VectorTest.h"
 
 #include "../../CuTest/CuTest.h"
 #include "../../../DataStructure/Lists/Headers/Vector.h"
@@ -119,7 +119,7 @@ void testVectorAddAtIndexFun(CuTest *cuTest) {
     vectorAddAtIndex(vector, generateCharPointerVT("10"), 2);
     CuAssertIntEquals(cuTest, 4, vector->count);
 
-    //arr:  30, 20, 10, 0
+    //arr:  "30", "20", "10", "0"
     //index: 0,  1,  2, 3
 
     CuAssertStrEquals(cuTest, "30", (char *) vector->arr[0]);
@@ -720,7 +720,7 @@ void generalVectorTest(CuTest *cuTest) {
 
 
 
-CuSuite *createTestsSuite() {
+CuSuite *createVectorTestsSuite() {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -761,7 +761,7 @@ void vectorUnitTest() {
     DUMMY_TEST_DATASTRUCTURE =  (TestStruct*) malloc(sizeof(TestStruct));
 
     CuString *output = CuStringNew();
-    CuSuite *suite = createTestsSuite();
+    CuSuite *suite = createVectorTestsSuite();
 
     CuSuiteRun(suite);
     CuSuiteSummary(suite, output);
