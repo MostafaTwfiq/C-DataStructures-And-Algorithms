@@ -713,7 +713,104 @@ void testDestroyArrayList(CuTest *cuTest) {
 
 
 
+typedef struct ArrayListTestStruct {
+
+    int iData;
+    char *cData;
+
+} ArrayListTestStruct;
+
+void freeArrayListTestStruct(void *item) {
+    ArrayListTestStruct *a = (ArrayListTestStruct *) item;
+    free(a->cData);
+    free(a);
+}
+
+
+int arrayListTestStructComp(const void *item1, const void *item2) {
+    ArrayListTestStruct *a1 = (ArrayListTestStruct *) item1;
+    ArrayListTestStruct *a2 = (ArrayListTestStruct *) item2;
+
+    int iDataFlag = a1->iData == a2->iData;
+    int cDataFlag = strcmp(a1->cData, a2->cData);
+
+    return !iDataFlag || cDataFlag;
+
+}
+
+
 void generalArrayListTest(CuTest *cuTest) {
+    ArrayList *arrayList = arrayListInitialization(5, freeArrayListTestStruct, arrayListTestStructComp);
+    char numbersStr[10][6] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"};
+    ArrayListTestStruct *item;
+
+    CuAssertIntEquals(cuTest, 1 , arrayListIsEmpty(arrayList));
+
+    item = (ArrayListTestStruct *) malloc(sizeof(ArrayListTestStruct));
+    item->iData = 1;
+    item->cData = (char *) malloc(sizeof(char) * (strlen("one") + 1) );
+    strcpy(item->cData, "one");
+    arrayListAdd(arrayList, item);
+
+    item = (ArrayListTestStruct *) malloc(sizeof(ArrayListTestStruct));
+    item->iData = 3;
+    item->cData = (char *) malloc(sizeof(char) * (strlen("three") + 1) );
+    strcpy(item->cData, "three");
+    arrayListAdd(arrayList, item);
+
+    item = (ArrayListTestStruct *) malloc(sizeof(ArrayListTestStruct));
+    item->iData = 2;
+    item->cData = (char *) malloc(sizeof(char) * (strlen("two") + 1) );
+    strcpy(item->cData, "two");
+    arrayListAddAtIndex(arrayList, item, 1);
+
+    CuAssertIntEquals(cuTest, 3 , arrayListGetLength(arrayList));
+
+    ArrayListTestStruct **itemsArr = (ArrayListTestStruct **) malloc(sizeof(ArrayListTestStruct *) * 3);
+
+    item = (ArrayListTestStruct *) malloc(sizeof(ArrayListTestStruct));
+    item->iData = 4;
+    item->cData = (char *) malloc(sizeof(char) * (strlen("four") + 1) );
+    strcpy(item->cData, "four");
+    itemsArr[0] = item;
+
+    item = (ArrayListTestStruct *) malloc(sizeof(ArrayListTestStruct));
+    item->iData = 5;
+    item->cData = (char *) malloc(sizeof(char) * (strlen("five") + 1) );
+    strcpy(item->cData, "five");
+    itemsArr[1] = item;
+
+    item = (ArrayListTestStruct *) malloc(sizeof(ArrayListTestStruct));
+    item->iData = 6;
+    item->cData = (char *) malloc(sizeof(char) * (strlen("six") + 1) );
+    strcpy(item->cData, "six");
+    itemsArr[2] = item;
+
+    arrayListAddAll(arrayList, (void **) itemsArr, 3);
+
+    CuAssertIntEquals(cuTest, 6 , arrayListGetLength(arrayList));
+
+    for (int i = 0; i < arrayListGetLength(arrayList); i++) {
+        item = (ArrayListTestStruct *) arrayListGet(arrayList, i);
+        CuAssertIntEquals(cuTest, i + 1 , item->iData);
+        CuAssertStrEquals(cuTest, numbersStr[i], item->cData);
+        CuAssertIntEquals(cuTest, i , arrayListGetIndex(arrayList, item));
+        CuAssertIntEquals(cuTest, i , arrayListGetLastIndex(arrayList, item));
+    }
+
+    CuAssertIntEquals(cuTest, 0 , arrayListIsEmpty(arrayList));
+
+    for (int i = 0; i < arrayListGetLength(arrayList);) {
+        item = (ArrayListTestStruct *) arrayListGet(arrayList, i);
+        CuAssertIntEquals(cuTest, 1 , arrayListContains(arrayList, item));
+        arrayListRemoveAtIndex(arrayList, i);
+        CuAssertIntEquals(cuTest, 0 , arrayListContains(arrayList, item));
+    }
+
+    clearArrayList(arrayList);
+
+    free(itemsArr);
+    destroyArrayList(arrayList);
 
 }
 
@@ -758,10 +855,11 @@ CuSuite *createArrayListTestsSuite() {
 
 void arrayListUnitTest() {
 
-    printf("**Array List Test**\n");
     DUMMY_TEST_DATASTRUCTURE =  (TestStruct*) malloc(sizeof(TestStruct));
 
     CuString *output = CuStringNew();
+    CuStringAppend(output, "**Array List Test**\n");
+
     CuSuite *suite = createArrayListTestsSuite();
 
     CuSuiteRun(suite);

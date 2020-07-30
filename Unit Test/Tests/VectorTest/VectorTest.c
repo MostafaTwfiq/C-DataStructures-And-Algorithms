@@ -857,10 +857,11 @@ CuSuite *createVectorTestsSuite() {
 
 void vectorUnitTest() {
 
-    printf("**Vector Test**\n");
     DUMMY_TEST_DATASTRUCTURE =  (TestStruct*) malloc(sizeof(TestStruct));
 
     CuString *output = CuStringNew();
+    CuStringAppend(output, "**Vector Test**\n");
+
     CuSuite *suite = createVectorTestsSuite();
 
     CuSuiteRun(suite);
