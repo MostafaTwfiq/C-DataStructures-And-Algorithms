@@ -627,7 +627,7 @@ void **vectorToArray(Vector *list) {
 
 
 /** This function will take the vector address, the start index, and the end index as a parameters,
-    then it will return a void pointer array that consist of the items at the start index to end index - 1.
+    then it will return a void pointer array that consist of the items at the start index to end index.
  * @param list the vector address
  * @param start the start index
  * @param end the end index
@@ -656,7 +656,7 @@ void **vectorToSubArray(Vector *list, int start, int end) {
 
     }
 
-    void **array = (void **) malloc(sizeof(void *) * (end - start) );
+    void **array = (void **) malloc(sizeof(void *) * (end - start + 1) );
     if (array == NULL) {
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "vector data structure");
         #ifdef CU_TEST_H
@@ -668,8 +668,8 @@ void **vectorToSubArray(Vector *list, int start, int end) {
 
     }
 
-    for (int i = start; i < end; i++)
-        array[i] = list->arr[i];
+    for (int i = start; i <= end; i++)
+        array[i - start] = list->arr[i];
 
 
     return array;
@@ -699,12 +699,12 @@ void vectorSort(Vector *list, int (*sortComp)(const void*, const void*)) {
      	#endif
 
     } else if (sortComp == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "sort comparator function", "vector data structure");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "sort comparator function", "vector data structure");
         #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
      		return;
      	#else
-     		exit(NULL_POINTER);
+     		exit(INVALID_ARG);
      	#endif
 
     }
@@ -841,6 +841,17 @@ void clearVector(Vector *list) {
  */
 
 void destroyVector(Vector *list) {
+
+    if (list == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        return;
+        #else
+            exit(NULL_POINTER);
+        #endif
+
+    }
 
     clearVector(list);
     free(list->arr);

@@ -592,7 +592,7 @@ void **arrayListToArray(ArrayList *list) {
 
 
 /** This function will take the array list address, the start index, and the end index as a parameters,
-    then it will return a void pointer array that consist of the items at the start index to end index - 1.
+    then it will return a void pointer array that consist of the items at the start index to end index.
  * @param list the array list address
  * @param start the start index
  * @param end the end index
@@ -619,7 +619,7 @@ void **arrayListToSubArray(ArrayList *list, int start, int end) {
 
     }
 
-    void **array = (void **) malloc(sizeof(void *) * (end - start) );
+    void **array = (void **) malloc(sizeof(void *) * (end - start + 1) );
     if (array == NULL) {
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "array list data structure");
         #ifdef CU_TEST_H
@@ -630,8 +630,8 @@ void **arrayListToSubArray(ArrayList *list, int start, int end) {
 
     }
 
-    for (int i = start; i < end; i++)
-        array[i] = list->arr[i];
+    for (int i = start; i <= end; i++)
+        array[i - start] = list->arr[i];
 
 
     return array;
@@ -661,11 +661,11 @@ void arrayListSort(ArrayList *list, int (*sortComp)(const void*, const void*)) {
      	#endif
 
     } else if (sortComp == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "sort comparator function", "array list data structure");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "sort comparator function", "array list data structure");
         #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
      	#else
-     		exit(NULL_POINTER);
+     		exit(INVALID_ARG);
      	#endif
 
     }
@@ -797,6 +797,16 @@ void clearArrayList(ArrayList *list) {
  */
 
 void destroyArrayList(ArrayList *list) {
+
+    if (list == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "array list pointer", "array list data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #else
+            exit(NULL_POINTER);
+        #endif
+
+    }
 
     clearArrayList(list);
     free(list->arr);
