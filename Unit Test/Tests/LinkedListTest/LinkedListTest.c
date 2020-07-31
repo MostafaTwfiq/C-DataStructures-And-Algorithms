@@ -702,6 +702,132 @@ void testDestroyLinkedList(CuTest *cuTest) {
 
 
 
+typedef struct LinkedListTestStruct {
+
+    int iData;
+    char *cData;
+
+} LinkedListTestStruct;
+
+
+void freeLinkedListStruct(void *item) {
+    LinkedListTestStruct *l = (LinkedListTestStruct *) item;
+    free(l->cData);
+    free(l);
+}
+
+
+int linkedListTestStructComp(const void *item1, const void *item2) {
+    LinkedListTestStruct *l1 = (LinkedListTestStruct *) item1;
+    LinkedListTestStruct *l2 = (LinkedListTestStruct *) item2;
+
+    int iDataFlag = l1->iData == l2->iData;
+    int cDataFlag = strcmp(l1->cData, l2->cData);
+
+    return !iDataFlag || cDataFlag;
+
+}
+
+
+void generalLinkedListTest(CuTest *cuTest) {
+
+    LinkedList *list = linkedListInitialization(freeLinkedListStruct, linkedListTestStructComp);
+    char numbersStr[10][6] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"};
+    LinkedListTestStruct *item;
+
+
+    CuAssertIntEquals(cuTest, 1, linkedListIsEmpty(list));
+    CuAssertIntEquals(cuTest, 0, linkedListGetLength(list));
+
+    item = (LinkedListTestStruct *) malloc(sizeof(LinkedListTestStruct));
+    item->iData = 2;
+    item->cData = (char *) malloc(sizeof(char) * (strlen("two") + 1) );
+    strcpy(item->cData, "two");
+    linkedListAddFirst(list, item);
+
+
+    item = (LinkedListTestStruct *) malloc(sizeof(LinkedListTestStruct));
+    item->iData = 1;
+    item->cData = (char *) malloc(sizeof(char) * (strlen("one") + 1) );
+    strcpy(item->cData, "one");
+    linkedListAddFirst(list, item);
+
+
+
+    item = (LinkedListTestStruct *) malloc(sizeof(LinkedListTestStruct));
+    item->iData = 3;
+    item->cData = (char *) malloc(sizeof(char) * (strlen("three") + 1) );
+    strcpy(item->cData, "three");
+    linkedListAddLast(list, item);
+
+
+    item = (LinkedListTestStruct *) malloc(sizeof(LinkedListTestStruct));
+    item->iData = 4;
+    item->cData = (char *) malloc(sizeof(char) * (strlen("four") + 1) );
+    strcpy(item->cData, "four");
+    linkedListAddLast(list, item);
+
+
+    item = (LinkedListTestStruct *) malloc(sizeof(LinkedListTestStruct));
+    item->iData = 5;
+    item->cData = (char *) malloc(sizeof(char) * (strlen("five") + 1) );
+    strcpy(item->cData, "five");
+    linkedListAddLast(list, item);
+
+    CuAssertIntEquals(cuTest, 5, linkedListGetLength(list));
+
+    LinkedListTestStruct **structArr = (LinkedListTestStruct **) malloc(sizeof(LinkedListTestStruct *) * 3);
+
+    item = (LinkedListTestStruct *) malloc(sizeof(LinkedListTestStruct));
+    item->iData = 6;
+    item->cData = (char *) malloc(sizeof(char) * (strlen("six") + 1) );
+    strcpy(item->cData, "six");
+    structArr[0] = item;
+
+    item = (LinkedListTestStruct *) malloc(sizeof(LinkedListTestStruct));
+    item->iData = 7;
+    item->cData = (char *) malloc(sizeof(char) * (strlen("seven") + 1) );
+    strcpy(item->cData, "seven");
+    structArr[1] = item;
+
+    item = (LinkedListTestStruct *) malloc(sizeof(LinkedListTestStruct));
+    item->iData = 8;
+    item->cData = (char *) malloc(sizeof(char) * (strlen("eight") + 1) );
+    strcpy(item->cData, "eight");
+    structArr[2] = item;
+
+    linkedListAddAll(list, (void **) structArr, 3);
+
+    CuAssertIntEquals(cuTest, 8, linkedListGetLength(list));
+    CuAssertIntEquals(cuTest, 0, linkedListIsEmpty(list));
+
+    for (int i = 0; i < linkedListGetLength(list); i++) {
+        LinkedListTestStruct *currentItem = (LinkedListTestStruct *) linkedListGet(list, i);
+        CuAssertIntEquals(cuTest, i + 1, currentItem->iData);
+        CuAssertStrEquals(cuTest, numbersStr[i], currentItem->cData);
+        CuAssertIntEquals(cuTest, 1, linkedListContains(list, currentItem));
+        CuAssertIntEquals(cuTest, i, linkedListGetIndex(list, currentItem));
+        CuAssertPtrEquals(cuTest, currentItem, linkedListGetItem(list, currentItem));
+    }
+
+    linkedListDeleteFirst(list);
+    linkedListDeleteLast(list);
+
+    for (int i  = 0, counter = 0; i < linkedListGetLength(list); counter++) {
+        LinkedListTestStruct *currentItem = (LinkedListTestStruct *) linkedListDeleteAtIndexWtoFr(list, i);
+        CuAssertIntEquals(cuTest, counter + 2, currentItem->iData);
+        CuAssertStrEquals(cuTest, numbersStr[counter + 1], currentItem->cData);
+        freeLinkedListStruct(currentItem);
+
+    }
+
+
+    free(structArr);
+    destroyLinkedList(list);
+
+}
+
+
 
 
 
@@ -734,6 +860,8 @@ CuSuite *createLinkedListTestsSuite() {
     SUITE_ADD_TEST(suite, testPrintLinkedList);
     SUITE_ADD_TEST(suite, testClearLinkedList);
     SUITE_ADD_TEST(suite, testDestroyLinkedList);
+
+    SUITE_ADD_TEST(suite, generalLinkedListTest);
 
     return suite;
 
