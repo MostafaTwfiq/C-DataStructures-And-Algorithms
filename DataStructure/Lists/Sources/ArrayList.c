@@ -10,6 +10,7 @@
 
 /** This function will take the initial length of the array list, and the freeing and comparator functions as a parameter,
  * then it will initialize a new array list in the memory and set it's fields then return it.
+ *
  * @param initialLength the initial length of the array list.
  * @param freeFun the function address that will be called to free the array list items.
  * @param comparator the comparator function address, that will be called to compare two items in the array list
@@ -73,7 +74,8 @@ ArrayList *arrayListInitialization(int initialLength, void (*freeFun)(void *), i
 
 
 /** This function will take the array list address, and the item address as a parameters,
-    then it will put the item in the end of the array list.
+ * then it will put the item in the end of the array list.
+ *
  * @param list the array list address
  * @param item the item address
  */
@@ -128,7 +130,8 @@ void arrayListAdd(ArrayList *list, void *item) {
 
 
 /** This function will take the array list address, and the item address as a parameters,
-    then it will put the new item in provided index.
+ * then it will put the new item in provided index.
+ *
  * @param list the array list address
  * @param item the item address
  * @param index the index of the new item
@@ -199,7 +202,8 @@ void arrayListAddAtIndex(ArrayList *list, void *item, int index) {
 
 
 /** This function will take the array list address, the items array, and the length of items array as a parameters,
-    then it will copy the items array into the array list.
+ * then it will copy the items array into the array list.
+ *
  * @param list the array list address
  * @param array the array address that will be inserted in the array list
  * @param arrayLength the length of the array that will be added
@@ -235,8 +239,10 @@ void arrayListAddAll(ArrayList *list, void **array, int arrayLength) {
 
 
 /** This function will take the array list as a parameter,
-    then it will remove the last item in the array list.
+ * then it will remove the last item in the array list.
+ *
  * Note: if the array list is empty then the program will be terminated.
+ *
  * @param list the array list address
  */
 
@@ -270,8 +276,10 @@ void arrayListRemove(ArrayList *list) {
 
 
 /** This function will take the array list as a parameter,
-    then it will remove the last item in the array list, without freeing the item.
+ * then it will remove the last item in the array list, without freeing the item.
+ *
  * Note: if the array list is empty then the program will be terminated.
+ *
  * @param list the array list address
  */
 
@@ -305,8 +313,10 @@ void arrayListRemoveWtFr(ArrayList *list) {
 
 
 /** This function will take the array list address, and the index as a parameters,
-    then it will remove the item in the given index from the array list.
+ * then it will remove the item in the given index from the array list.
+ *
  * Note: if the index is out of the array list range then the program will be terminated.
+ *
  * @param list the array list address
  * @param index the index of the item that will be deleted
  */
@@ -344,8 +354,10 @@ void arrayListRemoveAtIndex(ArrayList *list, int index) {
 
 
 /** This function will take the array list address, and the index as a parameters,
-    then it will remove the item in the given index from the array list, without freeing the item.
+ * then it will remove the item in the given index from the array list, without freeing the item.
+ *
  * Note: if the index is out of the array list range then the program will be terminated.
+ *
  * @param list the array list address
  * @param index the index of the item that will be deleted
  */
@@ -384,10 +396,13 @@ void arrayListRemoveAtIndexWtFr(ArrayList *list, int index) {
 
 
 /** This function will take the array list address, and the item address as a parameters,
-    then it will return one (1) if the item is in the array list,
-    other wise it will return zero (0).
+ * then it will return one (1) if the item is in the array list,
+ * other wise it will return zero (0).
+ *
  * Note: comparator function should return zero (0) when the two items are equal.
- * Note: this function will not free the passed item
+ *
+ * Note: this function will not free the passed item.
+ *
  * @param list the array list address
  * @param item the item that will be compared by address
  * @return it will return one if the item is in the array list other wise it will return zero
@@ -439,10 +454,13 @@ int arrayListContains(ArrayList *list, void *item) {
 
 
 /** This function will take the array list address, and the item address as a parameters,
-    then it will return the index of the item if found,
-    other wise it will return minus one (-1).
+ * then it will return the index of the item if found,
+ * other wise it will return minus one (-1).
+ *
  * Note: comparator function should return zero (0) when the two items are equal.
- * Note: this function will not free the passed item
+ *
+ * Note: this function will not free the passed item.
+ *
  * @param list the array list address
  * @param item the item address that will be searching for
  * @return it will return the item address if found, other wise it will return minus one
@@ -494,10 +512,13 @@ int arrayListGetIndex(ArrayList *list, void *item) {
 
 
 /** This function will take the array list address, and the item address as a parameters,
-    then it will return the last index of the item if found,
-    other wise it will return minus one (-1).
+ * then it will return the last index of the item if found,
+ * other wise it will return minus one (-1).
+ *
  * Note: comparator function should return zero (0) when the two items are equal.
- * Note: this function will not free the passed item
+ *
+ * Note: this function will not free the passed item.
+ *
  * @param list the array list address
  * @param item the item address that will be searching for
  * @return it will return the item address if found, other wise it will return minus one
@@ -550,8 +571,10 @@ int arrayListGetLastIndex(ArrayList *list, void *item) {
 
 
 /** This function will take the array list address, and the index as a parameters,
-    then it will return the item at the given index.
+ * then it will return the item at the given index.
+ *
  * Note: if the index is out of the array list range then the program will be terminated.
+ *
  * @param list the array list address
  * @param index the item index
  * @return it will return a void pointer to the item
@@ -586,7 +609,8 @@ void *arrayListGet(ArrayList *list, int index) {
 
 
 /** This function will take the array list address as a parameter,
-    then it will return a void pointer array that consist of the array list elements.
+ * then it will return a void pointer array that consist of the array list elements.
+ *
  * @param list the array list address
  * @return it will return a double void pointer to an array that has a copy of the items
  */
@@ -627,7 +651,8 @@ void **arrayListToArray(ArrayList *list) {
 
 
 /** This function will take the array list address, the start index, and the end index as a parameters,
-    then it will return a void pointer array that consist of the items at the start index to end index.
+ * then it will return a void pointer array that consist of the items at the start index to end index.
+ *
  * @param list the array list address
  * @param start the start index
  * @param end the end index
@@ -680,10 +705,14 @@ void **arrayListToSubArray(ArrayList *list, int start, int end) {
 
 
 /** This function will take the array list address, and the sort comparator function as a parameter,
-    then it will sort the array list using qsort algorithm.
+ * then it will sort the array list using qsort algorithm.
+ *
  * Note: the pointer will be sent to the sort comparator function will be a double void pointer (void **) of an array list item.
+ *
  * Example of comparator function if the items are integers:
+ *
  * int comp(const void *item1, const void *item2) { return *(int *)(*(void **)item1)->item - *(int *)(*(void **)item2)->item; }
+ *
  * @param list the array list address
  * @param sortComp the sorting comparator function address
  */
@@ -721,6 +750,7 @@ void arrayListSort(ArrayList *list, int (*sortComp)(const void*, const void*)) {
 
 /** This function will take the array list address as a parameter,
  * then it will return the length of the array list.
+ *
  * @param list the array list address
  * @return it will return the number of items in the array list
  */
@@ -746,8 +776,9 @@ int arrayListGetLength(ArrayList *list) {
 
 
 /** This function will take the array list address as a parameter,
-    then it will return one if the array list is empty,
-    other wise it will return 0.
+ * then it will return one if the array list is empty,
+ * other wise it will return 0.
+ *
  * @param list the array list address
  * @return it will return one if the array list is empty, other wise it will return zero
  */
@@ -774,6 +805,7 @@ int arrayListIsEmpty(ArrayList *list) {
 
 /** This function will take the array list address, and the print function address as a parameter,
  * then it will call the print function and send every item in the array list to be printed.
+ *
  * @param list the array list address
  * @param printFun the print function address
  */
@@ -809,8 +841,10 @@ void printArrayList(ArrayList *list, void (*printFun) (const void *)) {
 
 
 /** This function will take the array list address as a parameter,
-    then it will destroy and free all the array list items.
+ * then it will destroy and free all the array list items.
+ *
  * Note: the function will just clear the array list, but it will not destroy the array list.
+ *
  * @param list the array list address
  */
 
@@ -838,6 +872,7 @@ void clearArrayList(ArrayList *list) {
 
 /** This function will take the array list address as a parameter,
  * then it will destroy and free the array list and all it's items.
+ *
  * @param list the array list address
  */
 
