@@ -424,6 +424,100 @@ void testDestroyStack(CuTest *cuTest) {
 
 
 
+
+typedef struct StackTestStruct {
+
+    int iData;
+    char *cData;
+
+} StackTestStruct;
+
+
+
+void freeStackTestStruct(void *item) {
+    StackTestStruct *s = (StackTestStruct *) item;
+    free(s->cData);
+    free(s);
+}
+
+
+int stackTestStructComp(const void *item1, const void *item2) {
+    StackTestStruct *s1 = (StackTestStruct *) item1;
+    StackTestStruct *s2 = (StackTestStruct *) item2;
+
+    int iDataFlag = s1->iData == s2->iData;
+    int cDataFlag = strcmp(s1->cData, s2->cData);
+
+    return !iDataFlag || cDataFlag;
+
+}
+
+
+
+StackTestStruct *generateStackTestStruct(int value, char *str) {
+
+    StackTestStruct *s = (StackTestStruct *) malloc(sizeof(StackTestStruct));
+    s->cData = (char *) malloc(sizeof(char ) * (strlen(str) + 1) );
+    strcpy(s->cData, str);
+
+    s->iData = value;
+
+    return s;
+
+}
+
+
+
+
+void generalStackTest(CuTest *cuTest) {
+
+    Stack *stack = stackInitialization(freeStackTestStruct);
+    char numbersStr[10][6] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"};
+
+
+    CuAssertIntEquals(cuTest, 0, stackGetLength(stack));
+    CuAssertIntEquals(cuTest, 1, stackIsEmpty(stack));
+
+    stackPush(stack, generateStackTestStruct(1, "one"));
+    stackPush(stack, generateStackTestStruct(2, "two"));
+    stackPush(stack, generateStackTestStruct(3, "three"));
+
+    CuAssertIntEquals(cuTest, 3, stackGetLength(stack));
+    CuAssertIntEquals(cuTest, 0, stackIsEmpty(stack));
+
+    CuAssertIntEquals(cuTest, 3, ((StackTestStruct *) stackPeek(stack))->iData);
+    CuAssertStrEquals(cuTest, "three", ((StackTestStruct *) stackPeek(stack))->cData);
+
+    StackTestStruct **structArr = (StackTestStruct **) malloc(sizeof(StackTestStruct *) * 3);
+    for (int i = 0; i < 3; i++)
+        structArr[i] = generateStackTestStruct(i + 4, numbersStr[i + 3]);
+
+    stackAddAll(stack, (void **) structArr, 3);
+
+    CuAssertIntEquals(cuTest, 6, stackGetLength(stack));
+
+    StackTestStruct **stackArr = (StackTestStruct **) stackToArray(stack);
+    for (int i = 0; i < stackGetLength(stack); i++) {
+        CuAssertIntEquals(cuTest, i + 1, stackArr[i]->iData);
+        CuAssertStrEquals(cuTest, numbersStr[i], stackArr[i]->cData);
+    }
+
+    while (!stackIsEmpty(stack)) {
+        StackTestStruct *currentItem = stackPop(stack);
+        CuAssertIntEquals(cuTest, stackGetLength(stack) + 1, currentItem->iData);
+        CuAssertStrEquals(cuTest, numbersStr[stackGetLength(stack)], currentItem->cData);
+    }
+
+
+    free(structArr);
+    free(stackArr);
+    destroyStack(stack);
+
+}
+
+
+
+
 CuSuite *createStackTestsSuite() {
 
     CuSuite *suite = CuSuiteNew();
@@ -441,6 +535,8 @@ CuSuite *createStackTestsSuite() {
     SUITE_ADD_TEST(suite, testStackEquals);
     SUITE_ADD_TEST(suite, testClearStack);
     SUITE_ADD_TEST(suite, testDestroyStack);
+
+    SUITE_ADD_TEST(suite, generalStackTest);
 
     return suite;
 
