@@ -640,11 +640,11 @@ int linkedListContains(LinkedList *linkedList, void *item) {
 
     } else if (linkedList->comparator == NULL) {
         #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
             return -1;
         #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function", "linked list data structure");
-            exit(INVALID_ARG);
+            fprintf(stderr, NULL_POINTER_MESSAGE, "comparator function", "linked list data structure");
+            exit(NULL_POINTER);
         #endif
     }
 
@@ -696,11 +696,11 @@ int linkedListGetIndex(LinkedList *linkedList, void *item) {
 
     } else if (linkedList->comparator == NULL) {
         #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
             return -1;
         #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function", "linked list data structure");
-            exit(INVALID_ARG);
+            fprintf(stderr, NULL_POINTER_MESSAGE, "comparator function", "linked list data structure");
+            exit(NULL_POINTER);
         #endif
     }
 
@@ -827,11 +827,11 @@ void *linkedListGetItem(LinkedList *linkedList, void *item) {
 
     } else if (linkedList->comparator == NULL) {
         #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
             return NULL;
         #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function", "linked list data structure");
-            exit(INVALID_ARG);
+            fprintf(stderr, NULL_POINTER_MESSAGE, "comparator function", "linked list data structure");
+            exit(NULL_POINTER);
         #endif
     }
 

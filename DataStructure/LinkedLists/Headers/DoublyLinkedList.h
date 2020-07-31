@@ -5,6 +5,21 @@
 extern "C" {
 #endif
 
+
+/** @struct DoublyLinkedList
+*  @brief This structure implements a basic generic DoublyLinkedList.
+*  @var DoublyLinkedList::head
+*  Member 'head' is a pointer to first node.
+*  @var DoublyLinkedList::tail
+*  Member 'tail' is as pointer to the end node.
+*  @var DoublyLinkedList::length
+*  Member 'length' holds the number of the nodes.
+*  @var DoublyLinkedList::freeFun
+*  Member 'freeFun' the freeing item function pointer
+* @var DoublyLinkedList::comparator
+* Member 'comparator' the items comparator function pointer
+*/
+
 typedef struct DoublyLinkedList {
     struct Node *head;
     struct Node *tail;
@@ -14,8 +29,7 @@ typedef struct DoublyLinkedList {
 } DoublyLinkedList;
 
 
-DoublyLinkedList *
-doublyLinkedListInitialization(void (*freeFun)(void *), int (*comparator)(const void *, const void *));
+DoublyLinkedList *doublyLinkedListInitialization(void (*freeFun)(void *), int (*comparator)(const void *, const void *));
 
 void doublyLinkedListAddFirst(DoublyLinkedList *linkedList, void *item);
 
