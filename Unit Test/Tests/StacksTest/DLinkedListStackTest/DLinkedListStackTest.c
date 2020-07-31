@@ -1,9 +1,9 @@
 #include "DLinkedListStackTest.h"
 
-#include "../../CuTest/CuTest.h"
-#include "../../../System/Utils.h"
-#include "../../../DataStructure/Stacks/Headers/DLinkedListStack.h"
-#include "../../../DataStructure/LinkedLists/Headers/DoublyLinkedList.h"
+#include "../../../CuTest/CuTest.h"
+#include "../../../../System/Utils.h"
+#include "../../../../DataStructure/Stacks/Headers/DLinkedListStack.h"
+#include "../../../../DataStructure/LinkedLists/Headers/DoublyLinkedList.h"
 
 
 /** This function will take an integer,

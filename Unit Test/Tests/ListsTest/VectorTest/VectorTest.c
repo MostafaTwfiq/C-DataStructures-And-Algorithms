@@ -1,8 +1,8 @@
 #include "VectorTest.h"
 
-#include "../../CuTest/CuTest.h"
-#include "../../../DataStructure/Lists/Headers/Vector.h"
-#include "../../../System/Utils.h"
+#include "../../../CuTest/CuTest.h"
+#include "../../../../DataStructure/Lists/Headers/Vector.h"
+#include "../../../../System/Utils.h"
 
 
 

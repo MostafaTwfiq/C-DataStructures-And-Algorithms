@@ -80,7 +80,7 @@ add_executable(C_DataStructures #main.c
         "Unit Test/CuTest/CuTest.c"
         "Unit Test/CuTest/CuTestTest.c"
         "Unit Test/CuTest/CuTest.h"
-        "Unit Test/Tests/VectorTest/VectorTest.c"
+        "Unit Test/Tests/ListsTest/VectorTest/VectorTest.c"
 
         DataStructure/Deque/Sources/Deque.c
         DataStructure/Deque/Headers/Deque.h
@@ -129,7 +129,7 @@ add_executable(C_DataStructures #main.c
         Files/Headers/InputScanner.h
         DataStructure/Matrices/Sources/Matrix.c
         DataStructure/Matrices/Headers/Matrix.h
-        "Unit Test/Tests/VectorTest/VectorTest.c"
-        "Unit Test/Tests/VectorTest/VectorTest.h"
+        "Unit Test/Tests/ListsTest/VectorTest/VectorTest.c"
+        "Unit Test/Tests/ListsTest/VectorTest/VectorTest.h"
         "Unit Test/Tests/Tests.c"
-        "Unit Test/Tests/ArrayListTest/ArrayListTest.c" "Unit Test/Tests/ArrayListTest/ArrayListTest.h" "Unit Test/Tests/LinkedListTest/LinkedListTest.c" "Unit Test/Tests/LinkedListTest/LinkedListTest.h" "Unit Test/Tests/DoublyLinkedListTest/DoublyLinkedListTest.c" "Unit Test/Tests/DoublyLinkedListTest/DoublyLinkedListTest.h" "Unit Test/Tests/StackTest/StackTest.c" "Unit Test/Tests/StackTest/StackTest.h" "Unit Test/Tests/DLinkedListStackTest/DLinkedListStackTest.c" "Unit Test/Tests/DLinkedListStackTest/DLinkedListStackTest.h")
+        "Unit Test/Tests/ListsTest/ArrayListTest/ArrayListTest.c" "Unit Test/Tests/ListsTest/ArrayListTest/ArrayListTest.h" "Unit Test/Tests/LinkedListsTest/LinkedListTest/LinkedListTest.c" "Unit Test/Tests/LinkedListsTest/LinkedListTest/LinkedListTest.h" "Unit Test/Tests/LinkedListsTest/DoublyLinkedListTest/DoublyLinkedListTest.c" "Unit Test/Tests/LinkedListsTest/DoublyLinkedListTest/DoublyLinkedListTest.h" "Unit Test/Tests/StacksTest/StackTest/StackTest.c" "Unit Test/Tests/StacksTest/StackTest/StackTest.h" "Unit Test/Tests/StacksTest/DLinkedListStackTest/DLinkedListStackTest.c" "Unit Test/Tests/StacksTest/DLinkedListStackTest/DLinkedListStackTest.h")

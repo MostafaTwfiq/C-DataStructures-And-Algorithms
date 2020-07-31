@@ -1,8 +1,8 @@
 #include "ArrayListTest.h"
 
-#include "../../CuTest/CuTest.h"
-#include "../../../DataStructure/Lists/Headers/ArrayList.h"
-#include "../../../System/Utils.h"
+#include "../../../CuTest/CuTest.h"
+#include "../../../../DataStructure/Lists/Headers/ArrayList.h"
+#include "../../../../System/Utils.h"
 
 
 

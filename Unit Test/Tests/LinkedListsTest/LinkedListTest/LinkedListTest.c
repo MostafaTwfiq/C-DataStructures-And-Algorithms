@@ -1,7 +1,7 @@
 #include "LinkedListTest.h"
-#include "../../CuTest/CuTest.h"
-#include "../../../System/Utils.h"
-#include "../../../DataStructure/LinkedLists/Headers/LinkedList.h"
+#include "../../../CuTest/CuTest.h"
+#include "../../../../System/Utils.h"
+#include "../../../../DataStructure/LinkedLists/Headers/LinkedList.h"
 
 
 /** This function will take an integer,

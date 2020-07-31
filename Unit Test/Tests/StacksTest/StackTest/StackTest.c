@@ -1,7 +1,7 @@
 #include "StackTest.h"
-#include "../../CuTest/CuTest.h"
-#include "../../../System/Utils.h"
-#include "../../../DataStructure/Stacks/Headers/Stack.h"
+#include "../../../CuTest/CuTest.h"
+#include "../../../../System/Utils.h"
+#include "../../../../DataStructure/Stacks/Headers/Stack.h"
 
 
 /** This function will take an integer,
