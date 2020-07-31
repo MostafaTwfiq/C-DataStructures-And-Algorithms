@@ -275,7 +275,7 @@ void linkedListAddAll(LinkedList *linkedList, void **items, int itemsLength) {
 
 /** This function will take the linked list address as a parameter,
  * then it will delete and free the first element from the linked list.
- * @param linkedList
+ * @param linkedList the linked list pointer
  */
 
 void linkedListDeleteFirst(LinkedList *linkedList) {
@@ -318,7 +318,7 @@ void linkedListDeleteFirst(LinkedList *linkedList) {
 
 /** This function will take the linked list address as a parameter,
  * then it will delete and free only the node without the item of the first element from the linked list.
- * @param linkedList
+ * @param linkedList the linked list pointer
  * @return it will return the deleted item pointer
  */
 
@@ -364,7 +364,7 @@ void *linkedListDeleteFirstWtoFr(LinkedList *linkedList) {
 
 /** This function will take the linked list address as a parameter,
     then it will delete and free the last element from the linked list.
- * @param linkedList
+ * @param linkedList the linked list pointer
  */
 
 void linkedListDeleteLast(LinkedList *linkedList) {
@@ -414,7 +414,7 @@ void linkedListDeleteLast(LinkedList *linkedList) {
 
 /** This function will take the linked list address as a parameter,
     then it will delete and free only the node without the item of the last element from the linked list.
- * @param linkedList
+ * @param linkedList the linked list pointer
  * @return it will return the deleted item pointer
  */
 
@@ -469,8 +469,8 @@ void *linkedListDeleteLastWtoFr(LinkedList *linkedList) {
 /** This function will take the linked list address, and the index as parameters,
     then it will delete the item in this index.
  * If the index is out of the linked list rang then the program will be terminated.
- * @param linkedList
- * @param index
+ * @param linkedList the linked list pointer
+ * @param index the index of the item, that will be deleted
  */
 
 void linkedListDeleteAtIndex(LinkedList *linkedList, int index) {
@@ -530,8 +530,8 @@ void linkedListDeleteAtIndex(LinkedList *linkedList, int index) {
 /** This function will take the linked list address, and the index as parameters,
     then it will delete and free only the node without the item of the item in this index.
  * If the index is out of the linked list rang then the program will be terminated.
- * @param linkedList
- * @param index
+ * @param linkedList the linked list pointer
+ * @param index the index of the item, that will be deleted
  * @return it will return the deleted item pointer
  */
 
@@ -597,9 +597,9 @@ void *linkedListDeleteAtIndexWtoFr(LinkedList *linkedList, int index) {
 /** This function will take the linked list address, and the item address as parameters, then
     then it will return 1 if the item is in the list other wise it will return zero (0).
  *The function will use the comparator function to know if the two items are equivalent or not.
- * @param linkedList
- * @param item
- * @return
+ * @param linkedList the linked list pointer
+ * @param item the item pointer
+ * @return it will return 1 if the item exist in the linked list, other wise it will return 0
  */
 
 int linkedListContains(LinkedList *linkedList, void *item) {
@@ -651,9 +651,9 @@ int linkedListContains(LinkedList *linkedList, void *item) {
 /** This function will take the linked list address, and the item address as a parameters,
     then it will return the index of the given item, other wise it will return minus one (-1) .
  * The function will use the comparator function to know if the two items are equivalent or not.
- * @param linkedList
- * @param item
- * @return
+ * @param linkedList the linked list pointer
+ * @param item the item pointer
+ * @return it will return the the index of the item if found, other wise it will return -1
  */
 
 int linkedListGetIndex(LinkedList *linkedList, void *item) {
@@ -776,9 +776,9 @@ void *linkedListGetLast(LinkedList *linkedList) {
 /** This function will take the linked list address, and the item address as a parameters,
     then it will return the item from the list if found, other wise it will return NULL.
  * The function will use the comparator function to know if the two items are equivalent or not.
- * @param linkedList
- * @param item
- * @return
+ * @param linkedList the linked list pointer
+ * @param item the item pointer
+ * @return it will return the item pointer if found, other wise it will return NULL
  */
 
 void *linkedListGetItem(LinkedList *linkedList, void *item) {
@@ -883,8 +883,8 @@ void *linkedListGet(LinkedList *linkedList, int index) {
 /** This function will take the linked list address as a parameter,
     then it will return a void pointer to an array consist of the items in the linked list.
  * The items in the array doesn't share the same address in the linked list items.
- * @param linkedList
- * @return
+ * @param linkedList the linked list pointer
+ * @return it will return a double void array, that contains the linked list items.
  */
 
 void **linkedListToArray(LinkedList *linkedList) {
@@ -926,8 +926,8 @@ void **linkedListToArray(LinkedList *linkedList) {
 
 /** This function will take the linked list address as a parameter,
     the it will return the number of items in the linked list.
- * @param linkedList
- * @return
+ * @param linkedList the linked list pointer
+ * @return it will return the linked list length
  */
 
 int linkedListGetLength(LinkedList *linkedList) {
@@ -950,9 +950,9 @@ int linkedListGetLength(LinkedList *linkedList) {
 
 
 /** This function will take the linked list address as a parameter,
-    then it will return one (1) if the linked list is empty, other wise it will return 0.
- * @param linkedList
- * @return
+ * then it will return one (1) if the linked list is empty, other wise it will return 0.
+ * @param linkedList the linked list pointer
+ * @return it will return 1 if the linked list is empty, other wise it will return 0
  */
 
 int linkedListIsEmpty(LinkedList *linkedList) {
@@ -976,8 +976,8 @@ int linkedListIsEmpty(LinkedList *linkedList) {
 
 /** This method will take the linked list address, and the print function address, as a parameter,
     then it will call thr print function and pass to it an item pointer to be printed.
- * @param linkedList
- * @param printFun
+ * @param linkedList the linked list pointer
+ * @param printFun the printing function pointer, that will be called to print the item
  */
 
 void printLinkedList(LinkedList *linkedList, void (*printFun) (const void *)) {
@@ -1014,8 +1014,8 @@ void printLinkedList(LinkedList *linkedList, void (*printFun) (const void *)) {
 
 
 /** This function will take the linked list address as a parameter,
-    then it will delete and free all the items from the linked list.
- * @param linkedList
+ * then it will delete and free all the items from the linked list.
+ * @param linkedList the linked list pointer
  */
 
 void linkedListClear(LinkedList *linkedList) {
@@ -1053,7 +1053,7 @@ void linkedListClear(LinkedList *linkedList) {
 
 /** This function will take the linked list address as a parameter,
     then it will destroy and free the linked list and all it's nodes.
- * @param linkedList
+ * @param linkedList the linked list pointer
  */
 
 void destroyLinkedList(LinkedList *linkedList) {
