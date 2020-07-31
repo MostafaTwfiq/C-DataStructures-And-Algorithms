@@ -132,4 +132,4 @@ add_executable(C_DataStructures #main.c
         "Unit Test/Tests/VectorTest/VectorTest.c"
         "Unit Test/Tests/VectorTest/VectorTest.h"
         "Unit Test/Tests/Tests.c"
-        "Unit Test/Tests/ArrayListTest/ArrayListTest.c" "Unit Test/Tests/ArrayListTest/ArrayListTest.h" "Unit Test/Tests/LinkedListTest/LinkedListTest.c" "Unit Test/Tests/LinkedListTest/LinkedListTest.h")
+        "Unit Test/Tests/ArrayListTest/ArrayListTest.c" "Unit Test/Tests/ArrayListTest/ArrayListTest.h" "Unit Test/Tests/LinkedListTest/LinkedListTest.c" "Unit Test/Tests/LinkedListTest/LinkedListTest.h" "Unit Test/Tests/DoublyLinkedListTest/DoublyLinkedListTest.c" "Unit Test/Tests/DoublyLinkedListTest/DoublyLinkedListTest.h")

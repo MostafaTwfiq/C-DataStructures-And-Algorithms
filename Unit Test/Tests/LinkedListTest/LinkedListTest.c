@@ -518,7 +518,7 @@ void testLinkedListGetLast(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
 
     linkedListGetLast(list);
-    CuAssertPtrEquals(cuTest, EMPTY_DATA_STRUCTURE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, DUMMY_TEST_DATASTRUCTURE->errorCode);
 
     linkedListAddFrom1To10Values(list);
 
