@@ -741,6 +741,15 @@ void *doublyLinkedListGetFirst(DoublyLinkedList *linkedList) {
      		exit(NULL_POINTER);
      	#endif
 
+    } else if (doublyLinkedListIsEmpty(linkedList)) {
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "doubly linked list data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+            return NULL;
+        #else
+            exit(EMPTY_DATA_STRUCTURE);
+        #endif
+
     }
 
     return linkedList->head->item;
@@ -770,6 +779,15 @@ void *doublyLinkedListGetLast(DoublyLinkedList *linkedList) {
      	#else
      		exit(NULL_POINTER);
      	#endif
+
+    } else if (doublyLinkedListIsEmpty(linkedList)) {
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "doubly linked list data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+            return NULL;
+        #else
+            exit(EMPTY_DATA_STRUCTURE);
+        #endif
 
     }
 
@@ -852,6 +870,15 @@ void *doublyLinkedListGet(DoublyLinkedList *linkedList, int index) {
      	#else
      		exit(NULL_POINTER);
      	#endif
+
+    } else if (doublyLinkedListIsEmpty(linkedList)) {
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "doubly linked list data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+            return NULL;
+        #else
+            exit(EMPTY_DATA_STRUCTURE);
+        #endif
 
     } else if (index < 0 || index >= doublyLinkedListGetLength(linkedList)) {
         fprintf(stderr, OUT_OF_RANGE_MESSAGE, "doubly linked list data structure");

@@ -703,9 +703,9 @@ int linkedListGetIndex(LinkedList *linkedList, void *item) {
 
 /** This function will take the linked list address as a parameter,
     then it will return the first item in the list.
- * Note: if the linked list is empty the function will return NULL.
- * @param linkedList
- * @return
+ * Note: if the linked list is empty the function will terminate the program.
+ * @param linkedList the linked list pointer
+ * @return it will return the first item in the linked list
  */
 
 void *linkedListGetFirst(LinkedList *linkedList) {
@@ -719,6 +719,15 @@ void *linkedListGetFirst(LinkedList *linkedList) {
      		exit(NULL_POINTER);
      	#endif
 
+    } else if (linkedListIsEmpty(linkedList)) {
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "linked list data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+            return NULL;
+        #else
+            exit(EMPTY_DATA_STRUCTURE);
+        #endif
+
     }
 
     return linkedList->head->item;
@@ -730,9 +739,9 @@ void *linkedListGetFirst(LinkedList *linkedList) {
 
 /** This function will take the linked list address as a parameter,
     then it will return the last item in the list.
- * Note: if the linked list is empty the function will return NULL.
- * @param linkedList
- * @return
+ * Note: if the linked list is empty the function will terminate the program.
+ * @param linkedList the linked list pointer
+ * @return it will return the last item in the linked list
  */
 
 void *linkedListGetLast(LinkedList *linkedList) {
@@ -745,6 +754,15 @@ void *linkedListGetLast(LinkedList *linkedList) {
      	#else
      		exit(NULL_POINTER);
      	#endif
+
+    } else if (linkedListIsEmpty(linkedList)) {
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "linked list data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+            return NULL;
+        #else
+            exit(EMPTY_DATA_STRUCTURE);
+        #endif
 
     }
 
@@ -810,11 +828,15 @@ void *linkedListGetItem(LinkedList *linkedList, void *item) {
 
 
 /** This function will take the linked list address, and the index as parameters,
-    then it will return the item in the given index.
- * If the index is out of the linked list range the program will terminate.
- * @param linkedList
- * @param index
- * @return
+ * then it will return the item in the given index.
+ *
+ * Note: If the index is out of the linked list range the program will terminate.
+ *
+ * Note: if the linked list is empty the program will terminate.
+ *
+ * @param linkedList the linked list pointer
+ * @param index the index of the item
+ * @return it will return the item in the provided index
  */
 
 void *linkedListGet(LinkedList *linkedList, int index) {
@@ -827,6 +849,15 @@ void *linkedListGet(LinkedList *linkedList, int index) {
      	#else
      		exit(NULL_POINTER);
      	#endif
+
+    } else if (linkedListIsEmpty(linkedList)) {
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "linked list data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+            return NULL;
+        #else
+            exit(EMPTY_DATA_STRUCTURE);
+        #endif
 
     } else if (index < 0 || index >= linkedListGetLength(linkedList)) {
         fprintf(stderr, OUT_OF_RANGE_MESSAGE, "linked list data structure");

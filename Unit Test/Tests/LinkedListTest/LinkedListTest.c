@@ -458,6 +458,82 @@ void testLinkedListGetIndex(CuTest *cuTest) {
 
 
 
+
+void testLinkedListGetItem(CuTest *cuTest) {
+    LinkedList *list = linkedListInitialization(free, compareIntPointersLLT);
+
+    linkedListGetItem(NULL, NULL);
+    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    linkedListGetItem(list, NULL);
+    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+
+    linkedListAddFrom1To10Values(list);
+
+    int tempValue;
+    for (int i = 0; i < list->length; i++) {
+        tempValue = i + 1;
+        CuAssertIntEquals(cuTest, tempValue, *(int *) linkedListGetItem(list, &tempValue));
+    }
+
+    tempValue = 11;
+    CuAssertPtrEquals(cuTest, NULL, linkedListGetItem(list, &tempValue));
+
+
+    destroyLinkedList(list);
+
+}
+
+
+
+
+
+
+void testLinkedListGetFirst(CuTest *cuTest) {
+    LinkedList *list = linkedListInitialization(free, compareIntPointersLLT);
+
+    linkedListGetFirst(NULL);
+    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    linkedListGetFirst(list);
+    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    linkedListAddFrom1To10Values(list);
+
+
+    CuAssertIntEquals(cuTest, 1, *(int *) linkedListGetFirst(list));
+
+    destroyLinkedList(list);
+
+}
+
+
+
+
+void testLinkedListGetLast(CuTest *cuTest) {
+    LinkedList *list = linkedListInitialization(free, compareIntPointersLLT);
+
+    linkedListGetLast(NULL);
+    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    linkedListGetLast(list);
+    CuAssertPtrEquals(cuTest, EMPTY_DATA_STRUCTURE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    linkedListAddFrom1To10Values(list);
+
+
+    CuAssertIntEquals(cuTest, 10, *(int *) linkedListGetLast(list));
+
+    destroyLinkedList(list);
+
+}
+
+
+
+
+
+
 CuSuite *createLinkedListTestsSuite() {
 
     CuSuite *suite = CuSuiteNew();
@@ -476,6 +552,9 @@ CuSuite *createLinkedListTestsSuite() {
     SUITE_ADD_TEST(suite, testLinkedListDeleteAtIndexWtoFr);
     SUITE_ADD_TEST(suite, testLinkedListContains);
     SUITE_ADD_TEST(suite, testLinkedListGetIndex);
+    SUITE_ADD_TEST(suite, testLinkedListGetItem);
+    SUITE_ADD_TEST(suite, testLinkedListGetFirst);
+    SUITE_ADD_TEST(suite, testLinkedListGetLast);
 
     return suite;
 
