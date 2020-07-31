@@ -74,7 +74,7 @@ void sQueueEnqueue(SQueue *queue, void *item) {
 
     }
 
-    pushStack(queue->fStack, item);
+    stackPush(queue->fStack, item);
 
 }
 
@@ -109,7 +109,7 @@ void sQueueAddAll(SQueue *queue, void **items, int itemsLength) {
     }
 
     for (int i = 0; i < itemsLength; i++)
-        pushStack(queue->fStack, items[i]);
+        stackPush(queue->fStack, items[i]);
 
 }
 
@@ -142,10 +142,10 @@ void *sQueueDequeue(SQueue *queue) {
 
     }
 
-    if (isEmptyStack(queue->sStack))
+    if (stackIsEmpty(queue->sStack))
         transferItemsToSecondStack(queue->fStack, queue->sStack);
 
-    return popStack(queue->sStack);
+    return stackPop(queue->sStack);
 
 }
 
@@ -160,8 +160,8 @@ void *sQueueDequeue(SQueue *queue) {
  */
 
 void transferItemsToSecondStack(Stack *fStack, Stack *sStack) {
-    while (!isEmptyStack(fStack))
-        pushStack(sStack, popStack(fStack));
+    while (!stackIsEmpty(fStack))
+        stackPush(sStack, stackPop(fStack));
 
 }
 
@@ -194,10 +194,10 @@ void *sQueuePeek(SQueue *queue) {
 
     }
 
-    if (isEmptyStack(queue->sStack))
+    if (stackIsEmpty(queue->sStack))
         transferItemsToSecondStack(queue->fStack, queue->sStack);
 
-    return peekStack(queue->sStack);
+    return stackPeek(queue->sStack);
 
 }
 
@@ -222,7 +222,7 @@ int sQueueGetLength(SQueue *queue) {
 
     }
 
-    return getStackLength(queue->fStack) + getStackLength(queue->sStack);
+    return stackGetLength(queue->fStack) + stackGetLength(queue->sStack);
 }
 
 
@@ -288,10 +288,10 @@ void **sQueueToArray(SQueue *queue) {
 
     for (int i = 0; i < length; i++) {
 
-        if (isEmptyStack(queue->sStack))
+        if (stackIsEmpty(queue->sStack))
             transferItemsToSecondStack(queue->fStack, queue->sStack);
 
-        void *item = popStack(queue->sStack);
+        void *item = stackPop(queue->sStack);
 
         arr[i] = item;
         sQueueEnqueue(queue, item);
@@ -323,8 +323,8 @@ void clearSQueue(SQueue *queue) {
 
     }
 
-    StackClear(queue->fStack);
-    StackClear(queue->sStack);
+    clearStack(queue->fStack);
+    clearStack(queue->sStack);
 
 }
 

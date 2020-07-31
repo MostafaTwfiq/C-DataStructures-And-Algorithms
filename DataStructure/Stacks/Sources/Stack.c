@@ -65,7 +65,7 @@ Stack* stackInitialization(void (*freeItem)(void *)) {
  * @param dataSize the size of the provided data
  **/
 
-void pushStack( Stack* stack ,  void * data) {
+void stackPush(Stack* stack , void * data) {
     if (stack == NULL) {
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
@@ -138,7 +138,7 @@ void stackAddAll(Stack *stack, void **array, int arrLength) {
     }
 
     for (int i = 0; i < arrLength; i++)
-        pushStack(stack, array[i]);
+        stackPush(stack, array[i]);
 
 
 }
@@ -188,7 +188,7 @@ void **stackToArray(Stack *stack) {
  *  @param stack  Pointer to the stack on the heap.
  *  @return Pointer to data that was stored on top of the stack.
  **/
- void *popStack( Stack* stack ) {
+ void *stackPop(Stack* stack ) {
     if (stack == NULL) {
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
@@ -198,7 +198,7 @@ void **stackToArray(Stack *stack) {
      		exit(NULL_POINTER);
      	#endif
 
-    } else if (isEmptyStack(stack)) {
+    } else if (stackIsEmpty(stack)) {
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
      		return NULL;
@@ -222,7 +222,7 @@ void **stackToArray(Stack *stack) {
  * @return 1 if Empty else 0.
  **/
 
-short isEmptyStack( Stack* stack ) {
+short stackIsEmpty(Stack* stack ) {
     if (stack == NULL) {
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
@@ -247,7 +247,7 @@ short isEmptyStack( Stack* stack ) {
  * @return it will return the number of items in the array
  */
 
-int getStackLength(Stack *stack) {
+int stackGetLength(Stack *stack) {
 
     if (stack == NULL) {
         #ifdef CU_TEST_H
@@ -274,7 +274,7 @@ int getStackLength(Stack *stack) {
  * @return Returns a pointer to the top stored item on top of the stack.
  **/
 
-void* peekStack( Stack* stack ) {
+void* stackPeek(Stack* stack ) {
     if (stack == NULL) {
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
@@ -284,7 +284,7 @@ void* peekStack( Stack* stack ) {
      		exit(NULL_POINTER);
      	#endif
 
-    } else if (isEmptyStack(stack)) {
+    } else if (stackIsEmpty(stack)) {
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
      		return NULL;
@@ -343,12 +343,15 @@ int stackEquals(Stack * stack, Stack * stack1, int (*cmp)(const  void *, const v
 
     if(stack->top != stack1->top)
         return 0;
+
     else{
-        for(int i = 0; i<stack->top;i++){
-            if(cmp(stack->memory[i],stack1->memory[i]))
-                return 1;
+
+        for(int i = 0; i <= stack->top;i++){
+            if(cmp(stack->memory[i],stack1->memory[i]) != 0)
+                return 0;
         }
-        return 0;
+
+        return 1;
     }
 }
 
@@ -366,7 +369,7 @@ int stackEquals(Stack * stack, Stack * stack1, int (*cmp)(const  void *, const v
  * @return it will return 1 if the item exist in the stack, other wise it will return 0
  */
 
-int StackContains(Stack *stack, void *item,int (*cmp)(const void *, const void*)){
+int stackContains(Stack *stack, void *item, int (*cmp)(const void *, const void*)){
 
     if (stack == NULL) {
         #ifdef CU_TEST_H
@@ -396,10 +399,13 @@ int StackContains(Stack *stack, void *item,int (*cmp)(const void *, const void*)
         #endif
     }
 
-    for(int i = 0; i<stack->top;i++){
+    for(int i = 0; i <= stack->top;i++){
+
         if(cmp(stack->memory[i], item)==0)
             return 1;
+
     }
+
     return 0;
 
 }
@@ -412,7 +418,7 @@ int StackContains(Stack *stack, void *item,int (*cmp)(const void *, const void*)
  * @param stack Reference pointer to a Stack.
  **/
 
-void StackClear( Stack* stack ) {
+void clearStack(Stack* stack ) {
     if (stack == NULL) {
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
@@ -424,8 +430,10 @@ void StackClear( Stack* stack ) {
 
     }
 
-    for (int i = 0; i < getStackLength(stack); i++)
+    for (int i = 0; i < stackGetLength(stack); i++)
         stack->freeItem(stack->memory[i]);
+
+    stack->top = -1;
 
 }
 
@@ -438,7 +446,7 @@ void StackClear( Stack* stack ) {
  * @param stack Reference pointer to a Stack.
  **/
 
-void StackDestroy( Stack* stack ) {
+void destroyStack(Stack* stack ) {
 
     if (stack == NULL) {
         #ifdef CU_TEST_H
@@ -451,7 +459,7 @@ void StackDestroy( Stack* stack ) {
 
     }
 
-    StackClear( stack );
+    clearStack(stack);
 
     free( stack->memory );
     free( stack );

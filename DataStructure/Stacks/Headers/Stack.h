@@ -28,27 +28,27 @@ typedef struct Stack {
 
 Stack *stackInitialization(void (*freeItem)(void *item));
 
-void pushStack( Stack* stack, void * data);
+void stackPush(Stack* stack, void * data);
 
 void stackAddAll(Stack *stack, void **array, int arrLength);
 
-void *popStack(Stack *stack);
+void *stackPop(Stack *stack);
 
-short isEmptyStack(Stack *stack);
+short stackIsEmpty(Stack *stack);
 
-void *peekStack(Stack *stack);
+void *stackPeek(Stack *stack);
 
 void **stackToArray(Stack *stack);
 
-int getStackLength(Stack *stack);
+int stackGetLength(Stack *stack);
 
-int StackContains(Stack *stack, void *item,int (*cmp)(const void *,const void*));
+int stackContains(Stack *stack, void *item, int (*cmp)(const void *, const void*));
 
 int stackEquals(Stack * stack, Stack * stack1, int (*cmp)(const void *, const void*));
 
-void StackClear(Stack *stack);
+void clearStack(Stack *stack);
 
-void StackDestroy(Stack *stack);
+void destroyStack(Stack *stack);
 
 #ifdef __cplusplus
 }

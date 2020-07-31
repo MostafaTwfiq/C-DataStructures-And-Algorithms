@@ -778,7 +778,7 @@ void dirGraphDepthFirstTraversal(DirectedGraph *graph, void *startVal, void (*pr
 
     HashSet *visitedNodes = hashSetInitialization(freeInt, compInt, intHashFunDirG);
     Stack *nodesStack = stackInitialization(freeDGraphNode);
-    pushStack(nodesStack, startNode);
+    stackPush(nodesStack, startNode);
 
     int *startNodeValAddress = (int *) malloc(sizeof(int));
     *startNodeValAddress = (int) startNode->value;
@@ -786,8 +786,8 @@ void dirGraphDepthFirstTraversal(DirectedGraph *graph, void *startVal, void (*pr
 
     DirGraphNode *currentNode;
 
-    while (!isEmptyStack(nodesStack)) {
-        currentNode = popStack(nodesStack);
+    while (!stackIsEmpty(nodesStack)) {
+        currentNode = stackPop(nodesStack);
         printVal(currentNode->value);
 
         for (int i = 0; i < arrayListGetLength(currentNode->adjacentNodes); i++) {
@@ -795,7 +795,7 @@ void dirGraphDepthFirstTraversal(DirectedGraph *graph, void *startVal, void (*pr
             int *adjNodeValAddress = (int *) malloc(sizeof(int));
             *adjNodeValAddress = (int) adjNode->value;
             if (!hashSetContains(visitedNodes, adjNodeValAddress)) {
-                pushStack(nodesStack, adjNode);
+                stackPush(nodesStack, adjNode);
                 hashSetInsert(visitedNodes, adjNodeValAddress);
             } else
                 free(adjNodeValAddress);
@@ -806,7 +806,7 @@ void dirGraphDepthFirstTraversal(DirectedGraph *graph, void *startVal, void (*pr
     }
 
     destroyHashSet(visitedNodes);
-    StackDestroy(nodesStack);
+    destroyStack(nodesStack);
 
 }
 
@@ -923,12 +923,12 @@ ArrayList *dirGraphTopologicalSort(DirectedGraph *graph) {
         dirGraphTopologicalSortR(hashMapNodes[i], visitedNodes, sortStack);
 
 
-    while (!isEmptyStack(sortStack)) {
-        DirGraphNode *tempNode = popStack(sortStack);
+    while (!stackIsEmpty(sortStack)) {
+        DirGraphNode *tempNode = stackPop(sortStack);
         arrayListAdd(sortedArrayList, tempNode->value);
     }
 
-    StackDestroy(sortStack);
+    destroyStack(sortStack);
     destroyHashSet(visitedNodes);
 
     free(hashMapNodes);
@@ -965,7 +965,7 @@ void dirGraphTopologicalSortR(DirGraphNode *node, HashSet *visitedNodes, Stack *
         dirGraphTopologicalSortR(arrayListGet(node->adjacentNodes, i), visitedNodes, sortStack);
 
 
-    pushStack(sortStack, node);
+    stackPush(sortStack, node);
 
 }
 

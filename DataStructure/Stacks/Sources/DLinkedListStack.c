@@ -43,7 +43,7 @@ DLinkedListStack *dlStackInitialization(void (*freeFun)(void *)) {
 
 
 /** This function will take the stack address, and the item address as a parameters,
-    then it will pushStack the item into the stack.
+    then it will stackPush the item into the stack.
  * @param stack the stack address
  * @param item the new item address
  */

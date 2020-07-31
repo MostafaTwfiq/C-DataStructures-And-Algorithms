@@ -2,6 +2,9 @@
 #include "ArrayListTest/ArrayListTest.h"
 #include "LinkedListTest/LinkedListTest.h"
 #include "DoublyLinkedListTest/DoublyLinkedListTest.h"
+#include "StackTest/StackTest.h"
+
+
 
 int main(void) {
 
@@ -9,6 +12,7 @@ int main(void) {
     arrayListUnitTest();
     linkedListUnitTest();
     doublyLinkedListUnitTest();
+    stackUnitTest();
     return 0;
 
 }

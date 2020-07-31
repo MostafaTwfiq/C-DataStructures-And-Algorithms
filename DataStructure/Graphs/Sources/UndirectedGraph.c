@@ -887,14 +887,14 @@ void UDGraphDepthFirstTraversal(UndirectedGraph *graph, void *startVal, void (*p
     Stack *nodesStack = stackInitialization(UDGraphNodeFreeFun);
     HashSet *visitedNodes = hashSetInitialization(UDGFreeInt, UDGCompInt, intHashFunUDirG);
 
-    pushStack(nodesStack, startNode);
+    stackPush(nodesStack, startNode);
     int *startNodeValAddress = (int *) malloc(sizeof(int));
     *startNodeValAddress = (int) startNode->value;
     hashSetInsert(visitedNodes, startNodeValAddress);
 
 
-    while (!isEmptyStack(nodesStack)) {
-        UDGraphNode *tempNode = popStack(nodesStack);
+    while (!stackIsEmpty(nodesStack)) {
+        UDGraphNode *tempNode = stackPop(nodesStack);
         printFun(tempNode->value);
 
         for (int i = 0; i < arrayListGetLength(tempNode->adjacentNodes); i++) {
@@ -902,7 +902,7 @@ void UDGraphDepthFirstTraversal(UndirectedGraph *graph, void *startVal, void (*p
             int *adjNodeValAddress = (int *) malloc(sizeof(int));
             *adjNodeValAddress = (int) adjNode->value;
             if (!hashSetContains(visitedNodes, adjNodeValAddress)) {
-                pushStack(nodesStack, adjNode);
+                stackPush(nodesStack, adjNode);
                 hashSetInsert(visitedNodes, adjNodeValAddress);
             } else
                 free(adjNodeValAddress);
@@ -911,7 +911,7 @@ void UDGraphDepthFirstTraversal(UndirectedGraph *graph, void *startVal, void (*p
     }
 
 
-    StackDestroy(nodesStack);
+    destroyStack(nodesStack);
     destroyHashSet(visitedNodes);
 
 }
@@ -1263,15 +1263,15 @@ ArrayList *UDGraphGetShortestPath(UndirectedGraph *graph, void *startVal, void *
         tempHolder = hashMapGet(distancesMap, &currentValAddress);
         tempNode = tempHolder->fromNode;
         currentValAddress = (int) tempNode->value;
-        pushStack(pathStack, tempHolder->toNode->value);
+        stackPush(pathStack, tempHolder->toNode->value);
     } while (tempHolder->toNode != startNode);
 
-    while (!isEmptyStack(pathStack))
-        arrayListAdd(list, popStack(pathStack));
+    while (!stackIsEmpty(pathStack))
+        arrayListAdd(list, stackPop(pathStack));
 
 
     destroyHashMap(distancesMap);
-    StackDestroy(pathStack);
+    destroyStack(pathStack);
 
 
     return list;
