@@ -1,11 +1,11 @@
 #ifndef C_DATASTRUCTURES_STACK_H
 #define C_DATASTRUCTURES_STACK_H
 
-#include <stdint.h>
-
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+
 
 /** @struct Stack
  *  @brief This structure implements a basic generic stack.
@@ -42,13 +42,13 @@ void **stackToArray(Stack *stack);
 
 int getStackLength(Stack *stack);
 
+int StackContains(Stack *stack, void *item,int (*cmp)(const void *,const void*));
+
+int stackEquals(Stack * stack, Stack * stack1, int (*cmp)(const void *, const void*));
+
 void StackClear(Stack *stack);
 
 void StackDestroy(Stack *stack);
-
-uint32_t StackContains(Stack *stack, void *item,int (*cmp)(void *,void*));
-
-uint32_t stackIsEqual(Stack * stack, Stack * stack1, int (*cmp)(void *,void*));
 
 #ifdef __cplusplus
 }

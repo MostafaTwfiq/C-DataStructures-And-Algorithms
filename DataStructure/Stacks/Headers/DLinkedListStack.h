@@ -27,6 +27,10 @@ void *dlStackPeek(DLinkedListStack *stack);
 
 void **dlStackToArray(DLinkedListStack *stack);
 
+int dlStackEquals(DLinkedListStack *fStack, DLinkedListStack *sStack, int (*cmp)(const void *, const void *));
+
+int dlStackContains(DLinkedListStack *fStack, void *item, int (*cmp)(const void *, const void *));
+
 void clearDLStack(DLinkedListStack *stack);
 
 void destroyDLStack(DLinkedListStack *stack);

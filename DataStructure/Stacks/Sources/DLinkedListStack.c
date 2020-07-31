@@ -266,6 +266,93 @@ int dlStackIsEmpty(DLinkedListStack *stack) {
 
 
 
+int dlStackEquals(DLinkedListStack *fStack, DLinkedListStack *sStack, int (*cmp)(const void *, const void *)) {
+
+    if (fStack == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "first stack pointer", "doubly linked list stack data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #else
+            exit(NULL_POINTER);
+        #endif
+
+    } else if (sStack == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "second stack pointer", "doubly linked list stack data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+            exit(INVALID_ARG);
+        #endif
+
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "doubly linked list stack data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+            exit(INVALID_ARG);
+        #endif
+    }
+
+    if (doublyLinkedListGetLength(fStack->linkedList) != doublyLinkedListGetLength(sStack->linkedList))
+        return 0;
+
+    for (int i = 0; i < doublyLinkedListGetLength(fStack->linkedList); i++) {
+
+        if ( cmp(doublyLinkedListGet(fStack->linkedList, i), doublyLinkedListGet(sStack->linkedList, i)) != 0 )
+            return 0;
+
+    }
+
+    return 1;
+
+}
+
+
+
+
+
+
+
+int dlStackContains(DLinkedListStack *fStack, void *item, int (*cmp)(const void *, const void *)) {
+
+    if (fStack == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "first stack pointer", "doubly linked list stack data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #else
+            exit(NULL_POINTER);
+        #endif
+
+    } else if (item == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "doubly linked list stack data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+            exit(INVALID_ARG);
+        #endif
+
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "doubly linked list stack data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+            exit(INVALID_ARG);
+        #endif
+    }
+
+    for (int i = 0; i < doublyLinkedListGetLength(fStack->linkedList); i++) {
+
+        if ( cmp(item, doublyLinkedListGet(fStack->linkedList, i)) == 0 )
+            return 1;
+
+    }
+
+    return 0;
+
+}
+
+
+
 
 /** This function will take the stack address as a parameter,
     then it will delete and free the stack from all it's items.

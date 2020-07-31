@@ -275,11 +275,110 @@ void* peekStack( Stack* stack ) {
 
 
 
+/** This function will take two stacks,
+ * then it will return one (1) if the two stacks are equal,
+ * other wise it will return zero (0).
+ *
+ * @param stack the first stack pointer
+ * @param stack1 the second stack pointer
+ * @param cmp the comparator function, that will be called to compare the stacks items
+ * @return it will return 1 if the two stack are equal, other wise it will return 0
+ */
+
+int stackEquals(Stack * stack, Stack * stack1, int (*cmp)(const  void *, const void*)){
+
+    if (stack == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "stack data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #else
+            exit(NULL_POINTER);
+        #endif
+
+    } else if (stack1 == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "second stack pointer", "stack data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+            exit(INVALID_ARG);
+        #endif
+
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "stack data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+            exit(INVALID_ARG);
+        #endif
+    }
+
+    if(stack->top != stack1->top)
+        return 0;
+    else{
+        for(int i = 0; i<stack->top;i++){
+            if(cmp(stack->memory[i],stack1->memory[i]))
+                return 1;
+        }
+        return 0;
+    }
+}
+
+
+
+
+/** This function will take a stack and an item,
+ * then it will check if the item exist in the stack or not,
+ * and if it was the function will return one (1),
+ * other wise it will return (0).
+ *
+ * @param stack the stack pointer
+ * @param item the item pointer
+ * @param cmp the comparator function, that will be called to compare the stacks items
+ * @return it will return 1 if the item exist in the stack, other wise it will return 0
+ */
+
+int StackContains(Stack *stack, void *item,int (*cmp)(const void *, const void*)){
+
+    if (stack == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "stack data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #else
+            exit(NULL_POINTER);
+        #endif
+
+    } else if (item == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "stack data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+            exit(INVALID_ARG);
+        #endif
+
+    } else if (cmp == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "stack data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+            exit(INVALID_ARG);
+        #endif
+    }
+
+    for(int i = 0; i<stack->top;i++){
+        if(cmp(stack->memory[i], item)==0)
+            return 1;
+    }
+    return 0;
+
+}
+
+
 
 
 /** Clear the Stack from it's stored values popping them continuously. Stack can be later top after clear.
  * @param stack Reference pointer to a Stack.
  **/
+
 void StackClear( Stack* stack ) {
     if (stack == NULL) {
         fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "stack data structure");
@@ -306,39 +405,19 @@ void StackClear( Stack* stack ) {
 
 void StackDestroy( Stack* stack ) {
 
+    if (stack == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "stack data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #else
+            exit(NULL_POINTER);
+        #endif
+
+    }
+
     StackClear( stack );
 
     free( stack->memory );
     free( stack );
 
-}
-
-///
-/// \param stack
-/// \param stack1
-/// \param cmp
-/// \return
-uint32_t stackIsEqual(Stack * stack, Stack * stack1, int (*cmp)(void *,void*)){
-    if(stack->top < stack1->top) return -1;
-    if(stack->top > stack1->top)return  1;
-    else{
-        for(int i = 0; i<stack->top;i++){
-            if(cmp(stack->memory[i],stack1->memory[i]))
-                return 1;
-        }
-        return 0;
-    }
-}
-
-///
-/// \param stack
-/// \param item
-/// \param cmp
-/// \return
-uint32_t StackContains(Stack *stack, void *item,int (*cmp)(void *,void*)){
-    for(int i = 0; i<stack->top;i++){
-        if(cmp(stack->memory[i], item)==0)
-            return 1;
-    }
-    return 0;
 }
