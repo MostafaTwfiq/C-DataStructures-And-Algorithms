@@ -6,6 +6,13 @@ extern "C" {
 #endif
 
 
+
+/** @struct DLinkedListStack
+*  @brief This structure implements a basic generic DLinkedListStack.
+*  @var DLinkedListStack:: linkedList
+*  Member 'linkedList' is a pointer to the stack doubly linked list.
+*/
+
 typedef struct DLinkedListStack {
     struct DoublyLinkedList *linkedList;
 } DLinkedListStack;

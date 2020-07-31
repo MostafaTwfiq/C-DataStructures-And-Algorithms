@@ -3,7 +3,7 @@
 #include "LinkedListTest/LinkedListTest.h"
 #include "DoublyLinkedListTest/DoublyLinkedListTest.h"
 #include "StackTest/StackTest.h"
-
+#include "DLinkedListStackTest/DLinkedListStackTest.h"
 
 
 int main(void) {
@@ -13,6 +13,7 @@ int main(void) {
     linkedListUnitTest();
     doublyLinkedListUnitTest();
     stackUnitTest();
+    doublyLinkedListStackUnitTest();
     return 0;
 
 }
