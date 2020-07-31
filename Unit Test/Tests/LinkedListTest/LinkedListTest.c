@@ -533,6 +533,178 @@ void testLinkedListGetLast(CuTest *cuTest) {
 
 
 
+void testLinkedListGet(CuTest *cuTest) {
+    LinkedList *list = linkedListInitialization(free, compareIntPointersLLT);
+
+    linkedListGet(NULL, 0);
+    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    linkedListGet(list, 0);
+    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+
+    linkedListAddFrom1To10Values(list);
+
+    linkedListGet(list, 11);
+    CuAssertIntEquals(cuTest, OUT_OF_RANGE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    for (int i = 0; i < list->length; i++)
+        CuAssertIntEquals(cuTest, i + 1, *(int *) linkedListGet(list, i));
+
+
+    destroyLinkedList(list);
+
+}
+
+
+
+
+void testLinkedListGetLength(CuTest *cuTest) {
+    LinkedList *list = linkedListInitialization(free, compareIntPointersLLT);
+
+    linkedListGetLength(NULL);
+    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    CuAssertIntEquals(cuTest, 0, linkedListGetLength(list));
+
+
+    linkedListAddFrom1To10Values(list);
+
+    CuAssertIntEquals(cuTest, 10, linkedListGetLength(list));
+    linkedListDeleteFirst(list);
+
+    CuAssertIntEquals(cuTest, 9, linkedListGetLength(list));
+
+    destroyLinkedList(list);
+
+}
+
+
+
+
+
+
+
+void testLinkedListToArray(CuTest *cuTest) {
+    LinkedList *list = linkedListInitialization(free, compareIntPointersLLT);
+
+    linkedListToArray(NULL);
+    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    linkedListAddFrom1To10Values(list);
+
+    int **arr = (int **) linkedListToArray(list);
+
+    for (int i = 0; i < linkedListGetLength(list); i++)
+        CuAssertIntEquals(cuTest, i + 1, *(int *) arr[i]);
+
+
+    free(arr);
+    destroyLinkedList(list);
+
+}
+
+
+
+
+
+
+
+LinkedList *printingLinkedList;
+void printLinkedListFunLLT(const void *item) {
+    linkedListAddLast(printingLinkedList, generateIntPointerLLT(*(int *)item));
+}
+
+void testPrintLinkedList(CuTest *cuTest) {
+    LinkedList *list = linkedListInitialization(free, compareIntPointersLLT);
+    printingLinkedList = linkedListInitialization(free, compareIntPointersLLT);
+
+    printLinkedList(NULL, printLinkedListFunLLT);
+    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    printLinkedList(list, NULL);
+    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    linkedListAddFrom1To10Values(list);
+
+    printLinkedList(list, printLinkedListFunLLT);
+
+    for (int i = 0; i < linkedListGetLength(printingLinkedList); i++)
+        CuAssertIntEquals(cuTest, i + 1, *(int *) linkedListGet(printingLinkedList, i));
+
+
+    destroyLinkedList(printingLinkedList);
+    destroyLinkedList(list);
+
+}
+
+
+
+
+void testLinkedListIsEmpty(CuTest *cuTest) {
+    LinkedList *list = linkedListInitialization(free, compareIntPointersLLT);
+
+    linkedListIsEmpty(NULL);
+    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    CuAssertIntEquals(cuTest, 1, linkedListIsEmpty(list));
+
+    linkedListAddFirst(list, generateIntPointerLLT(1));
+
+    CuAssertIntEquals(cuTest, 0, linkedListIsEmpty(list));
+
+    destroyLinkedList(list);
+
+}
+
+
+
+
+
+
+void testClearLinkedList(CuTest *cuTest) {
+    LinkedList *list = linkedListInitialization(free, compareIntPointersLLT);
+
+    linkedListClear(NULL);
+    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    CuAssertIntEquals(cuTest, 0, linkedListGetLength(list));
+
+    linkedListAddFrom1To10Values(list);
+
+    CuAssertIntEquals(cuTest, 10, linkedListGetLength(list));
+
+    linkedListClear(list);
+
+    CuAssertIntEquals(cuTest, 0, linkedListGetLength(list));
+
+    destroyLinkedList(list);
+
+}
+
+
+
+
+
+
+void testDestroyLinkedList(CuTest *cuTest) {
+    LinkedList *list = linkedListInitialization(free, compareIntPointersLLT);
+
+    destroyLinkedList(NULL);
+    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    destroyLinkedList(list);
+
+}
+
+
+
+
+
+
+
+
+
 
 CuSuite *createLinkedListTestsSuite() {
 
@@ -555,6 +727,13 @@ CuSuite *createLinkedListTestsSuite() {
     SUITE_ADD_TEST(suite, testLinkedListGetItem);
     SUITE_ADD_TEST(suite, testLinkedListGetFirst);
     SUITE_ADD_TEST(suite, testLinkedListGetLast);
+    SUITE_ADD_TEST(suite, testLinkedListGet);
+    SUITE_ADD_TEST(suite, testLinkedListGetLength);
+    SUITE_ADD_TEST(suite, testLinkedListToArray);
+    SUITE_ADD_TEST(suite, testLinkedListIsEmpty);
+    SUITE_ADD_TEST(suite, testPrintLinkedList);
+    SUITE_ADD_TEST(suite, testClearLinkedList);
+    SUITE_ADD_TEST(suite, testDestroyLinkedList);
 
     return suite;
 
