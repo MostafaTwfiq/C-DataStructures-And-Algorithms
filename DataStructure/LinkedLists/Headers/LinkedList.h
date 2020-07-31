@@ -5,6 +5,20 @@
 extern "C" {
 #endif
 
+/** @struct LinkedList
+*  @brief This structure implements a basic generic LinkedList.
+*  @var LinkedList::head
+*  Member 'head' is a pointer to first node.
+*  @var LinkedList::tail
+*  Member 'tail' is as pointer to the end node.
+*  @var LinkedList::length
+*  Member 'length' holds the number of the nodes.
+*  @var LinkedList::freeFun
+*  Member 'freeFun' the freeing item function pointer
+* @var LinkedList::comparator
+* Member 'comparator' the items comparator function pointer
+*/
+
 typedef struct LinkedList {
     struct Node *head;
     struct Node *tail;
@@ -13,25 +27,22 @@ typedef struct LinkedList {
     int (*comparator)(const void *, const void *);
 } LinkedList;
 
+
 LinkedList *linkedListInitialization(void (*freeFun)(void *),  int (*comparator)(const void *, const void *));
 
 void linkedListAddFirst(LinkedList *linkedList, void *item);
-
 
 void linkedListAddLast(LinkedList *linkedList, void *item);
 
 void linkedListAddAtIndex(LinkedList *linkedList, int index, void *item);
 
-
 void linkedListAddAll(LinkedList *linkedList, void **items, int itemsLength);
 
 void linkedListDeleteFirst(LinkedList *linkedList);
 
-
 void *linkedListDeleteFirstWtoFr(LinkedList *linkedList);
 
 void linkedListDeleteLast(LinkedList *linkedList);
-
 
 void *linkedListDeleteLastWtoFr(LinkedList *linkedList);
 

@@ -640,7 +640,14 @@ int doublyLinkedListContains(DoublyLinkedList *linkedList, void *item) {
      	#endif
 
     } else if (linkedList->comparator == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "comparator function", "doubly linked list data structure");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function", "doubly linked list data structure");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return -1;
+        #else
+            exit(INVALID_ARG);
+        #endif
+
     }
 
     Node *currentNode = linkedList->head;
