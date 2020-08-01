@@ -29,8 +29,8 @@ add_executable(C_DataStructures #main.c
         DataStructure/Queues/Sources/LinkedListQueue.c
         DataStructure/Queues/Headers/LinkedListQueue.h
 
-        DataStructure/Queues/Sources/ArrayQueue.c
-        DataStructure/Queues/Headers/ArrayQueue.h
+        DataStructure/Queues/Sources/Queue.c
+        DataStructure/Queues/Headers/Queue.h
 
         DataStructure/Trees/Sources/BinaryTree.c
         DataStructure/Trees/Headers/BinaryTree.h
@@ -132,4 +132,4 @@ add_executable(C_DataStructures #main.c
         "Unit Test/Tests/ListsTest/VectorTest/VectorTest.c"
         "Unit Test/Tests/ListsTest/VectorTest/VectorTest.h"
         "Unit Test/Tests/Tests.c"
-        "Unit Test/Tests/ListsTest/ArrayListTest/ArrayListTest.c" "Unit Test/Tests/ListsTest/ArrayListTest/ArrayListTest.h" "Unit Test/Tests/LinkedListsTest/LinkedListTest/LinkedListTest.c" "Unit Test/Tests/LinkedListsTest/LinkedListTest/LinkedListTest.h" "Unit Test/Tests/LinkedListsTest/DoublyLinkedListTest/DoublyLinkedListTest.c" "Unit Test/Tests/LinkedListsTest/DoublyLinkedListTest/DoublyLinkedListTest.h" "Unit Test/Tests/StacksTest/StackTest/StackTest.c" "Unit Test/Tests/StacksTest/StackTest/StackTest.h" "Unit Test/Tests/StacksTest/DLinkedListStackTest/DLinkedListStackTest.c" "Unit Test/Tests/StacksTest/DLinkedListStackTest/DLinkedListStackTest.h")
+        "Unit Test/Tests/ListsTest/ArrayListTest/ArrayListTest.c" "Unit Test/Tests/ListsTest/ArrayListTest/ArrayListTest.h" "Unit Test/Tests/LinkedListsTest/LinkedListTest/LinkedListTest.c" "Unit Test/Tests/LinkedListsTest/LinkedListTest/LinkedListTest.h" "Unit Test/Tests/LinkedListsTest/DoublyLinkedListTest/DoublyLinkedListTest.c" "Unit Test/Tests/LinkedListsTest/DoublyLinkedListTest/DoublyLinkedListTest.h" "Unit Test/Tests/StacksTest/StackTest/StackTest.c" "Unit Test/Tests/StacksTest/StackTest/StackTest.h" "Unit Test/Tests/StacksTest/DLinkedListStackTest/DLinkedListStackTest.c" "Unit Test/Tests/StacksTest/DLinkedListStackTest/DLinkedListStackTest.h" "Unit Test/Tests/QueuesTest/QueueTest/QueueTest.c" "Unit Test/Tests/QueuesTest/QueueTest/QueueTest.h")

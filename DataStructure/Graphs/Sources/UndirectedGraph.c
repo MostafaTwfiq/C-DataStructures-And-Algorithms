@@ -2,7 +2,7 @@
 #include "../../Tables/Headers/HashMap.h"
 #include "../../Tables/Headers/HashSet.h"
 #include "../../Stacks/Headers/Stack.h"
-#include "../../Queues/Headers/ArrayQueue.h"
+#include "../../Queues/Headers/Queue.h"
 #include "../../Queues/Headers/PriorityQueue.h"
 #include "../../Lists/Headers/ArrayList.h"
 #include "../../../System/Utils.h"
@@ -962,17 +962,17 @@ void UDGraphBreadthFirstTraversal(UndirectedGraph *graph, void *startVal, void (
     }
 
     UDGraphNode *startNode = hashMapGet(graph->nodes, startVal);
-    ArrayQueue *nodesQueue = arrayQueueInitialization(UDGraphNodeFreeFun);
+    Queue *nodesQueue = queueInitialization(UDGraphNodeFreeFun);
     HashSet *visitedNodes = hashSetInitialization(UDGFreeInt, UDGCompInt, intHashFunUDirG);
 
-    arrayQueueEnqueue(nodesQueue, startNode);
+    queueEnqueue(nodesQueue, startNode);
     int *startNodeValAddress = (int *) malloc(sizeof(int));
     *startNodeValAddress = (int) startNode->value;
     hashSetInsert(visitedNodes, startNodeValAddress);
 
 
-    while (!arrayQueueIsEmpty(nodesQueue)) {
-        UDGraphNode *tempNode = arrayQueueDequeue(nodesQueue);
+    while (!queueIsEmpty(nodesQueue)) {
+        UDGraphNode *tempNode = queueDequeue(nodesQueue);
         printFun(tempNode->value);
 
         for (int i = 0; i < arrayListGetLength(tempNode->adjacentNodes); i++) {
@@ -980,7 +980,7 @@ void UDGraphBreadthFirstTraversal(UndirectedGraph *graph, void *startVal, void (
             int *adjNodeValAddress = (int *) malloc(sizeof(int));
             *adjNodeValAddress = (int) adjNode->value;
             if (!hashSetContains(visitedNodes, adjNodeValAddress)) {
-                arrayQueueEnqueue(nodesQueue, adjNode);
+                queueEnqueue(nodesQueue, adjNode);
                 hashSetInsert(visitedNodes, adjNodeValAddress);
             } else
                 free(adjNodeValAddress);
@@ -989,7 +989,7 @@ void UDGraphBreadthFirstTraversal(UndirectedGraph *graph, void *startVal, void (
     }
 
 
-    arrayQueueDestroy(nodesQueue);
+    queueDestroy(nodesQueue);
     destroyHashSet(visitedNodes);
 
 }

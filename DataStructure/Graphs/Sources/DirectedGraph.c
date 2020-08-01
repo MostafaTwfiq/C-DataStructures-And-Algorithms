@@ -3,7 +3,7 @@
 #include "../../Tables/Headers/HashMap.h"
 #include "../../Tables/Headers/HashSet.h"
 #include "../../Stacks/Headers/Stack.h"
-#include "../../Queues/Headers/ArrayQueue.h"
+#include "../../Queues/Headers/Queue.h"
 #include "../../../System/Utils.h"
 
 
@@ -857,8 +857,8 @@ void dirGraphBreadthFirstTraversal(DirectedGraph *graph, void *startVal, void (*
         return;
 
     HashSet *visitedNodes = hashSetInitialization(freeInt, compInt, intHashFunDirG);
-    ArrayQueue *nodesQueue = arrayQueueInitialization(freeDGraphNode);
-    arrayQueueEnqueue(nodesQueue, startNode);
+    Queue *nodesQueue = queueInitialization(freeDGraphNode);
+    queueEnqueue(nodesQueue, startNode);
 
     int *startNodeValAddress = (int *) malloc(sizeof(int));
     *startNodeValAddress = (int) startNode->value;
@@ -866,8 +866,8 @@ void dirGraphBreadthFirstTraversal(DirectedGraph *graph, void *startVal, void (*
 
     DirGraphNode *currentNode;
 
-    while (!arrayQueueIsEmpty(nodesQueue)) {
-        currentNode = arrayQueueDequeue(nodesQueue);
+    while (!queueIsEmpty(nodesQueue)) {
+        currentNode = queueDequeue(nodesQueue);
         printVal(currentNode->value);
 
         for (int i = 0; i < arrayListGetLength(currentNode->adjacentNodes); i++) {
@@ -875,7 +875,7 @@ void dirGraphBreadthFirstTraversal(DirectedGraph *graph, void *startVal, void (*
             int *adjNodeValAddress = (int *) malloc(sizeof(int));
             *adjNodeValAddress = (int) adjNode->value;
             if (!hashSetContains(visitedNodes, adjNodeValAddress)) {
-                arrayQueueEnqueue(nodesQueue, adjNode);
+                queueEnqueue(nodesQueue, adjNode);
                 hashSetInsert(visitedNodes, adjNodeValAddress);
             } else
                 free(adjNodeValAddress);
@@ -886,7 +886,7 @@ void dirGraphBreadthFirstTraversal(DirectedGraph *graph, void *startVal, void (*
     }
 
     destroyHashSet(visitedNodes);
-    arrayQueueDestroy(nodesQueue);
+    queueDestroy(nodesQueue);
 
 }
 
