@@ -110,7 +110,7 @@ void queueEnqueue(Queue* arrayQueue, void *data) {
 
         }
 
-        memcpy(tempArr, arrayQueue->memory + sizeof(void *) * arrayQueue->front,
+        memcpy(tempArr, arrayQueue->memory + arrayQueue->front,
                 sizeof(void *) * (arrayQueue->rear - arrayQueue->front) );
 
         free(arrayQueue->memory);

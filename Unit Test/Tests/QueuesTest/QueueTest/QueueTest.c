@@ -428,7 +428,7 @@ QueueTestStruct *generateQueueTestStruct(int value, char *str) {
 void generalQueueTest(CuTest *cuTest) {
 
     Queue *queue = queueInitialization(freeQueueTestStruct);
-    char numbersStr[10][6] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"};
+    char numbersStr[14][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"};
 
 
     CuAssertIntEquals(cuTest, 0, queueGetLength(queue));
@@ -444,21 +444,23 @@ void generalQueueTest(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, 1, ((QueueTestStruct *) queuePeek(queue))->iData);
     CuAssertStrEquals(cuTest, "one", ((QueueTestStruct *) queuePeek(queue))->cData);
 
-    QueueTestStruct **structArr = (QueueTestStruct **) malloc(sizeof(QueueTestStruct *) * 3);
-    for (int i = 0; i < 3; i++)
+    free(queueDequeue(queue));
+
+    QueueTestStruct **structArr = (QueueTestStruct **) malloc(sizeof(QueueTestStruct *) * 11);
+    for (int i = 0; i < 11; i++)
         structArr[i] = generateQueueTestStruct(i + 4, numbersStr[i + 3]);
 
-    queueEnqueueAll(queue, (void **) structArr, 3);
+    queueEnqueueAll(queue, (void **) structArr, 11);
 
-    CuAssertIntEquals(cuTest, 6, queueGetLength(queue));
+    CuAssertIntEquals(cuTest, 13, queueGetLength(queue));
 
     QueueTestStruct **queueArr = (QueueTestStruct **) queueToArray(queue);
     for (int i = 0; i < queueGetLength(queue); i++) {
-        CuAssertIntEquals(cuTest, i + 1, queueArr[i]->iData);
-        CuAssertStrEquals(cuTest, numbersStr[i], queueArr[i]->cData);
+        CuAssertIntEquals(cuTest, i + 2, queueArr[i]->iData);
+        CuAssertStrEquals(cuTest, numbersStr[i + 1], queueArr[i]->cData);
     }
 
-    int currentValue = 0;
+    int currentValue = 1;
     while (!queueIsEmpty(queue)) {
         currentValue += 1;
         QueueTestStruct *currentItem = queueDequeue(queue);

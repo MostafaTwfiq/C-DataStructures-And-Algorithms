@@ -114,7 +114,8 @@ void pQueueEnqueue(PriorityQueue *queue, void *item) {
 
         }
 
-        if (!memcpy(tempArr, queue->arr + sizeof(void *) * queue->fPointer, sizeof(void *) * (queue->count - queue->fPointer))) {
+        //TODO: the memory it could be wrong
+        if (!memcpy(tempArr, queue->arr + queue->fPointer, sizeof(void *) * (queue->count - queue->fPointer))) {
             fprintf(stderr, FAILED_COPY_MESSAGE, "new queue array", "priority queue data structure");
             #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_COPY;
