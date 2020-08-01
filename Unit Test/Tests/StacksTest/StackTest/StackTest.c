@@ -472,7 +472,7 @@ StackTestStruct *generateStackTestStruct(int value, char *str) {
 void generalStackTest(CuTest *cuTest) {
 
     Stack *stack = stackInitialization(freeStackTestStruct);
-    char numbersStr[10][6] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"};
+    char numbersStr[14][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"};
 
 
     CuAssertIntEquals(cuTest, 0, stackGetLength(stack));
@@ -488,13 +488,13 @@ void generalStackTest(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, 3, ((StackTestStruct *) stackPeek(stack))->iData);
     CuAssertStrEquals(cuTest, "three", ((StackTestStruct *) stackPeek(stack))->cData);
 
-    StackTestStruct **structArr = (StackTestStruct **) malloc(sizeof(StackTestStruct *) * 3);
-    for (int i = 0; i < 3; i++)
+    StackTestStruct **structArr = (StackTestStruct **) malloc(sizeof(StackTestStruct *) * 11);
+    for (int i = 0; i < 11; i++)
         structArr[i] = generateStackTestStruct(i + 4, numbersStr[i + 3]);
 
-    stackAddAll(stack, (void **) structArr, 3);
+    stackAddAll(stack, (void **) structArr, 11);
 
-    CuAssertIntEquals(cuTest, 6, stackGetLength(stack));
+    CuAssertIntEquals(cuTest, 14, stackGetLength(stack));
 
     StackTestStruct **stackArr = (StackTestStruct **) stackToArray(stack);
     for (int i = 0; i < stackGetLength(stack); i++) {
