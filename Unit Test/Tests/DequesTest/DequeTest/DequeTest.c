@@ -464,7 +464,7 @@ void generalDequeTest(CuTest *cuTest) {
     dequeInsertFront(deque, generateDequeTestStruct(2, numbersStr[1]));
     dequeInsertFront(deque, generateDequeTestStruct(1, numbersStr[0]));
 
-    CuAssertIntEquals(cuTest, 13, dequeGetLength(deque));
+        CuAssertIntEquals(cuTest, 14, dequeGetLength(deque));
 
     DequeTestStruct **queueArr = (DequeTestStruct **) dequeToArray(deque);
     for (int i = 0; i < dequeGetLength(deque); i++) {
@@ -484,9 +484,11 @@ void generalDequeTest(CuTest *cuTest) {
         CuAssertIntEquals(cuTest, currentValue, frontItem->iData);
         CuAssertStrEquals(cuTest, numbersStr[currentValue - 1], frontItem->cData);
 
-        CuAssertIntEquals(cuTest, currentValue, frontItem->iData);
-        CuAssertStrEquals(cuTest, numbersStr[currentValue - 1], frontItem->cData);
+        CuAssertIntEquals(cuTest, 15 - currentValue, rearItem->iData);
+        CuAssertStrEquals(cuTest, numbersStr[15 - currentValue - 1], rearItem->cData);
 
+        freeDequeTestStruct(frontItem);
+        freeDequeTestStruct(rearItem);
 
     }
 
@@ -520,6 +522,8 @@ CuSuite *createDequeTestsSuite() {
     SUITE_ADD_TEST(suite, testDequeIsEmpty);
     SUITE_ADD_TEST(suite, testClearDeque);
     SUITE_ADD_TEST(suite, testDestroyDeque);
+
+    SUITE_ADD_TEST(suite, generalDequeTest);
 
     return suite;
 

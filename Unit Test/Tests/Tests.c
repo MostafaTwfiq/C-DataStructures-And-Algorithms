@@ -23,7 +23,6 @@ int main(void) {
     stackQueueUnitTest();
     linkedListQueueUnitTest();
     priorityQueueUnitTest();
-
     dequeUnitTest();
 
     return 0;
