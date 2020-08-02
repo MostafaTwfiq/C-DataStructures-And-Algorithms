@@ -1,6 +1,27 @@
 #ifndef C_DATASTRUCTURES_MATRIX_H
 #define C_DATASTRUCTURES_MATRIX_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+
+/** @struct Matrix
+*  @brief This structure implements a basic generic Matrix.
+*  @var Matrix::rows
+*  Member 'rows' is a pointer to the the matrix rows (arrays).
+*  @var Matrix::rowsNum
+*  Member 'rowsNum' holds the current number of rows.
+*  @var Matrix::rowsArrLength
+*  Member 'rowsArrLength' holds the current allocated rows number.
+*  @var Matrix::colNum
+*  Member 'colNum' holds the current number of columns
+*  @var Matrix:: 'freeFun'
+*  Member 'freeFun' holds pointer to the function responsible for freeing the elements stored in the matrix.
+*  @var Matrix:: 'comparator'
+*  Member 'comparator' holds pointer to the function responsible for comparing the elements stored in the matrix.
+*/
 
 typedef struct Matrix {
 
@@ -68,5 +89,9 @@ void **matrixToArray(Matrix *matrix);
 void clearMatrix(Matrix *matrix);
 
 void destroyMatrix(Matrix *matrix);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //C_DATASTRUCTURES_MATRIX_H

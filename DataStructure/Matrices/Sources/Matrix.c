@@ -1,6 +1,6 @@
 #include "../Headers/Matrix.h"
 #include "../../../System/Utils.h"
-
+#include "../../../Unit Test/CuTest/CuTest.h"
 
 
 
@@ -19,24 +19,27 @@ Matrix *matrixInitialization(int rowsNum, int colNum,
         void (*freeFun)(void *), int (*comparator)(const void *, const void *)) {
 
     if (rowsNum <= 0 || colNum <= 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "number of rows or the number of columns", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return NULL;
         #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "number of rows or the number of columns", "matrix data structure");
             exit(NULL_POINTER);
         #endif
     } else if (freeFun == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "freeing function pointer", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return NULL;
         #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "freeing function pointer", "matrix data structure");
             exit(INVALID_ARG);
         #endif
     } else if (comparator == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return NULL;
         #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "matrix data structure");
             exit(INVALID_ARG);
         #endif
     }
@@ -44,10 +47,11 @@ Matrix *matrixInitialization(int rowsNum, int colNum,
 
     Matrix *matrix = (Matrix *) malloc(sizeof(Matrix));
     if (matrix == NULL) {
-        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "matrix pointer", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+            return NULL;
         #else
+            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "matrix pointer", "matrix data structure");
             exit(FAILED_ALLOCATION);
         #endif
     }
@@ -61,10 +65,11 @@ Matrix *matrixInitialization(int rowsNum, int colNum,
 
     matrix->rows = (void ***) malloc(sizeof(void **) * rowsNum);
     if (matrix == NULL) {
-        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "matrix rows", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+            return NULL;
         #else
+            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "matrix rows", "matrix data structure");
             exit(FAILED_ALLOCATION);
         #endif
 
@@ -74,10 +79,11 @@ Matrix *matrixInitialization(int rowsNum, int colNum,
     for (int i = 0; i < rowsNum; i++) {
         matrix->rows[i] = (void **) calloc(sizeof(void *), colNum);
         if (matrix == NULL) {
-            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "matrix columns", "matrix data structure");
             #ifdef CU_TEST_H
                 DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+                return NULL;
             #else
+                fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "matrix columns", "matrix data structure");
                 exit(FAILED_ALLOCATION);
             #endif
 
@@ -107,25 +113,28 @@ Matrix *matrixInitialization(int rowsNum, int colNum,
 void matrixInsert(Matrix *matrix, void *item, int rowIndex, int colIndex) {
 
     if (matrix == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
         #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
             exit(NULL_POINTER);
         #endif
 
     } else if (item == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "item", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "item", "matrix data structure");
             exit(INVALID_ARG);
         #endif
     } else if (rowIndex < 0 || rowIndex >= matrix->rowsNum || colIndex < 0 || colIndex >= matrix->colNum) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "row index or the column index", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "row index or the column index", "matrix data structure");
             exit(INVALID_ARG);
         #endif
     }
@@ -159,18 +168,20 @@ void matrixInsert(Matrix *matrix, void *item, int rowIndex, int colIndex) {
 void matrixRemove(Matrix *matrix, int rowIndex, int colIndex) {
 
     if (matrix == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
         #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
             exit(NULL_POINTER);
         #endif
 
     } else if (rowIndex < 0 || rowIndex >= matrix->rowsNum || colIndex < 0 || colIndex >= matrix->colNum) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "row index or the column index", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "row index or the column index", "matrix data structure");
             exit(INVALID_ARG);
         #endif
     }
@@ -202,18 +213,20 @@ void matrixRemove(Matrix *matrix, int rowIndex, int colIndex) {
 void matrixRemoveWtoFr(Matrix *matrix, int rowIndex, int colIndex) {
 
     if (matrix == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
         #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
             exit(NULL_POINTER);
         #endif
 
     } else if (rowIndex < 0 || rowIndex >= matrix->rowsNum || colIndex < 0 || colIndex >= matrix->colNum) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "row index or the column index", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "row index or the column index", "matrix data structure");
             exit(INVALID_ARG);
         #endif
     }
@@ -242,18 +255,20 @@ void matrixRemoveWtoFr(Matrix *matrix, int rowIndex, int colIndex) {
 void *matrixGet(Matrix *matrix, int rowIndex, int colIndex) {
 
     if (matrix == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return NULL;
         #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
             exit(NULL_POINTER);
         #endif
 
     } else if (rowIndex < 0 || rowIndex >= matrix->rowsNum || colIndex < 0 || colIndex >= matrix->colNum) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "row index or the column index", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return NULL;
         #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "row index or the column index", "matrix data structure");
             exit(INVALID_ARG);
         #endif
     }
@@ -283,18 +298,20 @@ void *matrixGet(Matrix *matrix, int rowIndex, int colIndex) {
 int matrixContains(Matrix *matrix, void *item) {
 
     if (matrix == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return -1;
         #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
             exit(NULL_POINTER);
         #endif
 
     } else if (item == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "item", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return -1;
         #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "item", "matrix data structure");
             exit(INVALID_ARG);
         #endif
     }
@@ -339,18 +356,20 @@ int matrixContains(Matrix *matrix, void *item) {
 MatrixIndex *matrixGetIndex(Matrix *matrix, void *item) {
 
     if (matrix == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return NULL;
         #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
             exit(NULL_POINTER);
         #endif
 
     } else if (item == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "item", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return NULL;
         #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "item", "matrix data structure");
             exit(INVALID_ARG);
         #endif
     }
@@ -384,16 +403,18 @@ MatrixIndex *matrixGetIndex(Matrix *matrix, void *item) {
 
 
 /** This function will add a new row at the end of the matrix.
+ *
  * @param matrix the matrix pointer
  */
 
 void matrixAddRow(Matrix *matrix) {
 
     if (matrix == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
         #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
             exit(NULL_POINTER);
         #endif
 
@@ -403,10 +424,11 @@ void matrixAddRow(Matrix *matrix) {
 
         matrix->rows = (void ***) realloc(matrix->rows, sizeof(void **) * (matrix->rowsNum + 1) );
         if (matrix == NULL) {
-            fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "matrix rows", "matrix data structure");
             #ifdef CU_TEST_H
                 DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_REALLOCATION;
+                return;
             #else
+                fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "matrix rows", "matrix data structure");
                 exit(FAILED_REALLOCATION);
             #endif
         }
@@ -416,6 +438,15 @@ void matrixAddRow(Matrix *matrix) {
 
 
     matrix->rows[matrix->rowsNum] = (void **) calloc(sizeof(void *), matrix->colNum);
+    if (matrix->rows[matrix->rowsNum] == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+            return;
+        #else
+            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new matrix row", "matrix data structure");
+            exit(FAILED_ALLOCATION);
+        #endif
+    }
 
     matrix->rowsNum++;
 
@@ -428,6 +459,7 @@ void matrixAddRow(Matrix *matrix) {
 
 
 /** This function will add a new row at the provided index.
+ *
  * @param matrix the matrix pointer
  * @param index the index of the new row
  */
@@ -435,18 +467,20 @@ void matrixAddRow(Matrix *matrix) {
 void matrixAddRowAtIndex(Matrix *matrix, int index) {
 
     if (matrix == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
         #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
             exit(NULL_POINTER);
         #endif
 
     } else if (index < 0 || index >= matrix->rowsNum) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "row index", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "row index", "matrix data structure");
             exit(INVALID_ARG);
         #endif
     }
@@ -456,10 +490,11 @@ void matrixAddRowAtIndex(Matrix *matrix, int index) {
 
         matrix->rows = (void ***) realloc(matrix->rows, sizeof(void **) * (matrix->rowsNum + 1) );
         if (matrix == NULL) {
-            fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "matrix rows", "matrix data structure");
             #ifdef CU_TEST_H
                 DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_REALLOCATION;
+                return;
             #else
+                fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "matrix rows", "matrix data structure");
                 exit(FAILED_REALLOCATION);
             #endif
         }
@@ -484,16 +519,18 @@ void matrixAddRowAtIndex(Matrix *matrix, int index) {
 
 
 /** This function will add a new column at the end of the matrix.
+ *
  * @param matrix the matrix pointer
  */
 
 void matrixAddCol(Matrix *matrix) {
 
     if (matrix == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
         #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
             exit(NULL_POINTER);
         #endif
 
@@ -502,10 +539,11 @@ void matrixAddCol(Matrix *matrix) {
     for (int i = 0; i < matrix->rowsNum; i++) {
         matrix->rows[i] = (void **) realloc(matrix->rows[i], sizeof(void *) * (matrix->colNum + 1));
         if (matrix == NULL) {
-            fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "matrix column", "matrix data structure");
             #ifdef CU_TEST_H
                 DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_REALLOCATION;
+                return;
             #else
+                fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "matrix column", "matrix data structure");
                 exit(FAILED_REALLOCATION);
             #endif
         }
@@ -525,6 +563,7 @@ void matrixAddCol(Matrix *matrix) {
 
 
 /** This function will add a new column at the provided index.
+ *
  * @param matrix the matrix pointer
  * @param index the index of the new column
  */
@@ -532,10 +571,11 @@ void matrixAddCol(Matrix *matrix) {
 void matrixAddColAtIndex(Matrix *matrix, int index) {
 
     if (matrix == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
         #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
             exit(NULL_POINTER);
         #endif
 
@@ -544,10 +584,11 @@ void matrixAddColAtIndex(Matrix *matrix, int index) {
     for (int i = 0; i < matrix->rowsNum; i++) {
         matrix->rows[i] = (void **) realloc(matrix->rows[i], sizeof(void *) * (matrix->colNum + 1));
         if (matrix == NULL) {
-            fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "matrix column", "matrix data structure");
             #ifdef CU_TEST_H
                 DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_REALLOCATION;
+                return;
             #else
+                fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "matrix column", "matrix data structure");
                 exit(FAILED_REALLOCATION);
             #endif
         }
@@ -581,18 +622,20 @@ void matrixAddColAtIndex(Matrix *matrix, int index) {
 void matrixRemoveRow(Matrix *matrix, int rowIndex) {
 
     if (matrix == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
         #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
             exit(NULL_POINTER);
         #endif
 
     } else if (rowIndex < 0 || rowIndex >= matrix->rowsNum) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "row index", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "row index", "matrix data structure");
             exit(INVALID_ARG);
         #endif
     }
@@ -629,18 +672,20 @@ void matrixRemoveRow(Matrix *matrix, int rowIndex) {
 void matrixRemoveRowWtoFr(Matrix *matrix, int rowIndex) {
 
     if (matrix == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
         #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
             exit(NULL_POINTER);
         #endif
 
     } else if (rowIndex < 0 || rowIndex >= matrix->rowsNum) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "row index", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "row index", "matrix data structure");
             exit(INVALID_ARG);
         #endif
     }
@@ -679,18 +724,20 @@ void matrixRemoveRowWtoFr(Matrix *matrix, int rowIndex) {
 void matrixRemoveCol(Matrix *matrix, int colIndex) {
 
     if (matrix == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
         #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
             exit(NULL_POINTER);
         #endif
 
     } else if (colIndex < 0 || colIndex >= matrix->colNum) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "column index", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "column index", "matrix data structure");
             exit(INVALID_ARG);
         #endif
     }
@@ -730,18 +777,20 @@ void matrixRemoveCol(Matrix *matrix, int colIndex) {
 void matrixRemoveColWtoFr(Matrix *matrix, int colIndex) {
 
     if (matrix == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
         #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
             exit(NULL_POINTER);
         #endif
 
     } else if (colIndex < 0 || colIndex >= matrix->colNum) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "column index", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "column index", "matrix data structure");
             exit(INVALID_ARG);
         #endif
     }
@@ -783,18 +832,20 @@ void matrixRemoveColWtoFr(Matrix *matrix, int colIndex) {
 void printMatrix(Matrix *matrix, void (*printFun)(void *)) {
 
     if (matrix == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
         #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
             exit(NULL_POINTER);
         #endif
 
     } else if (printFun == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "printing function pointer", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "printing function pointer", "matrix data structure");
             exit(INVALID_ARG);
         #endif
     }
@@ -824,6 +875,7 @@ void printMatrix(Matrix *matrix, void (*printFun)(void *)) {
 
 
 /** This function will return the number of rows in the matrix.
+ *
  * @param matrix the matrix pointer
  * @return it will return the number of rows in the matrix
  */
@@ -831,16 +883,18 @@ void printMatrix(Matrix *matrix, void (*printFun)(void *)) {
 int matrixGetNumberOfRows(Matrix *matrix) {
 
     if (matrix == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return -1;
         #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
             exit(NULL_POINTER);
         #endif
 
     }
 
     return matrix->rowsNum;
+
 }
 
 
@@ -850,6 +904,7 @@ int matrixGetNumberOfRows(Matrix *matrix) {
 
 
 /** This function will return the number of columns in the matrix.
+ *
  * @param matrix the matrix pointer
  * @return it will return the number of columns in the matrix
  */
@@ -857,22 +912,25 @@ int matrixGetNumberOfRows(Matrix *matrix) {
 int matrixGetNumberOfCols(Matrix *matrix) {
 
     if (matrix == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return -1;
         #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
             exit(NULL_POINTER);
         #endif
 
     }
 
     return matrix->colNum;
+
 }
 
 
 
 
 /** This function will return the number of items in the matrix.
+ *
  * @param matrix the matrix pointer
  * @return it will return the number of items in the matrix
  */
@@ -880,10 +938,11 @@ int matrixGetNumberOfCols(Matrix *matrix) {
 int matrixGetSize(Matrix *matrix) {
 
     if (matrix == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return -1;
         #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
             exit(NULL_POINTER);
         #endif
 
@@ -899,6 +958,9 @@ int matrixGetSize(Matrix *matrix) {
 
 
 /** This function will return a double void array that contains the matrix items.
+ *
+ * Note: the returned array will contains the items in the same order of every row sequentially.
+ *
  * @param matrix the matrix pointer
  * @return it will return an array that contains the matrix items
  */
@@ -906,10 +968,11 @@ int matrixGetSize(Matrix *matrix) {
 void **matrixToArray(Matrix *matrix) {
 
     if (matrix == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return NULL;
         #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
             exit(NULL_POINTER);
         #endif
 
@@ -918,10 +981,11 @@ void **matrixToArray(Matrix *matrix) {
 
     void **arr = (void **) malloc(sizeof(void *) * matrixGetSize(matrix));
     if (arr == NULL) {
-        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "array pointer", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+            return NULL;
         #else
+            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "array pointer", "matrix data structure");
             exit(FAILED_ALLOCATION);
         #endif
     }
@@ -958,10 +1022,11 @@ void **matrixToArray(Matrix *matrix) {
 void clearMatrix(Matrix *matrix) {
 
     if (matrix == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
         #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
             exit(NULL_POINTER);
         #endif
 
@@ -988,10 +1053,22 @@ void clearMatrix(Matrix *matrix) {
 
 
 /** This function will destroy and free the matrix with all it's items.
+ *
  * @param matrix the matrix pointer
  */
 
 void destroyMatrix(Matrix *matrix) {
+
+    if (matrix == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
+            exit(NULL_POINTER);
+        #endif
+
+    }
 
     clearMatrix(matrix);
 
