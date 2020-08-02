@@ -509,6 +509,9 @@ void generalDLStackTest(CuTest *cuTest) {
         DLStackTestStruct *currentItem = dlStackPop(dlStack);
         CuAssertIntEquals(cuTest, dlStackGetLength(dlStack) + 1, currentItem->iData);
         CuAssertStrEquals(cuTest, numbersStr[dlStackGetLength(dlStack)], currentItem->cData);
+
+        free(currentItem);
+
     }
 
 

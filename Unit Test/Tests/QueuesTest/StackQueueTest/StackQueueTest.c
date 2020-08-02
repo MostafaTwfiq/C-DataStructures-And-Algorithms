@@ -431,6 +431,9 @@ void generalsQueueTest(CuTest *cuTest) {
         SQueueTestStruct *currentItem = sQueueDequeue(sQueue);
         CuAssertIntEquals(cuTest, currentValue, currentItem->iData);
         CuAssertStrEquals(cuTest, numbersStr[currentValue - 1], currentItem->cData);
+
+        free(currentItem);
+
     }
 
 

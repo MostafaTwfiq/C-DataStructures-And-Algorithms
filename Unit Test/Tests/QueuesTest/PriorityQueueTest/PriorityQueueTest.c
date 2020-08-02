@@ -430,6 +430,9 @@ void generalPriorityQueueTest(CuTest *cuTest) {
         PQueueTestStruct *currentItem = pQueueDequeue(pQueue);
         CuAssertIntEquals(cuTest, currentValue, currentItem->iData);
         CuAssertStrEquals(cuTest, numbersStr[currentValue - 1], currentItem->cData);
+
+        free(currentItem);
+
     }
 
 

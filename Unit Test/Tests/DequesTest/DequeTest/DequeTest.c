@@ -394,6 +394,114 @@ void testDestroyDeque(CuTest *cuTest) {
 
 
 
+
+
+typedef struct DequeTestStruct {
+
+    int iData;
+    char *cData;
+
+} DequeTestStruct;
+
+
+
+void freeDequeTestStruct(void *item) {
+    DequeTestStruct *d = (DequeTestStruct *) item;
+    free(d->cData);
+    free(d);
+}
+
+
+int dequeTestStructComp(const void *item1, const void *item2) {
+    DequeTestStruct *d1 = (DequeTestStruct *) item1;
+    DequeTestStruct *d2 = (DequeTestStruct *) item2;
+
+    int iDataFlag = d1->iData == d2->iData;
+    int cDataFlag = strcmp(d1->cData, d2->cData);
+
+    return !iDataFlag || cDataFlag;
+
+}
+
+
+
+DequeTestStruct *generateDequeTestStruct(int value, char *str) {
+
+    DequeTestStruct *d = (DequeTestStruct *) malloc(sizeof(DequeTestStruct));
+    d->cData = (char *) malloc(sizeof(char ) * (strlen(str) + 1) );
+    strcpy(d->cData, str);
+
+    d->iData = value;
+
+    return d;
+
+}
+
+
+
+
+void generalDequeTest(CuTest *cuTest) {
+
+    Deque *deque = dequeInitialization(freeDequeTestStruct);
+    char numbersStr[14][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"};
+
+
+    CuAssertIntEquals(cuTest, 0, dequeGetLength(deque));
+    CuAssertIntEquals(cuTest, 1, dequeIsEmpty(deque));
+
+    dequeInsertFront(deque, generateDequeTestStruct(7, numbersStr[6]));
+    dequeInsertRear(deque, generateDequeTestStruct(8, numbersStr[7]));
+    dequeInsertRear(deque, generateDequeTestStruct(9, numbersStr[8]));
+    dequeInsertRear(deque, generateDequeTestStruct(10, numbersStr[9]));
+    dequeInsertRear(deque, generateDequeTestStruct(11, numbersStr[10]));
+    dequeInsertRear(deque, generateDequeTestStruct(12, numbersStr[11]));
+    dequeInsertRear(deque, generateDequeTestStruct(13, numbersStr[12]));
+    dequeInsertRear(deque, generateDequeTestStruct(14, numbersStr[13]));
+    dequeInsertFront(deque, generateDequeTestStruct(6, numbersStr[5]));
+    dequeInsertFront(deque, generateDequeTestStruct(5, numbersStr[4]));
+    dequeInsertFront(deque, generateDequeTestStruct(4, numbersStr[3]));
+    dequeInsertFront(deque, generateDequeTestStruct(3, numbersStr[2]));
+    dequeInsertFront(deque, generateDequeTestStruct(2, numbersStr[1]));
+    dequeInsertFront(deque, generateDequeTestStruct(1, numbersStr[0]));
+
+    CuAssertIntEquals(cuTest, 13, dequeGetLength(deque));
+
+    DequeTestStruct **queueArr = (DequeTestStruct **) dequeToArray(deque);
+    for (int i = 0; i < dequeGetLength(deque); i++) {
+        CuAssertIntEquals(cuTest, i + 1, queueArr[i]->iData);
+        CuAssertStrEquals(cuTest, numbersStr[i], queueArr[i]->cData);
+    }
+
+    CuAssertIntEquals(cuTest, 1, ((DequeTestStruct *) dequePeekFront(deque))->iData);
+    CuAssertIntEquals(cuTest, 14, ((DequeTestStruct *) dequePeekRear(deque))->iData);
+
+    int currentValue = 0;
+    while (!dequeIsEmpty(deque)) {
+        currentValue += 1;
+        DequeTestStruct *frontItem = dequeGetFront(deque);
+        DequeTestStruct *rearItem = dequeGetRear(deque);
+
+        CuAssertIntEquals(cuTest, currentValue, frontItem->iData);
+        CuAssertStrEquals(cuTest, numbersStr[currentValue - 1], frontItem->cData);
+
+        CuAssertIntEquals(cuTest, currentValue, frontItem->iData);
+        CuAssertStrEquals(cuTest, numbersStr[currentValue - 1], frontItem->cData);
+
+    }
+
+
+    free(queueArr);
+    destroyDeque(deque);
+
+}
+
+
+
+
+
+
+
+
 CuSuite *createDequeTestsSuite() {
 
     CuSuite *suite = CuSuiteNew();

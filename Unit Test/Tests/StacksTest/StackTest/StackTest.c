@@ -508,6 +508,9 @@ void generalStackTest(CuTest *cuTest) {
         StackTestStruct *currentItem = stackPop(stack);
         CuAssertIntEquals(cuTest, stackGetLength(stack) + 1, currentItem->iData);
         CuAssertStrEquals(cuTest, numbersStr[stackGetLength(stack)], currentItem->cData);
+
+        free(currentItem);
+
     }
 
 
