@@ -5,6 +5,13 @@
 extern "C" {
 #endif
 
+
+/** @struct DLDeque
+*  @brief This structure implements a basic generic Deque using doubly linked list.
+*  @var DLDeque::linkedList
+*  Member 'linkedList' is a pointer to the the Deque doubly linked list.
+*/
+
 typedef struct DLDeque {
 
     struct DoublyLinkedList *linkedList;
