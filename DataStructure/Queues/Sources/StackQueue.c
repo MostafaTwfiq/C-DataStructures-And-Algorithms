@@ -1,7 +1,7 @@
 #include "../Headers/StackQueue.h"
 #include "../../Stacks/Headers/Stack.h"
 #include "../../../System/Utils.h"
-
+#include "../../../Unit Test/CuTest/CuTest.h"
 
 
 
@@ -11,18 +11,20 @@ void transferItemsToSecondStack(Stack *fStack, Stack *sStack);
 
 
 /** This function will take the size of the type that will be stored in the queue as a parameter,
-    then it will initialize the queue and set up it's field,
-    then it will return the queue address.
+ * then it will initialize the queue and set up it's field,
+ * then it will return the queue address.
+ *
  * @param freeItem the freeing item function address, that will be called to free the queue items
  * @return it will return the initialized queue address
  */
 
 SQueue *stackQueueInitialization(void (*freeItem)(void *)) {
     if (freeItem == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "stack queue data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return NULL;
+        #else
+     		fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "stack queue data structure");
      		exit(INVALID_ARG);
      	#endif
 
@@ -30,10 +32,11 @@ SQueue *stackQueueInitialization(void (*freeItem)(void *)) {
 
     SQueue *queue = (SQueue *) malloc(sizeof(SQueue));
     if (queue == NULL) {
-        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "queue", "stack queue data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "queue", "stack queue data structure");
      		exit(FAILED_ALLOCATION);
      	#endif
 
@@ -50,25 +53,28 @@ SQueue *stackQueueInitialization(void (*freeItem)(void *)) {
 
 
 /** This function will take the queue address, and the item address as a parameters,
-    then it will push the item into the queue.
+ * then it will push the item into the queue.
+ *
  * @param queue the queue address
  * @param item the new item address
  */
 
 void sQueueEnqueue(SQueue *queue, void *item) {
     if(queue == NULL) {
-        fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return;
+        #else
+     		fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
      		exit(NULL_POINTER);
      	#endif
 
     } else if (item == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "stack queue data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "stack queue data structure");
      		exit(INVALID_ARG);
      	#endif
 
@@ -83,7 +89,8 @@ void sQueueEnqueue(SQueue *queue, void *item) {
 
 
 /** This function will take the queue address, the items array pointer, and the length of the array as a parameters,
-    then it will push all the items in the array into the queue.
+ * then it will push all the items in the array into the queue.
+ *
  * @param queue the queue address
  * @param items the items array address
  * @param itemsLength the length of the new items array
@@ -91,18 +98,20 @@ void sQueueEnqueue(SQueue *queue, void *item) {
 
 void sQueueAddAll(SQueue *queue, void **items, int itemsLength) {
     if(queue == NULL) {
-        fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return;
+        #else
+            fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
      		exit(NULL_POINTER);
      	#endif
 
     } else if (items == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "items array pointer", "stack queue data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "items array pointer", "stack queue data structure");
      		exit(INVALID_ARG);
      	#endif
 
@@ -119,24 +128,27 @@ void sQueueAddAll(SQueue *queue, void **items, int itemsLength) {
 
 /** This function will take the queue address as a parameter,
  * then it will return the top item in the queue.
+ *
  * @param queue the queue address
  * @return it will return the (first in) item in the queue
  */
 
 void *sQueueDequeue(SQueue *queue) {
     if(queue == NULL) {
-        fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
      		exit(NULL_POINTER);
      	#endif
 
     } else if (sQueueIsEmpty(queue)) {
-        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "stack queue data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
-     	#else
+     		return NULL;
+        #else
+     		fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "stack queue data structure");
      		exit(EMPTY_DATA_STRUCTURE);
      	#endif
 
@@ -153,8 +165,10 @@ void *sQueueDequeue(SQueue *queue) {
 
 
 /** This function will two stack addresses as a parameters,
-    then it will pop the items in first stack and push it into the second stack.
+ * then it will pop the items in first stack and push it into the second stack.
+ *
  * Note: this function should be called only from the queue functions.
+ *
  * @param fStack the first stack address
  * @param sStack the second stack address
  */
@@ -170,25 +184,28 @@ void transferItemsToSecondStack(Stack *fStack, Stack *sStack) {
 
 
 /** This function will take the queue address as a parameter,
-    then it will return the top of the queue with out removing the item from the queue.
+ * then it will return the top of the queue with out removing the item from the queue.
+ *
  * @param queue the queue address
  * @return it will return the (first in) item in the queue
  */
 
 void *sQueuePeek(SQueue *queue) {
     if(queue == NULL) {
-        fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
      		exit(NULL_POINTER);
      	#endif
 
     } else if (sQueueIsEmpty(queue)) {
-        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "stack queue data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "stack queue data structure");
      		exit(EMPTY_DATA_STRUCTURE);
      	#endif
 
@@ -205,7 +222,8 @@ void *sQueuePeek(SQueue *queue) {
 
 
 /** This function will take the queue address as a parameter,
-    then it will return the number of items in the queue.
+ * then it will return the number of items in the queue.
+ *
  * @param queue the queue address
  * @return it will return the number of items in the queue
  */
@@ -213,16 +231,18 @@ void *sQueuePeek(SQueue *queue) {
 int sQueueGetLength(SQueue *queue) {
 
     if(queue == NULL) {
-        fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return -1;
+        #else
+     		fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
      		exit(NULL_POINTER);
      	#endif
 
     }
 
     return stackGetLength(queue->fStack) + stackGetLength(queue->sStack);
+
 }
 
 
@@ -230,8 +250,9 @@ int sQueueGetLength(SQueue *queue) {
 
 
 /** This function will take the queue address as a parameter,
-    then it will return one (1) if the queue is empty,
-    other wise it will return zero (0).
+ * then it will return one (1) if the queue is empty,
+ * other wise it will return zero (0).
+ *
  * @param queue the queue address
  * @return it will return one if the queue is empty, other wise it will return zero
  */
@@ -239,16 +260,18 @@ int sQueueGetLength(SQueue *queue) {
 int sQueueIsEmpty(SQueue *queue) {
 
     if(queue == NULL) {
-        fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return -1;
+        #else
+            fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
      		exit(NULL_POINTER);
      	#endif
 
     }
 
     return sQueueGetLength(queue) == 0;
+
 }
 
 
@@ -258,6 +281,7 @@ int sQueueIsEmpty(SQueue *queue) {
 /** This function will take the queue address as a parameter,
  * then it will copy all the items of the queue in order into a void array,
  * then it will return the array address.
+ *
  * @param queue the queue address
  * @return it will return a double void array pointer that contains the queue items
  */
@@ -265,10 +289,11 @@ int sQueueIsEmpty(SQueue *queue) {
 void **sQueueToArray(SQueue *queue) {
 
     if(queue == NULL) {
-        fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
      		exit(NULL_POINTER);
      	#endif
 
@@ -277,10 +302,11 @@ void **sQueueToArray(SQueue *queue) {
     int length = sQueueGetLength(queue);
     void **arr = (void **) malloc(sizeof(void *) * length);
     if (arr == NULL) {
-        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "stack queue data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "stack queue data structure");
      		exit(FAILED_ALLOCATION);
      	#endif
 
@@ -306,18 +332,20 @@ void **sQueueToArray(SQueue *queue) {
 
 
 /** This function will take the address of the queue as a parameter,
-    then it will destroy and remove all the items from the queue,
-    without destroying the queue.
+ * then it will destroy and remove all the items from the queue,
+ * without destroying the queue.
+ *
  * @param queue the queue address
  */
 
 void clearSQueue(SQueue *queue) {
 
     if(queue == NULL) {
-        fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return;
+        #else
+     		fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
      		exit(NULL_POINTER);
      	#endif
 
@@ -334,10 +362,22 @@ void clearSQueue(SQueue *queue) {
 
 /** This function will take the queue address as a parameter,
  * then it will destroy and free the queue and all it's items.
+ *
  * @param queue the queue address
  */
 
 void destroySQueue(SQueue *queue) {
+
+    if(queue == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
+        #else
+            fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
+     		exit(NULL_POINTER);
+        #endif
+
+    }
 
     clearSQueue(queue);
     free(queue);

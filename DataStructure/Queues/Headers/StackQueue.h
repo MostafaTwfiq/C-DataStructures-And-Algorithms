@@ -5,6 +5,16 @@
 extern "C" {
 #endif
 
+
+
+/** @struct SQueue
+*  @brief This structure implements a basic generic Queue using two stacks.
+*  @var SQueue:: fStack
+*  Member 'fStack' is a pointer to the first stack.
+*  @var SQueue::sStack
+*  Member 'sStack' is a pointer to the second stack.
+*/
+
 typedef struct SQueue {
     struct Stack *fStack;
     struct Stack *sStack;
