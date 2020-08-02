@@ -7,6 +7,21 @@ extern "C" {
 #endif
 
 
+
+/** @struct Deque
+*  @brief This structure implements a basic generic Deque.
+*  @var Deque::arr
+*  Member 'arr' is a pointer to the the Deque's memory.
+*  @var Deque::length
+*  Member 'length' holds the current max allocated size for the Deque.
+*  @var Deque::front
+*  Member 'front' holds the index to the front of the Deque Element.
+*  @var Deque::rear
+*  Member 'rear' holds the index to the last Deque Element.
+*  @var Deque:: 'freeFun'
+*  Member 'freeFun' holds pointer to the function responsible for freeing the elements stored in the Deque.
+*/
+
 typedef struct Deque {
 
     void **arr;
