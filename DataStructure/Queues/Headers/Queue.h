@@ -16,10 +16,8 @@ extern "C" {
  *  Member 'front' holds the index to the front of the Queue Element.
   *  @var Queue::rear
  *  Member 'rear' holds the index to the last Queue Element.
- *  @var Queue::sizeOfItem
- *  Member 'sizeOfItem' the size of the data stored in the Queue.
  *  @var Queue:: 'freeFn'
- *  Member 'freeFn' holds pointer to the function responsible for freeing the elements stored in the Deque.
+ *  Member 'freeFn' holds pointer to the function responsible for freeing the elements stored in the queue.
  */
 
 typedef struct Queue{

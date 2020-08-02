@@ -5,6 +5,24 @@
 extern "C" {
 #endif
 
+
+
+/** @struct PriorityQueue
+*  @brief This structure implements a basic generic priority queue.
+*  @var PriorityQueue:: arr
+ * @var PriorityQueue::length
+*  Member 'length' holds the current max allocated size for the Queue.
+*  Member 'arr' is a pointer to the the Queue's memory (array).
+*  @var PriorityQueue::count
+*  Member 'count' holds the index to the last Queue Element.
+*  @var PriorityQueue::fPointer
+*  Member 'fPointer' holds the index to the front of the Queue Element.
+*  @var PriorityQueue:: 'freeItem'
+*  Member 'freeItem' holds pointer to the function responsible for freeing the elements stored in the queue.
+*  @var PriorityQueue:: 'comp'
+*  Member 'comp' holds pointer to the function responsible for comparing the elements stored in the queue.
+*/
+
 typedef struct PriorityQueue {
     void **arr;
     int length;
