@@ -73,6 +73,8 @@ void testValidDLStackInitialization(CuTest *cuTest) {
 
     CuAssertPtrNotNull(cuTest, dlStack);
 
+    destroyDLStack(dlStack);
+
 }
 
 

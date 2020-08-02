@@ -72,6 +72,8 @@ void testValidStackInitialization(CuTest *cuTest) {
 
     CuAssertPtrNotNull(cuTest, stack);
 
+    destroyStack(stack);
+
 }
 
 

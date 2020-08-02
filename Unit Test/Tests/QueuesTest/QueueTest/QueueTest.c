@@ -72,6 +72,8 @@ void testValidQueueInitialization(CuTest *cuTest) {
     Queue *queue = queueInitialization(free);
     CuAssertPtrNotNull(cuTest, queue);
 
+    queueDestroy(queue);
+
 }
 
 

@@ -74,6 +74,8 @@ void testValidPriorityQueueInitialization(CuTest *cuTest) {
     PriorityQueue *pQueue = priorityQueueInitialization(free, compareIntPointersPQT);
     CuAssertPtrNotNull(cuTest, pQueue);
 
+    destroyPQueue(pQueue);
+
 }
 
 

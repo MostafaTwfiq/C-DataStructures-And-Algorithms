@@ -74,6 +74,8 @@ void testValidStackQueueInitialization(CuTest *cuTest) {
     SQueue *sQueue = stackQueueInitialization(free);
     CuAssertPtrNotNull(cuTest, sQueue);
 
+    destroySQueue(sQueue);
+
 }
 
 

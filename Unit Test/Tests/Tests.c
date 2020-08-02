@@ -8,6 +8,7 @@
 #include "QueuesTest/StackQueueTest/StackQueueTest.h"
 #include "QueuesTest/LinkedListQueueTest/LinkedListQueueTest.h"
 #include "QueuesTest/PriorityQueueTest/PriorityQueueTest.h"
+#include "DequesTest/DequeTest/DequeTest.h"
 
 
 int main(void) {
@@ -22,6 +23,8 @@ int main(void) {
     stackQueueUnitTest();
     linkedListQueueUnitTest();
     priorityQueueUnitTest();
+
+    dequeUnitTest();
 
     return 0;
 

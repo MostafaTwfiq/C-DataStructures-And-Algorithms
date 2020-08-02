@@ -72,6 +72,8 @@ void testValidLinkedListQueueInitialization(CuTest *cuTest) {
     LinkedListQueue *llQueue = linkedListQueueInitialization(free);
     CuAssertPtrNotNull(cuTest, llQueue);
 
+    destroyLLQueue(llQueue);
+
 }
 
 
