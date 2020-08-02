@@ -13,7 +13,7 @@
  * @return it will return the new allocated integer pointer
  */
 
-int *generateIntPointerQT(int integer) {
+int *generateIntPointerDT(int integer) {
     int *newInt = (int *) malloc(sizeof(int));
 
     *newInt = integer;
@@ -32,7 +32,7 @@ int *generateIntPointerQT(int integer) {
  * @return it will return zero if they are equal, negative number if the second integer is bigger, and positive number if the first integer is bigger.
  */
 
-int compareIntPointersQT(const void *a, const void *b) {
+int compareIntPointersDT(const void *a, const void *b) {
     return *(int *)a - *(int *)b;
 }
 
@@ -47,7 +47,7 @@ int compareIntPointersQT(const void *a, const void *b) {
  * @return it will return the new allocated char array pointer
  */
 
-char *generateCharPointerQT(char *ch) {
+char *generateCharPointerDT(char *ch) {
 
     char *newCh = (char *) malloc( sizeof(char) * (strlen(ch) + 1) );
 
@@ -84,11 +84,333 @@ void testValidDequeInitialization(CuTest *cuTest) {
 
 
 
+
+void testDequeInsertFront(CuTest *cuTest) {
+
+    Deque *deque = dequeInitialization(free);
+
+    dequeInsertFront(NULL, NULL);
+    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    dequeInsertFront(deque, NULL);
+    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    dequeInsertFront(deque, generateIntPointerDT(4));
+    dequeInsertFront(deque, generateIntPointerDT(3));
+    dequeInsertFront(deque, generateIntPointerDT(2));
+    dequeInsertFront(deque, generateIntPointerDT(1));
+
+    for (int i = 0; i < deque->rear - deque->front; i++)
+        CuAssertIntEquals(cuTest, i + 1, *(int *) deque->arr[i + deque->front]);
+
+
+    destroyDeque(deque);
+
+}
+
+
+
+
+
+void testDequeInsertRear(CuTest *cuTest) {
+
+    Deque *deque = dequeInitialization(free);
+
+    dequeInsertRear(NULL, NULL);
+    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    dequeInsertRear(deque, NULL);
+    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    dequeInsertRear(deque, generateIntPointerDT(1));
+    dequeInsertRear(deque, generateIntPointerDT(2));
+    dequeInsertRear(deque, generateIntPointerDT(3));
+    dequeInsertRear(deque, generateIntPointerDT(4));
+
+    for (int i = 0; i < deque->rear - deque->front; i++)
+        CuAssertIntEquals(cuTest, i + 1, *(int *) deque->arr[i + deque->front]);
+
+
+    destroyDeque(deque);
+
+}
+
+
+
+
+
+void testDequeGetFront(CuTest *cuTest) {
+
+    Deque *deque = dequeInitialization(free);
+
+    dequeGetFront(NULL);
+    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    dequeInsertFront(deque, generateIntPointerDT(2));
+    dequeInsertFront(deque, generateIntPointerDT(1));
+    dequeInsertRear(deque, generateIntPointerDT(3));
+    dequeInsertRear(deque, generateIntPointerDT(4));
+
+    for (int i = 0; i < deque->rear - deque->front; i++) {
+        int *currentItem = (int *) dequeGetFront(deque);
+        CuAssertIntEquals(cuTest, i + 1, *currentItem);
+
+        free(currentItem);
+
+    }
+
+
+    destroyDeque(deque);
+
+}
+
+
+
+
+
+void testDequeGetRear(CuTest *cuTest) {
+
+    Deque *deque = dequeInitialization(free);
+
+    dequeGetRear(NULL);
+    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    dequeInsertFront(deque, generateIntPointerDT(2));
+    dequeInsertFront(deque, generateIntPointerDT(1));
+    dequeInsertRear(deque, generateIntPointerDT(3));
+    dequeInsertRear(deque, generateIntPointerDT(4));
+
+    for (int i = deque->rear - deque->front - 1; i >= 0; i--) {
+        int *currentItem = (int *) dequeGetRear(deque);
+        CuAssertIntEquals(cuTest, i + 1, *currentItem);
+
+        free(currentItem);
+
+    }
+
+
+    destroyDeque(deque);
+
+}
+
+
+
+
+
+
+
+void testDequePeekFront(CuTest *cuTest) {
+
+    Deque *deque = dequeInitialization(free);
+
+    dequePeekFront(NULL);
+    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    dequeInsertFront(deque, generateIntPointerDT(2));
+    dequeInsertFront(deque, generateIntPointerDT(1));
+    dequeInsertRear(deque, generateIntPointerDT(3));
+    dequeInsertRear(deque, generateIntPointerDT(4));
+
+    for (int i = 0; i < deque->rear - deque->front; i++) {
+        CuAssertIntEquals(cuTest, i + 1, *(int *) dequePeekFront(deque));
+
+        free(dequeGetFront(deque));
+
+    }
+
+
+    destroyDeque(deque);
+
+}
+
+
+
+
+
+
+void testDequePeekRear(CuTest *cuTest) {
+
+    Deque *deque = dequeInitialization(free);
+
+    dequePeekRear(NULL);
+    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    dequeInsertFront(deque, generateIntPointerDT(2));
+    dequeInsertFront(deque, generateIntPointerDT(1));
+    dequeInsertRear(deque, generateIntPointerDT(3));
+    dequeInsertRear(deque, generateIntPointerDT(4));
+
+    for (int i = deque->rear - deque->front - 1; i >= 0; i--) {
+        CuAssertIntEquals(cuTest, i + 1, *(int *) dequePeekRear(deque));
+
+        free(dequeGetRear(deque));
+
+    }
+
+
+    destroyDeque(deque);
+
+}
+
+
+
+
+
+
+void testDequeToArray(CuTest *cuTest) {
+
+    Deque *deque = dequeInitialization(free);
+
+    dequeToArray(NULL);
+    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    dequeInsertFront(deque, generateIntPointerDT(2));
+    dequeInsertFront(deque, generateIntPointerDT(1));
+    dequeInsertRear(deque, generateIntPointerDT(3));
+    dequeInsertRear(deque, generateIntPointerDT(4));
+
+    int **arr = (int **) dequeToArray(deque);
+
+    for (int i = 0; i < deque->rear - deque->front; i++)
+        CuAssertIntEquals(cuTest, i + 1, *arr[i]);
+
+
+    free(arr);
+    destroyDeque(deque);
+
+}
+
+
+
+
+
+
+void testDequeGetLength(CuTest *cuTest) {
+
+    Deque *deque = dequeInitialization(free);
+
+    dequeGetLength(NULL);
+    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    CuAssertIntEquals(cuTest, 0, dequeGetLength(deque));
+
+    dequeInsertFront(deque, generateIntPointerDT(2));
+    CuAssertIntEquals(cuTest, 1, dequeGetLength(deque));
+
+    dequeInsertFront(deque, generateIntPointerDT(1));
+    CuAssertIntEquals(cuTest, 2, dequeGetLength(deque));
+
+    dequeInsertRear(deque, generateIntPointerDT(3));
+    CuAssertIntEquals(cuTest, 3, dequeGetLength(deque));
+
+    dequeInsertRear(deque, generateIntPointerDT(4));
+    CuAssertIntEquals(cuTest, 4, dequeGetLength(deque));
+
+    destroyDeque(deque);
+
+}
+
+
+
+
+
+
+
+void testDequeIsEmpty(CuTest *cuTest) {
+
+    Deque *deque = dequeInitialization(free);
+
+    dequeIsEmpty(NULL);
+    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    CuAssertIntEquals(cuTest, 1, dequeIsEmpty(deque));
+
+    dequeInsertFront(deque, generateIntPointerDT(2));
+    dequeInsertFront(deque, generateIntPointerDT(1));
+    dequeInsertRear(deque, generateIntPointerDT(3));
+    dequeInsertRear(deque, generateIntPointerDT(4));
+    CuAssertIntEquals(cuTest, 0, dequeIsEmpty(deque));
+
+    while (!dequeIsEmpty(deque))
+        free(dequeGetRear(deque));
+
+
+    CuAssertIntEquals(cuTest, 1, dequeIsEmpty(deque));
+
+    destroyDeque(deque);
+
+}
+
+
+
+
+
+
+void testClearDeque(CuTest *cuTest) {
+
+    Deque *deque = dequeInitialization(free);
+
+    clearDeque(NULL);
+    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    CuAssertIntEquals(cuTest, 1, dequeIsEmpty(deque));
+
+    dequeInsertFront(deque, generateIntPointerDT(2));
+    dequeInsertFront(deque, generateIntPointerDT(1));
+    dequeInsertRear(deque, generateIntPointerDT(3));
+    dequeInsertRear(deque, generateIntPointerDT(4));
+    CuAssertIntEquals(cuTest, 0, dequeIsEmpty(deque));
+
+    clearDeque(deque);
+
+    CuAssertIntEquals(cuTest, 1, dequeIsEmpty(deque));
+
+    destroyDeque(deque);
+
+}
+
+
+
+
+void testDestroyDeque(CuTest *cuTest) {
+
+    Deque *deque = dequeInitialization(free);
+
+    destroyDeque(NULL);
+    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    dequeInsertFront(deque, generateIntPointerDT(2));
+    dequeInsertFront(deque, generateIntPointerDT(1));
+    dequeInsertRear(deque, generateIntPointerDT(3));
+    dequeInsertRear(deque, generateIntPointerDT(4));
+
+
+    destroyDeque(deque);
+
+}
+
+
+
+
+
+
 CuSuite *createDequeTestsSuite() {
 
     CuSuite *suite = CuSuiteNew();
 
-    //SUITE_ADD_TEST(suite, testInvalidQueueInitialization);
+    SUITE_ADD_TEST(suite, testInvalidDequeInitialization);
+    SUITE_ADD_TEST(suite, testValidDequeInitialization);
+    SUITE_ADD_TEST(suite, testDequeInsertFront);
+    SUITE_ADD_TEST(suite, testDequeInsertRear);
+    SUITE_ADD_TEST(suite, testDequeGetFront);
+    SUITE_ADD_TEST(suite, testDequeGetRear);
+    SUITE_ADD_TEST(suite, testDequePeekFront);
+    SUITE_ADD_TEST(suite, testDequePeekRear);
+    SUITE_ADD_TEST(suite, testDequeToArray);
+    SUITE_ADD_TEST(suite, testDequeGetLength);
+    SUITE_ADD_TEST(suite, testDequeIsEmpty);
+    SUITE_ADD_TEST(suite, testClearDeque);
+    SUITE_ADD_TEST(suite, testDestroyDeque);
 
     return suite;
 
