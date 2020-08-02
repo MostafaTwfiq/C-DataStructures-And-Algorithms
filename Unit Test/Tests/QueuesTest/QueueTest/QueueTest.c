@@ -150,7 +150,8 @@ void testQueueDequeue(CuTest *cuTest) {
     queueEnqueue(queue, generateIntPointerQT(3));
     queueEnqueue(queue, generateIntPointerQT(4));
 
-    for (int i = 0; i < queueGetLength(queue); i++) {
+    int size = queueGetLength(queue);
+    for (int i = 0; i < size; i++) {
 
         int *currentItem = (int *) queueDequeue(queue);
         CuAssertIntEquals(cuTest, i + 1, *(int *) currentItem);
@@ -183,7 +184,8 @@ void testQueuePeek(CuTest *cuTest) {
     queueEnqueue(queue, generateIntPointerQT(3));
     queueEnqueue(queue, generateIntPointerQT(4));
 
-    for (int i = 0; i < queueGetLength(queue); i++) {
+    int size = queueGetLength(queue);
+    for (int i = 0; i < size; i++) {
         CuAssertIntEquals(cuTest, i + 1, *(int *) queuePeek(queue));
 
         free(queueDequeue(queue));
