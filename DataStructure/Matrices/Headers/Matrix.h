@@ -37,6 +37,15 @@ typedef struct Matrix {
 
 
 
+
+/** @struct MatrixIndex
+*  @brief This structure will be useful to hold a matrix item index.
+*  @var MatrixIndex::row
+*  Member 'row' holds the index of the item row.
+*  @var MatrixIndex::col
+*  Member 'col' holds the index of the item column.
+*/
+
 typedef struct MatrixIndex {
 
     int row;

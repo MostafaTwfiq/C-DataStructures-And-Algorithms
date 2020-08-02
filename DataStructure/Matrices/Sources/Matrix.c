@@ -20,11 +20,11 @@ Matrix *matrixInitialization(int rowsNum, int colNum,
 
     if (rowsNum <= 0 || colNum <= 0) {
         #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
             return NULL;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "number of rows or the number of columns", "matrix data structure");
-            exit(NULL_POINTER);
+            exit(INVALID_ARG);
         #endif
     } else if (freeFun == NULL) {
         #ifdef CU_TEST_H

@@ -10,7 +10,7 @@
 #include "QueuesTest/PriorityQueueTest/PriorityQueueTest.h"
 #include "DequesTest/DequeTest/DequeTest.h"
 #include "DequesTest/DoublyLinkedListDequeTest/DoublyLinkedListDequeTest.h"
-
+#include "MatricesTest/MatrixTest/MatrixTest.h"
 
 int main(void) {
 
@@ -26,6 +26,8 @@ int main(void) {
     priorityQueueUnitTest();
     dequeUnitTest();
     doublyLinkedListDequeUnitTest();
+
+    matrixUnitTest();
 
     return 0;
 
