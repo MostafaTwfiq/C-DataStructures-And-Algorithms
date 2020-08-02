@@ -5,9 +5,18 @@
 extern "C" {
 #endif
 
+
+
+/** @struct LinkedListQueue
+*  @brief This structure implements a basic generic Queue using linked list.
+*  @var LinkedListQueue:: linkedList
+*  Member 'linkedList' is a pointer to the linked list.
+*/
+
 typedef struct LinkedListQueue {
     struct LinkedList *linkedList;
 } LinkedListQueue;
+
 
 LinkedListQueue *linkedListQueueInitialization(void (*freeFun)(void *));
 
