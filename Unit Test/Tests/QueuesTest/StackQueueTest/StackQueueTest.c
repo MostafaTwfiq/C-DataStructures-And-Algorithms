@@ -446,7 +446,7 @@ void generalsQueueTest(CuTest *cuTest) {
 
 
 
-CuSuite *createStacksQueueTestsSuite() {
+CuSuite *createStackQueueTestsSuite() {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -477,7 +477,7 @@ void stackQueueUnitTest() {
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Stack Queue Test**\n");
 
-    CuSuite *suite = createStacksQueueTestsSuite();
+    CuSuite *suite = createStackQueueTestsSuite();
 
     CuSuiteRun(suite);
     CuSuiteSummary(suite, output);

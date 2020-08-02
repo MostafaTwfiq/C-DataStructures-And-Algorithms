@@ -332,5 +332,5 @@ void destroyLLQueue(LinkedListQueue *queue) {
 
     destroyLinkedList(queue->linkedList);
     free(queue);
-    
+
 }

@@ -6,6 +6,7 @@
 #include "StacksTest/DLinkedListStackTest/DLinkedListStackTest.h"
 #include "QueuesTest/QueueTest/QueueTest.h"
 #include "QueuesTest/StackQueueTest/StackQueueTest.h"
+#include "QueuesTest/LinkedListQueueTest/LinkedListQueueTest.h"
 
 
 int main(void) {
@@ -18,6 +19,7 @@ int main(void) {
     doublyLinkedListStackUnitTest();
     queueUnitTest();
     stackQueueUnitTest();
+    linkedListQueueUnitTest();
 
     return 0;
 
