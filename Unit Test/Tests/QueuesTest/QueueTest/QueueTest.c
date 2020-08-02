@@ -471,7 +471,7 @@ void generalQueueTest(CuTest *cuTest) {
         CuAssertIntEquals(cuTest, currentValue, currentItem->iData);
         CuAssertStrEquals(cuTest, numbersStr[currentValue - 1], currentItem->cData);
 
-        free(currentItem);
+        freeQueueTestStruct(currentItem);
 
     }
 

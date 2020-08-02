@@ -487,6 +487,7 @@ void generalDequeTest(CuTest *cuTest) {
         CuAssertIntEquals(cuTest, currentValue, frontItem->iData);
         CuAssertStrEquals(cuTest, numbersStr[currentValue - 1], frontItem->cData);
 
+
     }
 
 
