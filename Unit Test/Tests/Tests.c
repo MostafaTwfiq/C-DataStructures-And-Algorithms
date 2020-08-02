@@ -9,6 +9,7 @@
 #include "QueuesTest/LinkedListQueueTest/LinkedListQueueTest.h"
 #include "QueuesTest/PriorityQueueTest/PriorityQueueTest.h"
 #include "DequesTest/DequeTest/DequeTest.h"
+#include "DequesTest/DoublyLinkedListDequeTest/DoublyLinkedListDequeTest.h"
 
 
 int main(void) {
@@ -24,6 +25,7 @@ int main(void) {
     linkedListQueueUnitTest();
     priorityQueueUnitTest();
     dequeUnitTest();
+    doublyLinkedListDequeUnitTest();
 
     return 0;
 
