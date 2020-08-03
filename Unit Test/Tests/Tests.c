@@ -12,6 +12,7 @@
 #include "DequesTest/DoublyLinkedListDequeTest/DoublyLinkedListDequeTest.h"
 #include "MatricesTest/MatrixTest/MatrixTest.h"
 #include "StringsTest/StringTest/StringTest.h"
+#include "TablesTest/HashMapTest/HashMapTest.h"
 
 int main(void) {
 
@@ -29,6 +30,7 @@ int main(void) {
     doublyLinkedListDequeUnitTest();
     matrixUnitTest();
     stringUnitTest();
+    hashMapUnitTest();
 
     return 0;
 
