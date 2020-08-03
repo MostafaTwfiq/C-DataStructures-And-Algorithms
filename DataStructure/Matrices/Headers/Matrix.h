@@ -93,6 +93,8 @@ int matrixGetNumberOfCols(Matrix *matrix);
 
 int matrixGetSize(Matrix *matrix);
 
+int matrixIsEmpty(Matrix *matrix);
+
 void **matrixToArray(Matrix *matrix);
 
 void clearMatrix(Matrix *matrix);

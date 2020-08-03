@@ -1101,6 +1101,9 @@ DistanceHolder *generateDisHolder(UDGraphNode *fromNode, UDGraphNode *toNode, in
     holder->fromNode = fromNode;
     holder->toNode = toNode;
     holder->distance = distance;
+
+    return holder;
+
 }
 
 

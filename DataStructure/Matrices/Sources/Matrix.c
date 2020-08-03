@@ -178,11 +178,11 @@ void matrixRemove(Matrix *matrix, int rowIndex, int colIndex) {
 
     } else if (rowIndex < 0 || rowIndex >= matrix->rowsNum || colIndex < 0 || colIndex >= matrix->colNum) {
         #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            DUMMY_TEST_DATASTRUCTURE->errorCode = OUT_OF_RANGE;
             return;
         #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "row index or the column index", "matrix data structure");
-            exit(INVALID_ARG);
+            fprintf(stderr, OUT_OF_RANGE_MESSAGE, "matrix data structure");
+            exit(OUT_OF_RANGE);
         #endif
     }
 
@@ -223,11 +223,11 @@ void matrixRemoveWtoFr(Matrix *matrix, int rowIndex, int colIndex) {
 
     } else if (rowIndex < 0 || rowIndex >= matrix->rowsNum || colIndex < 0 || colIndex >= matrix->colNum) {
         #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            DUMMY_TEST_DATASTRUCTURE->errorCode = OUT_OF_RANGE;
             return;
         #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "row index or the column index", "matrix data structure");
-            exit(INVALID_ARG);
+            fprintf(stderr, OUT_OF_RANGE_MESSAGE, "matrix data structure");
+            exit(OUT_OF_RANGE);
         #endif
     }
 
@@ -851,22 +851,37 @@ void printMatrix(Matrix *matrix, void (*printFun)(void *)) {
     }
 
 
-    for (int i = 0; i < matrix->rowsNum; i++) {
-        fprintf(stdout, "[");
-        for (int j = 0; j < matrix->colNum; j++) {
-            if (matrix->rows[i][j] != NULL)
-                printFun(matrix->rows[i][j]);
-            else
-                fprintf(stdout, "NULL");
 
-            if (j != matrix->colNum - 1)
-                fprintf(stdout, ", ");
+    #ifdef CU_TEST_H
+        for (int i = 0; i < matrix->rowsNum; i++) {
+
+            for (int j = 0; j < matrix->colNum; j++) {
+
+                if (matrix->rows[i][j] != NULL)
+                    printFun(matrix->rows[i][j]);
+
+            }
 
         }
+    #else
+        for (int i = 0; i < matrix->rowsNum; i++) {
+            fprintf(stdout, "[");
+            for (int j = 0; j < matrix->colNum; j++) {
+                if (matrix->rows[i][j] != NULL)
+                    printFun(matrix->rows[i][j]);
+                else
+                    fprintf(stdout, "NULL");
 
-        fprintf(stdout, "]%c", i != matrix->rowsNum - 1 ? '\n' : '\0');
+                if (j != matrix->colNum - 1)
+                    fprintf(stdout, ", ");
 
-    }
+            }
+
+            fprintf(stdout, "]%c", i != matrix->rowsNum - 1 ? '\n' : '\0');
+
+        }
+    #endif
+
 
 }
 
@@ -949,6 +964,36 @@ int matrixGetSize(Matrix *matrix) {
     }
 
     return matrix->count;
+
+}
+
+
+
+
+
+
+/** This function will check if the matrix is empty or not,
+ * and if it was the function will return one (1),
+ * other wise it will return zero (0).
+ *
+ * @param matrix the matrix pointer
+ * @return it will return 1 if the matrix is empty, other wise it will return 0
+ */
+
+int matrixIsEmpty(Matrix *matrix) {
+
+    if (matrix == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return -1;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "matrix", "matrix data structure");
+            exit(NULL_POINTER);
+        #endif
+
+    }
+
+    return matrix->count == 0;
 
 }
 

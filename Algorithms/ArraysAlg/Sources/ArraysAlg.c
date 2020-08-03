@@ -1266,13 +1266,16 @@ int arrAnagramsH(void *fArr, int fLength, void *sArr, int sLength, int elemSize,
         void *currentItem = sArr + i * elemSize;
         int *currentItemCount = (int *) hashMapGet(valuesCounterMap, currentItem);
 
-        if (currentItemCount == NULL || *currentItemCount <= 0)
+        if (currentItemCount == NULL || *currentItemCount <= 0) {
+            destroyHashMap(valuesCounterMap);
             return 0;
+        }
         else
             *currentItemCount -= 1;
 
     }
 
+    destroyHashMap(valuesCounterMap);
     return 1;
 
 }
