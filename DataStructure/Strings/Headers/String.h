@@ -24,15 +24,17 @@ typedef struct String {
 
 String *stringInitialization(int initialLength);
 
-void stringAddChar(String *string, char c);
+void stringAppendChar(String *string, char c);
 
-void stringAddCharAtIndex(String *string, int index, char c);
+void stringAddChar(String *string, int index, char c);
+
+void stringUpdateChar(String *string, int index, char c);
 
 void stringRemove(String *string, int index);
 
-void stringAddAppendC(String *string, char *charArr);
+void stringAppendC(String *string, char *charArr);
 
-void stringAddAppendS(String *string, String *newString);
+void stringAppendS(String *string, String *newString);
 
 void stringChangeStringC(String *string, char *newCharArr);
 

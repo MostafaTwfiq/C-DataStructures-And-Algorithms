@@ -803,8 +803,10 @@ void generalArrayListTest(CuTest *cuTest) {
     for (int i = 0; i < arrayListGetLength(arrayList);) {
         item = (ArrayListTestStruct *) arrayListGet(arrayList, i);
         CuAssertIntEquals(cuTest, 1 , arrayListContains(arrayList, item));
-        arrayListRemoveAtIndex(arrayList, i);
+        arrayListRemoveAtIndexWtFr(arrayList, i);
         CuAssertIntEquals(cuTest, 0 , arrayListContains(arrayList, item));
+
+        freeArrayListTestStruct(item);
     }
 
     clearArrayList(arrayList);

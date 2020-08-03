@@ -92,7 +92,7 @@ void charArrayReverseWords(char *charArr) {
 
         }
         else
-            stringAddChar((String *) vectorGet(wordsVector, wordsCounter), *charArr);
+            stringAppendChar((String *) vectorGet(wordsVector, wordsCounter), *charArr);
 
         charArr++;
 
@@ -625,7 +625,7 @@ Vector *charArrSplitS(char *string, char *splitCharacters) {
                 vectorAdd(wordsVector, stringInitialization(5));
 
         } else
-            stringAddChar(vectorGet(wordsVector, vectorGetLength(wordsVector) - 1), *string);
+            stringAppendChar(vectorGet(wordsVector, vectorGetLength(wordsVector) - 1), *string);
 
         string++;
     }
@@ -674,7 +674,7 @@ Vector *charArrSplitC(char *string, char *splitCharacters) {
             }
 
         } else
-            stringAddChar(currentWord, *string);
+            stringAppendChar(currentWord, *string);
 
         string++;
 

@@ -110,7 +110,7 @@ String *txtLoaderReadFileS(TxtFileLoader *txtFileLoader) {
     String *fString = stringInitialization(10);
     char c;
     while ((c = (char) fgetc(txtFileLoader->fileP)) != EOF)
-        stringAddChar(fString, c);
+        stringAppendChar(fString, c);
 
     fseek(txtFileLoader->fileP, 0, SEEK_SET);
 
@@ -154,7 +154,7 @@ char *txtLoaderReadFileC(TxtFileLoader *txtFileLoader) {
     String *fString = stringInitialization(10);
     char c;
     while ((c = (char) fgetc(txtFileLoader->fileP)) != EOF)
-        stringAddChar(fString, c);
+        stringAppendChar(fString, c);
 
     fseek(txtFileLoader->fileP, 0, SEEK_SET);
 
@@ -202,7 +202,7 @@ Vector *txtLoaderReadFileLines(TxtFileLoader *txtFileLoader) {
             continue;
         }
 
-        stringAddChar(vectorGet(linesVector, stringIndex), c);
+        stringAppendChar(vectorGet(linesVector, stringIndex), c);
 
     }
 
@@ -259,7 +259,7 @@ String *txtLoaderReadLineS(TxtFileLoader *txtFileLoader, int lineIndex) {
 
     String *lineString = stringInitialization(5);
     while ((c = (char) fgetc(txtFileLoader->fileP)) != EOF && c != '\n')
-        stringAddChar(lineString, c);
+        stringAppendChar(lineString, c);
 
 
     fclose(txtFileLoader->fileP);
@@ -313,7 +313,7 @@ char *txtLoaderReadLineC(TxtFileLoader *txtFileLoader, int lineIndex) {
 
     String *lineString = stringInitialization(5);
     while ((c = (char) fgetc(txtFileLoader->fileP)) != EOF && c != '\n')
-        stringAddChar(lineString, c);
+        stringAppendChar(lineString, c);
 
     char *charLine = stringToCharArray(lineString);
     destroyString(lineString);
@@ -612,7 +612,7 @@ void txtLoaderAppendToLineC(TxtFileLoader *txtFileLoader, char *lineToAppend, in
         #endif
     }
 
-    stringAddAppendC(vectorGet(linesVector, index), lineToAppend);
+    stringAppendC(vectorGet(linesVector, index), lineToAppend);
 
     txtLoaderOpenFile(txtFileLoader, "w");
 
@@ -671,7 +671,7 @@ void txtLoaderAppendToLineS(TxtFileLoader *txtFileLoader, String *stringToAppend
         #endif
     }
 
-    stringAddAppendS(vectorGet(linesVector, index), stringToAppend);
+    stringAppendS(vectorGet(linesVector, index), stringToAppend);
 
     txtLoaderOpenFile(txtFileLoader, "w");
 

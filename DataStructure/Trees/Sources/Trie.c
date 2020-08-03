@@ -358,7 +358,7 @@ ArrayList *trieAutoCompletion(Trie *trie, char *word, int numOfSuggestion) {
 
 void trieAutoCompletionR(Node *root, char *currentChar, int numOfSuggestion, String *string, ArrayList *wordsList) {
     if (root->value != '\0')
-        stringAddChar(string, root->value);
+        stringAppendChar(string, root->value);
 
     if (arrayListGetLength(wordsList) == numOfSuggestion)
         return;
@@ -457,7 +457,7 @@ ArrayList *trieSuggestion(Trie *trie, char *word, int numOfSuggestion) {
 
 void trieSuggestionR(Node *root, char *word, String *string, ArrayList *wordsList, int numOfSuggestion) {
     if (root->value != '\0')
-        stringAddChar(string, root->value);
+        stringAppendChar(string, root->value);
 
     if (*word == '\0') {
         if (arrayListGetLength(wordsList) == numOfSuggestion)
@@ -531,7 +531,7 @@ void triePrintAllWords(Trie *trie) {
  */
 
 void triePrintAllWordsR(Node *root, String *string) {
-    stringAddChar(string, root->value);
+    stringAppendChar(string, root->value);
 
     if (root->EOW) {
         printString(string);

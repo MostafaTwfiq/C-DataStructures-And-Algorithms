@@ -64,7 +64,7 @@ String *stringInitialization(int initialLength) {
  * @param c the new character
  */
 
-void stringAddChar(String *string, char c) {
+void stringAppendChar(String *string, char c) {
     if (string == NULL) {
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
@@ -110,7 +110,7 @@ void stringAddChar(String *string, char c) {
  * @param c the new character
  */
 
-void stringAddCharAtIndex(String *string, int index, char c) {
+void stringAddChar(String *string, int index, char c) {
     if (string == NULL) {
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
@@ -128,6 +128,68 @@ void stringAddCharAtIndex(String *string, int index, char c) {
             fprintf(stderr, OUT_OF_RANGE_MESSAGE, "string data structure");
      		exit(OUT_OF_RANGE);
      	#endif
+
+    }
+
+    if (string->count == string->length) {
+
+        string->length *= 2;
+        string->string = (char *) realloc(string->string, sizeof(char) * (string->length + 1));
+
+        if (string->string == NULL) {
+            #ifdef CU_TEST_H
+                DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_REALLOCATION;
+                return;
+            #else
+                fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "string char array", "string data structure");
+     		    exit(FAILED_REALLOCATION);
+            #endif
+
+        }
+
+    }
+
+    for (int i = string->count++; i > index; i--)
+        string->string[i] = string->string[i - 1];
+
+    string->string[index] = c;
+    string->string[string->count] = '\0';
+
+}
+
+
+
+
+
+/** This function will take the string address, index, and the a character as a parameters,
+ * then it will update the character at the provided index with the new passed character.
+ *
+ * Note: if the index is out of the string range the program will terminate.
+ *
+ * @param string the string address
+ * @param index the character index
+ * @param c the new character
+ */
+
+void stringUpdateChar(String *string, int index, char c) {
+
+    if (string == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+     		exit(NULL_POINTER);
+        #endif
+
+    } else if (string->count <= index || index < 0) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = OUT_OF_RANGE;
+            return;
+        #else
+            fprintf(stderr, OUT_OF_RANGE_MESSAGE, "string data structure");
+     		exit(OUT_OF_RANGE);
+        #endif
 
     }
 
@@ -189,7 +251,7 @@ void stringRemove(String *string, int index) {
  * @param charArr the char array address
  */
 
-void stringAddAppendC(String *string, char *charArr) {
+void stringAppendC(String *string, char *charArr) {
     if (string == NULL) {
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
@@ -212,7 +274,7 @@ void stringAddAppendC(String *string, char *charArr) {
 
     char *currentChar = charArr;
     while (*currentChar != '\0') {
-        stringAddChar(string, *currentChar);
+        stringAppendChar(string, *currentChar);
         currentChar++;
     }
 
@@ -231,7 +293,7 @@ void stringAddAppendC(String *string, char *charArr) {
  * @param newString the string pointer
  */
 
-void stringAddAppendS(String *string, String *newString) {
+void stringAppendS(String *string, String *newString) {
     if (string == NULL) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
@@ -254,7 +316,7 @@ void stringAddAppendS(String *string, String *newString) {
 
     char *currentChar = newString->string;
     while (*currentChar != '\0') {
-        stringAddChar(string, *currentChar);
+        stringAppendChar(string, *currentChar);
         currentChar++;
     }
 
@@ -293,9 +355,10 @@ void stringChangeStringC(String *string, char *newCharArr) {
     }
 
     string->count = 0;
+    string->string[string->count] = '\0';
 
     while (*newCharArr != '\0')
-        stringAddChar(string, *newCharArr++);
+        stringAppendChar(string, *newCharArr++);
 
 }
 
@@ -333,7 +396,7 @@ void stringChangeStringS(String *string, String *newString) {
     string->string[string->count] = '\0';
 
     for (int i = 0; i < stringGetLength(newString); i++)
-        stringAddChar(string, stringGet(newString, i));
+        stringAppendChar(string, stringGet(newString, i));
 
 
 }
@@ -945,7 +1008,7 @@ void stringCustomTrimStart(String *string, char *specialCharacters) {
 
     } else if (specialCharacters == NULL) {
         #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
             return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "special characters array", "string data structure");
@@ -1029,7 +1092,7 @@ void stringCustomTrimEnd(String *string, char *specialCharacters) {
 
     } else if (specialCharacters == NULL) {
         #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
             return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "special characters array", "string data structure");
@@ -1140,7 +1203,7 @@ void stringCustomTrim(String *string, char *specialCharacters) {
         #endif
     } else if (specialCharacters == NULL) {
         #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
             return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "special characters array", "string data structure");
@@ -1187,7 +1250,7 @@ void stringScanInput(String *string) {
         if (c == '\n')
             break;
 
-        stringAddChar(string, c);
+        stringAppendChar(string, c);
     }
 
     fseek(stdin, 0, SEEK_END);
@@ -1276,7 +1339,7 @@ Vector *stringSplit(String *string, char *splitCharacters) {
             continue;
         }
 
-        stringAddChar(vectorGet(stringsVector, vectorGetLength(stringsVector) - 1), stringGet(string, i));
+        stringAppendChar(vectorGet(stringsVector, vectorGetLength(stringsVector) - 1), stringGet(string, i));
 
     }
 

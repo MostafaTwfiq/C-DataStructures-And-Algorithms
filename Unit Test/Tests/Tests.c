@@ -11,6 +11,7 @@
 #include "DequesTest/DequeTest/DequeTest.h"
 #include "DequesTest/DoublyLinkedListDequeTest/DoublyLinkedListDequeTest.h"
 #include "MatricesTest/MatrixTest/MatrixTest.h"
+#include "StringsTest/StringTest/StringTest.h"
 
 int main(void) {
 
@@ -27,6 +28,7 @@ int main(void) {
     dequeUnitTest();
     doublyLinkedListDequeUnitTest();
     matrixUnitTest();
+    stringUnitTest();
 
     return 0;
 

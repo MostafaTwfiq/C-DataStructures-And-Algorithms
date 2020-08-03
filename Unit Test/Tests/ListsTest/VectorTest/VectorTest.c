@@ -805,8 +805,10 @@ void generalVectorTest(CuTest *cuTest) {
     for (int i = 0; i < vectorGetLength(vector);) {
         item = (VectorTestStruct *) vectorGet(vector, i);
         CuAssertIntEquals(cuTest, 1 , vectorContains(vector, item));
-        vectorRemoveAtIndex(vector, i);
+        vectorRemoveAtIndexWtFr(vector, i);
         CuAssertIntEquals(cuTest, 0 , vectorContains(vector, item));
+
+        freeVectorTestStruct(item);
     }
 
     clearVector(vector);

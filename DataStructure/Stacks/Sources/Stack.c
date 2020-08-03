@@ -163,7 +163,7 @@ void **stackToArray(Stack *stack) {
 
     }
 
-    void **arr = (void **) malloc(sizeof(void *) * stack->top + 1);
+    void **arr = (void **) malloc(sizeof(void *) * (stack->top + 1));
     if (arr == NULL) {
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
