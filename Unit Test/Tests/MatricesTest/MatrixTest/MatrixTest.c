@@ -826,6 +826,144 @@ void testDestroyMatrix(CuTest *cuTest) {
 
 
 
+typedef struct MatrixTestStruct {
+
+    int iData;
+    char *cData;
+
+} MatrixTestStruct;
+
+
+
+void freeMatrixTestStruct(void *item) {
+    MatrixTestStruct *m = (MatrixTestStruct *) item;
+    free(m->cData);
+    free(m);
+}
+
+
+int matrixTestStructComp(const void *item1, const void *item2) {
+    MatrixTestStruct *m1 = (MatrixTestStruct *) item1;
+    MatrixTestStruct *m2 = (MatrixTestStruct *) item2;
+
+    int iDataFlag = m1->iData == m2->iData;
+    int cDataFlag = strcmp(m1->cData, m2->cData);
+
+    return !iDataFlag || cDataFlag;
+
+}
+
+
+
+MatrixTestStruct *generateMatrixTestStruct(int value, char *str) {
+
+    MatrixTestStruct *m = (MatrixTestStruct *) malloc(sizeof(MatrixTestStruct));
+    m->cData = (char *) malloc(sizeof(char ) * (strlen(str) + 1) );
+    strcpy(m->cData, str);
+
+    m->iData = value;
+
+    return m;
+
+}
+
+
+
+void generalMatrixTest(CuTest *cuTest) {
+
+    Matrix *matrix = matrixInitialization(2, 2, freeMatrixTestStruct, compareIntPointersMT);
+
+    char numbersStr[14][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"};
+
+    CuAssertIntEquals(cuTest, 2, matrixGetNumberOfRows(matrix));
+    CuAssertIntEquals(cuTest, 2, matrixGetNumberOfCols(matrix));
+    CuAssertIntEquals(cuTest, 0, matrixGetSize(matrix));
+    CuAssertIntEquals(cuTest, 1, matrixIsEmpty(matrix));
+
+    for (int i = 0; i < matrixGetNumberOfRows(matrix); i++) {
+
+        for (int j = 0; j < matrixGetNumberOfCols(matrix); j++)
+            CuAssertPtrEquals(cuTest, NULL, matrix->rows[i][j]);
+
+
+    }
+
+    matrixInsert(matrix, generateMatrixTestStruct(1, numbersStr[0]), 0, 0);
+    matrixInsert(matrix, generateMatrixTestStruct(2, numbersStr[1]), 0, 1);
+    matrixInsert(matrix, generateMatrixTestStruct(3, numbersStr[2]), 1, 0);
+    matrixInsert(matrix, generateMatrixTestStruct(4, numbersStr[3]), 1, 1);
+    CuAssertIntEquals(cuTest, 4, matrixGetSize(matrix));
+    CuAssertIntEquals(cuTest, 0, matrixIsEmpty(matrix));
+
+    for (int i = 0; i < matrixGetNumberOfRows(matrix); i++) {
+
+        int colNum = matrixGetNumberOfCols(matrix);
+        for (int j = 0; j < colNum; j++) {
+            CuAssertIntEquals(cuTest, i * colNum + j + 1, ((MatrixTestStruct *) matrixGet(matrix, i, j))->iData);
+            CuAssertStrEquals(cuTest, numbersStr[i * colNum + j], ((MatrixTestStruct *) matrixGet(matrix, i, j))->cData);
+        }
+
+
+    }
+
+
+    MatrixTestStruct *tempMatrixStruct ;
+
+    tempMatrixStruct = generateMatrixTestStruct(5, "five");
+    CuAssertIntEquals(cuTest, 0, matrixContains(matrix, tempMatrixStruct));
+    freeMatrixTestStruct(tempMatrixStruct);
+
+    tempMatrixStruct = generateMatrixTestStruct(4, "four");
+    CuAssertIntEquals(cuTest, 1, matrixContains(matrix, tempMatrixStruct));
+    freeMatrixTestStruct(tempMatrixStruct);
+
+    matrixRemoveRow(matrix, 1);
+    CuAssertIntEquals(cuTest, 2, matrixGetSize(matrix));
+
+    matrixAddCol(matrix);
+    matrixAddRow(matrix);
+    matrixAddRow(matrix);
+
+    matrixInsert(matrix, generateMatrixTestStruct(3, numbersStr[2]), 0, 2);
+    matrixInsert(matrix, generateMatrixTestStruct(4, numbersStr[3]), 1, 0);
+    matrixInsert(matrix, generateMatrixTestStruct(5, numbersStr[4]), 1, 1);
+    matrixInsert(matrix, generateMatrixTestStruct(6, numbersStr[5]), 1, 2);
+
+    matrixInsert(matrix, generateMatrixTestStruct(7, numbersStr[6]), 2, 0);
+    matrixInsert(matrix, generateMatrixTestStruct(8, numbersStr[7]), 2, 1);
+    matrixInsert(matrix, generateMatrixTestStruct(9, numbersStr[8]), 2, 2);
+    CuAssertIntEquals(cuTest, 9, matrixGetSize(matrix));
+
+    for (int i = 0; i < matrixGetNumberOfRows(matrix); i++) {
+
+        int colNum = matrixGetNumberOfCols(matrix);
+        for (int j = 0; j < colNum; j++) {
+            CuAssertIntEquals(cuTest, i * colNum + j + 1, ((MatrixTestStruct *) matrixGet(matrix, i, j))->iData);
+            CuAssertStrEquals(cuTest, numbersStr[i * colNum + j], ((MatrixTestStruct *) matrixGet(matrix, i, j))->cData);
+        }
+
+
+    }
+
+
+    MatrixTestStruct **structArr = (MatrixTestStruct **) matrixToArray(matrix);
+    for (int i = 0; i < matrixGetSize(matrix); i++) {
+        CuAssertIntEquals(cuTest, i + 1, structArr[i]->iData);
+        CuAssertStrEquals(cuTest, numbersStr[i], structArr[i]->cData);
+    }
+
+    clearMatrix(matrix);
+    CuAssertIntEquals(cuTest, 0, matrixGetSize(matrix));
+    CuAssertIntEquals(cuTest, 1, matrixIsEmpty(matrix));
+
+    free(structArr);
+    destroyMatrix(matrix);
+
+}
+
+
+
+
 
 CuSuite *createMatrixTestsSuite() {
 
@@ -855,6 +993,8 @@ CuSuite *createMatrixTestsSuite() {
     SUITE_ADD_TEST(suite, testMatrixToArray);
     SUITE_ADD_TEST(suite, testClearMatrix);
     SUITE_ADD_TEST(suite, testDestroyMatrix);
+
+    SUITE_ADD_TEST(suite, generalMatrixTest);
 
     return suite;
 
