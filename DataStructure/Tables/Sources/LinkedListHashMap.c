@@ -1,18 +1,19 @@
 #include "../Headers/LinkedListHashMap.h"
 #include "../../LinkedLists/Headers/DoublyLinkedList.h"
 #include "../../../System/Utils.h"
-
-
-//TODO: Please please check if it working and if it has any memory leaks.
+#include "../../../Unit Test/CuTest/CuTest.h"
 
 unsigned int LLHashMapFHashCal(int (*hashFun)(const void *), void *key, unsigned int length);
 
 
 
 /** This function will take two entries pointers as it's parameters,
-    then it will return zero (0) if the key of the two entries are the same.
+ * then it will return zero (0) if the key of the two entries are the same.
+ *
  * Note: this function should only be called from the linked list hash map functions.
+ *
  * This function will be useful to pass it to the linked list functions to know if the linked list contains the key or not.
+ *
  * @param p1 the first entry address
  * @param p2 the second entry address
  * @return it will return zero if the two entries has the same key value, other wise it will return one
@@ -28,6 +29,7 @@ int entriesCompFun(const void *p1, const void *p2) {
 
 
 /** The freeing entry function.
+ *
  * @param entry the entry address.
  */
 
@@ -46,8 +48,9 @@ void freeEntryFun(void *entry) {
 
 
 /** This function will take the length of the hash map, the free function address, and the key comparator function as a parameters,
-    then it will allocate a new linked list hash map in the memory,
-    then the function will return the hash map address.
+ * then it will allocate a new linked list hash map in the memory,
+ * then the function will return the hash map address.
+ *
  * @param mapLength the hash map length
  * @param freeFun the free function address, that will be called to free the hash map items
  * @param keyComp the key comparator function address, that will be called to compare two keys
@@ -64,52 +67,58 @@ LinkedListHashMap *linkedListHashMapInitialization(
         ) {
 
     if (mapLength <= 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "hash map initial length", "linked list hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "hash map initial length", "linked list hash map data structure");
      		exit(INVALID_ARG);
      	#endif
 
     } else if (freeKey == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "free key function pointer", "linked list hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "free key function pointer", "linked list hash map data structure");
      		exit(INVALID_ARG);
      	#endif
 
     } else if (freeItem == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "free item function pointer", "linked list hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "free item function pointer", "linked list hash map data structure");
      		exit(INVALID_ARG);
      	#endif
 
     } else if (keyComp == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "key comparator function pointer", "linked list hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "key comparator function pointer", "linked list hash map data structure");
      		exit(INVALID_ARG);
      	#endif
 
     } else if (keyComp == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "hash function pointer", "linked list hash map data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return NULL;
         #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "hash function pointer", "linked list hash map data structure");
             exit(INVALID_ARG);
         #endif
     }
 
     LinkedListHashMap *hashMap = (LinkedListHashMap *) malloc(sizeof(LinkedListHashMap));
     if (hashMap == NULL) {
-        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "hash map", "linked list hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "hash map", "linked list hash map data structure");
      		exit(FAILED_ALLOCATION);
      	#endif
 
@@ -119,10 +128,11 @@ LinkedListHashMap *linkedListHashMapInitialization(
     hashMap->length = mapLength;
     hashMap->arr = (DoublyLinkedList **) calloc(sizeof(DoublyLinkedList *), hashMap->length);
     if (hashMap->arr == NULL) {
-        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "hash map linked lists array", "linked list hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "hash map linked lists array", "linked list hash map data structure");
      		exit(FAILED_ALLOCATION);
      	#endif
 
@@ -143,7 +153,8 @@ LinkedListHashMap *linkedListHashMapInitialization(
 
 
 /** This function will take the hash map address, the key address, and the item address as a parameters,
-    then it will add the item and it's key in the hash map.
+ * then it will add the item and it's key in the hash map.
+ *
  * @param map the hash map address
  * @param key the key address
  * @param item the new item address
@@ -151,26 +162,29 @@ LinkedListHashMap *linkedListHashMapInitialization(
 
 void lLHashMapInsert(LinkedListHashMap *map, void *key, void *item) {
     if (map == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
      		exit(NULL_POINTER);
      	#endif
 
     } else if (key == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
      		exit(INVALID_ARG);
      	#endif
 
     } else if (item == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "linked list hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "linked list hash map data structure");
      		exit(INVALID_ARG);
      	#endif
 
@@ -182,10 +196,11 @@ void lLHashMapInsert(LinkedListHashMap *map, void *key, void *item) {
 
     Entry *entry = (Entry *) malloc(sizeof(Entry));
     if (entry == NULL) {
-        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new entry", "linked list hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
-     	#else
+     		return;
+        #else
+            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new entry", "linked list hash map data structure");
      		exit(FAILED_ALLOCATION);
      	#endif
 
@@ -211,9 +226,11 @@ void lLHashMapInsert(LinkedListHashMap *map, void *key, void *item) {
 
 
 /** This function will take the hash map address, and the key address as a parameters,
-    then it will return one (1) if the key is in the tree,
-    other wise it will return zero (0).
+ * then it will return one (1) if the key is in the tree,
+ * other wise it will return zero (0).
+ *
  * Note: this function will not free the key after it's done.
+ *
  * @param map the hash map address
  * @param key the key address
  * @return it will return one if the key is in the hash map, other wise it will return zero
@@ -221,18 +238,20 @@ void lLHashMapInsert(LinkedListHashMap *map, void *key, void *item) {
 
 int lLHashMapContains(LinkedListHashMap *map, void *key) {
     if (map == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return -1;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
      		exit(NULL_POINTER);
      	#endif
 
     } else if (key == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return -1;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
      		exit(INVALID_ARG);
      	#endif
 
@@ -257,9 +276,11 @@ int lLHashMapContains(LinkedListHashMap *map, void *key) {
 
 
 /** This function will take the hash map address, and the key address as a parameters,
-    then it will return the item with the provided key,
-    other wise if the function didn't find that key it will return NULL.
+ * then it will return the item with the provided key,
+ * other wise if the function didn't find that key it will return NULL.
+ *
  * Note: this function will not free the key after it's done.
+ *
  * @param map the hash map address
  * @param key the key address
  * @return it will return the item with the provided key if found, other wise it will return NULL
@@ -267,18 +288,20 @@ int lLHashMapContains(LinkedListHashMap *map, void *key) {
 
 void *lLHashMapGet(LinkedListHashMap *map, void *key) {
     if (map == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
      		exit(NULL_POINTER);
      	#endif
 
     } else if (key == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
      		exit(INVALID_ARG);
      	#endif
 
@@ -308,7 +331,9 @@ void *lLHashMapGet(LinkedListHashMap *map, void *key) {
 /** This function will take the hash map address, and the key address as a parameters,
  * then it will return the key pointer that equals to the provided key,
  * other wise if the function didn't find that key it will return NULL.
+ *
  * Note: this function will not free the passed key after it's done.
+ *
  * @param map the hash map address
  * @param key the key address
  * @return it will return the key that equals to the provided key if found, other wise it will return NULL
@@ -316,18 +341,20 @@ void *lLHashMapGet(LinkedListHashMap *map, void *key) {
 
 void *lLHashMapGetKey(LinkedListHashMap *map, void *key) {
     if (map == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
      		exit(NULL_POINTER);
      	#endif
 
     } else if (key == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
      		exit(INVALID_ARG);
      	#endif
 
@@ -356,26 +383,30 @@ void *lLHashMapGetKey(LinkedListHashMap *map, void *key) {
 
 
 /** This function will take the hash map address, and the key address as a parameters,
-    then it will remove the item with the provided key from the hash map.
+ * then it will remove the item with the provided key from the hash map.
+ *
  * Note: this function will not free the key after it's done.
+ *
  * @param map the hash map address
  * @param key the key address
  */
 
 void lLHashMapDelete(LinkedListHashMap *map, void *key) {
     if (map == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
      		exit(NULL_POINTER);
      	#endif
 
     } else if (key == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
      		exit(INVALID_ARG);
      	#endif
 
@@ -404,8 +435,11 @@ void lLHashMapDelete(LinkedListHashMap *map, void *key) {
 
 /** This function will take the hash map address, and the key address as a parameters,
  * then it will remove the item with the provided key from the hash map without freeing it.
+ *
  * Note: the function will free the key without the item.
+ *
  * Note: this function will not free the passed key after it's done.
+ *
  * @param map the hash map address
  * @param key the key address
  * @return it will return the deleted item pointer if found, other wise it will return NULL
@@ -413,18 +447,20 @@ void lLHashMapDelete(LinkedListHashMap *map, void *key) {
 
 void *lLHashMapDeleteWtoFr(LinkedListHashMap *map, void *key) {
     if (map == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
      		exit(NULL_POINTER);
      	#endif
 
     } else if (key == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
      		exit(INVALID_ARG);
      	#endif
 
@@ -459,8 +495,11 @@ void *lLHashMapDeleteWtoFr(LinkedListHashMap *map, void *key) {
 
 /** This function will take the hash map address, and the key address as a parameters,
  * then it will remove the item with the provided key from the hash map without freeing it.
+ *
  * Note: the function will not free the key and the item.
+ *
  * Note: this function will not free the passed key after it's done.
+ *
  * @param map the hash map address
  * @param key the key address
  * @return it will return the deleted entry pointer if found, other wise it will return NULL
@@ -468,18 +507,20 @@ void *lLHashMapDeleteWtoFr(LinkedListHashMap *map, void *key) {
 
 Entry *lLHashMapDeleteWtoFrAll(LinkedListHashMap *map, void *key) {
     if (map == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
      		exit(NULL_POINTER);
      	#endif
 
     } else if (key == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
      		exit(INVALID_ARG);
      	#endif
 
@@ -512,17 +553,19 @@ Entry *lLHashMapDeleteWtoFrAll(LinkedListHashMap *map, void *key) {
 
 
 /** This function will take the hash map address as a parameter,
-    then it will return a double void array that contains all the items in the hash map.
+ * then it will return a double void array that contains all the items in the hash map.
+ *
  * @param map the hash map address
  * @return it will return a double void array that has a copy from the hash map items
  */
 
 void **lLHashMapToArray(LinkedListHashMap *map) {
     if (map == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
      		exit(NULL_POINTER);
      	#endif
 
@@ -530,10 +573,11 @@ void **lLHashMapToArray(LinkedListHashMap *map) {
 
     void **arr = (void **) malloc(sizeof(void *) * map->count);
     if (arr == NULL) {
-        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "linked list hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "linked list hash map data structure");
      		exit(FAILED_ALLOCATION);
      	#endif
 
@@ -561,18 +605,21 @@ void **lLHashMapToArray(LinkedListHashMap *map) {
 
 
 /** This function will take the hash map address as a parameter,
-    then it will return an Entry double pointer array that contains all the entries in the hash map.
- * Note: the returned Entries will not be a really copy of the keys and items, it will reference to the same addresses
+ * then it will return an Entry double pointer array that contains all the entries in the hash map.
+ *
+ * Note: the returned Entries will not be a really copy of the keys and items, it will reference to the same addresses.
+ *
  * @param map the hash map address
  * @return it will return a double Entry pointer array that contains a copy of all the entries in the hash map
  */
 
 Entry **lLHashMapToEntryArray(LinkedListHashMap *map) {
     if (map == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
      		exit(NULL_POINTER);
      	#endif
 
@@ -580,10 +627,11 @@ Entry **lLHashMapToEntryArray(LinkedListHashMap *map) {
 
     Entry **arr = (Entry **) malloc(sizeof(Entry *) * map->count);
     if (arr == NULL) {
-        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to entries array", "linked list hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to entries array", "linked list hash map data structure");
      		exit(FAILED_ALLOCATION);
      	#endif
 
@@ -609,17 +657,19 @@ Entry **lLHashMapToEntryArray(LinkedListHashMap *map) {
 
 
 /** This function will take the hash map address as a parameter,
-    then it will return the number of the items in the hash map.
+ * then it will return the number of the items in the hash map.
+ *
  * @param map the hash map address
  * @return it will return the number of items in the hash map
  */
 
 int lLHashMapGetLength(LinkedListHashMap *map) {
     if (map == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return -1;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
      		exit(NULL_POINTER);
      	#endif
 
@@ -633,24 +683,27 @@ int lLHashMapGetLength(LinkedListHashMap *map) {
 
 
 /** This function will take the hash map address as a parameter,
-    then it will return one (1) if the hash map is empty,
-    other wise it will return zero (0).
+ * then it will return one (1) if the hash map is empty,
+ * other wise it will return zero (0).
+ *
  * @param map the hash map address
  * @return it will return one if the hash map is empty, other wise it will return zero
  */
 
 int lLHashMapIsEmpty(LinkedListHashMap *map) {
     if (map == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return -1;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
      		exit(NULL_POINTER);
      	#endif
 
     }
 
     return map->count == 0;
+
 }
 
 
@@ -658,17 +711,19 @@ int lLHashMapIsEmpty(LinkedListHashMap *map) {
 
 
 /** This function will take the hash map address as a parameter,
-    then it will clear and free all the hash map entries,
-    without destroying the hash map it self.
+ * then it will clear and free all the hash map entries,
+ * without destroying the hash map it self.
+ *
  * @param map the hash map address
  */
 
 void clearLLHashMap(LinkedListHashMap *map) {
     if (map == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
      		exit(NULL_POINTER);
      	#endif
 
@@ -690,11 +745,23 @@ void clearLLHashMap(LinkedListHashMap *map) {
 
 
 /** This function will take the hash map address as a parameter,
-    then it will destroy and free the hash map and all it's entries.
+ * then it will destroy and free the hash map and all it's entries.
+ *
  * @param map the hash map address
  */
 
 void destroyLLHashMap(LinkedListHashMap *map) {
+    if (map == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
+            exit(NULL_POINTER);
+        #endif
+
+    }
+
     clearLLHashMap(map);
 
     free(map->arr);
@@ -709,7 +776,9 @@ void destroyLLHashMap(LinkedListHashMap *map) {
 
 /** This function will take the hash function pointer, the key pointer, and the hash map array length as a parameters,
  * then it will return the first hash of this key.
+ *
  * Note: this function should only be called from the hash map functions.
+ * 
  * @param hashFun the hash function pointer
  * @param key the key pointer
  * @param length the length of the hash map array
