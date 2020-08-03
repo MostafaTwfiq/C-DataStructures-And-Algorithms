@@ -72,6 +72,28 @@ char *generateCharPointerHMT(char *ch) {
 
 
 
+/** This function will take an char array pointer,
+ * then it will return the sum of the ASCII value of the array characters.
+ *
+ * Note: this function will be useful to use in the hash set and hash map data structures.
+ *
+ * @param ch the char array pointer
+ * @return it will return the sum of the ASCII value of the array characters.
+ */
+
+int charArrHashFunHMT(const void *ch) {
+    int sumASCII = 0;
+    char *tempPointer = (char *) ch;
+
+    while (*tempPointer != '\0')
+        sumASCII += *tempPointer++;
+
+    return sumASCII;
+
+}
+
+
+
 
 
 void testInvalidHashMapInitialization(CuTest *cuTest) {
@@ -386,7 +408,7 @@ void testHashMapDeleteWtoFrAll(CuTest *cuTest) {
 
 void testHashMapToArray(CuTest *cuTest) {
 
-    HashMap *hashMap = hashMapInitialization(free, free, compareIntPointersHMT, intHashFunHMT);
+    HashMap *hashMap = hashMapInitialization(free, free, strcmp, charArrHashFunHMT);
 
     char numbersArr[13][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen"};
 
@@ -416,7 +438,7 @@ void testHashMapToArray(CuTest *cuTest) {
 
 void testHashMapToEntryArray(CuTest *cuTest) {
 
-    HashMap *hashMap = hashMapInitialization(free, free, compareIntPointersHMT, intHashFunHMT);
+    HashMap *hashMap = hashMapInitialization(free, free, strcmp, charArrHashFunHMT);
 
     char numbersArr[13][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen"};
 

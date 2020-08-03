@@ -263,6 +263,7 @@ int lLHashMapContains(LinkedListHashMap *map, void *key) {
 
     Entry *entry = (Entry *) malloc(sizeof(Entry));
     entry->key = key;
+    entry->keyCompFun = map->keyCompFun;
 
     int boolean = doublyLinkedListContains(map->arr[index], entry);
     free(entry);
@@ -313,6 +314,7 @@ void *lLHashMapGet(LinkedListHashMap *map, void *key) {
 
     Entry *entry = (Entry *) malloc(sizeof(Entry));
     entry->key = key;
+    entry->keyCompFun = map->keyCompFun;
 
     int itemIndex = doublyLinkedListGetIndex(map->arr[index], entry);
     free(entry);
@@ -366,6 +368,7 @@ void *lLHashMapGetKey(LinkedListHashMap *map, void *key) {
 
     Entry *entry = (Entry *) malloc(sizeof(Entry));
     entry->key = key;
+    entry->keyCompFun = map->keyCompFun;
 
     int itemIndex = doublyLinkedListGetIndex(map->arr[index], entry);
     free(entry);
@@ -418,6 +421,7 @@ void lLHashMapDelete(LinkedListHashMap *map, void *key) {
 
     Entry *entry = (Entry *) malloc(sizeof(Entry));
     entry->key = key;
+    entry->keyCompFun = map->keyCompFun;
 
     int itemIndex = doublyLinkedListGetIndex(map->arr[index], entry);
     free(entry);
@@ -472,6 +476,7 @@ void *lLHashMapDeleteWtoFr(LinkedListHashMap *map, void *key) {
 
     Entry *entry = (Entry *) malloc(sizeof(Entry));
     entry->key = key;
+    entry->keyCompFun = map->keyCompFun;
 
     int itemIndex = doublyLinkedListGetIndex(map->arr[index], entry);
     free(entry);
@@ -532,6 +537,7 @@ Entry *lLHashMapDeleteWtoFrAll(LinkedListHashMap *map, void *key) {
 
     Entry *entry = (Entry *) malloc(sizeof(Entry));
     entry->key = key;
+    entry->keyCompFun = map->keyCompFun;
 
     int itemIndex = doublyLinkedListGetIndex(map->arr[index], entry);
     free(entry);
@@ -589,7 +595,7 @@ void **lLHashMapToArray(LinkedListHashMap *map) {
         if (map->arr[i] != NULL) {
             for (int j = 0; j < doublyLinkedListGetLength(map->arr[i]); j++) {
                 Entry *entry = (Entry *) doublyLinkedListGet(map->arr[i], j);
-                arr[index] = entry->item;
+                arr[index++] = entry->item;
             }
 
         }
@@ -736,6 +742,8 @@ void clearLLHashMap(LinkedListHashMap *map) {
         }
 
     }
+
+    map->count = 0;
 
 }
 

@@ -13,6 +13,7 @@
 #include "MatricesTest/MatrixTest/MatrixTest.h"
 #include "StringsTest/StringTest/StringTest.h"
 #include "TablesTest/HashMapTest/HashMapTest.h"
+#include "TablesTest/DounlyLinkedListHashMapTest/DoublyLinkedListHashMapTest.h"
 
 int main(void) {
 
@@ -31,6 +32,7 @@ int main(void) {
     matrixUnitTest();
     stringUnitTest();
     hashMapUnitTest();
+    doublyLinkedListHashMapUnitTest();
 
     return 0;
 
