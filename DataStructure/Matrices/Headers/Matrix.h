@@ -10,7 +10,7 @@ extern "C" {
 /** @struct Matrix
 *  @brief This structure implements a basic generic Matrix.
 *  @var Matrix::rows
-*  Member 'rows' is a pointer to the the matrix rows (arrays).
+*  Member 'rows' is a pointer to the matrix rows (arrays).
 *  @var Matrix::rowsNum
 *  Member 'rowsNum' holds the current number of rows.
 *  @var Matrix::rowsArrLength

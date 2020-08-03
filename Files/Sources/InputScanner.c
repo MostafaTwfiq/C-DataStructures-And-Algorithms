@@ -15,7 +15,7 @@
 String *scanStrS() {
 
     String *string = stringInitialization(10);
-    stringFGetS(string);
+    stringScanInput(string);
 
     return string;
 
@@ -33,9 +33,9 @@ String *scanStrS() {
 char *scanStrC() {
 
     String *string = stringInitialization(10);
-    stringFGetS(string);
+    stringScanInput(string);
 
-    char *charArr = stringToArrayOfCharacters(string);
+    char *charArr = stringToCharArray(string);
 
     destroyString(string);
     return charArr;
@@ -54,7 +54,7 @@ char *scanStrC() {
 int scanInt() {
 
     String *string = stringInitialization(10);
-    stringFGetS(string);
+    stringScanInput(string);
 
     if (!isInteger(string->string, stringGetLength(string))) {
         fprintf(stderr, SOMETHING_WENT_WRONG_MESSAGE, "load the int", "scan int function");
@@ -81,7 +81,7 @@ int scanInt() {
 double scanDouble() {
 
     String *string = stringInitialization(10);
-    stringFGetS(string);
+    stringScanInput(string);
 
     if (!isFloatingPointNum(string->string, stringGetLength(string))) {
         fprintf(stderr, SOMETHING_WENT_WRONG_MESSAGE, "load the double", "scan double function");
@@ -107,7 +107,7 @@ double scanDouble() {
 float scanFloat() {
 
     String *string = stringInitialization(10);
-    stringFGetS(string);
+    stringScanInput(string);
 
     if (!isFloatingPointNum(string->string, stringGetLength(string))) {
         fprintf(stderr, SOMETHING_WENT_WRONG_MESSAGE, "load the float", "scan float function");
@@ -133,7 +133,7 @@ float scanFloat() {
 long scanLong() {
 
     String *string = stringInitialization(10);
-    stringFGetS(string);
+    stringScanInput(string);
 
     if (!isInteger(string->string, stringGetLength(string))) {
         fprintf(stderr, SOMETHING_WENT_WRONG_MESSAGE, "load the long", "scan long function");
@@ -159,7 +159,7 @@ long scanLong() {
 long long scanLongLong() {
 
     String *string = stringInitialization(10);
-    stringFGetS(string);
+    stringScanInput(string);
 
     if (!isInteger(string->string, stringGetLength(string))) {
         fprintf(stderr, SOMETHING_WENT_WRONG_MESSAGE, "load the long long", "scan long long function");
@@ -186,7 +186,7 @@ long long scanLongLong() {
 short scanShort() {
 
     String *string = stringInitialization(10);
-    stringFGetS(string);
+    stringScanInput(string);
 
     if (!isInteger(string->string, stringGetLength(string))) {
         fprintf(stderr, SOMETHING_WENT_WRONG_MESSAGE, "load the short", "scan short function");

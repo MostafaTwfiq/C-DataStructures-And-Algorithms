@@ -110,7 +110,7 @@ String *txtLoaderReadFileS(TxtFileLoader *txtFileLoader) {
     String *fString = stringInitialization(10);
     char c;
     while ((c = (char) fgetc(txtFileLoader->fileP)) != EOF)
-        stringAddCharAtLast(fString, c);
+        stringAddChar(fString, c);
 
     fseek(txtFileLoader->fileP, 0, SEEK_SET);
 
@@ -154,11 +154,11 @@ char *txtLoaderReadFileC(TxtFileLoader *txtFileLoader) {
     String *fString = stringInitialization(10);
     char c;
     while ((c = (char) fgetc(txtFileLoader->fileP)) != EOF)
-        stringAddCharAtLast(fString, c);
+        stringAddChar(fString, c);
 
     fseek(txtFileLoader->fileP, 0, SEEK_SET);
 
-    char *fileCharArr = stringToArrayOfCharacters(fString);
+    char *fileCharArr = stringToCharArray(fString);
     destroyString(fString);
 
     fclose(txtFileLoader->fileP);
@@ -190,7 +190,7 @@ Vector *txtLoaderReadFileLines(TxtFileLoader *txtFileLoader) {
 
     txtLoaderOpenFile(txtFileLoader, "r");
 
-    Vector *linesVector = vectorInitialization(10, destroyString, stringCompareToString);
+    Vector *linesVector = vectorInitialization(10, destroyString, stringCompareS);
     vectorAdd(linesVector, stringInitialization(10));
     int stringIndex = 0;
     char c;
@@ -202,7 +202,7 @@ Vector *txtLoaderReadFileLines(TxtFileLoader *txtFileLoader) {
             continue;
         }
 
-        stringAddCharAtLast(vectorGet(linesVector, stringIndex), c);
+        stringAddChar(vectorGet(linesVector, stringIndex), c);
 
     }
 
@@ -259,7 +259,7 @@ String *txtLoaderReadLineS(TxtFileLoader *txtFileLoader, int lineIndex) {
 
     String *lineString = stringInitialization(5);
     while ((c = (char) fgetc(txtFileLoader->fileP)) != EOF && c != '\n')
-        stringAddCharAtLast(lineString, c);
+        stringAddChar(lineString, c);
 
 
     fclose(txtFileLoader->fileP);
@@ -313,9 +313,9 @@ char *txtLoaderReadLineC(TxtFileLoader *txtFileLoader, int lineIndex) {
 
     String *lineString = stringInitialization(5);
     while ((c = (char) fgetc(txtFileLoader->fileP)) != EOF && c != '\n')
-        stringAddCharAtLast(lineString, c);
+        stringAddChar(lineString, c);
 
-    char *charLine = stringToArrayOfCharacters(lineString);
+    char *charLine = stringToCharArray(lineString);
     destroyString(lineString);
 
 
@@ -612,7 +612,7 @@ void txtLoaderAppendToLineC(TxtFileLoader *txtFileLoader, char *lineToAppend, in
         #endif
     }
 
-    stringAddCharArrayAtLast(vectorGet(linesVector, index), lineToAppend);
+    stringAddAppendC(vectorGet(linesVector, index), lineToAppend);
 
     txtLoaderOpenFile(txtFileLoader, "w");
 
@@ -671,7 +671,7 @@ void txtLoaderAppendToLineS(TxtFileLoader *txtFileLoader, String *stringToAppend
         #endif
     }
 
-    stringAddStringAtLast(vectorGet(linesVector, index), stringToAppend);
+    stringAddAppendS(vectorGet(linesVector, index), stringToAppend);
 
     txtLoaderOpenFile(txtFileLoader, "w");
 
@@ -729,7 +729,7 @@ void txtLoaderAddLineC(TxtFileLoader *txtFileLoader, char *line, int index) {
     }
 
     String *newLineString = stringInitialization(10);
-    stringChangeStringByCharArray(newLineString, line);
+    stringChangeStringC(newLineString, line);
 
     vectorAddAtIndex(linesVector, newLineString, index);
 
@@ -850,7 +850,7 @@ void txtLoaderAddAllC(TxtFileLoader *txtFileLoader, Vector *newLines, int index)
     for (int i = vectorGetLength(newLines) - 1; i >= 0; i--) {
 
         String *tempLineString = stringInitialization(10);
-        stringChangeStringByCharArray(tempLineString, vectorGet(newLines, i));
+        stringChangeStringC(tempLineString, vectorGet(newLines, i));
         vectorAddAtIndex(linesVector, tempLineString, index);
 
     }
@@ -983,7 +983,7 @@ void txtLoaderUpdateLineC(TxtFileLoader *txtFileLoader, char *line, int index) {
         #endif
     }
 
-    stringChangeStringByCharArray(vectorGet(linesVector, index), line);
+    stringChangeStringC(vectorGet(linesVector, index), line);
 
     txtLoaderOpenFile(txtFileLoader, "w");
 
@@ -1042,7 +1042,7 @@ void txtLoaderUpdateLineS(TxtFileLoader *txtFileLoader, String *line, int index)
         #endif
     }
 
-    stringChangeStringByString(vectorGet(linesVector, index), line);
+    stringChangeStringS(vectorGet(linesVector, index), line);
 
     txtLoaderOpenFile(txtFileLoader, "w");
 

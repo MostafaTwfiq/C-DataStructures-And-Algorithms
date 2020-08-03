@@ -5,6 +5,17 @@
 extern "C" {
 #endif
 
+
+/** @struct String
+*  @brief This structure implements a basic String.
+*  @var String::string
+*  Member 'string' is a pointer to the string char array.
+*  @var String::count
+*  Member 'count' holds the current number of characters.
+*  @var String::length
+*  Member 'length' holds the current length of the allocated char array.
+*/
+
 typedef struct String {
     char *string;
     int count;
@@ -13,53 +24,55 @@ typedef struct String {
 
 String *stringInitialization(int initialLength);
 
-void stringAddCharAtLast(String *myString, char c);
+void stringAddChar(String *string, char c);
 
-void stringAddCharAtIndex(String *myString, int index, char c);
+void stringAddCharAtIndex(String *string, int index, char c);
 
-void stringRemoveCharAtIndex(String *myString, int index);
+void stringRemove(String *string, int index);
 
-void stringAddCharArrayAtLast(String *myString, char *charArr);
+void stringAddAppendC(String *string, char *charArr);
 
-void stringAddStringAtLast(String *myString, String *newString);
+void stringAddAppendS(String *string, String *newString);
 
-void stringChangeStringByCharArray(String *string, char *newString);
+void stringChangeStringC(String *string, char *newCharArr);
 
-void stringChangeStringByString(String *string, String *newString);
+void stringChangeStringS(String *string, String *newString);
 
-int stringFindCharIndex(String *myString, char c);
+int stringGetIndex(String *string, char c);
 
-char stringGetCharAtIndex(String *myString, int index);
+char stringGet(String *string, int index);
 
-int stringSubString(String *myString, char *string);
+int stringSubStringC(String *string, char *charArr);
 
-char *stringToArrayOfCharacters(String *myString);
+int stringSubStringS(String *string, String *sString);
 
-char *stringGetStringBetweenTwoIndices(String *myString, int startIndex, int endIndex);
+char *stringToCharArray(String *string);
 
-int stringIsEqualsToCharArray(String *myString, char *string);
+char *stringToCustomCharArray(String *string, int startIndex, int endIndex);
 
-int stringIsEqualsToMyString(String *myString, String *string);
+int stringEqualsC(String *string, char *charArr);
 
-int stringCompareToCharArray(String *myString, char *string);
+int stringEqualsS(String *string, String *sString);
 
-int stringCompareToString(String *myString, String *string);
+int stringCompareC(String *string, char *charArr);
 
-int stringGetLength(String *myString);
+int stringCompareS(String *string, String *sString);
 
-void stringTrimStartC(String *myString, char *specialCharacters);
+int stringGetLength(String *string);
 
-void stringTrimStart(String *myString);
+void stringCustomTrimStart(String *string, char *specialCharacters);
 
-void stringTrimEndC(String *myString, char *specialCharacters);
+void stringTrimStart(String *string);
 
-void stringTrimEnd(String *myString);
+void stringCustomTrimEnd(String *string, char *specialCharacters);
+
+void stringTrimEnd(String *string);
 
 void stringTrim(String *myString);
 
-void stringTrimC(String *myString, char *specialCharacters);
+void stringCustomTrim(String *string, char *specialCharacters);
 
-void stringFGetS(String *myString);
+void stringScanInput(String *string);
 
 void printString(String *string);
 

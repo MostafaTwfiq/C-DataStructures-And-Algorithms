@@ -358,12 +358,12 @@ ArrayList *trieAutoCompletion(Trie *trie, char *word, int numOfSuggestion) {
 
 void trieAutoCompletionR(Node *root, char *currentChar, int numOfSuggestion, String *string, ArrayList *wordsList) {
     if (root->value != '\0')
-        stringAddCharAtLast(string, root->value);
+        stringAddChar(string, root->value);
 
     if (arrayListGetLength(wordsList) == numOfSuggestion)
         return;
     else if (root->EOW && *currentChar == '\0') {
-        char *word = stringToArrayOfCharacters(string);
+        char *word = stringToCharArray(string);
         arrayListAdd(wordsList, word);
     }
 
@@ -381,7 +381,7 @@ void trieAutoCompletionR(Node *root, char *currentChar, int numOfSuggestion, Str
     }
 
     if (stringGetLength(string) != 0)
-        stringRemoveCharAtIndex(string, stringGetLength(string) - 1);
+        stringRemove(string, stringGetLength(string) - 1);
 
 }
 
@@ -457,13 +457,13 @@ ArrayList *trieSuggestion(Trie *trie, char *word, int numOfSuggestion) {
 
 void trieSuggestionR(Node *root, char *word, String *string, ArrayList *wordsList, int numOfSuggestion) {
     if (root->value != '\0')
-        stringAddCharAtLast(string, root->value);
+        stringAddChar(string, root->value);
 
     if (*word == '\0') {
         if (arrayListGetLength(wordsList) == numOfSuggestion)
             return;
         else if (root->EOW) {
-            char *finalWord = stringToArrayOfCharacters(string);
+            char *finalWord = stringToCharArray(string);
             arrayListAdd(wordsList, finalWord);
         }
     }
@@ -480,7 +480,7 @@ void trieSuggestionR(Node *root, char *word, String *string, ArrayList *wordsLis
 
     free(indices);
     if (stringGetLength(string) != 0)
-        stringRemoveCharAtIndex(string, stringGetLength(string) - 1);
+        stringRemove(string, stringGetLength(string) - 1);
 
 }
 
@@ -531,7 +531,7 @@ void triePrintAllWords(Trie *trie) {
  */
 
 void triePrintAllWordsR(Node *root, String *string) {
-    stringAddCharAtLast(string, root->value);
+    stringAddChar(string, root->value);
 
     if (root->EOW) {
         printString(string);
@@ -544,7 +544,7 @@ void triePrintAllWordsR(Node *root, String *string) {
 
     }
 
-    stringRemoveCharAtIndex(string, stringGetLength(string) - 1);
+    stringRemove(string, stringGetLength(string) - 1);
 
 }
 

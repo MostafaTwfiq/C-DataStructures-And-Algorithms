@@ -92,7 +92,7 @@ void charArrayReverseWords(char *charArr) {
 
         }
         else
-            stringAddCharAtLast( (String *) vectorGet(wordsVector, wordsCounter), *charArr);
+            stringAddChar((String *) vectorGet(wordsVector, wordsCounter), *charArr);
 
         charArr++;
 
@@ -103,7 +103,7 @@ void charArrayReverseWords(char *charArr) {
         String *currentWord = vectorGet(wordsVector, i);
 
         for (int j = 0; j < stringGetLength(currentWord); j++)
-            *charArrStartPointer++ = stringGetCharAtIndex(currentWord, j);
+            *charArrStartPointer++ = stringGet(currentWord, j);
 
         if (i != 0 && stringGetLength(currentWord) != 0)
             *charArrStartPointer++ = ' ';
@@ -614,7 +614,7 @@ Vector *charArrSplitS(char *string, char *splitCharacters) {
     }
 
 
-    Vector *wordsVector = vectorInitialization(5, destroyString, stringCompareToString);
+    Vector *wordsVector = vectorInitialization(5, destroyString, stringCompareS);
     vectorAdd(wordsVector, stringInitialization(5));
 
     while (*string != '\0') {
@@ -625,7 +625,7 @@ Vector *charArrSplitS(char *string, char *splitCharacters) {
                 vectorAdd(wordsVector, stringInitialization(5));
 
         } else
-            stringAddCharAtLast(vectorGet(wordsVector, vectorGetLength(wordsVector) - 1), *string);
+            stringAddChar(vectorGet(wordsVector, vectorGetLength(wordsVector) - 1), *string);
 
         string++;
     }
@@ -669,19 +669,19 @@ Vector *charArrSplitC(char *string, char *splitCharacters) {
         if (charArrContainsChar(splitCharacters, *string)) {
 
             if ( stringGetLength(currentWord) != 0 ) {
-                vectorAdd(wordsVector, stringToArrayOfCharacters(currentWord));
+                vectorAdd(wordsVector, stringToCharArray(currentWord));
                 clearString(currentWord);
             }
 
         } else
-            stringAddCharAtLast(currentWord, *string);
+            stringAddChar(currentWord, *string);
 
         string++;
 
     }
 
     if ( stringGetLength(currentWord) != 0 )
-        vectorAdd(wordsVector, stringToArrayOfCharacters(currentWord));
+        vectorAdd(wordsVector, stringToCharArray(currentWord));
 
     destroyString(currentWord);
 

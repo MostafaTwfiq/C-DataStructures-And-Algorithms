@@ -26,7 +26,6 @@ int main(void) {
     priorityQueueUnitTest();
     dequeUnitTest();
     doublyLinkedListDequeUnitTest();
-
     matrixUnitTest();
 
     return 0;
