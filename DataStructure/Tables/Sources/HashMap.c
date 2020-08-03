@@ -1,7 +1,6 @@
 #include "../Headers/HashMap.h"
 #include "../../../System/Utils.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "../../../Unit Test/CuTest/CuTest.h"
 #include "limits.h"
 
 
@@ -27,6 +26,7 @@ int getNextPrime(int num);
 
 
 /** The freeing entry function.
+ *
  * @param entry the entry address.
  */
 
@@ -46,9 +46,9 @@ void freeEntry(void *entry) {
 
 
 /** This function will take the freeing item function address, the freeing key function address, the key comparator function, and the hash function as a parameters,
-   then it will initialize a new hash map,
-   then the function will return the address of the hash map.
-
+ * then it will initialize a new hash map,
+ * then the function will return the address of the hash map.
+ *
  * @param freeKey the freeing key function address that will be called to free the items keys
  * @param freeItem the freeing item function address that will be called to free the hash map items
  * @param keyComp the function that will be called to compare the keys
@@ -64,34 +64,38 @@ HashMap *hashMapInitialization(
         ) {
 
     if (freeKey == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "free key function pointer", "hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "free key function pointer", "hash map data structure");
      		exit(INVALID_ARG);
      	#endif
 
     } else if (freeItem == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "free item function pointer", "hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "free item function pointer", "hash map data structure");
      		exit(INVALID_ARG);
      	#endif
 
     } else if (keyComp == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "key comparator function pointer", "hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "key comparator function pointer", "hash map data structure");
      		exit(INVALID_ARG);
      	#endif
 
     } else if (hashFun == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "hash function pointer", "hash map data structure");
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return NULL;
         #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "hash function pointer", "hash map data structure");
             exit(INVALID_ARG);
         #endif
 
@@ -99,10 +103,11 @@ HashMap *hashMapInitialization(
 
     HashMap *map = (HashMap *) malloc(sizeof(HashMap));
     if (map == NULL) {
-        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "hash map", "hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "hash map", "hash map data structure");
      		exit(FAILED_ALLOCATION);
      	#endif
 
@@ -111,10 +116,11 @@ HashMap *hashMapInitialization(
     map->length = getNextPrime(10); //the length of the map array should always be a prime number.
     map->arr = (Entry **) calloc(sizeof(Entry *), map->length);
     if (map == NULL) {
-        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "hash map entries array", "hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "hash map entries array", "hash map data structure");
      		exit(FAILED_ALLOCATION);
      	#endif
 
@@ -137,7 +143,9 @@ HashMap *hashMapInitialization(
 
 /** This function will take the map address, the key address, and the item address as a parameters,
  * then it will insert the item in the map.
+ *
  * Note: if the key is already in the map then the map will override the data and free the old item and it's key.
+ *
  * @param map the hash map address
  * @param key the key address
  * @param item the item address
@@ -145,26 +153,29 @@ HashMap *hashMapInitialization(
 
 void hashMapInsert(HashMap *map, void *key, void *item) {
     if (map == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
      		exit(NULL_POINTER);
      	#endif
 
     } else if (key == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
      		exit(INVALID_ARG);
      	#endif
 
     } else if (item == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "hash map data structure");
      		exit(INVALID_ARG);
      	#endif
 
@@ -174,12 +185,13 @@ void hashMapInsert(HashMap *map, void *key, void *item) {
         map->length = getNextPrime(map->length * 2); //the length of the map array should always be a prime number.
         map->arr = (Entry **) realloc(map->arr, sizeof(Entry *) * map->length);
         if (map->arr == NULL) {
-            fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "entries array", "hash map data structure");
             #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_REALLOCATION;
-     	#else
-     		exit(FAILED_REALLOCATION);
-     	#endif
+     		    DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_REALLOCATION;
+     		    return;
+            #else
+                fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "entries array", "hash map data structure");
+     	    	exit(FAILED_REALLOCATION);
+     	    #endif
 
         }
 
@@ -212,10 +224,11 @@ void hashMapInsert(HashMap *map, void *key, void *item) {
 
     Entry *newEntry = (Entry *) malloc(sizeof(Entry));
     if (newEntry == NULL) {
-        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new entry", "hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
-     	#else
+     		return;
+        #else
+            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new entry", "hash map data structure");
      		exit(FAILED_ALLOCATION);
      	#endif
 
@@ -236,9 +249,11 @@ void hashMapInsert(HashMap *map, void *key, void *item) {
 
 
 /** This function will take the map address, and the key address as a parameters,
-    then it will return (1) if the key is in the map,
-    other wise it will return zero (0).
+ * then it will return (1) if the key is in the map,
+ * other wise it will return zero (0).
+ *
  * Note: this function will not free the passed key.
+ *
  * @param map the hash map address
  * @param key the key address
  * @return it will return one if the provided key is in the hash map, other wise it will return zero
@@ -246,18 +261,20 @@ void hashMapInsert(HashMap *map, void *key, void *item) {
 
 int hashMapContains(HashMap *map, void *key) {
     if (map == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return -1;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
      		exit(NULL_POINTER);
      	#endif
 
     } else if (key == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return -1;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
      		exit(INVALID_ARG);
      	#endif
 
@@ -292,9 +309,11 @@ int hashMapContains(HashMap *map, void *key) {
 
 
 /** This function will take the map address, and the key address as a parameter,
-    then it will return the item address if the key existed,
-    other wise it will return NULL.
- * Note: this function will not free the passed key
+ * then it will return the item address if the key existed,
+ * other wise it will return NULL.
+ *
+ * Note: this function will not free the passed key.
+ *
  * @param map the hash map address
  * @param key the key address
  * @return it will return the item with the provided key if found other wise it will return NULL
@@ -302,18 +321,20 @@ int hashMapContains(HashMap *map, void *key) {
 
 void *hashMapGet(HashMap *map, void *key) {
     if (map == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
      		exit(NULL_POINTER);
      	#endif
 
     } else if (key == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
      		exit(INVALID_ARG);
      	#endif
 
@@ -351,7 +372,9 @@ void *hashMapGet(HashMap *map, void *key) {
 /** This function will take the map address, and the key address as a parameter,
  * then it will return the key address if the key existed,
  * other wise it will return NULL.
- * Note: this function will not free the passed key
+ *
+ * Note: this function will not free the passed key.
+ *
  * @param map the hash map address
  * @param key the key address
  * @return it will return the item with the provided key if found other wise it will return NULL
@@ -359,18 +382,20 @@ void *hashMapGet(HashMap *map, void *key) {
 
 void *hashMapGetKey(HashMap *map, void *key) {
     if (map == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
      		exit(NULL_POINTER);
      	#endif
 
     } else if (key == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
      		exit(INVALID_ARG);
      	#endif
 
@@ -405,26 +430,30 @@ void *hashMapGetKey(HashMap *map, void *key) {
 
 
 /** This function will take the map address, and the key address as a parameters,
-    then it will delete and free the key and the item that linked to the key.
- * Note: if the key didn't found in the hash map, then the function will fo nothing.
+ * then it will delete and free the key and the item that linked to the key.
+ *
+ * Note: if the key didn't found in the hash map, then the function will do nothing.
+ *
  * @param map the hash map address
  * @param key the key address
  */
 
 void hashMapDelete(HashMap *map, void *key) {
     if (map == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
      		exit(NULL_POINTER);
      	#endif
 
     } else if (key == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
      		exit(INVALID_ARG);
      	#endif
 
@@ -466,8 +495,10 @@ void hashMapDelete(HashMap *map, void *key) {
 
 
 /** This function will take the map address, and the key address as a parameters,
-    then it will delete and free the key without freeing the item that linked to that key.
+ * then it will delete and free the key without freeing the item that linked to that key.
+ *
  * Note: if the key didn't found in the hash map, then the function will do nothing.
+ *
  * @param map the hash map address
  * @param key the key address
  * @return it will return the deleted item pointer if found, other wise it will return NULL
@@ -475,18 +506,20 @@ void hashMapDelete(HashMap *map, void *key) {
 
 void *hashMapDeleteWtoFr(HashMap *map, void *key) {
     if (map == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
      		exit(NULL_POINTER);
      	#endif
 
     } else if (key == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return NULL;
+        #else
+     		fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
      		exit(INVALID_ARG);
      	#endif
 
@@ -527,8 +560,10 @@ void *hashMapDeleteWtoFr(HashMap *map, void *key) {
 
 
 /** This function will take the map address, and the key address as a parameters,
-    then it will delete the entry without freeing the key and the item that linked to that key.
+ * then it will delete the entry without freeing the key and the item that linked to that key.
+ *
  * Note: if the key didn't found in the hash map, then the function will do nothing.
+ *
  * @param map the hash map address
  * @param key the key address
  * @return it will return the entry pointer if found, other wise it will return NULL
@@ -536,18 +571,20 @@ void *hashMapDeleteWtoFr(HashMap *map, void *key) {
 
 Entry *hashMapDeleteWtoFrAll(HashMap *map, void *key) {
     if (map == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return NULL;
+        #else
+     		fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
      		exit(NULL_POINTER);
      	#endif
 
     } else if (key == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
      		exit(INVALID_ARG);
      	#endif
 
@@ -587,17 +624,19 @@ Entry *hashMapDeleteWtoFrAll(HashMap *map, void *key) {
 
 
 /** This function will take the map address as a parameter,
-    then it will return double void pointer that has a copy of all the items in the map.
+ * then it will return double void pointer that has a copy of all the items in the map.
+ *
  * @param map the hash map address
  * @return it will return a double void array that contains a copy of the hash map items
  */
 
 void **hashMapToArray(HashMap *map) {
     if (map == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
      		exit(NULL_POINTER);
      	#endif
 
@@ -605,10 +644,11 @@ void **hashMapToArray(HashMap *map) {
 
     void **arr = (void **) malloc(sizeof(void *) * map->count);
     if (arr == NULL) {
-        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "hash map data structure");
      		exit(FAILED_ALLOCATION);
      	#endif
 
@@ -628,18 +668,21 @@ void **hashMapToArray(HashMap *map) {
 
 
 /** This function will take the map address as a parameter,
-    then it will return an entry array that contains a copy of all the items and it's key in the map.
- * Note: the returned Entries will not be a really copy of the keys and items, it will reference to the same addresses
+ * then it will return an entry array that contains a copy of all the items and it's key in the map.
+ *
+ * Note: the returned Entries will not be a really copy of the keys and items, it will reference to the same addresses.
+ *
  * @param map the hash map address
  * @return it will return a double Entry array that contains all the hash map entries
  */
 
 Entry **hashMapToEntryArray(HashMap *map) {
     if (map == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
      		exit(NULL_POINTER);
      	#endif
 
@@ -647,10 +690,11 @@ Entry **hashMapToEntryArray(HashMap *map) {
 
     Entry **arr = (Entry **) malloc(sizeof(Entry *) * map->count);
     if (arr == NULL) {
-        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to entries array", "hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to entries array", "hash map data structure");
      		exit(FAILED_ALLOCATION);
      	#endif
 
@@ -670,23 +714,26 @@ Entry **hashMapToEntryArray(HashMap *map) {
 
 
 /** This function will take the map address as a parameter,
-    then it will return the number of items in the map.
+ * then it will return the number of items in the map.
+ *
  * @param map the hash map address
  * @return it will return the number of entries (items) in the hash map
  */
 
 int hashMapGetLength(HashMap *map) {
     if (map == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return -1;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
      		exit(NULL_POINTER);
      	#endif
 
     }
 
     return map->count;
+
 }
 
 
@@ -694,24 +741,27 @@ int hashMapGetLength(HashMap *map) {
 
 
 /** This function will take the map address as a parameter,
-    then it will return one (1) if the map is empty,
-    other wise it will return zero (0).
+ * then it will return one (1) if the map is empty,
+ * other wise it will return zero (0).
+ *
  * @param map the hash map address
  * @return it will return one if the hash map is empty, other wise it will return zero
  */
 
 int hashMapIsEmpty(HashMap *map) {
     if (map == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return -1;
+        #else
+     		fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
      		exit(NULL_POINTER);
      	#endif
 
     }
 
     return map->count == 0;
+
 }
 
 
@@ -720,15 +770,18 @@ int hashMapIsEmpty(HashMap *map) {
 
 /** This function will take the map address as a parameter,
  * then it will clear and free all the items and it's key from the map without freeing the map.
+ *
  * @param map the hash map address
  */
 
 void clearHashMap(HashMap *map) {
+
     if (map == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "hash map data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
      		exit(NULL_POINTER);
      	#endif
 
@@ -751,11 +804,24 @@ void clearHashMap(HashMap *map) {
 
 
 /** This function will take the map address as a parameter,
-    then it will destroy and free the map and all it's entries.
+ * then it will destroy and free the map and all it's entries.
+ *
  * @param map the hash map address
  */
 
 void destroyHashMap(HashMap *map) {
+
+    if (map == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
+     		exit(NULL_POINTER);
+        #endif
+
+    }
+
     clearHashMap(map);
     free(map->arr);
     free(map);
@@ -766,7 +832,9 @@ void destroyHashMap(HashMap *map) {
 
 /** This function will take the hash function pointer, the key pointer, and the hash map array length as a parameters,
  * then it will return the first hash of this key.
+ *
  * Note: this function should only be called from the hash map functions.
+ *
  * @param hashFun the hash function pointer
  * @param key the key pointer
  * @param length the length of the hash map array
@@ -786,7 +854,9 @@ unsigned int hashMapFHashCal(int (*hashFun)(const void *), void *key, unsigned i
 
 /** This function will take the hash function pointer, the key address, and the biggest prime number,
  * that smaller than the set array length as a parameters, then it will return the second hash of this key.
+ *
  * Note: this function should only be called from the hash map functions.
+ *
  * @param hashFun the hash function pointer
  * @param key the key pointer
  * @param bPrime the biggest prime number, that smaller than the map array length
@@ -802,8 +872,10 @@ unsigned int hashMapSHashCal(int (*hashFun)(const void *), void *key, unsigned i
 
 
 /** This function will take the first hash of the key, the second hash of the key, the index, and the length of the map array
-    as a parameters, then it will return the next index that should be available.
+ * as a parameters, then it will return the next index that should be available.
+ *
  * Note: this function should only be called from the hash map functions.
+ *
  * @param fHash the first hashed key
  * @param sHash the second hashed key
  * @param index the current index in the array that wasn't empty
@@ -819,7 +891,8 @@ unsigned int calIndex(unsigned int fHash, unsigned int sHash, unsigned int index
 
 
 /** This function will take the length of the map array as a parameter,
-    then it will return the biggest prime number that is smaller than the length.
+ * then it will return the biggest prime number that is smaller than the length.
+ *
  * @param length the length of the hash map array
  * @return it will return the biggest prime number that is smaller than the length
  */
@@ -843,8 +916,9 @@ int calBPrime(int length) {
 
 
 /** This function will take an integer number as a parameter,
-    then it will return the next prime number that bigger than or equal to the passed parameter,
-    other wise it will return 1 if the function didn't found any prime numbers.
+ * then it will return the next prime number that bigger than or equal to the passed parameter,
+ * other wise it will return 1 if the function didn't found any prime numbers.
+ *
  * @param num the number that the function will start to check from
  * @return it will return the first prime number that is bigger than or equal to the provided number, and if
  * it didn't found any number smaller that or equal to the MAX_INT, then the function will return one
