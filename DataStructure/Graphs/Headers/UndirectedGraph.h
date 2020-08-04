@@ -7,7 +7,15 @@ extern "C" {
 
 
 
-
+/** @struct UndirectedGraph
+*  @brief This structure implements a basic generic undirected graph.
+*  @var UndirectedGraph::nodes
+*  Member 'nodes' is a pointer to the nodes hash map.
+*  @var UndirectedGraph::freeFun
+*  Member 'freeFun' is a pointer to the free function, that will free the graph values.
+*  @var UndirectedGraph::compFun
+*  Member 'compFun' is a pointer to the comparator function, that will compare the graph values.
+*/
 
 typedef struct UndirectedGraph {
     struct HashMap *nodes;

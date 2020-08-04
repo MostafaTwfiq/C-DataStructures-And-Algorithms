@@ -737,17 +737,18 @@ void dirGraphPrint(DirectedGraph *graph, void (*printVal)(void *)) {
 
     for (int i = 0; i < hashMapGetLength(graph->nodes); i++) {
 
-        #ifdef CU_TEST_H
-        #else
-            printf("The node: ");
-        #endif
+            #ifdef CU_TEST_H
+            #else
+                printf("The node: ");
+            #endif
 
-        printVal(arr[i]->value);
+            printVal(arr[i]->value);
 
-        #ifdef CU_TEST_H
-        #else
-            printf("\nIs connected to:\n");
-        #endif
+            #ifdef CU_TEST_H
+            #else
+                printf("\nIs connected to:\n");
+            #endif
+
         for (int j = 0; j < arrayListGetLength(arr[i]->adjacentNodes); j++) {
 
             printVal( ((DirGraphNode *) arrayListGet(arr[i]->adjacentNodes, j))->value );
@@ -759,10 +760,10 @@ void dirGraphPrint(DirectedGraph *graph, void (*printVal)(void *)) {
 
         }
 
-        #ifdef CU_TEST_H
-        #else
-            printf("\n\n");
-        #endif
+            #ifdef CU_TEST_H
+            #else
+                printf("\n\n");
+            #endif
 
     }
 
