@@ -14,6 +14,7 @@
 #include "StringsTest/StringTest/StringTest.h"
 #include "TablesTest/HashMapTest/HashMapTest.h"
 #include "TablesTest/DounlyLinkedListHashMapTest/DoublyLinkedListHashMapTest.h"
+#include "TablesTest/HashSetTest/HashSetTest.h"
 
 int main(void) {
 
@@ -33,6 +34,7 @@ int main(void) {
     stringUnitTest();
     hashMapUnitTest();
     doublyLinkedListHashMapUnitTest();
+    hashSetUnitTest();
 
     return 0;
 
