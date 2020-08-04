@@ -9,8 +9,8 @@ extern "C" {
 
 /** @struct Vector
 *  @brief This structure implements a basic generic vector.
-*  @var Vector:: arr
-*  Member 'arr' is a pointer to the the vector items.
+*  @var Vector::arr
+*  Member 'arr' is a pointer to the vector items.
 *  @var Vector::length
 *  Member 'length' holds the current allocated length of the vector.
 *  @var Vector::count

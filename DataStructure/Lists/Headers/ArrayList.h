@@ -8,8 +8,8 @@ extern "C" {
 
 /** @struct ArrayList
 *  @brief This structure implements a basic generic ArrayList.
-*  @var ArrayList:: arr
-*  Member 'arr' is a pointer to the the ArrayList items.
+*  @var ArrayList::arr
+*  Member 'arr' is a pointer to the ArrayList items.
 *  @var ArrayList::length
 *  Member 'length' holds the current allocated length of the ArrayList.
 *  @var ArrayList::count

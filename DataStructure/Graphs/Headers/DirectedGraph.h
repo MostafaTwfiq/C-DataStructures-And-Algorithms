@@ -7,6 +7,17 @@ extern "C" {
 
 
 
+
+/** @struct DirectedGraph
+*  @brief This structure implements a basic generic directed graph.
+*  @var DirectedGraph::nodes
+*  Member 'nodes' is a pointer to the nodes hash map.
+*  @var DirectedGraph::freeValue
+*  Member 'freeValue' is a pointer to the free function, that will free the graph values.
+*  @var DirectedGraph::valueComp
+*  Member 'valueComp' is a pointer to the comparator function, that will compare the graph values.
+*/
+
 typedef struct DirectedGraph {
     struct HashMap *nodes;
     void (*freeValue)(void *);
