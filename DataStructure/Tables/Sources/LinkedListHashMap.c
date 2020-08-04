@@ -484,7 +484,7 @@ void *lLHashMapDeleteWtoFr(LinkedListHashMap *map, void *key) {
         return NULL;
 
     Entry *deletedEntry = doublyLinkedListDeleteAtIndexWtoFr(map->arr[index], itemIndex);
-    map->freeKeyFun(entry->key);
+    map->freeKeyFun(deletedEntry->key);
     void *returnItem = deletedEntry->item;
     free(deletedEntry);
 

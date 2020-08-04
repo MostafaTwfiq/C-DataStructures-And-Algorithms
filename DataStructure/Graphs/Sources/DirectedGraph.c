@@ -208,6 +208,7 @@ void dirGraphAddNode(DirectedGraph *graph, void *value) {
 
     DirGraphNode *newNode = (DirGraphNode *) malloc(sizeof(DirGraphNode));
     newNode->value = value;
+    newNode->valueCompFun = graph->valueComp;
     newNode->adjacentNodes = arrayListInitialization(5, freeDGraphNode, dGraphNodeComp);
     hashMapInsert(graph->nodes, value, newNode);
 
@@ -574,7 +575,7 @@ int dirGraphContainsEdge(DirectedGraph *graph, void *fromVal, void *toVal) {
  * @return it will return the number of nodes in the graph
  */
 
-int dirGraphGetNumOfNodes(DirectedGraph *graph) {
+int dirGraphGetSize(DirectedGraph *graph) {
     if (graph == NULL) {
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
@@ -731,17 +732,37 @@ void dirGraphPrint(DirectedGraph *graph, void (*printVal)(void *)) {
 
     }
 
+
     DirGraphNode **arr = (DirGraphNode **) hashMapToArray(graph->nodes);
 
     for (int i = 0; i < hashMapGetLength(graph->nodes); i++) {
-        printf("The node: ");
+
+        #ifdef CU_TEST_H
+        #else
+            printf("The node: ");
+        #endif
+
         printVal(arr[i]->value);
-        printf("\nIs connected to:\n");
+
+        #ifdef CU_TEST_H
+        #else
+            printf("\nIs connected to:\n");
+        #endif
         for (int j = 0; j < arrayListGetLength(arr[i]->adjacentNodes); j++) {
+
             printVal( ((DirGraphNode *) arrayListGet(arr[i]->adjacentNodes, j))->value );
-            printf("\n");
+
+            #ifdef CU_TEST_H
+            #else
+                printf("\n");
+            #endif
+
         }
-        printf("\n\n");
+
+        #ifdef CU_TEST_H
+        #else
+            printf("\n\n");
+        #endif
 
     }
 

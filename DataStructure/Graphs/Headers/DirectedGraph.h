@@ -42,7 +42,7 @@ int dirGraphContainsEdge(DirectedGraph *graph, void *fromVal, void *toVal);
 
 int dirGraphContainsNode(DirectedGraph *graph, void *value);
 
-int dirGraphGetNumOfNodes(DirectedGraph *graph);
+int dirGraphGetSize(DirectedGraph *graph);
 
 int dirGraphIsEmpty(DirectedGraph *graph);
 
