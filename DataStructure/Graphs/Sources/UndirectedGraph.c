@@ -340,6 +340,15 @@ void UDGraphAddEdge(UndirectedGraph *graph, void *fValue, void *sValue, int edge
      		exit(INVALID_ARG);
      	#endif
 
+    } else if (edgeWeight < 0) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "edge weight", "undirected graph data structure");
+     		exit(INVALID_ARG);
+        #endif
+
     }
 
     UDGraphNode *fNode = hashMapGet(graph->nodes, fValue);
@@ -678,19 +687,89 @@ int UDGraphContainsEdge(UndirectedGraph *graph, void *fValue, void *sValue) {
     UDGraphEdge *sNewEdge = (UDGraphEdge *) malloc(sizeof(UDGraphEdge));
     if (fNewEdge == NULL || sNewEdge == NULL) {
 
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+            return -1;
+        #else
+            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new edge", "undirected graph data structure");
+     		exit(FAILED_ALLOCATION);
+        #endif
+
     }
 
     fNewEdge->node = fNode;
     sNewEdge->node = sNode;
 
-    int fEdgeIndex = arrayListGetIndex(fNode->adjacentNodes, fNewEdge);
-    int sEdgeIndex = arrayListGetIndex(sNode->adjacentNodes, sNewEdge);
+    int fEdgeIndex = arrayListGetIndex(fNode->adjacentNodes, sNewEdge);
+    int sEdgeIndex = arrayListGetIndex(sNode->adjacentNodes, fNewEdge);
 
     free(fNewEdge);
     free(sNewEdge);
 
 
     return fEdgeIndex >= 0 && sEdgeIndex >= 0;
+
+}
+
+
+
+
+
+
+/** This function will take two value then it will check if there is an edge between them,
+ * if there was then the function will return the weight of the edge, other wise it will return minus one (-1).
+ *
+ * Note: the function will not free the passed values.
+ *
+ * @param graph the graph pointer
+ * @param fValue the first value pointer
+ * @param sValue the second value pointer
+ * @return it will return the edge weight, other wise it will return -1
+ */
+
+int UDGraphGetEdgeWeight(UndirectedGraph *graph, void *fValue, void *sValue) {
+
+    if (graph == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return -1;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "undirected graph data structure");
+     		exit(NULL_POINTER);
+        #endif
+
+    } else if (fValue == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return -1;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "first value pointer", "undirected graph data structure");
+     		exit(INVALID_ARG);
+        #endif
+
+    } else if (sValue == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return -1;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "second value pointer", "undirected graph data structure");
+     		exit(INVALID_ARG);
+        #endif
+
+    }
+
+    UDGraphNode *fNode = hashMapGet(graph->nodes, fValue);
+    UDGraphNode *sNode = hashMapGet(graph->nodes, sValue);
+    if (fNode == NULL || sNode == NULL)
+        return -1;
+
+    UDGraphEdge *tempEdge = (UDGraphEdge *) malloc(sizeof(UDGraphEdge));
+    tempEdge->node = sNode;
+    UDGraphEdge *targetEdge = (UDGraphEdge *) arrayListGet(fNode->adjacentNodes, arrayListGetIndex(fNode->adjacentNodes, tempEdge));
+
+    UDGraphEdgeFreeFun(tempEdge);
+
+    return targetEdge != NULL ? targetEdge->weight : -1;
 
 }
 
@@ -730,6 +809,15 @@ void printUDGraph(UndirectedGraph *graph, void (*printFun)(void *)) {
      		fprintf(stderr, NULL_POINTER_MESSAGE, "graph", "undirected graph data structure");
      		exit(NULL_POINTER);
      	#endif
+
+    } if (printFun == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "print function pointer", "undirected graph data structure");
+     		exit(INVALID_ARG);
+        #endif
 
     }
 

@@ -16,6 +16,7 @@
 #include "TablesTest/DounlyLinkedListHashMapTest/DoublyLinkedListHashMapTest.h"
 #include "TablesTest/HashSetTest/HashSetTest.h"
 #include "GraphsTest/DirectedGraphTest/DirectedGraphTest.h"
+#include "GraphsTest/UndirectedGraphTest/UndirectedGraphTest.h"
 
 int main(void) {
 
@@ -37,6 +38,7 @@ int main(void) {
     doublyLinkedListHashMapUnitTest();
     hashSetUnitTest();
     directedGraphUnitTest();
+    undirectedGraphUnitTest();
 
     return 0;
 

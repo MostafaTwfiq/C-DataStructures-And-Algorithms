@@ -513,9 +513,9 @@ void testDestroyDirectedGraph(CuTest *cuTest) {
 
 
 
-ArrayList *printingList;
+ArrayList *printingDTList;
 void printFunDGT(void *item) {
-    arrayListAdd(printingList, item);
+    arrayListAdd(printingDTList, item);
 }
 
 void nullFreeFunDGT(){}
@@ -541,19 +541,19 @@ void testDirectedGraphPrint(CuTest *cuTest) {
     dirGraphAddEdge(directedGraph, "A", "B");
     dirGraphAddEdge(directedGraph, "C", "D");
 
-    printingList = arrayListInitialization(6, nullFreeFunDGT, NULL);
+    printingDTList = arrayListInitialization(6, nullFreeFunDGT, NULL);
     dirGraphPrint(directedGraph, printFunDGT);
 
-    CuAssertIntEquals(cuTest, 6, arrayListGetLength(printingList));
-    CuAssertStrEquals(cuTest, "A", arrayListGet(printingList, 0));
-    CuAssertStrEquals(cuTest, "B", arrayListGet(printingList, 1));
-    CuAssertStrEquals(cuTest, "D", arrayListGet(printingList, 2));
-    CuAssertStrEquals(cuTest, "C", arrayListGet(printingList, 3));
-    CuAssertStrEquals(cuTest, "D", arrayListGet(printingList, 4));
-    CuAssertStrEquals(cuTest, "B", arrayListGet(printingList, 5));
+    CuAssertIntEquals(cuTest, 6, arrayListGetLength(printingDTList));
+    CuAssertStrEquals(cuTest, "A", arrayListGet(printingDTList, 0));
+    CuAssertStrEquals(cuTest, "B", arrayListGet(printingDTList, 1));
+    CuAssertStrEquals(cuTest, "D", arrayListGet(printingDTList, 2));
+    CuAssertStrEquals(cuTest, "C", arrayListGet(printingDTList, 3));
+    CuAssertStrEquals(cuTest, "D", arrayListGet(printingDTList, 4));
+    CuAssertStrEquals(cuTest, "B", arrayListGet(printingDTList, 5));
 
 
-    destroyArrayList(printingList);
+    destroyArrayList(printingDTList);
     destroyDirGraph(directedGraph);
 
 }
@@ -589,17 +589,17 @@ void testDirectedGraphDepthFirstTraversal(CuTest *cuTest) {
     dirGraphAddEdge(directedGraph, "A", "C");
     dirGraphAddEdge(directedGraph, "C", "D");
 
-    printingList = arrayListInitialization(4, nullFreeFunDGT, NULL);
+    printingDTList = arrayListInitialization(4, nullFreeFunDGT, NULL);
     dirGraphDepthFirstTraversal(directedGraph, "A", printFunDGT);
 
-    CuAssertIntEquals(cuTest, 4, arrayListGetLength(printingList));
-    CuAssertStrEquals(cuTest, "A", arrayListGet(printingList, 0));
-    CuAssertStrEquals(cuTest, "C", arrayListGet(printingList, 1));
-    CuAssertStrEquals(cuTest, "D", arrayListGet(printingList, 2));
-    CuAssertStrEquals(cuTest, "B", arrayListGet(printingList, 3));
+    CuAssertIntEquals(cuTest, 4, arrayListGetLength(printingDTList));
+    CuAssertStrEquals(cuTest, "A", arrayListGet(printingDTList, 0));
+    CuAssertStrEquals(cuTest, "C", arrayListGet(printingDTList, 1));
+    CuAssertStrEquals(cuTest, "D", arrayListGet(printingDTList, 2));
+    CuAssertStrEquals(cuTest, "B", arrayListGet(printingDTList, 3));
 
 
-    destroyArrayList(printingList);
+    destroyArrayList(printingDTList);
     destroyDirGraph(directedGraph);
 
 }
@@ -636,17 +636,17 @@ void testDirectedGraphBreadthFirstTraversal(CuTest *cuTest) {
     dirGraphAddEdge(directedGraph, "A", "C");
     dirGraphAddEdge(directedGraph, "C", "D");
 
-    printingList = arrayListInitialization(4, nullFreeFunDGT, NULL);
+    printingDTList = arrayListInitialization(4, nullFreeFunDGT, NULL);
     dirGraphBreadthFirstTraversal(directedGraph, "A", printFunDGT);
 
-    CuAssertIntEquals(cuTest, 4, arrayListGetLength(printingList));
-    CuAssertStrEquals(cuTest, "A", arrayListGet(printingList, 0));
-    CuAssertStrEquals(cuTest, "B", arrayListGet(printingList, 1));
-    CuAssertStrEquals(cuTest, "C", arrayListGet(printingList, 2));
-    CuAssertStrEquals(cuTest, "D", arrayListGet(printingList, 3));
+    CuAssertIntEquals(cuTest, 4, arrayListGetLength(printingDTList));
+    CuAssertStrEquals(cuTest, "A", arrayListGet(printingDTList, 0));
+    CuAssertStrEquals(cuTest, "B", arrayListGet(printingDTList, 1));
+    CuAssertStrEquals(cuTest, "C", arrayListGet(printingDTList, 2));
+    CuAssertStrEquals(cuTest, "D", arrayListGet(printingDTList, 3));
 
 
-    destroyArrayList(printingList);
+    destroyArrayList(printingDTList);
     destroyDirGraph(directedGraph);
 
 }

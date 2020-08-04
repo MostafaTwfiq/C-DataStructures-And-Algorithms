@@ -45,6 +45,8 @@ int UDGraphContainsNode(UndirectedGraph *graph, void *value);
 
 int UDGraphContainsEdge(UndirectedGraph *graph, void *fValue, void *sValue);
 
+int UDGraphGetEdgeWeight(UndirectedGraph *graph, void *fValue, void *sValue);
+
 void printUDGraph(UndirectedGraph *graph, void (*printFun)(void *));
 
 int UDGraphGetSize(UndirectedGraph *graph);
