@@ -6,6 +6,8 @@ struct String *scanStrS();
 
 char *scanStrC();
 
+char scanChar();
+
 int scanInt();
 
 double scanDouble();

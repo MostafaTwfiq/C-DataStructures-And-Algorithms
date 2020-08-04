@@ -45,6 +45,21 @@ char *scanStrC() {
 
 
 
+/** This function will scan the input as character,
+ * then it will return the character value.
+ *
+ * @return it will return the scanned character
+ */
+
+char scanChar() {
+
+    return fgetc(stdin);
+
+}
+
+
+
+
 
 /** This function will scan the input as integer,
  * then it will return the integer of the input.

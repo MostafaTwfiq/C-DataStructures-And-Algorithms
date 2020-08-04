@@ -28,8 +28,6 @@ int isFloatingPointNum(const char *string, int length);
 
 int charArrSumASCII(char *ch);
 
-int charArrSumASCII(char *ch);
-
 int charArrHashFun(const void *ch);
 
 char *generateCharPointerP(char *ch, int length);
