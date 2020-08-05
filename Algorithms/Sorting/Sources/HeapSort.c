@@ -1,6 +1,7 @@
 #include "../Headers/HeapSort.h"
 #include "../Headers/SwapFunction.h"
 #include "../../../System/Utils.h"
+#include "../../../Unit Test/CuTest/CuTest.h"
 
 
 
@@ -60,6 +61,7 @@
 
 /** This function will take a child index,
  * then it will return the parent index.
+ *
  * @param childIndex the child index
  * @return it will return the parent index
  */
@@ -75,6 +77,7 @@ int getParentIndex(int childIndex) {
 
 /** This function will take a parent index,
  * then it will return the first child index.
+ *
  * @param parentIndex the parent index
  * @return it will return the first child index
  */
@@ -89,6 +92,7 @@ int getFirstChildIndex(int parentIndex) {
 
 /** This function will take a parent index,
  * then it will return the second child index.
+ *
  * @param parentIndex the parent index
  * @return the second child index
  */
@@ -104,6 +108,7 @@ int getSecondChildIndex(int parentIndex) {
 
 /** This function will swap up the element with the given index,
  * until it's in the right place.
+ *
  * @param arr the array pointer
  * @param index the index of the element
  * @param elemSize the size of the array elements in bytes
@@ -131,6 +136,7 @@ void heapUp(void *arr, int index, int elemSize, int (*cmp)(const void *, const v
 
 /** This function will swap down the element with the given index,
  * until it's in the right place.
+ *
  * @param arr the array pointer
  * @param length the length of the array
  * @param index the index of the element
@@ -197,17 +203,37 @@ void heapDown(void *arr, int length, int index, int elemSize, int (*cmp)(const v
 void heapSort(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (arr == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "heap sort");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "heap sort");
+            exit(NULL_POINTER);
+        #endif
     } else if (cmp == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "heap sort");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "heap sort");
+            exit(INVALID_ARG);
+        #endif
     } else if (length < 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "heap sort");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "heap sort");
+            exit(INVALID_ARG);
+        #endif
     } else if (elemSize <= 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "heap sort");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "heap sort");
+            exit(INVALID_ARG);
+        #endif
     }
 
 

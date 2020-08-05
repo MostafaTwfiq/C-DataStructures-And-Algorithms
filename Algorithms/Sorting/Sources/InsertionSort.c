@@ -1,6 +1,6 @@
 #include "../Headers/InsertionSort.h"
 #include "../../../System/Utils.h"
-
+#include "../../../Unit Test/CuTest/CuTest.h"
 
 
 
@@ -9,6 +9,7 @@
 /** This function will take an array then it sort it with the insertion sort algorithm.
  *
  * Time Complexity: worst: O(n) , best: O (n ^ 2).
+ *
  * Space Complexity: O(1).
  *
  * @param arr the array pointer
@@ -20,24 +21,44 @@
 void insertionSort(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (arr == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "insertion sort");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "insertion sort");
+            exit(NULL_POINTER);
+        #endif
     } else if (cmp == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "insertion sort");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "insertion sort");
+            exit(INVALID_ARG);
+        #endif
     } else if (length < 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "insertion sort");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "insertion sort");
+            exit(INVALID_ARG);
+        #endif
     } else if (elemSize <= 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "insertion sort");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "insertion sort");
+            exit(INVALID_ARG);
+        #endif
     }
 
     for (int i = 0; i < length; i++) {
         void *currentElement = (void *) malloc(elemSize);
         memcpy(currentElement, arr + i * elemSize, elemSize);
         int rightIndex = 0;
-        for (int j = 0; j < i; j++) {
+        for (int j = 0; j <= i; j++) {
 
             if ( cmp(currentElement, arr + j * elemSize) <= 0) {
                 rightIndex = j;
@@ -50,6 +71,8 @@ void insertionSort(void *arr, int length, int elemSize, int (*cmp)(const void *,
             memcpy(arr + j * elemSize, arr + (j - 1) * elemSize, elemSize);
 
         memcpy(arr + rightIndex * elemSize, currentElement, elemSize);
+
+        free(currentElement);
 
     }
 

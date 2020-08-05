@@ -1,7 +1,7 @@
 #include "../Headers/MergeSort.h"
 #include "../Headers/SwapFunction.h"
 #include "../../../System/Utils.h"
-
+#include "../../../Unit Test/CuTest/CuTest.h"
 
 
 
@@ -17,6 +17,7 @@ void mergeSortHelper(void *arr, int length, int elemSize, int (*cmp)(const void 
 /** This function will take an array then it sort it with the merge sort algorithm.
  *
  * Time Complexity: worst: O( n log(n) ) , best: O ( n log(n) ).
+ *
  * Space Complexity: O ( log(n) ) <<because the recursive calls>>
  *
  * @param arr the array pointer
@@ -28,17 +29,37 @@ void mergeSortHelper(void *arr, int length, int elemSize, int (*cmp)(const void 
 void mergeSort(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (arr == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "merge sort");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "merge sort");
+            exit(NULL_POINTER);
+        #endif
     } else if (cmp == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "merge sort");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "merge sort");
+            exit(INVALID_ARG);
+        #endif
     } else if (length < 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "merge sort");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "merge sort");
+            exit(INVALID_ARG);
+        #endif
     } else if (elemSize <= 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "merge sort");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "merge sort");
+            exit(INVALID_ARG);
+        #endif
     }
 
     mergeSortHelper(arr, length, elemSize, cmp);
@@ -49,9 +70,11 @@ void mergeSort(void *arr, int length, int elemSize, int (*cmp)(const void *, con
 
 
 /** This function will take an array then it sort it recursively with the merge sort algorithm.
+ *
  * Note: this function should only be called from the mergeSort function.
  *
  * Time Complexity: worst: O( n log(n) ) , best: O ( n log(n) ).
+ *
  * Space Complexity: O ( log(n) ) <<because the recursive calls>>
  *
  * @param arr the array pointer

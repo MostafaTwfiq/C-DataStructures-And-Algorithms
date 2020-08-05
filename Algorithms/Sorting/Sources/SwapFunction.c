@@ -8,7 +8,9 @@
 
 
 /** This function will take two pointers then it will swap between the two pointers.
+ *
  * Note: the function will use memory copy to swap the items.
+ *
  * @param first the first item pointer
  * @param second the second item pointer
  * @param elemSize the size of the items in bytes

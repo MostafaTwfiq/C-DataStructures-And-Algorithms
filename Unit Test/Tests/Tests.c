@@ -19,6 +19,9 @@
 #include "GraphsTest/UndirectedGraphTest/UndirectedGraphTest.h"
 #include "TreesTest/TrieTest/TrieTest.h"
 #include "TreesTest/RedBlackTreeTest/RedBlackTreeTest.h"
+#include "SortAlgTests/SortAlgTest.h"
+
+
 
 int main(void) {
 
@@ -44,6 +47,8 @@ int main(void) {
     undirectedGraphUnitTest();
     trieUnitTest();
     redBlackTreeUnitTest();
+
+    sortAlgUnitTest();
 
 
     return 0;
