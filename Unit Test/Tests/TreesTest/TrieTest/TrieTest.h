@@ -1,4 +1,8 @@
 #ifndef C_DATASTRUCTURES_TRIETEST_H
 #define C_DATASTRUCTURES_TRIETEST_H
 
+
+void trieUnitTest();
+
+
 #endif //C_DATASTRUCTURES_TRIETEST_H

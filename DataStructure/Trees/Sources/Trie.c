@@ -6,7 +6,6 @@
 #include <math.h>
 
 
-
 /** @struct Node
 *  @brief This structure implements a basic trie node.
 *  @var Trie::characters
@@ -24,7 +23,6 @@ typedef struct TrieNode {
     int EOW;
 
 } TrieNode;
-
 
 
 /** This struct will be useful in generating the best sequence in suggesting the words.*/
@@ -402,9 +400,6 @@ void trieAutoCompletionR(TrieNode *root, char *currentChar, int numOfSuggestion,
     }
 
     int index = toLowerCase(*currentChar) - 'a';
-    if (index < 0 || index >= 26) {
-        return;
-    }
 
     if (*currentChar!= '\0' && root->characters[index] != NULL) {
         trieAutoCompletionR(root->characters[index], currentChar + 1, numOfSuggestion, string, wordsList);

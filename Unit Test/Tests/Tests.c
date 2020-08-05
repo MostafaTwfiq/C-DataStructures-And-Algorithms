@@ -17,6 +17,7 @@
 #include "TablesTest/HashSetTest/HashSetTest.h"
 #include "GraphsTest/DirectedGraphTest/DirectedGraphTest.h"
 #include "GraphsTest/UndirectedGraphTest/UndirectedGraphTest.h"
+#include "TreesTest/TrieTest/TrieTest.h"
 
 int main(void) {
 
@@ -39,6 +40,8 @@ int main(void) {
     hashSetUnitTest();
     directedGraphUnitTest();
     undirectedGraphUnitTest();
+    trieUnitTest();
+
 
     return 0;
 
