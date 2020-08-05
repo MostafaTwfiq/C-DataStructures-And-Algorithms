@@ -63,13 +63,11 @@ RBTree *redBlackTreeInitialization(void (*freeItem)(void *), int (*cmp)(const vo
 
 void rBTreeInsert(RBTree *tree, void *item);
 
-void rBInOrderTraversal(RBTree *tree, void (*printFun)(const void *, COLOR));
-
 void rBTreeDelete(RBTree *tree, void *item);
 
 void *rBTreeDeleteWtoFr(RBTree *tree, void *item);
 
-void *rbTreeGet(RBTree *tree, char *item);
+void *rbTreeGet(RBTree *tree, void *item);
 
 void **rBTreeToArray(RBTree *rbTree);
 
@@ -77,9 +75,11 @@ int rBTreeGetSize(RBTree *tree);
 
 int rBTreeContains(RBTree *tree, void *item);
 
+void rBTreePrint(RBTree *tree, void (*printFun)(const void *, COLOR));
+
 void rBPreOrderTraversal(RBTree *tree, void (*printFun)(const void *, COLOR));
 
-void rBTreePrint(RBTree *tree, void (*printFun)(const void *, COLOR));
+void rBInOrderTraversal(RBTree *tree, void (*printFun)(const void *, COLOR));
 
 void rBPostOrderTraversal(RBTree *tree, void (*printFun)(const void *, COLOR));
 

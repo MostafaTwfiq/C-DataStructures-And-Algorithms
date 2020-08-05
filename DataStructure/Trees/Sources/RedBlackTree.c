@@ -56,7 +56,7 @@ void RBTreeToArrayRecurs(RBNode* node , void **arr, int *i);
 
 void printRBTreeHelper(RBNode *root, int space, void (*printFun)(const void *item, COLOR color));
 
-void *rbTreeGetR(RBTree *rbTree, RBNode *node, char *item);
+void *rbTreeGetR(RBTree *rbTree, RBNode *node, void *item);
 
 int rBTreeContainsR(RBTree *tree, RBNode *root, void *item);
 
@@ -1326,15 +1326,30 @@ void rBTreePrint(RBTree *tree, void (*printFun)(const void *, COLOR)) {
 **/
 
 void printRBTreeHelper(RBNode *root, int space, void (*printFun)(const void *, COLOR)){
-    if (root == NULL){
+
+    if (root == NULL)
         return;
-    }
+
     space += 10;
+
     printRBTreeHelper(root->right, space, printFun);
-    printf("\n");
-    for (int i = 10; i < space; i++) printf(" ");
+
+    #ifdef CU_TEST_H
+    #else
+        printf("\n");
+    #endif
+
+    for (int i = 10; i < space; i++) {
+        #ifdef CU_TEST_H
+        #else
+            printf(" ");
+        #endif
+    }
+
     (printFun)(root->key, root->color);
+
     printRBTreeHelper(root->left, space, printFun);
+
 }
 
 
@@ -1351,7 +1366,7 @@ void printRBTreeHelper(RBNode *root, int space, void (*printFun)(const void *, C
  * @return the return will be the item address if it's existed other wise it will be NULL
  */
 
-void *rbTreeGet(RBTree *tree, char *item) {
+void *rbTreeGet(RBTree *tree, void *item) {
 
     if (tree == NULL) {
         #ifdef CU_TEST_H
@@ -1391,7 +1406,7 @@ void *rbTreeGet(RBTree *tree, char *item) {
  * @return Returns the Found node.
 **/
 
-void *rbTreeGetR(RBTree *rbTree, RBNode *node, char *item) {
+void *rbTreeGetR(RBTree *rbTree, RBNode *node, void *item) {
     if(node == NULL)
         return NULL;
 

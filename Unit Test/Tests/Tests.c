@@ -22,7 +22,7 @@
 
 int main(void) {
 
-    /*vectorUnitTest();
+    vectorUnitTest();
     arrayListUnitTest();
     linkedListUnitTest();
     doublyLinkedListUnitTest();
@@ -41,8 +41,7 @@ int main(void) {
     hashSetUnitTest();
     directedGraphUnitTest();
     undirectedGraphUnitTest();
-    trieUnitTest();*/
-
+    trieUnitTest();
     redBlackTreeUnitTest();
 
 
