@@ -245,7 +245,7 @@ UndirectedGraph *undirectedGraphInitialization(void (*freeFun)(void *), int (*co
  * @param value the new value pointer
  */
 
-void UDGraphAddNode(UndirectedGraph *graph, void *value) {
+void udGraphAddNode(UndirectedGraph *graph, void *value) {
     if (graph == NULL) {
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
@@ -312,7 +312,7 @@ void UDGraphAddNode(UndirectedGraph *graph, void *value) {
  * @param edgeWeight the weight of the new edge
  */
 
-void UDGraphAddEdge(UndirectedGraph *graph, void *fValue, void *sValue, int edgeWeight) {
+void udGraphAddEdge(UndirectedGraph *graph, void *fValue, void *sValue, int edgeWeight) {
     if (graph == NULL) {
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
@@ -409,7 +409,7 @@ void UDGraphAddEdge(UndirectedGraph *graph, void *fValue, void *sValue, int edge
  * @param value the value pointer
  */
 
-void UDGraphRemoveNode(UndirectedGraph *graph, void *value) {
+void udGraphRemoveNode(UndirectedGraph *graph, void *value) {
 
     if (graph == NULL) {
         #ifdef CU_TEST_H
@@ -467,7 +467,7 @@ void UDGraphRemoveNode(UndirectedGraph *graph, void *value) {
  * @param value the value pointer
  */
 
-void *UDGraphRemoveNodeWtoFr(UndirectedGraph *graph, void *value) {
+void *udGraphRemoveNodeWtoFr(UndirectedGraph *graph, void *value) {
 
     if (graph == NULL) {
         #ifdef CU_TEST_H
@@ -530,7 +530,7 @@ void *UDGraphRemoveNodeWtoFr(UndirectedGraph *graph, void *value) {
  * @param sValue the second value pointer
  */
 
-void UDGraphRemoveEdge(UndirectedGraph *graph, void *fValue, void *sValue) {
+void udGraphRemoveEdge(UndirectedGraph *graph, void *fValue, void *sValue) {
     if (graph == NULL) {
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
@@ -604,7 +604,7 @@ void UDGraphRemoveEdge(UndirectedGraph *graph, void *fValue, void *sValue) {
  * @return it will return one if the value exists in the graph, other wise it will return zero
  */
 
-int UDGraphContainsNode(UndirectedGraph *graph, void *value) {
+int udGraphContainsNode(UndirectedGraph *graph, void *value) {
     if (graph == NULL) {
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
@@ -648,7 +648,7 @@ int UDGraphContainsNode(UndirectedGraph *graph, void *value) {
  * @return it will return one if the edge exist, other wise it will return zero
  */
 
-int UDGraphContainsEdge(UndirectedGraph *graph, void *fValue, void *sValue) {
+int udGraphContainsEdge(UndirectedGraph *graph, void *fValue, void *sValue) {
     if (graph == NULL) {
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
@@ -727,7 +727,7 @@ int UDGraphContainsEdge(UndirectedGraph *graph, void *fValue, void *sValue) {
  * @return it will return the edge weight, other wise it will return -1
  */
 
-int UDGraphGetEdgeWeight(UndirectedGraph *graph, void *fValue, void *sValue) {
+int udGraphGetEdgeWeight(UndirectedGraph *graph, void *fValue, void *sValue) {
 
     if (graph == NULL) {
         #ifdef CU_TEST_H
@@ -871,7 +871,7 @@ void printUDGraph(UndirectedGraph *graph, void (*printFun)(void *)) {
  * @return it will return the number of nodes in the graph
  */
 
-int UDGraphGetSize(UndirectedGraph *graph) {
+int udGraphGetSize(UndirectedGraph *graph) {
     if (graph == NULL) {
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
@@ -900,7 +900,7 @@ int UDGraphGetSize(UndirectedGraph *graph) {
  * @return it will return one if the graph was empty, other wise it will return zero
  */
 
-int UDGraphIsEmpty(UndirectedGraph *graph) {
+int udGraphIsEmpty(UndirectedGraph *graph) {
     if (graph == NULL) {
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
@@ -1370,7 +1370,7 @@ void updateDisHolder(DistanceHolder *holder, UDGraphNode *fromNode, UDGraphNode 
  * @return it will return the shortest distance between the two nodes if found, other wise it will return -1
  */
 
-int UDGraphGetShortestDistance(UndirectedGraph *graph, void *startVal, void *endVal) {
+int udGraphGetShortestDistance(UndirectedGraph *graph, void *startVal, void *endVal) {
 
     if (graph == NULL) {
         #ifdef CU_TEST_H
@@ -1438,7 +1438,7 @@ int UDGraphGetShortestDistance(UndirectedGraph *graph, void *startVal, void *end
  * @return it will return an array list that consist of the values of the shortest path
  */
 
-ArrayList *UDGraphGetShortestPath(UndirectedGraph *graph, void *startVal, void *endVal) {
+ArrayList *udGraphGetShortestPath(UndirectedGraph *graph, void *startVal, void *endVal) {
 
     if (graph == NULL) {
         #ifdef CU_TEST_H
@@ -1635,7 +1635,7 @@ HashMap *UDGraphGenerateDistancesMap(UDGraphNode *startNode) {
  * @return it will return one if the passed value is a part of a cycle, other wise it will return zero
  */
 
-int UDGraphNodePartOfCycle(UndirectedGraph *graph, void *startVal) {
+int udGraphNodePartOfCycle(UndirectedGraph *graph, void *startVal) {
     if (graph == NULL) {
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
@@ -1689,7 +1689,7 @@ int UDGraphNodePartOfCycle(UndirectedGraph *graph, void *startVal) {
  * @return it will return one if the graph has a cycle, other wise it will return zero
  */
 
-int UDGraphHasCycle(UndirectedGraph *graph) {
+int udGraphHasCycle(UndirectedGraph *graph) {
 
     if (graph == NULL) {
         #ifdef CU_TEST_H
@@ -1810,7 +1810,7 @@ int edgeCompDis(const void *e1, const void *e2) {
  * @return it will return the minimum spanning graph pointer
  */
 
-UndirectedGraph *UDGraphMinimumSpanningGraph(UndirectedGraph *graph, void *startVal) {
+UndirectedGraph *udGraphMinimumSpanningGraph(UndirectedGraph *graph, void *startVal) {
 
     if (graph == NULL) {
 
@@ -1838,24 +1838,24 @@ UndirectedGraph *UDGraphMinimumSpanningGraph(UndirectedGraph *graph, void *start
         pQueueEnqueue(disHolderPQueue, holder);
     }
 
-    UDGraphAddNode(newGraph, startVal);
+    udGraphAddNode(newGraph, startVal);
 
     while (!pQueueIsEmpty(disHolderPQueue)) {
         DistanceHolder *currentHolder = pQueueDequeue(disHolderPQueue);
 
-        if (UDGraphContainsNode(newGraph, currentHolder->toNode->value)) {
+        if (udGraphContainsNode(newGraph, currentHolder->toNode->value)) {
             distanceHolderFreeFun(currentHolder);
             continue;
         }
 
-        UDGraphAddNode(newGraph, currentHolder->toNode->value);
+        udGraphAddNode(newGraph, currentHolder->toNode->value);
 
-        UDGraphAddEdge(newGraph, currentHolder->fromNode->value, currentHolder->toNode->value, currentHolder->distance);
+        udGraphAddEdge(newGraph, currentHolder->fromNode->value, currentHolder->toNode->value, currentHolder->distance);
 
         for (int i = 0; i < arrayListGetLength(currentHolder->toNode->adjacentNodes); i++) {
             UDGraphEdge *edge = (UDGraphEdge *) arrayListGet(currentHolder->toNode->adjacentNodes, i);
 
-            if (!UDGraphContainsNode(newGraph, edge->node->value)) {
+            if (!udGraphContainsNode(newGraph, edge->node->value)) {
                 DistanceHolder *holder = generateDisHolder(currentHolder->toNode, edge->node, edge->weight);
                 pQueueEnqueue(disHolderPQueue, holder);
             }

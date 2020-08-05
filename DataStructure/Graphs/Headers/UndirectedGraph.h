@@ -31,41 +31,41 @@ typedef struct UndirectedGraph {
 
 UndirectedGraph *undirectedGraphInitialization(void (*freeFun)(void *), int (*compFun)(const void*, const void*), int (*hashFun)(const void *));
 
-void UDGraphAddNode(UndirectedGraph *graph, void *value);
+void udGraphAddNode(UndirectedGraph *graph, void *value);
 
-void UDGraphAddEdge(UndirectedGraph *graph, void *fValue, void *sValue, int edgeWeight);
+void udGraphAddEdge(UndirectedGraph *graph, void *fValue, void *sValue, int edgeWeight);
 
-void UDGraphRemoveNode(UndirectedGraph *graph, void *value);
+void udGraphRemoveNode(UndirectedGraph *graph, void *value);
 
-void *UDGraphRemoveNodeWtoFr(UndirectedGraph *graph, void *value);
+void *udGraphRemoveNodeWtoFr(UndirectedGraph *graph, void *value);
 
-void UDGraphRemoveEdge(UndirectedGraph *graph, void *fValue, void *sValue);
+void udGraphRemoveEdge(UndirectedGraph *graph, void *fValue, void *sValue);
 
-int UDGraphContainsNode(UndirectedGraph *graph, void *value);
+int udGraphContainsNode(UndirectedGraph *graph, void *value);
 
-int UDGraphContainsEdge(UndirectedGraph *graph, void *fValue, void *sValue);
+int udGraphContainsEdge(UndirectedGraph *graph, void *fValue, void *sValue);
 
-int UDGraphGetEdgeWeight(UndirectedGraph *graph, void *fValue, void *sValue);
+int udGraphGetEdgeWeight(UndirectedGraph *graph, void *fValue, void *sValue);
 
 void printUDGraph(UndirectedGraph *graph, void (*printFun)(void *));
 
-int UDGraphGetSize(UndirectedGraph *graph);
+int udGraphGetSize(UndirectedGraph *graph);
 
-int UDGraphIsEmpty(UndirectedGraph *graph);
+int udGraphIsEmpty(UndirectedGraph *graph);
 
 void clearUDGraph(UndirectedGraph *graph);
 
 void destroyUDGraph(UndirectedGraph *graph);
 
-int UDGraphGetShortestDistance(UndirectedGraph *graph, void *startVal, void *endVal);
+int udGraphGetShortestDistance(UndirectedGraph *graph, void *startVal, void *endVal);
 
-struct ArrayList *UDGraphGetShortestPath(UndirectedGraph *graph, void *startVal, void *endVal);
+struct ArrayList *udGraphGetShortestPath(UndirectedGraph *graph, void *startVal, void *endVal);
 
-int UDGraphNodePartOfCycle(UndirectedGraph *graph, void *startVal);
+int udGraphNodePartOfCycle(UndirectedGraph *graph, void *startVal);
 
-int UDGraphHasCycle(UndirectedGraph *graph);
+int udGraphHasCycle(UndirectedGraph *graph);
 
-UndirectedGraph *UDGraphMinimumSpanningGraph(UndirectedGraph *graph, void *startVal);
+UndirectedGraph *udGraphMinimumSpanningGraph(UndirectedGraph *graph, void *startVal);
 
 #ifdef __cplusplus
 }
