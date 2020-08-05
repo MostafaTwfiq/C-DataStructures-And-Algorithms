@@ -5,7 +5,6 @@
 
 
 
-
 /** This function will take an integer,
  * then it will allocate a new integer and copy the passed integer value into the new pointer,
  * and finally return the new integer pointer.
@@ -154,6 +153,47 @@ void testRBTreeInsert(CuTest *cuTest) {
 
 
 
+void testRBTreeInsert2(CuTest *cuTest) {
+
+    RBTree *tree = redBlackTreeInitialization(free, compareIntPointersRBTT);
+
+    int valuesArr[] = {10, 20, 8, 7, 9, 15, 21, 22, 25, 4, 1, 2, 100};
+
+    for (int i = 0; i < 13; i++) {
+
+        rBTreeInsert(tree, generateIntPointerRBTT(valuesArr[i]));
+
+        CuAssertIntEquals(cuTest, 1, checkIfValidBinaryTree(tree->root, NULL));
+        CuAssertIntEquals(cuTest, 1, checkIfValidRBTree(NULL, tree->root, 0) == -1 ? 0 : 1);
+
+    }
+
+
+    for (int i = 0; i < 7; i++) {
+
+        rBTreeDelete(tree, valuesArr + i);
+
+        CuAssertIntEquals(cuTest, 1, checkIfValidBinaryTree(tree->root, NULL));
+        CuAssertIntEquals(cuTest, 1, checkIfValidRBTree(NULL, tree->root, 0) == -1 ? 0 : 1);
+
+    }
+
+
+    int valuesArr2[] = {477, 43, 23, 1, 2, 33, 66, 67, 85, 4};
+    for (int i = 0; i < 10; i++) {
+
+        rBTreeInsert(tree, generateIntPointerRBTT(valuesArr2[i]));
+
+        CuAssertIntEquals(cuTest, 1, checkIfValidBinaryTree(tree->root, NULL));
+        CuAssertIntEquals(cuTest, 1, checkIfValidRBTree(NULL, tree->root, 0) == -1 ? 0 : 1);
+
+    }
+
+
+
+    destroyRBTree(tree);
+
+}
 
 
 void testRBTreeInsertAll(CuTest *cuTest) {
@@ -579,6 +619,7 @@ CuSuite *createRedBlackTreeTestsSuite() {
     SUITE_ADD_TEST(suite, testRBTreeContains);
     SUITE_ADD_TEST(suite, testRBTreeDelete);
     SUITE_ADD_TEST(suite, testRBTreeDeleteWtoFr);
+    SUITE_ADD_TEST(suite, testRBTreeInsert2);
     SUITE_ADD_TEST(suite, testRBTreeGet);
     SUITE_ADD_TEST(suite, testRBTreeToArray);
     SUITE_ADD_TEST(suite, testRBTreeGetSize);

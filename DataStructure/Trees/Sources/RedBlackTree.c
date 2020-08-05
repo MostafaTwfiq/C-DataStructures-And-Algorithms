@@ -307,18 +307,18 @@ RBNode *rBTreeInsertR(RBNode *root, RBNode *parent, void *item, void (*freeFun)(
     else
         freeFun(item);
 
-    //Case 2:
-    if (isRequiredRotation(root)) {
-        RotationType rotationType = getRotationType(root);
-        root = performRotation(root, rotationType);
-        performRotationRecoloring(root, rotationType);
-    }
-
     //Case 1:
     if (isCaseOne(root)) {
         root->parent->color = BLACK;
         getUncle(root)->color = BLACK;
         root->parent->parent->color = RED;
+    }
+
+    //Case 2:
+    if (isRequiredRotation(root)) {
+        RotationType rotationType = getRotationType(root);
+        root = performRotation(root, rotationType);
+        performRotationRecoloring(root, rotationType);
     }
 
     return root;
@@ -933,9 +933,9 @@ RotationType getRotationType(RBNode *grandParent) {
     else if (grandParent->left == redChild && redChild->left == redGrandSon)
         return RIGHT;
     else if (grandParent->left == redChild && redChild->right == redGrandSon)
-        return RIGHT_LEFT;
-    else if (grandParent->right == redChild && redChild->left == redGrandSon)
         return LEFT_RIGHT;
+    else if (grandParent->right == redChild && redChild->left == redGrandSon)
+        return RIGHT_LEFT;
     else
         return NONE;
 
