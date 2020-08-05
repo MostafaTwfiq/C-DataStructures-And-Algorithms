@@ -20,6 +20,7 @@
 #include "TreesTest/TrieTest/TrieTest.h"
 #include "TreesTest/RedBlackTreeTest/RedBlackTreeTest.h"
 #include "SortAlgTests/SortAlgTest.h"
+#include "SearchAlgTests/SearchAlgTest.h"
 
 
 
@@ -49,7 +50,7 @@ int main(void) {
     redBlackTreeUnitTest();
 
     sortAlgUnitTest();
-
+    searchAlgUnitTest();
 
     return 0;
 

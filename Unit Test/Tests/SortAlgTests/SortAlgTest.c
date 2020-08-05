@@ -6,11 +6,11 @@
 
 
 
-int intCompareFunSAT1(const void *a, const void *b) {
+int intCompareFunSoAT1(const void *a, const void *b) {
     return *(int *) a - *(int *) b;
 }
 
-int intCompareFunSAT2(const void *a, const void *b) {
+int intCompareFunSoAT2(const void *a, const void *b) {
     return *(int *) b - *(int *) a;
 }
 
@@ -31,12 +31,12 @@ void testBubbleSort(CuTest *cuTest) {
     bubbleSort(arr, 1, 1, NULL);
     CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
 
-    bubbleSort(arr, 10, sizeof(int), intCompareFunSAT1);
+    bubbleSort(arr, 10, sizeof(int), intCompareFunSoAT1);
 
     for (int i = 0; i < 10; i++)
         CuAssertIntEquals(cuTest, i + 1, arr[i]);
 
-    bubbleSort(arr, 10, sizeof(int), intCompareFunSAT2);
+    bubbleSort(arr, 10, sizeof(int), intCompareFunSoAT2);
     for (int i = 9; i >= 0; i--)
         CuAssertIntEquals(cuTest, i + 1, arr[9 - i]);
 
@@ -61,12 +61,12 @@ void testSelectionSort(CuTest *cuTest) {
     selectionSort(arr, 1, 1, NULL);
     CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
 
-    selectionSort(arr, 10, sizeof(int), intCompareFunSAT1);
+    selectionSort(arr, 10, sizeof(int), intCompareFunSoAT1);
 
     for (int i = 0; i < 10; i++)
         CuAssertIntEquals(cuTest, i + 1, arr[i]);
 
-    selectionSort(arr, 10, sizeof(int), intCompareFunSAT2);
+    selectionSort(arr, 10, sizeof(int), intCompareFunSoAT2);
     for (int i = 9; i >= 0; i--)
         CuAssertIntEquals(cuTest, i + 1, arr[9 - i]);
 
@@ -92,12 +92,12 @@ void testQuickSort(CuTest *cuTest) {
     quickSort(arr, 1, 1, NULL);
     CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
 
-    quickSort(arr, 10, sizeof(int), intCompareFunSAT1);
+    quickSort(arr, 10, sizeof(int), intCompareFunSoAT1);
 
     for (int i = 0; i < 10; i++)
         CuAssertIntEquals(cuTest, i + 1, arr[i]);
 
-    quickSort(arr, 10, sizeof(int), intCompareFunSAT2);
+    quickSort(arr, 10, sizeof(int), intCompareFunSoAT2);
     for (int i = 9; i >= 0; i--)
         CuAssertIntEquals(cuTest, i + 1, arr[9 - i]);
 
@@ -123,12 +123,12 @@ void testMergeSort(CuTest *cuTest) {
     mergeSort(arr, 1, 1, NULL);
     CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
 
-    mergeSort(arr, 10, sizeof(int), intCompareFunSAT1);
+    mergeSort(arr, 10, sizeof(int), intCompareFunSoAT1);
 
     for (int i = 0; i < 10; i++)
         CuAssertIntEquals(cuTest, i + 1, arr[i]);
 
-    mergeSort(arr, 10, sizeof(int), intCompareFunSAT2);
+    mergeSort(arr, 10, sizeof(int), intCompareFunSoAT2);
     for (int i = 9; i >= 0; i--)
         CuAssertIntEquals(cuTest, i + 1, arr[9 - i]);
 
@@ -153,13 +153,13 @@ void testInsertionSort(CuTest *cuTest) {
     insertionSort(arr, 1, 1, NULL);
     CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
 
-    insertionSort(arr, 10, sizeof(int), intCompareFunSAT1);
+    insertionSort(arr, 10, sizeof(int), intCompareFunSoAT1);
 
     for (int i = 0; i < 10; i++)
         CuAssertIntEquals(cuTest, i + 1, arr[i]);
 
 
-    insertionSort(arr, 10, sizeof(int), intCompareFunSAT2);
+    insertionSort(arr, 10, sizeof(int), intCompareFunSoAT2);
     for (int i = 9; i >= 0; i--)
         CuAssertIntEquals(cuTest, i + 1, arr[9 - i]);
 
@@ -184,12 +184,12 @@ void testHeapSort(CuTest *cuTest) {
     heapSort(arr, 1, 1, NULL);
     CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
 
-    heapSort(arr, 10, sizeof(int), intCompareFunSAT1);
+    heapSort(arr, 10, sizeof(int), intCompareFunSoAT1);
 
     for (int i = 0; i < 10; i++)
         CuAssertIntEquals(cuTest, i + 1, arr[i]);
 
-    heapSort(arr, 10, sizeof(int), intCompareFunSAT2);
+    heapSort(arr, 10, sizeof(int), intCompareFunSoAT2);
     for (int i = 9; i >= 0; i--)
         CuAssertIntEquals(cuTest, i + 1, arr[9 - i]);
 

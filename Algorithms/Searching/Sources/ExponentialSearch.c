@@ -83,7 +83,7 @@ int exponentialSearch(void *arr, void *value, int length, int elemSize, int (*cm
 
     }
 
-    int index = binarySearchI(fPointer, value, lPointer - fPointer, elemSize, cmp);
+    int index = binarySearchI(fPointer, value, lPointer - fPointer + 1, elemSize, cmp);
     return index == -1 ? -1 : index + (fPointer - arr) / elemSize;
 
 }
