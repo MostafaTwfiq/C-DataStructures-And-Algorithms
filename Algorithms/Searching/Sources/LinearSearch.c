@@ -1,7 +1,7 @@
 #include "../Headers/LinearSearch.h"
 #include "../../../System/Utils.h"
 #include "../../../DataStructure/Lists/Headers/Vector.h"
-
+#include "../../../Unit Test/CuTest/CuTest.h"
 
 
 
@@ -11,7 +11,9 @@
 
 /** This function will take an integer pointer,
  * then it will free it.
+ *
  * Note: This function will be passed to the indices vector.
+ *
  * @param n the integer pointer
  */
 
@@ -27,7 +29,9 @@ void intFreeFunLinSearch(void *n) {
 
 /** This function takes two integers pointers,
  * then it will compare then and return the result.
+ *
  * Note: This function will be passed to the indices vector.
+ *
  * @param n1 the first integer pointer
  * @param n2 the second integer pointer
  * @return it will return the result of the comparison, zero if they are equal, minus integer if the second bigger, and positive integer if the first bigger
@@ -35,6 +39,7 @@ void intFreeFunLinSearch(void *n) {
 int intCmpLinSearch(const void *n1, const void * n2) {
     return *(int *)n1 - *(int *)n2;
 }
+
 
 unsigned int *generateIntPointerLinSearch(unsigned int *num) {
     unsigned int *newInt = (unsigned int *) malloc(sizeof(unsigned int));
@@ -52,9 +57,11 @@ unsigned int *generateIntPointerLinSearch(unsigned int *num) {
 
 /** This function will take an array and value,
  * then it will search for the value using the linear search algorithm.
+ *
  * Note: if the value doesn't exist the function will return minus one (-1).
  *
- * Time Complexity: O(n)
+ * Time Complexity: O(n).
+ *
  * Space Complexity: O(1).
  *
  * @param arr the array pointer
@@ -68,20 +75,45 @@ unsigned int *generateIntPointerLinSearch(unsigned int *num) {
 int linearSearch(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (arr == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "linear search");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return -1;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "linear search");
+            exit(NULL_POINTER);
+        #endif
     } else if (value == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "linear search");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return -1;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "linear search");
+            exit(INVALID_ARG);
+        #endif
     } else if (cmp == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "linear search");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return -1;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "linear search");
+            exit(INVALID_ARG);
+        #endif
     } else if (length < 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "linear search");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return -1;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "linear search");
+            exit(INVALID_ARG);
+        #endif
     } else if (elemSize <= 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "linear search");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return -1;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "linear search");
+            exit(INVALID_ARG);
+        #endif
     }
 
     for (int i = 0; i < length; i++) {
@@ -106,9 +138,11 @@ int linearSearch(void *arr, void *value, int length, int elemSize, int (*cmp)(co
 
 /** This function will take an array and value,
  * then it will search for the value using the linear search algorithm.
+ *
  * Note: if the value doesn't exist the function will return minus one (-1).
  *
- * Time Complexity: O(n)
+ * Time Complexity: O(n).
+ *
  * Space Complexity: O(1).
  *
  * @param arr the array pointer
@@ -122,20 +156,46 @@ int linearSearch(void *arr, void *value, int length, int elemSize, int (*cmp)(co
 int linearSearchGetLast(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (arr == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "linear search");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return -1;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "linear search");
+            exit(NULL_POINTER);
+        #endif
+
     } else if (value == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "linear search");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return -1;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "linear search");
+            exit(INVALID_ARG);
+        #endif
     } else if (cmp == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "linear search");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return -1;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "linear search");
+            exit(INVALID_ARG);
+        #endif
     } else if (length < 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "linear search");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return -1;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "linear search");
+            exit(INVALID_ARG);
+        #endif
     } else if (elemSize <= 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "linear search");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return -1;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "linear search");
+            exit(INVALID_ARG);
+        #endif
     }
 
     for (int i = length - 1; i >= 0; i--) {
@@ -160,9 +220,11 @@ int linearSearchGetLast(void *arr, void *value, int length, int elemSize, int (*
 
 /** This function will take an array and value,
  * then it will search for the value using the linear search algorithm.
+ *
  * Note: if the value doesn't exist the function will return minus one (-1).
  *
- * Time Complexity: O(n)
+ * Time Complexity: O(n).
+ *
  * Space Complexity: O(k) and k is the number of occurrence.
  *
  * @param arr the array pointer
@@ -176,20 +238,45 @@ int linearSearchGetLast(void *arr, void *value, int length, int elemSize, int (*
 Vector *linearSearchGetAll(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (arr == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "linear search");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return NULL;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "linear search");
+            exit(NULL_POINTER);
+        #endif
     } else if (value == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "linear search");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return NULL;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "linear search");
+            exit(INVALID_ARG);
+        #endif
     } else if (cmp == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "linear search");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return NULL;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "linear search");
+            exit(INVALID_ARG);
+        #endif
     } else if (length < 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "linear search");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return NULL;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "linear search");
+            exit(INVALID_ARG);
+        #endif
     } else if (elemSize <= 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "linear search");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return NULL;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "linear search");
+            exit(INVALID_ARG);
+        #endif
     }
 
     Vector *indicesVector = vectorInitialization(2, intFreeFunLinSearch, intCmpLinSearch);

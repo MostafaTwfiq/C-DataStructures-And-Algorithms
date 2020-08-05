@@ -1,5 +1,6 @@
 #include "../Headers/JumpSearch.h"
 #include "../../../System/Utils.h"
+#include "../../../Unit Test/CuTest/CuTest.h"
 #include <math.h>
 
 
@@ -11,10 +12,13 @@
 
 /** This function will take an array and value,
  * then it will search for the value using the jump search algorithm.
+ *
  * Note: if the value doesn't exist the function will return minus one (-1).
+ *
  * Note: the array must be sorted so the algorithm actually works.
  *
- * Time Complexity: O( sqrt(n) )
+ * Time Complexity: O( sqrt(n) ).
+ *
  * Space Complexity: O(1).
  *
  * @param arr the array pointer
@@ -28,20 +32,45 @@
 int jumpSearch(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (arr == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "jump search");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return -1;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "jump search");
+            exit(NULL_POINTER);
+        #endif
     } else if (value == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "jump search");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return -1;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "jump search");
+            exit(INVALID_ARG);
+        #endif
     } else if (cmp == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "jump search");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return -1;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "jump search");
+            exit(INVALID_ARG);
+        #endif
     } else if (length < 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "jump search");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return -1;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "jump search");
+            exit(INVALID_ARG);
+        #endif
     } else if (elemSize <= 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "jump search");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return -1;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "jump search");
+            exit(INVALID_ARG);
+        #endif
     }
 
 

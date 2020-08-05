@@ -1,6 +1,6 @@
 #include "../Headers/TernarySearch.h"
 #include "../../../System/Utils.h"
-
+#include "../../../Unit Test/CuTest/CuTest.h"
 
 
 
@@ -17,11 +17,15 @@ int ternarySearchHelper(void *arr, void *value, int fIndex, int lIndex, int elem
 
 /** This function will take an array and value,
  * then it will search for the value using the ternary search algorithm.
+ *
  * Note: if the value doesn't exist the function will return minus one (-1).
+ *
  * Note: the array must be sorted so the algorithm actually works.
+ *
  * Note: this function will search for the value iterative.
  *
- * Time Complexity: O( log(n) to the base 3 )
+ * Time Complexity: O( log(n) to the base 3 ).
+ *
  * Space Complexity: O(1).
  *
  * @param arr the array pointer
@@ -35,20 +39,45 @@ int ternarySearchHelper(void *arr, void *value, int fIndex, int lIndex, int elem
 int ternarySearchI(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (arr == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "ternary search");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return -1;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "ternary search");
+            exit(NULL_POINTER);
+        #endif
     } else if (value == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "ternary search");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return -1;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "ternary search");
+            exit(INVALID_ARG);
+        #endif
     } else if (cmp == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "ternary search");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return -1;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "ternary search");
+            exit(INVALID_ARG);
+        #endif
     } else if (length < 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "ternary search");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return -1;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "ternary search");
+            exit(INVALID_ARG);
+        #endif
     } else if (elemSize <= 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "ternary search");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return -1;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "ternary search");
+            exit(INVALID_ARG);
+        #endif
     }
 
 
@@ -91,11 +120,15 @@ int ternarySearchI(void *arr, void *value, int length, int elemSize, int (*cmp)(
 
 /** This function will take an array and value,
  * then it will search for the value using the ternary search algorithm.
+ *
  * Note: if the value doesn't exist the function will return minus one (-1).
+ *
  * Note: the array must be sorted so the algorithm actually works.
+ *
  * Note: this function will search for the value recursively.
  *
- * Time Complexity: O( log(n) to the base 3 )
+ * Time Complexity: O( log(n) to the base 3 ).
+ *
  * Space Complexity: O( log(n) to the base 3 ).
  *
  * @param arr the array pointer
@@ -109,20 +142,45 @@ int ternarySearchI(void *arr, void *value, int length, int elemSize, int (*cmp)(
 int ternarySearchR(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (arr == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "ternary search");
-        exit(NULL_POINTER);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return -1;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "ternary search");
+            exit(NULL_POINTER);
+        #endif
     } else if (value == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "ternary search");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return -1;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "ternary search");
+            exit(INVALID_ARG);
+        #endif
     } else if (cmp == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "ternary search");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return -1;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "ternary search");
+            exit(INVALID_ARG);
+        #endif
     } else if (length < 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "ternary search");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return -1;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "ternary search");
+            exit(INVALID_ARG);
+        #endif
     } else if (elemSize <= 0) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "ternary search");
-        exit(INVALID_ARG);
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return -1;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "ternary search");
+            exit(INVALID_ARG);
+        #endif
     }
 
     return ternarySearchHelper(arr, value, 0, length - 1, elemSize, cmp);
@@ -143,11 +201,15 @@ int ternarySearchR(void *arr, void *value, int length, int elemSize, int (*cmp)(
 
 /** This function will take an array and value,
  * then it will recursively search for the value using the ternary search algorithm.
+ *
  * Note: if the value doesn't exist the function will return minus one (-1).
+ *
  * Note: the array must be sorted so the algorithm actually works.
+ *
  * Note: this function should only be called by the ternarySearchR function.
  *
- * Time Complexity: O( log(n) to the base 3 )
+ * Time Complexity: O( log(n) to the base 3 ).
+ *
  * Space Complexity: O( log(n) to the base 3 ).
  *
  * @param arr the array pointer
