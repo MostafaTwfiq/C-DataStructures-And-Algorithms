@@ -5,8 +5,14 @@
 extern "C" {
 #endif
 
+/** @struct Trie
+*  @brief This structure implements a basic Trie.
+*  @var Trie::root
+*  Member 'root' is a pointer to the root node.
+*/
+
 typedef struct Trie {
-    struct Node *root;
+    struct TrieNode *root;
 } Trie;
 
 Trie *trieInitialization();
