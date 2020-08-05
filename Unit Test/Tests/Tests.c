@@ -21,6 +21,7 @@
 #include "TreesTest/RedBlackTreeTest/RedBlackTreeTest.h"
 #include "SortAlgTests/SortAlgTest.h"
 #include "SearchAlgTests/SearchAlgTest.h"
+#include "IntegerAlgTest/IntegerAlgTest.h"
 
 
 
@@ -51,6 +52,8 @@ int main(void) {
 
     sortAlgUnitTest();
     searchAlgUnitTest();
+
+    integerAlgUnitTest();
 
     return 0;
 
