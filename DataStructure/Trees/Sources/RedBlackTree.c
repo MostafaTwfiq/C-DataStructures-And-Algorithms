@@ -1,5 +1,9 @@
 #include "../Headers/RedBlackTree.h"
 #include "../../../System/Utils.h"
+#include "../../../Unit Test/CuTest/CuTest.h"
+
+
+
 
 typedef enum RotationType{
     NONE, RIGHT, LEFT, RIGHT_LEFT, LEFT_RIGHT
@@ -80,7 +84,8 @@ void *deleteRightNoneNullNodeWtoFr(RBTree *tree, RBNode *root);
 
 
 /** Initialization Function for Red Black Tree. A comparison and freeing items functions must be provided
-  for the tree to be able to level its Nodes. Returns a reference to an allocated Red Black Tree pointer on the heap.
+ * for the tree to be able to level its Nodes. Returns a reference to an allocated Red Black Tree pointer on the heap.
+ *
  * @param freeItem Reference to the dGFreeValue function, that will be called to free the tree items
  * @param cmp Reference to the comparator function.
  * @return Pointer to the allocated Red Black tree on the heap.
@@ -88,18 +93,20 @@ void *deleteRightNoneNullNodeWtoFr(RBTree *tree, RBNode *root);
 
 RBTree *redBlackTreeInitialization(void (*freeItem)(void *), int (*cmp)(const void*, const void *)) {
     if (freeItem == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "red black tree data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "red black tree data structure");
      		exit(INVALID_ARG);
      	#endif
 
     } else if (cmp == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "red black tree data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "red black tree data structure");
      		exit(INVALID_ARG);
      	#endif
 
@@ -107,10 +114,11 @@ RBTree *redBlackTreeInitialization(void (*freeItem)(void *), int (*cmp)(const vo
 
     RBTree *tree = (RBTree *) malloc(sizeof(RBTree));
     if (tree == NULL) {
-        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "tree", "red black tree data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "tree", "red black tree data structure");
      		exit(FAILED_ALLOCATION);
      	#endif
 
@@ -131,6 +139,7 @@ RBTree *redBlackTreeInitialization(void (*freeItem)(void *), int (*cmp)(const vo
 
 
 /** Creates a new Red Black TreeNode for a given key, and parent and if required a certain color.
+ *
  * @param  parent Reference to the Red Black tree's root 's or insertion point's parent.
  * @param color color of the node to be created.
  * @param item Reference pointer to pre allocated key.
@@ -150,15 +159,17 @@ RBNode *createRBNode(RBNode *parent, COLOR color, void *item) {
 
 /** This function will take the tree address as a parameter,
  * then it will clear and free all the tree nodes without destroying the tree.
+ *
  * @param tree a reference to the tree address
  */
 
 void clearRBTree(RBTree *tree) {
     if (tree == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
      		exit(NULL_POINTER);
      	#endif
 
@@ -167,6 +178,7 @@ void clearRBTree(RBTree *tree) {
     freeRBTreeNodesR(tree->root, tree->freeItem);
     tree->root = NULL;
     tree->nodeCount = 0;
+
 }
 
 
@@ -176,6 +188,7 @@ void clearRBTree(RBTree *tree) {
 
 /**This function will take the root node address, and the freeing item function address as a parameters,
  * then recursively it will destroy and free all the tree nodes.
+ *
  * @param root the address of the node
  * @param freeItem dGFreeValue the freeing item function address
  */
@@ -195,6 +208,7 @@ void freeRBTreeNodesR(RBNode *root, void (*freeItem)(void *)) {
 
 
 /** Given a node it frees it's Key and the node.
+ *
  * @param node Exact Reference for node to Free.
  * @param freeItem the freeing item function address
 **/
@@ -214,6 +228,7 @@ void freeRBNode(RBNode *node, void (*freeItem)(void *)) {
 
 
 /** Given an Red Black Tree's root node it frees it's elements recursively.Setting the root node to Null.
+ *
  * @param node Exact Reference to root node to start freeing at.
 **/
 
@@ -230,24 +245,27 @@ void destroyRBTree(RBTree *tree) {
 
 
 /** Inserts a node at the a reference node (preferably the root) with the provided key and it's size.
+ *
  * @param  tree Reference to the Red Black tree.
  * @param item reference pointer to pre allocated key.
 **/
 
 void rBTreeInsert(RBTree *tree, void *item) {
     if (tree == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
      		exit(NULL_POINTER);
      	#endif
 
     } else if (item == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "red black tree data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "red black tree data structure");
      		exit(INVALID_ARG);
      	#endif
 
@@ -264,6 +282,7 @@ void rBTreeInsert(RBTree *tree, void *item) {
 
 
 /** Helper function to insert into the tree a node with given key item.
+ *
  * @param  root Reference to the Red Black tree's root or insertion point.
  * @param  parent Reference to the Red Black tree's root 's or insertion point's parent.
  * @param item Reference pointer to pre allocated key.
@@ -301,6 +320,7 @@ RBNode *rBTreeInsertR(RBNode *root, RBNode *parent, void *item, int (*cmp)(const
 
 
 /** if present Deletes a given Node of key item from the tree.
+ *
  * @param  tree Reference to the Red Black tree.
  * @param item   Reference pointer to pre allocated key.
 **/
@@ -308,18 +328,20 @@ RBNode *rBTreeInsertR(RBNode *root, RBNode *parent, void *item, int (*cmp)(const
 void rBTreeDelete(RBTree *tree, void *item) {
 
     if (tree == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
      		exit(NULL_POINTER);
      	#endif
 
     } else if (item == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "red black tree data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "red black tree data structure");
      		exit(INVALID_ARG);
      	#endif
 
@@ -334,6 +356,7 @@ void rBTreeDelete(RBTree *tree, void *item) {
 
 
 /** Helper function to the @link rBTreeDelete @endlink function.
+ *
  * @param  tree Reference to the Red Black tree.
  * @param  root Reference to the Red Black tree's root or insertion point.
  * @param item Reference to key to delete from the tree.
@@ -367,6 +390,7 @@ void rBTreeDeleteR(RBTree *tree, RBNode *root, void *item) {
 
 
 /** if the node to be deleted has no children this function handles it's deletion.
+ *
  * @param  tree Reference to the Red Black tree.
  * @param  root Reference to the Red Black tree's root or insertion point.
 **/
@@ -399,6 +423,7 @@ void deleteNodeLeafCase(RBTree *tree, RBNode *root) {
 
 
 /** If the node has no right child this function handles it's deletion.
+ *
  * @param  tree Reference to the Red Black tree.
  * @param  root Reference to the Red Black tree's root or insertion point.
 **/
@@ -437,6 +462,7 @@ void deleteRightNullNode(RBTree *tree, RBNode *root) {
 
 
 /** If the node has no left child this function handles it's deletion.
+ *
  * @param  tree Reference to the Red Black tree.
  * @param  root Reference to the Red Black tree's root or insertion point.
 **/
@@ -475,6 +501,7 @@ void deleteLeftNullNode(RBTree *tree, RBNode *root) {
 
 
 /** If the node has both a right and a left child this function handles it's deletion.
+ *
  * @param  tree Reference to the Red Black tree.
  * @param  root Reference to the Red Black tree's root or insertion point.
 **/
@@ -495,6 +522,7 @@ void deleteRightNoneNullNode(RBTree *tree, RBNode *root) {
 
 
 /** if present Deletes a given Node of key item from the tree without freeing it.
+ *
  * @param  tree Reference to the Red Black tree.
  * @param item   Reference pointer to pre allocated key.
  * @return it will return the deleted item pointer
@@ -529,6 +557,7 @@ void *rBTreeDeleteWtoFr(RBTree *tree, void *item) {
 
 
 /** Helper function to the @link rBTreeDeleteWtoFr @endlink function.
+ *
  * @param  tree Reference to the Red Black tree.
  * @param  root Reference to the Red Black tree's root or insertion point.
  * @param item Reference to key to delete from the tree.
@@ -565,6 +594,7 @@ void *rBTreeDeleteRWtoFr(RBTree *tree, RBNode *root, void *item) {
 
 
 /** if the node to be deleted has no children this function handles it's deletion without freeing.
+ *
  * @param  tree Reference to the Red Black tree.
  * @param  root Reference to the Red Black tree's root or insertion point.
  * @return it will return the deleted item pointer
@@ -600,6 +630,7 @@ void *deleteNodeLeafCaseWtoFr(RBTree *tree, RBNode *root) {
 
 
 /** If the node has no right child this function handles it's deletion without freeing.
+ *
  * @param  tree Reference to the Red Black tree.
  * @param  root Reference to the Red Black tree's root or insertion point.
  * @return it will return the deleted item pointer
@@ -641,6 +672,7 @@ void *deleteRightNullNodeWtoFr(RBTree *tree, RBNode *root) {
 
 
 /** If the node has no left child this function handles it's deletion without freeing.
+ *
  * @param  tree Reference to the Red Black tree.
  * @param  root Reference to the Red Black tree's root or insertion point.
  * @return it will return the deleted item pointer
@@ -682,6 +714,7 @@ void *deleteLeftNullNodeWtoFr(RBTree *tree, RBNode *root) {
 
 
 /** If the node has both a right and a left child this function handles it's deletion without freeing.
+ *
  * @param  tree Reference to the Red Black tree.
  * @param  root Reference to the Red Black tree's root or insertion point.
  * @return it will return the deleted item pointer
@@ -706,6 +739,7 @@ void *deleteRightNoneNullNodeWtoFr(RBTree *tree, RBNode *root) {
 
 
 /** Handles cases where a double black node is caused by deletion.
+ *
  * @param  tree Reference to the Red Black tree.
  * @param  root Reference to the Red Black tree's root or insertion point.
  * @param  parent Reference to the Red Black tree's root 's or insertion point's parent.
@@ -741,6 +775,7 @@ void doubleBlackCase(RBTree *tree, RBNode *root, RBNode *parent) {
 
 
 /** Handles the rotation for cases where a double black node is caused by deletion.
+ *
  * @param  tree Reference to the Red Black tree.
  * @param  parent Reference to the Red Black tree's root 's or insertion point's parent.
  * @param rotationType Type of rotation to perform.
@@ -763,6 +798,7 @@ void doubleBlackCasePerformRotation(RBTree *tree, RBNode *parent, RotationType r
 
 
 /** Gets the rotation type to fix the double black case.
+ *
  * @param  grandParent Reference to the Red Black tree's root 's or point's grandparent.
  * @param  parent Reference to the Red Black tree's root 's or insertion point's parent.
  * @param grandSon Reference to the grandson relative to the grandparent . 
@@ -789,6 +825,7 @@ RotationType doubleBlackCaseRotationType(RBNode *grandParent, RBNode *parent, RB
 
 
 /** Given a reference node it returns a reference to it's successor.
+ *
  * @param node Reference node to get the in-order successor for.
  * @return  Pointer to the inorder successor for that node.
 **/
@@ -808,6 +845,7 @@ RBNode *getSuccessorNode(RBNode *node) {
 
 
 /** if a node is red and it's parent and uncle and red, the function returns 1 ie true else 0, false.
+ *
  * @param  root Reference to the Red Black tree's root or insertion point.
  * @return 1 is the current node matches the description else 0.
 **/
@@ -826,6 +864,7 @@ int isCaseOne(RBNode *root) {
 
 /** If the parent and the uncle aren't of the same color (ie one of them is red) whose children
  * are also red then a rotation is also required.
+ *
  * @param  grandParent Reference to the Red Black tree's root 's or point's grandparent.
  * @return 
 **/
@@ -853,6 +892,7 @@ int isRequiredRotation(RBNode *grandParent) {
 
 
 /** Given a reference to a grandparent node determine what rotation to perform.
+ *
  * @param  grandParent Reference to the Red Black tree's root 's or point's grandparent.
  * @return Rotation to perform of values from the @link RotationType enum.
 **/
@@ -879,6 +919,7 @@ RotationType getRotationType(RBNode *grandParent) {
 
 
 /** Given a rotation type and a node to rotate about,the subtree of the node is rotated with respect tot he rotation type.
+ *
  * @param node Reference to the Red Black tree's root or reference node to rotated at.
  * @param rotationType Type of rotation to perform.
  * @return Returns the newly rotated subtree
@@ -913,6 +954,7 @@ RBNode *performRotation(RBNode *node, RotationType rotationType) {
 
 
 /** Recolours nodes after rotation to maintain the reb black tree property.
+ *
  * @param  root Reference to the Red Black tree's root or insertion point.
  * @param rotationType Type of rotation to perform.
 **/
@@ -944,6 +986,7 @@ void performRotationRecoloring(RBNode *root, RotationType rotationType) {
 
 
 /** Given a grandparent node it performs left rotation at it.
+ *
  * @param  grandParent Reference to the Red Black tree's root 's or point's grandparent.
  * @return  returns pointer to the newly left rotated subtree.
 **/
@@ -965,6 +1008,7 @@ RBNode *leftRotation(RBNode *grandParent) {
 
 
 /** Given a grandparent node it performs right rotation at it.
+ *
  * @param  grandParent Reference to the Red Black tree's root 's or point's grandparent.
  * @return returns pointer to the newly right rotated subtree.
 **/
@@ -988,6 +1032,7 @@ RBNode *rightRotation(RBNode *grandParent) {
 
 
 /** Proved with a node it gets it's returns a pointer to it's uncle.
+ *
  * @param currentNode Reference node to get the uncle at.
  * @return Pointer to the uncle of the given node.
 **/
@@ -1006,6 +1051,7 @@ RBNode *getUncle(RBNode *currentNode) {
 
 
 /** Returns the Node's Color, if the node is null it is considered black else returns the actual node's color.
+ *
  * @param node Node to get the color at
  * @return Color information about the given node.
 **/
@@ -1022,6 +1068,7 @@ COLOR getNodeColor(RBNode *node) {
 
 
 /** Prints the Tree PreOrder traversing it recursively.
+ *
  * @param  tree Reference to the Red Black tree.
  * @param printFun Pointer to the print function.
 **/
@@ -1029,18 +1076,20 @@ COLOR getNodeColor(RBNode *node) {
 void rBPreOrderTraversal(RBTree *tree, void (*printFun)(const void *, COLOR)) {
 
     if (tree == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
      		exit(NULL_POINTER);
      	#endif
 
     } else if (printFun == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "print function pointer", "red black tree data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "print function pointer", "red black tree data structure");
      		exit(INVALID_ARG);
      	#endif
 
@@ -1057,6 +1106,7 @@ void rBPreOrderTraversal(RBTree *tree, void (*printFun)(const void *, COLOR)) {
 
 
 /** Helper function for @link rBPreOrderTraversal @endlink printing tree traversing it in order. Sends a pointer ot the node directly.
+ *
  * @param  root Reference to the Red Black tree's root or insertion point.Reference to the root node.
  * @param printFun Pointer to the print function.
 **/
@@ -1081,6 +1131,7 @@ void rBPreOrderTraversalR(RBNode *root, void (*printFun)(const void *, COLOR)) {
 
 
 /** Prints the Tree inOrder traversing it recursively.
+ *
  * @param  tree Reference to the Red Black tree.
  * @param printFun Pointer to the print function.
 **/
@@ -1088,24 +1139,27 @@ void rBPreOrderTraversalR(RBNode *root, void (*printFun)(const void *, COLOR)) {
 void rBInOrderTraversal(RBTree *tree, void (*printFun)(const void *, COLOR)) {
 
     if (tree == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
      		exit(NULL_POINTER);
      	#endif
 
     } else if (printFun == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "print function pointer", "red black tree data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "print function pointer", "red black tree data structure");
      		exit(INVALID_ARG);
      	#endif
 
     }
 
     rBInOrderTraversalR(tree->root, printFun);
+
 }
 
 
@@ -1116,6 +1170,7 @@ void rBInOrderTraversal(RBTree *tree, void (*printFun)(const void *, COLOR)) {
 
 
 /** Helper function for @link rBInOrderTraversal @endlink printing tree traversing it in order. Sends a pointer ot the node directly.
+ *
  * @param  root Reference to the Red Black tree's root or insertion point.Reference to the root node.
  * @param printFun Pointer to the print function.
 **/
@@ -1138,6 +1193,7 @@ void rBInOrderTraversalR(RBNode *root, void (*printFun)(const void *, COLOR)) {
 
 
 /** Prints the Tree PostOrder traversing it recursively.
+ *
  * @param  tree Reference to the Red Black tree.
  * @param printFun Pointer to the print function.
 **/
@@ -1145,18 +1201,20 @@ void rBInOrderTraversalR(RBNode *root, void (*printFun)(const void *, COLOR)) {
 void rBPostOrderTraversal(RBTree *tree, void (*printFun)(const void *, COLOR)) {
 
     if (tree == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
      		exit(NULL_POINTER);
      	#endif
 
     } else if (printFun == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "print function pointer", "red black tree data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "print function pointer", "red black tree data structure");
      		exit(INVALID_ARG);
      	#endif
 
@@ -1171,7 +1229,8 @@ void rBPostOrderTraversal(RBTree *tree, void (*printFun)(const void *, COLOR)) {
 
 
 
-/** Helper function for @link rBPostOrderTraversal @endlink printing tree traversing it in order. Sends a pointer ot the node directly.
+/** Helper function for @link rBPostOrderTraversal @endlink printing tree traversing it in order, sends a pointer ot the node directly.
+ *
  * @param  root Reference to the Red Black tree's root or insertion point.Reference to the root node.
  * @param printFun Pointer to the print function.
 **/
@@ -1193,6 +1252,7 @@ void rBPostOrderTraversalR(RBNode *root, void (*printFun)(const void *, COLOR)) 
 
 
 /** Prints a tree in 2 space of the console.
+ *
  * @param tree Reference to the tree.
  * @param printFn Pointer to the print function.
 **/
@@ -1200,24 +1260,27 @@ void rBPostOrderTraversalR(RBNode *root, void (*printFun)(const void *, COLOR)) 
 void rBTreePrint(RBTree *tree, void (*printFun)(const void *, COLOR)) {
 
     if (tree == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
      		exit(NULL_POINTER);
      	#endif
 
     } else if (printFun == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "print function pointer", "red black tree data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "print function pointer", "red black tree data structure");
      		exit(INVALID_ARG);
      	#endif
 
     }
 
     printRBTreeHelper(tree->root, 0, printFun);
+
 }
 
 
@@ -1228,6 +1291,7 @@ void rBTreePrint(RBTree *tree, void (*printFun)(const void *, COLOR)) {
 
 
 /** Helper function for printing the tree in 2d space.
+ *
  * @param root Reference to the root node.
  * @param space Number of spaces to print at the current level.
  * @param printFn Pointer to the print function.
@@ -1253,6 +1317,7 @@ void printRBTreeHelper(RBNode *root, int space, void (*printFun)(const void *, C
 
 /** This function will take the tree address, the item address as a parameters,
  * then it will return the node item.
+ *
  * @param tree a reference to the tree address.
  * @param item a reference to any item that has ta same item that will be compared
  * @return the return will be the item address if it's existed other wise it will be NULL
@@ -1261,24 +1326,27 @@ void printRBTreeHelper(RBNode *root, int space, void (*printFun)(const void *, C
 void *rbTreeGet(RBTree *tree, char *item) {
 
     if (tree == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
      		exit(NULL_POINTER);
      	#endif
 
     } else if (item == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "red black tree data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "red black tree data structure");
      		exit(INVALID_ARG);
      	#endif
 
     }
 
     return rbTreeGetR(tree, tree->root, item);
+
 }
 
 
@@ -1288,6 +1356,7 @@ void *rbTreeGet(RBTree *tree, char *item) {
 
 
 /** Given a tree and a reference node to start searching at (preferably the root) searches for node with the same item and return it.
+ *
  * @param rbTree Reference to the Red Black tree.
  * @param node node to start searching from preferably the root.
  * @param item Key object to search for in the  Red Black tree.
@@ -1315,6 +1384,7 @@ void *rbTreeGetR(RBTree *rbTree, RBNode *node, char *item) {
 
 
 /** Adds an array of void pointers to elements of the same type as the nodes of the tree.
+ *
  * @param rbTree Reference to the red black tree.
  * @param array Array to add data from.
  * @param length The Length of the array to add from.
@@ -1324,18 +1394,20 @@ void *rbTreeGetR(RBTree *rbTree, RBNode *node, char *item) {
 void rBInsertAll(RBTree* rbTree, void** array, int length) {
 
     if (rbTree == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
      		exit(NULL_POINTER);
      	#endif
 
     } else if (array == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "items array pointer", "red black tree data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "items array pointer", "red black tree data structure");
      		exit(INVALID_ARG);
      	#endif
 
@@ -1354,7 +1426,8 @@ void rBInsertAll(RBTree* rbTree, void** array, int length) {
 
 
 
-/** Given a Tree converts it to an array in-order
+/** Given a Tree converts it to an array in-order.
+ *
  * @param rbTree Reference to the Red Black tree.
  * @return returns an array of pointer references to keys that were stored in the tree.
 **/
@@ -1362,10 +1435,11 @@ void rBInsertAll(RBTree* rbTree, void** array, int length) {
 void **rBTreeToArray(RBTree *rbTree){
 
     if (rbTree == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
      		exit(NULL_POINTER);
      	#endif
 
@@ -1373,10 +1447,11 @@ void **rBTreeToArray(RBTree *rbTree){
 
     void **array = (void **) malloc(sizeof(void *) * rbTree->nodeCount);
     if (array == NULL) {
-        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "red black tree data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "red black tree data structure");
      		exit(FAILED_ALLOCATION);
      	#endif
 
@@ -1395,7 +1470,8 @@ void **rBTreeToArray(RBTree *rbTree){
 
 
 
-/** Recursively traverses the tree in order and adds elements to an allocated array by @link rBTreeToArray @endlink .
+/** Recursively traverses the tree in order and adds elements to an allocated array by @link rBTreeToArray @endlink.
+ *
  * @param node Node reference node to start converting from.
  * @param arr pre allocated array to start storing at.
  * @param i index to insert at in the array.
@@ -1421,6 +1497,7 @@ void RBTreeToArrayRecurs(RBNode* node , void **arr, int *i) {
 
 /** This function will take the tree address as a parameter,
  * then it will return the number of nodes in the tree.
+ *
  * @param tree
  * @return
  */
@@ -1428,10 +1505,11 @@ void RBTreeToArrayRecurs(RBNode* node , void **arr, int *i) {
 int rBTreeGetSize(RBTree *tree){
 
     if (tree == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return -1;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
      		exit(NULL_POINTER);
      	#endif
 
@@ -1449,6 +1527,7 @@ int rBTreeGetSize(RBTree *tree){
 /** This function will take the tree address, and the item pointer as a parameters,
  * then it will return one if the key exist in the tree,
  * other wise it will return zero (0).
+ *
  * @param tree, a reference to the tree address
  * @param item, an address pointer to a memory space contains the data you want to search in the tree
  * @return the return will be one (1) if the tree contains the provided key, other wise it will return zero (0)
@@ -1457,18 +1536,20 @@ int rBTreeGetSize(RBTree *tree){
 int rBTreeContains(RBTree *tree, void *item) {
 
     if (tree == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return -1;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
      		exit(NULL_POINTER);
      	#endif
 
     } else if (item == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "red black tree data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return -1;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "red black tree data structure");
      		exit(INVALID_ARG);
      	#endif
 
@@ -1486,7 +1567,9 @@ int rBTreeContains(RBTree *tree, void *item) {
 /** This function will take the tree address, the node address, and the search key pointer as a parameters,
  * then it will return one (1) if the key is exist in the tree,
  * other wise it will return zero (0).
+ *
  * Note: this function should only be called from the red black tree functions.
+ *
  * @param tree the tree address
  * @param root the node address
  * @param item the item address
