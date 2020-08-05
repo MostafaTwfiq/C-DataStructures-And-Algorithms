@@ -12,7 +12,7 @@ typedef enum RotationType{
 
 RBNode *createRBNode(RBNode *parent, COLOR color, void *item);
 
-RBNode *rBTreeInsertR(RBNode *root, RBNode *parent, void *item, int (*cmp)(const void*, const void *));
+RBNode *rBTreeInsertR(RBNode *root, RBNode *parent, void *item, void (*freeFun)(void *), int (*cmp)(const void*, const void *));
 
 void rBTreeDeleteR(RBTree *tree, RBNode *root, void *item);
 
@@ -246,6 +246,8 @@ void destroyRBTree(RBTree *tree) {
 
 /** Inserts a node at the a reference node (preferably the root) with the provided key and it's size.
  *
+ * Note: if the value is already in the function will free the passed value.
+ *
  * @param  tree Reference to the Red Black tree.
  * @param item reference pointer to pre allocated key.
 **/
@@ -271,9 +273,10 @@ void rBTreeInsert(RBTree *tree, void *item) {
 
     }
 
-    tree->root = rBTreeInsertR(tree->root, NULL, item, tree->cmp);
+    tree->root = rBTreeInsertR(tree->root, NULL, item, tree->freeItem, tree->cmp);
     tree->nodeCount++;
     tree->root->color = BLACK;
+
 }
 
 
@@ -286,31 +289,38 @@ void rBTreeInsert(RBTree *tree, void *item) {
  * @param  root Reference to the Red Black tree's root or insertion point.
  * @param  parent Reference to the Red Black tree's root 's or insertion point's parent.
  * @param item Reference pointer to pre allocated key.
+ * @param freeFun Reference pointer to the free item function
  * @param cmp Reference to the comparator function. 
  * @return it will return the passed root to it's parent
 **/
 
-RBNode *rBTreeInsertR(RBNode *root, RBNode *parent, void *item, int (*cmp)(const void*, const void *)) {
+RBNode *rBTreeInsertR(RBNode *root, RBNode *parent, void *item, void (*freeFun)(void *), int (*cmp)(const void*, const void *)) {
+
     if (root == NULL) {
         root = createRBNode(parent, parent == NULL ? BLACK : RED, item);
-        //Case 1:
-        if (isCaseOne(root)) {
-            root->parent->color = BLACK;
-            getUncle(root)->color = BLACK;
-            root->parent->parent->color = RED;
-        }
+
     }
     else if (cmp(item, root->key) < 0)
-        root->left = rBTreeInsertR(root->left, root, item, cmp);
+        root->left = rBTreeInsertR(root->left, root, item, freeFun, cmp);
     else if (cmp(item, root->key) > 0)
-        root->right = rBTreeInsertR(root->right, root, item, cmp);
+        root->right = rBTreeInsertR(root->right, root, item, freeFun, cmp);
+    else
+        freeFun(item);
+
     //Case 2:
     if (isRequiredRotation(root)) {
         RotationType rotationType = getRotationType(root);
-        RBNode *newRoot = performRotation(root, rotationType);
-        performRotationRecoloring(newRoot, rotationType);
-        return newRoot;
+        root = performRotation(root, rotationType);
+        performRotationRecoloring(root, rotationType);
     }
+
+    //Case 1:
+    if (isCaseOne(root)) {
+        root->parent->color = BLACK;
+        getUncle(root)->color = BLACK;
+        root->parent->parent->color = RED;
+    }
+
     return root;
 }
 
@@ -434,7 +444,7 @@ void deleteRightNullNode(RBTree *tree, RBNode *root) {
     returnNode->parent = parent;
     COLOR rootColor = root->color;
     if (parent == NULL)
-        tree->root = NULL;
+        tree->root = root->left;
     else {
         if (parent->right == root)
             parent->right = returnNode;
@@ -473,7 +483,7 @@ void deleteLeftNullNode(RBTree *tree, RBNode *root) {
     returnNode->parent = parent;
     COLOR rootColor = root->color;
     if (parent == NULL)
-        tree->root = NULL;
+        tree->root = root->right;
     else {
         if (parent->right == root)
             parent->right = returnNode;
@@ -531,24 +541,27 @@ void deleteRightNoneNullNode(RBTree *tree, RBNode *root) {
 void *rBTreeDeleteWtoFr(RBTree *tree, void *item) {
 
     if (tree == NULL) {
-        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "red black tree data structure");
      		exit(NULL_POINTER);
      	#endif
 
     } else if (item == NULL) {
-        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "red black tree data structure");
         #ifdef CU_TEST_H
      		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "red black tree data structure");
      		exit(INVALID_ARG);
      	#endif
 
     }
 
     return rBTreeDeleteRWtoFr(tree, tree->root, item);
+
 }
 
 
@@ -566,7 +579,8 @@ void *rBTreeDeleteWtoFr(RBTree *tree, void *item) {
 
 void *rBTreeDeleteRWtoFr(RBTree *tree, RBNode *root, void *item) {
     if (root == NULL)
-        return NULL ;
+        return NULL;
+
     else if (tree->cmp(item, root->key) == 0) {
         if (root->right == NULL && root->left == NULL)
             return deleteNodeLeafCaseWtoFr(tree, root);
@@ -642,7 +656,7 @@ void *deleteRightNullNodeWtoFr(RBTree *tree, RBNode *root) {
     returnNode->parent = parent;
     COLOR rootColor = root->color;
     if (parent == NULL)
-        tree->root = NULL;
+        tree->root = root->left;
     else {
         if (parent->right == root)
             parent->right = returnNode;
@@ -684,7 +698,7 @@ void *deleteLeftNullNodeWtoFr(RBTree *tree, RBNode *root) {
     returnNode->parent = parent;
     COLOR rootColor = root->color;
     if (parent == NULL)
-        tree->root = NULL;
+        tree->root = root->right;
     else {
         if (parent->right == root)
             parent->right = returnNode;
@@ -746,27 +760,41 @@ void *deleteRightNoneNullNodeWtoFr(RBTree *tree, RBNode *root) {
 **/
 
 void doubleBlackCase(RBTree *tree, RBNode *root, RBNode *parent) {
+
     if (parent == NULL)
         return;
+
     RBNode *sibling = parent->right == root ? parent->left : parent->right;
+
     if (sibling->color == BLACK && (getNodeColor(sibling->right) == RED || getNodeColor(sibling->left) == RED)) {
+
         RBNode *sRedChild = getNodeColor(sibling->right) == RED ? sibling->right : sibling->left;
         RotationType rotationType = doubleBlackCaseRotationType(sibling->parent, sibling, sRedChild);
         sRedChild->color = parent->color;
         parent->color = BLACK;
         doubleBlackCasePerformRotation(tree, parent, rotationType);
+
     } else if (sibling->color == RED) {
+
         RotationType rotationType = parent->right == sibling ? LEFT : RIGHT;
-        parent->color = RED;
         sibling->color = BLACK;
         doubleBlackCasePerformRotation(tree, parent, rotationType);
+
+        if (rotationType == LEFT && parent->right != NULL)
+            parent->right->color = RED;
+        else if (rotationType == RIGHT && parent->left != NULL)
+            parent->left->color = RED;
+
     } else if (sibling->color == BLACK) {
+
         sibling->color = RED;
         if (parent->color == BLACK)
             doubleBlackCase(tree, parent, parent->parent);
         else
             parent->color = BLACK;
+
     }
+
 }
 
 
@@ -905,9 +933,9 @@ RotationType getRotationType(RBNode *grandParent) {
     else if (grandParent->left == redChild && redChild->left == redGrandSon)
         return RIGHT;
     else if (grandParent->left == redChild && redChild->right == redGrandSon)
-        return LEFT_RIGHT;
-    else if (grandParent->right == redChild && redChild->left == redGrandSon)
         return RIGHT_LEFT;
+    else if (grandParent->right == redChild && redChild->left == redGrandSon)
+        return LEFT_RIGHT;
     else
         return NONE;
 

@@ -18,10 +18,11 @@
 #include "GraphsTest/DirectedGraphTest/DirectedGraphTest.h"
 #include "GraphsTest/UndirectedGraphTest/UndirectedGraphTest.h"
 #include "TreesTest/TrieTest/TrieTest.h"
+#include "TreesTest/RedBlackTreeTest/RedBlackTreeTest.h"
 
 int main(void) {
 
-    vectorUnitTest();
+    /*vectorUnitTest();
     arrayListUnitTest();
     linkedListUnitTest();
     doublyLinkedListUnitTest();
@@ -40,7 +41,9 @@ int main(void) {
     hashSetUnitTest();
     directedGraphUnitTest();
     undirectedGraphUnitTest();
-    trieUnitTest();
+    trieUnitTest();*/
+
+    redBlackTreeUnitTest();
 
 
     return 0;
