@@ -22,6 +22,7 @@
 #include "SortAlgTests/SortAlgTest.h"
 #include "SearchAlgTests/SearchAlgTest.h"
 #include "IntegerAlgTest/IntegerAlgTest.h"
+#include "InputScannerTest/InputScannerTest.h"
 
 
 
@@ -54,6 +55,8 @@ int main(void) {
     searchAlgUnitTest();
 
     integerAlgUnitTest();
+
+    inputScannerAlgUnitTest();
 
     return 0;
 
