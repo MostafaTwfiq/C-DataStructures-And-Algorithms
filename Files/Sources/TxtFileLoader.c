@@ -17,6 +17,16 @@
 
 TxtFileLoader *txtFileLoaderInitialization(char *fileDir) {
 
+    if (fileDir == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return NULL;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "file direction", "text file loader");
+            exit(INVALID_ARG);
+        #endif
+    }
+
     TxtFileLoader *loader = (TxtFileLoader *) malloc(sizeof(TxtFileLoader));
     if (loader == NULL) {
         #ifdef CU_TEST_H
@@ -386,7 +396,7 @@ String *txtLoaderReadLineS(TxtFileLoader *txtFileLoader, int lineIndex) {
     }
 
 
-    if (c == EOF) {
+    if (currentIndex != lineIndex && c == EOF) {
         fclose(txtFileLoader->fileP);
         return NULL;
     }
@@ -441,7 +451,7 @@ char *txtLoaderReadLineC(TxtFileLoader *txtFileLoader, int lineIndex) {
     }
 
 
-    if (c == EOF) {
+    if (currentIndex != lineIndex && c == EOF) {
         fclose(txtFileLoader->fileP);
         return NULL;
     }
@@ -955,7 +965,7 @@ void txtLoaderAddLineS(TxtFileLoader *txtFileLoader, String *line, int index) {
         fprintf(txtFileLoader->fileP, "%s\n", ( (String *) vectorGet(linesVector, i))->string);
 
 
-    vectorRemoveAtIndexWtFr(linesVector, vectorGetLength(linesVector) - 1);
+    vectorRemoveAtIndexWtFr(linesVector, index);
     destroyVector(linesVector);
 
     fclose(txtFileLoader->fileP);

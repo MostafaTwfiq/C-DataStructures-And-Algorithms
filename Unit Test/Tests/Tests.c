@@ -24,12 +24,13 @@
 #include "IntegerAlgTest/IntegerAlgTest.h"
 #include "InputScannerTest/InputScannerTest.h"
 #include "ArraysAlgTest/ArraysAlgTest.h"
+#include "TxtFileLoaderTest/TxtFileLoaderTest.h"
 
 
 int main(void) {
 
 
-    vectorUnitTest();
+    /*vectorUnitTest();
     arrayListUnitTest();
     linkedListUnitTest();
     doublyLinkedListUnitTest();
@@ -58,7 +59,9 @@ int main(void) {
 
     inputScannerAlgUnitTest();
 
-    arraysAlgUnitTest();
+    arraysAlgUnitTest();*/
+
+    txtFileLoaderAlgUnitTest();
 
     return 0;
 

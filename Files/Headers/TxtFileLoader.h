@@ -18,13 +18,13 @@ TxtFileLoader *txtFileLoaderInitialization(char *fileDir);
 
 struct String *txtLoaderReadFileS(TxtFileLoader *txtFileLoader);
 
+char *txtLoaderReadFileC(TxtFileLoader *txtFileLoader);
+
 struct Vector *txtLoaderReadFileLines(TxtFileLoader *txtFileLoader);
 
 struct Vector *txtLoaderReadFileWthDelimiter(TxtFileLoader *txtFileLoader, char *delimiter);
 
 int txtLoaderCountLines(TxtFileLoader *txtFileLoader);
-
-char *txtLoaderReadFileC(TxtFileLoader *txtFileLoader);
 
 struct String *txtLoaderReadLineS(TxtFileLoader *txtFileLoader, int lineIndex);
 
