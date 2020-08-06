@@ -218,6 +218,125 @@ Vector *txtLoaderReadFileLines(TxtFileLoader *txtFileLoader) {
 
 
 
+
+int charArrContainsTxtFileLoader(char *arr, char c) {
+
+    while (*arr != '\0') {
+
+        if (*arr++ == c)
+            return 1;
+
+    }
+
+    return 0;
+
+}
+
+
+/** This function will load the file lines into strings,
+ * and it will but the lines strings into a vector,
+ * and finally return the vector pointer.
+ *
+ * Ex for a delimiter: ( ",\n" ) the string will split at ',' and '\n' characters.
+ *
+ * @param txtFileLoader the text file loader pointer
+ * @param delimiter the characters that the string will split at.
+ * @return it will return the lines vector
+ */
+
+Vector *txtLoaderReadFileWthDelimiter(TxtFileLoader *txtFileLoader, char *delimiter) {
+
+    if (txtFileLoader == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #else
+            exit(NULL_POINTER);
+        #endif
+    } else if (delimiter == NULL) {
+        fprintf(stderr, INVALID_ARG_MESSAGE, "delimiter pointer", "text file loader");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #else
+            exit(INVALID_ARG);
+        #endif
+    }
+
+    txtLoaderOpenFile(txtFileLoader, "r");
+
+    Vector *linesVector = vectorInitialization(10, destroyString, stringCompareS);
+    vectorAdd(linesVector, stringInitialization(10));
+    int stringIndex = 0;
+    char c;
+    while ((c = (char) fgetc(txtFileLoader->fileP)) != EOF) {
+
+        if ( charArrContainsTxtFileLoader(delimiter, c) ) {
+            stringIndex++;
+            vectorAdd(linesVector, stringInitialization(10));
+            continue;
+        }
+
+        stringAppendChar(vectorGet(linesVector, stringIndex), c);
+
+    }
+
+
+    fseek(txtFileLoader->fileP, 0, SEEK_SET);
+
+    fclose(txtFileLoader->fileP);
+    return linesVector;
+
+}
+
+
+
+
+
+
+/** This function will count the file lines, then return it.
+ *
+ * @param txtFileLoader the text file loader pointer
+ * @return it will return the lines vector
+ */
+
+int txtLoaderCountLines(TxtFileLoader *txtFileLoader) {
+
+    if (txtFileLoader == NULL) {
+        fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #else
+            exit(NULL_POINTER);
+        #endif
+    }
+
+    txtLoaderOpenFile(txtFileLoader, "r");
+
+    int counter = 1;
+    char c = (char) fgetc(txtFileLoader->fileP);
+    if (c == EOF)
+        counter = 0;
+
+    while ((c = (char) fgetc(txtFileLoader->fileP)) != EOF) {
+
+        if ( c == '\n' )
+            counter++;
+
+    }
+
+
+    fseek(txtFileLoader->fileP, 0, SEEK_SET);
+
+    fclose(txtFileLoader->fileP);
+
+    return counter;
+
+}
+
+
+
+
+
 /** This function will read the provided line index form the file,
  * then it will return the line as a string.
  *
