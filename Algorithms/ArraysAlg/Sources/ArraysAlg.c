@@ -93,6 +93,7 @@ void reverseArray(void *arr, int length, int elemSize) {
     if (arr == NULL) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "reversing array");
             exit(NULL_POINTER);
@@ -100,6 +101,7 @@ void reverseArray(void *arr, int length, int elemSize) {
     } else if (length < 0) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "reversing array");
             exit(INVALID_ARG);
@@ -107,6 +109,7 @@ void reverseArray(void *arr, int length, int elemSize) {
     } else if (elemSize <= 0) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "reversing array");
             exit(INVALID_ARG);
@@ -372,6 +375,7 @@ void printArr(void *arr, int length, int elemSize, void (*printFun)(void *)) {
     if (arr == NULL) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "printing array");
             exit(NULL_POINTER);
@@ -379,6 +383,7 @@ void printArr(void *arr, int length, int elemSize, void (*printFun)(void *)) {
     } else if (printFun == NULL) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "printing function pointer", "printing array");
             exit(INVALID_ARG);
@@ -386,6 +391,7 @@ void printArr(void *arr, int length, int elemSize, void (*printFun)(void *)) {
     } else if (length < 0) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "printing array");
             exit(INVALID_ARG);
@@ -393,20 +399,39 @@ void printArr(void *arr, int length, int elemSize, void (*printFun)(void *)) {
     } else if (elemSize <= 0) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "printing array");
             exit(INVALID_ARG);
         #endif
     }
 
-    fprintf(stdout, "[");
+
+    #ifdef CU_TEST_H
+    #else
+        fprintf(stdout, "[");
+    #endif
+
     for (int i = 0; i < length; i++) {
+
         printFun(arr + i * elemSize);
-        if (i != length - 1)
-            fprintf(stdout, ", ");
+
+        #ifdef CU_TEST_H
+        #else
+
+            if (i != length - 1)
+                fprintf(stdout, ", ");
+
+        #endif
 
     }
-    fprintf(stdout, "]");
+
+
+    #ifdef CU_TEST_H
+    #else
+        fprintf(stdout, "]");
+    #endif
+
 
 }
 
@@ -1047,13 +1072,23 @@ void fillArr(void *arr, void *fillValue, int length, int elemSize) {
     if (arr == NULL) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "fill array function");
             exit(NULL_POINTER);
         #endif
-    }else if (length < 0) {
+    } else if (fillValue == NULL) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "fill value pointer", "fill array function");
+            exit(INVALID_ARG);
+        #endif
+    } else if (length < 0) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "fill array function");
             exit(INVALID_ARG);
@@ -1061,13 +1096,14 @@ void fillArr(void *arr, void *fillValue, int length, int elemSize) {
     } else if (elemSize <= 0) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "fill array function");
             exit(INVALID_ARG);
         #endif
     }
 
-    for (int i = 0; i <= length; i++)
+    for (int i = 0; i < length; i++)
         memcpy(arr + i * elemSize, fillValue, elemSize);
 
 }
@@ -1097,13 +1133,23 @@ void fillArrC(void *arr, void *fillValue, int length, int elemSize, void (*copyF
     if (arr == NULL) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "fill array custom function");
             exit(NULL_POINTER);
         #endif
+    } else if (fillValue == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "fill value pointer", "fill array custom function");
+            exit(INVALID_ARG);
+        #endif
     } else if (copyFun == NULL) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "copy function pointer", "fill array custom function");
             exit(INVALID_ARG);
@@ -1111,6 +1157,7 @@ void fillArrC(void *arr, void *fillValue, int length, int elemSize, void (*copyF
     } else if (length < 0) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "fill array custom function");
             exit(INVALID_ARG);
@@ -1118,13 +1165,14 @@ void fillArrC(void *arr, void *fillValue, int length, int elemSize, void (*copyF
     } else if (elemSize <= 0) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "fill array custom function");
             exit(INVALID_ARG);
         #endif
     }
 
-    for (int i = 0; i <= length; i++)
+    for (int i = 0; i < length; i++)
         copyFun(arr + i * elemSize, fillValue);
 
 }
@@ -1155,13 +1203,23 @@ void fillArrOfRange(void *arr, void *fillValue, int length, int elemSize, int st
     if (arr == NULL) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "fill array of range function");
             exit(NULL_POINTER);
         #endif
-    }else if (length < 0) {
+    } else if (fillValue == 0) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "fill value pointer", "fill array of range function");
+            exit(INVALID_ARG);
+        #endif
+    } else if (length < 0) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "fill array of range function");
             exit(INVALID_ARG);
@@ -1169,6 +1227,7 @@ void fillArrOfRange(void *arr, void *fillValue, int length, int elemSize, int st
     } else if (elemSize <= 0) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "fill array of range function");
             exit(INVALID_ARG);
@@ -1176,6 +1235,7 @@ void fillArrOfRange(void *arr, void *fillValue, int length, int elemSize, int st
     } else if (startIndex < 0 || startIndex > endIndex || endIndex >= length) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "range of copy", "fill array of range function");
             exit(INVALID_ARG);
@@ -1215,13 +1275,23 @@ void fillArrOfRangeC(void *arr, void *fillValue, int length, int elemSize, int s
     if (arr == NULL) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "fill array of range custom function");
             exit(NULL_POINTER);
         #endif
+    } else if (fillValue == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "fill value pointer", "fill array of range custom function");
+            exit(INVALID_ARG);
+        #endif
     } else if (copyFun == NULL) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "copy function pointer", "fill array of range custom function");
             exit(INVALID_ARG);
@@ -1229,6 +1299,7 @@ void fillArrOfRangeC(void *arr, void *fillValue, int length, int elemSize, int s
     } else if (length < 0) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "fill array of range custom function");
             exit(INVALID_ARG);
@@ -1236,6 +1307,7 @@ void fillArrOfRangeC(void *arr, void *fillValue, int length, int elemSize, int s
     } else if (elemSize <= 0) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "fill array of range custom function");
             exit(INVALID_ARG);
@@ -1243,6 +1315,7 @@ void fillArrOfRangeC(void *arr, void *fillValue, int length, int elemSize, int s
     } else if (startIndex < 0 || startIndex > endIndex || endIndex >= length) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "range of copy", "fill array of range custom function");
             exit(INVALID_ARG);
@@ -2236,6 +2309,8 @@ int isSubArr(void *arr, int arrLength, void *values, int valuesArrLength, int el
         #endif
     }
 
+    if (valuesArrLength == 0)
+        return 1;
 
     for (int i = 0; i <= arrLength - valuesArrLength; i++) {
 
@@ -2450,6 +2525,7 @@ void arrRemoveAtIndex(void *arr, int index, int length, int elemSize, void (*fre
     if (arr == NULL) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array remove function");
             exit(NULL_POINTER);
@@ -2457,6 +2533,7 @@ void arrRemoveAtIndex(void *arr, int index, int length, int elemSize, void (*fre
     } else if (length < 0) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array remove function");
             exit(INVALID_ARG);
@@ -2464,6 +2541,7 @@ void arrRemoveAtIndex(void *arr, int index, int length, int elemSize, void (*fre
     } else if (elemSize <= 0) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array remove function");
             exit(INVALID_ARG);
@@ -2471,6 +2549,7 @@ void arrRemoveAtIndex(void *arr, int index, int length, int elemSize, void (*fre
     } else if (index < 0 || index >= length) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, OUT_OF_RANGE_MESSAGE, "remove at index function array");
             exit(OUT_OF_RANGE);
@@ -2506,6 +2585,7 @@ void arrSort(void *arr, int length, int elemSize, int (*cmp)(const void *, const
     if (arr == NULL) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array sort function");
             exit(NULL_POINTER);
@@ -2513,6 +2593,7 @@ void arrSort(void *arr, int length, int elemSize, int (*cmp)(const void *, const
     } else if (cmp == NULL) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array sort function");
             exit(INVALID_ARG);
@@ -2520,6 +2601,7 @@ void arrSort(void *arr, int length, int elemSize, int (*cmp)(const void *, const
     } else if (length < 0) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array sort function");
             exit(INVALID_ARG);
@@ -2527,6 +2609,7 @@ void arrSort(void *arr, int length, int elemSize, int (*cmp)(const void *, const
     } else if (elemSize <= 0) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array sort function");
             exit(INVALID_ARG);
@@ -2998,6 +3081,7 @@ void arrUpdateElem(void *arr, void *value, int length, int elemSize, int index, 
     if (arr == NULL) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "arr update element function");
             exit(NULL_POINTER);
@@ -3005,6 +3089,7 @@ void arrUpdateElem(void *arr, void *value, int length, int elemSize, int index, 
     } else if (value == NULL) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "passed value", "arr update element function");
             exit(INVALID_ARG);
@@ -3012,6 +3097,7 @@ void arrUpdateElem(void *arr, void *value, int length, int elemSize, int index, 
     } else if (length < 0) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "arr update element function");
             exit(INVALID_ARG);
@@ -3019,6 +3105,7 @@ void arrUpdateElem(void *arr, void *value, int length, int elemSize, int index, 
     } else if (elemSize <= 0) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "arr update element function");
             exit(INVALID_ARG);
@@ -3026,6 +3113,7 @@ void arrUpdateElem(void *arr, void *value, int length, int elemSize, int index, 
     } else if (index < 0 || index >= length) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, OUT_OF_RANGE_MESSAGE, "array add function");
             exit(OUT_OF_RANGE);
@@ -3065,6 +3153,7 @@ void arrAdd(void *arr, void *value, int length, int elemSize, int index) {
     if (arr == NULL) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array add function");
             exit(NULL_POINTER);
@@ -3072,6 +3161,7 @@ void arrAdd(void *arr, void *value, int length, int elemSize, int index) {
     } else if (value == NULL) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "passed value", "array add function");
             exit(INVALID_ARG);
@@ -3079,6 +3169,7 @@ void arrAdd(void *arr, void *value, int length, int elemSize, int index) {
     } else if (length < 0) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array add function");
             exit(INVALID_ARG);
@@ -3086,6 +3177,7 @@ void arrAdd(void *arr, void *value, int length, int elemSize, int index) {
     } else if (elemSize <= 0) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array add function");
             exit(INVALID_ARG);
@@ -3093,6 +3185,7 @@ void arrAdd(void *arr, void *value, int length, int elemSize, int index) {
     } else if (index < 0 || index >= length) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, OUT_OF_RANGE_MESSAGE, "array add function");
             exit(OUT_OF_RANGE);
@@ -3135,6 +3228,7 @@ void arrAddAll(void *arr, int arrLength, void *values, int valuesArrLength, int 
     if (arr == NULL) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array add all function");
             exit(NULL_POINTER);
@@ -3142,6 +3236,7 @@ void arrAddAll(void *arr, int arrLength, void *values, int valuesArrLength, int 
     } else if (values == NULL) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "passed values array", "array add all function");
             exit(NULL_POINTER);
@@ -3149,6 +3244,7 @@ void arrAddAll(void *arr, int arrLength, void *values, int valuesArrLength, int 
     }  else if (arrLength < 0) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array add all function");
             exit(INVALID_ARG);
@@ -3156,6 +3252,7 @@ void arrAddAll(void *arr, int arrLength, void *values, int valuesArrLength, int 
     } else if (valuesArrLength < 0) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "values array length", "array add all function");
             exit(INVALID_ARG);
@@ -3163,6 +3260,7 @@ void arrAddAll(void *arr, int arrLength, void *values, int valuesArrLength, int 
     } else if (elemSize <= 0) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array add all function");
             exit(INVALID_ARG);
@@ -3170,13 +3268,14 @@ void arrAddAll(void *arr, int arrLength, void *values, int valuesArrLength, int 
     } else if (index < 0 || index >= arrLength) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
         #else
             fprintf(stderr, OUT_OF_RANGE_MESSAGE, "array add all function");
             exit(OUT_OF_RANGE);
         #endif
     }
 
-    for (int i = arrLength + valuesArrLength; i > index; i--)
+    for (int i = arrLength + valuesArrLength - 1; i > index; i--)
         memcpy(arr + i * elemSize, arr + (i - valuesArrLength) * elemSize, elemSize);
 
     for (int i = 0; i < valuesArrLength; i++)

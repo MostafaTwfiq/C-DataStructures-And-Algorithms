@@ -23,7 +23,7 @@
 #include "SearchAlgTests/SearchAlgTest.h"
 #include "IntegerAlgTest/IntegerAlgTest.h"
 #include "InputScannerTest/InputScannerTest.h"
-
+#include "ArraysAlgTest/ArraysAlgTest.h"
 
 
 int main(void) {
@@ -57,6 +57,8 @@ int main(void) {
     integerAlgUnitTest();
 
     inputScannerAlgUnitTest();
+
+    arraysAlgUnitTest();
 
     return 0;
 
