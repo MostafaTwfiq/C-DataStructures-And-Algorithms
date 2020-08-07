@@ -53,7 +53,7 @@ void binaryTreeInsertAll(BinaryTree *tree, void **items, int length);
 
 void binaryTreeDelete(BinaryTree *tree, void *item);
 
-void binaryTreeDeleteWtoFr(BinaryTree *tree, void *item);
+void *binaryTreeDeleteWtoFr(BinaryTree *tree, void *item);
 
 int binaryTreeContains(BinaryTree *tree, void *item);
 
