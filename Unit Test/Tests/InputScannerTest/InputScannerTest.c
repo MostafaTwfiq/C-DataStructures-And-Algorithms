@@ -163,7 +163,7 @@ CuSuite *createInputScannerTestsSuite() {
 
 
 
-void inputScannerAlgUnitTest() {
+void inputScannerUnitTest() {
 
     DUMMY_TEST_DATASTRUCTURE =  (TestStruct*) malloc(sizeof(TestStruct));
 

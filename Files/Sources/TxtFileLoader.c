@@ -89,13 +89,8 @@ void txtLoaderOpenFile(TxtFileLoader *txtFileLoader, char *openType) {
 
     txtFileLoader->fileP = fopen(txtFileLoader->dir, openType);
     if (txtFileLoader->fileP == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = SOMETHING_WENT_WRONG;
-            return;
-        #else
-            fprintf(stderr, SOMETHING_WENT_WRONG_MESSAGE, "open the file", "text file loader");
-            exit(SOMETHING_WENT_WRONG);
-        #endif
+        fprintf(stderr, SOMETHING_WENT_WRONG_MESSAGE, "open the file", "text file loader");
+        exit(SOMETHING_WENT_WRONG);
     }
 
 }

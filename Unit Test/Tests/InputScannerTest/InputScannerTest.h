@@ -1,6 +1,6 @@
 #ifndef C_DATASTRUCTURES_INPUTSCANNERTEST_H
 #define C_DATASTRUCTURES_INPUTSCANNERTEST_H
 
-void inputScannerAlgUnitTest();
+void inputScannerUnitTest();
 
 #endif //C_DATASTRUCTURES_INPUTSCANNERTEST_H

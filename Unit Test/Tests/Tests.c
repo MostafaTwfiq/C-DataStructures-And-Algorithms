@@ -30,7 +30,7 @@
 int main(void) {
 
 
-    /*vectorUnitTest();
+    vectorUnitTest();
     arrayListUnitTest();
     linkedListUnitTest();
     doublyLinkedListUnitTest();
@@ -57,11 +57,10 @@ int main(void) {
 
     integerAlgUnitTest();
 
-    inputScannerAlgUnitTest();
-
-    arraysAlgUnitTest();*/
+    arraysAlgUnitTest();
 
     txtFileLoaderAlgUnitTest();
+    inputScannerUnitTest();
 
     return 0;
 

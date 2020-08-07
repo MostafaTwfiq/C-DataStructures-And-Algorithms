@@ -7,7 +7,22 @@
 
 
 
-const char *filePath = "C:\\Users\\mosta\\CLionProjects\\C-Data-structures\\Unit Test\\Tests\\TxtFileLoaderTest\\testFile.txt";
+const char *filePath = "testFile.txt";
+
+
+
+void createFileToBeTested() {
+
+    FILE *dir = fopen(filePath, "w");
+
+    if (dir == NULL) {
+        fprintf(stderr, "can't create the text file in text file loader unit test");
+        exit(-1);
+    }
+
+    fclose(dir);
+
+}
 
 
 
@@ -691,6 +706,179 @@ void testTxtLoaderAddAllS(CuTest *cuTest) {
 
 
 
+
+
+
+
+void testTxtLoaderUpdateLineC(CuTest *cuTest) {
+
+    TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
+
+    txtLoaderUpdateLineC(NULL, NULL, 0);
+    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    txtLoaderUpdateLineC(txtFileLoader, NULL, 0);
+    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    txtLoaderWriteC(txtFileLoader, "");
+
+    txtLoaderUpdateLineC(txtFileLoader, "", 1);
+    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    char lines[5][12] = {"one", "two", "three", "four", "five"};
+    txtLoaderWriteC(txtFileLoader, "five\nfour\nthree\ntwo\none");
+
+    for (int i = 0; i < 5; i++)
+        txtLoaderUpdateLineC(txtFileLoader, lines[i], i);
+
+    for (int i = 0; i < 5; i++) {
+        String *line = txtLoaderReadLineS(txtFileLoader, i);
+        CuAssertStrEquals(cuTest, lines[i], line->string);
+        destroyString(line);
+    }
+
+
+    destroyTxtFileLoader(txtFileLoader);
+
+}
+
+
+
+
+
+
+void testTxtLoaderUpdateLineS(CuTest *cuTest) {
+
+    TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
+
+    txtLoaderUpdateLineS(NULL, NULL, 0);
+    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    txtLoaderUpdateLineS(txtFileLoader, NULL, 0);
+    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    txtLoaderWriteC(txtFileLoader, "");
+
+    String *s = stringInitialization(1);
+    txtLoaderUpdateLineS(txtFileLoader, s, 1);
+    destroyString(s);
+    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    char lines[5][12] = {"one", "two", "three", "four", "five"};
+    txtLoaderWriteC(txtFileLoader, "five\nfour\nthree\ntwo\none");
+
+    for (int i = 0; i < 5; i++) {
+        String *tempString = stringInitialization(6);
+        stringChangeStringC(tempString, lines[i]);
+        txtLoaderUpdateLineS(txtFileLoader, tempString, i);
+        destroyString(tempString);
+    }
+
+    for (int i = 0; i < 5; i++) {
+        String *line = txtLoaderReadLineS(txtFileLoader, i);
+        CuAssertStrEquals(cuTest, lines[i], line->string);
+        destroyString(line);
+    }
+
+
+    destroyTxtFileLoader(txtFileLoader);
+
+}
+
+
+
+
+
+void testTxtLoaderRemoveLine(CuTest *cuTest) {
+
+    TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
+
+    txtLoaderRemoveLine(NULL, 0);
+    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+
+    txtLoaderWriteC(txtFileLoader, "");
+    txtLoaderRemoveLine(txtFileLoader, 1);
+    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    char lines[2][6] = {"three", "five"};
+    txtLoaderWriteC(txtFileLoader, "one\ntwo\nthree\nfour\nfive");
+
+    txtLoaderRemoveLine(txtFileLoader, 3);
+    txtLoaderRemoveLine(txtFileLoader, 1);
+    txtLoaderRemoveLine(txtFileLoader, 0);
+
+    for (int i = 0; i < 2; i++) {
+        String *line = txtLoaderReadLineS(txtFileLoader, i);
+        CuAssertStrEquals(cuTest, lines[i], line->string);
+        destroyString(line);
+    }
+
+
+    destroyTxtFileLoader(txtFileLoader);
+
+}
+
+
+
+
+void testTxtLoaderChangeFile(CuTest *cuTest) {
+
+    TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
+
+    CuAssertStrEquals(cuTest, filePath, txtFileLoader->dir);
+
+
+    char *newPath = "C:/c/data/structure/and/algorithms";
+    txtLoaderChangeFile(txtFileLoader, newPath);
+
+
+    CuAssertStrEquals(cuTest, newPath, txtFileLoader->dir);
+
+
+    destroyTxtFileLoader(txtFileLoader);
+
+}
+
+
+
+void testTxtLoaderClearFile(CuTest *cuTest) {
+
+    TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
+
+    txtLoaderClearFile(NULL);
+    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+
+    txtLoaderClearFile(txtFileLoader);
+    CuAssertIntEquals(cuTest, 0, txtLoaderCountLines(txtFileLoader));
+
+    txtLoaderWriteC(txtFileLoader, "one\ntwo\nthree\nfour\nfive");
+    CuAssertIntEquals(cuTest, 5, txtLoaderCountLines(txtFileLoader));
+
+    txtLoaderClearFile(txtFileLoader);
+    CuAssertIntEquals(cuTest, 0, txtLoaderCountLines(txtFileLoader));
+
+
+    destroyTxtFileLoader(txtFileLoader);
+
+}
+
+
+
+
+
+void testDestroyTxtFileLoader(CuTest *cuTest) {
+
+    TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
+
+    destroyTxtFileLoader(txtFileLoader);
+
+}
+
+
+
+
 CuSuite *createTxtFileLoaderTestsSuite() {
 
     CuSuite *suite = CuSuiteNew();
@@ -716,6 +904,12 @@ CuSuite *createTxtFileLoaderTestsSuite() {
     SUITE_ADD_TEST(suite, testTxtLoaderAddLineS);
     SUITE_ADD_TEST(suite, testTxtLoaderAddAllC);
     SUITE_ADD_TEST(suite, testTxtLoaderAddAllS);
+    SUITE_ADD_TEST(suite, testTxtLoaderUpdateLineC);
+    SUITE_ADD_TEST(suite, testTxtLoaderUpdateLineS);
+    SUITE_ADD_TEST(suite, testTxtLoaderRemoveLine);
+    SUITE_ADD_TEST(suite, testTxtLoaderChangeFile);
+    SUITE_ADD_TEST(suite, testTxtLoaderClearFile);
+    SUITE_ADD_TEST(suite, testDestroyTxtFileLoader);
 
     return suite;
 
@@ -731,6 +925,10 @@ void txtFileLoaderAlgUnitTest() {
     CuStringAppend(output, "**Text File Loader Test**\n");
 
     CuSuite *suite = createTxtFileLoaderTestsSuite();
+
+
+    createFileToBeTested();
+
 
     CuSuiteRun(suite);
     CuSuiteSummary(suite, output);
