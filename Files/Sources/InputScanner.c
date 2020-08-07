@@ -84,7 +84,7 @@ int scanInt() {
     String *string = stringInitialization(10);
     stringScanInput(string);
 
-    if (!isInteger(string->string, stringGetLength(string))) {
+    if (!isInteger(string->string)) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = SOMETHING_WENT_WRONG;
             return -1;
@@ -119,7 +119,7 @@ double scanDouble() {
     String *string = stringInitialization(10);
     stringScanInput(string);
 
-    if (!isFloatingPointNum(string->string, stringGetLength(string))) {
+    if (!isFloatingPointNum(string->string)) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = SOMETHING_WENT_WRONG;
             return -1;
@@ -153,7 +153,7 @@ float scanFloat() {
     String *string = stringInitialization(10);
     stringScanInput(string);
 
-    if (!isFloatingPointNum(string->string, stringGetLength(string))) {
+    if (!isFloatingPointNum(string->string)) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = SOMETHING_WENT_WRONG;
             return -1;
@@ -187,7 +187,7 @@ long scanLong() {
     String *string = stringInitialization(10);
     stringScanInput(string);
 
-    if (!isInteger(string->string, stringGetLength(string))) {
+    if (!isInteger(string->string)) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = SOMETHING_WENT_WRONG;
             return -1;
@@ -221,7 +221,7 @@ long long scanLongLong() {
     String *string = stringInitialization(10);
     stringScanInput(string);
 
-    if (!isInteger(string->string, stringGetLength(string))) {
+    if (!isInteger(string->string)) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = SOMETHING_WENT_WRONG;
             return -1;
@@ -256,7 +256,7 @@ short scanShort() {
     String *string = stringInitialization(10);
     stringScanInput(string);
 
-    if (!isInteger(string->string, stringGetLength(string))) {
+    if (!isInteger(string->string)) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = SOMETHING_WENT_WRONG;
             return -1;

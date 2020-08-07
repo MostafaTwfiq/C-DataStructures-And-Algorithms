@@ -22,17 +22,13 @@ int charArrContainsChar(char *charArr, char c);
 
 void charArrRemoveCharacters(char *charArr, char *specialCharactersToRemove);
 
-int isInteger(const char *string, int length);
+int isInteger(char *string);
 
-int isFloatingPointNum(const char *string, int length);
+int isFloatingPointNum(char *string);
 
 int charArrSumASCII(char *ch);
 
 int charArrHashFun(const void *ch);
-
-char *generateCharPointerP(char *ch, int length);
-
-char *generateCharPointerC(char c);
 
 char *generateCharPointerP(char *ch, int length);
 

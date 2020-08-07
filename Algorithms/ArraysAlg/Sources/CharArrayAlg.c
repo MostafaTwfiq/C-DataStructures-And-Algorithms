@@ -67,6 +67,9 @@ int isSubString(const char *fString, int fLength, const char *sString, int sLeng
         #endif
     }
 
+    if (sLength == 0)
+        return 1;
+
     for (int i = 0; i <= fLength - sLength; i++) {
 
         if (fString[i] != *sString)
@@ -104,7 +107,7 @@ void charArrayReverseWords(char *charArr) {
     if (charArr == NULL) {
 
         #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
             return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "char array", "char array reverse words");
@@ -116,22 +119,22 @@ void charArrayReverseWords(char *charArr) {
 
 
     Vector *wordsVector = vectorInitialization(5, destroyString, NULL);
+    vectorAdd(wordsVector, stringInitialization(5));
     char *charArrStartPointer = charArr;
-    int wordsCounter = 0;
 
     while (*charArr != '\0') {
-        if (vectorIsEmpty(wordsVector) || vectorGet(wordsVector, wordsCounter) == NULL)
-            vectorAdd(wordsVector, stringInitialization(5));
 
         if (*charArr == ' ') {
-            wordsCounter++;
-            vectorAdd(wordsVector, stringInitialization(5));
+
             while (*(charArr + 1) == ' ')
                 charArr++;
 
-        }
-        else
-            stringAppendChar((String *) vectorGet(wordsVector, wordsCounter), *charArr);
+            if (stringGetLength(vectorGet(wordsVector, vectorGetLength(wordsVector) - 1)) != 0)
+                vectorAdd(wordsVector, stringInitialization(5));
+
+        } else
+            stringAppendChar((String *) vectorGet(wordsVector, vectorGetLength(wordsVector) - 1), *charArr);
+
 
         charArr++;
 
@@ -494,11 +497,10 @@ void charArrRemoveCharacters(char *charArr, char *specialCharactersToRemove) {
  * and if it was the function will return one (1), other wise it will return zero (0).
  *
  * @param string the char array pointer
- * @param length the length of the char array
  * @return it will return one if the char array is integer other wise it will return zero
  */
 
-int isInteger(const char *string, int length) {
+int isInteger(char *string) {
 
     if (string == NULL) {
         #ifdef CU_TEST_H
@@ -508,21 +510,25 @@ int isInteger(const char *string, int length) {
             fprintf(stderr, NULL_POINTER_MESSAGE, "passed char array", "isInteger function");
             exit(NULL_POINTER);
         #endif
-    } else if (length < 0) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "passed char array length", "isInteger algorithm");
-            exit(INVALID_ARG);
-        #endif
     }
 
-    for (int i = 0; i < length; i++) {
-        if ( i == 0 && ( string[i] == '-' || string[i] == '+' ) )
+
+    if (*string == '\0')
+        return 0;
+
+
+    char *tempPointer = string;
+
+    while (*tempPointer != '\0') {
+        if ( tempPointer == string && ( *tempPointer == '-' || *tempPointer == '+' ) ) {
+            tempPointer++;
             continue;
-        else if ( !(string[i] >= '0' && string[i] <= '9') )
+        }
+
+        else if ( !(*tempPointer >= '0' && *tempPointer <= '9') )
             return 0;
+
+        tempPointer++;
 
     }
 
@@ -541,11 +547,10 @@ int isInteger(const char *string, int length) {
  * then it will return one (1), if it was a valid floating point number, other wise it will return zero (0).
  *
  * @param string the char array pointer
- * @param length the length if the char array
  * @return
  */
 
-int isFloatingPointNum(const char *string, int length) {
+int isFloatingPointNum(char *string) {
 
     if (string == NULL) {
         #ifdef CU_TEST_H
@@ -555,24 +560,25 @@ int isFloatingPointNum(const char *string, int length) {
             fprintf(stderr, NULL_POINTER_MESSAGE, "passed char array", "isFloatingPointNum function");
             exit(NULL_POINTER);
         #endif
-    } else if (length < 0) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "passed char array length", "isFloatingPointNum algorithm");
-            exit(INVALID_ARG);
-        #endif
     }
+
+
+    if (*string == '\0')
+        return 0;
+
 
     short dotFlag = 0;
 
-    for (int i = 0; i < length; i++) {
+    char *tempPointer = string;
 
-        if ( i == 0 && ( string[i] == '-' || string[i] == '+' ) )
+    while (*tempPointer != '\0') {
+
+        if ( tempPointer == string && ( *tempPointer == '-' || *tempPointer == '+' ) ) {
+            tempPointer++;
             continue;
+        }
 
-        else if (string[i] == '.') {
+        else if (*tempPointer == '.') {
 
             if (dotFlag == 0)
                 dotFlag = 1;
@@ -581,8 +587,10 @@ int isFloatingPointNum(const char *string, int length) {
 
         }
 
-        else if ( !(string[i] >= '0' && string[i] <= '9') )
+        else if ( !(*tempPointer >= '0' && *tempPointer <= '9') )
             return 0;
+
+        tempPointer++;
 
     }
 
@@ -840,7 +848,7 @@ Vector *charArrSplitS(char *string, char *splitCharacters) {
         #endif
     } else if (splitCharacters == NULL) {
         #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
             return NULL;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "split characters array", "char array split function");
@@ -864,6 +872,9 @@ Vector *charArrSplitS(char *string, char *splitCharacters) {
 
         string++;
     }
+
+    if (stringGetLength(vectorGet(wordsVector, vectorGetLength(wordsVector) - 1)) == 0)
+        vectorRemoveAtIndex(wordsVector, vectorGetLength(wordsVector) - 1);
 
     return wordsVector;
 
@@ -897,7 +908,7 @@ Vector *charArrSplitC(char *string, char *splitCharacters) {
         #endif
     } else if (splitCharacters == NULL) {
         #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
             return NULL;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "split characters array", "char array split function");
@@ -958,6 +969,9 @@ char mostRepeatedCharacter(char *string) {
             exit(NULL_POINTER);
         #endif
     }
+
+    if (*string == '\0')
+        return '\0';
 
     return *(char *) mostFrequentArrValueH(string, strlen(string), sizeof(char), charComparatorP, charArrHashFun);
 

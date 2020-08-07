@@ -25,11 +25,15 @@
 #include "InputScannerTest/InputScannerTest.h"
 #include "ArraysAlgTest/ArraysAlgTest.h"
 #include "TxtFileLoaderTest/TxtFileLoaderTest.h"
+#include "CharArrayAlgTest/CharArrayAlgTest.h"
+
+
 
 
 int main(void) {
 
 
+    // Data structure tests:
     vectorUnitTest();
     arrayListUnitTest();
     linkedListUnitTest();
@@ -52,13 +56,22 @@ int main(void) {
     trieUnitTest();
     redBlackTreeUnitTest();
 
+
+    // Sorting and searching tests:
     sortAlgUnitTest();
     searchAlgUnitTest();
 
+
+    // Integer algorithms test:
     integerAlgUnitTest();
 
-    arraysAlgUnitTest();
 
+    // Arrays algorithms tests:
+    arraysAlgUnitTest();
+    charArrayAlgUnitTest();
+
+
+    // Files Handlers tests:
     txtFileLoaderAlgUnitTest();
     inputScannerUnitTest();
 
