@@ -37,7 +37,7 @@ void binaryHeapInsertAll(BinaryHeap *heap, void **items, int length);
 
 void binaryHeapDeleteRoot(BinaryHeap *heap);
 
-void binaryHeapDeleteRootWtoFr(BinaryHeap *heap);
+void *binaryHeapDeleteRootWtoFr(BinaryHeap *heap);
 
 int binaryHeapContains(BinaryHeap *heap, void *item);
 
