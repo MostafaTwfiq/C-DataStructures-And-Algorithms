@@ -94,7 +94,7 @@ int checkIfValidRBTree(RBNode *parent, RBNode *root, int blackCount) {
 
 
 
-int checkIfValidBinaryTree(RBNode *root, RBNode *parent) {
+int checkIfValidBinaryTreeRBTT(RBNode *root, RBNode *parent) {
 
     if (root == NULL)
         return 1;
@@ -104,22 +104,22 @@ int checkIfValidBinaryTree(RBNode *root, RBNode *parent) {
         if (parent->right == root) {
 
             return
-            compareIntPointersRBTT(parent->key, root->key) < 0
-            ? checkIfValidBinaryTree(root->left, root) && checkIfValidBinaryTree(root->right, root)
+            compareIntPointersRBTT(parent->key, root->key) < 0 || compareIntPointersRBTT(parent->key, root->key) == 0
+            ? checkIfValidBinaryTreeRBTT(root->left, root) && checkIfValidBinaryTreeRBTT(root->right, root)
             : 0;
 
         } else {
 
             return
             compareIntPointersRBTT(parent->key, root->key) > 0
-            ? checkIfValidBinaryTree(root->left, root) && checkIfValidBinaryTree(root->right, root)
+            ? checkIfValidBinaryTreeRBTT(root->left, root) && checkIfValidBinaryTreeRBTT(root->right, root)
             : 0;
 
         }
 
     }
 
-    return checkIfValidBinaryTree(root->left, root) && checkIfValidBinaryTree(root->right, root);
+    return checkIfValidBinaryTreeRBTT(root->left, root) && checkIfValidBinaryTreeRBTT(root->right, root);
 
 
 }
@@ -141,7 +141,7 @@ void testRBTreeInsert(CuTest *cuTest) {
 
         rBTreeInsert(tree, generateIntPointerRBTT(valuesArr[i]));
 
-        CuAssertIntEquals(cuTest, 1, checkIfValidBinaryTree(tree->root, NULL));
+        CuAssertIntEquals(cuTest, 1, checkIfValidBinaryTreeRBTT(tree->root, NULL));
         CuAssertIntEquals(cuTest, 1, checkIfValidRBTree(NULL, tree->root, 0) == -1 ? 0 : 1);
 
     }
@@ -163,7 +163,7 @@ void testRBTreeInsert2(CuTest *cuTest) {
 
         rBTreeInsert(tree, generateIntPointerRBTT(valuesArr[i]));
 
-        CuAssertIntEquals(cuTest, 1, checkIfValidBinaryTree(tree->root, NULL));
+        CuAssertIntEquals(cuTest, 1, checkIfValidBinaryTreeRBTT(tree->root, NULL));
         CuAssertIntEquals(cuTest, 1, checkIfValidRBTree(NULL, tree->root, 0) == -1 ? 0 : 1);
 
     }
@@ -173,7 +173,7 @@ void testRBTreeInsert2(CuTest *cuTest) {
 
         rBTreeDelete(tree, valuesArr + i);
 
-        CuAssertIntEquals(cuTest, 1, checkIfValidBinaryTree(tree->root, NULL));
+        CuAssertIntEquals(cuTest, 1, checkIfValidBinaryTreeRBTT(tree->root, NULL));
         CuAssertIntEquals(cuTest, 1, checkIfValidRBTree(NULL, tree->root, 0) == -1 ? 0 : 1);
 
     }
@@ -184,7 +184,7 @@ void testRBTreeInsert2(CuTest *cuTest) {
 
         rBTreeInsert(tree, generateIntPointerRBTT(valuesArr2[i]));
 
-        CuAssertIntEquals(cuTest, 1, checkIfValidBinaryTree(tree->root, NULL));
+        CuAssertIntEquals(cuTest, 1, checkIfValidBinaryTreeRBTT(tree->root, NULL));
         CuAssertIntEquals(cuTest, 1, checkIfValidRBTree(NULL, tree->root, 0) == -1 ? 0 : 1);
 
     }
@@ -215,7 +215,7 @@ void testRBTreeInsertAll(CuTest *cuTest) {
 
     rBInsertAll(tree, (void **) tempArr, 13);
 
-    CuAssertIntEquals(cuTest, 1, checkIfValidBinaryTree(tree->root, NULL));
+    CuAssertIntEquals(cuTest, 1, checkIfValidBinaryTreeRBTT(tree->root, NULL));
     CuAssertIntEquals(cuTest, 1, checkIfValidRBTree(NULL, tree->root, 0) == -1 ? 0 : 1);
 
     for (int i = 0; i < 13; i++)
@@ -276,7 +276,7 @@ void testRBTreeDelete(CuTest *cuTest) {
     for (int i = 0; i < 13; i++) {
         rBTreeDelete(tree, valuesArr + i);
         CuAssertIntEquals(cuTest, 0, rBTreeContains(tree, valuesArr + i));
-        CuAssertIntEquals(cuTest, 1, checkIfValidBinaryTree(tree->root, NULL));
+        CuAssertIntEquals(cuTest, 1, checkIfValidBinaryTreeRBTT(tree->root, NULL));
         CuAssertIntEquals(cuTest, 1, checkIfValidRBTree(NULL, tree->root, 0) == -1 ? 0 : 1);
     }
 
@@ -309,7 +309,7 @@ void testRBTreeDeleteWtoFr(CuTest *cuTest) {
         tempValue = (int *) rBTreeDeleteWtoFr(tree, valuesArr + i);
         CuAssertIntEquals(cuTest, valuesArr[i], *tempValue);
         CuAssertIntEquals(cuTest, 0, rBTreeContains(tree, valuesArr + i));
-        CuAssertIntEquals(cuTest, 1, checkIfValidBinaryTree(tree->root, NULL));
+        CuAssertIntEquals(cuTest, 1, checkIfValidBinaryTreeRBTT(tree->root, NULL));
         CuAssertIntEquals(cuTest, 1, checkIfValidRBTree(NULL, tree->root, 0) == -1 ? 0 : 1);
 
         free(tempValue);

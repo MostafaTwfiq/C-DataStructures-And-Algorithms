@@ -19,6 +19,7 @@
 #include "GraphsTest/UndirectedGraphTest/UndirectedGraphTest.h"
 #include "TreesTest/TrieTest/TrieTest.h"
 #include "TreesTest/RedBlackTreeTest/RedBlackTreeTest.h"
+#include "TreesTest/BinaryTreeTest/BinaryTreeTest.h"
 #include "SortAlgTests/SortAlgTest.h"
 #include "SearchAlgTests/SearchAlgTest.h"
 #include "IntegerAlgTest/IntegerAlgTest.h"
@@ -32,7 +33,7 @@
 
 int main(void) {
 
-
+    /*
     // Data structure tests:
     vectorUnitTest();
     arrayListUnitTest();
@@ -74,6 +75,10 @@ int main(void) {
     // Files Handlers tests:
     txtFileLoaderAlgUnitTest();
     inputScannerUnitTest();
+     */
+
+    binaryTreeUnitTest();
+
 
     return 0;
 

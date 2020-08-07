@@ -1,5 +1,6 @@
 #include "../Headers/BinaryTree.h"
 #include "../../../System/Utils.h"
+#include "../../../Unit Test/CuTest/CuTest.h"
 
 
 
@@ -193,8 +194,6 @@ BinaryTree *binaryTreeInitialization(void (*freeFun)(void *), int (*cmp)(const v
 
 /** This function will insert the passed new item into the tree.
  *
- * Note: if the item is already in the tree the function will free the passed value.
- *
  * @param tree the tree pointer
  * @param item the new item pointer
  */
@@ -248,12 +247,10 @@ BinaryTreeNode *binaryTreeInsertR(BinaryTree *tree, BinaryTreeNode *root, void *
         root = createBinaryTreeNode(item);
     }
 
-    else if ( tree->cmp(item, root->key) > 0 )
+    else if ( tree->cmp(item, root->key) > 0 || tree->cmp(item, root->key) == 0)
         root->right = binaryTreeInsertR(tree, root->right, item);
     else if ( tree->cmp(item, root->key) < 0 )
         root->left = binaryTreeInsertR(tree, root->left, item);
-    else
-        tree->freeFn(item);
 
     return root;
 
@@ -377,6 +374,7 @@ BinaryTreeNode *binaryTreeDeleteR(BinaryTree *tree, BinaryTreeNode *root, void *
             root->key = rightSuccessor->key;
             rightSuccessor->key = tempValue;
             root->right = binaryTreeDeleteR(tree, root->right, rightSuccessor->key);
+            return root;
         } else {
             BinaryTreeNode *newRoot = root->right != NULL ? root->right : root->left;
             destroyBinaryTreeNode(root, tree->freeFn);
@@ -434,7 +432,7 @@ void *binaryTreeDeleteWtoFr(BinaryTree *tree, void *item) {
         #endif
     }
 
-    return tree->root = binaryTreeDeleteWtoFrR(tree, NULL, tree->root, item);
+    return binaryTreeDeleteWtoFrR(tree, NULL, tree->root, item);
 
 }
 
@@ -469,7 +467,6 @@ void *binaryTreeDeleteWtoFrR(BinaryTree *tree, BinaryTreeNode *parent, BinaryTre
         void *itemToReturn = root->key;
 
         if (root->right == NULL && root->left == NULL) {
-            destroyBinaryTreeNodeWtoFr(root);
 
             if (parent == NULL)
                 tree->root = NULL;
@@ -481,6 +478,8 @@ void *binaryTreeDeleteWtoFrR(BinaryTree *tree, BinaryTreeNode *parent, BinaryTre
                     parent->left = NULL;
 
             }
+
+            destroyBinaryTreeNodeWtoFr(root);
 
         } else if (root->right != NULL && root->left != NULL) {
 
@@ -507,6 +506,7 @@ void *binaryTreeDeleteWtoFrR(BinaryTree *tree, BinaryTreeNode *parent, BinaryTre
         }
 
         tree->count--;
+
         return itemToReturn;
 
     }
@@ -1010,6 +1010,8 @@ void clearBinaryTree(BinaryTree *tree) {
     clearBinaryTreeR(tree, tree->root);
 
     tree->root = NULL;
+
+    tree->count = 0;
 
 }
 

@@ -246,8 +246,6 @@ void destroyRBTree(RBTree *tree) {
 
 /** Inserts a node at the a reference node (preferably the root) with the provided key and it's size.
  *
- * Note: if the value is already in the function will free the passed value.
- *
  * @param  tree Reference to the Red Black tree.
  * @param item reference pointer to pre allocated key.
 **/
@@ -302,10 +300,8 @@ RBNode *rBTreeInsertR(RBNode *root, RBNode *parent, void *item, void (*freeFun)(
     }
     else if (cmp(item, root->key) < 0)
         root->left = rBTreeInsertR(root->left, root, item, freeFun, cmp);
-    else if (cmp(item, root->key) > 0)
+    else if (cmp(item, root->key) > 0 || cmp(item, root->key) == 0)
         root->right = rBTreeInsertR(root->right, root, item, freeFun, cmp);
-    else
-        freeFun(item);
 
     //Case 1:
     if (isCaseOne(root)) {
