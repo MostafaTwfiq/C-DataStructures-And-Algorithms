@@ -333,6 +333,14 @@ void binaryTreeDelete(BinaryTree *tree, void *item) {
             fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "binary tree data structure");
             exit(INVALID_ARG);
         #endif
+    } else if (binaryTreeIsEmpty(tree)) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+            return;
+        #else
+            fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "binary tree data structure");
+            exit(EMPTY_DATA_STRUCTURE);
+        #endif
     }
 
     tree->root = binaryTreeDeleteR(tree, tree->root, item);
@@ -429,6 +437,14 @@ void *binaryTreeDeleteWtoFr(BinaryTree *tree, void *item) {
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "binary tree data structure");
             exit(INVALID_ARG);
+        #endif
+    } else if (binaryTreeIsEmpty(tree)) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+            return NULL;
+        #else
+            fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "binary tree data structure");
+            exit(EMPTY_DATA_STRUCTURE);
         #endif
     }
 

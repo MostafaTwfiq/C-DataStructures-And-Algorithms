@@ -225,6 +225,10 @@ void testBinaryTreeDelete(CuTest *cuTest) {
     binaryTreeDelete(tree, NULL);
     CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
 
+    int tempValue = 0;
+    binaryTreeDelete(tree, &tempValue);
+    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
 
     int values[] = {10, 20, 5, 8, 15, 25, 4, 2, 1, 10, 18};
 
@@ -254,6 +258,10 @@ void testBinaryTreeDeleteWtoFr(CuTest *cuTest) {
 
     binaryTreeDeleteWtoFr(tree, NULL);
     CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+
+    int tempValue = 0;
+    binaryTreeDeleteWtoFr(tree, &tempValue);
+    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, DUMMY_TEST_DATASTRUCTURE->errorCode);
 
 
     int values[] = {10, 20, 5, 8, 15, 25, 4, 2, 1, 18};
@@ -584,7 +592,7 @@ void testClearBinaryTree(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, 0, binaryTreeIsEmpty(tree));
 
     clearBinaryTree(tree);
-    
+
     CuAssertIntEquals(cuTest, 1, checkIfValidBinaryTreeBTT(tree->root, NULL));
 
     CuAssertIntEquals(cuTest, 1, binaryTreeIsEmpty(tree));
