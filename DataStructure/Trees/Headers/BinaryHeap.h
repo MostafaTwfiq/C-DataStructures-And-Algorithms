@@ -53,7 +53,4 @@ void clearBinaryHeap(BinaryHeap *heap);
 
 void destroyBinaryHeap(BinaryHeap *heap);
 
-int binaryHeapIsEmpty(BinaryHeap *binaryHeap);
-
-
 #endif //C_DATASTRUCTURES_BINARYHEAP_H

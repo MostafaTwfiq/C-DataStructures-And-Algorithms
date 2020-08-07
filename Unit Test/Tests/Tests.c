@@ -20,6 +20,7 @@
 #include "TreesTest/TrieTest/TrieTest.h"
 #include "TreesTest/RedBlackTreeTest/RedBlackTreeTest.h"
 #include "TreesTest/BinaryTreeTest/BinaryTreeTest.h"
+#include "TreesTest/BinaryHeapTest/BinaryHeapTest.h"
 #include "SortAlgTests/SortAlgTest.h"
 #include "SearchAlgTests/SearchAlgTest.h"
 #include "IntegerAlgTest/IntegerAlgTest.h"
@@ -55,6 +56,8 @@ int main(void) {
     undirectedGraphUnitTest();
     trieUnitTest();
     redBlackTreeUnitTest();
+    binaryTreeUnitTest();
+    binaryHeapUnitTest();
 
 
     // Sorting and searching tests:
@@ -74,8 +77,6 @@ int main(void) {
     // Files Handlers tests:
     txtFileLoaderAlgUnitTest();
     inputScannerUnitTest();
-
-    binaryTreeUnitTest();
 
 
     return 0;
