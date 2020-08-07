@@ -9,6 +9,15 @@ void *binaryHeapGetR(void **arr, int currentIndex, int length, void *item, int (
 
 
 
+
+/** This function will return the parent index of the passed child index.
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param childIndex the child index
+ * @return it will return the parent index of the passed child
+ */
+
 int binaryHeapGetParentIndex(int childIndex) {
 
     return (childIndex - 1) / 2;
@@ -16,16 +25,47 @@ int binaryHeapGetParentIndex(int childIndex) {
 }
 
 
+
+
+/** This function will return the first child index,
+ * of the passed parent index.
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param parentIndex the parent index
+ * @return it will return the first child index of the passed parent index
+ */
+
 int binaryHeapGetFChildIndex(int parentIndex) {
     return parentIndex * 2 + 1;
 }
 
+
+
+
+/** This function will return the second child index,
+ * of the passed parent index.
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param parentIndex the parent index
+ * @return it will return the second child index of the passed parent index
+ */
 
 int binaryHeapGetSChildIndex(int parentIndex) {
     return parentIndex * 2 + 2;
 }
 
 
+
+
+
+/** This function will swap the passed two indices.
+ *
+ * @param arr the array pointer
+ * @param fIndex the first index
+ * @param sIndex the second index
+ */
 
 void binaryHeapSwap(void **arr, int fIndex, int sIndex) {
 
@@ -36,6 +76,14 @@ void binaryHeapSwap(void **arr, int fIndex, int sIndex) {
 }
 
 
+
+
+/** This function will heap up the value in the passed index until it be in the right place.
+ *
+ * @param arr the array pointer
+ * @param currentIndex the current index
+ * @param cmp the comparator function pointer
+ */
 
 void binaryHeapUp(void **arr, int currentIndex, int (*cmp)(const void *, const void *)) {
 
@@ -53,6 +101,14 @@ void binaryHeapUp(void **arr, int currentIndex, int (*cmp)(const void *, const v
 
 
 
+
+/** This function will heap down the value in the passed index until it be in the right place.
+ *
+ * @param arr the array pointer
+ * @param currentIndex the current index
+ * @param length the length of the array
+ * @param cmp the comparator function pointer
+ */
 
 void binaryHeapDown(void **arr, int currentIndex, int length, int (*cmp)(const void *, const void *)) {
 
@@ -88,6 +144,15 @@ void binaryHeapDown(void **arr, int currentIndex, int length, int (*cmp)(const v
 
 
 
+
+
+/** This function will initialize a new heap then it will return it's pointer.
+ *
+ * @param freeFun the free function pointer, that will be called to free the heap items
+ * @param cmp the comparator function pointer, that will be called to compare the heap items
+ * @return it will return the new initialized heap pointer
+ */
+
 BinaryHeap *binaryHeapInitialization(void (*freeFun)(void *), int (*cmp)(const void *, const void *)) {
 
     if (freeFun == NULL) {
@@ -117,6 +182,13 @@ BinaryHeap *binaryHeapInitialization(void (*freeFun)(void *), int (*cmp)(const v
 
 
 
+
+/** This function will insert the passed item in the heap.
+ *
+ * @param heap the heap pointer
+ * @param item the new item pointer
+ */
+
 void binaryHeapInsert(BinaryHeap *heap, void *item) {
 
     if (heap->count == heap->length) {
@@ -138,6 +210,13 @@ void binaryHeapInsert(BinaryHeap *heap, void *item) {
 
 
 
+/** This function will insert all the passed array items in the heap.
+ *
+ * @param heap the heap pointer
+ * @param items the new items array pointer
+ * @param length the length of the items array
+ */
+
 void binaryHeapInsertAll(BinaryHeap *heap, void **items, int length) {
 
 
@@ -148,6 +227,13 @@ void binaryHeapInsertAll(BinaryHeap *heap, void **items, int length) {
 
 
 
+
+
+
+/** This function will delete and free the heap root.
+ *
+ * @param heap the heap pointer
+ */
 
 void binaryHeapDeleteRoot(BinaryHeap *heap) {
 
@@ -165,6 +251,14 @@ void binaryHeapDeleteRoot(BinaryHeap *heap) {
 
 
 
+
+
+
+/** This function will delete the heap root without freeing it.
+ *
+ * @param heap the heap pointer
+ */
+
 void binaryHeapDeleteRootWtoFr(BinaryHeap *heap) {
 
 
@@ -181,6 +275,16 @@ void binaryHeapDeleteRootWtoFr(BinaryHeap *heap) {
 
 
 
+
+/** This function will check if the passed item is in the heap or not,
+ * and if it was the function will return one (1),
+ * other wise it will return zero (0).
+ *
+ * @param heap the heap pointer
+ * @param item the item pointer
+ * @return it will return 1 if the passed item is in the heap, other wise it will return 0
+ */
+
 int binaryHeapContains(BinaryHeap *heap, void *item) {
 
 
@@ -190,6 +294,21 @@ int binaryHeapContains(BinaryHeap *heap, void *item) {
 
 
 
+
+
+
+/** This function will recursively check if the passed item is in the heap or not,
+ * and if it was the function will return one (1), other wise it will return zero (0).
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param arr the heap array pointer
+ * @param currentIndex the current index
+ * @param length the heap size
+ * @param item the item pointer
+ * @param cmp the comparator function pointer
+ * @return it will return 1 if the passed item is in the heap, other wise it will return 0
+ */
 
 int binaryHeapContainsR(void **arr, int currentIndex, int length, void *item, int (*cmp)(const void *, const void *)) {
 
@@ -214,6 +333,15 @@ int binaryHeapContainsR(void **arr, int currentIndex, int length, void *item, in
 
 
 
+/** This function will check if the passed item is in the heap or not,
+ * and if it was the function will return the item pointer,
+ * other wise it will return NULL.
+ *
+ * @param heap the heap pointer
+ * @param item the item pointer
+ * @return it will return the item pointer if found, other wise it will return NULL
+ */
+
 void *binaryHeapGet(BinaryHeap *heap, void *item) {
 
 
@@ -223,6 +351,21 @@ void *binaryHeapGet(BinaryHeap *heap, void *item) {
 
 
 
+
+
+/** This function will recursively check if the passed item is in the heap or not,
+ * and if it was the function will return the item pointer,
+ * other wise it will return NULL.
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param arr the heap array pointer
+ * @param currentIndex the current item index
+ * @param length the size of the heap
+ * @param item the item pointer
+ * @param cmp the comparator function pointer
+ * @return it will return the item pointer if found, other wise it will return NULL
+ */
 
 void *binaryHeapGetR(void **arr, int currentIndex, int length, void *item, int (*cmp)(const void *, const void *)) {
 
@@ -247,12 +390,27 @@ void *binaryHeapGetR(void **arr, int currentIndex, int length, void *item, int (
 
 
 
+/** This function will return the number of items in the heap.
+ *
+ * @param heap the heap pointer
+ * @return it will return the number of items in the heap
+ */
+
 int binaryHeapGetSize(BinaryHeap *heap) {
 
     return heap->count;
 
 }
 
+
+
+/** This function will check if the heap is empty or not,
+ * and if it was the function will return one (1),
+ * other wise it will return zero (0).
+ *
+ * @param heap the heap pointer
+ * @return it will return 1 if the heap is empty, other wise it will return 0
+ */
 
 int binaryHeapIsEmpty(BinaryHeap *heap) {
 
@@ -261,6 +419,17 @@ int binaryHeapIsEmpty(BinaryHeap *heap) {
 }
 
 
+
+
+
+/** This function will return a double void array,
+ * that contains the heap items.
+ *
+ * Note: the array will contain the same items addresses not a copy.
+ *
+ * @param heap the heap pointer
+ * @return it will return an array that contains the heap items
+ */
 
 void **binaryHeapToArray(BinaryHeap *heap) {
 
@@ -276,6 +445,12 @@ void **binaryHeapToArray(BinaryHeap *heap) {
 
 
 
+
+/** This function will clear and free all the heap items, without destroying the heap itself.
+ *
+ * @param heap the heap pointer
+ */
+
 void clearBinaryHeap(BinaryHeap *heap) {
 
     for (int i = 0; i < heap->count; i++)
@@ -288,6 +463,12 @@ void clearBinaryHeap(BinaryHeap *heap) {
 
 
 
+
+
+/** This function will destroy and free the heap with all it's items.
+ *
+ * @param heap the heap pointer
+ */
 
 void destroyBinaryHeap(BinaryHeap *heap) {
 

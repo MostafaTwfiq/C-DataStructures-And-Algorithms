@@ -2,6 +2,24 @@
 #define C_DATASTRUCTURES_BINARYHEAP_H
 
 
+
+
+
+
+/** @struct BinaryHeap
+ *  @brief This structure implements a basic generic binary heap.
+ *  @var BinaryHeap::arr
+ *  Member 'arr' is a pointer to the heap array.
+ *  @var BinaryHeap::length
+ *  Member 'length' is the total allocated space by the memory of the heap.
+ *  @var BinaryHeap::count
+ *  Member 'count' holds the number of nodes currently present in the heap.
+ *  @var BinaryHeap::freeFun
+ *  Member 'freeFun' is a pointer to the free function.
+ *  @var BinaryHeap::cmp
+ *  Member 'cmp' is a pointer to the comparison function that is going to be used throughout the heap.
+ */
+
 typedef struct BinaryHeap {
     void **arr;
     int length;
