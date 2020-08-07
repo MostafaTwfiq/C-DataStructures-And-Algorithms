@@ -26,8 +26,8 @@ typedef struct SplayNode {
  *  @brief This structure implements a basic generic Splay Tree.
  *  @var SplayTree::root
  *  Member 'root' is a pointer to the root Node of the tree.
- *  @var SplayTree::nodeCount
- *  Member 'nodeCount' holds the number of nodes currently present in the tree.
+ *  @var SplayTree::count
+ *  Member 'count' holds the number of nodes currently present in the tree.
  *  @var SplayTree::cmp
  *  Member 'cmp' is a pointer to the comparision function that is going to be used throughout the tree.
  */

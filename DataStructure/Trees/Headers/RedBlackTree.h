@@ -43,8 +43,8 @@ typedef struct RBNode {
 *  @brief This structure implements a basic generic RED BLACK Tree.
 *  @var RBTree::root
 *  Member 'root' is a pointer to the root node.
-*  @var RBTree::nodeCount
-*  Member 'nodeCount' hold the current number of nodes.
+*  @var RBTree::count
+*  Member 'count' hold the current number of nodes.
 *  @var RBTree::freeItem
 *  Member 'freeItem' is a pointer to the free function, that will be called to free the tree values.
 *  @var RBTree::cmp

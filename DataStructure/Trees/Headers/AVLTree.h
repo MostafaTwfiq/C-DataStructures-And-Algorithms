@@ -32,8 +32,8 @@ typedef struct AVLTreeNode {
  *  @brief This structure implements a basic generic AVL Tree.
  *  @var AVLTree::root
  *  Member 'root' is a pointer to the root Node of the tree.
- *  @var AVLTree::nodeCount
- *  Member 'nodeCount' holds the number of nodes currently present in the tree.
+ *  @var AVLTree::count
+ *  Member 'count' holds the number of nodes currently present in the tree.
  *  @var AVLTree::cmp
  *  Member 'cmp' is a pointer to the comparision function that is going to be used throughout the tree.
  */
