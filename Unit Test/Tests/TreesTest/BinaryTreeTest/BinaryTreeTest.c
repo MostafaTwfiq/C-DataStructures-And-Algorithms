@@ -45,13 +45,6 @@ int compareIntPointersBTT(const void *a, const void *b) {
 
 
 
-void printIntFunction(void *item) {
-    printf("%d ", * (int *) item);
-}
-
-
-
-
 
 int checkIfValidBinaryTreeBTT(BinaryTreeNode *root, BinaryTreeNode *parent) {
 
@@ -145,12 +138,6 @@ void testBinaryTreeInsert2(CuTest *cuTest) {
 
     BinaryTree *tree = binaryTreeInitialization(free, compareIntPointersBTT);
 
-    binaryTreeInsert(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
-
-    binaryTreeInsert(tree, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
-
 
     int values[] = {10, 20, 5, 8, 15, 25, 4, 2, 1, 10, 18};
     int values2[] = {13, 16, 3, 6, 9, 7, 28, 21};
@@ -183,6 +170,37 @@ void testBinaryTreeInsert2(CuTest *cuTest) {
 
 
 
+
+
+
+void testBinaryTreeInsert3(CuTest *cuTest) {
+
+    BinaryTree *tree = binaryTreeInitialization(free, compareIntPointersBTT);
+
+
+    int values[] = {10, 20, 5, 8, 15, 25, 4, 2, 1, 10, 18};
+
+    for (int i = 0; i < 11; i++)
+        binaryTreeInsert(tree, generateIntPointerBTT(values[i]));
+
+
+    for (int i = 0; i < 11; i++) {
+        binaryTreeDelete(tree, values + i);
+        CuAssertIntEquals(cuTest, 1, checkIfValidBinaryTreeBTT(tree->root, NULL));
+
+        binaryTreeInsert(tree, generateIntPointerBTT(values[i]));
+        CuAssertIntEquals(cuTest, 1, checkIfValidBinaryTreeBTT(tree->root, NULL));
+
+    }
+
+    destroyBinaryTree(tree);
+
+}
+
+
+
+
+
 void testBinaryTreeInsertAll(CuTest *cuTest) {
 
     BinaryTree *tree = binaryTreeInitialization(free, compareIntPointersBTT);
@@ -210,34 +228,6 @@ void testBinaryTreeInsertAll(CuTest *cuTest) {
 
 }
 
-
-
-
-
-
-void testBinaryTreeInsert3(CuTest *cuTest) {
-
-    BinaryTree *tree = binaryTreeInitialization(free, compareIntPointersBTT);
-
-
-    int values[] = {10, 20, 5, 8, 15, 25, 4, 2, 1, 10, 18};
-
-    for (int i = 0; i < 11; i++)
-        binaryTreeInsert(tree, generateIntPointerBTT(values[i]));
-
-
-    for (int i = 0; i < 11; i++) {
-        binaryTreeDelete(tree, values + i);
-        CuAssertIntEquals(cuTest, 1, checkIfValidBinaryTreeBTT(tree->root, NULL));
-
-        binaryTreeInsert(tree, generateIntPointerBTT(values[i]));
-        CuAssertIntEquals(cuTest, 1, checkIfValidBinaryTreeBTT(tree->root, NULL));
-
-    }
-
-    destroyBinaryTree(tree);
-
-}
 
 
 
@@ -387,11 +377,11 @@ void testBinaryTreeGet(CuTest *cuTest) {
 
 
 
-int **printingArrBTT;
+int **printingArrAVLTT;
 
-void printFunBTT(void *item) {
+void printFunAVLTT(void *item) {
 
-    *printingArrBTT++ = item;
+    *printingArrAVLTT++ = item;
 
 }
 
@@ -415,10 +405,10 @@ void testBinaryTreePreOrderTraversal(CuTest *cuTest) {
         binaryTreeInsert(tree, generateIntPointerBTT(values[i]));
 
 
-    printingArrBTT = (int **) malloc(sizeof(int *) * tree->count);
-    int **tempPointer = printingArrBTT;
+    printingArrAVLTT = (int **) malloc(sizeof(int *) * tree->count);
+    int **tempPointer = printingArrAVLTT;
 
-    binaryTreePreOrderTraversal(tree, printFunBTT);
+    binaryTreePreOrderTraversal(tree, printFunAVLTT);
 
     for (int i = 0; i < 10; i++)
         CuAssertIntEquals(cuTest, preOrderArr[i],  *tempPointer[i]);
@@ -450,10 +440,10 @@ void testBinaryTreeInOrderTraversal(CuTest *cuTest) {
         binaryTreeInsert(tree, generateIntPointerBTT(values[i]));
 
 
-    printingArrBTT = (int **) malloc(sizeof(int *) * tree->count);
-    int **tempPointer = printingArrBTT;
+    printingArrAVLTT = (int **) malloc(sizeof(int *) * tree->count);
+    int **tempPointer = printingArrAVLTT;
 
-    binaryTreeInOrderTraversal(tree, printFunBTT);
+    binaryTreeInOrderTraversal(tree, printFunAVLTT);
 
     for (int i = 0; i < 10; i++)
         CuAssertIntEquals(cuTest, inOrderArr[i], *tempPointer[i]);
@@ -486,10 +476,10 @@ void testBinaryTreePostOrderTraversal(CuTest *cuTest) {
         binaryTreeInsert(tree, generateIntPointerBTT(values[i]));
 
 
-    printingArrBTT = (int **) malloc(sizeof(int *) * tree->count);
-    int **tempPointer = printingArrBTT;
+    printingArrAVLTT = (int **) malloc(sizeof(int *) * tree->count);
+    int **tempPointer = printingArrAVLTT;
 
-    binaryTreePostOrderTraversal(tree, printFunBTT);
+    binaryTreePostOrderTraversal(tree, printFunAVLTT);
 
     for (int i = 0; i < 10; i++)
         CuAssertIntEquals(cuTest, postOrderArr[i], *tempPointer[i]);

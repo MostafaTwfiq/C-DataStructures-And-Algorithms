@@ -1,5 +1,6 @@
 #include "../Headers/AVLTree.h"
 #include "../../../System/Utils.h"
+#include "../../../Unit Test/CuTest/CuTest.h"
 
 
 typedef enum AVLTreeRotationType {
@@ -13,7 +14,7 @@ AVLTreeNode *avlTreeInsertR(AVLTree *tree, AVLTreeNode *root, void *item);
 
 AVLTreeNode *avlTreeDeleteR(AVLTree *tree, AVLTreeNode *root, void *item);
 
-void *avlTreeDeleteWtoFrR(AVLTree *tree, AVLTreeNode *parent, AVLTreeNode *root, void *item);
+AVLTreeNode *avlTreeDeleteWtoFrR(AVLTree *tree, AVLTreeNode *root, void *item, void **deletedItemHolder);
 
 void avlTreeToArrayR(void **arr, AVLTreeNode *root, int *index);
 
@@ -25,6 +26,7 @@ void avlTreePostOrderTraversalR(AVLTreeNode *root, void (*printFun)(void *));
 
 void clearAVLTreeR(AVLTreeNode *root, void (*freeFun)(void *));
 
+void avlTreeBreadthFirstTraversalR(AVLTreeNode *root, int currentLevel, int targetLevel, void (*printFun)(void *));
 
 
 
@@ -172,7 +174,9 @@ void avlTreeCalculateNodeHeight(AVLTreeNode *node) {
  */
 
 int avlTreeIsRequiredRotation(AVLTreeNode *node) {
-    return abs(avlTreeGetNodeHeight(node->left) - avlTreeGetNodeHeight(node->right)) >= 2;
+    int value = avlTreeGetNodeHeight(node->left) - avlTreeGetNodeHeight(node->right);
+    value = value < 0 ? value * -1 : value;
+    return value >= 2;
 }
 
 
@@ -195,10 +199,12 @@ AVLTreeRotationType avlTreeGetRotationType(AVLTreeNode *node) {
 
     if (heightDifferance < 0) {
         AVLTreeNode *rightNode = node->right;
-        return rightNode->right != NULL ? LEFT : RIGHT_LEFT;
+        int heightComp = avlTreeGetNodeHeight(rightNode->left) - avlTreeGetNodeHeight(rightNode->right);
+        return heightComp <= 0 ? LEFT : RIGHT_LEFT;
     } else {
         AVLTreeNode *leftNode = node->left;
-        return leftNode->left != NULL ? RIGHT : LEFT_RIGHT;
+        int heightComp = avlTreeGetNodeHeight(leftNode->left) - avlTreeGetNodeHeight(leftNode->right);
+        return heightComp >= 0 ? RIGHT : LEFT_RIGHT;
     }
 
 }
@@ -572,9 +578,8 @@ AVLTreeNode *avlTreeDeleteR(AVLTree *tree, AVLTreeNode *root, void *item) {
             AVLTreeNode *newRoot = root->right != NULL ? root->right : root->left;
             destroyAVLTreeNode(root, tree->freeFn);
             root = newRoot;
+            tree->count--;
         }
-
-        tree->count--;
 
     }
 
@@ -635,7 +640,15 @@ void *avlTreeDeleteWtoFr(AVLTree *tree, void *item) {
         #endif
     }
 
-    return avlTreeDeleteWtoFrR(tree, NULL, tree->root, item);
+    void **deletedItemHolder = (void **) malloc(sizeof(void *));
+    *deletedItemHolder = NULL;
+
+    tree->root = avlTreeDeleteWtoFrR(tree, tree->root, item, deletedItemHolder);
+
+    void *deletedItem = *deletedItemHolder;
+    free(deletedItemHolder);
+
+    return deletedItem;
 
 }
 
@@ -652,84 +665,52 @@ void *avlTreeDeleteWtoFr(AVLTree *tree, void *item) {
  * Note: this function should only be called from the inside.
  *
  * @param tree the tree pointer
- * @param parent the parent node pointer
  * @param root the current node pointer
  * @param item the item pointer
+ * @param deletedItemHolder a pointer to a holder that will hold the address of the deleted item
  * @return it will return the deleted item pointer if found, other wise it will return NULL
  */
 
-void *avlTreeDeleteWtoFrR(AVLTree *tree, AVLTreeNode *parent, AVLTreeNode *root, void *item) {
+AVLTreeNode *avlTreeDeleteWtoFrR(AVLTree *tree, AVLTreeNode *root, void *item, void **deletedItemHolder) {
 
     if (root == NULL)
         return NULL;
 
-    void *itemToReturn;
-
     if ( tree->cmp(item, root->key) == 0 ) {
 
-        itemToReturn = root->key;
+        *deletedItemHolder = root->key;
 
         if (root->right == NULL && root->left == NULL) {
-
-            if (parent == NULL)
-                tree->root = NULL;
-            else {
-
-                if (parent->right == root)
-                    parent->right = NULL;
-                else
-                    parent->left = NULL;
-
-            }
-
             destroyAVLTreeNodeWtoFr(root);
-
+            tree->count--;
+            return NULL;
         } else if (root->right != NULL && root->left != NULL) {
-
             AVLTreeNode *rightSuccessorNode = avlTreeGetRightSuccessor(root);
             void *tempValue = root->key;
             root->key = rightSuccessorNode->key;
             rightSuccessorNode->key = tempValue;
-            avlTreeDeleteWtoFrR(tree, root, root->right, rightSuccessorNode->key);
-
+            root->right = avlTreeDeleteWtoFrR(tree, root->right, rightSuccessorNode->key, deletedItemHolder);
         } else {
-
             AVLTreeNode *newRoot = root->right != NULL ? root->right : root->left;
-
-            if (parent == NULL)
-                tree->root = newRoot;
-            else {
-
-                if (parent->right == root)
-                    parent->right = newRoot;
-                else
-                    parent->left = newRoot;
-
-            }
-
             destroyAVLTreeNodeWtoFr(root);
-
+            root = newRoot;
+            tree->count--;
         }
-
-        tree->count--;
 
     }
 
     else if ( tree->cmp(item, root->key) > 0 )
-        itemToReturn = root->right = avlTreeDeleteR(tree, root->right, item);
+        root->right = avlTreeDeleteWtoFrR(tree, root->right, item, deletedItemHolder);
     else
-        itemToReturn = root->left = avlTreeDeleteR(tree, root->left, item);
+        root->left = avlTreeDeleteWtoFrR(tree, root->left, item, deletedItemHolder);
 
 
-    if (parent != NULL) {
-        avlTreeCalculateNodeHeight(parent);
+    avlTreeCalculateNodeHeight(root);
 
-        if (avlTreeIsRequiredRotation(parent))
-            return avlTreePerformRotation(parent, avlTreeGetRotationType(parent));
+    if (avlTreeIsRequiredRotation(root))
+        return avlTreePerformRotation(root, avlTreeGetRotationType(root));
 
-    }
-
-    return itemToReturn;
+    return root;
 
 }
 
@@ -852,7 +833,7 @@ int avlTreeGetSize(AVLTree *tree) {
     if (tree == NULL) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     		return;
+     		return -1;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
             exit(NULL_POINTER);
@@ -880,7 +861,7 @@ int avlTreeIsEmpty(AVLTree *tree) {
     if (tree == NULL) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     		return;
+     		return -1;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
             exit(NULL_POINTER);
@@ -909,7 +890,7 @@ void **avlTreeToArray(AVLTree *tree) {
     if (tree == NULL) {
         #ifdef CU_TEST_H
             DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
-     		return;
+     		return NULL;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
             exit(NULL_POINTER);
@@ -917,6 +898,9 @@ void **avlTreeToArray(AVLTree *tree) {
     }
 
     void **arr = (void **) malloc(sizeof(void *) * tree->count);
+    if (arr == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "avl tree data structure");
+    }
     int *index = (int *) malloc(sizeof(int));
     *index = 0;
 
@@ -1168,6 +1152,74 @@ void avlTreePostOrderTraversalR(AVLTreeNode *root, void (*printFun)(void *)) {
 
 
 
+
+
+
+/** This function will breadth first traverse the tree.
+ *
+ * Note: you can do any thing else the printing.
+ *
+ * @param tree the tree pointer
+ * @param printFun the printing function pointer
+ */
+
+void avlTreeBreadthFirstTraversal(AVLTree *tree, void (*printFun)(void *)) {
+
+    if (tree == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+            return;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
+            exit(NULL_POINTER);
+        #endif
+    } else if (printFun == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+            return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "printing function pointer", "avl tree data structure");
+            exit(INVALID_ARG);
+        #endif
+    }
+
+    if (tree->root == NULL)
+        return;
+
+    for (int i = 0; i < tree->root->height + 1; i++)
+        avlTreeBreadthFirstTraversalR(tree->root, 0,i, printFun);
+
+}
+
+
+
+
+
+
+/** This function will breadth first traverse the tree recursively.
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param root the current node pointer
+ * @param currentLevel the current level
+ * @param targetLevel the target level that the function will stop when reached it
+ * @param printFun the printing function pointer
+ */
+
+void avlTreeBreadthFirstTraversalR(AVLTreeNode *root, int currentLevel, int targetLevel, void (*printFun)(void *)) {
+
+    if (root == NULL || currentLevel > targetLevel)
+        return;
+
+    else if (currentLevel == targetLevel) {
+        printFun(root->key);
+        return;
+    }
+
+    avlTreeBreadthFirstTraversalR(root->left, currentLevel + 1, targetLevel, printFun);
+    avlTreeBreadthFirstTraversalR(root->right, currentLevel + 1, targetLevel, printFun);
+
+}
 
 
 

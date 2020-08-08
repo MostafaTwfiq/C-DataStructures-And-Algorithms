@@ -21,6 +21,7 @@
 #include "TreesTest/RedBlackTreeTest/RedBlackTreeTest.h"
 #include "TreesTest/BinaryTreeTest/BinaryTreeTest.h"
 #include "TreesTest/BinaryHeapTest/BinaryHeapTest.h"
+#include "TreesTest/AVLTreeTest/AVLTreeTest.h"
 #include "SortAlgTests/SortAlgTest.h"
 #include "SearchAlgTests/SearchAlgTest.h"
 #include "IntegerAlgTest/IntegerAlgTest.h"
@@ -34,6 +35,7 @@
 
 int main(void) {
 
+    /*
     // Data structure tests:
     vectorUnitTest();
     arrayListUnitTest();
@@ -77,6 +79,10 @@ int main(void) {
     // Files Handlers tests:
     txtFileLoaderAlgUnitTest();
     inputScannerUnitTest();
+     */
+
+    avlTreeUnitTest();
+
 
     return 0;
 

@@ -78,6 +78,8 @@ void avlTreeInOrderTraversal(AVLTree *tree, void (*printFun)(void *));
 
 void avlTreePostOrderTraversal(AVLTree *tree, void (*printFun)(void *));
 
+void avlTreeBreadthFirstTraversal(AVLTree *tree, void (*printFun)(void *));
+
 void clearAVLTree(AVLTree *tree);
 
 void destroyAVLTree(AVLTree *tree);
