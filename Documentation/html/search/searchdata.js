@@ -30,7 +30,7 @@ var indexSectionLabels =
 {
   0: "All",
   1: "Data Structures",
-  2: "Files",
+  2: "FilesHandler",
   3: "Functions",
   4: "Variables",
   5: "Typedefs",
