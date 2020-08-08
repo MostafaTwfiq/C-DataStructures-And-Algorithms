@@ -41,12 +41,6 @@ add_executable(C_DataStructures #main.c
         DataStructure/Trees/Sources/SplayTree.c
         DataStructure/Trees/Headers/SplayTree.h
 
-        DataStructure/Trees/Sources/BinaryMinHeap.c
-        DataStructure/Trees/Headers/BinaryMinHeap.h
-
-        DataStructure/Trees/Sources/BinaryMaxHeap.c
-        DataStructure/Trees/Headers/BinaryMaxHeap.h
-
         System/Utils.h
 
         DataStructure/Trees/Sources/Trie.c
