@@ -981,6 +981,8 @@ void **binaryTreeToArray(BinaryTree *tree) {
 /** This function will recursively fill the passed array,
  * with the tree items sorted in ascending order.
  *
+ * Note: this function should only be called from the inside.
+ *
  * @param root the current node pointer
  * @param arr the array pointer
  * @param index the current index pointer

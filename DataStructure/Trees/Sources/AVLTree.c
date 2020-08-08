@@ -27,6 +27,17 @@ void clearAVLTreeR(AVLTreeNode *root, void (*freeFun)(void *));
 
 
 
+
+
+/** This function will create a new avl tree node,
+ * then it will return the new node pointer.
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param item the new node item pointer
+ * @return it will return the new initialized node
+ */
+
 AVLTreeNode *createAVLTreeNode(void *item) {
 
     AVLTreeNode *newNode = (AVLTreeNode *) malloc(sizeof(AVLTreeNode));
@@ -45,6 +56,18 @@ AVLTreeNode *createAVLTreeNode(void *item) {
 
 
 
+
+
+
+
+/** This function will destroy and free the node with it's item.
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param node the node pointer
+ * @param freeFun the item free function pointer
+ */
+
 void destroyAVLTreeNode(AVLTreeNode *node, void (*freeFun)(void *)) {
 
     freeFun(node->key);
@@ -56,6 +79,17 @@ void destroyAVLTreeNode(AVLTreeNode *node, void (*freeFun)(void *)) {
 
 
 
+
+
+
+
+/** This function will destroy and free the node without freeing it's item.
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param node the node pointer
+ */
+
 void destroyAVLTreeNodeWtoFr(AVLTreeNode *node) {
 
     node->left = node->right = NULL;
@@ -65,15 +99,54 @@ void destroyAVLTreeNodeWtoFr(AVLTreeNode *node) {
 
 
 
+
+
+
+/** This function returns the passed node height,
+ * and if the node was NULL, the function will return minus one (-1).
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param node the node pointer
+ * @return it will return the node height, and if the node was NULL the function will return -1
+ */
+
 int avlTreeGetNodeHeight(AVLTreeNode *node) {
     return node == NULL ? -1 : node->height;
 }
 
 
+
+
+/** This function takes two integers,
+ * then it returns  the largest integer.
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param a the first integer value
+ * @param b the second integer value
+ * @return it will return the largest integer
+ */
+
 int avlTreeGetMaxInt(int a, int b) {
     return a > b ? a : b;
 }
 
+
+
+
+
+
+
+
+
+/** This function calculate the passed node height,
+ * and then store it in the node height variable.
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param node the node pointer
+ */
 
 void avlTreeCalculateNodeHeight(AVLTreeNode *node) {
     node->height = avlTreeGetMaxInt(avlTreeGetNodeHeight(node->left), avlTreeGetNodeHeight(node->right)) + 1;
@@ -81,10 +154,40 @@ void avlTreeCalculateNodeHeight(AVLTreeNode *node) {
 
 
 
+
+
+
+
+
+
+
+
+/** This function checks if the passed node require rotation or not,
+ * and if it was the function will return one (1), other wise it will return zero (0).
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param node the node pointer
+ * @return it will return 1 if the node require rotation, other wise it will return 0
+ */
+
 int avlTreeIsRequiredRotation(AVLTreeNode *node) {
     return abs(avlTreeGetNodeHeight(node->left) - avlTreeGetNodeHeight(node->right)) >= 2;
 }
 
+
+
+
+
+
+
+/** This function return the rotate type that the node needs to balance the tree.
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param node the node pointer
+ * @return it will return the rotation type that the node needs
+ */
 
 AVLTreeRotationType avlTreeGetRotationType(AVLTreeNode *node) {
 
@@ -103,6 +206,17 @@ AVLTreeRotationType avlTreeGetRotationType(AVLTreeNode *node) {
 
 
 
+
+
+/** This function will apply a left rotation on the passed node,
+ * then it will return the new root (parent) node.
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param node the node pointer
+ * @return it will return the new root (parent) node
+ */
+
 AVLTreeNode *avlTreeLeftRotation(AVLTreeNode *node) {
 
     AVLTreeNode *newParent = node->right;
@@ -119,6 +233,18 @@ AVLTreeNode *avlTreeLeftRotation(AVLTreeNode *node) {
 
 
 
+
+
+
+/** This function will apply a right rotation on the passed node,
+ * then it will return the new root (parent) node.
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param node the node pointer
+ * @return it will return the new root (parent) node
+ */
+
 AVLTreeNode *avlTreeRightRotation(AVLTreeNode *node) {
 
     AVLTreeNode *newParent = node->left;
@@ -133,6 +259,22 @@ AVLTreeNode *avlTreeRightRotation(AVLTreeNode *node) {
 }
 
 
+
+
+
+
+
+
+
+/** This function will check for the passed rotation type,
+ * then it will perform it.
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param node the node pointer
+ * @param rotationType the rotation type
+ * @return it will return the new root (parent) node after the rotation
+ */
 
 AVLTreeNode *avlTreePerformRotation(AVLTreeNode *node, AVLTreeRotationType rotationType) {
 
@@ -167,9 +309,19 @@ AVLTreeNode *avlTreePerformRotation(AVLTreeNode *node, AVLTreeRotationType rotat
 
 
 
-AVLTreeNode *avlTreeGetRightSuccessor(AVLTreeNode *root) {
 
-    AVLTreeNode *currentNode = root->right;
+
+/** This function will return the right successor of the passed node.
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param node the node pointer
+ * @return it will return the right successor of the passed node
+ */
+
+AVLTreeNode *avlTreeGetRightSuccessor(AVLTreeNode *node) {
+
+    AVLTreeNode *currentNode = node->right;
 
     while (currentNode->left != NULL)
         currentNode = currentNode->left;
@@ -179,6 +331,18 @@ AVLTreeNode *avlTreeGetRightSuccessor(AVLTreeNode *root) {
 }
 
 
+
+
+
+
+
+/** This function will initialize a new avl tree and setup  it's fields,
+ * then return it's pointer.
+ *
+ * @param freeFun the free function pointer, that will be called to free the avl tree items
+ * @param cmp it comparator function pointer, that will be called to compare the avl tree items
+ * @return it will return the new initialized avl tree pointer
+ */
 
 AVLTree *avlTreeInitialization(void (*freeFun)(void *), int (*cmp)(const void *, const void *)) {
 
@@ -207,11 +371,33 @@ AVLTree *avlTreeInitialization(void (*freeFun)(void *), int (*cmp)(const void *,
 
 
 
+
+/** This function will insert the passed item in the tree.
+ *
+ * @param tree the tree pointer
+ * @param item the new item pointer
+ */
+
 void avlTreeInsert(AVLTree *tree, void *item) {
 
     tree->root = avlTreeInsertR(tree, tree->root, item);
 }
 
+
+
+
+
+
+
+/** This function will recursively insert the passed item in the tree.
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param tree the tree pointer
+ * @param root the current node pointer
+ * @param item the new item pointer
+ * @return it will return the current node pointer
+ */
 
 AVLTreeNode *avlTreeInsertR(AVLTree *tree, AVLTreeNode *root, void *item) {
 
@@ -239,11 +425,35 @@ AVLTreeNode *avlTreeInsertR(AVLTree *tree, AVLTreeNode *root, void *item) {
 
 
 
+
+
+/** This function will search for the passed item then it will destroy and remove the item node from the tree
+ * if found, other wise it will do nothing.
+ *
+ * @param tree the tree pointer
+ * @param item the item pointer
+ */
+
 void avlTreeDelete(AVLTree *tree, void *item) {
 
     tree->root = avlTreeDeleteR(tree, tree->root, item);
 }
 
+
+
+
+
+
+/** This function will recursively search for the passed node item, then it will remove the node from the tree
+ * if found, other wise the function will do nothing.
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param tree the tree pointer
+ * @param root the current node pointer
+ * @param item the item pointer
+ * @return it will return the current node pointer
+ */
 
 AVLTreeNode *avlTreeDeleteR(AVLTree *tree, AVLTreeNode *root, void *item) {
 
@@ -291,12 +501,40 @@ AVLTreeNode *avlTreeDeleteR(AVLTree *tree, AVLTreeNode *root, void *item) {
 
 
 
+
+/** This function will search for the passed item in the tree,
+ * and if it found it the function will remove the node and free it without freeing the node item and then return the item pointer,
+ * other wise it will return NULL.
+ *
+ * @param tree the tree pointer
+ * @param item the item pointer
+ * @return it will return the deleted item pointer
+ */
+
 void *avlTreeDeleteWtoFr(AVLTree *tree, void *item) {
 
     return avlTreeDeleteWtoFrR(tree, NULL, tree->root, item);
 
 }
 
+
+
+
+
+
+
+/** This function will recursively search for the passed item,
+ * then it will delete the item from the tree without freeing it's item if found and then return the item pointer,
+ * other wise it will return NULL.
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param tree the tree pointer
+ * @param parent the parent node pointer
+ * @param root the current node pointer
+ * @param item the item pointer
+ * @return it will return the deleted item pointer if found, other wise it will return NULL
+ */
 
 void *avlTreeDeleteWtoFrR(AVLTree *tree, AVLTreeNode *parent, AVLTreeNode *root, void *item) {
 
@@ -377,6 +615,16 @@ void *avlTreeDeleteWtoFrR(AVLTree *tree, AVLTreeNode *parent, AVLTreeNode *root,
 
 
 
+
+
+/** This function will check if the passed item exists in the tree or not,
+ * and if it was the function will return one (1), other wise it will return zero (0).
+ *
+ * @param tree the tree pointer
+ * @param item the item pointer
+ * @return it will return 1 if the item exist in the tree, other wise it will return 0
+ */
+
 int avlTreeContains(AVLTree *tree, void *item) {
 
 
@@ -399,6 +647,18 @@ int avlTreeContains(AVLTree *tree, void *item) {
 
 
 
+
+
+
+
+/** This function will check if the passed item is in the tree or not,
+ * and if it was the function will return the item pointer,
+ * other wise it will return NULL.
+ *
+ * @param tree the tree pointer
+ * @param item the item pointer
+ * @return it will return the item pointer if found, other wise it will return NULL
+ */
 
 void *avlTreeGet(AVLTree *tree, void *item) {
 
@@ -423,12 +683,31 @@ void *avlTreeGet(AVLTree *tree, void *item) {
 
 
 
+
+
+/** This function will return the current number of nodes in the tree.
+ *
+ * @param tree the tree pointer
+ * @return it will return the number of the nodes existing in the tree
+ */
+
 int avlTreeGetSize(AVLTree *tree) {
 
     return tree->count;
 
 }
 
+
+
+
+
+
+/** This function will check if the tree is empty or not,
+ * and if it was the function will return one (1), other wise it will return zero (0).
+ *
+ * @param tree the tree pointer
+ * @return it will return 1 if the tree was empty, other wise it will return 0
+ */
 
 int avlTreeIsEmpty(AVLTree *tree) {
 
@@ -440,6 +719,14 @@ int avlTreeIsEmpty(AVLTree *tree) {
 
 
 
+
+
+/** This function will return a double void pointer array,
+ * that contains the tree items sorted in ascending order.
+ *
+ * @param tree the tree pointer
+ * @return it will return an array that contains the tree items sorted in ascending order
+ */
 
 void **avlTreeToArray(AVLTree *tree) {
 
@@ -458,6 +745,19 @@ void **avlTreeToArray(AVLTree *tree) {
 
 
 
+
+
+
+/** This function will recursively fill the passed array,
+ * with the tree items sorted in ascending order.
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param arr the array pointer
+ * @param root the current node pointer
+ * @param index the current index pointer
+ */
+
 void avlTreeToArrayR(void **arr, AVLTreeNode *root, int *index) {
 
     if (root == NULL)
@@ -468,6 +768,9 @@ void avlTreeToArrayR(void **arr, AVLTreeNode *root, int *index) {
     avlTreeToArrayR(arr, root->right, index);
 
 }
+
+
+
 
 
 
@@ -684,6 +987,12 @@ void avlTreePostOrderTraversalR(AVLTreeNode *root, void (*printFun)(void *)) {
 
 
 
+
+/** This function will destroy and clear the tree nodes, without destroying the tree itself.
+ *
+ * @param tree the tree pointer
+ */
+
 void clearAVLTree(AVLTree *tree) {
 
     clearAVLTreeR(tree->root, tree->freeFn);
@@ -696,6 +1005,16 @@ void clearAVLTree(AVLTree *tree) {
 
 
 
+
+
+
+
+
+/** This function will recursively destroy and free the tree nodes.
+ *
+ * @param root the current node pointer
+ * @param freeFun the item free function pointer
+ */
 
 void clearAVLTreeR(AVLTreeNode *root, void (*freeFun)(void *)) {
 
@@ -712,6 +1031,12 @@ void clearAVLTreeR(AVLTreeNode *root, void (*freeFun)(void *)) {
 
 
 
+
+
+/** This function will destroy and free the tree with all it's nodes.
+ *
+ * @param tree the tree pointer
+ */
 
 void destroyAVLTree(AVLTree *tree) {
 
