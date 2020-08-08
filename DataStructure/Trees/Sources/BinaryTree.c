@@ -167,13 +167,8 @@ BinaryTree *binaryTreeInitialization(void (*freeFun)(void *), int (*cmp)(const v
 
     BinaryTree *tree = (BinaryTree *) malloc(sizeof(BinaryTree));
     if (tree == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
-            return NULL;
-        #else
-            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "tree", "binary tree data structure");
-            exit(FAILED_ALLOCATION);
-        #endif
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "tree", "binary tree data structure");
+        exit(FAILED_ALLOCATION);
     }
 
     tree->root = NULL;

@@ -56,6 +56,8 @@ AVLTree *avlTreeInitialization(void (*freeFun)(void *), int (*cmp)(const void *,
 
 void avlTreeInsert(AVLTree *tree, void *item);
 
+void avlInsertAll(AVLTree *tree, void **items, int length);
+
 void avlTreeDelete(AVLTree *tree, void *item);
 
 void *avlTreeDeleteWtoFr(AVLTree *tree, void *item);
