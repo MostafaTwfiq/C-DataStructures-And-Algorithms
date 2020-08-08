@@ -952,6 +952,10 @@ void **binaryTreeToArray(BinaryTree *tree) {
     }
 
     void *arr = (void **) malloc(sizeof(void *) * tree->count);
+    if (arr == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "binary tree data structure");
+        exit(FAILED_ALLOCATION);
+    }
 
     int *index = (int *) malloc(sizeof(int));
     *index = 0;

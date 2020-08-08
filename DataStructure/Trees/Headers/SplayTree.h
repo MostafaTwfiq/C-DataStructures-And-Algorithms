@@ -66,6 +66,8 @@ int splayTreeGetSize(SplayTree *tree);
 
 int splayTreeIsEmpty(SplayTree *tree);
 
+void **splayTreeToArray(SplayTree *tree);
+
 void clearSplayTree(SplayTree *tree);
 
 void destroyBinaryTree(SplayTree *tree);

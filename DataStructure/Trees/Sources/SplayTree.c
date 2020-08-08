@@ -21,12 +21,23 @@ SplayNode *splayTreeInsertR(SplayTree *tree, SplayNode *parent, SplayNode *root,
 
 SplayNode *splayTreeDeleteR(SplayTree *tree, SplayNode *root, void *item);
 
-SplayNode *splayTreeDeleteWtoFreR(SplayTree *tree, SplayNode *root, void *item);
+SplayNode *splayTreeDeleteWtoFrR(SplayTree *tree, SplayNode *root, void *item);
 
 void clearSplayTreeR(SplayTree *tree, SplayNode *root);
 
+void splayTreeToArrayR(SplayNode *root, void **arr, int *index);
 
 
+
+
+
+/** This function will return the right successor of the passed node.
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param node the node pointer
+ * @return it will return the right successor of the passed node
+ */
 
 SplayNode *splayTreeGetRightSuccessor(SplayNode *node) {
 
@@ -45,6 +56,16 @@ SplayNode *splayTreeGetRightSuccessor(SplayNode *node) {
 
 
 
+
+
+/** This function will compare the passed node value with the passed item.
+ *
+ * @param node the node pointer
+ * @param value the value pointer
+ * @param cmp the comparator function pointer
+ * @return it will return the result of the comparison
+ */
+
 int compareSplayTreeNodeWithValue(SplayNode *node, void *value, int (*cmp)(const void *, const void *)) {
 
     if (node == NULL)
@@ -54,6 +75,21 @@ int compareSplayTreeNodeWithValue(SplayNode *node, void *value, int (*cmp)(const
 
 }
 
+
+
+
+
+
+
+/** This function will return the current needed rotation do splay up the current node.
+ *
+ * @param parent the parent node pointer
+ * @param root the current node pointer
+ * @param child the child node pointer
+ * @param item the item pointer
+ * @param cmp the comparator function pointer
+ * @return it will return the appropriate rotation type
+ */
 
 SplayTreeRotationType splayTreeGetRotationType(SplayNode *parent, SplayNode *root, SplayNode *child, void *item, int (*cmp) (const void *, const void *)) {
 
@@ -75,6 +111,10 @@ SplayTreeRotationType splayTreeGetRotationType(SplayNode *parent, SplayNode *roo
         return NONE;
 
 }
+
+
+
+
 
 
 
@@ -105,6 +145,8 @@ SplayNode *splayTreeLeftRotation(SplayNode *node) {
 
 
 
+
+
 /** This function will apply a right rotation on the passed node,
  * then it will return the new root (parent) node.
  *
@@ -127,6 +169,18 @@ SplayNode *splayTreeRightRotation(SplayNode *node) {
 
 
 
+
+
+
+/** This function will apply the passed rotation type on the passed node,
+ * then it will return the new root node.
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param root the node pointer
+ * @param rotationType the rotation type
+ * @return it will return the new root node
+ */
 
 SplayNode *splayTreePerformRotation(SplayNode *root, SplayTreeRotationType rotationType) {
 
@@ -165,6 +219,12 @@ SplayNode *splayTreePerformRotation(SplayNode *root, SplayTreeRotationType rotat
 
     }
 }
+
+
+
+
+
+
 
 
 
@@ -246,15 +306,28 @@ void destroySplayTreeNodeWtoFr(SplayNode *node) {
 SplayTree *splayTreeInitialization(void (*freeFn)(void *), int (*cmp)(const void *, const void *)) {
 
     if (freeFn == NULL) {
-
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     		return NULL;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "splay tree data structure");
+            exit(INVALID_ARG);
+        #endif
     } else if (cmp == NULL) {
-
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     		return NULL;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "compare function pointer", "splay tree data structure");
+            exit(INVALID_ARG);
+        #endif
     }
 
 
     SplayTree *tree = (SplayTree *) malloc(sizeof(SplayTree));
     if (tree == NULL) {
-
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "tree", "splay tree data structure");
+        exit(FAILED_ALLOCATION);
     }
 
 
@@ -273,6 +346,17 @@ SplayTree *splayTreeInitialization(void (*freeFn)(void *), int (*cmp)(const void
 
 
 
+
+/** This function will splay up the node with the passed value if found.
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param tree the tree pointer
+ * @param parent the current parent node pointer
+ * @param root the current node pointer
+ * @param item the item pointer
+ * @return it will return the current node pointer
+ */
 
 SplayNode *splayNode(SplayTree *tree, SplayNode *parent, SplayNode *root, void *item) {
 
@@ -299,13 +383,56 @@ SplayNode *splayNode(SplayTree *tree, SplayNode *parent, SplayNode *root, void *
 
 
 
+
+
+/** This function will insert the passed item in the tree.
+ *
+ * @param tree the tree pointer
+ * @param item the new item pointer
+ */
+
 void splayTreeInsert(SplayTree *tree, void *item) {
+
+    if (tree == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return NULL;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "splay tree data structure");
+            exit(NULL_POINTER);
+        #endif
+    } else if (item == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     		return NULL;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "splay tree data structure");
+            exit(INVALID_ARG);
+        #endif
+    }
 
     splayTreeInsertR(tree, NULL, tree->root, item);
 
 }
 
 
+
+
+
+
+
+
+
+/** This function will recursively insert the passed item in the tree.
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param tree the tree pointer
+ * @param parent the current parent node pointer
+ * @param root the current node pointer
+ * @param item the item pointer
+ * @return it will return the current node pointer
+ */
 
 SplayNode *splayTreeInsertR(SplayTree *tree, SplayNode *parent, SplayNode *root, void *item) {
 
@@ -330,8 +457,36 @@ SplayNode *splayTreeInsertR(SplayTree *tree, SplayNode *parent, SplayNode *root,
 
 
 
+
+
+
+
+/** This function will insert all the array items in the tree.
+ *
+ * @param tree the tree pointer
+ * @param items the items array pointer
+ * @param length the length of the items array
+ */
+
 void splayTreeInsertAll(SplayTree *tree, void **items, int length) {
 
+    if (tree == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return NULL;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "splay tree data structure");
+            exit(NULL_POINTER);
+        #endif
+    } else if (items == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     		return NULL;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "new items array", "splay tree data structure");
+            exit(INVALID_ARG);
+        #endif
+    }
 
     for (int i = 0; i < length; i++)
         splayTreeInsert(tree, items[i]);
@@ -343,7 +498,42 @@ void splayTreeInsertAll(SplayTree *tree, void **items, int length) {
 
 
 
+
+/** This function will delete and free the passed item from the tree if found,
+ * other wise the function will do nothing.
+ *
+ * @param tree the tree pointer
+ * @param item the item pointer
+ */
+
 void splayTreeDelete(SplayTree *tree, void *item) {
+
+    if (tree == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return NULL;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "splay tree data structure");
+            exit(NULL_POINTER);
+        #endif
+    } else if (item == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     		return NULL;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "splay tree data structure");
+            exit(INVALID_ARG);
+        #endif
+    } else if (splayTreeIsEmpty(tree)) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+            return NULL;
+        #else
+            fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "splay tree data structure");
+            exit(EMPTY_DATA_STRUCTURE);
+        #endif
+    }
+
 
     tree->root = splayNode(tree, NULL, tree->root, item);
 
@@ -355,6 +545,18 @@ void splayTreeDelete(SplayTree *tree, void *item) {
 }
 
 
+
+
+
+/** This function will recursively delete and free the passed item from the tree if found.
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param tree the tree pointer
+ * @param root the current node pointer
+ * @param item the item pointer
+ * @return it will return the current node pointer
+ */
 
 SplayNode *splayTreeDeleteR(SplayTree *tree, SplayNode *root, void *item) {
 
@@ -397,7 +599,42 @@ SplayNode *splayTreeDeleteR(SplayTree *tree, SplayNode *root, void *item) {
 
 
 
+
+/** This function will delete the passed item from the tree without freeing it and then return the item pointer if found,
+ * other wise it will return NULL.
+ *
+ * @param tree the tree pointer
+ * @param item the item pointer
+ * @return it will return the deleted item pointer if found, other wise it will return NULL
+ */
+
 void *splayTreeDeleteWtoFr(SplayTree *tree, void *item) {
+
+    if (tree == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return NULL;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "splay tree data structure");
+            exit(NULL_POINTER);
+        #endif
+    } else if (item == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     		return NULL;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "splay tree data structure");
+            exit(INVALID_ARG);
+        #endif
+    } else if (splayTreeIsEmpty(tree)) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+            return NULL;
+        #else
+            fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "splay tree data structure");
+            exit(EMPTY_DATA_STRUCTURE);
+        #endif
+    }
 
     tree->root = splayNode(tree, NULL, tree->root, item);
 
@@ -406,7 +643,7 @@ void *splayTreeDeleteWtoFr(SplayTree *tree, void *item) {
 
     void *itemToReturn = tree->root->key;
 
-    tree->root = splayTreeDeleteWtoFreR(tree, tree->root, item);
+    tree->root = splayTreeDeleteWtoFrR(tree, tree->root, item);
 
     return itemToReturn;
 
@@ -414,7 +651,20 @@ void *splayTreeDeleteWtoFr(SplayTree *tree, void *item) {
 
 
 
-SplayNode *splayTreeDeleteWtoFreR(SplayTree *tree, SplayNode *root, void *item) {
+
+
+
+/** This function will recursively delete the passed item from the tree without freeing it.
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param tree the tree pointer
+ * @param root the current node pointer
+ * @param item the item pointer
+ * @return it will return the current node pointer
+ */
+
+SplayNode *splayTreeDeleteWtoFrR(SplayTree *tree, SplayNode *root, void *item) {
 
     if (root == NULL)
         return NULL;
@@ -455,7 +705,36 @@ SplayNode *splayTreeDeleteWtoFreR(SplayTree *tree, SplayNode *root, void *item) 
 
 
 
+
+
+/** This function will search for the passed item in the tree,
+ * and if it found it the function will return one (1), other wise it will return zero (0).
+ *
+ * @param tree the tree pointer
+ * @param item the item pointer
+ * @return it will return 1 if the item exists in the tree, other wise it will return 0
+ */
+
 int splayTreeContains(SplayTree *tree, void *item) {
+
+    if (tree == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return NULL;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "splay tree data structure");
+            exit(NULL_POINTER);
+        #endif
+    } else if (item == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     		return NULL;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "splay tree data structure");
+            exit(INVALID_ARG);
+        #endif
+    }
+
 
     tree->root = splayNode(tree, NULL, tree->root, item);
 
@@ -469,7 +748,36 @@ int splayTreeContains(SplayTree *tree, void *item) {
 
 
 
+
+
+
+/** This function will search for the passed item in the tree,
+ * and if it found it the function will return the item pointer, other wise it will return NULL.
+ *
+ * @param tree the tree pointer
+ * @param item the item pointer
+ * @return it will return the item pointer, if found other wise it will return NULL
+ */
+
 void *splayTreeGet(SplayTree *tree, void *item) {
+
+    if (tree == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return NULL;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "splay tree data structure");
+            exit(NULL_POINTER);
+        #endif
+    } else if (item == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     		return NULL;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "splay tree data structure");
+            exit(INVALID_ARG);
+        #endif
+    }
 
     tree->root = splayNode(tree, NULL, tree->root, item);
 
@@ -484,7 +792,26 @@ void *splayTreeGet(SplayTree *tree, void *item) {
 
 
 
+
+
+
+/** This function will return the number of nodes in the tree.
+ *
+ * @param tree the tree pointer
+ * @return it will return the number of nodes in the tree
+ */
+
 int splayTreeGetSize(SplayTree *tree) {
+
+    if (tree == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "splay tree data structure");
+            exit(NULL_POINTER);
+        #endif
+    }
 
     return tree->count;
 
@@ -494,11 +821,103 @@ int splayTreeGetSize(SplayTree *tree) {
 
 
 
+
+
+
+/** This function will check if the tree is empty or not,
+ * and if it was the function will return one (1), other wise it will return zero (0).
+ *
+ * @param tree the tree pointer
+ * @return it will return 1 if the tree was empty, other wise it will return 0
+ */
+
 int splayTreeIsEmpty(SplayTree *tree) {
+
+    if (tree == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "splay tree data structure");
+            exit(NULL_POINTER);
+        #endif
+    }
 
     return tree->count == 0;
 
 }
+
+
+
+
+
+
+/** This function will return a double void pointer array,
+ * that contains the tree items sorted in ascending order.
+ *
+ * @param tree the tree pointer
+ * @return it will return an array that contains the tree items sorted in ascending order
+ */
+
+void **splayTreeToArray(SplayTree *tree) {
+
+    if (tree == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return NULL;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "splay tree data structure");
+            exit(NULL_POINTER);
+        #endif
+    }
+
+    void *arr = (void **) malloc(sizeof(void *) * tree->count);
+    if (arr == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "splay tree data structure");
+        exit(FAILED_ALLOCATION);
+    }
+
+    int *index = (int *) malloc(sizeof(int));
+    *index = 0;
+
+    splayTreeToArrayR(tree->root, arr, index);
+
+    free(index);
+
+    return arr;
+
+}
+
+
+
+
+
+
+
+
+
+
+/** This function will recursively fill the passed array,
+ * with the tree items sorted in ascending order.
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param root the current node pointer
+ * @param arr the array pointer
+ * @param index the current index pointer
+ */
+
+void splayTreeToArrayR(SplayNode *root, void **arr, int *index) {
+
+    if (root == NULL)
+        return;
+
+    splayTreeToArrayR(root->left, arr, index);
+    arr[(*index)++] = root->key;
+    splayTreeToArrayR(root->right, arr, index);
+
+}
+
 
 
 
