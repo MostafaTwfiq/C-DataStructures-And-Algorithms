@@ -34,6 +34,7 @@
 
 int main(void) {
 
+    /*
     // Data structure tests:
     vectorUnitTest();
     arrayListUnitTest();
@@ -76,8 +77,10 @@ int main(void) {
 
     // Files Handlers tests:
     txtFileLoaderAlgUnitTest();
-    inputScannerUnitTest();
+    inputScannerUnitTest();*/
 
+
+    binaryTreeUnitTest();
 
     return 0;
 

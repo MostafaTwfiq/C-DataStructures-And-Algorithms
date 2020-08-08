@@ -50,6 +50,38 @@ typedef struct AVLTree {
 } AVLTree;
 
 
+
+
+AVLTree *avlTreeInitialization(void (*freeFun)(void *), int (*cmp)(const void *, const void *));
+
+void avlTreeInsert(AVLTree *tree, void *item);
+
+void avlTreeDelete(AVLTree *tree, void *item);
+
+void *avlTreeDeleteWtoFr(AVLTree *tree, void *item);
+
+int avlTreeContains(AVLTree *tree, void *item);
+
+void *avlTreeGet(AVLTree *tree, void *item);
+
+int avlTreeGetSize(AVLTree *tree);
+
+int avlTreeIsEmpty(AVLTree *tree);
+
+void **avlTreeToArray(AVLTree *tree);
+
+void avlTreePreOrderTraversal(AVLTree *tree, void (*printFun)(void *));
+
+void avlTreeInOrderTraversal(AVLTree *tree, void (*printFun)(void *));
+
+void avlTreePostOrderTraversal(AVLTree *tree, void (*printFun)(void *));
+
+void clearAVLTree(AVLTree *tree);
+
+void destroyAVLTree(AVLTree *tree);
+
+
+
 #ifdef __cplusplus
 }
 #endif

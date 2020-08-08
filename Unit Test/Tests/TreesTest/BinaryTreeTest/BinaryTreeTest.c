@@ -215,6 +215,34 @@ void testBinaryTreeInsertAll(CuTest *cuTest) {
 
 
 
+void testBinaryTreeInsert3(CuTest *cuTest) {
+
+    BinaryTree *tree = binaryTreeInitialization(free, compareIntPointersBTT);
+
+
+    int values[] = {10, 20, 5, 8, 15, 25, 4, 2, 1, 10, 18};
+
+    for (int i = 0; i < 11; i++)
+        binaryTreeInsert(tree, generateIntPointerBTT(values[i]));
+
+
+    for (int i = 0; i < 11; i++) {
+        binaryTreeDelete(tree, values + i);
+        CuAssertIntEquals(cuTest, 1, checkIfValidBinaryTreeBTT(tree->root, NULL));
+
+        binaryTreeInsert(tree, generateIntPointerBTT(values[i]));
+        CuAssertIntEquals(cuTest, 1, checkIfValidBinaryTreeBTT(tree->root, NULL));
+
+    }
+
+    destroyBinaryTree(tree);
+
+}
+
+
+
+
+
 void testBinaryTreeDelete(CuTest *cuTest) {
 
     BinaryTree *tree = binaryTreeInitialization(free, compareIntPointersBTT);
@@ -629,6 +657,7 @@ CuSuite *createBinaryTreeTestsSuite() {
     SUITE_ADD_TEST(suite, testValidBinaryTreeInitialization);
     SUITE_ADD_TEST(suite, testBinaryTreeInsert);
     SUITE_ADD_TEST(suite, testBinaryTreeInsert2);
+    SUITE_ADD_TEST(suite, testBinaryTreeInsert3);
     SUITE_ADD_TEST(suite, testBinaryTreeInsertAll);
     SUITE_ADD_TEST(suite, testBinaryTreeDelete);
     SUITE_ADD_TEST(suite, testBinaryTreeDeleteWtoFr);

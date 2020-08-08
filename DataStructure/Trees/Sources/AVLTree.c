@@ -15,6 +15,15 @@ AVLTreeNode *avlTreeDeleteR(AVLTree *tree, AVLTreeNode *root, void *item);
 
 void *avlTreeDeleteWtoFrR(AVLTree *tree, AVLTreeNode *parent, AVLTreeNode *root, void *item);
 
+void avlTreeToArrayR(void **arr, AVLTreeNode *root, int *index);
+
+void avlTreePreOrderTraversalR(AVLTreeNode *root, void (*printFun)(void *));
+
+void avlTreeInOrderTraversalR(AVLTreeNode *root, void (*printFun)(void *));
+
+void avlTreePostOrderTraversalR(AVLTreeNode *root, void (*printFun)(void *));
+
+void clearAVLTreeR(AVLTreeNode *root, void (*freeFun)(void *));
 
 
 
@@ -428,3 +437,287 @@ int avlTreeIsEmpty(AVLTree *tree) {
 }
 
 
+
+
+
+
+void **avlTreeToArray(AVLTree *tree) {
+
+
+    void **arr = (void **) malloc(sizeof(void *) * tree->count);
+    int *index = (int *) malloc(sizeof(int));
+    *index = 0;
+
+    avlTreeToArrayR(arr, tree->root, index);
+
+    free(index);
+
+    return arr;
+
+}
+
+
+
+void avlTreeToArrayR(void **arr, AVLTreeNode *root, int *index) {
+
+    if (root == NULL)
+        return;
+
+    avlTreeToArrayR(arr, root->left, index);
+    arr[(*index)++] = root->key;
+    avlTreeToArrayR(arr, root->right, index);
+
+}
+
+
+
+
+
+/** This function will pre order traverse the tree.
+ *
+ * Note: you can do any thing else the printing.
+ *
+ * @param tree the tree pointer
+ * @param printFun the printing function pointer
+ */
+
+void avlTreePreOrderTraversal(AVLTree *tree, void (*printFun)(void *)) {
+
+    if (tree == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
+            exit(NULL_POINTER);
+        #endif
+    } else if (printFun == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     		return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "printing function pointer", "avl tree data structure");
+            exit(INVALID_ARG);
+        #endif
+    }
+
+    avlTreePreOrderTraversalR(tree->root, printFun);
+
+}
+
+
+
+
+
+
+
+
+
+
+/** This function will pre order traverse the tree recursively.
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param root the current node pointer
+ * @param printFun the printing function pointer
+ */
+
+void avlTreePreOrderTraversalR(AVLTreeNode *root, void (*printFun)(void *)) {
+
+    if (root == NULL)
+        return;
+
+
+    printFun(root->key);
+    avlTreePreOrderTraversalR(root->left, printFun);
+    avlTreePreOrderTraversalR(root->right, printFun);
+
+}
+
+
+
+
+
+
+
+
+
+
+/** This function will in order traverse the tree.
+ *
+ * Note: you can do any thing else the printing.
+ *
+ * @param tree the tree pointer
+ * @param printFun the printing function pointer
+ */
+
+void avlTreeInOrderTraversal(AVLTree *tree, void (*printFun)(void *)) {
+
+    if (tree == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
+            exit(NULL_POINTER);
+        #endif
+    } else if (printFun == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     		return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "printing function pointer", "avl tree data structure");
+            exit(INVALID_ARG);
+        #endif
+    }
+
+    avlTreeInOrderTraversalR(tree->root, printFun);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/** This function will in order traverse the tree recursively.
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param root the current node pointer
+ * @param printFun the printing function pointer
+ */
+
+void avlTreeInOrderTraversalR(AVLTreeNode *root, void (*printFun)(void *)) {
+
+    if (root == NULL)
+        return;
+
+
+    avlTreeInOrderTraversalR(root->left, printFun);
+    printFun(root->key);
+    avlTreeInOrderTraversalR(root->right, printFun);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/** This function will post order traverse the tree.
+ *
+ * Note: you can do any thing else the printing.
+ *
+ * @param tree the tree pointer
+ * @param printFun the printing function pointer
+ */
+
+void avlTreePostOrderTraversal(AVLTree *tree, void (*printFun)(void *)) {
+
+    if (tree == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+     		return;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
+            exit(NULL_POINTER);
+        #endif
+    } else if (printFun == NULL) {
+        #ifdef CU_TEST_H
+            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+     		return;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "printing function pointer", "avl tree data structure");
+            exit(INVALID_ARG);
+        #endif
+    }
+
+    avlTreePostOrderTraversalR(tree->root, printFun);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/** This function will post order traverse the tree recursively.
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param root the current node pointer
+ * @param printFun the printing function pointer
+ */
+
+void avlTreePostOrderTraversalR(AVLTreeNode *root, void (*printFun)(void *)) {
+
+    if (root == NULL)
+        return;
+
+
+    avlTreePostOrderTraversalR(root->left, printFun);
+    avlTreePostOrderTraversalR(root->right, printFun);
+    printFun(root->key);
+
+}
+
+
+
+
+
+
+
+void clearAVLTree(AVLTree *tree) {
+
+    clearAVLTreeR(tree->root, tree->freeFn);
+
+
+    tree->root = NULL;
+    tree->count = 0;
+
+}
+
+
+
+
+void clearAVLTreeR(AVLTreeNode *root, void (*freeFun)(void *)) {
+
+    if (root == NULL)
+        return;
+
+    clearAVLTreeR(root->left, freeFun);
+    clearAVLTreeR(root->right, freeFun);
+
+    destroyAVLTreeNode(root, freeFun);
+
+}
+
+
+
+
+
+void destroyAVLTree(AVLTree *tree) {
+
+
+    clearAVLTree(tree);
+
+    free(tree);
+
+}
