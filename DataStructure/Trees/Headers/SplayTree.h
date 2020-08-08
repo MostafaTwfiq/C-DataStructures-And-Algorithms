@@ -70,7 +70,7 @@ void **splayTreeToArray(SplayTree *tree);
 
 void clearSplayTree(SplayTree *tree);
 
-void destroyBinaryTree(SplayTree *tree);
+void destroySplayTree(SplayTree *tree);
 
 
 
