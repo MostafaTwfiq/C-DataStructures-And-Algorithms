@@ -40,10 +40,35 @@ typedef struct SplayNode {
  */
 typedef struct SplayTree {
     SplayNode *root;
-    int nodeCount;
+    int count;
     void (*freeFn)(void *);
     int (*cmp)(const void *, const void *);
 } SplayTree;
+
+
+
+
+SplayTree *splayTreeInitialization(void (*freeFn)(void *), int (*cmp)(const void *, const void *));
+
+void splayTreeInsert(SplayTree *tree, void *item);
+
+void splayTreeInsertAll(SplayTree *tree, void **items, int length);
+
+void splayTreeDelete(SplayTree *tree, void *item);
+
+void *splayTreeDeleteWtoFr(SplayTree *tree, void *item);
+
+int splayTreeContains(SplayTree *tree, void *item);
+
+void *splayTreeGet(SplayTree *tree, void *item);
+
+int splayTreeGetSize(SplayTree *tree);
+
+int splayTreeIsEmpty(SplayTree *tree);
+
+void clearSplayTree(SplayTree *tree);
+
+void destroyBinaryTree(SplayTree *tree);
 
 
 
