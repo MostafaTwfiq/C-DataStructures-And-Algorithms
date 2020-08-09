@@ -9,6 +9,7 @@
 
 
 
+
 /** Function Initializes Queue on Heap using malloc and returns pointer to it.
  *
  * @param size Size of the data to be stored by the Queue.
@@ -161,44 +162,6 @@ void* queueDequeue(Queue* arrayQueue) {
 
 }
 
-
-
-
-
-
-
-
-/** Takes a reference pointer to print function and prints data in the queue.
- *
- * @param arrayQueue Pointer to the Queue on the heap.
- * @param fptr pointer to an externally defined print function.
- */
-
-void queueDisplay(Queue* arrayQueue, void (*fptr)(void *)) {
-    if (arrayQueue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-     		fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "queue data structure");
-     		exit(NULL_POINTER);
-     	#endif
-
-    } else if (fptr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return;
-        #else
-     		fprintf(stderr, INVALID_ARG_MESSAGE, "printf function pointer", "queue data structure");
-     		exit(INVALID_ARG);
-     	#endif
-
-    }
-
-    for (int i = arrayQueue->front; i < arrayQueue->rear; i++)
-        fptr(arrayQueue->memory[i]);
-
-}
 
 
 

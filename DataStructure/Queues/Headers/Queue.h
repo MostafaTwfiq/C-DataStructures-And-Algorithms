@@ -34,8 +34,6 @@ void queueEnqueue(Queue* arrayQueue, void *data);
 
 void *queueDequeue(Queue *arrayQueue);
 
-void queueDisplay(Queue *arrayQueue, void(*fptr)(void *));
-
 void queueDestroy(Queue *arrayQueue);
 
 void queueClear(Queue *arrayQueue);
