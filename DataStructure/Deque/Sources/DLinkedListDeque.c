@@ -20,8 +20,8 @@
 DLDeque *dlDequeInitialization(void (*freeFun)(void *)) {
 
     if (freeFun == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return NULL;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "freeing function pointer", "doubly linked list deque data structure");
@@ -32,8 +32,8 @@ DLDeque *dlDequeInitialization(void (*freeFun)(void *)) {
 
     DLDeque *dlDeque = (DLDeque *) malloc(sizeof(DLDeque));
     if (dlDeque == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
      		return NULL;
         #else
      		fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "doubly linked list deque", "doubly linked list deque data structure");
@@ -64,8 +64,8 @@ DLDeque *dlDequeInitialization(void (*freeFun)(void *)) {
 
 void dLDequeInsertFront(DLDeque *deque, void *item) {
     if (deque == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "deque", "doubly linked list deque data structure");
@@ -73,8 +73,8 @@ void dLDequeInsertFront(DLDeque *deque, void *item) {
      	#endif
 
     } else if (item == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "new item pointer", "doubly linked list deque data structure");
@@ -104,8 +104,8 @@ void dLDequeInsertFront(DLDeque *deque, void *item) {
 void dLDequeInsertRear(DLDeque *deque, void *item) {
 
     if (deque == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
      		fprintf(stderr, NULL_POINTER_MESSAGE, "deque", "doubly linked list deque data structure");
@@ -113,8 +113,8 @@ void dLDequeInsertRear(DLDeque *deque, void *item) {
      	#endif
 
     } else if (item == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return;
         #else
      		fprintf(stderr, INVALID_ARG_MESSAGE, "new item pointer", "doubly linked list deque data structure");
@@ -145,8 +145,8 @@ void dLDequeInsertRear(DLDeque *deque, void *item) {
 
 void *dLDequeGetFront(DLDeque *deque) {
     if (deque == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "deque", "doubly linked list deque data structure");
@@ -154,8 +154,8 @@ void *dLDequeGetFront(DLDeque *deque) {
      	#endif
 
     } else if (dLDequeIsEmpty(deque)) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
      		return NULL;
         #else
             fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "doubly linked list deque data structure");
@@ -186,8 +186,8 @@ void *dLDequeGetFront(DLDeque *deque) {
 void *dLDequeGetRear(DLDeque *deque) {
 
     if (deque == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "deque", "doubly linked list deque data structure");
@@ -195,8 +195,8 @@ void *dLDequeGetRear(DLDeque *deque) {
      	#endif
 
     } else if (dLDequeIsEmpty(deque)) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
      		return NULL;
         #else
             fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "doubly linked list deque data structure");
@@ -227,8 +227,8 @@ void *dLDequeGetRear(DLDeque *deque) {
 void *dLDequePeekFront(DLDeque *deque) {
 
     if (deque == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "deque", "doubly linked list deque data structure");
@@ -236,8 +236,8 @@ void *dLDequePeekFront(DLDeque *deque) {
      	#endif
 
     } else if (dLDequeIsEmpty(deque)) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
      		return NULL;
         #else
             fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "doubly linked list deque data structure");
@@ -269,8 +269,8 @@ void *dLDequePeekFront(DLDeque *deque) {
 void *dLDequePeekRear(DLDeque *deque) {
 
     if (deque == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "deque", "doubly linked list deque data structure");
@@ -278,8 +278,8 @@ void *dLDequePeekRear(DLDeque *deque) {
      	#endif
 
     } else if (dLDequeIsEmpty(deque)) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
      		return NULL;
         #else
             fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "doubly linked list deque data structure");
@@ -310,8 +310,8 @@ void *dLDequePeekRear(DLDeque *deque) {
 void **dLDequeToArray(DLDeque *deque) {
 
     if (deque == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "deque", "doubly linked list deque data structure");
@@ -342,8 +342,8 @@ void **dLDequeToArray(DLDeque *deque) {
 int dLDequeGetLength(DLDeque *deque) {
 
     if (deque == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return -1;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "deque", "doubly linked list deque data structure");
@@ -376,8 +376,8 @@ int dLDequeGetLength(DLDeque *deque) {
 int dLDequeIsEmpty(DLDeque *deque) {
 
     if (deque == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return -1;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "deque", "doubly linked list deque data structure");
@@ -409,8 +409,8 @@ int dLDequeIsEmpty(DLDeque *deque) {
 void clearDLDeque(DLDeque *deque) {
 
     if (deque == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "deque", "doubly linked list deque data structure");
@@ -441,8 +441,8 @@ void clearDLDeque(DLDeque *deque) {
 void destroyDLDeque(DLDeque *deque) {
 
     if (deque == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "deque", "doubly linked list deque data structure");

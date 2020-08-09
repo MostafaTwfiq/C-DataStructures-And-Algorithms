@@ -64,15 +64,15 @@ char *generateCharPointerMT(char *ch) {
 void testInvalidMatrixInitialization(CuTest *cuTest) {
 
     Matrix *matrix = matrixInitialization(0, 0, NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
-    DUMMY_TEST_DATASTRUCTURE->errorCode = 0;
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
+    ERROR_TEST->errorCode = 0;
 
     matrix = matrixInitialization(1, 1, NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
-    DUMMY_TEST_DATASTRUCTURE->errorCode = 0;
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
+    ERROR_TEST->errorCode = 0;
 
     matrix = matrixInitialization(0, 0, free, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 }
 
@@ -124,10 +124,10 @@ void testMatrixRemove(CuTest *cuTest) {
     Matrix *matrix = matrixInitialization(2, 2, free, compareIntPointersMT);
 
     matrixRemove(NULL, 0, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     matrixRemove(matrix, 4, 2);
-    CuAssertIntEquals(cuTest, OUT_OF_RANGE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, OUT_OF_RANGE, ERROR_TEST->errorCode);
 
     int indicesArr[3][3] = {{0,0, 10}, {1, 0, 11}, {1, 1, 12}};
 
@@ -165,10 +165,10 @@ void testMatrixRemoveWtoFr(CuTest *cuTest) {
     Matrix *matrix = matrixInitialization(2, 2, free, compareIntPointersMT);
 
     matrixRemoveWtoFr(NULL, 0, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     matrixRemoveWtoFr(matrix, 3, 1);
-    CuAssertIntEquals(cuTest, OUT_OF_RANGE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, OUT_OF_RANGE, ERROR_TEST->errorCode);
 
     int indicesArr[3][3] = {{0,0, 10}, {1, 0, 11}, {1, 1, 12}};
 
@@ -634,7 +634,7 @@ void testMatrixGetNumberOfRows(CuTest *cuTest) {
     Matrix *matrix = matrixInitialization(5, 6, free, compareIntPointersMT);
 
     matrixGetNumberOfRows(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 5, matrixGetNumberOfRows(matrix));
 
@@ -664,7 +664,7 @@ void testMatrixGetNumberOfColumns(CuTest *cuTest) {
     Matrix *matrix = matrixInitialization(5, 6, free, compareIntPointersMT);
 
     matrixGetNumberOfCols(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 6, matrixGetNumberOfCols(matrix));
 
@@ -692,7 +692,7 @@ void testMatrixGetSize(CuTest *cuTest) {
     Matrix *matrix = matrixInitialization(2, 2, free, compareIntPointersMT);
 
     matrixGetSize(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 0, matrixGetSize(matrix));
 
@@ -727,7 +727,7 @@ void testMatrixIsEmpty(CuTest *cuTest) {
     Matrix *matrix = matrixInitialization(2, 2, free, compareIntPointersMT);
 
     matrixIsEmpty(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 1, matrixIsEmpty(matrix));
 
@@ -778,7 +778,7 @@ void testClearMatrix(CuTest *cuTest) {
     Matrix *matrix = matrixInitialization(2, 2, free, compareIntPointersMT);
 
     clearMatrix(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     clearMatrix(matrix);
 
@@ -813,7 +813,7 @@ void testDestroyMatrix(CuTest *cuTest) {
     Matrix *matrix = matrixInitialization(2, 2, free, compareIntPointersMT);
 
     destroyMatrix(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     matrixInsert(matrix, generateIntPointerMT(10), 0, 0);
     matrixInsert(matrix, generateIntPointerMT(13), 0, 1);
@@ -1004,7 +1004,7 @@ CuSuite *createMatrixTestsSuite() {
 
 void matrixUnitTest() {
 
-    DUMMY_TEST_DATASTRUCTURE =  (TestStruct*) malloc(sizeof(TestStruct));
+    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Matrix Test**\n");
@@ -1016,6 +1016,6 @@ void matrixUnitTest() {
     CuSuiteDetails(suite, output);
     printf("%s\n", output->buffer);
 
-    free(DUMMY_TEST_DATASTRUCTURE);
+    free(ERROR_TEST);
 
 }

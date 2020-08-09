@@ -96,11 +96,11 @@ int checkIfValidSplayTreeSTT(SplayNode *root, SplayNode *parent) {
 void testInvalidSplayTreeInitialization(CuTest *cutest) {
 
     splayTreeInitialization(NULL, NULL);
-    CuAssertIntEquals(cutest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cutest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     splayTreeInitialization(free, NULL);
-    CuAssertIntEquals(cutest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cutest, INVALID_ARG, ERROR_TEST->errorCode);
 
 }
 
@@ -125,10 +125,10 @@ void testSplayTreeInsert(CuTest *cuTest) {
     SplayTree *tree = splayTreeInitialization(free, compareIntPointersSTT);
 
     splayTreeInsert(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     splayTreeInsert(tree, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     int values[] = {10, 20, 5, 8, 15, 25, 4, 2, 1, 10, 18};
@@ -231,10 +231,10 @@ void testSplayTreeInsertAll(CuTest *cuTest) {
     SplayTree *tree = splayTreeInitialization(free, compareIntPointersSTT);
 
     splayTreeInsertAll(NULL, NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     splayTreeInsertAll(tree, NULL, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     int values[] = {10, 20, 5, 8, 15, 25, 4, 2, 1, 10, 18};
@@ -263,14 +263,14 @@ void testSplayTreeDelete(CuTest *cuTest) {
     SplayTree *tree = splayTreeInitialization(free, compareIntPointersSTT);
 
     splayTreeDelete(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     splayTreeDelete(tree, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int tempValue = 0;
     splayTreeDelete(tree, &tempValue);
-    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, ERROR_TEST->errorCode);
 
 
     int values[] = {10, 20, 5, 8, 15, 25, 4, 2, 1, 10, 18};
@@ -297,14 +297,14 @@ void testSplayTreeDeleteWtoFr(CuTest *cuTest) {
     SplayTree *tree = splayTreeInitialization(free, compareIntPointersSTT);
 
     splayTreeDeleteWtoFr(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     splayTreeDeleteWtoFr(tree, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int tempValue = 0;
     splayTreeDeleteWtoFr(tree, &tempValue);
-    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, ERROR_TEST->errorCode);
 
 
     int values[] = {10, 20, 5, 8, 15, 25, 4, 2, 1, 18};
@@ -341,10 +341,10 @@ void testSplayTreeContains(CuTest *cuTest) {
     SplayTree *tree = splayTreeInitialization(free, compareIntPointersSTT);
 
     splayTreeContains(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     splayTreeContains(tree, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     int values[] = {10, 20, 5, 8, 15, 25, 4, 2, 1, 18};
@@ -375,10 +375,10 @@ void testSplayTreeGet(CuTest *cuTest) {
     SplayTree *tree = splayTreeInitialization(free, compareIntPointersSTT);
 
     splayTreeGet(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     splayTreeGet(tree, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     int values[] = {10, 20, 5, 8, 15, 25, 4, 2, 1, 18};
@@ -418,7 +418,7 @@ void testSplayTreeGetSize(CuTest *cuTest) {
     SplayTree *tree = splayTreeInitialization(free, compareIntPointersSTT);
 
     splayTreeGetSize(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     CuAssertIntEquals(cuTest, 0, splayTreeGetSize(tree));
@@ -454,7 +454,7 @@ void testSplayTreeIsEmpty(CuTest *cuTest) {
     SplayTree *tree = splayTreeInitialization(free, compareIntPointersSTT);
 
     splayTreeIsEmpty(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     CuAssertIntEquals(cuTest, 1, splayTreeIsEmpty(tree));
@@ -486,7 +486,7 @@ void testSplayTreeToArray(CuTest *cuTest) {
     SplayTree *tree = splayTreeInitialization(free, compareIntPointersSTT);
 
     splayTreeToArray(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     int values[] = {10, 20, 5, 8, 15, 25, 4, 2, 1, 10, 18};
@@ -518,7 +518,7 @@ void testClearSplayTree(CuTest *cuTest) {
     SplayTree *tree = splayTreeInitialization(free, compareIntPointersSTT);
 
     clearSplayTree(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 1, splayTreeIsEmpty(tree));
 
@@ -590,7 +590,7 @@ CuSuite *createSplayTreeTestsSuite() {
 
 void splayTreeUnitTest() {
 
-    DUMMY_TEST_DATASTRUCTURE =  (TestStruct*) malloc(sizeof(TestStruct));
+    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Splay Tree Test**\n");
@@ -602,6 +602,6 @@ void splayTreeUnitTest() {
     CuSuiteDetails(suite, output);
     printf("%s\n", output->buffer);
 
-    free(DUMMY_TEST_DATASTRUCTURE);
+    free(ERROR_TEST);
 
 }

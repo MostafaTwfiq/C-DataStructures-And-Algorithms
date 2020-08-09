@@ -61,7 +61,7 @@ char *generateCharPointerQT(char *ch) {
 void testInvalidQueueInitialization(CuTest *cuTest) {
 
     Queue *queue = queueInitialization(NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 }
 
@@ -84,10 +84,10 @@ void testQueueEnqueue(CuTest *cuTest) {
     Queue *queue = queueInitialization(free);
 
     queueEnqueue(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     queueEnqueue(queue, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     queueEnqueue(queue, generateIntPointerQT(1));
@@ -111,10 +111,10 @@ void testQueueEnqueueAll(CuTest *cuTest) {
     Queue *queue = queueInitialization(free);
 
     queueEnqueueAll(NULL, NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     queueEnqueueAll(queue, NULL, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     int **arr = (int **) malloc(sizeof(int *) * 5);
@@ -141,10 +141,10 @@ void testQueueDequeue(CuTest *cuTest) {
     Queue *queue = queueInitialization(free);
 
     queueDequeue(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     queueDequeue(queue);
-    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, ERROR_TEST->errorCode);
 
 
     queueEnqueue(queue, generateIntPointerQT(1));
@@ -175,10 +175,10 @@ void testQueuePeek(CuTest *cuTest) {
     Queue *queue = queueInitialization(free);
 
     queuePeek(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     queuePeek(queue);
-    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, ERROR_TEST->errorCode);
 
 
     queueEnqueue(queue, generateIntPointerQT(1));
@@ -207,7 +207,7 @@ void testQueueGetLength(CuTest *cuTest) {
     Queue *queue = queueInitialization(free);
 
     queueGetLength(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     CuAssertIntEquals(cuTest, 0, queueGetLength(queue));
@@ -243,7 +243,7 @@ void testQueueIsEmpty(CuTest *cuTest) {
     Queue *queue = queueInitialization(free);
 
     queueIsEmpty(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     CuAssertIntEquals(cuTest, 1, queueIsEmpty(queue));
@@ -268,7 +268,7 @@ void testQueueToArray(CuTest *cuTest) {
     Queue *queue = queueInitialization(free);
 
     queueToArray(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     queueEnqueue(queue, generateIntPointerQT(1));
@@ -297,7 +297,7 @@ void testClearQueue(CuTest *cuTest) {
     Queue *queue = queueInitialization(free);
 
     queueClear(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     CuAssertIntEquals(cuTest, 0, queueGetLength(queue));
@@ -327,7 +327,7 @@ void testDestroyQueue(CuTest *cuTest) {
     Queue *queue = queueInitialization(free);
 
     queueDestroy(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     queueEnqueue(queue, generateIntPointerQT(1));
     queueEnqueue(queue, generateIntPointerQT(2));
@@ -354,10 +354,10 @@ void testQueueDisplay(CuTest *cuTest) {
     printingQueue = queueInitialization(free);
 
     queueDisplay(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     queueDisplay(queue, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     queueEnqueue(queue, generateIntPointerQT(1));
     queueEnqueue(queue, generateIntPointerQT(2));
@@ -517,7 +517,7 @@ CuSuite *createQueueTestsSuite() {
 
 void queueUnitTest() {
 
-    DUMMY_TEST_DATASTRUCTURE =  (TestStruct*) malloc(sizeof(TestStruct));
+    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Queue Test**\n");
@@ -529,7 +529,7 @@ void queueUnitTest() {
     CuSuiteDetails(suite, output);
     printf("%s\n", output->buffer);
 
-    free(DUMMY_TEST_DATASTRUCTURE);
+    free(ERROR_TEST);
 
 }
 

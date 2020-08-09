@@ -67,8 +67,8 @@ LinkedListHashMap *linkedListHashMapInitialization(
         ) {
 
     if (mapLength <= 0) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return NULL;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "hash map initial length", "linked list hash map data structure");
@@ -76,8 +76,8 @@ LinkedListHashMap *linkedListHashMapInitialization(
      	#endif
 
     } else if (freeKey == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return NULL;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "free key function pointer", "linked list hash map data structure");
@@ -85,8 +85,8 @@ LinkedListHashMap *linkedListHashMapInitialization(
      	#endif
 
     } else if (freeItem == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return NULL;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "free item function pointer", "linked list hash map data structure");
@@ -94,8 +94,8 @@ LinkedListHashMap *linkedListHashMapInitialization(
      	#endif
 
     } else if (keyComp == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return NULL;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "key comparator function pointer", "linked list hash map data structure");
@@ -103,8 +103,8 @@ LinkedListHashMap *linkedListHashMapInitialization(
      	#endif
 
     } else if (keyComp == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = INVALID_ARG;
             return NULL;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "hash function pointer", "linked list hash map data structure");
@@ -114,8 +114,8 @@ LinkedListHashMap *linkedListHashMapInitialization(
 
     LinkedListHashMap *hashMap = (LinkedListHashMap *) malloc(sizeof(LinkedListHashMap));
     if (hashMap == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
      		return NULL;
         #else
             fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "hash map", "linked list hash map data structure");
@@ -128,8 +128,8 @@ LinkedListHashMap *linkedListHashMapInitialization(
     hashMap->length = mapLength;
     hashMap->arr = (DoublyLinkedList **) calloc(sizeof(DoublyLinkedList *), hashMap->length);
     if (hashMap->arr == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
      		return NULL;
         #else
             fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "hash map linked lists array", "linked list hash map data structure");
@@ -162,8 +162,8 @@ LinkedListHashMap *linkedListHashMapInitialization(
 
 void lLHashMapInsert(LinkedListHashMap *map, void *key, void *item) {
     if (map == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
@@ -171,8 +171,8 @@ void lLHashMapInsert(LinkedListHashMap *map, void *key, void *item) {
      	#endif
 
     } else if (key == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
@@ -180,8 +180,8 @@ void lLHashMapInsert(LinkedListHashMap *map, void *key, void *item) {
      	#endif
 
     } else if (item == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "linked list hash map data structure");
@@ -196,8 +196,8 @@ void lLHashMapInsert(LinkedListHashMap *map, void *key, void *item) {
 
     Entry *entry = (Entry *) malloc(sizeof(Entry));
     if (entry == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
      		return;
         #else
             fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new entry", "linked list hash map data structure");
@@ -238,8 +238,8 @@ void lLHashMapInsert(LinkedListHashMap *map, void *key, void *item) {
 
 int lLHashMapContains(LinkedListHashMap *map, void *key) {
     if (map == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return -1;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
@@ -247,8 +247,8 @@ int lLHashMapContains(LinkedListHashMap *map, void *key) {
      	#endif
 
     } else if (key == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return -1;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
@@ -289,8 +289,8 @@ int lLHashMapContains(LinkedListHashMap *map, void *key) {
 
 void *lLHashMapGet(LinkedListHashMap *map, void *key) {
     if (map == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
@@ -298,8 +298,8 @@ void *lLHashMapGet(LinkedListHashMap *map, void *key) {
      	#endif
 
     } else if (key == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return NULL;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
@@ -343,8 +343,8 @@ void *lLHashMapGet(LinkedListHashMap *map, void *key) {
 
 void *lLHashMapGetKey(LinkedListHashMap *map, void *key) {
     if (map == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
@@ -352,8 +352,8 @@ void *lLHashMapGetKey(LinkedListHashMap *map, void *key) {
      	#endif
 
     } else if (key == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return NULL;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
@@ -396,8 +396,8 @@ void *lLHashMapGetKey(LinkedListHashMap *map, void *key) {
 
 void lLHashMapDelete(LinkedListHashMap *map, void *key) {
     if (map == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
@@ -405,8 +405,8 @@ void lLHashMapDelete(LinkedListHashMap *map, void *key) {
      	#endif
 
     } else if (key == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
@@ -451,8 +451,8 @@ void lLHashMapDelete(LinkedListHashMap *map, void *key) {
 
 void *lLHashMapDeleteWtoFr(LinkedListHashMap *map, void *key) {
     if (map == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
@@ -460,8 +460,8 @@ void *lLHashMapDeleteWtoFr(LinkedListHashMap *map, void *key) {
      	#endif
 
     } else if (key == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return NULL;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
@@ -512,8 +512,8 @@ void *lLHashMapDeleteWtoFr(LinkedListHashMap *map, void *key) {
 
 Entry *lLHashMapDeleteWtoFrAll(LinkedListHashMap *map, void *key) {
     if (map == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
@@ -521,8 +521,8 @@ Entry *lLHashMapDeleteWtoFrAll(LinkedListHashMap *map, void *key) {
      	#endif
 
     } else if (key == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return NULL;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "linked list hash map data structure");
@@ -567,8 +567,8 @@ Entry *lLHashMapDeleteWtoFrAll(LinkedListHashMap *map, void *key) {
 
 void **lLHashMapToArray(LinkedListHashMap *map) {
     if (map == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
@@ -579,8 +579,8 @@ void **lLHashMapToArray(LinkedListHashMap *map) {
 
     void **arr = (void **) malloc(sizeof(void *) * map->count);
     if (arr == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
      		return NULL;
         #else
             fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "linked list hash map data structure");
@@ -621,8 +621,8 @@ void **lLHashMapToArray(LinkedListHashMap *map) {
 
 Entry **lLHashMapToEntryArray(LinkedListHashMap *map) {
     if (map == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
@@ -633,8 +633,8 @@ Entry **lLHashMapToEntryArray(LinkedListHashMap *map) {
 
     Entry **arr = (Entry **) malloc(sizeof(Entry *) * map->count);
     if (arr == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
      		return NULL;
         #else
             fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to entries array", "linked list hash map data structure");
@@ -671,8 +671,8 @@ Entry **lLHashMapToEntryArray(LinkedListHashMap *map) {
 
 int lLHashMapGetLength(LinkedListHashMap *map) {
     if (map == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return -1;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
@@ -698,8 +698,8 @@ int lLHashMapGetLength(LinkedListHashMap *map) {
 
 int lLHashMapIsEmpty(LinkedListHashMap *map) {
     if (map == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return -1;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
@@ -725,8 +725,8 @@ int lLHashMapIsEmpty(LinkedListHashMap *map) {
 
 void clearLLHashMap(LinkedListHashMap *map) {
     if (map == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");
@@ -760,8 +760,8 @@ void clearLLHashMap(LinkedListHashMap *map) {
 
 void destroyLLHashMap(LinkedListHashMap *map) {
     if (map == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = NULL_POINTER;
             return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "hash map pointer", "linked list hash map data structure");

@@ -64,10 +64,10 @@ char *generateCharPointerALT(char *ch) {
 
 void testArrayListInvalidInitialization(CuTest *cuTest) {
     ArrayList * arrayList = arrayListInitialization(-1, free, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrayList = arrayListInitialization(1, NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 }
 
@@ -82,10 +82,10 @@ void testArrayListAddFun(CuTest *cuTest) {
     ArrayList *arrayList = arrayListInitialization(1, free, compareIntPointersALT);
 
     arrayListAdd(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrayListAdd(arrayList, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrayListAdd(arrayList, generateIntPointerALT(10));
     arrayListAdd(arrayList, generateIntPointerALT(20));
@@ -105,14 +105,14 @@ void testArrayListAddAtIndexFun(CuTest *cuTest) {
     ArrayList *arrayList = arrayListInitialization(1, free, strcmp);
 
     arrayListAddAtIndex(NULL, NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrayListAddAtIndex(arrayList, NULL, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int tempVal = 10;
     arrayListAddAtIndex(arrayList, &tempVal, 1);
-    CuAssertIntEquals(cuTest, OUT_OF_RANGE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, OUT_OF_RANGE, ERROR_TEST->errorCode);
 
     arrayListAdd(arrayList, generateCharPointerALT("0"));
     arrayListAddAtIndex(arrayList, generateCharPointerALT("30"), 0);
@@ -138,10 +138,10 @@ void testArrayListAddAll(CuTest *cuTest) {
 
 
     arrayListAddAll(NULL, NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrayListAddAll(arrayList, NULL, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     int **valuesArr = (int **) malloc(sizeof(int *) * 3);
@@ -170,7 +170,7 @@ void testArrayListRemove(CuTest *cuTest) {
     ArrayList *arrayList = arrayListInitialization(1, free, compareIntPointersALT);
 
     arrayListRemove(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrayListAdd(arrayList, generateIntPointerALT(10));
 
@@ -188,7 +188,7 @@ void testArrayListRemoveWtoFr(CuTest *cuTest) {
     ArrayList *arrayList = arrayListInitialization(1, free, compareIntPointersALT);
 
     arrayListRemoveWtFr(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     int *currentItem = generateIntPointerALT(10);
     arrayListAdd(arrayList, currentItem);
@@ -209,10 +209,10 @@ void testArrayListRemoveAtIndex(CuTest *cuTest) {
     ArrayList *arrayList = arrayListInitialization(1, free, compareIntPointersALT);
 
     arrayListRemoveAtIndex(NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrayListRemoveAtIndex(arrayList, 0);
-    CuAssertIntEquals(cuTest, OUT_OF_RANGE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, OUT_OF_RANGE, ERROR_TEST->errorCode);
 
     arrayListAdd(arrayList, generateIntPointerALT(10));
     arrayListAdd(arrayList, generateIntPointerALT(20));
@@ -242,10 +242,10 @@ void testArrayListRemoveAtIndexWtoFr(CuTest *cuTest) {
     ArrayList *arrayList = arrayListInitialization(1, free, compareIntPointersALT);
 
     arrayListRemoveAtIndexWtFr(NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrayListRemoveAtIndexWtFr(arrayList, 0);
-    CuAssertIntEquals(cuTest, OUT_OF_RANGE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, OUT_OF_RANGE, ERROR_TEST->errorCode);
 
     int **arr = (int **) malloc(sizeof(int *) * 5);
     for (int i = 0; i < 5; i++) {
@@ -313,10 +313,10 @@ void testArrayListContains(CuTest *cuTest) {
     ArrayList *arrayList = arrayListInitialization(1, free, compareIntPointersALT);
 
     arrayListContains(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrayListContains(arrayList, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int **arr = (int **) malloc(sizeof(int *) * 5);
     for (int i = 0; i < 5; i++) {
@@ -352,10 +352,10 @@ void testArrayListGetIndex(CuTest *cuTest) {
     ArrayList *arrayList = arrayListInitialization(1, free, compareIntPointersALT);
 
     arrayListGetIndex(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrayListGetIndex(arrayList, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int **arr = (int **) malloc(sizeof(int *) * 5);
     for (int i = 0; i < 5; i++) {
@@ -391,10 +391,10 @@ void testArrayListGetLastIndex(CuTest *cuTest) {
     ArrayList *arrayList = arrayListInitialization(1, free, compareIntPointersALT);
 
     arrayListGetLastIndex(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrayListGetLastIndex(arrayList, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int **arr = (int **) malloc(sizeof(int *) * 6);
     for (int i = 0; i < 6; i += 2) {
@@ -434,10 +434,10 @@ void testArrayListGet(CuTest *cuTest) {
     ArrayList *arrayList = arrayListInitialization(1, free, compareIntPointersALT);
 
     arrayListGet(NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrayListGet(arrayList, 0);
-    CuAssertIntEquals(cuTest, OUT_OF_RANGE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, OUT_OF_RANGE, ERROR_TEST->errorCode);
 
     int **arr = (int **) malloc(sizeof(int *) * 5);
     for (int i = 0; i < 5; i++) {
@@ -466,7 +466,7 @@ void testArrayListToArray(CuTest *cuTest) {
     ArrayList *arrayList = arrayListInitialization(1, free, compareIntPointersALT);
 
     arrayListToArray(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     int **arr = (int **) malloc(sizeof(int *) * 5);
     for (int i = 0; i < 5; i++) {
@@ -496,13 +496,13 @@ void testArrayListToSubArray(CuTest *cuTest) {
     ArrayList *arrayList = arrayListInitialization(1, free, compareIntPointersALT);
 
     arrayListToSubArray(NULL, 0, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrayListToSubArray(arrayList, -10, 0);
-    CuAssertIntEquals(cuTest, OUT_OF_RANGE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, OUT_OF_RANGE, ERROR_TEST->errorCode);
 
     arrayListToSubArray(arrayList, 0, 1);
-    CuAssertIntEquals(cuTest, OUT_OF_RANGE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, OUT_OF_RANGE, ERROR_TEST->errorCode);
 
     int **arr = (int **) malloc(sizeof(int *) * 10);
     for (int i = 0; i < 10; i++) {
@@ -538,10 +538,10 @@ void testArrayListSort(CuTest *cuTest) {
     ArrayList *arrayList = arrayListInitialization(1, free, compareIntPointersALT);
 
     arrayListSort(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrayListSort(arrayList, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrayListAdd(arrayList, generateIntPointerALT(30));
     arrayListAdd(arrayList, generateIntPointerALT(20));
@@ -575,13 +575,13 @@ void testArrayListPrintFun(CuTest *cuTest) {
     ArrayList *arrayList = arrayListInitialization(1, free, compareIntPointersALT);
 
     arrayListToSubArray(NULL, 0, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrayListToSubArray(arrayList, -10, 0);
-    CuAssertIntEquals(cuTest, OUT_OF_RANGE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, OUT_OF_RANGE, ERROR_TEST->errorCode);
 
     arrayListToSubArray(arrayList, 0, 1);
-    CuAssertIntEquals(cuTest, OUT_OF_RANGE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, OUT_OF_RANGE, ERROR_TEST->errorCode);
 
     int **arr = (int **) malloc(sizeof(int *) * 10);
     for (int i = 0; i < 10; i++) {
@@ -614,7 +614,7 @@ void testArrayListGetLength(CuTest *cuTest) {
     ArrayList *arrayList = arrayListInitialization(1, free, compareIntPointersALT);
 
     arrayListGetLength(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 0, arrayListGetLength(arrayList));
 
@@ -644,7 +644,7 @@ void testArrayListIsEmpty(CuTest *cuTest) {
     ArrayList *arrayList = arrayListInitialization(1, free, compareIntPointersALT);
 
     arrayListIsEmpty(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 1, arrayListIsEmpty(arrayList));
 
@@ -675,7 +675,7 @@ void testClearArrayList(CuTest *cuTest) {
     ArrayList *arrayList = arrayListInitialization(1, free, compareIntPointersALT);
 
     clearArrayList(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     clearArrayList(arrayList);
     CuAssertIntEquals(cuTest, 0, arrayList->count);
@@ -701,7 +701,7 @@ void testDestroyArrayList(CuTest *cuTest) {
     ArrayList *arrayList = arrayListInitialization(1, free, compareIntPointersALT);
 
     destroyArrayList(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrayListAdd(arrayList, generateIntPointerALT(30));
     arrayListAdd(arrayList, generateIntPointerALT(20));
@@ -857,7 +857,7 @@ CuSuite *createArrayListTestsSuite() {
 
 void arrayListUnitTest() {
 
-    DUMMY_TEST_DATASTRUCTURE =  (TestStruct*) malloc(sizeof(TestStruct));
+    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Array List Test**\n");
@@ -869,6 +869,6 @@ void arrayListUnitTest() {
     CuSuiteDetails(suite, output);
     printf("%s\n", output->buffer);
 
-    free(DUMMY_TEST_DATASTRUCTURE);
+    free(ERROR_TEST);
 
 }

@@ -255,16 +255,16 @@ int intSum(int a, int b) {
 int intArrSum(const int *arr, int length) {
 
     if (arr == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = NULL_POINTER;
             return -1;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "array", "int array sum function");
             exit(NULL_POINTER);
         #endif
     } else if (length < 0) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = INVALID_ARG;
             return -1;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "int array sum function");

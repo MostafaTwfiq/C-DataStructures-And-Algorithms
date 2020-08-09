@@ -101,19 +101,19 @@ int charArrHashFunDLLHMT(const void *ch) {
 void testInvalidDLLHashMapInitialization(CuTest *cuTest) {
 
     linkedListHashMapInitialization(0, NULL, NULL, NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     linkedListHashMapInitialization(1, NULL, NULL, NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     linkedListHashMapInitialization(1, free, NULL, NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     linkedListHashMapInitialization(1, free, free, NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     linkedListHashMapInitialization(1, free, free, compareIntPointersDLLHMT, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 }
 
@@ -138,14 +138,14 @@ void testDLLHashMapInsert(CuTest *cuTest) {
     char numbersArr[13][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen"};
 
     lLHashMapInsert(NULL, NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     lLHashMapInsert(llHashMap, NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int tempKey = 10;
     lLHashMapInsert(llHashMap, &tempKey, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     for (int i = 0; i < 13; i++)
         lLHashMapInsert(llHashMap, generateIntPointerDLLHMT(i + 1), generateCharPointerDLLHMT(numbersArr[i]));
@@ -181,10 +181,10 @@ void testDLLHashMapContains(CuTest *cuTest) {
     char numbersArr[5][6] = {"one", "two", "three", "four", "five"};
 
     lLHashMapContains(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     lLHashMapContains(llHashMap, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     lLHashMapInsert(llHashMap, generateIntPointerDLLHMT(1), generateCharPointerDLLHMT(numbersArr[0]));
     lLHashMapInsert(llHashMap, generateIntPointerDLLHMT(2), generateCharPointerDLLHMT(numbersArr[1]));
@@ -214,10 +214,10 @@ void testDLLHashMapGet(CuTest *cuTest) {
     char numbersArr[5][6] = {"one", "two", "three", "four", "five"};
 
     lLHashMapGet(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     lLHashMapGet(llHashMap, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     lLHashMapInsert(llHashMap, generateIntPointerDLLHMT(1), generateCharPointerDLLHMT(numbersArr[0]));
     lLHashMapInsert(llHashMap, generateIntPointerDLLHMT(2), generateCharPointerDLLHMT(numbersArr[1]));
@@ -247,10 +247,10 @@ void testDLLHashMapGetKey(CuTest *cuTest) {
     char numbersArr[5][6] = {"one", "two", "three", "four", "five"};
 
     lLHashMapGetKey(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     lLHashMapGetKey(llHashMap, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     lLHashMapInsert(llHashMap, generateIntPointerDLLHMT(1), generateCharPointerDLLHMT(numbersArr[0]));
     lLHashMapInsert(llHashMap, generateIntPointerDLLHMT(2), generateCharPointerDLLHMT(numbersArr[1]));
@@ -280,10 +280,10 @@ void testDlLHashMapDelete(CuTest *cuTest) {
     char numbersArr[5][6] = {"one", "two", "three", "four", "five"};
 
     lLHashMapDelete(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     lLHashMapDelete(llHashMap, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     lLHashMapInsert(llHashMap, generateIntPointerDLLHMT(1), generateCharPointerDLLHMT(numbersArr[0]));
     lLHashMapInsert(llHashMap, generateIntPointerDLLHMT(2), generateCharPointerDLLHMT(numbersArr[1]));
@@ -322,10 +322,10 @@ void testDLLHashMapDeleteWtoFr(CuTest *cuTest) {
     char numbersArr[5][6] = {"one", "two", "three", "four", "five"};
 
     lLHashMapDeleteWtoFr(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     lLHashMapDeleteWtoFrAll(llHashMap, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     lLHashMapInsert(llHashMap, generateIntPointerDLLHMT(1), generateCharPointerDLLHMT(numbersArr[0]));
     lLHashMapInsert(llHashMap, generateIntPointerDLLHMT(2), generateCharPointerDLLHMT(numbersArr[1]));
@@ -368,10 +368,10 @@ void testDLLHashMapDeleteWtoFrAll(CuTest *cuTest) {
     char numbersArr[5][6] = {"one", "two", "three", "four", "five"};
 
     lLHashMapDeleteWtoFrAll(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     lLHashMapDeleteWtoFrAll(llHashMap, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     lLHashMapInsert(llHashMap, generateIntPointerDLLHMT(1), generateCharPointerDLLHMT(numbersArr[0]));
     lLHashMapInsert(llHashMap, generateIntPointerDLLHMT(2), generateCharPointerDLLHMT(numbersArr[1]));
@@ -421,7 +421,7 @@ void testDLLHashMapToArray(CuTest *cuTest) {
     char numbersArr[13][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen"};
 
     lLHashMapToArray(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     for (int i = 0; i < 13; i++)
         lLHashMapInsert(llHashMap, generateCharPointerDLLHMT(numbersArr[i]), generateIntPointerDLLHMT(i + 1));
@@ -451,7 +451,7 @@ void testDLLHashMapToEntryArray(CuTest *cuTest) {
     char numbersArr[13][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen"};
 
     lLHashMapToEntryArray(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     for (int i = 0; i < 13; i++)
         lLHashMapInsert(llHashMap, generateCharPointerDLLHMT(numbersArr[i]), generateIntPointerDLLHMT(i + 1));
@@ -485,7 +485,7 @@ void testDLLHashMapGetLength(CuTest *cuTest) {
     char numbersArr[13][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen"};
 
     lLHashMapGetLength(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 0, lLHashMapGetLength(llHashMap));
 
@@ -523,7 +523,7 @@ void testDLLHashMapIsEmpty(CuTest *cuTest) {
     char numbersArr[13][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen"};
 
     lLHashMapIsEmpty(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 1, lLHashMapIsEmpty(llHashMap));
 
@@ -553,7 +553,7 @@ void testClearDLLHashMap(CuTest *cuTest) {
     char numbersArr[13][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen"};
 
     clearLLHashMap(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 1, lLHashMapIsEmpty(llHashMap));
 
@@ -581,7 +581,7 @@ void testDestroyDLLHashMap(CuTest *cuTest) {
     char numbersArr[13][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen"};
 
     destroyLLHashMap(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     for (int i = 0; i < 13; i++) {
         lLHashMapInsert(llHashMap, generateIntPointerDLLHMT(i + 1), generateCharPointerDLLHMT(numbersArr[i]));
@@ -625,7 +625,7 @@ CuSuite *createDoublyLinkedListHashMapTestsSuite() {
 
 void doublyLinkedListHashMapUnitTest() {
 
-    DUMMY_TEST_DATASTRUCTURE =  (TestStruct*) malloc(sizeof(TestStruct));
+    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Doubly Linked List HashMap Test**\n");
@@ -637,6 +637,6 @@ void doublyLinkedListHashMapUnitTest() {
     CuSuiteDetails(suite, output);
     printf("%s\n", output->buffer);
 
-    free(DUMMY_TEST_DATASTRUCTURE);
+    free(ERROR_TEST);
 
 }

@@ -64,8 +64,8 @@ HashMap *hashMapInitialization(
         ) {
 
     if (freeKey == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return NULL;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "free key function pointer", "hash map data structure");
@@ -73,8 +73,8 @@ HashMap *hashMapInitialization(
      	#endif
 
     } else if (freeItem == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return NULL;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "free item function pointer", "hash map data structure");
@@ -82,8 +82,8 @@ HashMap *hashMapInitialization(
      	#endif
 
     } else if (keyComp == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return NULL;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "key comparator function pointer", "hash map data structure");
@@ -91,8 +91,8 @@ HashMap *hashMapInitialization(
      	#endif
 
     } else if (hashFun == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = INVALID_ARG;
             return NULL;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "hash function pointer", "hash map data structure");
@@ -103,8 +103,8 @@ HashMap *hashMapInitialization(
 
     HashMap *map = (HashMap *) malloc(sizeof(HashMap));
     if (map == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
      		return NULL;
         #else
             fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "hash map", "hash map data structure");
@@ -116,8 +116,8 @@ HashMap *hashMapInitialization(
     map->length = getNextPrime(10); //the length of the map array should always be a prime number.
     map->arr = (Entry **) calloc(sizeof(Entry *), map->length);
     if (map == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
      		return NULL;
         #else
             fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "hash map entries array", "hash map data structure");
@@ -153,8 +153,8 @@ HashMap *hashMapInitialization(
 
 void hashMapInsert(HashMap *map, void *key, void *item) {
     if (map == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
@@ -162,8 +162,8 @@ void hashMapInsert(HashMap *map, void *key, void *item) {
      	#endif
 
     } else if (key == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
@@ -171,8 +171,8 @@ void hashMapInsert(HashMap *map, void *key, void *item) {
      	#endif
 
     } else if (item == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "hash map data structure");
@@ -185,8 +185,8 @@ void hashMapInsert(HashMap *map, void *key, void *item) {
         map->length = getNextPrime(map->length * 2); //the length of the map array should always be a prime number.
         map->arr = (Entry **) realloc(map->arr, sizeof(Entry *) * map->length);
         if (map->arr == NULL) {
-            #ifdef CU_TEST_H
-     		    DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_REALLOCATION;
+            #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		    ERROR_TEST->errorCode = FAILED_REALLOCATION;
      		    return;
             #else
                 fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "entries array", "hash map data structure");
@@ -224,8 +224,8 @@ void hashMapInsert(HashMap *map, void *key, void *item) {
 
     Entry *newEntry = (Entry *) malloc(sizeof(Entry));
     if (newEntry == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
      		return;
         #else
             fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new entry", "hash map data structure");
@@ -261,8 +261,8 @@ void hashMapInsert(HashMap *map, void *key, void *item) {
 
 int hashMapContains(HashMap *map, void *key) {
     if (map == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return -1;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
@@ -270,8 +270,8 @@ int hashMapContains(HashMap *map, void *key) {
      	#endif
 
     } else if (key == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return -1;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
@@ -321,8 +321,8 @@ int hashMapContains(HashMap *map, void *key) {
 
 void *hashMapGet(HashMap *map, void *key) {
     if (map == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
@@ -330,8 +330,8 @@ void *hashMapGet(HashMap *map, void *key) {
      	#endif
 
     } else if (key == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return NULL;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
@@ -382,8 +382,8 @@ void *hashMapGet(HashMap *map, void *key) {
 
 void *hashMapGetKey(HashMap *map, void *key) {
     if (map == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
@@ -391,8 +391,8 @@ void *hashMapGetKey(HashMap *map, void *key) {
      	#endif
 
     } else if (key == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return NULL;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
@@ -440,8 +440,8 @@ void *hashMapGetKey(HashMap *map, void *key) {
 
 void hashMapDelete(HashMap *map, void *key) {
     if (map == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
@@ -449,8 +449,8 @@ void hashMapDelete(HashMap *map, void *key) {
      	#endif
 
     } else if (key == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
@@ -506,8 +506,8 @@ void hashMapDelete(HashMap *map, void *key) {
 
 void *hashMapDeleteWtoFr(HashMap *map, void *key) {
     if (map == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
@@ -515,8 +515,8 @@ void *hashMapDeleteWtoFr(HashMap *map, void *key) {
      	#endif
 
     } else if (key == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return NULL;
         #else
      		fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
@@ -571,8 +571,8 @@ void *hashMapDeleteWtoFr(HashMap *map, void *key) {
 
 Entry *hashMapDeleteWtoFrAll(HashMap *map, void *key) {
     if (map == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
      		fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
@@ -580,8 +580,8 @@ Entry *hashMapDeleteWtoFrAll(HashMap *map, void *key) {
      	#endif
 
     } else if (key == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return NULL;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
@@ -632,8 +632,8 @@ Entry *hashMapDeleteWtoFrAll(HashMap *map, void *key) {
 
 void **hashMapToArray(HashMap *map) {
     if (map == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
@@ -644,8 +644,8 @@ void **hashMapToArray(HashMap *map) {
 
     void **arr = (void **) malloc(sizeof(void *) * map->count);
     if (arr == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
      		return NULL;
         #else
             fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "hash map data structure");
@@ -678,8 +678,8 @@ void **hashMapToArray(HashMap *map) {
 
 Entry **hashMapToEntryArray(HashMap *map) {
     if (map == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
@@ -690,8 +690,8 @@ Entry **hashMapToEntryArray(HashMap *map) {
 
     Entry **arr = (Entry **) malloc(sizeof(Entry *) * map->count);
     if (arr == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
      		return NULL;
         #else
             fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to entries array", "hash map data structure");
@@ -722,8 +722,8 @@ Entry **hashMapToEntryArray(HashMap *map) {
 
 int hashMapGetLength(HashMap *map) {
     if (map == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return -1;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
@@ -750,8 +750,8 @@ int hashMapGetLength(HashMap *map) {
 
 int hashMapIsEmpty(HashMap *map) {
     if (map == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return -1;
         #else
      		fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
@@ -777,8 +777,8 @@ int hashMapIsEmpty(HashMap *map) {
 void clearHashMap(HashMap *map) {
 
     if (map == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
@@ -812,8 +812,8 @@ void clearHashMap(HashMap *map) {
 void destroyHashMap(HashMap *map) {
 
     if (map == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = NULL_POINTER;
             return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");

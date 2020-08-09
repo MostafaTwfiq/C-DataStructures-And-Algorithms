@@ -70,8 +70,8 @@ int wordsComparator(const void *word1, const void *word2);
 Trie *trieInitialization() {
     Trie *trie = (Trie *) malloc(sizeof(Trie));
     if (trie == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
      		return NULL;
         #else
             fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "trie", "trie data structure");
@@ -102,8 +102,8 @@ Trie *trieInitialization() {
 void trieAddWord(Trie *trie, char *word) {
 
     if (trie == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE , "trie", "trie data structure");
@@ -111,8 +111,8 @@ void trieAddWord(Trie *trie, char *word) {
      	#endif
 
     } else if (word == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "word", "trie data structure");
@@ -163,8 +163,8 @@ void trieAddWord(Trie *trie, char *word) {
 int trieContains(Trie *trie, char *word) {
 
     if (trie == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return -1;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE , "trie", "trie data structure");
@@ -172,8 +172,8 @@ int trieContains(Trie *trie, char *word) {
      	#endif
 
     } else if (word == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return -1;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "word", "trie data structure");
@@ -219,8 +219,8 @@ int trieContains(Trie *trie, char *word) {
 void trieRemoveWord(Trie *trie, char *word) {
 
     if (trie == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE , "trie", "trie data structure");
@@ -228,8 +228,8 @@ void trieRemoveWord(Trie *trie, char *word) {
      	#endif
 
     } else if (word == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "word", "trie data structure");
@@ -332,8 +332,8 @@ int wordsComparator(const void *word1, const void *word2) {
 ArrayList *trieAutoCompletion(Trie *trie, char *word, int numOfSuggestion) {
 
     if (trie == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE , "trie", "trie data structure");
@@ -341,8 +341,8 @@ ArrayList *trieAutoCompletion(Trie *trie, char *word, int numOfSuggestion) {
      	#endif
 
     } else if (word == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return NULL;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "word", "trie data structure");
@@ -350,8 +350,8 @@ ArrayList *trieAutoCompletion(Trie *trie, char *word, int numOfSuggestion) {
      	#endif
 
     } else if (numOfSuggestion <= 0) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return NULL;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "number of suggestions", "trie data structure");
@@ -431,8 +431,8 @@ void trieAutoCompletionR(TrieNode *root, char *currentChar, int numOfSuggestion,
 ArrayList *trieSuggestion(Trie *trie, char *word, int numOfSuggestion) {
 
     if (trie == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE , "trie", "trie data structure");
@@ -440,8 +440,8 @@ ArrayList *trieSuggestion(Trie *trie, char *word, int numOfSuggestion) {
      	#endif
 
     } else if (word == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return NULL;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "word", "trie data structure");
@@ -449,8 +449,8 @@ ArrayList *trieSuggestion(Trie *trie, char *word, int numOfSuggestion) {
      	#endif
 
     } else if (numOfSuggestion <= 0) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return NULL;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "number of suggestions", "trie data structure");
@@ -533,8 +533,8 @@ void trieSuggestionR(TrieNode *root, char *word, String *string, ArrayList *word
 void triePrintAllWords(Trie *trie) {
 
     if (trie == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE , "trie", "trie data structure");
@@ -601,8 +601,8 @@ void triePrintAllWordsR(TrieNode *root, String *string) {
 void clearTrie(Trie *trie) {
 
     if (trie == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE , "trie", "trie data structure");
@@ -632,8 +632,8 @@ void clearTrie(Trie *trie) {
 void destroyTrie(Trie *trie) {
 
     if (trie == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE , "trie", "trie data structure");
@@ -734,8 +734,8 @@ TrieNode *createNode(char value, int EOW) {
     TrieNode *node = (TrieNode *) malloc(sizeof(TrieNode));
     if (node == NULL) {
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new node", "trie data structure");
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
      	#else
      		exit(FAILED_ALLOCATION);
      	#endif
@@ -745,8 +745,8 @@ TrieNode *createNode(char value, int EOW) {
     node->characters = (TrieNode **) calloc(sizeof(void *), 26);
     if (node->characters == NULL) {
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new node characters array", "trie data structure");
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
      	#else
      		exit(FAILED_ALLOCATION);
      	#endif

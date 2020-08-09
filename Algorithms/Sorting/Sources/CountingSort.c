@@ -91,24 +91,24 @@ int intHashFunCountSort(const void *item) {
 void countingSortA(unsigned int *arr, int length, unsigned int rangeStart, unsigned int rangeEnd) {
 
     if (arr == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = NULL_POINTER;
             return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "counting sort");
             exit(NULL_POINTER);
         #endif
     } else if (length < 0) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = INVALID_ARG;
             return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "counting sort");
             exit(INVALID_ARG);
         #endif
     } else if (rangeEnd < rangeStart) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = INVALID_ARG;
             return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "start and end range", "counting sort");
@@ -159,24 +159,24 @@ void countingSortA(unsigned int *arr, int length, unsigned int rangeStart, unsig
 void countingSortH(unsigned int *arr, int length, unsigned int rangeStart, unsigned int rangeEnd) {
 
     if (arr == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = NULL_POINTER;
             return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "counting sort");
             exit(NULL_POINTER);
         #endif
     } else if (length < 0) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = INVALID_ARG;
             return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "counting sort");
             exit(INVALID_ARG);
         #endif
     } else if (rangeEnd < rangeStart) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = INVALID_ARG;
             return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "start and end range", "counting sort");

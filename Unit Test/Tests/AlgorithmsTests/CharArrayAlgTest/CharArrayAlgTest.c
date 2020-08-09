@@ -13,13 +13,13 @@
 void testCharArrayAlgIsSubString(CuTest *cuTest) {
 
     isSubString(NULL, 0, NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     isSubString("", 0, NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     isSubString("", -1, "", -1);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     char *sentence = "what a nice day to program";
@@ -47,7 +47,7 @@ void testCharArrayAlgIsSubString(CuTest *cuTest) {
 void testCharArrayReverseWords(CuTest *cuTest) {
 
     charArrayReverseWords(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     char sentence1[] = "one two three";
@@ -84,10 +84,10 @@ void testCharArrayReverseWords(CuTest *cuTest) {
 void testCharArrTrimStartC(CuTest *cuTest) {
 
     charArrTrimStartC(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     charArrTrimStartC("", NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     char sentence1[] = "   \t \t \n\n   %% $$ # word";
@@ -119,7 +119,7 @@ void testCharArrTrimStartC(CuTest *cuTest) {
 void testCharArrTrimStart(CuTest *cuTest) {
 
     charArrTrimStart(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     char sentence1[] = "   \t \t \n\n   %% $$ # word";
@@ -151,10 +151,10 @@ void testCharArrTrimStart(CuTest *cuTest) {
 void testCharArrTrimEndC(CuTest *cuTest) {
 
     charArrTrimEndC(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     charArrTrimEndC("", NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     char sentence1[] = "word    \t \t \n\n   %% $$ # ";
@@ -184,7 +184,7 @@ void testCharArrTrimEndC(CuTest *cuTest) {
 void testCharArrTrimEnd(CuTest *cuTest) {
 
     charArrTrimEnd(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     char sentence1[] = "word  %% $$ #   \t \t \n\n  ";
@@ -215,10 +215,10 @@ void testCharArrTrimEnd(CuTest *cuTest) {
 void testCharArrTrimC(CuTest *cuTest) {
 
     charArrTrimC(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     charArrTrimC("", NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     char sentence1[] = "    \t \t \n\n   %% $$ #  word    \t \t \n\n   %% $$ # ";
@@ -249,7 +249,7 @@ void testCharArrTrimC(CuTest *cuTest) {
 void testCharArrTrim(CuTest *cuTest) {
 
     charArrTrim(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     char sentence1[] = "    \t \t \n\n   %% $$ #  word    \t \t \n\n   %% $$ #   \t\n ";
     char sentence2[] = "   word    ";
@@ -279,7 +279,7 @@ void testCharArrTrim(CuTest *cuTest) {
 void testCharArrContainsChar(CuTest *cuTest) {
 
     charArrContainsChar(NULL, '\0');
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     char sentence[] = "i love programming";
@@ -302,10 +302,10 @@ void testCharArrContainsChar(CuTest *cuTest) {
 void testCharArrRemoveCharacters(CuTest *cuTest) {
 
     charArrRemoveCharacters(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     charArrRemoveCharacters("", NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     char sentence[] = "iff lovezz programmingddtt";
     charArrRemoveCharacters(sentence, "fzdt");
@@ -321,7 +321,7 @@ void testCharArrRemoveCharacters(CuTest *cuTest) {
 void testCharArrIsInteger(CuTest *cuTest) {
 
     isInteger(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     CuAssertIntEquals(cuTest, 1, isInteger("123"));
@@ -346,7 +346,7 @@ void testCharArrIsInteger(CuTest *cuTest) {
 void testCharArrayIsFloatingPointNum(CuTest *cuTest) {
 
     isFloatingPointNum(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     CuAssertIntEquals(cuTest, 1, isFloatingPointNum("123"));
@@ -374,7 +374,7 @@ void testCharArrayIsFloatingPointNum(CuTest *cuTest) {
 void testCharArrSumASCII(CuTest *cuTest) {
 
     charArrSumASCII(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     char words[5][20] = {"i love programming", "data structure", "algorithms", "", "test"};
 
@@ -396,7 +396,7 @@ void testCharArrSumASCII(CuTest *cuTest) {
 void testCharArrHashFun(CuTest *cuTest) {
 
     charArrHashFun(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     char words[5][20] = {"i love programming", "data structure", "algorithms", "", "test"};
 
@@ -420,10 +420,10 @@ void testCharArrHashFun(CuTest *cuTest) {
 void testGenerateCharPointerP(CuTest *cuTest) {
 
     generateCharPointerP(NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     generateCharPointerP("", -1);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     char words[5][20] = {"i love programming", "data structure", "algorithms", "", "test"};
 
@@ -483,7 +483,7 @@ void testCharIsAlphabetC(CuTest *cuTest) {
 void testCharIsAlphabetP(CuTest *cuTest) {
 
     isAlphabetP(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     char letters[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -559,7 +559,7 @@ void testMostRepeatedCharacter(CuTest *cuTest) {
 
 
     mostRepeatedCharacter(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     CuAssertIntEquals(cuTest, (int) 'd', (int) mostRepeatedCharacter("aabbcccddddee"));
@@ -584,10 +584,10 @@ void testCharArrSplitC(CuTest *cuTest) {
 
 
     charArrSplitC(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     charArrSplitC("", NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     char sentence[] = "   i   \n \t  % love  %%%% programming ## $ % ! \n \t  so much\n<3%%.$$";
@@ -613,10 +613,10 @@ void testCharArrSplitS(CuTest *cuTest) {
 
 
     charArrSplitS(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     charArrSplitS("", NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     char sentence[] = "   i   \n \t  % love  %%%% programming ## $ % ! \n \t  so much\n<3%%.$$";
@@ -674,7 +674,7 @@ CuSuite *createCharArrayAlgTestsSuite() {
 
 void charArrayAlgUnitTest() {
 
-    DUMMY_TEST_DATASTRUCTURE =  (TestStruct*) malloc(sizeof(TestStruct));
+    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Char Array Algorithms Test**\n");
@@ -686,6 +686,6 @@ void charArrayAlgUnitTest() {
     CuSuiteDetails(suite, output);
     printf("%s\n", output->buffer);
 
-    free(DUMMY_TEST_DATASTRUCTURE);
+    free(ERROR_TEST);
 
 }

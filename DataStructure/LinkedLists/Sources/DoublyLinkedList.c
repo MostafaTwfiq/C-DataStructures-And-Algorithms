@@ -23,8 +23,8 @@ typedef struct Node {
 
 DoublyLinkedList *doublyLinkedListInitialization(void (*freeFun)(void *), int (*comparator)(const void *, const void *)) {
     if (freeFun == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return NULL;
         #else
      		fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "doubly linked list data structure");
@@ -35,8 +35,8 @@ DoublyLinkedList *doublyLinkedListInitialization(void (*freeFun)(void *), int (*
 
     DoublyLinkedList *linkedList = (DoublyLinkedList *) malloc(sizeof(DoublyLinkedList));
     if (linkedList == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
      		return NULL;
         #else
      		fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "linked list", "doubly linked list data structure");
@@ -70,8 +70,8 @@ DoublyLinkedList *doublyLinkedListInitialization(void (*freeFun)(void *), int (*
 
 void doublyLinkedListAddFirst(DoublyLinkedList *linkedList, void *item) {
     if (linkedList == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
      		fprintf(stderr, NULL_POINTER_MESSAGE, "linked list pointer", "doubly linked list data structure");
@@ -79,8 +79,8 @@ void doublyLinkedListAddFirst(DoublyLinkedList *linkedList, void *item) {
      	#endif
 
     } else if (item == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return;
         #else
      		fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "doubly linked list data structure");
@@ -91,8 +91,8 @@ void doublyLinkedListAddFirst(DoublyLinkedList *linkedList, void *item) {
 
     Node *newNode = (Node *) malloc(sizeof(Node));
     if (newNode == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
      		return;
         #else
             fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new node", "doubly linked list data structure");
@@ -134,8 +134,8 @@ void doublyLinkedListAddFirst(DoublyLinkedList *linkedList, void *item) {
 
 void doublyLinkedListAddLast(DoublyLinkedList *linkedList, void *item) {
     if (linkedList == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "linked list pointer", "doubly linked list data structure");
@@ -143,8 +143,8 @@ void doublyLinkedListAddLast(DoublyLinkedList *linkedList, void *item) {
      	#endif
 
     } else if (item == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return;
         #else
      		fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "doubly linked list data structure");
@@ -155,8 +155,8 @@ void doublyLinkedListAddLast(DoublyLinkedList *linkedList, void *item) {
 
     Node *newNode = (Node *) malloc(sizeof(Node));
     if (newNode == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
      		return;
         #else
      		fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new node", "doubly linked list data structure");
@@ -197,8 +197,8 @@ void doublyLinkedListAddLast(DoublyLinkedList *linkedList, void *item) {
 
 void doublyLinkedListAddAtIndex(DoublyLinkedList *linkedList, int index, void *item) {
     if (linkedList == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
      		fprintf(stderr, NULL_POINTER_MESSAGE, "linked list pointer", "doubly linked list data structure");
@@ -206,8 +206,8 @@ void doublyLinkedListAddAtIndex(DoublyLinkedList *linkedList, int index, void *i
      	#endif
 
     } else if (item == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return;
         #else
      		fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "doubly linked list data structure");
@@ -215,8 +215,8 @@ void doublyLinkedListAddAtIndex(DoublyLinkedList *linkedList, int index, void *i
      	#endif
 
     } else if (index < 0 || index >= doublyLinkedListGetLength(linkedList)) {
-         #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = OUT_OF_RANGE;
+         #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = OUT_OF_RANGE;
      		return;
          #else
      		fprintf(stderr, OUT_OF_RANGE_MESSAGE, "doubly linked list data structure");
@@ -227,8 +227,8 @@ void doublyLinkedListAddAtIndex(DoublyLinkedList *linkedList, int index, void *i
 
     Node *newNode = (Node *) malloc(sizeof(Node));
     if (newNode == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
      		return;
         #else
             fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new node", "doubly linked list data structure");
@@ -280,8 +280,8 @@ void doublyLinkedListAddAtIndex(DoublyLinkedList *linkedList, int index, void *i
 
 void doublyLinkedListAddAll(DoublyLinkedList *linkedList, void **items, int itemsLength) {
     if (linkedList == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
      		fprintf(stderr, NULL_POINTER_MESSAGE, "linked list pointer", "doubly linked list data structure");
@@ -289,8 +289,8 @@ void doublyLinkedListAddAll(DoublyLinkedList *linkedList, void **items, int item
      	#endif
 
     } else if (items == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "items array pointer", "doubly linked list data structure");
@@ -321,8 +321,8 @@ void doublyLinkedListAddAll(DoublyLinkedList *linkedList, void **items, int item
 void doublyLinkedListDeleteFirst(DoublyLinkedList *linkedList) {
 
     if (linkedList == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
      		fprintf(stderr, NULL_POINTER_MESSAGE, "linked list pointer", "doubly linked list data structure");
@@ -330,8 +330,8 @@ void doublyLinkedListDeleteFirst(DoublyLinkedList *linkedList) {
      	#endif
 
     } else if (doublyLinkedListIsEmpty(linkedList)) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
      		return;
         #else
             fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "doubly linked list data structure");
@@ -373,8 +373,8 @@ void doublyLinkedListDeleteFirst(DoublyLinkedList *linkedList) {
 void *doublyLinkedListDeleteFirstWtoFr(DoublyLinkedList *linkedList) {
 
     if (linkedList == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "linked list pointer", "doubly linked list data structure");
@@ -382,8 +382,8 @@ void *doublyLinkedListDeleteFirstWtoFr(DoublyLinkedList *linkedList) {
      	#endif
 
     } else if (doublyLinkedListIsEmpty(linkedList)) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
      		return NULL;
         #else
      		fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "doubly linked list data structure");
@@ -425,8 +425,8 @@ void *doublyLinkedListDeleteFirstWtoFr(DoublyLinkedList *linkedList) {
 void doublyLinkedListDeleteLast(DoublyLinkedList *linkedList) {
 
     if (linkedList == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
      		fprintf(stderr, NULL_POINTER_MESSAGE, "linked list pointer", "doubly linked list data structure");
@@ -434,8 +434,8 @@ void doublyLinkedListDeleteLast(DoublyLinkedList *linkedList) {
      	#endif
 
     } else if (doublyLinkedListIsEmpty(linkedList)) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
      		return;
         #else
      		fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "doubly linked list data structure");
@@ -476,8 +476,8 @@ void doublyLinkedListDeleteLast(DoublyLinkedList *linkedList) {
 void *doublyLinkedListDeleteLastWtoFr(DoublyLinkedList *linkedList) {
 
     if (linkedList == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "linked list pointer", "doubly linked list data structure");
@@ -485,8 +485,8 @@ void *doublyLinkedListDeleteLastWtoFr(DoublyLinkedList *linkedList) {
      	#endif
 
     } else if (doublyLinkedListIsEmpty(linkedList)) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
      		return NULL;
         #else
      		fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "doubly linked list data structure");
@@ -529,8 +529,8 @@ void *doublyLinkedListDeleteLastWtoFr(DoublyLinkedList *linkedList) {
 
 void doublyLinkedListDeleteAtIndex(DoublyLinkedList *linkedList, int index) {
     if (linkedList == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
      		fprintf(stderr, NULL_POINTER_MESSAGE, "linked list pointer", "doubly linked list data structure");
@@ -538,8 +538,8 @@ void doublyLinkedListDeleteAtIndex(DoublyLinkedList *linkedList, int index) {
      	#endif
 
     } else if (doublyLinkedListIsEmpty(linkedList)) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
      		return;
         #else
      		fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "doubly linked list data structure");
@@ -547,8 +547,8 @@ void doublyLinkedListDeleteAtIndex(DoublyLinkedList *linkedList, int index) {
      	#endif
 
     } else if (index < 0 || index >= doublyLinkedListGetLength(linkedList)) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = OUT_OF_RANGE;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = OUT_OF_RANGE;
      		return;
         #else
      		fprintf(stderr, OUT_OF_RANGE_MESSAGE, "doubly linked list data structure");
@@ -596,8 +596,8 @@ void doublyLinkedListDeleteAtIndex(DoublyLinkedList *linkedList, int index) {
 
 void *doublyLinkedListDeleteAtIndexWtoFr(DoublyLinkedList *linkedList, int index) {
     if (linkedList == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
      		fprintf(stderr, NULL_POINTER_MESSAGE, "linked list pointer", "doubly linked list data structure");
@@ -605,8 +605,8 @@ void *doublyLinkedListDeleteAtIndexWtoFr(DoublyLinkedList *linkedList, int index
      	#endif
 
     } else if (doublyLinkedListIsEmpty(linkedList)) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
      		return NULL;
         #else
      		fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "doubly linked list data structure");
@@ -614,8 +614,8 @@ void *doublyLinkedListDeleteAtIndexWtoFr(DoublyLinkedList *linkedList, int index
      	#endif
 
     } else if (index < 0 || index >= doublyLinkedListGetLength(linkedList)) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = OUT_OF_RANGE;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = OUT_OF_RANGE;
      		return NULL;
         #else
      		fprintf(stderr, OUT_OF_RANGE_MESSAGE, "doubly linked list data structure");
@@ -670,8 +670,8 @@ void *doublyLinkedListDeleteAtIndexWtoFr(DoublyLinkedList *linkedList, int index
 int doublyLinkedListContains(DoublyLinkedList *linkedList, void *item) {
 
     if (linkedList == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return -1;
         #else
      		fprintf(stderr, NULL_POINTER_MESSAGE, "linked list pointer", "doubly linked list data structure");
@@ -679,8 +679,8 @@ int doublyLinkedListContains(DoublyLinkedList *linkedList, void *item) {
      	#endif
 
     } else if (item == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return -1;
         #else
      		fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "doubly linked list data structure");
@@ -688,8 +688,8 @@ int doublyLinkedListContains(DoublyLinkedList *linkedList, void *item) {
      	#endif
 
     } else if (linkedList->comparator == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = NULL_POINTER;
      		return -1;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "comparator function", "doubly linked list data structure");
@@ -736,8 +736,8 @@ int doublyLinkedListContains(DoublyLinkedList *linkedList, void *item) {
 int doublyLinkedListGetIndex(DoublyLinkedList *linkedList, void *item) {
 
     if (linkedList == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return -1;
         #else
      		fprintf(stderr, NULL_POINTER_MESSAGE, "linked list pointer", "doubly linked list data structure");
@@ -745,8 +745,8 @@ int doublyLinkedListGetIndex(DoublyLinkedList *linkedList, void *item) {
      	#endif
 
     } else if (item == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return -1;
         #else
      		fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "doubly linked list data structure");
@@ -754,8 +754,8 @@ int doublyLinkedListGetIndex(DoublyLinkedList *linkedList, void *item) {
      	#endif
 
     } else if (linkedList->comparator == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = NULL_POINTER;
      		return -1;
         #else
      		fprintf(stderr, NULL_POINTER_MESSAGE, "comparator function", "doubly linked list data structure");
@@ -797,8 +797,8 @@ int doublyLinkedListGetIndex(DoublyLinkedList *linkedList, void *item) {
 void *doublyLinkedListGetFirst(DoublyLinkedList *linkedList) {
 
     if (linkedList == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
      		fprintf(stderr, NULL_POINTER_MESSAGE, "linked list pointer", "doubly linked list data structure");
@@ -806,8 +806,8 @@ void *doublyLinkedListGetFirst(DoublyLinkedList *linkedList) {
      	#endif
 
     } else if (doublyLinkedListIsEmpty(linkedList)) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
             return NULL;
         #else
             fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "doubly linked list data structure");
@@ -839,8 +839,8 @@ void *doublyLinkedListGetFirst(DoublyLinkedList *linkedList) {
 void *doublyLinkedListGetLast(DoublyLinkedList *linkedList) {
 
     if (linkedList == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
      		fprintf(stderr, NULL_POINTER_MESSAGE, "linked list pointer", "doubly linked list data structure");
@@ -848,8 +848,8 @@ void *doublyLinkedListGetLast(DoublyLinkedList *linkedList) {
      	#endif
 
     } else if (doublyLinkedListIsEmpty(linkedList)) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
             return NULL;
         #else
             fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "doubly linked list data structure");
@@ -884,8 +884,8 @@ void *doublyLinkedListGetLast(DoublyLinkedList *linkedList) {
 void *doublyLinkedListGetItem(DoublyLinkedList *linkedList, void *item) {
 
     if (linkedList == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "linked list pointer", "doubly linked list data structure");
@@ -893,8 +893,8 @@ void *doublyLinkedListGetItem(DoublyLinkedList *linkedList, void *item) {
      	#endif
 
     } else if (item == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return NULL;
         #else
      		fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "doubly linked list data structure");
@@ -902,8 +902,8 @@ void *doublyLinkedListGetItem(DoublyLinkedList *linkedList, void *item) {
      	#endif
 
     } else if (linkedList->comparator == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "comparator function", "doubly linked list data structure");
@@ -944,8 +944,8 @@ void *doublyLinkedListGetItem(DoublyLinkedList *linkedList, void *item) {
 void *doublyLinkedListGet(DoublyLinkedList *linkedList, int index) {
 
     if (linkedList == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
      		fprintf(stderr, NULL_POINTER_MESSAGE, "linked list pointer", "doubly linked list data structure");
@@ -953,8 +953,8 @@ void *doublyLinkedListGet(DoublyLinkedList *linkedList, int index) {
      	#endif
 
     } else if (doublyLinkedListIsEmpty(linkedList)) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
             return NULL;
         #else
             fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "doubly linked list data structure");
@@ -962,8 +962,8 @@ void *doublyLinkedListGet(DoublyLinkedList *linkedList, int index) {
         #endif
 
     } else if (index < 0 || index >= doublyLinkedListGetLength(linkedList)) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = OUT_OF_RANGE;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = OUT_OF_RANGE;
      		return NULL;
         #else
             fprintf(stderr, OUT_OF_RANGE_MESSAGE, "doubly linked list data structure");
@@ -999,8 +999,8 @@ void *doublyLinkedListGet(DoublyLinkedList *linkedList, int index) {
 
 void **doublyLinkedListToArray(DoublyLinkedList *linkedList) {
     if (linkedList == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
      		fprintf(stderr, NULL_POINTER_MESSAGE, "linked list pointer", "doubly linked list data structure");
@@ -1011,8 +1011,8 @@ void **doublyLinkedListToArray(DoublyLinkedList *linkedList) {
 
     void **array = (void **) malloc(sizeof(void *) * doublyLinkedListGetLength(linkedList));
     if (array == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
      		return NULL;
         #else
      		fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "doubly linked list data structure");
@@ -1049,8 +1049,8 @@ void **doublyLinkedListToArray(DoublyLinkedList *linkedList) {
 int doublyLinkedListGetLength(DoublyLinkedList *linkedList) {
 
     if (linkedList == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return -1;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "linked list pointer", "doubly linked list data structure");
@@ -1080,8 +1080,8 @@ int doublyLinkedListGetLength(DoublyLinkedList *linkedList) {
 int doublyLinkedListIsEmpty(DoublyLinkedList *linkedList) {
 
     if (linkedList == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return -1;
         #else
      		fprintf(stderr, NULL_POINTER_MESSAGE, "linked list pointer", "doubly linked list data structure");
@@ -1111,8 +1111,8 @@ int doublyLinkedListIsEmpty(DoublyLinkedList *linkedList) {
 void printDoublyLinkedList(DoublyLinkedList *linkedList, void (*printFun) (const void *)) {
 
     if (linkedList == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
      		fprintf(stderr, NULL_POINTER_MESSAGE, "linked list pointer", "doubly linked list data structure");
@@ -1120,8 +1120,8 @@ void printDoublyLinkedList(DoublyLinkedList *linkedList, void (*printFun) (const
      	#endif
 
     } else if (printFun == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return;
         #else
      		fprintf(stderr, INVALID_ARG_MESSAGE, "print function pointer", "doubly linked list data structure");
@@ -1156,8 +1156,8 @@ void printDoublyLinkedList(DoublyLinkedList *linkedList, void (*printFun) (const
 void doublyLinkedListClear(DoublyLinkedList *linkedList) {
 
     if (linkedList == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "linked list pointer", "doubly linked list data structure");
@@ -1199,8 +1199,8 @@ void doublyLinkedListClear(DoublyLinkedList *linkedList) {
 void destroyDoublyLinkedList(DoublyLinkedList *linkedList) {
 
     if (linkedList == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "linked list pointer", "doubly linked list data structure");

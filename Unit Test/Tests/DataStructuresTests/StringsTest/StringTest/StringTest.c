@@ -9,7 +9,7 @@
 void testInvalidStringInitialization(CuTest *cuTest) {
 
     String *string = stringInitialization(0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 }
 
@@ -31,7 +31,7 @@ void testStringAppendChar(CuTest *cuTest) {
     String *string = stringInitialization(1);
 
     stringAppendChar(NULL, '\0');
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stringAppendChar(string, 'c');
     stringAppendChar(string, '-');
@@ -64,10 +64,10 @@ void testStringAddChar(CuTest *cuTest) {
     String *string = stringInitialization(1);
 
     stringAddChar(NULL, 0, '\0');
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stringAddChar(string, 0, '\0');
-    CuAssertIntEquals(cuTest, OUT_OF_RANGE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, OUT_OF_RANGE, ERROR_TEST->errorCode);
 
 
     stringAppendChar(string, 'd');
@@ -91,10 +91,10 @@ void testStringUpdateChar(CuTest *cuTest) {
     String *string = stringInitialization(1);
 
     stringUpdateChar(NULL, 0, '\0');
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stringUpdateChar(string, 0, '\0');
-    CuAssertIntEquals(cuTest, OUT_OF_RANGE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, OUT_OF_RANGE, ERROR_TEST->errorCode);
 
     stringAppendChar(string, 'w');
     stringAppendChar(string, 'o');
@@ -120,10 +120,10 @@ void testStringRemove(CuTest *cuTest) {
     String *string = stringInitialization(1);
 
     stringRemove(NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stringRemove(string, 0);
-    CuAssertIntEquals(cuTest, OUT_OF_RANGE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, OUT_OF_RANGE, ERROR_TEST->errorCode);
 
     stringAppendChar(string, 'w');
     stringAppendChar(string, 'o');
@@ -149,10 +149,10 @@ void testStringAppendC(CuTest *cuTest) {
     String *string = stringInitialization(1);
 
     stringAppendC(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stringAppendC(string, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     stringAppendC(string, "a long sentence");
 
@@ -173,10 +173,10 @@ void testStringAppendS(CuTest *cuTest) {
     strcpy(tempString->string, "a long sentence");
 
     stringAppendS(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stringAppendS(string, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     stringAppendS(string, tempString);
 
@@ -197,10 +197,10 @@ void testStringChangeStringC(CuTest *cuTest) {
     String *string = stringInitialization(1);
 
     stringChangeStringC(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stringChangeStringC(string, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     stringChangeStringC(string, "a long sentence");
 
@@ -221,10 +221,10 @@ void testStringChangeStringS(CuTest *cuTest) {
     stringChangeStringC(tempString, "a long sentence");
 
     stringChangeStringS(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stringChangeStringS(string, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     stringChangeStringS(string, tempString);
 
@@ -245,7 +245,7 @@ void testStringGetIndex(CuTest *cuTest) {
     String *string = stringInitialization(1);
 
     stringGetIndex(NULL, '\0');
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stringChangeStringC(string, "my name is");
 
@@ -270,10 +270,10 @@ void testStringGet(CuTest *cuTest) {
     char tempCharArr[] = "my name is";
 
     stringGet(NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stringGet(string, 0);
-    CuAssertIntEquals(cuTest, OUT_OF_RANGE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, OUT_OF_RANGE, ERROR_TEST->errorCode);
 
     stringChangeStringC(string, tempCharArr);
 
@@ -294,10 +294,10 @@ void testStringSubStringC(CuTest *cuTest) {
     char tempCharArr[] = "i love programming";
 
     stringSubStringC(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stringSubStringC(string, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     stringChangeStringC(string, tempCharArr);
 
@@ -323,10 +323,10 @@ void testStringSubStringS(CuTest *cuTest) {
     stringAppendC(secondString, "i love programming");
 
     stringSubStringS(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stringSubStringS(string, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     stringChangeStringS(string, secondString);
 
@@ -362,7 +362,7 @@ void testStringToCharArr(CuTest *cuTest) {
     String *string = stringInitialization(1);
 
     stringToCharArray(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stringAppendC(string, "to char array");
 
@@ -381,10 +381,10 @@ void testStringToCustomCharArr(CuTest *cuTest) {
     String *string = stringInitialization(1);
 
     stringToCustomCharArray(NULL, 0, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stringToCustomCharArray(string, 0, 0);
-    CuAssertIntEquals(cuTest, OUT_OF_RANGE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, OUT_OF_RANGE, ERROR_TEST->errorCode);
 
     stringAppendC(string, "to char array.");
 
@@ -405,10 +405,10 @@ void testStringEqualsC(CuTest *cuTest) {
     String *string = stringInitialization(1);
 
     stringEqualsC(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stringEqualsC(string, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     stringAppendC(string, "string equals");
 
@@ -431,10 +431,10 @@ void testStringEqualsS(CuTest *cuTest) {
     String *secondString = stringInitialization(10);
 
     stringEqualsS(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stringEqualsS(string, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     stringAppendC(string, "string equals");
 
@@ -465,10 +465,10 @@ void testStringCompareC(CuTest *cuTest) {
     String *string = stringInitialization(1);
 
     stringCompareC(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stringCompareC(string, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     stringAppendC(string, "string compare");
 
@@ -492,10 +492,10 @@ void testStringCompareS(CuTest *cuTest) {
     String *secondString = stringInitialization(10);
 
     stringCompareS(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stringCompareS(string, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     stringAppendC(string, "string compare");
 
@@ -528,7 +528,7 @@ void testStringGetLength(CuTest *cuTest) {
     String *string = stringInitialization(1);
 
     stringGetLength(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 0, stringGetLength(string));
 
@@ -559,10 +559,10 @@ void testStringCustomTrimStart(CuTest *cuTest) {
     String *string = stringInitialization(1);
 
     stringCustomTrimStart(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stringCompareC(string, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     stringAppendC(string, "\n    \t   @@!!!$%string trim  \n    \t   @@!!!$%");
 
@@ -587,10 +587,10 @@ void testStringCustomTrimEnd(CuTest *cuTest) {
     String *string = stringInitialization(1);
 
     stringCustomTrimEnd(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stringCustomTrimEnd(string, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     stringAppendC(string, "\n    \t   @@!!!$%string trim  \n    \t   @@!!!$%");
 
@@ -616,7 +616,7 @@ void testStringTrimStart(CuTest *cuTest) {
     String *string = stringInitialization(1);
 
     stringTrimStart(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stringAppendC(string, "\n    \t   @@!!!$%string trim  \n    \t   @@!!!$%");
 
@@ -634,7 +634,7 @@ void testStringTrimEnd(CuTest *cuTest) {
     String *string = stringInitialization(1);
 
     stringTrimEnd(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stringAppendC(string, "\n    \t   @@!!!$%string trim  \n    \t   @@!!!$% \t \n  \n\n\n\n");
 
@@ -653,7 +653,7 @@ void testStringTrim(CuTest *cuTest) {
     String *string = stringInitialization(1);
 
     stringTrim(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stringAppendC(string, "\n    \t   @@!!!$%string trim  \n    \t");
 
@@ -672,10 +672,10 @@ void testStringCustomTrim(CuTest *cuTest) {
     String *string = stringInitialization(1);
 
     stringCustomTrim(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stringCustomTrim(string, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     stringAppendC(string, "\n    \t   @@!!!$%string trim  \n    \t");
 
@@ -692,7 +692,7 @@ void testStringScanInput(CuTest *cuTest) {
     String *string = stringInitialization(1);
 
     stringScanInput( NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     fprintf(stdout, "Please enter the sentence (my input) to test the scanInput in string data structure: ");
     stringScanInput(string);
@@ -709,7 +709,7 @@ void testPrintString(CuTest *cuTest) {
     String *string = stringInitialization(1);
 
     printString(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stringChangeStringC(string, "i love programming");
     fprintf(stdout, "<<<<<<\n");
@@ -736,10 +736,10 @@ void testStringSplit(CuTest *cuTest) {
     char numberArr[5][6] = {"one", "two", "three", "four", "five"};
 
     stringSplit(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stringSplit(string, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     stringChangeStringC(string, "one\ntwo\tthree four@five");
 
@@ -763,7 +763,7 @@ void testClearString(CuTest *cuTest) {
     String *string = stringInitialization(1);
 
     clearString(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stringChangeStringC(string, "this is my string");
 
@@ -785,7 +785,7 @@ void tesDestroyString(CuTest *cuTest) {
     String *string = stringInitialization(1);
 
     destroyString(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stringChangeStringC(string, "this is my string");
 
@@ -840,7 +840,7 @@ CuSuite *createStringTestsSuite() {
 
 void stringUnitTest() {
 
-    DUMMY_TEST_DATASTRUCTURE =  (TestStruct*) malloc(sizeof(TestStruct));
+    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**String Test**\n");
@@ -852,6 +852,6 @@ void stringUnitTest() {
     CuSuiteDetails(suite, output);
     printf("%s\n", output->buffer);
 
-    free(DUMMY_TEST_DATASTRUCTURE);
+    free(ERROR_TEST);
 
 }

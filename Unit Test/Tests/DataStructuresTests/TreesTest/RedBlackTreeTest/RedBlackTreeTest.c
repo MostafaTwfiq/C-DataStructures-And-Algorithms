@@ -44,10 +44,10 @@ int compareIntPointersRBTT(const void *a, const void *b) {
 void testInvalidRBTreeInitialization(CuTest *cuTest) {
 
     redBlackTreeInitialization(NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     redBlackTreeInitialization(free, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 }
 
@@ -130,10 +130,10 @@ void testRBTreeInsert(CuTest *cuTest) {
     RBTree *tree = redBlackTreeInitialization(free, compareIntPointersRBTT);
 
     rBTreeInsert(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     rBTreeInsert(tree, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int valuesArr[] = {10, 20, 8, 7, 9, 15, 21, 22, 25, 4, 1, 2, 100};
 
@@ -201,10 +201,10 @@ void testRBTreeInsertAll(CuTest *cuTest) {
     RBTree *tree = redBlackTreeInitialization(free, compareIntPointersRBTT);
 
     rBInsertAll(NULL, NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     rBInsertAll(tree, NULL, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int valuesArr[] = {10, 20, 8, 7, 9, 15, 21, 22, 25, 4, 1, 2, 100};
     int **tempArr = (int **) malloc(sizeof(int *) * 13);
@@ -233,10 +233,10 @@ void testRBTreeContains(CuTest *cuTest) {
     RBTree *tree = redBlackTreeInitialization(free, compareIntPointersRBTT);
 
     rBTreeContains(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     rBTreeContains(tree, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int valuesArr[] = {10, 20, 8, 7, 9, 15, 21, 22, 25, 4, 1, 2, 100};
 
@@ -263,10 +263,10 @@ void testRBTreeDelete(CuTest *cuTest) {
     RBTree *tree = redBlackTreeInitialization(free, compareIntPointersRBTT);
 
     rBTreeDelete(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     rBTreeDelete(tree, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int valuesArr[] = {10, 20, 8, 7, 9, 15, 21, 22, 25, 4, 1, 2, 100};
 
@@ -292,10 +292,10 @@ void testRBTreeDeleteWtoFr(CuTest *cuTest) {
     RBTree *tree = redBlackTreeInitialization(free, compareIntPointersRBTT);
 
     rBTreeDeleteWtoFr(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     rBTreeDeleteWtoFr(tree, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int valuesArr[] = {10, 20, 8, 7, 9, 15, 21, 22, 25, 4, 1, 2, 100};
 
@@ -329,10 +329,10 @@ void testRBTreeGet(CuTest *cuTest) {
     RBTree *tree = redBlackTreeInitialization(free, compareIntPointersRBTT);
 
     rbTreeGet(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     rbTreeGet(tree, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int valuesArr[] = {10, 20, 8, 7, 9, 15, 21, 22, 25, 4, 1, 2, 100};
 
@@ -359,7 +359,7 @@ void testRBTreeToArray(CuTest *cuTest) {
     RBTree *tree = redBlackTreeInitialization(free, compareIntPointersRBTT);
 
     rBTreeToArray(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     int valuesArr[] = {10, 20, 8, 7, 9, 15, 21, 22, 25, 4, 1, 2, 100};
 
@@ -389,7 +389,7 @@ void testRBTreeGetSize(CuTest *cuTest) {
     RBTree *tree = redBlackTreeInitialization(free, compareIntPointersRBTT);
 
     rBTreeGetSize(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     int valuesArr[] = {10, 20, 8, 7, 9, 15, 21, 22, 25, 4, 1, 2, 100};
@@ -414,7 +414,7 @@ void testClearRBTree(CuTest *cuTest) {
     RBTree *tree = redBlackTreeInitialization(free, compareIntPointersRBTT);
 
     clearRBTree(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     int valuesArr[] = {10, 20, 8, 7, 9, 15, 21, 22, 25, 4, 1, 2, 100};
@@ -444,7 +444,7 @@ void testDestroyRBTree(CuTest *cuTest) {
     RBTree *tree = redBlackTreeInitialization(free, compareIntPointersRBTT);
 
     destroyRBTree(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     int valuesArr[] = {10, 20, 8, 7, 9, 15, 21, 22, 25, 4, 1, 2, 100};
@@ -475,10 +475,10 @@ void testRBTreePreOrderTraversal(CuTest *cuTest) {
     RBTree *tree = redBlackTreeInitialization(free, compareIntPointersRBTT);
 
     rBPreOrderTraversal(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     rBPreOrderTraversal(tree, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int valuesArr[] = {10, 20, 8, 7, 9, 15, 21, 22, 25, 4, 1, 2, 100};
 
@@ -511,10 +511,10 @@ void testRBTreeInOrderTraversal(CuTest *cuTest) {
     RBTree *tree = redBlackTreeInitialization(free, compareIntPointersRBTT);
 
     rBInOrderTraversal(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     rBInOrderTraversal(tree, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int valuesArr[] = {10, 20, 8, 7, 9, 15, 21, 22, 25, 4, 1, 2, 100};
 
@@ -545,10 +545,10 @@ void testRBTreePostOrderTraversal(CuTest *cuTest) {
     RBTree *tree = redBlackTreeInitialization(free, compareIntPointersRBTT);
 
     rBPostOrderTraversal(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     rBPostOrderTraversal(tree, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int valuesArr[] = {10, 20, 8, 7, 9, 15, 21, 22, 25, 4, 1, 2, 100};
 
@@ -580,10 +580,10 @@ void testRBTreePrint(CuTest *cuTest) {
     RBTree *tree = redBlackTreeInitialization(free, compareIntPointersRBTT);
 
     rBTreePrint(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     rBTreePrint(tree, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int valuesArr[] = {10, 20, 8, 7, 9, 15, 21, 22, 25, 4, 1, 2, 100};
 
@@ -638,7 +638,7 @@ CuSuite *createRedBlackTreeTestsSuite() {
 
 void redBlackTreeUnitTest() {
 
-    DUMMY_TEST_DATASTRUCTURE =  (TestStruct*) malloc(sizeof(TestStruct));
+    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Red Black Tree Test**\n");
@@ -650,6 +650,6 @@ void redBlackTreeUnitTest() {
     CuSuiteDetails(suite, output);
     printf("%s\n", output->buffer);
 
-    free(DUMMY_TEST_DATASTRUCTURE);
+    free(ERROR_TEST);
 
 }

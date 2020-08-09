@@ -2,6 +2,8 @@
 #define C_DATASTRUCTURES_REDBLACKTREETEST_H
 
 
+#include "../../../../ErrorsTestStruct.h"
+
 void redBlackTreeUnitTest();
 
 

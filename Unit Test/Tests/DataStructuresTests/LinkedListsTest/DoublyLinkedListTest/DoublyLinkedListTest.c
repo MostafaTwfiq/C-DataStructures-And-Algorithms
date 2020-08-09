@@ -86,7 +86,7 @@ void doublyLinkedListAddFrom1To10Values(DoublyLinkedList *list) {
 void testInvalidDoublyLinkedListInitialization(CuTest *cuTest) {
 
     DoublyLinkedList *list = doublyLinkedListInitialization(NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 }
 
@@ -105,10 +105,10 @@ void testDoublyLinkedListAddFirst(CuTest *cuTest) {
     DoublyLinkedList *list = doublyLinkedListInitialization(free, compareIntPointersDLLT);
 
     doublyLinkedListAddFirst(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     doublyLinkedListAddFirst(list, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     doublyLinkedListAddFirst(list, generateIntPointerDLLT(10));
     doublyLinkedListAddFirst(list, generateIntPointerDLLT(20));
@@ -127,10 +127,10 @@ void testDoublyLinkedListAddLast(CuTest *cuTest) {
     DoublyLinkedList *list = doublyLinkedListInitialization(free, compareIntPointersDLLT);
 
     doublyLinkedListAddLast(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     doublyLinkedListAddLast(list, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     doublyLinkedListAddLast(list, generateIntPointerDLLT(10));
     doublyLinkedListAddLast(list, generateIntPointerDLLT(20));
@@ -150,14 +150,14 @@ void testDoublyLinkedListAddAtIndex(CuTest *cuTest) {
     DoublyLinkedList *list = doublyLinkedListInitialization(free, compareIntPointersDLLT);
 
     doublyLinkedListAddAtIndex(NULL, 0, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     doublyLinkedListAddAtIndex(list, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int tempValue = 10;
     doublyLinkedListAddAtIndex(list, 0, &tempValue);
-    CuAssertIntEquals(cuTest, OUT_OF_RANGE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, OUT_OF_RANGE, ERROR_TEST->errorCode);
 
     doublyLinkedListAddLast(list, generateIntPointerDLLT(10));
     doublyLinkedListAddLast(list, generateIntPointerDLLT(30));
@@ -180,10 +180,10 @@ void testDoublyLinkedListAddAll(CuTest *cuTest) {
     DoublyLinkedList *list = doublyLinkedListInitialization(free, compareIntPointersDLLT);
 
     doublyLinkedListAddAll(NULL, NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     doublyLinkedListAddAll(list, NULL, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int **arr = (int **) malloc(sizeof(int *) * 10);
     for (int i = 0; i < 10; i++) {
@@ -208,10 +208,10 @@ void testDoublyLinkedListDeleteFirst(CuTest *cuTest) {
     DoublyLinkedList *list = doublyLinkedListInitialization(free, compareIntPointersDLLT);
 
     doublyLinkedListDeleteFirst(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     doublyLinkedListDeleteFirst(list);
-    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, ERROR_TEST->errorCode);
 
     doublyLinkedListAddFrom1To10Values(list);
 
@@ -235,10 +235,10 @@ void testDoublyLinkedListDeleteFirstWtoFr(CuTest *cuTest) {
     DoublyLinkedList *list = doublyLinkedListInitialization(free, compareIntPointersDLLT);
 
     doublyLinkedListDeleteFirstWtoFr(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     doublyLinkedListDeleteFirstWtoFr(list);
-    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, ERROR_TEST->errorCode);
 
     doublyLinkedListAddFrom1To10Values(list);
 
@@ -272,10 +272,10 @@ void testDoublyLinkedListDeleteLast(CuTest *cuTest) {
     DoublyLinkedList *list = doublyLinkedListInitialization(free, compareIntPointersDLLT);
 
     doublyLinkedListDeleteLast(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     doublyLinkedListDeleteLast(list);
-    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, ERROR_TEST->errorCode);
 
     doublyLinkedListAddFrom1To10Values(list);
 
@@ -299,10 +299,10 @@ void testDoublyLinkedListDeleteLastWtoFr(CuTest *cuTest) {
     DoublyLinkedList *list = doublyLinkedListInitialization(free, compareIntPointersDLLT);
 
     doublyLinkedListDeleteLastWtoFr(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     doublyLinkedListDeleteLastWtoFr(list);
-    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, ERROR_TEST->errorCode);
 
     doublyLinkedListAddFrom1To10Values(list);
 
@@ -336,16 +336,16 @@ void testDoublyLinkedListDeleteAtIndex(CuTest *cuTest) {
     DoublyLinkedList *list = doublyLinkedListInitialization(free, compareIntPointersDLLT);
 
     doublyLinkedListDeleteAtIndex(NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     doublyLinkedListDeleteAtIndex(list, 0);
-    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, ERROR_TEST->errorCode);
 
 
     doublyLinkedListAddFrom1To10Values(list);
 
     doublyLinkedListDeleteAtIndex(list, 11);
-    CuAssertIntEquals(cuTest, OUT_OF_RANGE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, OUT_OF_RANGE, ERROR_TEST->errorCode);
 
     doublyLinkedListDeleteAtIndex(list, 2);
     doublyLinkedListDeleteAtIndex(list, 1);
@@ -367,15 +367,15 @@ void testDoublyLinkedListDeleteAtIndexWtoFr(CuTest *cuTest) {
     DoublyLinkedList *list = doublyLinkedListInitialization(free, compareIntPointersDLLT);
 
     doublyLinkedListDeleteAtIndexWtoFr(NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     doublyLinkedListDeleteAtIndexWtoFr(list, 0);
-    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, ERROR_TEST->errorCode);
 
     doublyLinkedListAddFrom1To10Values(list);
 
     doublyLinkedListDeleteAtIndexWtoFr(list, 11);
-    CuAssertIntEquals(cuTest, OUT_OF_RANGE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, OUT_OF_RANGE, ERROR_TEST->errorCode);
 
 
     int *currentItem;
@@ -409,10 +409,10 @@ void testDoublyLinkedListContains(CuTest *cuTest) {
     DoublyLinkedList *list = doublyLinkedListInitialization(free, compareIntPointersDLLT);
 
     doublyLinkedListContains(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     doublyLinkedListContains(list, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     doublyLinkedListAddFrom1To10Values(list);
@@ -438,10 +438,10 @@ void testDoublyLinkedListGetIndex(CuTest *cuTest) {
     DoublyLinkedList *list = doublyLinkedListInitialization(free, compareIntPointersDLLT);
 
     doublyLinkedListGetIndex(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     doublyLinkedListGetIndex(list, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     doublyLinkedListAddFrom1To10Values(list);
@@ -468,10 +468,10 @@ void testDoublyLinkedListGetItem(CuTest *cuTest) {
     DoublyLinkedList *list = doublyLinkedListInitialization(free, compareIntPointersDLLT);
 
     doublyLinkedListGetItem(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     doublyLinkedListGetItem(list, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     doublyLinkedListAddFrom1To10Values(list);
@@ -499,10 +499,10 @@ void testDoublyLinkedListGetFirst(CuTest *cuTest) {
     DoublyLinkedList *list = doublyLinkedListInitialization(free, compareIntPointersDLLT);
 
     doublyLinkedListGetFirst(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     doublyLinkedListGetFirst(list);
-    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, ERROR_TEST->errorCode);
 
     doublyLinkedListAddFrom1To10Values(list);
 
@@ -520,10 +520,10 @@ void testDoublyLinkedListGetLast(CuTest *cuTest) {
     DoublyLinkedList *list = doublyLinkedListInitialization(free, compareIntPointersDLLT);
 
     doublyLinkedListGetLast(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     doublyLinkedListGetLast(list);
-    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, ERROR_TEST->errorCode);
 
     doublyLinkedListAddFrom1To10Values(list);
 
@@ -542,16 +542,16 @@ void testDoublyLinkedListGet(CuTest *cuTest) {
     DoublyLinkedList *list = doublyLinkedListInitialization(free, compareIntPointersDLLT);
 
     doublyLinkedListGet(NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     doublyLinkedListGet(list, 0);
-    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, ERROR_TEST->errorCode);
 
 
     doublyLinkedListAddFrom1To10Values(list);
 
     doublyLinkedListGet(list, 11);
-    CuAssertIntEquals(cuTest, OUT_OF_RANGE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, OUT_OF_RANGE, ERROR_TEST->errorCode);
 
     for (int i = 0; i < list->length; i++)
         CuAssertIntEquals(cuTest, i + 1, *(int *) doublyLinkedListGet(list, i));
@@ -568,7 +568,7 @@ void testDoublyLinkedListGetLength(CuTest *cuTest) {
     DoublyLinkedList *list = doublyLinkedListInitialization(free, compareIntPointersDLLT);
 
     doublyLinkedListGetLength(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 0, doublyLinkedListGetLength(list));
 
@@ -594,7 +594,7 @@ void testDoublyLinkedListToArray(CuTest *cuTest) {
     DoublyLinkedList *list = doublyLinkedListInitialization(free, compareIntPointersDLLT);
 
     doublyLinkedListToArray(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     doublyLinkedListAddFrom1To10Values(list);
 
@@ -625,10 +625,10 @@ void testPrintDoublyLinkedList(CuTest *cuTest) {
     printingDoublyLinkedList = doublyLinkedListInitialization(free, compareIntPointersDLLT);
 
     printDoublyLinkedList(NULL, printDoublyLinkedListFunLLT);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     printDoublyLinkedList(list, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     doublyLinkedListAddFrom1To10Values(list);
 
@@ -650,7 +650,7 @@ void testDoublyLinkedListIsEmpty(CuTest *cuTest) {
     DoublyLinkedList *list = doublyLinkedListInitialization(free, compareIntPointersDLLT);
 
     doublyLinkedListIsEmpty(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 1, doublyLinkedListIsEmpty(list));
 
@@ -671,7 +671,7 @@ void testClearDoublyLinkedList(CuTest *cuTest) {
     DoublyLinkedList *list = doublyLinkedListInitialization(free, compareIntPointersDLLT);
 
     doublyLinkedListClear(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 0, doublyLinkedListGetLength(list));
 
@@ -696,7 +696,7 @@ void testDestroyDoublyLinkedList(CuTest *cuTest) {
     DoublyLinkedList *list = doublyLinkedListInitialization(free, compareIntPointersDLLT);
 
     destroyDoublyLinkedList(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     destroyDoublyLinkedList(list);
 
@@ -876,7 +876,7 @@ CuSuite *createDoublyLinkedListTestsSuite() {
 
 void doublyLinkedListUnitTest() {
 
-    DUMMY_TEST_DATASTRUCTURE =  (TestStruct*) malloc(sizeof(TestStruct));
+    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Doubly Linked List Test**\n");
@@ -888,6 +888,6 @@ void doublyLinkedListUnitTest() {
     CuSuiteDetails(suite, output);
     printf("%s\n", output->buffer);
 
-    free(DUMMY_TEST_DATASTRUCTURE);
+    free(ERROR_TEST);
 
 }

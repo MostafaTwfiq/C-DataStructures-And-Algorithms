@@ -29,7 +29,7 @@ void createFileToBeTested() {
 void testInvalidTextFileLoaderInitialization(CuTest *cuTest) {
 
     txtFileLoaderInitialization(NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 }
 
@@ -50,10 +50,10 @@ void testTxtLoaderWriteC(CuTest *cuTest) {
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
 
     txtLoaderWriteC(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     txtLoaderWriteC(txtFileLoader, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     char *dataToWrite = "i love programming\nso much.";
     txtLoaderWriteC(txtFileLoader, dataToWrite);
@@ -83,10 +83,10 @@ void testTxtLoaderWriteS(CuTest *cuTest) {
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
 
     txtLoaderWriteS(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     txtLoaderWriteS(txtFileLoader, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     char *dataToWrite = "c data structure and algorithms";
     String *stringToWrite = stringInitialization(10);
@@ -120,7 +120,7 @@ void testTxtLoaderReadFileS(CuTest *cuTest) {
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
 
     txtLoaderReadFileS(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     char *data = "one\ntwo\nthree";
     txtLoaderWriteC(txtFileLoader, data);
@@ -141,7 +141,7 @@ void testTxtLoaderReadFileC(CuTest *cuTest) {
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
 
     txtLoaderReadFileC(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     char *data = "four\nfive\nsix";
     txtLoaderWriteC(txtFileLoader, data);
@@ -163,7 +163,7 @@ void testTxtLoaderReadFileLines(CuTest *cuTest) {
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
 
     txtLoaderReadFileLines(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     char *data = "c\ndata\nstructure";
     txtLoaderWriteC(txtFileLoader, data);
@@ -188,10 +188,10 @@ void testTxtLoaderReadFileWthDelimiter(CuTest *cuTest) {
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
 
     txtLoaderReadFileWthDelimiter(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     txtLoaderReadFileWthDelimiter(txtFileLoader, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     char *data = "c\ndata structure\tand,algorithms";
     txtLoaderWriteC(txtFileLoader, data);
@@ -217,7 +217,7 @@ void testTxtLoaderCountLines(CuTest *cuTest) {
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
 
     txtLoaderCountLines(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     txtLoaderWriteC(txtFileLoader, "c\ndata\nstructure");
     int linesNum = txtLoaderCountLines(txtFileLoader);
@@ -243,7 +243,7 @@ void testTxtLoaderReadLineS(CuTest *cuTest) {
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
 
     txtLoaderReadLineS(NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     txtLoaderWriteC(txtFileLoader, "");
     CuAssertPtrEquals(cuTest, NULL, txtLoaderReadLineS(txtFileLoader, 1));
@@ -269,7 +269,7 @@ void testTxtLoaderReadLineC(CuTest *cuTest) {
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
 
     txtLoaderReadLineC(NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     txtLoaderWriteC(txtFileLoader, "");
     CuAssertPtrEquals(cuTest, NULL, txtLoaderReadLineC(txtFileLoader, 1));
@@ -297,10 +297,10 @@ void testTxtLoaderAppendC(CuTest *cuTest) {
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
 
     txtLoaderAppendC(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     txtLoaderAppendC(txtFileLoader, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     char lines[6][6] = {"one", "two", "three", "four", "five", "six"};
     txtLoaderWriteC(txtFileLoader, "one\ntwo\nthree\nfour\n");
@@ -327,10 +327,10 @@ void testTxtLoaderAppendS(CuTest *cuTest) {
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
 
     txtLoaderAppendS(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     txtLoaderAppendS(txtFileLoader, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     char lines[6][6] = {"one", "two", "three", "four", "five", "six"};
     txtLoaderWriteC(txtFileLoader, "one\ntwo\nthree\nfour\n");
@@ -365,10 +365,10 @@ void testTxtLoaderAppendAllC(CuTest *cuTest) {
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
 
     txtLoaderAppendAllC(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     txtLoaderAppendAllC(txtFileLoader, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     char lines[7][6] = {"one", "two", "three", "four", "five", "six", "seven"};
     txtLoaderWriteC(txtFileLoader, "one\ntwo\nthree\nfour\n");
@@ -408,10 +408,10 @@ void testTxtLoaderAppendAllS(CuTest *cuTest) {
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
 
     txtLoaderAppendAllS(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     txtLoaderAppendAllS(txtFileLoader, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     char lines[7][6] = {"one", "two", "three", "four", "five", "six", "seven"};
     txtLoaderWriteC(txtFileLoader, "one\ntwo\nthree\nfour\n");
@@ -450,14 +450,14 @@ void testTxtLoaderAppendToLineC(CuTest *cuTest) {
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
 
     txtLoaderAppendToLineC(NULL, NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     txtLoaderAppendToLineC(txtFileLoader, NULL, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     txtLoaderWriteC(txtFileLoader, "");
     txtLoaderAppendToLineC(txtFileLoader, "", 1);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     char lines[4][12] = {"oneone", "twotwo", "threethree", "fourfour"};
     txtLoaderWriteC(txtFileLoader, "one\ntwo\nthree\nfour\n");
@@ -487,14 +487,14 @@ void testTxtLoaderAppendToLineS(CuTest *cuTest) {
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
 
     txtLoaderAppendToLineS(NULL, NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     txtLoaderAppendToLineS(txtFileLoader, NULL, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     txtLoaderWriteC(txtFileLoader, "");
     txtLoaderAppendToLineS(txtFileLoader, "", 1);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     char lines[4][12] = {"oneone", "twotwo", "threethree", "fourfour"};
     txtLoaderWriteC(txtFileLoader, "one\ntwo\nthree\nfour\n");
@@ -526,14 +526,14 @@ void testTxtLoaderAddLineC(CuTest *cuTest) {
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
 
     txtLoaderAddLineC(NULL, NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     txtLoaderAddLineC(txtFileLoader, NULL, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     txtLoaderWriteC(txtFileLoader, "");
     txtLoaderAddLineC(txtFileLoader, "", 1);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     char lines[4][12] = {"one", "two", "three", "four"};
     txtLoaderWriteC(txtFileLoader, "one\nfour\n");
@@ -561,16 +561,16 @@ void testTxtLoaderAddLineS(CuTest *cuTest) {
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
 
     txtLoaderAddLineS(NULL, NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     txtLoaderAddLineS(txtFileLoader, NULL, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     txtLoaderWriteC(txtFileLoader, "");
     String *s = stringInitialization(1);
     txtLoaderAddLineS(txtFileLoader, s, 1);
     destroyString(s);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     char lines[4][12] = {"one", "two", "three", "four"};
     txtLoaderWriteC(txtFileLoader, "one\nfour\n");
@@ -607,17 +607,17 @@ void testTxtLoaderAddAllC(CuTest *cuTest) {
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
 
     txtLoaderAddAllC(NULL, NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     txtLoaderAddAllC(txtFileLoader, NULL, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     txtLoaderWriteC(txtFileLoader, "");
 
     Vector *v = vectorInitialization(1, free, NULL);
     txtLoaderAddAllC(txtFileLoader, v, 1);
     destroyVector(v);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     char lines[5][12] = {"one", "two", "three", "four", "five"};
     txtLoaderWriteC(txtFileLoader, "one\nfive\n");
@@ -659,17 +659,17 @@ void testTxtLoaderAddAllS(CuTest *cuTest) {
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
 
     txtLoaderAddAllS(NULL, NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     txtLoaderAddAllS(txtFileLoader, NULL, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     txtLoaderWriteC(txtFileLoader, "");
 
     Vector *v = vectorInitialization(1, free, NULL);
     txtLoaderAddAllS(txtFileLoader, v, 1);
     destroyVector(v);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     char lines[5][12] = {"one", "two", "three", "four", "five"};
     txtLoaderWriteC(txtFileLoader, "one\nfive\n");
@@ -715,15 +715,15 @@ void testTxtLoaderUpdateLineC(CuTest *cuTest) {
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
 
     txtLoaderUpdateLineC(NULL, NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     txtLoaderUpdateLineC(txtFileLoader, NULL, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     txtLoaderWriteC(txtFileLoader, "");
 
     txtLoaderUpdateLineC(txtFileLoader, "", 1);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     char lines[5][12] = {"one", "two", "three", "four", "five"};
     txtLoaderWriteC(txtFileLoader, "five\nfour\nthree\ntwo\none");
@@ -752,17 +752,17 @@ void testTxtLoaderUpdateLineS(CuTest *cuTest) {
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
 
     txtLoaderUpdateLineS(NULL, NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     txtLoaderUpdateLineS(txtFileLoader, NULL, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     txtLoaderWriteC(txtFileLoader, "");
 
     String *s = stringInitialization(1);
     txtLoaderUpdateLineS(txtFileLoader, s, 1);
     destroyString(s);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     char lines[5][12] = {"one", "two", "three", "four", "five"};
     txtLoaderWriteC(txtFileLoader, "five\nfour\nthree\ntwo\none");
@@ -794,12 +794,12 @@ void testTxtLoaderRemoveLine(CuTest *cuTest) {
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
 
     txtLoaderRemoveLine(NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     txtLoaderWriteC(txtFileLoader, "");
     txtLoaderRemoveLine(txtFileLoader, 1);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     char lines[2][6] = {"three", "five"};
     txtLoaderWriteC(txtFileLoader, "one\ntwo\nthree\nfour\nfive");
@@ -847,7 +847,7 @@ void testTxtLoaderClearFile(CuTest *cuTest) {
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
 
     txtLoaderClearFile(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     txtLoaderClearFile(txtFileLoader);
@@ -919,7 +919,7 @@ CuSuite *createTxtFileLoaderTestsSuite() {
 
 void txtFileLoaderAlgUnitTest() {
 
-    DUMMY_TEST_DATASTRUCTURE =  (TestStruct*) malloc(sizeof(TestStruct));
+    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Text File Loader Test**\n");
@@ -935,6 +935,6 @@ void txtFileLoaderAlgUnitTest() {
     CuSuiteDetails(suite, output);
     printf("%s\n", output->buffer);
 
-    free(DUMMY_TEST_DATASTRUCTURE);
+    free(ERROR_TEST);
 
 }

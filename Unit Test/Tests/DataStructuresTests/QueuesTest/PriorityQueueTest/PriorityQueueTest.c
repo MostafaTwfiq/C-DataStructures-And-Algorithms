@@ -63,7 +63,7 @@ char *generateCharPointerPQT(char *ch) {
 void testInvalidPriorityQueueInitialization(CuTest *cuTest) {
 
     PriorityQueue *pQueue = priorityQueueInitialization(NULL, compareIntPointersPQT);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 }
 
@@ -86,10 +86,10 @@ void testPriorityQueueEnqueue(CuTest *cuTest) {
     PriorityQueue *pQueue = priorityQueueInitialization(free, compareIntPointersPQT);
 
     pQueueEnqueue(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     pQueueEnqueue(pQueue, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     pQueueEnqueue(pQueue, generateIntPointerPQT(3));
@@ -114,10 +114,10 @@ void testPriorityQueueEnqueueAll(CuTest *cuTest) {
     PriorityQueue *pQueue = priorityQueueInitialization(free, compareIntPointersPQT);
 
     pQueueEnqueueAll(NULL, NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     pQueueEnqueueAll(pQueue, NULL, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     int **arr = (int **) malloc(sizeof(int *) * 5);
@@ -147,10 +147,10 @@ void testPriorityQueueDepQueue(CuTest *cuTest) {
     PriorityQueue *pQueue = priorityQueueInitialization(free, compareIntPointersPQT);
 
     pQueueDequeue(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     pQueueDequeue(pQueue);
-    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, ERROR_TEST->errorCode);
 
 
     pQueueEnqueue(pQueue, generateIntPointerPQT(2));
@@ -181,10 +181,10 @@ void testPriorityQueuePeek(CuTest *cuTest) {
     PriorityQueue *pQueue = priorityQueueInitialization(free, compareIntPointersPQT);
 
     pQueuePeek(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     pQueuePeek(pQueue);
-    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, ERROR_TEST->errorCode);
 
 
     pQueueEnqueue(pQueue, generateIntPointerPQT(1));
@@ -213,7 +213,7 @@ void testPriorityQueueGetLength(CuTest *cuTest) {
     PriorityQueue *pQueue = priorityQueueInitialization(free, compareIntPointersPQT);
 
     pQueueGetLength(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     CuAssertIntEquals(cuTest, 0, pQueueGetLength(pQueue));
@@ -249,7 +249,7 @@ void testPriorityQueueIsEmpty(CuTest *cuTest) {
     PriorityQueue *pQueue = priorityQueueInitialization(free, compareIntPointersPQT);
 
     pQueueIsEmpty(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     CuAssertIntEquals(cuTest, 1, pQueueIsEmpty(pQueue));
@@ -274,7 +274,7 @@ void testPriorityQueueToArray(CuTest *cuTest) {
     PriorityQueue *pQueue = priorityQueueInitialization(free, compareIntPointersPQT);
 
     pQueueToArray(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     pQueueEnqueue(pQueue, generateIntPointerPQT(1));
@@ -303,7 +303,7 @@ void testClearPriorityQueue(CuTest *cuTest) {
     PriorityQueue *pQueue = priorityQueueInitialization(free, compareIntPointersPQT);
 
     clearPQueue(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     CuAssertIntEquals(cuTest, 0, pQueueGetLength(pQueue));
@@ -333,7 +333,7 @@ void testDestroyPriorityQueue(CuTest *cuTest) {
     PriorityQueue *pQueue = priorityQueueInitialization(free, compareIntPointersPQT);
 
     destroyPQueue(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     pQueueEnqueue(pQueue, generateIntPointerPQT(1));
     pQueueEnqueue(pQueue, generateIntPointerPQT(2));
@@ -476,7 +476,7 @@ CuSuite *createPriorityQueueTestsSuite() {
 
 void priorityQueueUnitTest() {
 
-    DUMMY_TEST_DATASTRUCTURE =  (TestStruct*) malloc(sizeof(TestStruct));
+    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Priority pQueue Test**\n");
@@ -488,6 +488,6 @@ void priorityQueueUnitTest() {
     CuSuiteDetails(suite, output);
     printf("%s\n", output->buffer);
 
-    free(DUMMY_TEST_DATASTRUCTURE);
+    free(ERROR_TEST);
 
 }

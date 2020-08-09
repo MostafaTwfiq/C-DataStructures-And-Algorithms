@@ -67,7 +67,7 @@ void testInvalidDequeInitialization(CuTest *cuTest) {
 
     Deque *deque = dequeInitialization(NULL);
 
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 }
 
@@ -90,10 +90,10 @@ void testDequeInsertFront(CuTest *cuTest) {
     Deque *deque = dequeInitialization(free);
 
     dequeInsertFront(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     dequeInsertFront(deque, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     dequeInsertFront(deque, generateIntPointerDT(4));
     dequeInsertFront(deque, generateIntPointerDT(3));
@@ -117,10 +117,10 @@ void testDequeInsertRear(CuTest *cuTest) {
     Deque *deque = dequeInitialization(free);
 
     dequeInsertRear(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     dequeInsertRear(deque, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     dequeInsertRear(deque, generateIntPointerDT(1));
     dequeInsertRear(deque, generateIntPointerDT(2));
@@ -144,7 +144,7 @@ void testDequeGetFront(CuTest *cuTest) {
     Deque *deque = dequeInitialization(free);
 
     dequeGetFront(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     dequeInsertFront(deque, generateIntPointerDT(2));
     dequeInsertFront(deque, generateIntPointerDT(1));
@@ -173,7 +173,7 @@ void testDequeGetRear(CuTest *cuTest) {
     Deque *deque = dequeInitialization(free);
 
     dequeGetRear(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     dequeInsertFront(deque, generateIntPointerDT(2));
     dequeInsertFront(deque, generateIntPointerDT(1));
@@ -204,7 +204,7 @@ void testDequePeekFront(CuTest *cuTest) {
     Deque *deque = dequeInitialization(free);
 
     dequePeekFront(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     dequeInsertFront(deque, generateIntPointerDT(2));
     dequeInsertFront(deque, generateIntPointerDT(1));
@@ -233,7 +233,7 @@ void testDequePeekRear(CuTest *cuTest) {
     Deque *deque = dequeInitialization(free);
 
     dequePeekRear(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     dequeInsertFront(deque, generateIntPointerDT(2));
     dequeInsertFront(deque, generateIntPointerDT(1));
@@ -262,7 +262,7 @@ void testDequeToArray(CuTest *cuTest) {
     Deque *deque = dequeInitialization(free);
 
     dequeToArray(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     dequeInsertFront(deque, generateIntPointerDT(2));
     dequeInsertFront(deque, generateIntPointerDT(1));
@@ -290,7 +290,7 @@ void testDequeGetLength(CuTest *cuTest) {
     Deque *deque = dequeInitialization(free);
 
     dequeGetLength(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 0, dequeGetLength(deque));
 
@@ -321,7 +321,7 @@ void testDequeIsEmpty(CuTest *cuTest) {
     Deque *deque = dequeInitialization(free);
 
     dequeIsEmpty(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 1, dequeIsEmpty(deque));
 
@@ -351,7 +351,7 @@ void testClearDeque(CuTest *cuTest) {
     Deque *deque = dequeInitialization(free);
 
     clearDeque(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 1, dequeIsEmpty(deque));
 
@@ -377,7 +377,7 @@ void testDestroyDeque(CuTest *cuTest) {
     Deque *deque = dequeInitialization(free);
 
     destroyDeque(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     dequeInsertFront(deque, generateIntPointerDT(2));
     dequeInsertFront(deque, generateIntPointerDT(1));
@@ -533,7 +533,7 @@ CuSuite *createDequeTestsSuite() {
 
 void dequeUnitTest() {
 
-    DUMMY_TEST_DATASTRUCTURE =  (TestStruct*) malloc(sizeof(TestStruct));
+    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Deque Test**\n");
@@ -545,7 +545,7 @@ void dequeUnitTest() {
     CuSuiteDetails(suite, output);
     printf("%s\n", output->buffer);
 
-    free(DUMMY_TEST_DATASTRUCTURE);
+    free(ERROR_TEST);
 
 }
 

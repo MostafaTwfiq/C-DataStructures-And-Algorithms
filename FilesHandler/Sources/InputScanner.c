@@ -85,8 +85,8 @@ int scanInt() {
     stringScanInput(string);
 
     if (!isInteger(string->string)) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = SOMETHING_WENT_WRONG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = SOMETHING_WENT_WRONG;
             return -1;
         #else
             fprintf(stderr, SOMETHING_WENT_WRONG_MESSAGE, "load the int", "scan int function");
@@ -120,8 +120,8 @@ double scanDouble() {
     stringScanInput(string);
 
     if (!isFloatingPointNum(string->string)) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = SOMETHING_WENT_WRONG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = SOMETHING_WENT_WRONG;
             return -1;
         #else
             fprintf(stderr, SOMETHING_WENT_WRONG_MESSAGE, "load the double", "scan double function");
@@ -154,8 +154,8 @@ float scanFloat() {
     stringScanInput(string);
 
     if (!isFloatingPointNum(string->string)) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = SOMETHING_WENT_WRONG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = SOMETHING_WENT_WRONG;
             return -1;
         #else
             fprintf(stderr, SOMETHING_WENT_WRONG_MESSAGE, "load the float", "scan float function");
@@ -188,8 +188,8 @@ long scanLong() {
     stringScanInput(string);
 
     if (!isInteger(string->string)) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = SOMETHING_WENT_WRONG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = SOMETHING_WENT_WRONG;
             return -1;
         #else
             fprintf(stderr, SOMETHING_WENT_WRONG_MESSAGE, "load the long", "scan long function");
@@ -222,8 +222,8 @@ long long scanLongLong() {
     stringScanInput(string);
 
     if (!isInteger(string->string)) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = SOMETHING_WENT_WRONG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = SOMETHING_WENT_WRONG;
             return -1;
         #else
             fprintf(stderr, SOMETHING_WENT_WRONG_MESSAGE, "load the long long", "scan long long function");
@@ -257,8 +257,8 @@ short scanShort() {
     stringScanInput(string);
 
     if (!isInteger(string->string)) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = SOMETHING_WENT_WRONG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = SOMETHING_WENT_WRONG;
             return -1;
         #else
             fprintf(stderr, SOMETHING_WENT_WRONG_MESSAGE, "load the short", "scan short function");

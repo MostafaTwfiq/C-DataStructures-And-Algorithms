@@ -62,7 +62,7 @@ char *generateCharPointerDLST(char *ch) {
 
 void testInvalidDLStackInitialization(CuTest *cuTest) {
     DLinkedListStack *dlStack = dlStackInitialization(NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 }
 
@@ -85,10 +85,10 @@ void testDLStackPush(CuTest *cuTest) {
     DLinkedListStack *dlStack = dlStackInitialization(free);
 
     dlStackPush(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     dlStackPush(dlStack, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     dlStackPush(dlStack, generateIntPointerDLST(10));
@@ -111,10 +111,10 @@ void testDLStackAddAll(CuTest *cuTest) {
     DLinkedListStack *dlStack = dlStackInitialization(free);
 
     dlStackAddAll(NULL, NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     dlStackAddAll(dlStack, NULL, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int **arr = (int **) malloc(sizeof(int * ) * 5);
     for (int i = 0; i < 5; i++)
@@ -139,10 +139,10 @@ void testDLStackPop(CuTest *cuTest) {
     DLinkedListStack *dlStack = dlStackInitialization(free);
 
     dlStackPop(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     dlStackPop(dlStack);
-    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, ERROR_TEST->errorCode);
 
     dlStackPush(dlStack, generateIntPointerDLST(10));
     dlStackPush(dlStack, generateIntPointerDLST(20));
@@ -171,10 +171,10 @@ void testDLStackPeek(CuTest *cuTest) {
     DLinkedListStack *dlStack = dlStackInitialization(free);
 
     dlStackPeek(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     dlStackPeek(dlStack);
-    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, ERROR_TEST->errorCode);
 
     dlStackPush(dlStack, generateIntPointerDLST(10));
     dlStackPush(dlStack, generateIntPointerDLST(20));
@@ -204,7 +204,7 @@ void testDLStackIsEmpty(CuTest *cuTest) {
     DLinkedListStack *dlStack = dlStackInitialization(free);
 
     dlStackIsEmpty(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 1, dlStackIsEmpty(dlStack));
 
@@ -234,7 +234,7 @@ void testDLStackToArray(CuTest *cuTest) {
     DLinkedListStack *dlStack = dlStackInitialization(free);
 
     dlStackToArray(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     dlStackPush(dlStack, generateIntPointerDLST(10));
     dlStackPush(dlStack, generateIntPointerDLST(20));
@@ -261,7 +261,7 @@ void testDLStackGetLength(CuTest *cuTest) {
     DLinkedListStack *dlStack = dlStackInitialization(free);
 
     dlStackGetLength(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 0, dlStackGetLength(dlStack));
 
@@ -294,14 +294,14 @@ void testDLStackContains(CuTest *cuTest) {
     int tempValue;
 
     dlStackContains(NULL, NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     dlStackContains(dlStack, NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     dlStackContains(dlStack, &tempValue, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     dlStackPush(dlStack, generateIntPointerDLST(10));
@@ -332,14 +332,14 @@ void testDLStackEquals(CuTest *cuTest) {
     DLinkedListStack *dlStack2 = dlStackInitialization(free);
 
     dlStackEquals(NULL, NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     dlStackEquals(dlStack1, NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     dlStackEquals(dlStack1, dlStack2, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     dlStackPush(dlStack1, generateIntPointerDLST(10));
@@ -376,7 +376,7 @@ void testClearDLStack(CuTest *cuTest) {
     DLinkedListStack *dlStack = dlStackInitialization(free);
 
     clearDLStack(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 0, dlStackGetLength(dlStack));
 
@@ -412,7 +412,7 @@ void testDestroyDLStack(CuTest *cuTest) {
     DLinkedListStack *dlStack = dlStackInitialization(free);
 
     destroyDLStack(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     dlStackPush(dlStack, generateIntPointerDLST(10));
     dlStackPush(dlStack, generateIntPointerDLST(20));
@@ -552,7 +552,7 @@ CuSuite *createDLinkedListStackTestsSuite() {
 
 void doublyLinkedListStackUnitTest() {
 
-    DUMMY_TEST_DATASTRUCTURE =  (TestStruct*) malloc(sizeof(TestStruct));
+    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Doubly Linked List stack Test**\n");
@@ -564,6 +564,6 @@ void doublyLinkedListStackUnitTest() {
     CuSuiteDetails(suite, output);
     printf("%s\n", output->buffer);
 
-    free(DUMMY_TEST_DATASTRUCTURE);
+    free(ERROR_TEST);
 
 }

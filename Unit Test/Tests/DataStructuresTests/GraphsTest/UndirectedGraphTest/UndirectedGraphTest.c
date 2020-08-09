@@ -52,13 +52,13 @@ int charArrHashFunUDGT(const void *ch) {
 void testInvalidUndirectedGraphInitialization(CuTest *cuTest) {
 
     undirectedGraphInitialization(NULL, NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     undirectedGraphInitialization(free, NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     undirectedGraphInitialization(free, strcmp, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 }
 
@@ -81,10 +81,10 @@ void testUndirectedGraphAddNode(CuTest *cuTest) {
     UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
 
     udGraphAddNode(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     udGraphAddNode(undirectedGraph, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     udGraphAddNode(undirectedGraph, generateCharPointerUDGT("A"));
     udGraphAddNode(undirectedGraph, generateCharPointerUDGT("B"));
@@ -115,10 +115,10 @@ void testUndirectedGraphRemoveNode(CuTest *cuTest) {
     UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
 
     udGraphRemoveNode(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     udGraphRemoveNode(undirectedGraph, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     udGraphAddNode(undirectedGraph, generateCharPointerUDGT("A"));
     udGraphAddNode(undirectedGraph, generateCharPointerUDGT("B"));
@@ -155,10 +155,10 @@ void testUndirectedGraphRemoveNodeWtoFr(CuTest *cuTest) {
     UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
 
     udGraphRemoveNodeWtoFr(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     udGraphRemoveNodeWtoFr(undirectedGraph, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     udGraphAddNode(undirectedGraph, generateCharPointerUDGT("A"));
     udGraphAddNode(undirectedGraph, generateCharPointerUDGT("B"));
@@ -203,17 +203,17 @@ void testUndirectedGraphAddEdge(CuTest *cuTest) {
     UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
 
     udGraphAddEdge(NULL, NULL, NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     udGraphAddEdge(undirectedGraph, NULL, NULL, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     char tempChar = 'A';
     udGraphAddEdge(undirectedGraph, &tempChar, NULL, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     udGraphAddEdge(undirectedGraph, &tempChar, &tempChar, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     udGraphAddNode(undirectedGraph, generateCharPointerUDGT("A"));
@@ -272,14 +272,14 @@ void testUndirectedGraphRemoveEdge(CuTest *cuTest) {
     UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
 
     udGraphRemoveEdge(NULL, NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     udGraphRemoveEdge(undirectedGraph, NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     char tempChar = 'A';
     udGraphRemoveEdge(undirectedGraph, &tempChar, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     udGraphAddNode(undirectedGraph, generateCharPointerUDGT("A"));
@@ -324,10 +324,10 @@ void testUndirectedGraphContainsNode(CuTest *cuTest) {
     UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
 
     udGraphContainsNode(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     udGraphContainsNode(undirectedGraph, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     CuAssertIntEquals(cuTest, 0, udGraphContainsNode(undirectedGraph, "A"));
@@ -363,14 +363,14 @@ void testUndirectedGraphContainsEdge(CuTest *cuTest) {
     UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
 
     udGraphContainsEdge(NULL, NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     udGraphContainsEdge(undirectedGraph, NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     char tempChar = 'A';
     udGraphContainsEdge(undirectedGraph, &tempChar, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     udGraphAddNode(undirectedGraph, generateCharPointerUDGT("A"));
@@ -415,14 +415,14 @@ void testUndirectedGraphGetEdgeWeight(CuTest *cuTest) {
     UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
 
     udGraphGetEdgeWeight(NULL, NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     udGraphGetEdgeWeight(undirectedGraph, NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     char tempChar = 'A';
     udGraphGetEdgeWeight(undirectedGraph, &tempChar, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     udGraphAddNode(undirectedGraph, generateCharPointerUDGT("A"));
@@ -465,7 +465,7 @@ void testUndirectedGraphGetSize(CuTest *cuTest) {
     UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
 
     udGraphGetSize(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     CuAssertIntEquals(cuTest, 0, udGraphGetSize(undirectedGraph));
@@ -509,7 +509,7 @@ void testUndirectedGraphIsEmpty(CuTest *cuTest) {
     UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
 
     udGraphIsEmpty(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     CuAssertIntEquals(cuTest, 1, udGraphIsEmpty(undirectedGraph));
@@ -552,7 +552,7 @@ void testClearUndirectedGraph(CuTest *cuTest) {
     UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
 
     clearUDGraph(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     CuAssertIntEquals(cuTest, 1, udGraphIsEmpty(undirectedGraph));
@@ -578,7 +578,7 @@ void testDestroyUndirectedGraph(CuTest *cuTest) {
     UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
 
     destroyUDGraph(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     udGraphAddNode(undirectedGraph, generateCharPointerUDGT("A"));
     udGraphAddNode(undirectedGraph, generateCharPointerUDGT("B"));
@@ -604,10 +604,10 @@ void testPrintUndirectedGraph(CuTest *cuTest) {
     UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
 
     printUDGraph(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     printUDGraph(undirectedGraph, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     udGraphAddNode(undirectedGraph, generateCharPointerUDGT("A"));
@@ -649,14 +649,14 @@ void testUndirectedGraphGetShortestDistance(CuTest *cuTest) {
     UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
 
     udGraphGetShortestDistance(NULL, NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     udGraphGetShortestDistance(undirectedGraph, NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     char tempChar = 'A';
     udGraphGetShortestDistance(undirectedGraph, &tempChar, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     udGraphAddNode(undirectedGraph, generateCharPointerUDGT("A"));
@@ -704,14 +704,14 @@ void testUndirectedGraphGetShortestPath(CuTest *cuTest) {
     UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
 
     udGraphGetShortestPath(NULL, NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     udGraphGetShortestPath(undirectedGraph, NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     char tempChar = 'A';
     udGraphGetShortestPath(undirectedGraph, &tempChar, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     udGraphAddNode(undirectedGraph, generateCharPointerUDGT("A"));
@@ -781,10 +781,10 @@ void testUndirectedGraphNodePartOfCycle(CuTest *cuTest) {
     UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
 
     udGraphNodePartOfCycle(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     udGraphNodePartOfCycle(undirectedGraph, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     udGraphAddNode(undirectedGraph, generateCharPointerUDGT("A"));
@@ -845,7 +845,7 @@ void testUndirectedGraphHasCycle(CuTest *cuTest) {
     UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
 
     udGraphHasCycle(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     udGraphAddNode(undirectedGraph, generateCharPointerUDGT("A"));
@@ -895,10 +895,10 @@ void testUndirectedGraphMinimumSpanningGraph(CuTest *cuTest) {
     UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
 
     udGraphMinimumSpanningGraph(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     udGraphMinimumSpanningGraph(undirectedGraph, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     udGraphAddNode(undirectedGraph, generateCharPointerUDGT("A"));
@@ -983,7 +983,7 @@ CuSuite *createUndirectedGraphTestsSuite() {
 
 void undirectedGraphUnitTest() {
 
-    DUMMY_TEST_DATASTRUCTURE =  (TestStruct*) malloc(sizeof(TestStruct));
+    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Undirected Graph Test**\n");
@@ -995,6 +995,6 @@ void undirectedGraphUnitTest() {
     CuSuiteDetails(suite, output);
     printf("%s\n", output->buffer);
 
-    free(DUMMY_TEST_DATASTRUCTURE);
+    free(ERROR_TEST);
 
 }

@@ -1,6 +1,8 @@
 #ifndef C_DATASTRUCTURES_DOUBLYLINKEDLISTTEST_H
 #define C_DATASTRUCTURES_DOUBLYLINKEDLISTTEST_H
 
+#include "../../../../ErrorsTestStruct.h"
+
 void doublyLinkedListUnitTest();
 
 #endif //C_DATASTRUCTURES_DOUBLYLINKEDLISTTEST_H

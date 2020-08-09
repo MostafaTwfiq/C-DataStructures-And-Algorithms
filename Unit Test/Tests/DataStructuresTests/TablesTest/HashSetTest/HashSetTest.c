@@ -57,13 +57,13 @@ int intHashFunHST(const void *integer) {
 void testInvalidHashSetInitialization(CuTest *cuTest) {
 
     hashSetInitialization(NULL, NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     hashSetInitialization(free, NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     hashSetInitialization(free, compareIntPointersHST, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 }
 
@@ -84,10 +84,10 @@ void testHashSetInsert(CuTest *cuTest) {
     HashSet *hashSet = hashSetInitialization(free, compareIntPointersHST, intHashFunHST);
 
     hashSetInsert(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     hashSetInsert(hashSet, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     for (int i = 0; i < 20; i++)
@@ -118,10 +118,10 @@ void testHashSetDelete(CuTest *cuTest) {
     HashSet *hashSet = hashSetInitialization(free, compareIntPointersHST, intHashFunHST);
 
     hashSetDelete(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     hashSetDelete(hashSet, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     for (int i = 0; i < 20; i++)
@@ -154,10 +154,10 @@ void testHashSetDeleteWtoFr(CuTest *cuTest) {
     HashSet *hashSet = hashSetInitialization(free, compareIntPointersHST, intHashFunHST);
 
     hashSetDeleteWtoFr(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     hashSetDeleteWtoFr(hashSet, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     for (int i = 0; i < 20; i++)
@@ -198,10 +198,10 @@ void testHashSetContains(CuTest *cuTest) {
     HashSet *hashSet = hashSetInitialization(free, compareIntPointersHST, intHashFunHST);
 
     hashSetContains(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     hashSetContains(hashSet, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     for (int i = 0; i < 20; i++)
@@ -229,7 +229,7 @@ void testHashSetToArray(CuTest *cuTest) {
     HashSet *hashSet = hashSetInitialization(free, compareIntPointersHST, intHashFunHST);
 
     hashSetToArray(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     for (int i = 0; i < 20; i++)
         hashSetInsert(hashSet, generateIntPointerHST(i + 1));
@@ -256,7 +256,7 @@ void testHashSetGetLength(CuTest *cuTest) {
     HashSet *hashSet = hashSetInitialization(free, compareIntPointersHST, intHashFunHST);
 
     hashSetGetLength(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 0, hashSetGetLength(hashSet));
 
@@ -286,7 +286,7 @@ void testHashSetIsEmpty(CuTest *cuTest) {
     HashSet *hashSet = hashSetInitialization(free, compareIntPointersHST, intHashFunHST);
 
     hashSetIsEmpty(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 1, hashSetIsEmpty(hashSet));
 
@@ -314,7 +314,7 @@ void testClearHashSet(CuTest *cuTest) {
     HashSet *hashSet = hashSetInitialization(free, compareIntPointersHST, intHashFunHST);
 
     clearHashSet(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 1, hashSetIsEmpty(hashSet));
 
@@ -346,7 +346,7 @@ void testDestroyHashSet(CuTest *cuTest) {
     HashSet *hashSet = hashSetInitialization(free, compareIntPointersHST, intHashFunHST);
 
     destroyHashSet(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     for (int i = 0; i < 20; i++)
         hashSetInsert(hashSet, generateIntPointerHST(i + 1));
@@ -383,7 +383,7 @@ CuSuite *createHashSetTestsSuite() {
 
 void hashSetUnitTest() {
 
-    DUMMY_TEST_DATASTRUCTURE =  (TestStruct*) malloc(sizeof(TestStruct));
+    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Hashset Test**\n");
@@ -395,6 +395,6 @@ void hashSetUnitTest() {
     CuSuiteDetails(suite, output);
     printf("%s\n", output->buffer);
 
-    free(DUMMY_TEST_DATASTRUCTURE);
+    free(ERROR_TEST);
 
 }

@@ -64,10 +64,10 @@ void testTrieAddWord(CuTest *cuTest) {
     Trie *trie = trieInitialization();
 
     trieAddWord(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     trieAddWord(trie, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     trieAddWord(trie, "word");
 
@@ -119,10 +119,10 @@ void testTrieContains(CuTest *cuTest) {
     Trie *trie = trieInitialization();
 
     trieContains(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     trieContains(trie, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     trieAddWord(trie, "word");
     trieAddWord(trie, "world");
@@ -160,10 +160,10 @@ void testTrieRemoveWord(CuTest *cuTest) {
     Trie *trie = trieInitialization();
 
     trieRemoveWord(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     trieRemoveWord(trie, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     trieAddWord(trie, "word");
     trieAddWord(trie, "world");
@@ -213,13 +213,13 @@ void testTrieAutoCompletion(CuTest *cuTest) {
     Trie *trie = trieInitialization();
 
     trieAutoCompletion(NULL, NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     trieAutoCompletion(trie, NULL, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     trieAutoCompletion(trie, "word", 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     trieAddWord(trie, "word");
     trieAddWord(trie, "world");
@@ -280,13 +280,13 @@ void testTrieSuggestion(CuTest *cuTest) {
     Trie *trie = trieInitialization();
 
     trieSuggestion(NULL, NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     trieSuggestion(trie, NULL, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     trieSuggestion(trie, "word", 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     trieAddWord(trie, "word");
     trieAddWord(trie, "world");
@@ -344,7 +344,7 @@ void testTriePrintAllWords(CuTest *cuTest) {
     Trie *trie = trieInitialization();
 
     triePrintAllWords(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     trieAddWord(trie, "word");
     trieAddWord(trie, "world");
@@ -376,7 +376,7 @@ void testClearTrie(CuTest *cuTest) {
     Trie *trie = trieInitialization();
 
     clearTrie(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     trieAddWord(trie, "word");
     trieAddWord(trie, "world");
@@ -411,7 +411,7 @@ void testDestroyTrie(CuTest *cuTest) {
     Trie *trie = trieInitialization();
 
     destroyTrie(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     trieAddWord(trie, "word");
     trieAddWord(trie, "world");
@@ -449,7 +449,7 @@ CuSuite *createTrieTestsSuite() {
 
 void trieUnitTest() {
 
-    DUMMY_TEST_DATASTRUCTURE =  (TestStruct*) malloc(sizeof(TestStruct));
+    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Trie Test**\n");
@@ -461,6 +461,6 @@ void trieUnitTest() {
     CuSuiteDetails(suite, output);
     printf("%s\n", output->buffer);
 
-    free(DUMMY_TEST_DATASTRUCTURE);
+    free(ERROR_TEST);
 
 }

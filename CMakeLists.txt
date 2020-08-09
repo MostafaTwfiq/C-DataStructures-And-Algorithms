@@ -3,7 +3,17 @@ project(C_DataStructures C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(C_DataStructures #main.c
+add_executable(C_DataStructures
+
+        "Unit Test/CuTest"
+        #"Unit Test/CuTest/AllTests.c"
+        "Unit Test/CuTest/CuTest.c"
+        "Unit Test/CuTest/CuTestTest.c"
+        "Unit Test/CuTest/CuTest.h"
+
+        #"Unit Test/Tests/Tests.c"
+
+        main.c
 
         DataStructure/Stacks/Sources/Stack.c
         DataStructure/Stacks/Headers/Stack.h
@@ -67,15 +77,6 @@ add_executable(C_DataStructures #main.c
         DataStructure/Graphs/Sources/DirectedGraph.c
         DataStructure/Graphs/Headers/DirectedGraph.h
 
-
-        "Unit Test/CuTest"
-        #"Unit Test/testExample.c"
-        #"Unit Test/CuTest/AllTests.c"
-        "Unit Test/CuTest/CuTest.c"
-        "Unit Test/CuTest/CuTestTest.c"
-        "Unit Test/CuTest/CuTest.h"
-        "Unit Test/Tests/DataStructuresTests/ListsTest/VectorTest/VectorTest.c"
-
         DataStructure/Deque/Sources/Deque.c
         DataStructure/Deque/Headers/Deque.h
         DataStructure/Graphs/Sources/UndirectedGraph.c
@@ -123,7 +124,73 @@ add_executable(C_DataStructures #main.c
         FilesHandler/Headers/InputScanner.h
         DataStructure/Matrices/Sources/Matrix.c
         DataStructure/Matrices/Headers/Matrix.h
+        DataStructure/Trees/Sources/BinaryHeap.c
+        DataStructure/Trees/Headers/BinaryHeap.h
+
+        "Unit Test/Tests/DataStructuresTests/ListsTest/VectorTest/VectorTest.c"
         "Unit Test/Tests/DataStructuresTests/ListsTest/VectorTest/VectorTest.c"
         "Unit Test/Tests/DataStructuresTests/ListsTest/VectorTest/VectorTest.h"
-        "Unit Test/Tests/Tests.c"
-        "Unit Test/Tests/DataStructuresTests/ListsTest/ArrayListTest/ArrayListTest.c" "Unit Test/Tests/DataStructuresTests/ListsTest/ArrayListTest/ArrayListTest.h" "Unit Test/Tests/DataStructuresTests/LinkedListsTest/LinkedListTest/LinkedListTest.c" "Unit Test/Tests/DataStructuresTests/LinkedListsTest/LinkedListTest/LinkedListTest.h" "Unit Test/Tests/DataStructuresTests/LinkedListsTest/DoublyLinkedListTest/DoublyLinkedListTest.c" "Unit Test/Tests/DataStructuresTests/LinkedListsTest/DoublyLinkedListTest/DoublyLinkedListTest.h" "Unit Test/Tests/DataStructuresTests/StacksTest/StackTest/StackTest.c" "Unit Test/Tests/DataStructuresTests/StacksTest/StackTest/StackTest.h" "Unit Test/Tests/DataStructuresTests/StacksTest/DLinkedListStackTest/DLinkedListStackTest.c" "Unit Test/Tests/DataStructuresTests/StacksTest/DLinkedListStackTest/DLinkedListStackTest.h" "Unit Test/Tests/DataStructuresTests/QueuesTest/QueueTest/QueueTest.c" "Unit Test/Tests/DataStructuresTests/QueuesTest/QueueTest/QueueTest.h" "Unit Test/Tests/DataStructuresTests/QueuesTest/StackQueueTest/StackQueueTest.c" "Unit Test/Tests/DataStructuresTests/QueuesTest/StackQueueTest/StackQueueTest.h" "Unit Test/Tests/DataStructuresTests/QueuesTest/LinkedListQueueTest/LinkedListQueueTest.c" "Unit Test/Tests/DataStructuresTests/QueuesTest/LinkedListQueueTest/LinkedListQueueTest.h" "Unit Test/Tests/DataStructuresTests/QueuesTest/PriorityQueueTest/PriorityQueueTest.c" "Unit Test/Tests/DataStructuresTests/QueuesTest/PriorityQueueTest/PriorityQueueTest.h" "Unit Test/Tests/DataStructuresTests/DequesTest/DequeTest/DequeTest.c" "Unit Test/Tests/DataStructuresTests/DequesTest/DequeTest/DequeTest.h" "Unit Test/Tests/DataStructuresTests/DequesTest/DoublyLinkedListDequeTest/DoublyLinkedListDequeTest.c" "Unit Test/Tests/DataStructuresTests/DequesTest/DoublyLinkedListDequeTest/DoublyLinkedListDequeTest.h" "Unit Test/Tests/DataStructuresTests/MatricesTest/MatrixTest/MatrixTest.c" "Unit Test/Tests/DataStructuresTests/MatricesTest/MatrixTest/MatrixTest.h" "Unit Test/Tests/DataStructuresTests/StringsTest/StringTest/StringTest.c" "Unit Test/Tests/DataStructuresTests/StringsTest/StringTest/StringTest.h" "Unit Test/Tests/DataStructuresTests/TablesTest/HashMapTest/HashMapTest.c" "Unit Test/Tests/DataStructuresTests/TablesTest/HashMapTest/HashMapTest.h" "Unit Test/Tests/DataStructuresTests/TablesTest/DounlyLinkedListHashMapTest/DoublyLinkedListHashMapTest.c" "Unit Test/Tests/DataStructuresTests/TablesTest/DounlyLinkedListHashMapTest/DoublyLinkedListHashMapTest.h" "Unit Test/Tests/DataStructuresTests/TablesTest/HashSetTest/HashSetTest.c" "Unit Test/Tests/DataStructuresTests/TablesTest/HashSetTest/HashSetTest.h" "Unit Test/Tests/DataStructuresTests/GraphsTest/DirectedGraphTest/DirectedGraphTest.c" "Unit Test/Tests/DataStructuresTests/GraphsTest/DirectedGraphTest/DirectedGraphTest.h" "Unit Test/Tests/DataStructuresTests/GraphsTest/UndirectedGraphTest/UndirectedGraphTest.c" "Unit Test/Tests/DataStructuresTests/GraphsTest/UndirectedGraphTest/UndirectedGraphTest.h" "Unit Test/Tests/DataStructuresTests/TreesTest/TrieTest/TrieTest.c" "Unit Test/Tests/DataStructuresTests/TreesTest/TrieTest/TrieTest.h" "Unit Test/Tests/DataStructuresTests/TreesTest/RedBlackTreeTest/RedBlackTreeTest.c" "Unit Test/Tests/DataStructuresTests/TreesTest/RedBlackTreeTest/RedBlackTreeTest.h" "Unit Test/Tests/AlgorithmsTests/SortAlgTests/SortAlgTest.c" "Unit Test/Tests/AlgorithmsTests/SortAlgTests/SortAlgTest.h" "Unit Test/Tests/AlgorithmsTests/SearchAlgTests/SearchAlgTest.c" "Unit Test/Tests/AlgorithmsTests/SearchAlgTests/SearchAlgTest.h" "Unit Test/Tests/AlgorithmsTests/IntegerAlgTest/IntegerAlgTest.c" "Unit Test/Tests/AlgorithmsTests/IntegerAlgTest/IntegerAlgTest.h" "Unit Test/Tests/FilesHandlersTests/InputScannerTest/InputScannerTest.c" "Unit Test/Tests/FilesHandlersTests/InputScannerTest/InputScannerTest.h" "Unit Test/Tests/AlgorithmsTests/ArraysAlgTest/ArraysAlgTest.c" "Unit Test/Tests/AlgorithmsTests/ArraysAlgTest/ArraysAlgTest.h" "Unit Test/Tests/FilesHandlersTests/TxtFileLoaderTest/TxtFileLoaderTest.c" "Unit Test/Tests/FilesHandlersTests/TxtFileLoaderTest/TxtFileLoaderTest.h" "Unit Test/Tests/AlgorithmsTests/CharArrayAlgTest/CharArrayAlgTest.c" "Unit Test/Tests/AlgorithmsTests/CharArrayAlgTest/CharArrayAlgTest.h" "Unit Test/Tests/DataStructuresTests/TreesTest/BinaryTreeTest/BinaryTreeTest.c" "Unit Test/Tests/DataStructuresTests/TreesTest/BinaryTreeTest/BinaryTreeTest.h" DataStructure/Trees/Sources/BinaryHeap.c DataStructure/Trees/Headers/BinaryHeap.h "Unit Test/Tests/DataStructuresTests/TreesTest/BinaryHeapTest/BinaryHeapTest.c" "Unit Test/Tests/DataStructuresTests/TreesTest/BinaryHeapTest/BinaryHeapTest.h" "Unit Test/Tests/DataStructuresTests/TreesTest/AVLTreeTest/AVLTreeTest.c" "Unit Test/Tests/DataStructuresTests/TreesTest/AVLTreeTest/AVLTreeTest.h" "Unit Test/Tests/DataStructuresTests/TreesTest/SplayTreeTest/SplayTreeTest.c" "Unit Test/Tests/DataStructuresTests/TreesTest/SplayTreeTest/SplayTreeTest.h")
+        "Unit Test/Tests/DataStructuresTests/ListsTest/ArrayListTest/ArrayListTest.c"
+        "Unit Test/Tests/DataStructuresTests/ListsTest/ArrayListTest/ArrayListTest.h"
+        "Unit Test/Tests/DataStructuresTests/LinkedListsTest/LinkedListTest/LinkedListTest.c"
+        "Unit Test/Tests/DataStructuresTests/LinkedListsTest/LinkedListTest/LinkedListTest.h"
+        "Unit Test/Tests/DataStructuresTests/LinkedListsTest/DoublyLinkedListTest/DoublyLinkedListTest.c"
+        "Unit Test/Tests/DataStructuresTests/LinkedListsTest/DoublyLinkedListTest/DoublyLinkedListTest.h"
+        "Unit Test/Tests/DataStructuresTests/StacksTest/StackTest/StackTest.c"
+        "Unit Test/Tests/DataStructuresTests/StacksTest/StackTest/StackTest.h"
+        "Unit Test/Tests/DataStructuresTests/StacksTest/DLinkedListStackTest/DLinkedListStackTest.c"
+        "Unit Test/Tests/DataStructuresTests/StacksTest/DLinkedListStackTest/DLinkedListStackTest.h"
+        "Unit Test/Tests/DataStructuresTests/QueuesTest/QueueTest/QueueTest.c"
+        "Unit Test/Tests/DataStructuresTests/QueuesTest/QueueTest/QueueTest.h"
+        "Unit Test/Tests/DataStructuresTests/QueuesTest/StackQueueTest/StackQueueTest.c"
+        "Unit Test/Tests/DataStructuresTests/QueuesTest/StackQueueTest/StackQueueTest.h"
+        "Unit Test/Tests/DataStructuresTests/QueuesTest/LinkedListQueueTest/LinkedListQueueTest.c"
+        "Unit Test/Tests/DataStructuresTests/QueuesTest/LinkedListQueueTest/LinkedListQueueTest.h"
+        "Unit Test/Tests/DataStructuresTests/QueuesTest/PriorityQueueTest/PriorityQueueTest.c"
+        "Unit Test/Tests/DataStructuresTests/QueuesTest/PriorityQueueTest/PriorityQueueTest.h"
+        "Unit Test/Tests/DataStructuresTests/DequesTest/DequeTest/DequeTest.c"
+        "Unit Test/Tests/DataStructuresTests/DequesTest/DequeTest/DequeTest.h"
+        "Unit Test/Tests/DataStructuresTests/DequesTest/DoublyLinkedListDequeTest/DoublyLinkedListDequeTest.c"
+        "Unit Test/Tests/DataStructuresTests/DequesTest/DoublyLinkedListDequeTest/DoublyLinkedListDequeTest.h"
+        "Unit Test/Tests/DataStructuresTests/MatricesTest/MatrixTest/MatrixTest.c"
+        "Unit Test/Tests/DataStructuresTests/MatricesTest/MatrixTest/MatrixTest.h"
+        "Unit Test/Tests/DataStructuresTests/StringsTest/StringTest/StringTest.c"
+        "Unit Test/Tests/DataStructuresTests/StringsTest/StringTest/StringTest.h"
+        "Unit Test/Tests/DataStructuresTests/TablesTest/HashMapTest/HashMapTest.c"
+        "Unit Test/Tests/DataStructuresTests/TablesTest/HashMapTest/HashMapTest.h"
+        "Unit Test/Tests/DataStructuresTests/TablesTest/DounlyLinkedListHashMapTest/DoublyLinkedListHashMapTest.c"
+        "Unit Test/Tests/DataStructuresTests/TablesTest/DounlyLinkedListHashMapTest/DoublyLinkedListHashMapTest.h"
+        "Unit Test/Tests/DataStructuresTests/TablesTest/HashSetTest/HashSetTest.c"
+        "Unit Test/Tests/DataStructuresTests/TablesTest/HashSetTest/HashSetTest.h"
+        "Unit Test/Tests/DataStructuresTests/GraphsTest/DirectedGraphTest/DirectedGraphTest.c"
+        "Unit Test/Tests/DataStructuresTests/GraphsTest/DirectedGraphTest/DirectedGraphTest.h"
+        "Unit Test/Tests/DataStructuresTests/GraphsTest/UndirectedGraphTest/UndirectedGraphTest.c"
+        "Unit Test/Tests/DataStructuresTests/GraphsTest/UndirectedGraphTest/UndirectedGraphTest.h"
+        "Unit Test/Tests/DataStructuresTests/TreesTest/TrieTest/TrieTest.c"
+        "Unit Test/Tests/DataStructuresTests/TreesTest/TrieTest/TrieTest.h"
+        "Unit Test/Tests/DataStructuresTests/TreesTest/RedBlackTreeTest/RedBlackTreeTest.c"
+        "Unit Test/Tests/DataStructuresTests/TreesTest/RedBlackTreeTest/RedBlackTreeTest.h"
+        "Unit Test/Tests/AlgorithmsTests/SortAlgTests/SortAlgTest.c"
+        "Unit Test/Tests/AlgorithmsTests/SortAlgTests/SortAlgTest.h"
+        "Unit Test/Tests/AlgorithmsTests/SearchAlgTests/SearchAlgTest.c"
+        "Unit Test/Tests/AlgorithmsTests/SearchAlgTests/SearchAlgTest.h"
+        "Unit Test/Tests/AlgorithmsTests/IntegerAlgTest/IntegerAlgTest.c"
+        "Unit Test/Tests/AlgorithmsTests/IntegerAlgTest/IntegerAlgTest.h"
+        "Unit Test/Tests/FilesHandlersTests/InputScannerTest/InputScannerTest.c"
+        "Unit Test/Tests/FilesHandlersTests/InputScannerTest/InputScannerTest.h"
+        "Unit Test/Tests/AlgorithmsTests/ArraysAlgTest/ArraysAlgTest.c"
+        "Unit Test/Tests/AlgorithmsTests/ArraysAlgTest/ArraysAlgTest.h"
+        "Unit Test/Tests/FilesHandlersTests/TxtFileLoaderTest/TxtFileLoaderTest.c"
+        "Unit Test/Tests/FilesHandlersTests/TxtFileLoaderTest/TxtFileLoaderTest.h"
+        "Unit Test/Tests/AlgorithmsTests/CharArrayAlgTest/CharArrayAlgTest.c"
+        "Unit Test/Tests/AlgorithmsTests/CharArrayAlgTest/CharArrayAlgTest.h"
+        "Unit Test/Tests/DataStructuresTests/TreesTest/BinaryTreeTest/BinaryTreeTest.c"
+        "Unit Test/Tests/DataStructuresTests/TreesTest/BinaryTreeTest/BinaryTreeTest.h"
+        "Unit Test/Tests/DataStructuresTests/TreesTest/BinaryHeapTest/BinaryHeapTest.c"
+        "Unit Test/Tests/DataStructuresTests/TreesTest/BinaryHeapTest/BinaryHeapTest.h"
+        "Unit Test/Tests/DataStructuresTests/TreesTest/AVLTreeTest/AVLTreeTest.c"
+        "Unit Test/Tests/DataStructuresTests/TreesTest/AVLTreeTest/AVLTreeTest.h"
+        "Unit Test/Tests/DataStructuresTests/TreesTest/SplayTreeTest/SplayTreeTest.c"
+        "Unit Test/Tests/DataStructuresTests/TreesTest/SplayTreeTest/SplayTreeTest.h"
+        "Unit Test/ErrorsTestStruct.h"
+        )

@@ -61,7 +61,7 @@ void testInvalidLinkedListQueueInitialization(CuTest *cuTest) {
 
     LinkedListQueue *llQueue = linkedListQueueInitialization(NULL);
 
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 }
 
@@ -84,10 +84,10 @@ void testLinkedListQueueEnqueue(CuTest *cuTest) {
     LinkedListQueue *llQueue = linkedListQueueInitialization(free);
 
     lLQueueEnqueue(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     lLQueueEnqueue(llQueue, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     lLQueueEnqueue(llQueue, generateIntPointerLLQT(1));
@@ -114,10 +114,10 @@ void testLinkedListQueueEnqueueAll(CuTest *cuTest) {
     LinkedListQueue *llQueue = linkedListQueueInitialization(free);
 
     lLQueueEnqueueAll(NULL, NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     lLQueueEnqueueAll(llQueue, NULL, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     int **arr = (int **) malloc(sizeof(int *) * 5);
@@ -147,10 +147,10 @@ void testLinkedListQueueDequeue(CuTest *cuTest) {
     LinkedListQueue *llQueue = linkedListQueueInitialization(free);
 
     lLQueueDequeue(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     lLQueueDequeue(llQueue);
-    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, ERROR_TEST->errorCode);
 
 
     lLQueueEnqueue(llQueue, generateIntPointerLLQT(1));
@@ -178,10 +178,10 @@ void testLinkedListQueuePeek(CuTest *cuTest) {
     LinkedListQueue *llQueue = linkedListQueueInitialization(free);
 
     lLQueuePeek(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     lLQueuePeek(llQueue);
-    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, ERROR_TEST->errorCode);
 
 
     lLQueueEnqueue(llQueue, generateIntPointerLLQT(1));
@@ -209,7 +209,7 @@ void testLinkedListQueueGetLength(CuTest *cuTest) {
     LinkedListQueue *llQueue = linkedListQueueInitialization(free);
 
     lLQueueGetLength(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     CuAssertIntEquals(cuTest, 0, lLQueueGetLength(llQueue));
@@ -245,7 +245,7 @@ void testLinkedListQueueIsEmpty(CuTest *cuTest) {
     LinkedListQueue *llQueue = linkedListQueueInitialization(free);
 
     lLQueueIsEmpty(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     CuAssertIntEquals(cuTest, 1, lLQueueIsEmpty(llQueue));
@@ -270,7 +270,7 @@ void testLinkedListQueueToArray(CuTest *cuTest) {
     LinkedListQueue *llQueue = linkedListQueueInitialization(free);
 
     lLQueueToArray(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     lLQueueEnqueue(llQueue, generateIntPointerLLQT(1));
@@ -299,7 +299,7 @@ void testClearLinkedListQueue(CuTest *cuTest) {
     LinkedListQueue *llQueue = linkedListQueueInitialization(free);
 
     clearLLQueue(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     CuAssertIntEquals(cuTest, 0, lLQueueGetLength(llQueue));
@@ -329,7 +329,7 @@ void testDestroyLinkedListQueue(CuTest *cuTest) {
     LinkedListQueue *llQueue = linkedListQueueInitialization(free);
 
     destroyLLQueue(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     lLQueueEnqueue(llQueue, generateIntPointerLLQT(1));
     lLQueueEnqueue(llQueue, generateIntPointerLLQT(2));
@@ -475,7 +475,7 @@ CuSuite *createLinkedListQueueTestsSuite() {
 
 void linkedListQueueUnitTest() {
 
-    DUMMY_TEST_DATASTRUCTURE =  (TestStruct*) malloc(sizeof(TestStruct));
+    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Linked List Queue Test**\n");
@@ -487,6 +487,6 @@ void linkedListQueueUnitTest() {
     CuSuiteDetails(suite, output);
     printf("%s\n", output->buffer);
 
-    free(DUMMY_TEST_DATASTRUCTURE);
+    free(ERROR_TEST);
 
 }

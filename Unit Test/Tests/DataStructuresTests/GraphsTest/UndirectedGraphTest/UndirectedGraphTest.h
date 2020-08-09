@@ -1,6 +1,8 @@
 #ifndef C_DATASTRUCTURES_UNDIRECTEDGRAPHTEST_H
 #define C_DATASTRUCTURES_UNDIRECTEDGRAPHTEST_H
 
+#include "../../../../ErrorsTestStruct.h"
+
 void undirectedGraphUnitTest();
 
 #endif //C_DATASTRUCTURES_UNDIRECTEDGRAPHTEST_H

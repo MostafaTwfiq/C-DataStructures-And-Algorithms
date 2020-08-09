@@ -13,13 +13,13 @@ void testArrayReverse(CuTest *cuTest) {
     int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
     reverseArray(NULL, 0, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     reverseArray(arr, -1, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     reverseArray(arr, 0, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     reverseArray(arr, 10, sizeof(int));
     for (int i = 10; i >= 0; i--)
@@ -35,19 +35,19 @@ void testMostFrequentArrValueH(CuTest *cuTest) {
     int arr[] = {1, 2, 2, 3, 4, 3, 3, 3, 2, 1};
 
     mostFrequentArrValueH(NULL, 0, 0, NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     mostFrequentArrValueH(arr, -1, 0, NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     mostFrequentArrValueH(arr, 0, 0, NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     mostFrequentArrValueH(arr, 0, 1, NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     mostFrequentArrValueH(arr, 0, 1, compareIntPointers, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 3, *(int *) mostFrequentArrValueH(arr, 10, sizeof(int), compareIntPointers, intHashFun));
 
@@ -68,16 +68,16 @@ void testMostFrequentArrValueA(CuTest *cuTest) {
     int arr[] = {1, 2, 2, 3, 4, 3, 3, 3, 2, 1};
 
     mostFrequentArrValueA(NULL, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     mostFrequentArrValueA(arr, -1, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     mostFrequentArrValueA(arr, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     mostFrequentArrValueA(arr, 0, 1, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 3, *(int *) mostFrequentArrValueA(arr, 10, sizeof(int), compareIntPointers));
 
@@ -103,16 +103,16 @@ void testPrintArr(CuTest *cuTest) {
     int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
     printArr(NULL, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     printArr(arr, -1, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     printArr(arr, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     printArr(arr, 0, 1, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     printingArr = (int *) malloc(sizeof(int) * 10);
     int *tempPointer = printingArr;
@@ -138,13 +138,13 @@ void testArrResize(CuTest *cuTest) {
         arr[i] = i + 1;
 
     arrResize(NULL, 0, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrResize(arr, 0, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrResize(arr, 1, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arr = arrResize(arr, sizeof(int), 20);
     for (int i = 10; i < 20; i++)
@@ -167,16 +167,16 @@ void testArrResizeAndCopy(CuTest *cuTest) {
         arr[i] = i + 1;
 
     arrResizeAndCpy(NULL, 0, 0, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrResizeAndCpy(arr, -1, 0, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrResizeAndCpy(arr, 0, 0, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrResizeAndCpy(arr, 0, 1, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int *newArr = arrResizeAndCpy(arr, 10, sizeof(int), 20);
 
@@ -200,19 +200,19 @@ void testArrResizeOfRangeAndCpy(CuTest *cuTest) {
         arr[i] = i + 1;
 
     arrResizeOfRangeAndCpy(NULL, 0, 0, 0, 0, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrResizeOfRangeAndCpy(arr, -1, 0, 0, 0, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrResizeOfRangeAndCpy(arr, 0, 0, 0, 0, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrResizeOfRangeAndCpy(arr, 0, 1, 0, -1, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrResizeOfRangeAndCpy(arr, 0, 1, 0, 0, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int *newArr = arrResizeOfRangeAndCpy(arr, 10, sizeof(int), 5, 9, 10);
 
@@ -242,19 +242,19 @@ void testArrResizeAndCpyC(CuTest *cuTest) {
         arr[i] = i + 1;
 
     arrResizeAndCpyC(NULL, 0, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrResizeAndCpyC(arr, -1, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrResizeAndCpyC(arr, 0, 0, 0, intCopyFunArrAlgT);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrResizeAndCpyC(arr, 0, 1, 0, intCopyFunArrAlgT);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrResizeAndCpyC(arr, 0, 1, 1, intCopyFunArrAlgT);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int *newArr = arrResizeAndCpyC(arr, 10, sizeof(int), 20, intCopyFunArrAlgT);
 
@@ -279,22 +279,22 @@ void testArrResizeOfRangeAndCpyC(CuTest *cuTest) {
         arr[i] = i + 1;
 
     arrResizeOfRangeAndCpyC(NULL, 0, 0, 0, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrResizeOfRangeAndCpyC(arr, -1, 0, 0, 0, 0,  NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrResizeOfRangeAndCpyC(arr, 0, 0, 0, 0, 0, intCopyFunArrAlgT);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrResizeOfRangeAndCpyC(arr, 0, 1, 0, -1, 0, intCopyFunArrAlgT);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrResizeOfRangeAndCpyC(arr, 0, 1, 0, 0, 0, intCopyFunArrAlgT);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrResizeOfRangeAndCpyC(arr, 0, 1, 0, 0, 1, intCopyFunArrAlgT);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int *newArr = arrResizeOfRangeAndCpyC(arr, 10, sizeof(int), 5, 9, 10, intCopyFunArrAlgT);
 
@@ -319,13 +319,13 @@ void testArrCopy(CuTest *cuTest) {
         arr[i] = i + 1;
 
     arrCopy(NULL, 0, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrCopy(arr, -1, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrCopy(arr, 0, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int *newArr = arrCopy(arr, 10, sizeof(int));
 
@@ -347,16 +347,16 @@ void testArrCopyC(CuTest *cuTest) {
         arr[i] = i + 1;
 
     arrCopyC(NULL, 0, 0 ,NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrCopyC(arr, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrCopyC(arr, -1, 0, intCopyFunArrAlgT);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrCopyC(arr, 0, 0, intCopyFunArrAlgT);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int *newArr = arrCopyC(arr, 10, sizeof(int), intCopyFunArrAlgT);
 
@@ -380,16 +380,16 @@ void testArrCopyOfRange(CuTest *cuTest) {
         arr[i] = i + 1;
 
     arrCopyOfRange(NULL, 0, 0, 0, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrCopyOfRange(arr, -1, 0, 0, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrCopyOfRange(arr, 0, 0, 0, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrCopyOfRange(arr, 0, 1, 0, -1);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int *newArr = arrCopyOfRange(arr, 10, sizeof(int), 5, 9);
 
@@ -412,19 +412,19 @@ void testArrCopyOfRangeC(CuTest *cuTest) {
         arr[i] = i + 1;
 
     arrCopyOfRangeC(NULL, 0, 0, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrCopyOfRangeC(arr, 0, 0, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrCopyOfRangeC(arr, -1, 0, 0, 0, intCopyFunArrAlgT);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrCopyOfRangeC(arr, 0, 0, 0, -1, intCopyFunArrAlgT);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrCopyOfRangeC(arr, 0, 1, 0, -1, intCopyFunArrAlgT);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int *newArr = arrCopyOfRangeC(arr, 10, sizeof(int), 5, 9, intCopyFunArrAlgT);
 
@@ -446,16 +446,16 @@ void testFillArr(CuTest *cuTest) {
 
     int tempValue = 1;
     fillArr(NULL, NULL, 0, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     fillArr(arr, NULL, 0, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     fillArr(arr, &tempValue, -1, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     fillArr(arr, &tempValue, 0, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     fillArr(arr, &tempValue, 10, sizeof(int));
@@ -481,19 +481,19 @@ void testFillArrC(CuTest *cuTest) {
 
     int tempValue = 1;
     fillArrC(NULL, NULL, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     fillArrC(arr, NULL, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     fillArrC(arr, &tempValue, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     fillArrC(arr, &tempValue, -1, 0, intCopyFunArrAlgT);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     fillArrC(arr, &tempValue, 0, 0, intCopyFunArrAlgT);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     fillArrC(arr, &tempValue, 10, sizeof(int), intCopyFunArrAlgT);
@@ -518,19 +518,19 @@ void testFillArrOfRange(CuTest *cuTest) {
 
     int tempValue = 1;
     fillArrOfRange(NULL, NULL, 0, 0, 0, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     fillArrOfRange(arr, NULL, 0, 0, 0, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     fillArrOfRange(arr, &tempValue, -1, 0, 0, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     fillArrOfRange(arr, &tempValue, 0, 0, 0, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     fillArrOfRange(arr, &tempValue, 0, 1, 0, -1);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     fillArrOfRange(arr, &tempValue, 10, sizeof(int), 5, 9);
@@ -556,22 +556,22 @@ void testFillArrOfRangeC(CuTest *cuTest) {
 
     int tempValue = 1;
     fillArrOfRangeC(NULL, NULL, 0, 0, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     fillArrOfRangeC(arr, NULL, 0, 0, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     fillArrOfRangeC(arr, &tempValue, 0, 0, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     fillArrOfRangeC(arr, &tempValue, -1, 0, 0, 0, intCopyFunArrAlgT);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     fillArrOfRangeC(arr, &tempValue, 0, 0, 0, 0, intCopyFunArrAlgT);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     fillArrOfRangeC(arr, &tempValue, 0, 1, 0, -1, intCopyFunArrAlgT);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     fillArrOfRangeC(arr, &tempValue, 10, sizeof(int), 5, 9, intCopyFunArrAlgT);
@@ -596,19 +596,19 @@ void testArrCompare(CuTest *cuTest) {
     int arr3[] = {1, 2, 3, 4, 5, 5, 7, 8, 9, 10};
 
     arrCompare(NULL, 0, NULL, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrCompare(arr1, 0, NULL, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrCompare(arr1, 0, arr2, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrCompare(arr1, -1, arr2, -1, 0, compareIntPointers);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrCompare(arr1, 0, arr2, 0, 0, compareIntPointers);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 1, arrCompare(arr1, 10, arr2, 10, sizeof(int), compareIntPointers));
     CuAssertIntEquals(cuTest, 0, arrCompare(arr1, 10, arr3, 10, sizeof(int), compareIntPointers));
@@ -625,22 +625,22 @@ void testArrCompareOfRange(CuTest *cuTest) {
     int arr2[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
     arrCompareOfRange(NULL, 0, NULL, 0, 0, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrCompareOfRange(arr1, 0, NULL, 0, 0, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrCompareOfRange(arr1, 0, arr2, 0, 0, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrCompareOfRange(arr1, -1, arr2, -1, 0, 0, 0, compareIntPointers);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrCompareOfRange(arr1, 0, arr2, 0, 0, 0, 0, compareIntPointers);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrCompareOfRange(arr1, 0, arr2, 0, 0, 0, -1, compareIntPointers);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 0, arrCompareOfRange(arr1, 10, arr2, 10, sizeof(int), 0, 9, compareIntPointers));
     CuAssertIntEquals(cuTest, 1, arrCompareOfRange(arr1, 10, arr2, 10, sizeof(int), 0, 3, compareIntPointers));
@@ -660,19 +660,19 @@ void testArrMismatch(CuTest *cuTest) {
     int arr3[] = {1, 2, 3, 4, 5, 5, 7, 8, 9, 10};
 
     arrMismatch(NULL, 0, NULL, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrMismatch(arr1, 0, NULL, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrMismatch(arr1, 0, arr2, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrMismatch(arr1, -1, arr2, -1, 0, compareIntPointers);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrMismatch(arr1, 0, arr2, 0, 0, compareIntPointers);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 5, arrMismatch(arr1, 10, arr3, 10, sizeof(int), compareIntPointers));
     CuAssertIntEquals(cuTest, -1, arrMismatch(arr1, 10, arr2, 10, sizeof(int), compareIntPointers));
@@ -689,22 +689,22 @@ void testArrMismatchOfRange(CuTest *cuTest) {
     int arr2[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
     arrMismatchOfRange(NULL, 0, NULL, 0, 0, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrMismatchOfRange(arr1, 0, NULL, 0, 0, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrMismatchOfRange(arr1, 0, arr2, 0, 0, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrMismatchOfRange(arr1, -1, arr2, -1, 0, 0, 0, compareIntPointers);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrMismatchOfRange(arr1, 0, arr2, 0, 0, 0, 0, compareIntPointers);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrMismatchOfRange(arr1, 0, arr2, 0, 0, 0, -1, compareIntPointers);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, -1, arrMismatchOfRange(arr1, 10, arr2, 10, sizeof(int), 0, 3, compareIntPointers));
     CuAssertIntEquals(cuTest, 4, arrMismatchOfRange(arr1, 10, arr2, 10, sizeof(int), 0, 5, compareIntPointers));
@@ -722,16 +722,16 @@ void testArrRemoveDuplicatesA(CuTest *cuTest) {
     int arr[] = {1, 2, 3, 1, 4, 2, 2, 3, 5, 6};
 
     arrRemoveDuplicatesA(NULL, 0, 0, NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrRemoveDuplicatesA(arr, 0, 0, NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrRemoveDuplicatesA(arr, -1, 0, compareIntPointers, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrRemoveDuplicatesA(arr, 0, 0, compareIntPointers, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 6, arrRemoveDuplicatesA(arr, 10, sizeof(int), compareIntPointers, NULL));
     for (int i = 0; i < 6; i++)
@@ -749,19 +749,19 @@ void testArrRemoveDuplicatesH(CuTest *cuTest) {
     int arr[] = {1, 2, 3, 1, 4, 2, 2, 3, 5, 6};
 
     arrRemoveDuplicatesH(NULL, 0, 0, NULL, NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrRemoveDuplicatesH(arr, 0, 0, NULL, NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrRemoveDuplicatesH(arr, -1, 0, compareIntPointers, NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrRemoveDuplicatesH(arr, 0, 0, compareIntPointers, NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrRemoveDuplicatesH(arr, 0, 1, compareIntPointers, NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 6, arrRemoveDuplicatesH(arr, 10, sizeof(int), compareIntPointers, intHashFun, NULL));
     for (int i = 0; i < 6; i++)
@@ -780,19 +780,19 @@ void testArrRemoveValues(CuTest *cuTest) {
     int valuesArr[] = {10, 9, 8, 7, 6};
 
     arrRemoveValues(NULL, 0, NULL, 0, 0, NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrRemoveValues(arr, 0, NULL, 0, 0, NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrRemoveValues(arr, 0, valuesArr, 0, 0, NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrRemoveValues(arr, -1, valuesArr, 0, 0, compareIntPointers, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrRemoveValues(arr, -1, valuesArr, 0, 0, compareIntPointers, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 5, arrRemoveValues(arr, 10, valuesArr, 5, sizeof(int), compareIntPointers, NULL));
     for (int i = 0; i < 5; i++)
@@ -811,19 +811,19 @@ void testArrCountValues(CuTest *cuTest) {
     int valuesArr[] = {10, 9, 8, 7, 6};
 
     arrCountValues(NULL, 0, NULL, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrCountValues(arr, 0, NULL, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrCountValues(arr, 0, valuesArr, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrCountValues(arr, -1, valuesArr, 0, 0, compareIntPointers);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrCountValues(arr, -1, valuesArr, 0, 0, compareIntPointers);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 6, arrCountValues(arr, 10, valuesArr, 5, sizeof(int), compareIntPointers));
 
@@ -842,19 +842,19 @@ void testIsSubArr(CuTest *cuTest) {
     int arr4[] = {};
 
     isSubArr(NULL, 0, NULL, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     isSubArr(arr, 0, NULL, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     isSubArr(arr, 0, arr2, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     isSubArr(arr, -1, arr2, 0, 0, compareIntPointers);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     isSubArr(arr, -1, arr2, 0, 0, compareIntPointers);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 1, isSubArr(arr, 10, arr2, 3, sizeof(int), compareIntPointers));
     CuAssertIntEquals(cuTest, 1, isSubArr(arr, 10, arr, 10, sizeof(int), compareIntPointers));
@@ -877,19 +877,19 @@ void testArrGetStartIndex(CuTest *cuTest) {
 
 
     arrGetStartIndex(NULL, 0, NULL, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrGetStartIndex(arr, 0, NULL, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrGetStartIndex(arr, 0, valuesArr, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrGetStartIndex(arr, -1, valuesArr, 0, 0, compareIntPointers);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrGetStartIndex(arr, -1, valuesArr, 0, 0, compareIntPointers);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 6, arrGetStartIndex(arr, 10, valuesArr, 3, sizeof(int), compareIntPointers));
     CuAssertIntEquals(cuTest, 0, arrGetStartIndex(arr, 10, valuesArr2, 3, sizeof(int), compareIntPointers));
@@ -907,19 +907,19 @@ void testArrContains(CuTest *cuTest) {
     int tempValue;
 
     arrContains(NULL, NULL, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrContains(arr, NULL, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrContains(arr, &tempValue, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrContains(arr, &tempValue, -1, 0, compareIntPointers);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrContains(arr, &tempValue, 0, 0, compareIntPointers);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     for (int i = 1; i <= 10; i++)
         CuAssertIntEquals(cuTest, 1, arrContains(arr, &i, 10, sizeof(int), compareIntPointers));
@@ -939,16 +939,16 @@ void testArrRemoveAtIndex(CuTest *cuTest) {
     int tempValue;
 
     arrRemoveAtIndex(NULL, 0, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrRemoveAtIndex(arr, 0, -1, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrRemoveAtIndex(arr, 0, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrRemoveAtIndex(arr, 0, 0, 1, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     for (int i = 0; i < 10; i++) {
 
@@ -970,16 +970,16 @@ void testArrSort(CuTest *cuTest) {
     int arr[] = {10, 4, 5, 3, 2, 1, 6, 7, 8, 9};
 
     arrSort(NULL, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrSort(arr, 0, -1, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrSort(arr, -1, 0, compareIntPointers);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrSort(arr, 0, 0, compareIntPointers);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrSort(arr, 10, sizeof(int), compareIntPointers);
     for (int i = 0; i < 10; i++)
@@ -998,19 +998,19 @@ void testArrGetFirst(CuTest *cuTest) {
     int tempValue;
 
     arrGetFirst(NULL, NULL, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrGetFirst(arr, NULL, 0, -1, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrGetFirst(arr, &tempValue, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrGetFirst(arr, &tempValue, -1, 0, compareIntPointers);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrGetFirst(arr, &tempValue, 0, 0, compareIntPointers);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     for (int i = 1; i <= 5; i++)
         CuAssertIntEquals(cuTest, i - 1, arrGetFirst(arr, &i, 10, sizeof(int), compareIntPointers));
@@ -1030,19 +1030,19 @@ void testArrGetLast(CuTest *cuTest) {
     int tempValue;
 
     arrGetLast(NULL, NULL, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrGetLast(arr, NULL, 0, -1, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrGetLast(arr, &tempValue, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrGetLast(arr, &tempValue, -1, 0, compareIntPointers);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrGetLast(arr, &tempValue, 0, 0, compareIntPointers);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     for (int i = 1; i <= 5; i++)
         CuAssertIntEquals(cuTest, 10 - i, arrGetLast(arr, &i, 10, sizeof(int), compareIntPointers));
@@ -1063,19 +1063,19 @@ void testArrGetAll(CuTest *cuTest) {
     int tempValue;
 
     arrGetAll(NULL, NULL, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrGetAll(arr, NULL, 0, -1, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrGetAll(arr, &tempValue, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrGetAll(arr, &tempValue, -1, 0, compareIntPointers);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrGetAll(arr, &tempValue, 0, 0, compareIntPointers);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     for (int i = 0; i < 5; i++) {
@@ -1098,19 +1098,19 @@ void testArrBinarySearch(CuTest *cuTest) {
     int tempValue;
 
     arrBinarySearch(NULL, NULL, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrBinarySearch(arr, NULL, 0, -1, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrBinarySearch(arr, &tempValue, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrBinarySearch(arr, &tempValue, -1, 0, compareIntPointers);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrBinarySearch(arr, &tempValue, 0, 0, compareIntPointers);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     for (int i = 1; i <= 10; i++)
         CuAssertIntEquals(cuTest, i - 1, arrBinarySearch(arr, &i, 10, sizeof(int), compareIntPointers));
@@ -1131,16 +1131,16 @@ void testArrIsPalindrome(CuTest *cuTest) {
     int arr3[] = {};
 
     arrIsPalindrome(NULL, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrIsPalindrome(arr, 0, -1, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrIsPalindrome(arr, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrIsPalindrome(arr, -1, 0, compareIntPointers);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     CuAssertIntEquals(cuTest, 1, arrIsPalindrome(arr, 10, sizeof(int), compareIntPointers));
@@ -1162,19 +1162,19 @@ void testArrIsRotation(CuTest *cuTest) {
 
 
     arrIsRotation(NULL, 0, NULL, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrIsRotation(arr, 0, NULL, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrIsRotation(arr, 0, valuesArr, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrIsRotation(arr, -1, valuesArr, 0, 0, compareIntPointers);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrIsRotation(arr, -1, valuesArr, 0, 0, compareIntPointers);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 1, arrIsRotation(arr, 7, valuesArr, 7, sizeof(int), compareIntPointers));
     CuAssertIntEquals(cuTest, 1, arrIsRotation(arr, 7, valuesArr2, 7, sizeof(int), compareIntPointers));
@@ -1192,19 +1192,19 @@ void testArrUpdateElem(CuTest *cuTest) {
     int tempValue;
 
     arrUpdateElem(NULL, NULL, 0, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrUpdateElem(arr, NULL, 0, -1, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrUpdateElem(arr, &tempValue, -1, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrUpdateElem(arr, &tempValue, 0, 0, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrUpdateElem(arr, &tempValue, 0, 1, 0, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     tempValue = 9;
     arrUpdateElem(arr, &tempValue, 10, sizeof(int), 8, NULL);
@@ -1223,19 +1223,19 @@ void testArrAdd(CuTest *cuTest) {
     int tempValue;
 
     arrAdd(NULL, NULL, 0, 0, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrAdd(arr, NULL, 0, -1, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrAdd(arr, &tempValue, -1, 0, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrAdd(arr, &tempValue, 0, 0, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrAdd(arr, &tempValue, 0, 1, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
 
@@ -1256,19 +1256,19 @@ void testArrAddAll(CuTest *cuTest) {
     int tempValue[] = {4, 5, 6};
 
     arrAddAll(NULL, 0, NULL, 0, 0, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrAddAll(arr, 0, NULL, 0, -1, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrAddAll(arr, 0, tempValue, -1, 0, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrAddAll(arr, 0, tempValue, 0, 0, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrAddAll(arr, 0, tempValue, 0, 1, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     arrAddAll(arr, 10, tempValue, 3, sizeof(int), 3);
@@ -1330,7 +1330,7 @@ CuSuite *createArraysAlgTestsSuite() {
 
 void arraysAlgUnitTest() {
 
-    DUMMY_TEST_DATASTRUCTURE =  (TestStruct*) malloc(sizeof(TestStruct));
+    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Arrays Algorithms Test**\n");
@@ -1342,6 +1342,6 @@ void arraysAlgUnitTest() {
     CuSuiteDetails(suite, output);
     printf("%s\n", output->buffer);
 
-    free(DUMMY_TEST_DATASTRUCTURE);
+    free(ERROR_TEST);
 
 }

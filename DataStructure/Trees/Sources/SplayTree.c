@@ -310,16 +310,16 @@ void destroySplayTreeNodeWtoFr(SplayNode *node) {
 SplayTree *splayTreeInitialization(void (*freeFn)(void *), int (*cmp)(const void *, const void *)) {
 
     if (freeFn == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = INVALID_ARG;
      		return NULL;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "splay tree data structure");
             exit(INVALID_ARG);
         #endif
     } else if (cmp == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = INVALID_ARG;
      		return NULL;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "compare function pointer", "splay tree data structure");
@@ -398,16 +398,16 @@ SplayNode *splayNode(SplayTree *tree, SplayNode *parent, SplayNode *root, void *
 void splayTreeInsert(SplayTree *tree, void *item) {
 
     if (tree == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "splay tree data structure");
             exit(NULL_POINTER);
         #endif
     } else if (item == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = INVALID_ARG;
      		return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "splay tree data structure");
@@ -475,16 +475,16 @@ SplayNode *splayTreeInsertR(SplayTree *tree, SplayNode *parent, SplayNode *root,
 void splayTreeInsertAll(SplayTree *tree, void **items, int length) {
 
     if (tree == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "splay tree data structure");
             exit(NULL_POINTER);
         #endif
     } else if (items == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = INVALID_ARG;
      		return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "new items array", "splay tree data structure");
@@ -513,24 +513,24 @@ void splayTreeInsertAll(SplayTree *tree, void **items, int length) {
 void splayTreeDelete(SplayTree *tree, void *item) {
 
     if (tree == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "splay tree data structure");
             exit(NULL_POINTER);
         #endif
     } else if (item == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = INVALID_ARG;
      		return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "splay tree data structure");
             exit(INVALID_ARG);
         #endif
     } else if (splayTreeIsEmpty(tree)) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
             return;
         #else
             fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "splay tree data structure");
@@ -615,24 +615,24 @@ SplayNode *splayTreeDeleteR(SplayTree *tree, SplayNode *root, void *item) {
 void *splayTreeDeleteWtoFr(SplayTree *tree, void *item) {
 
     if (tree == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "splay tree data structure");
             exit(NULL_POINTER);
         #endif
     } else if (item == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = INVALID_ARG;
      		return NULL;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "splay tree data structure");
             exit(INVALID_ARG);
         #endif
     } else if (splayTreeIsEmpty(tree)) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
             return NULL;
         #else
             fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "splay tree data structure");
@@ -722,16 +722,16 @@ SplayNode *splayTreeDeleteWtoFrR(SplayTree *tree, SplayNode *root, void *item) {
 int splayTreeContains(SplayTree *tree, void *item) {
 
     if (tree == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "splay tree data structure");
             exit(NULL_POINTER);
         #endif
     } else if (item == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = INVALID_ARG;
      		return NULL;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "splay tree data structure");
@@ -766,16 +766,16 @@ int splayTreeContains(SplayTree *tree, void *item) {
 void *splayTreeGet(SplayTree *tree, void *item) {
 
     if (tree == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "splay tree data structure");
             exit(NULL_POINTER);
         #endif
     } else if (item == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = INVALID_ARG;
      		return NULL;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "splay tree data structure");
@@ -808,8 +808,8 @@ void *splayTreeGet(SplayTree *tree, void *item) {
 int splayTreeGetSize(SplayTree *tree) {
 
     if (tree == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = NULL_POINTER;
      		return -1;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "splay tree data structure");
@@ -838,8 +838,8 @@ int splayTreeGetSize(SplayTree *tree) {
 int splayTreeIsEmpty(SplayTree *tree) {
 
     if (tree == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = NULL_POINTER;
      		return -1;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "splay tree data structure");
@@ -866,8 +866,8 @@ int splayTreeIsEmpty(SplayTree *tree) {
 void **splayTreeToArray(SplayTree *tree) {
 
     if (tree == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "splay tree data structure");
@@ -934,8 +934,8 @@ void splayTreeToArrayR(SplayNode *root, void **arr, int *index) {
 void clearSplayTree(SplayTree *tree) {
 
     if (tree == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "splay tree data structure");
@@ -994,8 +994,8 @@ void clearSplayTreeR(SplayTree *tree, SplayNode *root) {
 void destroySplayTree(SplayTree *tree) {
 
     if (tree == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "splay tree data structure");

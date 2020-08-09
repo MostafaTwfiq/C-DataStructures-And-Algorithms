@@ -135,10 +135,10 @@ int checkIfValidAVLTreeAVLTT(AVLTreeNode *root, AVLTreeNode *parent) {
 void testInvalidAVLTreeInitialization(CuTest *cuTest) {
 
     avlTreeInitialization(NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     avlTreeInitialization(free, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 }
 
@@ -149,7 +149,7 @@ void testInvalidAVLTreeInitialization(CuTest *cuTest) {
 void testValidAVLTreeInitialization(CuTest *cuTest) {
 
     AVLTree *tree = avlTreeInitialization(free, compareIntPointersAVLTT);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     CuAssertPtrNotNull(cuTest, tree);
 
@@ -169,10 +169,10 @@ void testAVLTreeInsert(CuTest *cuTest) {
     AVLTree *tree = avlTreeInitialization(free, compareIntPointersAVLTT);
 
     avlTreeInsert(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     avlTreeInsert(tree, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     int values[] = {10, 20, 30, 5, 4, 40, 35, 15, 13, 2, 3};
@@ -261,10 +261,10 @@ void testAVLTreeInsertAll(CuTest *cuTest) {
     AVLTree *tree = avlTreeInitialization(free, compareIntPointersAVLTT);
 
     avlInsertAll(NULL, NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     avlInsertAll(tree, NULL, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     int values[] = {10, 20, 30, 5, 4, 40, 35, 15, 13, 2, 3};
@@ -293,14 +293,14 @@ void testAVLTreeDelete(CuTest *cuTest) {
     AVLTree *tree = avlTreeInitialization(free, compareIntPointersAVLTT);
 
     avlTreeDelete(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     avlTreeDelete(tree, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int tempValue = 0;
     avlTreeDelete(tree, &tempValue);
-    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, ERROR_TEST->errorCode);
 
 
     int values[] = {10, 20, 30, 5, 4, 40, 35, 15, 13, 2, 3};
@@ -330,14 +330,14 @@ void testAVLTreeDeleteWtoFr(CuTest *cuTest) {
     AVLTree *tree = avlTreeInitialization(free, compareIntPointersAVLTT);
 
     avlTreeDeleteWtoFr(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     avlTreeDeleteWtoFr(tree, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int tempValue = 0;
     avlTreeDeleteWtoFr(tree, &tempValue);
-    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, ERROR_TEST->errorCode);
 
 
     int values[] = {10, 20, 30, 5, 4, 40, 35, 15, 13, 2, 3};
@@ -372,10 +372,10 @@ void testAVLTreeContains(CuTest *cuTest) {
     AVLTree *tree = avlTreeInitialization(free, compareIntPointersAVLTT);
 
     avlTreeContains(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     avlTreeContains(tree, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     int values[] = {10, 20, 30, 5, 4, 40, 35, 15, 13, 2, 3};
@@ -404,10 +404,10 @@ void testAVLTreeGet(CuTest *cuTest) {
     AVLTree *tree = avlTreeInitialization(free, compareIntPointersAVLTT);
 
     avlTreeGet(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     avlTreeGet(tree, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     int values[] = {10, 20, 30, 5, 4, 40, 35, 15, 13, 2, 3};
@@ -456,10 +456,10 @@ void testAVLTreePreOrderTraversal(CuTest *cuTest) {
     AVLTree *tree = avlTreeInitialization(free, compareIntPointersAVLTT);
 
     avlTreePreOrderTraversal(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     avlTreePreOrderTraversal(tree, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     int values[] = {10, 20, 30, 5, 4, 40, 35, 15, 13, 2, 3};
@@ -491,10 +491,10 @@ void testAVLTreeInOrderTraversal(CuTest *cuTest) {
     AVLTree *tree = avlTreeInitialization(free, compareIntPointersAVLTT);
 
     avlTreeInOrderTraversal(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     avlTreeInOrderTraversal(tree, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     int values[] = {10, 20, 30, 5, 4, 40, 35, 15, 13, 2, 3};
@@ -527,10 +527,10 @@ void testAVLTreePostOrderTraversal(CuTest *cuTest) {
     AVLTree *tree = avlTreeInitialization(free, compareIntPointersAVLTT);
 
     avlTreePostOrderTraversal(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     avlTreePostOrderTraversal(tree, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     int values[] = {10, 20, 30, 5, 4, 40, 35, 15, 13, 2, 3};
@@ -563,10 +563,10 @@ void testAVLTreeBreadthFirstTraversal(CuTest *cuTest) {
     AVLTree *tree = avlTreeInitialization(free, compareIntPointersAVLTT);
 
     avlTreeBreadthFirstTraversal(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     avlTreeBreadthFirstTraversal(tree, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     int values[] = {10, 20, 30, 5, 4, 40, 35, 15, 13, 2, 3};
@@ -600,7 +600,7 @@ void testAVLTreeGetSize(CuTest *cuTest) {
     AVLTree *tree = avlTreeInitialization(free, compareIntPointersAVLTT);
 
     avlTreeGetSize(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     CuAssertIntEquals(cuTest, 0, avlTreeGetSize(tree));
@@ -636,7 +636,7 @@ void testAVLTreeIsEmpty(CuTest *cuTest) {
     AVLTree *tree = avlTreeInitialization(free, compareIntPointersAVLTT);
 
     avlTreeIsEmpty(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     CuAssertIntEquals(cuTest, 1, avlTreeIsEmpty(tree));
@@ -668,7 +668,7 @@ void testAVLTreeToArray(CuTest *cuTest) {
     AVLTree *tree = avlTreeInitialization(free, compareIntPointersAVLTT);
 
     avlTreeToArray(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     int values[] = {10, 20, 30, 5, 4, 40, 35, 15, 13, 2, 3};
@@ -700,7 +700,7 @@ void testClearAVLTree(CuTest *cuTest) {
     AVLTree *tree = avlTreeInitialization(free, compareIntPointersAVLTT);
 
     clearAVLTree(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 1, avlTreeIsEmpty(tree));
 
@@ -776,7 +776,7 @@ CuSuite *createAVLTreeTestsSuite() {
 
 void avlTreeUnitTest() {
 
-    DUMMY_TEST_DATASTRUCTURE =  (TestStruct*) malloc(sizeof(TestStruct));
+    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**AVL Tree Test**\n");
@@ -788,6 +788,6 @@ void avlTreeUnitTest() {
     CuSuiteDetails(suite, output);
     printf("%s\n", output->buffer);
 
-    free(DUMMY_TEST_DATASTRUCTURE);
+    free(ERROR_TEST);
 
 }

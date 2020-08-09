@@ -47,10 +47,10 @@ void testScanChar(CuTest *cuTest) {
 
 void testScanInt(CuTest *cuTest) {
 
-    DUMMY_TEST_DATASTRUCTURE->errorCode = 0;
+    ERROR_TEST->errorCode = 0;
     fprintf(stdout, "\nPlease enter non valid integer to confirm the integerScanner error catching:- ");
     scanInt();
-    CuAssertIntEquals(cuTest, SOMETHING_WENT_WRONG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, SOMETHING_WENT_WRONG, ERROR_TEST->errorCode);
 
 
     fprintf(stdout, "\nPlease enter the integer (123) to confirm the integerScanner:- ");
@@ -65,10 +65,10 @@ void testScanInt(CuTest *cuTest) {
 
 void testScanDouble(CuTest *cuTest) {
 
-    DUMMY_TEST_DATASTRUCTURE->errorCode = 0;
+    ERROR_TEST->errorCode = 0;
     fprintf(stdout, "\nPlease enter non valid double to confirm the doubleScanner error catching:- ");
     scanDouble();
-    CuAssertIntEquals(cuTest, SOMETHING_WENT_WRONG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, SOMETHING_WENT_WRONG, ERROR_TEST->errorCode);
 
     fprintf(stdout, "\nPlease enter the double (123.123) to confirm the doubleScanner:- ");
     CuAssertIntEquals(cuTest, 1, scanDouble() == 123.123);
@@ -81,10 +81,10 @@ void testScanDouble(CuTest *cuTest) {
 
 void testScanFloat(CuTest *cuTest) {
 
-    DUMMY_TEST_DATASTRUCTURE->errorCode = 0;
+    ERROR_TEST->errorCode = 0;
     fprintf(stdout, "\nPlease enter non valid float to confirm the floatScanner error catching:- ");
     scanFloat();
-    CuAssertIntEquals(cuTest, SOMETHING_WENT_WRONG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, SOMETHING_WENT_WRONG, ERROR_TEST->errorCode);
 
     fprintf(stdout, "\nPlease enter the float (123.5) to confirm the floatScanner:- ");
 
@@ -98,10 +98,10 @@ void testScanFloat(CuTest *cuTest) {
 
 void testScanLong(CuTest *cuTest) {
 
-    DUMMY_TEST_DATASTRUCTURE->errorCode = 0;
+    ERROR_TEST->errorCode = 0;
     fprintf(stdout, "\nPlease enter non valid long to confirm the longScanner error catching:- ");
     scanLong();
-    CuAssertIntEquals(cuTest, SOMETHING_WENT_WRONG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, SOMETHING_WENT_WRONG, ERROR_TEST->errorCode);
 
     fprintf(stdout, "\nPlease enter the long (123) to confirm the longScanner:- ");
     CuAssertIntEquals(cuTest, 123, scanLong());
@@ -113,10 +113,10 @@ void testScanLong(CuTest *cuTest) {
 
 void testScanLongLong(CuTest *cuTest) {
 
-    DUMMY_TEST_DATASTRUCTURE->errorCode = 0;
+    ERROR_TEST->errorCode = 0;
     fprintf(stdout, "\nPlease enter non valid long long to confirm the longLongScanner error catching:- ");
     scanLongLong();
-    CuAssertIntEquals(cuTest, SOMETHING_WENT_WRONG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, SOMETHING_WENT_WRONG, ERROR_TEST->errorCode);
 
     fprintf(stdout, "\nPlease enter the long (123) to confirm the longLongScanner:- ");
     CuAssertIntEquals(cuTest, 123, scanLongLong());
@@ -129,10 +129,10 @@ void testScanLongLong(CuTest *cuTest) {
 
 void testScanShort(CuTest *cuTest) {
 
-    DUMMY_TEST_DATASTRUCTURE->errorCode = 0;
+    ERROR_TEST->errorCode = 0;
     fprintf(stdout, "\nPlease enter non valid short to confirm the shortScanner error catching:- ");
     scanShort();
-    CuAssertIntEquals(cuTest, SOMETHING_WENT_WRONG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, SOMETHING_WENT_WRONG, ERROR_TEST->errorCode);
 
     fprintf(stdout, "\nPlease enter the long (123) to confirm the shortScanner:- ");
     CuAssertIntEquals(cuTest, 123, scanShort());
@@ -165,7 +165,7 @@ CuSuite *createInputScannerTestsSuite() {
 
 void inputScannerUnitTest() {
 
-    DUMMY_TEST_DATASTRUCTURE =  (TestStruct*) malloc(sizeof(TestStruct));
+    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Input Scanner Test**\n");
@@ -177,6 +177,6 @@ void inputScannerUnitTest() {
     CuSuiteDetails(suite, output);
     printf("%s\n", output->buffer);
 
-    free(DUMMY_TEST_DATASTRUCTURE);
+    free(ERROR_TEST);
 
 }

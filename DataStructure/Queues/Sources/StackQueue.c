@@ -20,8 +20,8 @@ void transferItemsToSecondStack(Stack *fStack, Stack *sStack);
 
 SQueue *stackQueueInitialization(void (*freeItem)(void *)) {
     if (freeItem == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return NULL;
         #else
      		fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "stack queue data structure");
@@ -32,8 +32,8 @@ SQueue *stackQueueInitialization(void (*freeItem)(void *)) {
 
     SQueue *queue = (SQueue *) malloc(sizeof(SQueue));
     if (queue == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
      		return NULL;
         #else
             fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "queue", "stack queue data structure");
@@ -61,8 +61,8 @@ SQueue *stackQueueInitialization(void (*freeItem)(void *)) {
 
 void sQueueEnqueue(SQueue *queue, void *item) {
     if(queue == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
      		fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
@@ -70,8 +70,8 @@ void sQueueEnqueue(SQueue *queue, void *item) {
      	#endif
 
     } else if (item == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "stack queue data structure");
@@ -98,8 +98,8 @@ void sQueueEnqueue(SQueue *queue, void *item) {
 
 void sQueueAddAll(SQueue *queue, void **items, int itemsLength) {
     if(queue == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
             fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
@@ -107,8 +107,8 @@ void sQueueAddAll(SQueue *queue, void **items, int itemsLength) {
      	#endif
 
     } else if (items == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "items array pointer", "stack queue data structure");
@@ -135,8 +135,8 @@ void sQueueAddAll(SQueue *queue, void **items, int itemsLength) {
 
 void *sQueueDequeue(SQueue *queue) {
     if(queue == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
             fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
@@ -144,8 +144,8 @@ void *sQueueDequeue(SQueue *queue) {
      	#endif
 
     } else if (sQueueIsEmpty(queue)) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
      		return NULL;
         #else
      		fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "stack queue data structure");
@@ -192,8 +192,8 @@ void transferItemsToSecondStack(Stack *fStack, Stack *sStack) {
 
 void *sQueuePeek(SQueue *queue) {
     if(queue == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
             fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
@@ -201,8 +201,8 @@ void *sQueuePeek(SQueue *queue) {
      	#endif
 
     } else if (sQueueIsEmpty(queue)) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
      		return NULL;
         #else
             fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "stack queue data structure");
@@ -231,8 +231,8 @@ void *sQueuePeek(SQueue *queue) {
 int sQueueGetLength(SQueue *queue) {
 
     if(queue == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return -1;
         #else
      		fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
@@ -260,8 +260,8 @@ int sQueueGetLength(SQueue *queue) {
 int sQueueIsEmpty(SQueue *queue) {
 
     if(queue == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return -1;
         #else
             fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
@@ -289,8 +289,8 @@ int sQueueIsEmpty(SQueue *queue) {
 void **sQueueToArray(SQueue *queue) {
 
     if(queue == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
             fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
@@ -302,8 +302,8 @@ void **sQueueToArray(SQueue *queue) {
     int length = sQueueGetLength(queue);
     void **arr = (void **) malloc(sizeof(void *) * length);
     if (arr == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
      		return NULL;
         #else
             fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "stack queue data structure");
@@ -341,8 +341,8 @@ void **sQueueToArray(SQueue *queue) {
 void clearSQueue(SQueue *queue) {
 
     if(queue == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
      		fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
@@ -369,8 +369,8 @@ void clearSQueue(SQueue *queue) {
 void destroySQueue(SQueue *queue) {
 
     if(queue == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = NULL_POINTER;
             return;
         #else
             fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");

@@ -5,11 +5,9 @@
 #include <stdarg.h>
 
 
-typedef struct TestStruct{
-    int errorCode;
-}TestStruct;
+/** Include this header to test the errors codes in the unit test.*/
+//#include "../ErrorsTestStruct.h"
 
-TestStruct *DUMMY_TEST_DATASTRUCTURE;
 
 
 #define CUTEST_VERSION  "CuTest 1.5"

@@ -84,10 +84,10 @@ int checkIfValidBinaryTreeBTT(BinaryTreeNode *root, BinaryTreeNode *parent) {
 void testInvalidBinaryTreeInitialization(CuTest *cuTest) {
 
     binaryTreeInitialization(NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     binaryTreeInitialization(free, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 }
 
@@ -98,7 +98,7 @@ void testInvalidBinaryTreeInitialization(CuTest *cuTest) {
 void testValidBinaryTreeInitialization(CuTest *cuTest) {
 
     BinaryTree *tree = binaryTreeInitialization(free, compareIntPointersBTT);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     CuAssertPtrNotNull(cuTest, tree);
 
@@ -113,10 +113,10 @@ void testBinaryTreeInsert(CuTest *cuTest) {
     BinaryTree *tree = binaryTreeInitialization(free, compareIntPointersBTT);
 
     binaryTreeInsert(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     binaryTreeInsert(tree, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     int values[] = {10, 20, 5, 8, 15, 25, 4, 2, 1, 10, 18};
@@ -206,10 +206,10 @@ void testBinaryTreeInsertAll(CuTest *cuTest) {
     BinaryTree *tree = binaryTreeInitialization(free, compareIntPointersBTT);
 
     binaryTreeInsertAll(NULL, NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     binaryTreeInsertAll(tree, NULL, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     int values[] = {10, 20, 5, 8, 15, 25, 4, 2, 1, 10, 18};
@@ -238,14 +238,14 @@ void testBinaryTreeDelete(CuTest *cuTest) {
     BinaryTree *tree = binaryTreeInitialization(free, compareIntPointersBTT);
 
     binaryTreeDelete(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     binaryTreeDelete(tree, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int tempValue = 0;
     binaryTreeDelete(tree, &tempValue);
-    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, ERROR_TEST->errorCode);
 
 
     int values[] = {10, 20, 5, 8, 15, 25, 4, 2, 1, 10, 18};
@@ -272,14 +272,14 @@ void testBinaryTreeDeleteWtoFr(CuTest *cuTest) {
     BinaryTree *tree = binaryTreeInitialization(free, compareIntPointersBTT);
 
     binaryTreeDeleteWtoFr(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     binaryTreeDeleteWtoFr(tree, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int tempValue = 0;
     binaryTreeDeleteWtoFr(tree, &tempValue);
-    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, ERROR_TEST->errorCode);
 
 
     int values[] = {10, 20, 5, 8, 15, 25, 4, 2, 1, 18};
@@ -314,10 +314,10 @@ void testBinaryTreeContains(CuTest *cuTest) {
     BinaryTree *tree = binaryTreeInitialization(free, compareIntPointersBTT);
 
     binaryTreeContains(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     binaryTreeContains(tree, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     int values[] = {10, 20, 5, 8, 15, 25, 4, 2, 1, 18};
@@ -346,10 +346,10 @@ void testBinaryTreeGet(CuTest *cuTest) {
     BinaryTree *tree = binaryTreeInitialization(free, compareIntPointersBTT);
 
     binaryTreeGet(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     binaryTreeGet(tree, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     int values[] = {10, 20, 5, 8, 15, 25, 4, 2, 1, 18};
@@ -392,10 +392,10 @@ void testBinaryTreePreOrderTraversal(CuTest *cuTest) {
     BinaryTree *tree = binaryTreeInitialization(free, compareIntPointersBTT);
 
     binaryTreePreOrderTraversal(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     binaryTreePreOrderTraversal(tree, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     int values[] = {10, 20, 5, 8, 15, 25, 4, 2, 1, 18};
@@ -427,10 +427,10 @@ void testBinaryTreeInOrderTraversal(CuTest *cuTest) {
     BinaryTree *tree = binaryTreeInitialization(free, compareIntPointersBTT);
 
     binaryTreeInOrderTraversal(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     binaryTreeInOrderTraversal(tree, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     int values[] = {10, 20, 5, 8, 15, 25, 4, 2, 1, 18};
@@ -463,10 +463,10 @@ void testBinaryTreePostOrderTraversal(CuTest *cuTest) {
     BinaryTree *tree = binaryTreeInitialization(free, compareIntPointersBTT);
 
     binaryTreePostOrderTraversal(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     binaryTreePostOrderTraversal(tree, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     int values[] = {10, 20, 5, 8, 15, 25, 4, 2, 1, 18};
@@ -498,7 +498,7 @@ void testBinaryTreeGetSize(CuTest *cuTest) {
     BinaryTree *tree = binaryTreeInitialization(free, compareIntPointersBTT);
 
     binaryTreeGetSize(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     CuAssertIntEquals(cuTest, 0, binaryTreeGetSize(tree));
@@ -534,7 +534,7 @@ void testBinaryTreeIsEmpty(CuTest *cuTest) {
     BinaryTree *tree = binaryTreeInitialization(free, compareIntPointersBTT);
 
     binaryTreeIsEmpty(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     CuAssertIntEquals(cuTest, 1, binaryTreeIsEmpty(tree));
@@ -566,7 +566,7 @@ void testBinaryTreeToArray(CuTest *cuTest) {
     BinaryTree *tree = binaryTreeInitialization(free, compareIntPointersBTT);
 
     binaryTreeToArray(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     int values[] = {10, 20, 5, 8, 15, 25, 4, 2, 1, 10, 18};
@@ -598,7 +598,7 @@ void testClearBinaryTree(CuTest *cuTest) {
     BinaryTree *tree = binaryTreeInitialization(free, compareIntPointersBTT);
 
     clearBinaryTree(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 1, binaryTreeIsEmpty(tree));
 
@@ -670,7 +670,7 @@ CuSuite *createBinaryTreeTestsSuite() {
 
 void binaryTreeUnitTest() {
 
-    DUMMY_TEST_DATASTRUCTURE =  (TestStruct*) malloc(sizeof(TestStruct));
+    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Binary Tree Test**\n");
@@ -682,6 +682,6 @@ void binaryTreeUnitTest() {
     CuSuiteDetails(suite, output);
     printf("%s\n", output->buffer);
 
-    free(DUMMY_TEST_DATASTRUCTURE);
+    free(ERROR_TEST);
 
 }

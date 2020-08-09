@@ -276,10 +276,10 @@ void testIntArrSum(CuTest *cuTest) {
     int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
     intArrSum(NULL, -1);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     intArrSum(arr, -1);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 55, intArrSum(arr, 10));
 
@@ -313,7 +313,7 @@ CuSuite *createIntegerAlgTestsSuite() {
 
 void integerAlgUnitTest() {
 
-    DUMMY_TEST_DATASTRUCTURE =  (TestStruct*) malloc(sizeof(TestStruct));
+    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Integer Algorithms Test**\n");
@@ -325,6 +325,6 @@ void integerAlgUnitTest() {
     CuSuiteDetails(suite, output);
     printf("%s\n", output->buffer);
 
-    free(DUMMY_TEST_DATASTRUCTURE);
+    free(ERROR_TEST);
 
 }

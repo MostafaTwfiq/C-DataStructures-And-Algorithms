@@ -61,7 +61,7 @@ char *generateCharPointerST(char *ch) {
 void testInvalidStackInitialization(CuTest *cuTest) {
 
     Stack *stack = stackInitialization(NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 }
 
@@ -84,10 +84,10 @@ void testStackPush(CuTest *cuTest) {
     Stack *stack = stackInitialization(free);
 
     stackPush(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stackPush(stack, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     stackPush(stack, generateIntPointerST(10));
@@ -110,10 +110,10 @@ void testStackAddAll(CuTest *cuTest) {
     Stack *stack = stackInitialization(free);
 
     stackAddAll(NULL, NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stackAddAll(stack, NULL, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int **arr = (int **) malloc(sizeof(int * ) * 5);
     for (int i = 0; i < 5; i++)
@@ -138,10 +138,10 @@ void testStackPop(CuTest *cuTest) {
     Stack *stack = stackInitialization(free);
 
     stackPop(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stackPop(stack);
-    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, ERROR_TEST->errorCode);
 
     stackPush(stack, generateIntPointerST(10));
     stackPush(stack, generateIntPointerST(20));
@@ -170,10 +170,10 @@ void testStackPeek(CuTest *cuTest) {
     Stack *stack = stackInitialization(free);
 
     stackPeek(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stackPeek(stack);
-    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, EMPTY_DATA_STRUCTURE, ERROR_TEST->errorCode);
 
     stackPush(stack, generateIntPointerST(10));
     stackPush(stack, generateIntPointerST(20));
@@ -203,7 +203,7 @@ void testStackIsEmpty(CuTest *cuTest) {
     Stack *stack = stackInitialization(free);
 
     stackIsEmpty(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 1, stackIsEmpty(stack));
 
@@ -233,7 +233,7 @@ void testStackToArray(CuTest *cuTest) {
     Stack *stack = stackInitialization(free);
 
     stackToArray(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stackPush(stack, generateIntPointerST(10));
     stackPush(stack, generateIntPointerST(20));
@@ -260,7 +260,7 @@ void testStackGetLength(CuTest *cuTest) {
     Stack *stack = stackInitialization(free);
 
     stackGetLength(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 0, stackGetLength(stack));
 
@@ -293,14 +293,14 @@ void testStackContains(CuTest *cuTest) {
     int tempValue;
 
     stackContains(NULL, NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stackContains(stack, NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     stackContains(stack, &tempValue, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     stackPush(stack, generateIntPointerST(10));
@@ -331,14 +331,14 @@ void testStackEquals(CuTest *cuTest) {
     Stack *stack2 = stackInitialization(free);
 
     stackEquals(NULL, NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stackEquals(stack1, NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     stackEquals(stack1, stack2, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     stackPush(stack1, generateIntPointerST(10));
@@ -375,7 +375,7 @@ void testClearStack(CuTest *cuTest) {
     Stack *stack = stackInitialization(free);
 
     clearStack(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 0, stackGetLength(stack));
 
@@ -411,7 +411,7 @@ void testDestroyStack(CuTest *cuTest) {
     Stack *stack = stackInitialization(free);
 
     destroyStack(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     stackPush(stack, generateIntPointerST(10));
     stackPush(stack, generateIntPointerST(20));
@@ -551,7 +551,7 @@ CuSuite *createStackTestsSuite() {
 
 void stackUnitTest() {
 
-    DUMMY_TEST_DATASTRUCTURE =  (TestStruct*) malloc(sizeof(TestStruct));
+    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Stack Test**\n");
@@ -563,6 +563,6 @@ void stackUnitTest() {
     CuSuiteDetails(suite, output);
     printf("%s\n", output->buffer);
 
-    free(DUMMY_TEST_DATASTRUCTURE);
+    free(ERROR_TEST);
 
 }

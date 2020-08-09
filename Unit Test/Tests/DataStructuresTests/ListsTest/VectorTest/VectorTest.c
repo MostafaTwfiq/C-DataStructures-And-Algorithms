@@ -64,10 +64,10 @@ char *generateCharPointerVT(char *ch) {
 
 void testVectorInvalidInitialization(CuTest *cuTest) {
     Vector * vector = vectorInitialization(-1, free, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     vector = vectorInitialization(1, NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 }
 
@@ -81,10 +81,10 @@ void testVectorAddFun(CuTest *cuTest) {
     Vector *vector = vectorInitialization(1, free, compareIntPointersVT);
 
     vectorAdd(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     vectorAdd(vector, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     vectorAdd(vector, generateIntPointerVT(10));
     vectorAdd(vector, generateIntPointerVT(20));
@@ -104,14 +104,14 @@ void testVectorAddAtIndexFun(CuTest *cuTest) {
     Vector *vector = vectorInitialization(1, free, strcmp);
 
     vectorAddAtIndex(NULL, NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     vectorAddAtIndex(vector, NULL, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int tempVal = 10;
     vectorAddAtIndex(vector, &tempVal, 1);
-    CuAssertIntEquals(cuTest, OUT_OF_RANGE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, OUT_OF_RANGE, ERROR_TEST->errorCode);
 
     vectorAdd(vector, generateCharPointerVT("0"));
     vectorAddAtIndex(vector, generateCharPointerVT("30"), 0);
@@ -137,10 +137,10 @@ void testVectorAddAll(CuTest *cuTest) {
 
 
     vectorAddAll(NULL, NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     vectorAddAll(vector, NULL, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     int **valuesArr = (int **) malloc(sizeof(int *) * 3);
@@ -169,7 +169,7 @@ void testVectorRemove(CuTest *cuTest) {
     Vector *vector = vectorInitialization(1, free, compareIntPointersVT);
 
     vectorRemove(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     vectorAdd(vector, generateIntPointerVT(10));
 
@@ -187,7 +187,7 @@ void testVectorRemoveWtoFr(CuTest *cuTest) {
     Vector *vector = vectorInitialization(1, free, compareIntPointersVT);
 
     vectorRemoveWtFr(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     int *currentItem = generateIntPointerVT(10);
     vectorAdd(vector, currentItem);
@@ -208,10 +208,10 @@ void testVectorRemoveAtIndex(CuTest *cuTest) {
     Vector *vector = vectorInitialization(1, free, compareIntPointersVT);
 
     vectorRemoveAtIndex(NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     vectorRemoveAtIndex(vector, 0);
-    CuAssertIntEquals(cuTest, OUT_OF_RANGE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, OUT_OF_RANGE, ERROR_TEST->errorCode);
 
     vectorAdd(vector, generateIntPointerVT(10));
     vectorAdd(vector, generateIntPointerVT(20));
@@ -241,10 +241,10 @@ void testVectorRemoveAtIndexWtoFr(CuTest *cuTest) {
     Vector *vector = vectorInitialization(1, free, compareIntPointersVT);
 
     vectorRemoveAtIndexWtFr(NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     vectorRemoveAtIndexWtFr(vector, 0);
-    CuAssertIntEquals(cuTest, OUT_OF_RANGE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, OUT_OF_RANGE, ERROR_TEST->errorCode);
 
     int **arr = (int **) malloc(sizeof(int *) * 5);
     for (int i = 0; i < 5; i++) {
@@ -312,10 +312,10 @@ void testVectorContains(CuTest *cuTest) {
     Vector *vector = vectorInitialization(1, free, compareIntPointersVT);
 
     vectorContains(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     vectorContains(vector, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int **arr = (int **) malloc(sizeof(int *) * 5);
     for (int i = 0; i < 5; i++) {
@@ -351,10 +351,10 @@ void testVectorGetIndex(CuTest *cuTest) {
     Vector *vector = vectorInitialization(1, free, compareIntPointersVT);
 
     vectorGetIndex(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     vectorGetIndex(vector, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int **arr = (int **) malloc(sizeof(int *) * 5);
     for (int i = 0; i < 5; i++) {
@@ -390,10 +390,10 @@ void testVectorGetLastIndex(CuTest *cuTest) {
     Vector *vector = vectorInitialization(1, free, compareIntPointersVT);
 
     vectorGetLastIndex(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     vectorGetLastIndex(vector, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     int **arr = (int **) malloc(sizeof(int *) * 6);
     for (int i = 0; i < 6; i += 2) {
@@ -433,10 +433,10 @@ void testVectorGet(CuTest *cuTest) {
     Vector *vector = vectorInitialization(1, free, compareIntPointersVT);
 
     vectorGet(NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     vectorGet(vector, 0);
-    CuAssertIntEquals(cuTest, OUT_OF_RANGE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, OUT_OF_RANGE, ERROR_TEST->errorCode);
 
     int **arr = (int **) malloc(sizeof(int *) * 5);
     for (int i = 0; i < 5; i++) {
@@ -465,7 +465,7 @@ void testVectorToArray(CuTest *cuTest) {
     Vector *vector = vectorInitialization(1, free, compareIntPointersVT);
 
     vectorToArray(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     int **arr = (int **) malloc(sizeof(int *) * 5);
     for (int i = 0; i < 5; i++) {
@@ -495,13 +495,13 @@ void testVectorToSubArray(CuTest *cuTest) {
     Vector *vector = vectorInitialization(1, free, compareIntPointersVT);
 
     vectorToSubArray(NULL, 0, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     vectorToSubArray(vector, -10, 0);
-    CuAssertIntEquals(cuTest, OUT_OF_RANGE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, OUT_OF_RANGE, ERROR_TEST->errorCode);
 
     vectorToSubArray(vector, 0, 1);
-    CuAssertIntEquals(cuTest, OUT_OF_RANGE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, OUT_OF_RANGE, ERROR_TEST->errorCode);
 
     int **arr = (int **) malloc(sizeof(int *) * 10);
     for (int i = 0; i < 10; i++) {
@@ -537,10 +537,10 @@ void testVectorSort(CuTest *cuTest) {
     Vector *vector = vectorInitialization(1, free, compareIntPointersVT);
 
     vectorSort(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     vectorSort(vector, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     vectorAdd(vector, generateIntPointerVT(30));
     vectorAdd(vector, generateIntPointerVT(20));
@@ -574,13 +574,13 @@ void testVectorPrintFun(CuTest *cuTest) {
     Vector *vector = vectorInitialization(1, free, compareIntPointersVT);
 
     vectorToSubArray(NULL, 0, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     vectorToSubArray(vector, -10, 0);
-    CuAssertIntEquals(cuTest, OUT_OF_RANGE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, OUT_OF_RANGE, ERROR_TEST->errorCode);
 
     vectorToSubArray(vector, 0, 1);
-    CuAssertIntEquals(cuTest, OUT_OF_RANGE, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, OUT_OF_RANGE, ERROR_TEST->errorCode);
 
     int **arr = (int **) malloc(sizeof(int *) * 10);
     for (int i = 0; i < 10; i++) {
@@ -613,7 +613,7 @@ void testVectorGetLength(CuTest *cuTest) {
     Vector *vector = vectorInitialization(1, free, compareIntPointersVT);
 
     vectorGetLength(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 0, vectorGetLength(vector));
 
@@ -643,7 +643,7 @@ void testVectorIsEmpty(CuTest *cuTest) {
     Vector *vector = vectorInitialization(1, free, compareIntPointersVT);
 
     vectorIsEmpty(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     CuAssertIntEquals(cuTest, 1, vectorIsEmpty(vector));
 
@@ -674,7 +674,7 @@ void testClearVector(CuTest *cuTest) {
     Vector *vector = vectorInitialization(1, free, compareIntPointersVT);
 
     clearVector(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     clearVector(vector);
     CuAssertIntEquals(cuTest, 0, vector->count);
@@ -700,7 +700,7 @@ void testDestroyVector(CuTest *cuTest) {
     Vector *vector = vectorInitialization(1, free, compareIntPointersVT);
 
     destroyVector(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     vectorAdd(vector, generateIntPointerVT(30));
     vectorAdd(vector, generateIntPointerVT(20));
@@ -859,7 +859,7 @@ CuSuite *createVectorTestsSuite() {
 
 void vectorUnitTest() {
 
-    DUMMY_TEST_DATASTRUCTURE =  (TestStruct*) malloc(sizeof(TestStruct));
+    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Vector Test**\n");
@@ -871,6 +871,6 @@ void vectorUnitTest() {
     CuSuiteDetails(suite, output);
     printf("%s\n", output->buffer);
 
-    free(DUMMY_TEST_DATASTRUCTURE);
+    free(ERROR_TEST);
 
 }

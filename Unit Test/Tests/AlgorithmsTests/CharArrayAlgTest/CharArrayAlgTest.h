@@ -1,6 +1,8 @@
 #ifndef C_DATASTRUCTURES_CHARARRAYALGTEST_H
 #define C_DATASTRUCTURES_CHARARRAYALGTEST_H
 
+#include "../../../ErrorsTestStruct.h"
+
 void charArrayAlgUnitTest();
 
 #endif //C_DATASTRUCTURES_CHARARRAYALGTEST_H

@@ -84,10 +84,10 @@ int isValidBinaryHeap(void **arr, int currentIndex, int length, int (*cmp)(const
 void testInvalidBinaryHeapInitialization(CuTest *cuTest) {
 
     binaryHeapInitialization(NULL, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     binaryHeapInitialization(free, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 }
 
@@ -114,10 +114,10 @@ void testBinaryHeapInsert(CuTest *cuTest) {
 
 
     binaryHeapInsert(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     binaryHeapInsert(maxHeap, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     int values[] = {20, 15, 10, 12, 11, 20, 5, 4, 3, 2};
@@ -155,10 +155,10 @@ void testBinaryHeapInsertAll(CuTest *cuTest) {
 
 
     binaryHeapInsertAll(NULL, NULL, 0);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     binaryHeapInsertAll(maxHeap, NULL, 0);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     int values[] = {20, 15, 10, 12, 11, 20, 5, 4, 3, 2};
@@ -206,7 +206,7 @@ void testBinaryHeapDeleteRoot(CuTest *cuTest) {
 
 
     binaryHeapDeleteRoot(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     int values[] = {20, 15, 10, 12, 11, 20, 5, 4, 3, 2};
@@ -244,7 +244,7 @@ void testBinaryHeapDeleteRootWtoFr(CuTest *cuTest) {
 
 
     binaryHeapDeleteRootWtoFr(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     int values[] = {20, 15, 10, 12, 11, 20, 5, 4, 3, 2};
@@ -288,10 +288,10 @@ void testBinaryHeapContains(CuTest *cuTest) {
 
 
     binaryHeapContains(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     binaryHeapContains(maxHeap, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     int values[] = {20, 15, 10, 12, 11, 20, 5, 4, 3, 2};
@@ -329,10 +329,10 @@ void testBinaryHeapGet(CuTest *cuTest) {
 
 
     binaryHeapGet(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     binaryHeapGet(maxHeap, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
     int values[] = {20, 15, 10, 12, 11, 20, 5, 4, 3, 2};
@@ -370,7 +370,7 @@ void testBinaryHeapGetSize(CuTest *cuTest) {
 
 
     binaryHeapGetSize(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     int values[] = {20, 15, 10, 12, 11, 20, 5, 4, 3, 2};
@@ -418,7 +418,7 @@ void testBinaryHeapIsEmpty(CuTest *cuTest) {
 
 
     binaryHeapIsEmpty(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     int values[] = {20, 15, 10, 12, 11, 20, 5, 4, 3, 2};
@@ -468,7 +468,7 @@ void testBinaryHeapToArray(CuTest *cuTest) {
 
 
     binaryHeapToArray(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     int values[] = {20, 15, 10, 12, 11, 20, 5, 4, 3, 2};
@@ -507,7 +507,7 @@ void testClearBinaryHeap(CuTest *cuTest) {
 
 
     clearBinaryHeap(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     int values[] = {20, 15, 10, 12, 11, 20, 5, 4, 3, 2};
@@ -548,7 +548,7 @@ void testDestroyBinaryHeap(CuTest *cuTest) {
 
 
     destroyBinaryHeap(NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, DUMMY_TEST_DATASTRUCTURE->errorCode);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
     int values[] = {20, 15, 10, 12, 11, 20, 5, 4, 3, 2};
@@ -592,7 +592,7 @@ CuSuite *createBinaryHeapTestsSuite() {
 
 void binaryHeapUnitTest() {
 
-    DUMMY_TEST_DATASTRUCTURE =  (TestStruct*) malloc(sizeof(TestStruct));
+    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Binary Heap Test**\n");
@@ -604,6 +604,6 @@ void binaryHeapUnitTest() {
     CuSuiteDetails(suite, output);
     printf("%s\n", output->buffer);
 
-    free(DUMMY_TEST_DATASTRUCTURE);
+    free(ERROR_TEST);
 
 }

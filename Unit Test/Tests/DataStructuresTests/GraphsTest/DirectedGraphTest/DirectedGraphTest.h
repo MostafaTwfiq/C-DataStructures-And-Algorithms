@@ -2,6 +2,8 @@
 #define C_DATASTRUCTURES_DIRECTEDGRAPHTEST_H
 
 
+#include "../../../../ErrorsTestStruct.h"
+
 void directedGraphUnitTest();
 
 

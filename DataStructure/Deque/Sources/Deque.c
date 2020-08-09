@@ -16,8 +16,8 @@
 
 Deque *dequeInitialization(void (*freeFun)(void *)) {
     if (freeFun == NULL ) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return NULL;
         #else
      		fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "deque data structure");
@@ -28,8 +28,8 @@ Deque *dequeInitialization(void (*freeFun)(void *)) {
 
     Deque *deque = (Deque *) malloc(sizeof(Deque));
     if (deque == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
      		return NULL;
         #else
             fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "deque", "deque data structure");
@@ -41,8 +41,8 @@ Deque *dequeInitialization(void (*freeFun)(void *)) {
     deque->length = 10;
     deque->arr = (void **) malloc(sizeof(void *) * deque->length);
     if (deque->arr == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
      		return NULL;
         #else
             fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "deque array", "deque data structure");
@@ -77,8 +77,8 @@ Deque *dequeInitialization(void (*freeFun)(void *)) {
 void dequeInsertFront(Deque *deque, void *item) {
 
     if (deque == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "deque", "deque data structure");
@@ -86,8 +86,8 @@ void dequeInsertFront(Deque *deque, void *item) {
      	#endif
 
     } else if (item == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return;
         #else
      		fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "deque data structure");
@@ -100,8 +100,8 @@ void dequeInsertFront(Deque *deque, void *item) {
         deque->length *= 2;
         void **tempArr = (void **) malloc(sizeof(void *) * deque->length);
         if (tempArr == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
      		return;
         #else
             fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new deque array", "deque data structure");
@@ -111,8 +111,8 @@ void dequeInsertFront(Deque *deque, void *item) {
         }
 
         if (!memcpy(tempArr, deque->arr + deque->front, sizeof(void *) * (deque->rear - deque->front))) {
-             #ifdef CU_TEST_H
-     		    DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_COPY;
+             #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		    ERROR_TEST->errorCode = FAILED_COPY;
      		    return;
             #else
                 fprintf(stderr, FAILED_COPY_MESSAGE, "deque array to the new array", "deque data structure");
@@ -157,8 +157,8 @@ void dequeInsertFront(Deque *deque, void *item) {
 void dequeInsertRear(Deque *deque, void *item) {
 
     if (deque == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "deque", "deque data structure");
@@ -166,8 +166,8 @@ void dequeInsertRear(Deque *deque, void *item) {
      	#endif
 
     } else if (item == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = INVALID_ARG;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = INVALID_ARG;
      		return;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "deque data structure");
@@ -180,8 +180,8 @@ void dequeInsertRear(Deque *deque, void *item) {
         deque->length *= 2;
         void **tempArr = (void **) malloc(sizeof(void *) * deque->length);
         if (tempArr == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
      		return;
         #else
             fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new deque array", "deque data structure");
@@ -191,8 +191,8 @@ void dequeInsertRear(Deque *deque, void *item) {
         }
 
         if (!memcpy(tempArr, deque->arr + deque->front, sizeof(void *) * (deque->rear - deque->front))) {
-            #ifdef CU_TEST_H
-     		    DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_COPY;
+            #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		    ERROR_TEST->errorCode = FAILED_COPY;
      		    return;
             #else
                 fprintf(stderr, FAILED_COPY_MESSAGE, "deque array to the new array", "deque data structure");
@@ -230,8 +230,8 @@ void dequeInsertRear(Deque *deque, void *item) {
 void *dequeGetFront(Deque *deque) {
 
     if (deque == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "deque", "deque data structure");
@@ -239,8 +239,8 @@ void *dequeGetFront(Deque *deque) {
      	#endif
 
     } else if (dequeIsEmpty(deque)) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
      		return NULL;
         #else
             fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "deque data structure");
@@ -273,8 +273,8 @@ void *dequeGetFront(Deque *deque) {
 void *dequeGetRear(Deque *deque) {
 
     if (deque == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
      		fprintf(stderr, NULL_POINTER_MESSAGE, "deque", "deque data structure");
@@ -282,8 +282,8 @@ void *dequeGetRear(Deque *deque) {
      	#endif
 
     } else if (dequeIsEmpty(deque)) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
      		return NULL;
         #else
             fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "deque data structure");
@@ -316,8 +316,8 @@ void *dequeGetRear(Deque *deque) {
 void *dequePeekFront(Deque *deque) {
 
     if (deque == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "deque", "deque data structure");
@@ -325,8 +325,8 @@ void *dequePeekFront(Deque *deque) {
      	#endif
 
     } else if (dequeIsEmpty(deque)) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
      		return NULL;
         #else
             fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "deque data structure");
@@ -360,8 +360,8 @@ void *dequePeekFront(Deque *deque) {
 void *dequePeekRear(Deque *deque) {
 
     if (deque == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
      		fprintf(stderr, NULL_POINTER_MESSAGE, "deque", "deque data structure");
@@ -369,8 +369,8 @@ void *dequePeekRear(Deque *deque) {
      	#endif
 
     } else if (dequeIsEmpty(deque)) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = EMPTY_DATA_STRUCTURE;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
      		return NULL;
         #else
             fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "deque data structure");
@@ -403,8 +403,8 @@ void *dequePeekRear(Deque *deque) {
 void **dequeToArray(Deque *deque) {
 
     if (deque == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return NULL;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "deque", "deque data structure");
@@ -415,8 +415,8 @@ void **dequeToArray(Deque *deque) {
 
     void **array = (void **) malloc(sizeof(void *) * dequeGetLength(deque));
     if (array == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = FAILED_ALLOCATION;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
      		return NULL;
         #else
             fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "deque data structure");
@@ -451,8 +451,8 @@ void **dequeToArray(Deque *deque) {
 int dequeGetLength(Deque  *deque) {
 
     if (deque == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return -1;
         #else
      		fprintf(stderr, NULL_POINTER_MESSAGE, "deque", "deque data structure");
@@ -485,8 +485,8 @@ int dequeGetLength(Deque  *deque) {
 int dequeIsEmpty(Deque *deque) {
 
     if (deque == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return -1;
         #else
      		fprintf(stderr, NULL_POINTER_MESSAGE, "deque", "deque data structure");
@@ -519,8 +519,8 @@ int dequeIsEmpty(Deque *deque) {
 void clearDeque(Deque *deque) {
 
     if (deque == NULL) {
-        #ifdef CU_TEST_H
-     		DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+     		ERROR_TEST->errorCode = NULL_POINTER;
      		return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "deque", "deque data structure");
@@ -553,8 +553,8 @@ void clearDeque(Deque *deque) {
 void destroyDeque(Deque *deque) {
 
     if (deque == NULL) {
-        #ifdef CU_TEST_H
-            DUMMY_TEST_DATASTRUCTURE->errorCode = NULL_POINTER;
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = NULL_POINTER;
             return;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "deque", "deque data structure");
