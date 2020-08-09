@@ -340,48 +340,6 @@ void testDestroyQueue(CuTest *cuTest) {
 
 
 
-Queue *printingQueue;
-
-void printQueueItemFunQT(void *item) {
-    queueEnqueue(printingQueue, generateIntPointerQT(*(int *)item));
-}
-
-
-
-void testQueueDisplay(CuTest *cuTest) {
-
-    Queue *queue = queueInitialization(free);
-    printingQueue = queueInitialization(free);
-
-    queueDisplay(NULL, NULL);
-    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
-
-    queueDisplay(queue, NULL);
-    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
-
-    queueEnqueue(queue, generateIntPointerQT(1));
-    queueEnqueue(queue, generateIntPointerQT(2));
-    queueEnqueue(queue, generateIntPointerQT(3));
-    queueEnqueue(queue, generateIntPointerQT(4));
-
-    queueDisplay(queue, printQueueItemFunQT);
-
-    for (int i = 0; i < queueGetLength(queue); i++)
-        CuAssertIntEquals(cuTest, i + 1, *(int *) printingQueue->memory[i]);
-
-    queueDestroy(printingQueue);
-    queueDestroy(queue);
-
-}
-
-
-
-
-
-
-
-
-
 
 
 
@@ -503,7 +461,6 @@ CuSuite *createQueueTestsSuite() {
     SUITE_ADD_TEST(suite, testQueueGetLength);
     SUITE_ADD_TEST(suite, testQueueIsEmpty);
     SUITE_ADD_TEST(suite, testQueueToArray);
-    SUITE_ADD_TEST(suite, testQueueDisplay);
     SUITE_ADD_TEST(suite, testClearQueue);
     SUITE_ADD_TEST(suite, testDestroyQueue);
 
