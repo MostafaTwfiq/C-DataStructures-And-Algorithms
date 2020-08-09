@@ -683,6 +683,69 @@ void testArrMismatch(CuTest *cuTest) {
 
 
 
+void testArrAnagramsS(CuTest *cuTest) {
+
+    int arr1[] = {1, 2, 3, 4, 5, 6, 3, 2, 7, 8, 9, 10};
+    int arr2[] = {10, 9, 2, 3, 4, 5, 1, 8, 7, 6, 2, 3};
+    int arr3[] = {10, 9, 2, 3, 4, 5, 1, 8, 8, 6, 2, 3};
+
+    arrAnagramsS(NULL, 0, NULL, 0, 0, NULL);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
+
+    arrAnagramsS(arr1, 0, NULL, 0, 0, NULL);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
+
+    arrAnagramsS(arr1, 0, arr2, 0, 0, NULL);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
+
+    arrAnagramsS(arr1, -1, arr2, -1, 0, compareIntPointers);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
+
+    arrAnagramsS(arr1, 0, arr2, 0, 0, compareIntPointers);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
+
+    CuAssertIntEquals(cuTest, 0, arrAnagramsS(arr1, 12, arr3, 12, sizeof(int), compareIntPointers));
+    CuAssertIntEquals(cuTest, 1, arrAnagramsS(arr1, 12, arr2, 12, sizeof(int), compareIntPointers));
+
+}
+
+
+
+
+
+void testArrAnagramsH(CuTest *cuTest) {
+
+    int arr1[] = {1, 2, 3, 4, 5, 6, 3, 2, 7, 8, 9, 10};
+    int arr2[] = {10, 9, 2, 3, 4, 5, 1, 8, 7, 6, 2, 3};
+    int arr3[] = {10, 9, 2, 3, 4, 5, 1, 8, 8, 6, 2, 3};
+
+    arrAnagramsH(NULL, 0, NULL, 0, 0, NULL, NULL);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
+
+    arrAnagramsH(arr1, 0, NULL, 0, 0, NULL, NULL);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
+
+    arrAnagramsH(arr1, 0, arr2, 0, 0, NULL, NULL);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
+
+    arrAnagramsH(arr1, -1, arr2, -1, 0, compareIntPointers, NULL);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
+
+    arrAnagramsH(arr1, -1, arr2, -1, 0, compareIntPointers, intHashFun);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
+
+    arrAnagramsH(arr1, 0, arr2, 0, 0, compareIntPointers, intHashFun);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
+
+    CuAssertIntEquals(cuTest, 0, arrAnagramsH(arr1, 12, arr3, 12, sizeof(int), compareIntPointers, intHashFun));
+    CuAssertIntEquals(cuTest, 1, arrAnagramsH(arr1, 12, arr2, 12, sizeof(int), compareIntPointers, intHashFun));
+
+}
+
+
+
+
+
 void testArrMismatchOfRange(CuTest *cuTest) {
 
     int arr1[] = {1, 2, 3, 4, 11, 6, 13, 8, 9, 10};
@@ -1301,6 +1364,8 @@ CuSuite *createArraysAlgTestsSuite() {
     SUITE_ADD_TEST(suite, testFillArrOfRangeC);
     SUITE_ADD_TEST(suite, testArrCompare);
     SUITE_ADD_TEST(suite, testArrCompareOfRange);
+    SUITE_ADD_TEST(suite, testArrAnagramsS);
+    SUITE_ADD_TEST(suite, testArrAnagramsH);
     SUITE_ADD_TEST(suite, testArrMismatch);
     SUITE_ADD_TEST(suite, testArrMismatchOfRange);
     SUITE_ADD_TEST(suite, testArrRemoveDuplicatesA);

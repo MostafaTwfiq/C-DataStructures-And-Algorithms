@@ -223,6 +223,36 @@ void testHashSetContains(CuTest *cuTest) {
 
 
 
+void testHashSetGet(CuTest *cuTest) {
+
+    HashSet *hashSet = hashSetInitialization(free, compareIntPointersHST, intHashFunHST);
+
+    hashSetGet(NULL, NULL);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
+
+    hashSetGet(hashSet, NULL);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
+
+
+    for (int i = 0; i < 20; i++)
+        hashSetInsert(hashSet, generateIntPointerHST(i + 1));
+
+
+    for (int i = 1; i <= hashSet->count; i++)
+        CuAssertIntEquals(cuTest, i, *(int *) hashSetGet(hashSet, &i));
+
+    int tempValue = 21;
+    CuAssertPtrEquals(cuTest, NULL, hashSetGet(hashSet, &tempValue));
+
+
+    destroyHashSet(hashSet);
+
+}
+
+
+
+
+
 
 void testHashSetToArray(CuTest *cuTest) {
 
@@ -369,6 +399,7 @@ CuSuite *createHashSetTestsSuite() {
     SUITE_ADD_TEST(suite, testHashSetDelete);
     SUITE_ADD_TEST(suite, testHashSetDeleteWtoFr);
     SUITE_ADD_TEST(suite, testHashSetContains);
+    SUITE_ADD_TEST(suite, testHashSetGet);
     SUITE_ADD_TEST(suite, testHashSetToArray);
     SUITE_ADD_TEST(suite, testHashSetGetLength);
     SUITE_ADD_TEST(suite, testHashSetIsEmpty);

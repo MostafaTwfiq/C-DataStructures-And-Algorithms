@@ -46,6 +46,8 @@ void *hashSetDeleteWtoFr(HashSet *hashSet, void *item);
 
 int hashSetContains(HashSet *hashSet, void *item);
 
+void *hashSetGet(HashSet *hashSet, void *item);
+
 void **hashSetToArray(HashSet *hashSet);
 
 int hashSetGetLength(HashSet *hashSet);

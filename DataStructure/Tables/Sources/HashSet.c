@@ -383,6 +383,65 @@ int hashSetContains(HashSet *hashSet, void *item) {
 
 
 
+/** This function will take the hash set address, and the item address, as a parameters,
+ * then it will return the item pointer if found, other wise it will return NULL.
+ *
+ * Note: the function will not free the passed item.
+ *
+ * @param hashSet the hash set address
+ * @param item the item address that has the same data as the one that you are searching for.
+ * @return it will return the item pointer if found, other wise it will return NULL
+ */
+
+void *hashSetGet(HashSet *hashSet, void *item) {
+    if (hashSet == NULL) {
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = NULL_POINTER;
+     		return NULL;
+        #else
+            fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
+            exit(NULL_POINTER);
+        #endif
+
+    } else if (item == NULL) {
+        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = INVALID_ARG;
+     		return NULL;
+        #else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "hash set data structure");
+            exit(INVALID_ARG);
+        #endif
+
+    }
+
+    unsigned int fHash = hashSetFHashCal( hashSet->hashFun, item, hashSet->length),
+            sHash = hashSetSHashCal( hashSet->hashFun, item, hashSet->bPrime);
+
+    unsigned int pHashIndex = 1;
+    unsigned int index = hashSetCalIndex(fHash, sHash, pHashIndex, hashSet->length);
+    unsigned int firstIndex = index;
+
+    do {
+
+        if (hashSet->arr[index] != NULL) {
+            if (hashSet->itemComp(item, hashSet->arr[index]) == 0)
+                return hashSet->arr[index];
+
+        }
+
+        pHashIndex++;
+        index = hashSetCalIndex(fHash, sHash, pHashIndex, hashSet->length);
+
+    } while (firstIndex != index);
+
+    return NULL;
+
+}
+
+
+
+
+
 
 /** This function will take the hash set address as a parameter,
  * then it will return a double void pointer array that hash a copy of all items in the hash set.
