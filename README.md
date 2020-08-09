@@ -8,8 +8,7 @@
 
 **General overview:**
 
-![library C files](https://img.shields.io/badge/Library%20files-155-%23607d8b.svg)  ![total_code](https://img.shields.io/badge/total%20code-28310-%232196f3.svg)  ![total_comments](https://img.shields.io/badge/total%20comments-6268-%232496f3.svg)
-
+![library C files](https://img.shields.io/badge/library%20files-155-%23607d8b.svg)  ![total_code](https://img.shields.io/badge/total%20code-28385-%232196f3.svg)  ![total_comments](https://img.shields.io/badge/total%20comments-6272-%232496f3.svg)
  ![implemented data structures](https://img.shields.io/badge/implemented%20data%20strcutures-+25-%232496f3.svg) ![implemented algorithms](https://img.shields.io/badge/implemented%20algorithms-+100-%232496f3.svg)
 
 
@@ -275,3 +274,129 @@
 - Destroy
 
 ## Implemented Algorithms
+- ## Arrays Algorithms
+| Function | Complexity | Comments |
+|--|--|--|
+| reverse array | O (n) | |
+| get most frequent value A| O (n ^ 2) | this function will use a resizable array to store the repeated values |
+| get most frequent value H| O (n)| this function will use a hash map to store the repeated values|
+|print array | O (n) | this function will need a helper printing function |
+| resize array | O (n) | |
+| array resize and copy | O (n) | this function will allocate a new array with the new length and then it will copy the values in the original array into the new one |
+| array resize and copy of range | O (k) and k is the length of the copying range | this function will allocate a new array with the new length and then it will copy the values between the provided into the new array |
+| array copy | O (n) | this function will allocate a new array then it will copy the values in the original array into the new one |
+| array copy of range | O (k) and k is the length of the copying range  | this function will allocate a new array then it will copy the values between the provided range into the new array |
+| fill array | O (n) |  |
+| fill array in range | O (k) and k is the length of the range | |
+| compare arrays | O (n) | |
+| compare arrays in range | O (k) and k is the length of the range | |
+| array mismatch | O (n) | |
+| array mismatch in range | O (k) and k is the length of the range | |
+| array anagrams S | O ( n log(n) ) | this function will sort the array first to determine if they are equals |
+| array anagrams H | O (n) | this function will use a hash map the compare the arrays |
+| array remove duplicates A | O (n ^ 3) | this function will use a resizable array to detect the duplicates |
+| array remove duplicates H | O (n ^ 2) | this function will use a hash map to detect the duplicates |
+| array count values | O (n) | |
+| is sub array | O (n ^ 2) | | 
+| array get index | O (n) | |
+| array contains | O (n) | |
+| array remove at index | O (n) | |
+| array sort | O ( n log(n) ) | this function will use quick sort algorithm to sort the array, note that quick sort complexity can be O (n ^ 2) |
+| array get first | O (n) | |
+| array get last | O (n) | |
+| array get all | O (n) | |
+| array binary search | O ( log(n) ) | |
+| array is palindrome | O (n) | |
+| array is rotation of an array| O (n) | |
+| array update element | O (1) | |
+| array add | O (n) | |
+| array add all | O (n) | |
+- ## Char Array Algorithms
+| Function | Complexity | Comments |
+|--|--|--|
+| is sub string | O ( n ^ 2) | |
+| reverse words | O ( n ) | |
+| custom trim start | O ( n ) | |
+| trim start | O ( n ) | |
+| custom trim end | O ( n ) | |
+| trim end | O ( n ) | |
+| custom trim | O ( n ) | |
+| trim | O ( n ) | |
+| contains | O ( n ) | |
+| remove character | O ( n ) | |
+| is integer | O ( n ) | |
+| is floating point | O ( n ) | |
+| sum characters ASCII | O ( n )| |
+| hash char array | O ( n ) | this function actually will return the sum the the characters ASCII |
+| generate char array | O ( n ) | this function will allocate a new char array then it will copy the original char array into the new one |
+| generate char pointer | O ( 1 ) | this function will generate a char pointer to a character |
+| is alphabet C | O ( 1 ) | this function will take a character value then it will check if it's an alphabet character |
+| is alphabet | O ( 1 ) | this function will take a character pointer then it will check if it's an alphabet character |
+| comparison function P | O ( 1 ) | this function will take two character pointers then it will compare there ASCII values |
+| comparison function | O ( 1 ) | this function will take two character value then it will compare there ASCII values |
+| split S | O ( n ) | this function will split the char array into strings vector |
+| split C | O ( n ) | this function will split the char array into char arrays vector |
+| most repeated character | O ( n ) | this function will use a hash map |
+- ## Search Algorithms
+| Function | Complexity | Comments |
+|--|--|--|
+| binary search | O ( log(n) ) | the log is to base 2 |
+| ternary search | O ( log(n) ) | the log is to base 3 |
+| linear search | O (n) | |
+| jump search | O ( sqrt(n) ) | |
+| exponential search | O ( log(i) ) and i represents the length of searching area )  | |
+- ## Sort Algorithms
+| Function | Complexity | Comments |
+|--|--|--|
+| bubble sort | O (n ^ 2) | in best case the complexity could be O ( n ) |
+| selection sort | O (n ^ 2) | |
+| insertion sort | O (n ^ 2) | in best case the complexity could be O ( n ) |
+| merge sort | O ( n log(n) ) | |
+| quick sort | O ( n log(n) ) | in the worst case the complexity could be O (n ^ 2) |
+| heap sort | O ( n log(n) ) | |
+| counting sort A | O (n) | this type of sorting works only on unsigned integers, note this function will use an array to count the values so it will allocate an extra memory |
+| counting sort H | O (n) | this type of sorting works only on unsigned integers, note this function will use a hashmap so it will use less memory that the array implementation |
+- ## Integer Operations
+- Get number  of digits
+- Transform to char array
+- Max int
+- Min int
+- Compare integers
+- Compare integers reverse
+- Compare integers pointer
+- Compare integers pointer reverse
+- Generate integer pointer from another integer pointer
+- Generate integer pointer from an integer value
+- Integer hash functions
+- Sum two integer
+- Sum array of integers
+## Extra
+- ## Text Files Handler
+1. **Text File Loader**
+- Initialization
+- Read file as string or as char array
+- Read file lines
+- Read file using a delimiter
+- Count lines
+- Read a specific line as a string or a char array
+- Write a string or a char array
+- Append a string or a char array at the end of the file
+- Append a string or a char array at the end of a specific line
+- Add a string or a char array at a specific line index
+- Update a specific line using a string or a char array
+- Remove a specific line
+- Change file
+- Clear  the text file
+- Destroy
+2. **Input Scanner**
+
+> The functions will scan the input from the stdin file.
+- Scan String
+- Scan char array
+- Scan character
+- Scan integer
+- Scan long
+- Scan long long
+- Scan short
+- Scan double
+- Scan float

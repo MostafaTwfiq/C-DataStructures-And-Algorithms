@@ -8,7 +8,7 @@
 
 /** This function will take an array then it sort it with the insertion sort algorithm.
  *
- * Time Complexity: worst: O(n) , best: O (n ^ 2).
+ * Time Complexity: best: O(n) , worst: O (n ^ 2).
  *
  * Space Complexity: O(1).
  *

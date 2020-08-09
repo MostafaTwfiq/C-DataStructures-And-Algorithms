@@ -1763,7 +1763,7 @@ int arrAnagramsS(void *fArr, int fLength, void *sArr, int sLength, int elemSize,
  *
  * Note: this function will use hash map data structure, so it need the hash function.
  *
- * Time Complexity: O (n).
+ * Time Complexity: O (n ^ 2).
  *
  * Space Complexity: O (n).
  *
