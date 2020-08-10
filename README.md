@@ -243,7 +243,7 @@
    - Clear
    - Destroy
 
-### [Matrices](./DataStructure/Matrices/Sources/Matrix.c)
+### Matrices
 
 1. **[Matrix](./DataStructure/Matrices/Sources/Matrix.c)**
 
@@ -454,16 +454,15 @@
 2. **[Input Scanner](./FilesHandler/Sources/InputScanner.c)**
 
    > The functions will scan the input from the stdin file.
-   >
-   > - Scan String
-   > - Scan char array
-   > - Scan character
-   > - Scan integer
-   > - Scan long
-   > - Scan long long
-   > - Scan short
-   > - Scan double
-   > - Scan float
+   - Scan String
+   - Scan char array
+   - Scan character
+   - Scan integer
+   - Scan long
+   - Scan long long
+   - Scan short
+   - Scan double
+   - Scan float
 
 ### Error Codes
 
