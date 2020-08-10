@@ -31,7 +31,7 @@
  - Clear
  - Destroy
  
- 2. **AVL Tree**
+ 2. **[AVL Tree](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/DataStructure/Trees/Sources/AVLTree.c)**
  - Initialization
  - Insertion
  - Deletion
@@ -46,7 +46,7 @@
  - Transform to array
  - Clear
  - Destroy
-3. **Binary Tree**
+3. **[Binary Tree](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/DataStructure/Trees/Sources/BinaryTree.c)**
 - Initialization
  - Insertion
  - Deletion
@@ -60,7 +60,7 @@
  - Transform to array
  - Clear
  - Destroy
-4. **Splay Tree**
+4. **[Splay Tree](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/DataStructure/Trees/Sources/SplayTree.c)**
 - Initialization
  - Insertion
  - Deletion
@@ -71,7 +71,7 @@
  - Transform to array
  - Clear
  - Destroy
-5. **Binary Heap**
+5. **[Binary Heap](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/DataStructure/Trees/Sources/BinaryHeap.c)**
 - Initialization
  - Insertion
  - Deletion
@@ -82,7 +82,7 @@
  - Transform to array
  - Clear
  - Destroy
- 6. **Trie**
+ 6. **[Trie](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/DataStructure/Trees/Sources/Trie.c)**
  - Initialization
  - Add word
  - Remove Word
@@ -93,7 +93,7 @@
  - Clear
  - Destroy
  - ## Graphs
- 1. **Directed Graph**
+ 1. **[Directed Graph](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/DataStructure/Graphs/Sources/DirectedGraph.c)**
  - Initialization
  - Add node
  - remove node
@@ -111,7 +111,7 @@
  - Graph Contains Cycles
  - Clear
  - Destroy
-2. **Undirected Graph**
+2. **[Undirected Graph](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/DataStructure/Graphs/Sources/UndirectedGraph.c)**
  - Initialization
  - Add node
  - remove node
@@ -131,7 +131,8 @@
  - Clear
  - Destroy 
 - ## Tables
-1. **Hashmap && Linked list hashmap**
+1. **[Hashmap](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/DataStructure/Tables/Sources/HashMap.c)**
+2. **[Linked list hashmap](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/DataStructure/Tables/Sources/LinkedListHashMap.c)**
 - Initialization
 - Insertion
 - Deletion
@@ -144,7 +145,7 @@
 - Is empty
 - Clear
 - Destroy
-2. **Hashset**
+3. **[Hashset](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/DataStructure/Tables/Sources/HashSet.c)**
 - Initialization
 - Insertion
 - Deletion
@@ -157,7 +158,7 @@
 - Destroy
 - 
 
-## String
+## [String](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/DataStructure/Strings/Sources/String.c)
 - Initialization
 - Append character
 - Add character at index
@@ -183,7 +184,8 @@
 - 
 
 ## Lists
-1. **Vector && Array list**
+1. **[Vector](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/DataStructure/Lists/Sources/Vector.c)**
+2. **[Array list](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/DataStructure/Lists/Sources/ArrayList.c)**
 - Initialization
 - Insertion
 - Deletion
@@ -197,7 +199,8 @@
 - Print
 - Clear
 - Destroy
-2. **Linked list and doubly linked list**
+3. **[Linked list](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/DataStructure/LinkedLists/Sources/LinkedList.c)**
+4. **[Doubly linked list](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/DataStructure/LinkedLists/Sources/DoublyLinkedList.c)**
 - Initialization
 - Insertion
 - Deletion
@@ -213,7 +216,7 @@
 - Print
 - Clear
 - Destroy
-- ## Matrix
+- ## [Matrix](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/DataStructure/Matrices/Sources/Matrix.c)
 - Initialization
 - Insertion
 - Deletion
@@ -233,8 +236,8 @@
 - Clear
 - Destroy
 - ## Stacks
-1. **Stack**
-2. **Doubly linked list stack**
+1. **[Stack](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/DataStructure/Stacks/Sources/Stack.c)**
+2. **[Doubly linked list stack](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/DataStructure/Stacks/Sources/DLinkedListStack.c)**
 - Initialization
 - Push
 - Pop
@@ -247,10 +250,10 @@
 - Clear
 - Destroy
 - ## Queues
-1. **Queue**
-2. **Linked list queue**
-3. **Stack queue**
-4. **Priority queue**
+1. **[Queue](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/DataStructure/Queues/Sources/Queue.c)**
+2. **[Linked list queue](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/DataStructure/Queues/Sources/LinkedListQueue.c)**
+3. **[Stack queue](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/DataStructure/Queues/Sources/StackQueue.c)**
+4. **[Priority queue](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/DataStructure/Queues/Sources/PriorityQueue.c)**
 -  Initialization
 - Enqueue
 - Dequeue
@@ -261,8 +264,8 @@
 - Clear
 - Destroy
 - ## Deque
-1. **Deque**
-2. **Doubly linked list deque**
+1. **[Deque](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/DataStructure/Deque/Sources/Deque.c)**
+2. **[Doubly linked list deque](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/DataStructure/Deque/Sources/DLinkedListDeque.c)**
 -  Initialization
 - Insert front and end
 - Get front and end
@@ -274,7 +277,7 @@
 - Destroy
 
 ## Implemented Algorithms
-- ## Arrays Algorithms
+- ## [Arrays Algorithms](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/Algorithms/ArraysAlg/Sources/ArraysAlg.c)
 | Function | Complexity | Comments |
 |--|--|--|
 | reverse array | O (n) | |
@@ -311,7 +314,8 @@
 | array update element | O (1) | |
 | array add | O (n) | |
 | array add all | O (n) | |
-- ## Char Array Algorithms
+| [array swap two indices](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/Algorithms/Sorting/Sources/SwapFunction.c) | O (1) | |
+- ## [Char Array Algorithms](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/Algorithms/ArraysAlg/Sources/CharArrayAlg.c)
 | Function | Complexity | Comments |
 |--|--|--|
 | is sub string | O ( n ^ 2) | |
@@ -340,39 +344,39 @@
 - ## Search Algorithms
 | Function | Complexity | Comments |
 |--|--|--|
-| binary search | O ( log(n) ) | the log is to base 2 |
-| ternary search | O ( log(n) ) | the log is to base 3 |
-| linear search | O (n) | |
-| jump search | O ( sqrt(n) ) | |
-| exponential search | O ( log(i) ) and i represents the length of searching area )  | |
+| [binary search](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/Algorithms/Searching/Sources/BinarySearch.c) | O ( log(n) ) | the log is to base 2 |
+| [ternary search](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/Algorithms/Searching/Sources/TernarySearch.c) | O ( log(n) ) | the log is to base 3 |
+| [linear search](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/Algorithms/Searching/Sources/LinearSearch.c) | O (n) | |
+| [jump search](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/Algorithms/Searching/Sources/JumpSearch.c) | O ( sqrt(n) ) | |
+| [exponential search](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/Algorithms/Searching/Sources/ExponentialSearch.c) | O ( log(i) ) and i represents the length of searching area )  | |
 - ## Sort Algorithms
 | Function | Complexity | Comments |
 |--|--|--|
-| bubble sort | O (n ^ 2) | in best case the complexity could be O ( n ) |
-| selection sort | O (n ^ 2) | |
-| insertion sort | O (n ^ 2) | in best case the complexity could be O ( n ) |
-| merge sort | O ( n log(n) ) | |
-| quick sort | O ( n log(n) ) | in the worst case the complexity could be O (n ^ 2) |
-| heap sort | O ( n log(n) ) | |
-| counting sort A | O (n) | this type of sorting works only on unsigned integers, note this function will use an array to count the values so it will allocate an extra memory |
-| counting sort H | O (n) | this type of sorting works only on unsigned integers, note this function will use a hashmap so it will use less memory that the array implementation |
-- ## Integer Operations
+| [bubble sort](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/Algorithms/Sorting/Sources/BubbleSort.c) | O (n ^ 2) | in best case the complexity could be O ( n ) |
+| [selection sort](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/Algorithms/Sorting/Sources/SelectionSort.c) | O (n ^ 2) | |
+| [insertion sort](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/Algorithms/Sorting/Sources/InsertionSort.c) | O (n ^ 2) | in best case the complexity could be O ( n ) |
+| [merge sort](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/Algorithms/Sorting/Sources/MergeSort.c) | O ( n log(n) ) | |
+| [quick sort](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/Algorithms/Sorting/Sources/QuickSort.c) | O ( n log(n) ) | in the worst case the complexity could be O (n ^ 2) |
+| [heap sort](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/Algorithms/Sorting/Sources/HeapSort.c) | O ( n log(n) ) | |
+| [counting sort A](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/Algorithms/Sorting/Sources/CountingSort.c) | O (n) | this type of sorting works only on unsigned integers, note this function will use an array to count the values so it will allocate an extra memory |
+| [counting sort H](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/Algorithms/Sorting/Sources/CountingSort.c) | O (n) | this type of sorting works only on unsigned integers, note this function will use a hashmap so it will use less memory that the array implementation |
+- ## [Integer Operations](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/Algorithms/IntegersAlg/Sources/IntegerAlg.c)
 - Get number  of digits
 - Transform to char array
 - Max int
 - Min int
 - Compare integers
 - Compare integers reverse
-- Compare integers pointer
-- Compare integers pointer reverse
+- Compare integers pointers
+- Compare integers pointers reverse
 - Generate integer pointer from another integer pointer
 - Generate integer pointer from an integer value
-- Integer hash functions
-- Sum two integer
+- Integer hash function
+- Sum two integers
 - Sum array of integers
 ## Extra
 - ## Text Files Handler
-1. **Text File Loader**
+1. **[Text File Loader](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/FilesHandler/Sources/TxtFileLoader.c)**
 - Initialization
 - Read file as string or as char array
 - Read file lines
@@ -388,7 +392,7 @@
 - Change file
 - Clear  the text file
 - Destroy
-2. **Input Scanner**
+2. **[Input Scanner](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/FilesHandler/Sources/InputScanner.c)**
 
 > The functions will scan the input from the stdin file.
 - Scan String
@@ -400,3 +404,44 @@
 - Scan short
 - Scan double
 - Scan float
+- 
+
+## Error Codes
+
+> The errors codes generated by summing the word characters ASCII value and multiply every character value in it's `( index + 1 )`  .
+The first four numbers is the sum of the sentence "DATA_STRUCTURE",  
+and the rest of the error code is the sum of the error enum. 
+ex: INVALID_ARG is 4987.
+
+- ## FAILED_ALLOCATION
+|Error code| Message |
+|--|--|
+| -833811484 | `"The %s allocation in %s failed."` |
+- ## FAILED_REALLOCATION
+|Error code| Message |
+|--|--|
+| -833814245 | `"The %s reallocation in %s failed."` |
+- ## FAILED_COPY
+|Error code| Message |
+|--|--|
+| -83385167 | `"Copying %s in %s failed."` |
+- ## INVALID_ARG
+|Error code| Message |
+|--|--|
+| -83384987 | `"The passed arg %s in %s is invalid."` |
+- ## NULL_POINTER
+|Error code| Message |
+|--|--|
+| -83386157 | `"The %s pointer in %s is NULL."` |
+- ## OUT_OF_RANGE
+|Error code| Message |
+|--|--|
+| -83385991 | `"The passed index is out of the %s range."` |
+- ## EMPTY_DATA_STRUCTURE
+|Error code| Message |
+|--|--|
+| -833816740 | `"The passed %s pointer is empty."` |
+- ## SOMETHING_WENT_WRONG
+|Error code| Message |
+|--|--|
+| -833816834 | `"Can't %s in %s."` |
