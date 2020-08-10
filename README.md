@@ -450,17 +450,17 @@
 
 2. **[Input Scanner](./FilesHandler/Sources/InputScanner.c)**
 
-> The functions will scan the input from the stdin file.
-
-- Scan String
-- Scan char array
-- Scan character
-- Scan integer
-- Scan long
-- Scan long long
-- Scan short
-- Scan double
-- Scan float
+   > The functions will scan the input from the stdin file.
+   >
+   > - Scan String
+   > - Scan char array
+   > - Scan character
+   > - Scan integer
+   > - Scan long
+   > - Scan long long
+   > - Scan short
+   > - Scan double
+   > - Scan float
 
 ### Error Codes
 
