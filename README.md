@@ -156,9 +156,7 @@
 - Is empty
 - Clear
 - Destroy
-- 
-
-## [String](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/DataStructure/Strings/Sources/String.c)
+- ## [String](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/DataStructure/Strings/Sources/String.c)
 - Initialization
 - Append character
 - Add character at index
@@ -181,9 +179,7 @@
 - Split
 - Clear
 - Destroy
-- 
-
-## Lists
+- ## Lists
 1. **[Vector](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/DataStructure/Lists/Sources/Vector.c)**
 2. **[Array list](https://github.com/MostafaTwfiq/C-DataStructure-And-Algorithms/blob/master/DataStructure/Lists/Sources/ArrayList.c)**
 - Initialization
