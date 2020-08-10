@@ -179,28 +179,28 @@
 
 ### [String](./DataStructure/Strings/Sources/String.c)
 
-  - Initialization
-  - Append character
-  - Add character at index
-  - Update character
-  - Remove character
-  - Append char array or string
-  - Change string by another char array or string
-  - Get character index
-  - Get character at index
-  - Is sub string of another char array or string
-  - Convert to char array
-  - Convert to char array between specific range
-  - Is equal to char array or to string
-  - Compare with char array or with string
-  - Get length
-  - Trim, trim start, and trim end
-  - Custom trim, trim start, and trim end
-  - Scan input
-  - Print
-  - Split
-  - Clear
-  - Destroy
+- Initialization
+- Append character
+- Add character at index
+- Update character
+- Remove character
+- Append char array or string
+- Change string by another char array or string
+- Get character index
+- Get character at index
+- Is sub string of another char array or string
+- Convert to char array
+- Convert to char array between specific range
+- Is equal to char array or to string
+- Compare with char array or with string
+- Get length
+- Trim, trim start, and trim end
+- Custom trim, trim start, and trim end
+- Scan input
+- Print
+- Split
+- Clear
+- Destroy
 
 ### Lists
 
@@ -244,24 +244,24 @@
 
 ### [Matrix](./DataStructure/Matrices/Sources/Matrix.c)
 
-  - Initialization
-  - Insertion
-  - Deletion
-  - Get
-  - Get index
-  - Contains
-  - Add row at last and at index
-  - Add column at last and at index
-  - Remove row at index
-  - Remove column at index
-  - Get number of rows
-  - Get number of columns
-  - Get number of items
-  - Is empty
-  - Transform to array
-  - Print
-  - Clear
-  - Destroy
+- Initialization
+- Insertion
+- Deletion
+- Get
+- Get index
+- Contains
+- Add row at last and at index
+- Add column at last and at index
+- Remove row at index
+- Remove column at index
+- Get number of rows
+- Get number of columns
+- Get number of items
+- Is empty
+- Transform to array
+- Print
+- Clear
+- Destroy
 
 ### Stacks
 
@@ -412,19 +412,19 @@
 
 ### [Integer Operations](./Algorithms/IntegersAlg/Sources/IntegerAlg.c)
 
-  - Get number  of digits
-  - Transform to char array
-  - Max int
-  - Min int
-  - Compare integers
-  - Compare integers reverse
-  - Compare integers pointers
-  - Compare integers pointers reverse
-  - Generate integer pointer from another integer pointer
-  - Generate integer pointer from an integer value
-  - Integer hash function
-  - Sum two integers
-  - Sum array of integers
+- Get number  of digits
+- Transform to char array
+- Max int
+- Min int
+- Compare integers
+- Compare integers reverse
+- Compare integers pointers
+- Compare integers pointers reverse
+- Generate integer pointer from another integer pointer
+- Generate integer pointer from an integer value
+- Integer hash function
+- Sum two integers
+- Sum array of integers
 
 ## Extra
 
