@@ -8,7 +8,7 @@
 **General overview:**
 
 ![library C files](https://img.shields.io/badge/library%20files-155-%23607d8b.svg)  ![total_code](https://img.shields.io/badge/total%20code-28385-%232196f3.svg)  ![total_comments](https://img.shields.io/badge/total%20comments-6272-%232496f3.svg)
- ![implemented data structures](https://img.shields.io/badge/implemented%20data%20strcutures-+25-%232496f3.svg) ![implemented algorithms](https://img.shields.io/badge/implemented%20algorithms-+100-%232496f3.svg)
+ ![implemented data structures](https://img.shields.io/badge/implemented%20data%20structures-+25-%232496f3.svg) ![implemented algorithms](https://img.shields.io/badge/implemented%20algorithms-+100-%232496f3.svg)
 
 ## Implemented Data Structures
 
@@ -177,30 +177,31 @@
    - Clear
    - Destroy
 
-### [String](./DataStructure/Strings/Sources/String.c)
+### Strings
 
-- Initialization
-- Append character
-- Add character at index
-- Update character
-- Remove character
-- Append char array or string
-- Change string by another char array or string
-- Get character index
-- Get character at index
-- Is sub string of another char array or string
-- Convert to char array
-- Convert to char array between specific range
-- Is equal to char array or to string
-- Compare with char array or with string
-- Get length
-- Trim, trim start, and trim end
-- Custom trim, trim start, and trim end
-- Scan input
-- Print
-- Split
-- Clear
-- Destroy
+1. **[String](./DataStructure/Strings/Sources/String.c)**
+   - Initialization
+   - Append character
+   - Add character at index
+   - Update character
+   - Remove character
+   - Append char array or string
+   - Change string by another char array or string
+   - Get character index
+   - Get character at index
+   - Is sub string of another char array or string
+   - Convert to char array
+   - Convert to char array between specific range
+   - Is equal to char array or to string
+   - Compare with char array or with string
+   - Get length
+   - Trim, trim start, and trim end
+   - Custom trim, trim start, and trim end
+   - Scan input
+   - Print
+   - Split
+   - Clear
+   - Destroy
 
 ### Lists
 
@@ -242,26 +243,28 @@
    - Clear
    - Destroy
 
-### [Matrix](./DataStructure/Matrices/Sources/Matrix.c)
+### [Matrices](./DataStructure/Matrices/Sources/Matrix.c)
 
-- Initialization
-- Insertion
-- Deletion
-- Get
-- Get index
-- Contains
-- Add row at last and at index
-- Add column at last and at index
-- Remove row at index
-- Remove column at index
-- Get number of rows
-- Get number of columns
-- Get number of items
-- Is empty
-- Transform to array
-- Print
-- Clear
-- Destroy
+1. **[Matrix](./DataStructure/Matrices/Sources/Matrix.c)**
+
+   - Initialization
+   - Insertion
+   - Deletion
+   - Get
+   - Get index
+   - Contains
+   - Add row at last and at index
+   - Add column at last and at index
+   - Remove row at index
+   - Remove column at index
+   - Get number of rows
+   - Get number of columns
+   - Get number of items
+   - Is empty
+   - Transform to array
+   - Print
+   - Clear
+   - Destroy
 
 ### Stacks
 
