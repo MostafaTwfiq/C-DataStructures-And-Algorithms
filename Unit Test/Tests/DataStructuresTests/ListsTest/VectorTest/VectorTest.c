@@ -8,6 +8,13 @@
 
 
 
+
+int vectorTestStrcmp(const void *c1, const void *c2) {
+    return strcmp(c1, c2);
+}
+
+
+
 /** This function will take an integer,
  * then it will allocate a new integer and copy the passed integer value into the new pointer,
  * and finally return the new integer pointer.
@@ -101,7 +108,7 @@ void testVectorAddFun(CuTest *cuTest) {
 }
 
 void testVectorAddAtIndexFun(CuTest *cuTest) {
-    Vector *vector = vectorInitialization(1, free, strcmp);
+    Vector *vector = vectorInitialization(1, free, vectorTestStrcmp);
 
     vectorAddAtIndex(NULL, NULL, 0);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);

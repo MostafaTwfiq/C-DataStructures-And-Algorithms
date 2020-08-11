@@ -21,7 +21,7 @@ int hasNoChildrenTrT(TrieNode *node) {
 }
 
 
-int checkOnlyWordCharactersExistInTheArrTrT(int *arr, char *word) {
+int checkOnlyWordCharactersExistInTheArrTrT(const int *arr, char *word) {
 
     for (int i = 0; i < 26; i++) {
         char *tempPointer = word;
@@ -353,7 +353,7 @@ void testTriePrintAllWords(CuTest *cuTest) {
     fprintf(stdout, "<<<<<<\n");
     triePrintAllWords(trie);
     fprintf(stdout, ">>>>>>\n");
-    fprintf(stdout, "Please enter the word (yes) if the printed words (order doesn't matter) between the (<<<<<<>>>>>>) are\nworld\nworld\nworm\n:- ");
+    fprintf(stdout, "Please enter the word (yes) if the printed words (order doesn't matter) between the (<<<<<<>>>>>>) are\nword\nworld\nworm\n:- ");
     char input[5];
 
     fgets(input, 5, stdin);

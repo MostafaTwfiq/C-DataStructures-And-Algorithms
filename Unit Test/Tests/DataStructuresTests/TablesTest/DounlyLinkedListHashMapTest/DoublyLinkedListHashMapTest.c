@@ -6,6 +6,14 @@
 #include "../../../../../DataStructure/LinkedLists/Headers/DoublyLinkedList.h"
 
 
+
+
+
+int doublyLinkedListHashMapTestStrcmp(const void *c1, const void *c2) {
+    return strcmp(c1, c2);
+}
+
+
 /** This function will take an integer,
  * then it will allocate a new integer and copy the passed integer value into the new pointer,
  * and finally return the new integer pointer.
@@ -416,7 +424,8 @@ void testDLLHashMapDeleteWtoFrAll(CuTest *cuTest) {
 
 void testDLLHashMapToArray(CuTest *cuTest) {
 
-    LinkedListHashMap *llHashMap = linkedListHashMapInitialization(3, free, free, strcmp, charArrHashFunDLLHMT);
+    LinkedListHashMap *llHashMap = linkedListHashMapInitialization(3, free, free, doublyLinkedListHashMapTestStrcmp,
+                                                                   charArrHashFunDLLHMT);
 
     char numbersArr[13][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen"};
 
@@ -446,7 +455,7 @@ void testDLLHashMapToArray(CuTest *cuTest) {
 
 void testDLLHashMapToEntryArray(CuTest *cuTest) {
 
-    LinkedListHashMap *llHashMap = linkedListHashMapInitialization(3, free, free, strcmp, charArrHashFunDLLHMT);
+    LinkedListHashMap *llHashMap = linkedListHashMapInitialization(3, free, free, doublyLinkedListHashMapTestStrcmp, charArrHashFunDLLHMT);
 
     char numbersArr[13][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen"};
 

@@ -82,7 +82,6 @@ int main(void) {
     txtFileLoaderAlgUnitTest();
     inputScannerUnitTest();
 
-
     return 0;
 
 }

@@ -724,7 +724,7 @@ int splayTreeContains(SplayTree *tree, void *item) {
     if (tree == NULL) {
         #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
             ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
+     		return -1;
         #else
             fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "splay tree data structure");
             exit(NULL_POINTER);
@@ -732,7 +732,7 @@ int splayTreeContains(SplayTree *tree, void *item) {
     } else if (item == NULL) {
         #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
             ERROR_TEST->errorCode = INVALID_ARG;
-     		return NULL;
+     		return -1;
         #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "splay tree data structure");
             exit(INVALID_ARG);

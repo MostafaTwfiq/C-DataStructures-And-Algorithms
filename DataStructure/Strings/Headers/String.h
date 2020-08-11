@@ -58,7 +58,7 @@ int stringEqualsS(String *string, String *sString);
 
 int stringCompareC(String *string, char *charArr);
 
-int stringCompareS(String *string, String *sString);
+int stringCompareS(const void *string, const void *sString);
 
 int stringGetLength(String *string);
 
@@ -82,7 +82,7 @@ struct Vector *stringSplit(String *string, char *splitCharacters);
 
 void clearString (String *string);
 
-void destroyString(String *myString);
+void destroyString(void *myString);
 
 #ifdef __cplusplus
 }

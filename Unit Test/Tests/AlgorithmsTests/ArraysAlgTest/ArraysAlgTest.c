@@ -230,7 +230,7 @@ void testArrResizeOfRangeAndCpy(CuTest *cuTest) {
 
 
 void intCopyFunArrAlgT(const void *s1, const void *s2) {
-    memcpy(s1, s2, sizeof(int));
+    memcpy((void *) s1, (void *) s2, sizeof(int));
 }
 
 

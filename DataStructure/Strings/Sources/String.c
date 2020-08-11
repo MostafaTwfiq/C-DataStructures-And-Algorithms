@@ -902,7 +902,7 @@ int stringCompareC(String *string, char *charArr) {
  * @return it will return a zero if they are equal, negative number if the second one is bigger, and positive number if the first is bigger.
 */
 
-int stringCompareS(String *string, String *sString) {
+int stringCompareS(const void *string, const void *sString) {
     if (string == NULL) {
         #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
             ERROR_TEST->errorCode = NULL_POINTER;
@@ -923,8 +923,8 @@ int stringCompareS(String *string, String *sString) {
 
     }
 
-    char *fS = string->string;
-    char *sS = sString->string;
+    char *fS = ((String *)string)->string;
+    char *sS = ((String *)sString)->string;
 
     while (*fS != '\0' && *sS != '\0') {
 
@@ -1389,7 +1389,7 @@ void clearString(String *string) {
  * @param myString the string address
  */
 
-void destroyString(String *myString) {
+void destroyString(void *myString) {
     if (myString == NULL) {
         #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
      		ERROR_TEST->errorCode = NULL_POINTER;
@@ -1401,6 +1401,7 @@ void destroyString(String *myString) {
 
     }
 
-    free(myString->string);
+    free( ((String*)myString)->string );
     free(myString);
+
 }

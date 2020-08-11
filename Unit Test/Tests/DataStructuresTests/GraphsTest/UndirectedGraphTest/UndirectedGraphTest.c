@@ -7,6 +7,13 @@
 #include "../../../../../DataStructure/Lists/Headers/ArrayList.h"
 
 
+
+
+int undirectedGraphTestStrcmp(const void *c1, const void *c2) {
+    return strcmp(c1, c2);
+}
+
+
 /** This function will take a char array
  * then it will allocate a new one and copy the original char array into the new one,
  * and finally return the new allocated char array.
@@ -57,7 +64,7 @@ void testInvalidUndirectedGraphInitialization(CuTest *cuTest) {
     undirectedGraphInitialization(free, NULL, NULL);
     CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
-    undirectedGraphInitialization(free, strcmp, NULL);
+    undirectedGraphInitialization(free, undirectedGraphTestStrcmp, NULL);
     CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 }
@@ -66,7 +73,7 @@ void testInvalidUndirectedGraphInitialization(CuTest *cuTest) {
 
 void testValidUndirectedGraphInitialization(CuTest *cuTest) {
 
-    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
+    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, undirectedGraphTestStrcmp, charArrHashFunUDGT);
 
     CuAssertPtrNotNull(cuTest, undirectedGraph);
 
@@ -78,7 +85,7 @@ void testValidUndirectedGraphInitialization(CuTest *cuTest) {
 
 void testUndirectedGraphAddNode(CuTest *cuTest) {
 
-    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
+    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, undirectedGraphTestStrcmp, charArrHashFunUDGT);
 
     udGraphAddNode(NULL, NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
@@ -112,7 +119,7 @@ void testUndirectedGraphAddNode(CuTest *cuTest) {
 
 void testUndirectedGraphRemoveNode(CuTest *cuTest) {
 
-    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
+    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, undirectedGraphTestStrcmp, charArrHashFunUDGT);
 
     udGraphRemoveNode(NULL, NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
@@ -152,7 +159,7 @@ void testUndirectedGraphRemoveNode(CuTest *cuTest) {
 
 void testUndirectedGraphRemoveNodeWtoFr(CuTest *cuTest) {
 
-    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
+    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, undirectedGraphTestStrcmp, charArrHashFunUDGT);
 
     udGraphRemoveNodeWtoFr(NULL, NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
@@ -200,7 +207,7 @@ void testUndirectedGraphRemoveNodeWtoFr(CuTest *cuTest) {
 
 void testUndirectedGraphAddEdge(CuTest *cuTest) {
 
-    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
+    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, undirectedGraphTestStrcmp, charArrHashFunUDGT);
 
     udGraphAddEdge(NULL, NULL, NULL, 0);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
@@ -269,7 +276,7 @@ void testUndirectedGraphAddEdge(CuTest *cuTest) {
 
 void testUndirectedGraphRemoveEdge(CuTest *cuTest) {
 
-    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
+    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, undirectedGraphTestStrcmp, charArrHashFunUDGT);
 
     udGraphRemoveEdge(NULL, NULL, NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
@@ -321,7 +328,7 @@ void testUndirectedGraphRemoveEdge(CuTest *cuTest) {
 
 void testUndirectedGraphContainsNode(CuTest *cuTest) {
 
-    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
+    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, undirectedGraphTestStrcmp, charArrHashFunUDGT);
 
     udGraphContainsNode(NULL, NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
@@ -360,7 +367,7 @@ void testUndirectedGraphContainsNode(CuTest *cuTest) {
 
 void testUndirectedGraphContainsEdge(CuTest *cuTest) {
 
-    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
+    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, undirectedGraphTestStrcmp, charArrHashFunUDGT);
 
     udGraphContainsEdge(NULL, NULL, NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
@@ -412,7 +419,7 @@ void testUndirectedGraphContainsEdge(CuTest *cuTest) {
 
 void testUndirectedGraphGetEdgeWeight(CuTest *cuTest) {
 
-    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
+    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, undirectedGraphTestStrcmp, charArrHashFunUDGT);
 
     udGraphGetEdgeWeight(NULL, NULL, NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
@@ -462,7 +469,7 @@ void testUndirectedGraphGetEdgeWeight(CuTest *cuTest) {
 
 void testUndirectedGraphGetSize(CuTest *cuTest) {
 
-    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
+    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, undirectedGraphTestStrcmp, charArrHashFunUDGT);
 
     udGraphGetSize(NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
@@ -506,7 +513,7 @@ void testUndirectedGraphGetSize(CuTest *cuTest) {
 
 void testUndirectedGraphIsEmpty(CuTest *cuTest) {
 
-    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
+    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, undirectedGraphTestStrcmp, charArrHashFunUDGT);
 
     udGraphIsEmpty(NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
@@ -549,7 +556,7 @@ void testUndirectedGraphIsEmpty(CuTest *cuTest) {
 
 void testClearUndirectedGraph(CuTest *cuTest) {
 
-    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
+    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, undirectedGraphTestStrcmp, charArrHashFunUDGT);
 
     clearUDGraph(NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
@@ -575,7 +582,7 @@ void testClearUndirectedGraph(CuTest *cuTest) {
 
 void testDestroyUndirectedGraph(CuTest *cuTest) {
 
-    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
+    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, undirectedGraphTestStrcmp, charArrHashFunUDGT);
 
     destroyUDGraph(NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
@@ -601,7 +608,7 @@ void nullFreeFunUDGT(){}
 
 void testPrintUndirectedGraph(CuTest *cuTest) {
 
-    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
+    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, undirectedGraphTestStrcmp, charArrHashFunUDGT);
 
     printUDGraph(NULL, NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
@@ -646,7 +653,7 @@ void testPrintUndirectedGraph(CuTest *cuTest) {
 
 void testUndirectedGraphGetShortestDistance(CuTest *cuTest) {
 
-    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
+    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, undirectedGraphTestStrcmp, charArrHashFunUDGT);
 
     udGraphGetShortestDistance(NULL, NULL, NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
@@ -701,7 +708,7 @@ void testUndirectedGraphGetShortestDistance(CuTest *cuTest) {
 
 void testUndirectedGraphGetShortestPath(CuTest *cuTest) {
 
-    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
+    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, undirectedGraphTestStrcmp, charArrHashFunUDGT);
 
     udGraphGetShortestPath(NULL, NULL, NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
@@ -778,7 +785,7 @@ void testUndirectedGraphGetShortestPath(CuTest *cuTest) {
 
 void testUndirectedGraphNodePartOfCycle(CuTest *cuTest) {
 
-    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
+    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, undirectedGraphTestStrcmp, charArrHashFunUDGT);
 
     udGraphNodePartOfCycle(NULL, NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
@@ -842,7 +849,7 @@ void testUndirectedGraphNodePartOfCycle(CuTest *cuTest) {
 
 void testUndirectedGraphHasCycle(CuTest *cuTest) {
 
-    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
+    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, undirectedGraphTestStrcmp, charArrHashFunUDGT);
 
     udGraphHasCycle(NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
@@ -892,7 +899,7 @@ void testUndirectedGraphHasCycle(CuTest *cuTest) {
 
 void testUndirectedGraphMinimumSpanningGraph(CuTest *cuTest) {
 
-    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, strcmp, charArrHashFunUDGT);
+    UndirectedGraph *undirectedGraph = undirectedGraphInitialization(free, undirectedGraphTestStrcmp, charArrHashFunUDGT);
 
     udGraphMinimumSpanningGraph(NULL, NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);

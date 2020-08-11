@@ -34,7 +34,7 @@ int exponentialSearch(void *arr, void *value, int length, int elemSize, int (*cm
             ERROR_TEST->errorCode = NULL_POINTER;
             return -1;
         #else
-            printf(stderr, NULL_POINTER_MESSAGE, "passed array", "exponential search");
+            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "exponential search");
             exit(NULL_POINTER);
         #endif
     } else if (value == NULL) {

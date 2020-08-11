@@ -553,6 +553,7 @@ void triePrintAllWords(Trie *trie) {
     }
 
     destroyString(string);
+
 }
 
 

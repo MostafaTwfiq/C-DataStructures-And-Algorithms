@@ -4,6 +4,17 @@
 #include "../../../../../DataStructure/Tables/Headers/HashMap.h"
 
 
+
+
+
+
+
+int hashMapTestStrcmp(const void *c1, const void *c2) {
+    return strcmp(c1, c2);
+}
+
+
+
 /** This function will take an integer,
  * then it will allocate a new integer and copy the passed integer value into the new pointer,
  * and finally return the new integer pointer.
@@ -408,7 +419,7 @@ void testHashMapDeleteWtoFrAll(CuTest *cuTest) {
 
 void testHashMapToArray(CuTest *cuTest) {
 
-    HashMap *hashMap = hashMapInitialization(free, free, strcmp, charArrHashFunHMT);
+    HashMap *hashMap = hashMapInitialization(free, free, hashMapTestStrcmp, charArrHashFunHMT);
 
     char numbersArr[13][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen"};
 
@@ -438,7 +449,7 @@ void testHashMapToArray(CuTest *cuTest) {
 
 void testHashMapToEntryArray(CuTest *cuTest) {
 
-    HashMap *hashMap = hashMapInitialization(free, free, strcmp, charArrHashFunHMT);
+    HashMap *hashMap = hashMapInitialization(free, free, hashMapTestStrcmp, charArrHashFunHMT);
 
     char numbersArr[13][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen"};
 

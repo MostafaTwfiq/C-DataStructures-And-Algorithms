@@ -7,7 +7,7 @@
 
 
 
-const char *filePath = "testFile.txt";
+ char *filePath = "testFile.txt";
 
 
 
@@ -493,7 +493,10 @@ void testTxtLoaderAppendToLineS(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     txtLoaderWriteC(txtFileLoader, "");
-    txtLoaderAppendToLineS(txtFileLoader, "", 1);
+
+    String *tempString = stringInitialization(1);
+    txtLoaderAppendToLineS(txtFileLoader, tempString, 1);
+    destroyString(tempString);
     CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     char lines[4][12] = {"oneone", "twotwo", "threethree", "fourfour"};

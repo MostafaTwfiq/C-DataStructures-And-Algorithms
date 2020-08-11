@@ -7,6 +7,10 @@
 
 
 
+int arrayListTestStrcmp(const void *c1, const void *c2) {
+    return strcmp(c1, c2);
+}
+
 
 /** This function will take an integer,
  * then it will allocate a new integer and copy the passed integer value into the new pointer,
@@ -102,7 +106,7 @@ void testArrayListAddFun(CuTest *cuTest) {
 }
 
 void testArrayListAddAtIndexFun(CuTest *cuTest) {
-    ArrayList *arrayList = arrayListInitialization(1, free, strcmp);
+    ArrayList *arrayList = arrayListInitialization(1, free, arrayListTestStrcmp);
 
     arrayListAddAtIndex(NULL, NULL, 0);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);

@@ -7,7 +7,9 @@
 
 
 
-
+int charArrAlgStrcmp(const void *c1, const void *c2) {
+    return strcmp(c1, c2);
+}
 
 
 
@@ -917,7 +919,7 @@ Vector *charArrSplitC(char *string, char *splitCharacters) {
     }
 
 
-    Vector *wordsVector = vectorInitialization(5, free, strcmp);
+    Vector *wordsVector = vectorInitialization(5, free, charArrAlgStrcmp);
     String *currentWord = stringInitialization(10);
 
     while (*string != '\0') {
@@ -973,7 +975,7 @@ char mostRepeatedCharacter(char *string) {
     if (*string == '\0')
         return '\0';
 
-    return *(char *) mostFrequentArrValueH(string, strlen(string), sizeof(char), charComparatorP, charArrHashFun);
+    return *(char *) mostFrequentArrValueH(string, (int) strlen(string), sizeof(char), charComparatorP, charArrHashFun);
 
 }
 
