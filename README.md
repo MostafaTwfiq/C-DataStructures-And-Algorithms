@@ -341,7 +341,7 @@
 | compare arrays in range | O (k) and k is the length of the range | |
 | array mismatch | O (n) | |
 | array mismatch in range | O (k) and k is the length of the range | |
-| array anagrams S | O ( n log(n) ) | this function will sort the array first to determine if they are equals |
+| array anagrams S | O (n log(n)) | this function will sort the array first to determine if they are equals |
 | array anagrams H | O (n) | this function will use a hash map the compare the arrays |
 | array remove duplicates A | O (n ^ 3) | this function will use a resizable array to detect the duplicates |
 | array remove duplicates H | O (n ^ 2) | this function will use a hash map to detect the duplicates |
@@ -350,11 +350,11 @@
 | array get index | O (n) | |
 | array contains | O (n) | |
 | array remove at index | O (n) | |
-| array sort | O ( n log(n) ) | this function will use quick sort algorithm to sort the array, note that quick sort complexity can be O (n ^ 2) |
+| array sort | O (n log(n)) | this function will use quick sort algorithm to sort the array, note that quick sort complexity can be O (n ^ 2) |
 | array get first | O (n) | |
 | array get last | O (n) | |
 | array get all | O (n) | |
-| array binary search | O ( log(n) ) | |
+| array binary search | O (log(n)) | |
 | array is palindrome | O (n) | |
 | array is rotation of an array| O (n) | |
 | array update element | O (1) | |
@@ -366,39 +366,39 @@
 
 | Function | Complexity | Comments |
 |--|--|--|
-| is sub string | O ( n ^ 2) | |
-| reverse words | O ( n ) | |
-| custom trim start | O ( n ) | |
-| trim start | O ( n ) | |
-| custom trim end | O ( n ) | |
-| trim end | O ( n ) | |
-| custom trim | O ( n ) | |
-| trim | O ( n ) | |
-| contains | O ( n ) | |
-| remove character | O ( n ) | |
-| is integer | O ( n ) | |
-| is floating point | O ( n ) | |
-| sum characters ASCII | O ( n )| |
-| hash char array | O ( n ) | this function actually will return the sum the the characters ASCII |
-| generate char array | O ( n ) | this function will allocate a new char array then it will copy the original char array into the new one |
-| generate char pointer | O ( 1 ) | this function will generate a char pointer to a character |
-| is alphabet C | O ( 1 ) | this function will take a character value then it will check if it's an alphabet character |
-| is alphabet | O ( 1 ) | this function will take a character pointer then it will check if it's an alphabet character |
-| comparison function P | O ( 1 ) | this function will take two character pointers then it will compare there ASCII values |
-| comparison function | O ( 1 ) | this function will take two character value then it will compare there ASCII values |
-| split S | O ( n ) | this function will split the char array into strings vector |
-| split C | O ( n ) | this function will split the char array into char arrays vector |
-| most repeated character | O ( n ) | this function will use a hash map |
+| is sub string | O (n ^ 2) | |
+| reverse words | O (n) | |
+| custom trim start | O (n ^ 2) | |
+| trim start | O (n ^ 2) | |
+| custom trim end | O (n) | |
+| trim end | O (n) | |
+| custom trim | O (n ^ 2) | |
+| trim | O (n ^ 2) | |
+| contains | O (n) | |
+| remove character | O (n) | |
+| is integer | O (n) | |
+| is floating point | O (n) | |
+| sum characters ASCII | O (n)| |
+| hash char array | O (n) | this function actually will return the sum the the characters ASCII |
+| generate char array | O (n) | this function will allocate a new char array then it will copy the original char array into the new one |
+| generate char pointer | O (1) | this function will generate a char pointer to a character |
+| is alphabet C | O (1) | this function will take a character value then it will check if it's an alphabet character |
+| is alphabet | O (1) | this function will take a character pointer then it will check if it's an alphabet character |
+| comparison function P | O (1) | this function will take two character pointers then it will compare there ASCII values |
+| comparison function | O (1) | this function will take two character value then it will compare there ASCII values |
+| split S | O (n) | this function will split the char array into strings vector |
+| split C | O (n) | this function will split the char array into char arrays vector |
+| most repeated character | O (n) | this function will use a hash map |
 
 ### Search Algorithms
 
 | Function | Complexity | Comments |
 |--|--|--|
-| [binary search](./Algorithms/Searching/Sources/BinarySearch.c) | O ( log(n) ) | the log is to base 2 |
-| [ternary search](./Algorithms/Searching/Sources/TernarySearch.c) | O ( log(n) ) | the log is to base 3 |
+| [binary search](./Algorithms/Searching/Sources/BinarySearch.c) | O (log(n)) | the log is to base 2 |
+| [ternary search](./Algorithms/Searching/Sources/TernarySearch.c) | O (log(n)) | the log is to base 3 |
 | [linear search](./Algorithms/Searching/Sources/LinearSearch.c) | O (n) | |
-| [jump search](./Algorithms/Searching/Sources/JumpSearch.c) | O ( sqrt(n) ) | |
-| [exponential search](./Algorithms/Searching/Sources/ExponentialSearch.c) | O ( log(i) ) and i represents the length of searching area )  | |
+| [jump search](./Algorithms/Searching/Sources/JumpSearch.c) | O (sqrt(n)) | |
+| [exponential search](./Algorithms/Searching/Sources/ExponentialSearch.c) | O (log(i)) and i represents the length of searching area )  | |
 
 ### Sort Algorithms
 
@@ -407,9 +407,9 @@
 | [bubble sort](./Algorithms/Sorting/Sources/BubbleSort.c) | O (n ^ 2) | in best case the complexity could be O ( n ) |
 | [selection sort](./Algorithms/Sorting/Sources/SelectionSort.c) | O (n ^ 2) | |
 | [insertion sort](./Algorithms/Sorting/Sources/InsertionSort.c) | O (n ^ 2) | in best case the complexity could be O ( n ) |
-| [merge sort](./Algorithms/Sorting/Sources/MergeSort.c) | O ( n log(n) ) | |
-| [quick sort](./Algorithms/Sorting/Sources/QuickSort.c) | O ( n log(n) ) | in the worst case the complexity could be O (n ^ 2) |
-| [heap sort](./Algorithms/Sorting/Sources/HeapSort.c) | O ( n log(n) ) | |
+| [merge sort](./Algorithms/Sorting/Sources/MergeSort.c) | O (n log(n)) | |
+| [quick sort](./Algorithms/Sorting/Sources/QuickSort.c) | O (n log(n)) | in the worst case the complexity could be O (n ^ 2) |
+| [heap sort](./Algorithms/Sorting/Sources/HeapSort.c) | O (n log(n)) | |
 | [counting sort A](./Algorithms/Sorting/Sources/CountingSort.c) | O (n) | this type of sorting works only on unsigned integers, note this function will use an array to count the values so it will allocate an extra memory |
 | [counting sort H](./Algorithms/Sorting/Sources/CountingSort.c) | O (n) | this type of sorting works only on unsigned integers, note this function will use a hashmap so it will use less memory that the array implementation |
 
