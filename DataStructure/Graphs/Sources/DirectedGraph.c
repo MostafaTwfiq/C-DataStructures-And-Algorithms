@@ -879,7 +879,7 @@ void dirGraphDepthFirstTraversal(DirectedGraph *graph, void *startVal, void (*pr
     stackPush(nodesStack, startNode);
 
     long long *startNodeValAddress = (long long *) malloc(sizeof(long long));
-    *startNodeValAddress = (int) startNode->value;
+    *startNodeValAddress = (long long) startNode->value;
     hashSetInsert(visitedNodes, startNodeValAddress);
 
     DirGraphNode *currentNode;
