@@ -22,7 +22,7 @@ void testArrayReverse(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     reverseArray(arr, 10, sizeof(int));
-    for (int i = 10; i >= 0; i--)
+    for (int i = 10; i > 0; i--)
         CuAssertIntEquals(cuTest, i, arr[10 - i]);
 
 
