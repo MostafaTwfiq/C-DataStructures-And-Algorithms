@@ -356,7 +356,12 @@ void testTriePrintAllWords(CuTest *cuTest) {
     fprintf(stdout, "Please enter the word (yes) if the printed words (order doesn't matter) between the (<<<<<<>>>>>>) are\nword\nworld\nworm\n:- ");
     char input[5];
 
-    fgets(input, 5, stdin);
+    char *tempChar = fgets(input, 5, stdin);
+    if (tempChar == NULL) {
+        fprintf(stderr, "Can't scan the input");
+        exit(SOMETHING_WENT_WRONG);
+    }
+
     if (input[strlen(input) - 1] == '\n')
         input[strlen(input) - 1] = '\0';
 

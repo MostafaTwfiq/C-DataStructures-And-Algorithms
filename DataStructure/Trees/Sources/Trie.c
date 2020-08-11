@@ -51,7 +51,7 @@ void trieSuggestionR(TrieNode *root, char *word, String *string, ArrayList *word
 
 void triePrintAllWordsR(TrieNode *root, String *string);
 
-int *generateIndexes(char c);
+int *generateIndices(char c);
 
 TrieNode *destroyTrieNodes(TrieNode *root);
 
@@ -503,7 +503,7 @@ void trieSuggestionR(TrieNode *root, char *word, String *string, ArrayList *word
         }
     }
 
-    int *indices = generateIndexes(toLowerCase(*word));
+    int *indices = generateIndices(toLowerCase(*word));
     if (indices == NULL)
         return;
 
@@ -778,7 +778,7 @@ void freeNode(TrieNode *node) {
 
 
 
-/** This function is useful for the generateIndexes function, to sort the keyHolder array*/
+/** This function is useful for the generateIndices function, to sort the keyHolder array*/
 
 int comparator(const void *p1, const void *p2) {
     float subVal = ((KeyHolder *)p1)->weight - ((KeyHolder *)p2)->weight;
@@ -797,7 +797,7 @@ int comparator(const void *p1, const void *p2) {
  * @return it will return an array of indices
  */
 
-int *generateIndexes(char c) {
+int *generateIndices(char c) {
     int *arr = (int *) malloc(sizeof(int) * 26);
 
     if (c == '\0') {
@@ -837,8 +837,8 @@ int *generateIndexes(char c) {
                 continue;
 
             keys[keyIndex].c = matrix[i][j];
-            float pow1 = pow(i - row, 2);
-            float pow2 = pow(j - col, 2);
+            float pow1 = powf((float ) i - (float ) row, 2);
+            float pow2 = powf((float ) j - (float ) col, 2);
             float root = sqrtf(pow1 + pow2);
             keys[keyIndex++].weight = root;
 
