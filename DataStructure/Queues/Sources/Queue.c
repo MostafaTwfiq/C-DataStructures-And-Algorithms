@@ -360,7 +360,7 @@ void *queuePeek(Queue * arrayQueue) {
             ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
             return NULL;
         #else
-            fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "queue", "queue data structure");
+            fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "queue data structure");
      		exit(EMPTY_DATA_STRUCTURE);
         #endif
     }
