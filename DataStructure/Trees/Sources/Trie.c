@@ -3,7 +3,7 @@
 #include "../../Strings/Headers/String.h"
 #include "../../../System/Utils.h"
 #include "../../../Unit Test/CuTest/CuTest.h"
-#include <math.h>
+#include "math.h"
 
 
 /** @struct Node
