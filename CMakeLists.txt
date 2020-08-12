@@ -118,7 +118,7 @@ add_executable(C_DataStructures
         Algorithms/ArraysAlg/Headers/CharArrayAlg.h
         Algorithms/IntegersAlg/Sources/IntegerAlg.c
         Algorithms/IntegersAlg/Headers/IntegerAlg.h
-        Algorithms/Sorting/Sources/HeapSort.c 
+        Algorithms/Sorting/Sources/HeapSort.c
         Algorithms/Sorting/Headers/HeapSort.h
         FilesHandler/Sources/TxtFileLoader.c
         FilesHandler/Headers/TxtFileLoader.h

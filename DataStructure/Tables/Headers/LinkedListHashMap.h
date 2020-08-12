@@ -21,11 +21,13 @@ extern "C" {
 typedef struct Entry {
     void *key;
     void *item;
+
     void (*freeKeyFun)(void *);
+
     void (*freeItemFun)(void *);
+
     int (*keyCompFun)(const void *, const void *);
 } Entry;
-
 
 
 /** @struct HashMap
@@ -50,14 +52,19 @@ typedef struct LinkedListHashMap {
     struct DoublyLinkedList **arr;
     int length;
     int count;
+
     void (*freeKeyFun)(void *);
+
     void (*freeItemFun)(void *);
+
     int (*keyCompFun)(const void *, const void *);
+
     int (*hashFun)(const void *);
 } LinkedListHashMap;
 
 LinkedListHashMap *
-linkedListHashMapInitialization(int mapLength, void (*freeKey)(void *), void (*freeItem)(void *), int (*keyComp)(const void *, const void *), int (*hashFun)(const void *));
+linkedListHashMapInitialization(int mapLength, void (*freeKey)(void *), void (*freeItem)(void *),
+                                int (*keyComp)(const void *, const void *), int (*hashFun)(const void *));
 
 void lLHashMapInsert(LinkedListHashMap *map, void *key, void *item);
 

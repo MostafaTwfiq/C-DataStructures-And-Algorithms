@@ -222,6 +222,9 @@ SplayNode *splayTreePerformRotation(SplayNode *root, SplayTreeRotationType rotat
             return root;
 
     }
+
+    return root;
+
 }
 
 

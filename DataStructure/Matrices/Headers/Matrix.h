@@ -6,7 +6,6 @@ extern "C" {
 #endif
 
 
-
 /** @struct Matrix
 *  @brief This structure implements a basic generic Matrix.
 *  @var Matrix::rows
@@ -30,12 +29,12 @@ typedef struct Matrix {
     int rowsArrLength;
     int colNum;
     int count;
+
     void (*freeFun)(void *);
+
     int (*comparator)(const void *, const void *);
 
 } Matrix;
-
-
 
 
 /** @struct MatrixIndex
@@ -54,8 +53,8 @@ typedef struct MatrixIndex {
 } MatrixIndex;
 
 
-
-Matrix *matrixInitialization(int rowsNum, int colNum, void (*freeFun)(void *), int (*comparator)(const void *, const void *));
+Matrix *
+matrixInitialization(int rowsNum, int colNum, void (*freeFun)(void *), int (*comparator)(const void *, const void *));
 
 void matrixInsert(Matrix *matrix, void *item, int rowIndex, int colIndex);
 

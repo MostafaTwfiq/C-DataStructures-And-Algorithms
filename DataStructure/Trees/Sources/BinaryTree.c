@@ -49,6 +49,8 @@ BinaryTreeNode *createBinaryTreeNode(void *item) {
     newNode->right = NULL;
     newNode->left= NULL;
 
+    return newNode;
+
 }
 
 
@@ -175,6 +177,8 @@ BinaryTree *binaryTreeInitialization(void (*freeFun)(void *), int (*cmp)(const v
     tree->count = 0;
     tree->freeFn = freeFun;
     tree->cmp = cmp;
+
+    return tree;
 
 }
 

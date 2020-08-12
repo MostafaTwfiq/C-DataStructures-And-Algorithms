@@ -13,37 +13,37 @@
 
 String *stringInitialization(int initialLength) {
     if (initialLength <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "initial length", "string data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "initial length", "string data structure");
+         exit(INVALID_ARG);
+#endif
 
     }
 
     String *myString = (String *) malloc(sizeof(String));
     if (myString == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
-     		return NULL;
-        #else
-            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "string", "string data structure");
-     		exit(FAILED_ALLOCATION);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = FAILED_ALLOCATION;
+        return NULL;
+#else
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "string", "string data structure");
+         exit(FAILED_ALLOCATION);
+#endif
 
     }
 
-    myString->string = (char *) malloc(sizeof(char) * (initialLength + 1) );
+    myString->string = (char *) malloc(sizeof(char) * (initialLength + 1));
     if (myString->string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
-     		return NULL;
-        #else
-            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "string array", "string data structure");
-     		exit(FAILED_ALLOCATION);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = FAILED_ALLOCATION;
+        return NULL;
+#else
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "string array", "string data structure");
+         exit(FAILED_ALLOCATION);
+#endif
 
     }
 
@@ -55,8 +55,6 @@ String *stringInitialization(int initialLength) {
 }
 
 
-
-
 /** This function will take the string address, and the new character as a parameter,
  * then it will put the new character in the end of the string.
  *
@@ -66,13 +64,13 @@ String *stringInitialization(int initialLength) {
 
 void stringAppendChar(String *string, char c) {
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+         exit(NULL_POINTER);
+#endif
 
     }
 
@@ -80,13 +78,13 @@ void stringAppendChar(String *string, char c) {
         string->length *= 2;
         string->string = realloc(string->string, sizeof(char) * (string->length + 1));
         if (string->string == NULL) {
-            #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		    ERROR_TEST->errorCode = FAILED_REALLOCATION;
-     		    return;
-            #else
-                fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "string array", "string data structure");
-     	    	exit(FAILED_REALLOCATION);
-     	    #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = FAILED_REALLOCATION;
+            return;
+#else
+            fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "string array", "string data structure");
+             exit(FAILED_REALLOCATION);
+#endif
 
         }
 
@@ -96,8 +94,6 @@ void stringAppendChar(String *string, char c) {
     string->string[string->count] = '\0';
 
 }
-
-
 
 
 /** This function will take the string address, index, and the new character as a parameters,
@@ -112,22 +108,22 @@ void stringAppendChar(String *string, char c) {
 
 void stringAddChar(String *string, int index, char c) {
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+         exit(NULL_POINTER);
+#endif
 
     } else if (string->count <= index || index < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = OUT_OF_RANGE;
-     		return;
-        #else
-            fprintf(stderr, OUT_OF_RANGE_MESSAGE, "string data structure");
-     		exit(OUT_OF_RANGE);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = OUT_OF_RANGE;
+        return;
+#else
+        fprintf(stderr, OUT_OF_RANGE_MESSAGE, "string data structure");
+         exit(OUT_OF_RANGE);
+#endif
 
     }
 
@@ -137,13 +133,13 @@ void stringAddChar(String *string, int index, char c) {
         string->string = (char *) realloc(string->string, sizeof(char) * (string->length + 1));
 
         if (string->string == NULL) {
-            #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-                ERROR_TEST->errorCode = FAILED_REALLOCATION;
-                return;
-            #else
-                fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "string char array", "string data structure");
-     		    exit(FAILED_REALLOCATION);
-            #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = FAILED_REALLOCATION;
+            return;
+#else
+            fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "string char array", "string data structure");
+             exit(FAILED_REALLOCATION);
+#endif
 
         }
 
@@ -156,9 +152,6 @@ void stringAddChar(String *string, int index, char c) {
     string->string[string->count] = '\0';
 
 }
-
-
-
 
 
 /** This function will take the string address, index, and the a character as a parameters,
@@ -174,32 +167,28 @@ void stringAddChar(String *string, int index, char c) {
 void stringUpdateChar(String *string, int index, char c) {
 
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-     		exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+         exit(NULL_POINTER);
+#endif
 
     } else if (string->count <= index || index < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = OUT_OF_RANGE;
-            return;
-        #else
-            fprintf(stderr, OUT_OF_RANGE_MESSAGE, "string data structure");
-     		exit(OUT_OF_RANGE);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = OUT_OF_RANGE;
+        return;
+#else
+        fprintf(stderr, OUT_OF_RANGE_MESSAGE, "string data structure");
+         exit(OUT_OF_RANGE);
+#endif
 
     }
 
     string->string[index] = c;
 
 }
-
-
-
-
 
 
 /** This function will take the string address, and the index as a parameter,
@@ -213,22 +202,22 @@ void stringUpdateChar(String *string, int index, char c) {
 
 void stringRemove(String *string, int index) {
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+         exit(NULL_POINTER);
+#endif
 
     } else if (string->count <= index || index < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = OUT_OF_RANGE;
-     		return;
-        #else
-            fprintf(stderr, OUT_OF_RANGE_MESSAGE, "string data structure");
-     		exit(OUT_OF_RANGE);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = OUT_OF_RANGE;
+        return;
+#else
+        fprintf(stderr, OUT_OF_RANGE_MESSAGE, "string data structure");
+         exit(OUT_OF_RANGE);
+#endif
 
     }
 
@@ -236,12 +225,8 @@ void stringRemove(String *string, int index) {
         string->string[i] = string->string[i + 1];
 
     string->count--;
-    
+
 }
-
-
-
-
 
 
 /** This function will take the string address, and the new char array pointer as a parameters,
@@ -253,22 +238,22 @@ void stringRemove(String *string, int index) {
 
 void stringAppendC(String *string, char *charArr) {
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+         exit(NULL_POINTER);
+#endif
 
     } else if (charArr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "char array pointer", "string data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "char array pointer", "string data structure");
+         exit(INVALID_ARG);
+#endif
 
     }
 
@@ -281,11 +266,6 @@ void stringAppendC(String *string, char *charArr) {
 }
 
 
-
-
-
-
-
 /** This function will take the string address, and the new string pointer array as a parameters,
  * then it will add the new string at the end of the original string.
  *
@@ -295,22 +275,22 @@ void stringAppendC(String *string, char *charArr) {
 
 void stringAppendS(String *string, String *newString) {
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (newString == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "string pointer", "string data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "string pointer", "string data structure");
+        exit(INVALID_ARG);
+#endif
 
     }
 
@@ -323,9 +303,6 @@ void stringAppendS(String *string, String *newString) {
 }
 
 
-
-
-
 /** This function will take the string address, and the new char pointer array as a parameters,
  * then it will change the string to the new char pointer array.
  *
@@ -335,22 +312,22 @@ void stringAppendS(String *string, String *newString) {
 
 void stringChangeStringC(String *string, char *newCharArr) {
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+         exit(NULL_POINTER);
+#endif
 
     } else if (newCharArr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "new char array pointer", "string data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new char array pointer", "string data structure");
+         exit(INVALID_ARG);
+#endif
 
     }
 
@@ -363,7 +340,6 @@ void stringChangeStringC(String *string, char *newCharArr) {
 }
 
 
-
 /** This function will take string address, and the the new string address as a parameters,
  * then it will change the first string to the second string.
  *
@@ -373,22 +349,22 @@ void stringChangeStringC(String *string, char *newCharArr) {
 
 void stringChangeStringS(String *string, String *newString) {
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+         exit(NULL_POINTER);
+#endif
 
     } else if (newString == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "new string pointer", "string data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new string pointer", "string data structure");
+         exit(INVALID_ARG);
+#endif
 
     }
 
@@ -402,8 +378,6 @@ void stringChangeStringS(String *string, String *newString) {
 }
 
 
-
-
 /** This function will take the string address, and the character as a parameters,
  * then it will return the first occur of this character in the string and will return it's index,
  * other wise it will return minus one (-1).
@@ -415,13 +389,13 @@ void stringChangeStringS(String *string, String *newString) {
 
 int stringGetIndex(String *string, char c) {
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return -1;
-        #else
-     		fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        exit(NULL_POINTER);
+#endif
 
     }
 
@@ -436,8 +410,6 @@ int stringGetIndex(String *string, char c) {
 }
 
 
-
-
 /** This function will take the string address, and the index as a parameters,
  * then it will return the character at the given index.
  *
@@ -450,30 +422,28 @@ int stringGetIndex(String *string, char c) {
 
 char stringGet(String *string, int index) {
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return '\0';
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return '\0';
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+         exit(NULL_POINTER);
+#endif
 
     } else if (string->count <= index || index < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = OUT_OF_RANGE;
-     		return '\0';
-        #else
-            fprintf(stderr, OUT_OF_RANGE_MESSAGE, "string data structure");
-     		exit(OUT_OF_RANGE);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = OUT_OF_RANGE;
+        return '\0';
+#else
+        fprintf(stderr, OUT_OF_RANGE_MESSAGE, "string data structure");
+         exit(OUT_OF_RANGE);
+#endif
 
     }
 
     return string->string[index];
 
 }
-
-
 
 
 /** This function will take the charArr address, and a char pointer array as a parameters,
@@ -487,22 +457,22 @@ char stringGet(String *string, int index) {
 
 int stringSubStringC(String *string, char *charArr) {
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+         exit(NULL_POINTER);
+#endif
 
     } else if (charArr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "char array pointer", "string data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "char array pointer", "string data structure");
+         exit(INVALID_ARG);
+#endif
 
     }
 
@@ -535,8 +505,6 @@ int stringSubStringC(String *string, char *charArr) {
 }
 
 
-
-
 /** This function will take a string address, and another string pointer as a parameters,
  * then it will return one (1) if the second string is a substring of the first string,
  * other wise it will return zero (0).
@@ -548,22 +516,22 @@ int stringSubStringC(String *string, char *charArr) {
 
 int stringSubStringS(String *string, String *sString) {
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (sString == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "second string pointer", "string data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "second string pointer", "string data structure");
+        exit(INVALID_ARG);
+#endif
 
     }
 
@@ -597,9 +565,6 @@ int stringSubStringS(String *string, String *sString) {
 }
 
 
-
-
-
 /** This function will take the string address as a parameter,
  * then it will convert it to a char pointer array, and return it.
  *
@@ -609,25 +574,25 @@ int stringSubStringS(String *string, String *sString) {
 
 char *stringToCharArray(String *string) {
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+         exit(NULL_POINTER);
+#endif
 
     }
 
-    char *arrayOfCharacters = (char *) malloc(sizeof(char) * (string->count + 1) );
+    char *arrayOfCharacters = (char *) malloc(sizeof(char) * (string->count + 1));
     if (arrayOfCharacters == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
-     		return NULL;
-        #else
-            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array of characters", "string data structure");
-     		exit(FAILED_ALLOCATION);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = FAILED_ALLOCATION;
+        return NULL;
+#else
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array of characters", "string data structure");
+         exit(FAILED_ALLOCATION);
+#endif
 
     }
 
@@ -636,8 +601,6 @@ char *stringToCharArray(String *string) {
 
     return arrayOfCharacters;
 }
-
-
 
 
 /** This method will take the string address, start index, and end index as a parameters,
@@ -651,13 +614,13 @@ char *stringToCharArray(String *string) {
 
 char *stringToCustomCharArray(String *string, int startIndex, int endIndex) {
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+         exit(NULL_POINTER);
+#endif
 
     }
 
@@ -665,26 +628,26 @@ char *stringToCustomCharArray(String *string, int startIndex, int endIndex) {
         || startIndex < 0 || startIndex >= string->count
         || endIndex < 0 || endIndex >= string->count) {
 
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = OUT_OF_RANGE;
-     		return NULL;
-        #else
-            fprintf(stderr, OUT_OF_RANGE_MESSAGE, "string data structure");
-     		exit(OUT_OF_RANGE);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = OUT_OF_RANGE;
+        return NULL;
+#else
+        fprintf(stderr, OUT_OF_RANGE_MESSAGE, "string data structure");
+         exit(OUT_OF_RANGE);
+#endif
 
     }
 
 
-    char *newCharArray = (char *) malloc(sizeof(char) * (endIndex - startIndex + 2) );
+    char *newCharArray = (char *) malloc(sizeof(char) * (endIndex - startIndex + 2));
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
-     		return NULL;
-        #else
-            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "string to custom char array", "string data structure");
-     		exit(FAILED_ALLOCATION);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = FAILED_ALLOCATION;
+        return NULL;
+#else
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "string to custom char array", "string data structure");
+         exit(FAILED_ALLOCATION);
+#endif
 
     }
 
@@ -697,8 +660,6 @@ char *stringToCustomCharArray(String *string, int startIndex, int endIndex) {
 }
 
 
-
-
 /** This function will take the string address as a parameter,
  * then it will return the string length.
  *
@@ -708,24 +669,18 @@ char *stringToCustomCharArray(String *string, int startIndex, int endIndex) {
 
 int stringGetLength(String *string) {
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+         exit(NULL_POINTER);
+#endif
 
     }
 
     return string->count;
 }
-
-
-
-
-
-
 
 
 /** This function will take the charArr address, and a char pointer array as a parameters,
@@ -739,22 +694,22 @@ int stringGetLength(String *string) {
 
 int stringEqualsC(String *string, char *charArr) {
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+         exit(NULL_POINTER);
+#endif
 
     } else if (charArr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "char array pointer", "string data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "char array pointer", "string data structure");
+         exit(INVALID_ARG);
+#endif
 
     }
 
@@ -776,11 +731,6 @@ int stringEqualsC(String *string, char *charArr) {
 }
 
 
-
-
-
-
-
 /** This function will take the string address, and second string address as a parameters,
  * then it will return one (1) if the first string is equal to the second string,
  * other wise it will return zero (0).
@@ -792,22 +742,22 @@ int stringEqualsC(String *string, char *charArr) {
 
 int stringEqualsS(String *string, String *sString) {
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+         exit(NULL_POINTER);
+#endif
 
     } else if (sString == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "second string pointer", "string data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "second string pointer", "string data structure");
+         exit(INVALID_ARG);
+#endif
 
     }
 
@@ -827,15 +777,6 @@ int stringEqualsS(String *string, String *sString) {
 }
 
 
-
-
-
-
-
-
-
-
-
 /** This function will take the string address, and a char pointer array as a parameters,
  * then it will compare them and it will return a zero if they are equal,
  * negative number if the second one is bigger, and positive number if the first is bigger.
@@ -847,22 +788,22 @@ int stringEqualsS(String *string, String *sString) {
 
 int stringCompareC(String *string, char *charArr) {
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (charArr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "second char array pointer", "string data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "second char array pointer", "string data structure");
+        exit(INVALID_ARG);
+#endif
 
     }
 
@@ -887,12 +828,6 @@ int stringCompareC(String *string, char *charArr) {
 }
 
 
-
-
-
-
-
-
 /** This function will take the string address, and second string address as a parameters,
  * then it will compare the strings and it will return a zero if they are equal,
  * negative number if the second one is bigger, and positive number if the first is bigger.
@@ -904,27 +839,27 @@ int stringCompareC(String *string, char *charArr) {
 
 int stringCompareS(const void *string, const void *sString) {
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (sString == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "second string pointer", "string data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "second string pointer", "string data structure");
+        exit(INVALID_ARG);
+#endif
 
     }
 
-    char *fS = ((String *)string)->string;
-    char *sS = ((String *)sString)->string;
+    char *fS = ((String *) string)->string;
+    char *sS = ((String *) sString)->string;
 
     while (*fS != '\0' && *sS != '\0') {
 
@@ -942,20 +877,6 @@ int stringCompareS(const void *string, const void *sString) {
     return *fS == '\0' ? -1 * (int) *sS : (int) *fS;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /** This function will return one (1) if the passed characters is a part of the passed character array,
@@ -979,11 +900,6 @@ int charArrContains(char *charArr, char c) {
 }
 
 
-
-
-
-
-
 /** This function will take string pointer,
  * then it will removes characters specified in the second array of characters parameter,
  * from the beginning of the string.
@@ -998,22 +914,22 @@ int charArrContains(char *charArr, char c) {
 void stringCustomTrimStart(String *string, char *specialCharacters) {
 
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (specialCharacters == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "special characters array", "string data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "special characters array", "string data structure");
+        exit(INVALID_ARG);
+#endif
     }
 
     char *charArr = string->string;
@@ -1037,8 +953,6 @@ void stringCustomTrimStart(String *string, char *specialCharacters) {
 }
 
 
-
-
 /** This function will take string pointer,
  * then it will remove ' ', '\t' and '\n' characters,
  * from the beginning of the string.
@@ -1049,23 +963,18 @@ void stringCustomTrimStart(String *string, char *specialCharacters) {
 void stringTrimStart(String *string) {
 
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        exit(NULL_POINTER);
+#endif
     }
 
     stringCustomTrimStart(string, " \n\t");
 
 }
-
-
-
-
-
 
 
 /** This function will take string pointer,
@@ -1082,22 +991,22 @@ void stringTrimStart(String *string) {
 void stringCustomTrimEnd(String *string, char *specialCharacters) {
 
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (specialCharacters == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "special characters array", "string data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "special characters array", "string data structure");
+        exit(INVALID_ARG);
+#endif
     }
 
     char *charArr = string->string;
@@ -1106,18 +1015,12 @@ void stringCustomTrimEnd(String *string, char *specialCharacters) {
     while (*charArr != '\0')
         charArr++;
 
-    while ( startPointer - sizeof(char) != --charArr && charArrContains(specialCharacters, *charArr) ) {
+    while (startPointer - sizeof(char) != --charArr && charArrContains(specialCharacters, *charArr)) {
         *charArr = '\0';
         string->count--;
     }
 
 }
-
-
-
-
-
-
 
 
 /** This function will take string pointer,
@@ -1131,22 +1034,18 @@ void stringCustomTrimEnd(String *string, char *specialCharacters) {
 void stringTrimEnd(String *string) {
 
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        exit(NULL_POINTER);
+#endif
     }
 
     stringCustomTrimEnd(string, " \n\t");
 
 }
-
-
-
-
 
 
 /** This function will take string pointer,
@@ -1160,24 +1059,19 @@ void stringTrimEnd(String *string) {
 void stringTrim(String *myString) {
 
     if (myString == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        exit(NULL_POINTER);
+#endif
     }
 
     stringCustomTrimStart(myString, " \n\t");
     stringCustomTrimEnd(myString, " \n\t");
 
 }
-
-
-
-
-
 
 
 /** This function will take string pointer,
@@ -1194,34 +1088,27 @@ void stringTrim(String *myString) {
 void stringCustomTrim(String *string, char *specialCharacters) {
 
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        exit(NULL_POINTER);
+#endif
     } else if (specialCharacters == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "special characters array", "string data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "special characters array", "string data structure");
+        exit(INVALID_ARG);
+#endif
     }
 
     stringCustomTrimStart(string, specialCharacters);
     stringCustomTrimEnd(string, specialCharacters);
 
 }
-
-
-
-
-
-
-
 
 
 /** This function will take the string address as a parameter,
@@ -1232,13 +1119,13 @@ void stringCustomTrim(String *string, char *specialCharacters) {
 
 void stringScanInput(String *string) {
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+         exit(NULL_POINTER);
+#endif
 
     }
 
@@ -1258,10 +1145,6 @@ void stringScanInput(String *string) {
 }
 
 
-
-
-
-
 /** This function will take the string address as a parameter,
  * then it will print the string in the stdout file.
  *
@@ -1271,26 +1154,19 @@ void stringScanInput(String *string) {
 void printString(String *string) {
 
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+         exit(NULL_POINTER);
+#endif
 
     }
 
     fprintf(stdout, "%s", string->string);
 
 }
-
-
-
-
-
-
-
 
 
 /** This function will take a string,
@@ -1307,22 +1183,22 @@ void printString(String *string) {
 Vector *stringSplit(String *string, char *splitCharacters) {
 
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (splitCharacters == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "split characters array", "string data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "split characters array", "string data structure");
+        exit(INVALID_ARG);
+#endif
     }
 
 
@@ -1331,9 +1207,9 @@ Vector *stringSplit(String *string, char *splitCharacters) {
 
     for (int i = 0; i < stringGetLength(string); i++) {
 
-        if (charArrContains(splitCharacters, stringGet(string, i)) ) {
+        if (charArrContains(splitCharacters, stringGet(string, i))) {
 
-            if ( stringGetLength(vectorGet(stringsVector, vectorGetLength(stringsVector) - 1)) != 0 )
+            if (stringGetLength(vectorGet(stringsVector, vectorGetLength(stringsVector) - 1)) != 0)
                 vectorAdd(stringsVector, stringInitialization(5));
 
             continue;
@@ -1348,12 +1224,6 @@ Vector *stringSplit(String *string, char *splitCharacters) {
 }
 
 
-
-
-
-
-
-
 /** This function will clear the string.
  *
  * @param string the string pointer
@@ -1362,13 +1232,13 @@ Vector *stringSplit(String *string, char *splitCharacters) {
 void clearString(String *string) {
 
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+        exit(NULL_POINTER);
+#endif
 
     }
 
@@ -1376,11 +1246,6 @@ void clearString(String *string) {
     string->string[string->count] = '\0';
 
 }
-
-
-
-
-
 
 
 /** This function will take the string address as a parameter,
@@ -1391,17 +1256,17 @@ void clearString(String *string) {
 
 void destroyString(void *myString) {
     if (myString == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
+         exit(NULL_POINTER);
+#endif
 
     }
 
-    free( ((String*)myString)->string );
+    free(((String *) myString)->string);
     free(myString);
 
 }
