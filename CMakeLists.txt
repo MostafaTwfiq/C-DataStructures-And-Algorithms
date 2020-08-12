@@ -197,4 +197,6 @@ add_executable(C_DataStructures
         "Unit Test/ErrorsTestStruct.h"
         )
 
-target_link_libraries(C_DataStructures PRIVATE m)
+if (NOT WIN32)
+    target_link_libraries(C_DataStructures PRIVATE m)
+end if()
