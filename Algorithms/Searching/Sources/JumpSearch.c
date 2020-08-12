@@ -76,22 +76,22 @@ int jumpSearch(void *arr, void *value, int length, int elemSize, int (*cmp)(cons
 
     int partitionSize = (int) sqrt(length);
     void *partStart = arr;
-    void *nextPartStart = arr + elemSize * partitionSize;
+    void *nextPartStart = (char *) arr + elemSize * partitionSize;
 
     while (partStart < arr + length * elemSize) {
-        if (nextPartStart > arr + length * elemSize)
-            nextPartStart = arr + length * elemSize;
+        if ( (char *) nextPartStart > (char *) arr + length * elemSize )
+            nextPartStart = (char *) arr + length * elemSize;
 
-        if (cmp(value, nextPartStart - elemSize) <= 0 ) {
+        if (cmp(value, (char *) nextPartStart - elemSize) <= 0 ) {
 
             for             (   void *currentPointer = partStart;
                                 currentPointer < nextPartStart;
-                                currentPointer += elemSize
+                                currentPointer = ((char *) currentPointer +  elemSize)
                     )
             {
 
                 if ( cmp(value, currentPointer) == 0 )
-                    return (currentPointer - arr) / elemSize;
+                    return (int) ( ( (long long) (currentPointer - arr) ) / elemSize );
 
             }
 
@@ -100,7 +100,7 @@ int jumpSearch(void *arr, void *value, int length, int elemSize, int (*cmp)(cons
         }
 
         partStart = nextPartStart;
-        nextPartStart = (void *) ( (long long) nextPartStart + partitionSize * elemSize );
+        nextPartStart = (char *) nextPartStart + partitionSize * elemSize;
 
     }
 
