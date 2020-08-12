@@ -117,8 +117,10 @@ void reverseArray(void *arr, int length, int elemSize) {
     }
 
 
+    char *oneBytePointer = (char *) arr;
+
     for (int i = 0; i < length / 2; i++)
-        swap(arr + i * elemSize, arr + (length - 1 - i) * elemSize, elemSize);
+        swap(oneBytePointer + i * elemSize, oneBytePointer + (length - 1 - i) * elemSize, elemSize);
 
 
 }
@@ -199,12 +201,14 @@ void *mostFrequentArrValueH(void *arr, int length, int elemSize, int (*cmp)(cons
         #endif
     }
 
+    char *oneBytePointer = (char *) arr;
+
     HashMap *countingMap = hashMapInitialization(nullFreeFunArrAlg, intFreeFunArrAlg, cmp, hashFun);
     unsigned int oneValue = 1;
 
     for (int i = 0; i < length; i++) {
 
-        void *currentItem = arr + i * elemSize;
+        char *currentItem = oneBytePointer + i * elemSize;
         int *currentFreq = (int *) hashMapGet(countingMap, currentItem);
 
         if (currentFreq == NULL)
@@ -303,13 +307,15 @@ void *mostFrequentArrValueA(void *arr, int length, int elemSize, int (*cmp)(cons
         #endif
     }
 
+    char *oneBytePointer = (char *) arr;
+
     Vector *valuesVector = vectorInitialization( length / 2 == 0  ? 1 : length / 2, nullFreeFunArrAlg, cmp);
     Vector *counterVector = vectorInitialization( length / 2 == 0  ? 1 : length / 2, intFreeFunArrAlg, intCmpArrAlg);
     unsigned int oneValue = 1;
 
     for (int i = 0; i < length; i++) {
 
-        void *currentItem = arr + i * elemSize;
+        char *currentItem = oneBytePointer + i * elemSize;
         int currentItemIndex = vectorGetIndex(valuesVector, currentItem);
 
         if (currentItemIndex == -1) {
@@ -412,9 +418,11 @@ void printArr(void *arr, int length, int elemSize, void (*printFun)(void *)) {
         fprintf(stdout, "[");
     #endif
 
+    char *oneBytePointer = (char *) arr;
+
     for (int i = 0; i < length; i++) {
 
-        printFun(arr + i * elemSize);
+        printFun(oneBytePointer + i * elemSize);
 
         #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
         #else
@@ -612,9 +620,10 @@ void *arrResizeOfRangeAndCpy(void *arr, int length, int elemSize, int startIndex
         #endif
     }
 
+    char *oneBytePointer = (char *) arr;
 
     void *newArr = (void *) malloc(elemSize * newLength);
-    memcpy(newArr, arr + startIndex * elemSize, elemSize * (endIndex - startIndex + 1));
+    memcpy(newArr, oneBytePointer + startIndex * elemSize, elemSize * (endIndex - startIndex + 1));
 
     return newArr;
 
@@ -688,10 +697,11 @@ void *arrResizeAndCpyC(void *arr, int length, int elemSize, int newLength, void 
         #endif
     }
 
-    void *newArr = (void *) malloc(elemSize * newLength);
+    char *oneBytePointer = (char *) arr;
+    char *newArr = (void *) malloc(elemSize * newLength);
 
     for (int i = 0; i < length; i++)
-        copyFun(newArr + i * elemSize, arr + i * elemSize);
+        copyFun(newArr + i * elemSize, oneBytePointer + i * elemSize);
 
     return newArr;
 
@@ -775,11 +785,13 @@ void *arrResizeOfRangeAndCpyC(void *arr, int length, int elemSize, int startInde
     }
 
 
-    void *newArr = (void *) malloc(elemSize * newLength);
-    for (int i = startIndex; i <= endIndex; i++)
-        copyFun(newArr + (i - startIndex) * elemSize, arr + i * elemSize);
+    char *oneBytePointer = (char *) arr;
+    char *newArr = (void *) malloc(elemSize * newLength);
 
-    return newArr;
+    for (int i = startIndex; i <= endIndex; i++)
+        copyFun(newArr + (i - startIndex) * elemSize, oneBytePointer + i * elemSize);
+
+    return (void *) newArr;
 
 }
 
@@ -826,9 +838,10 @@ void *arrCopy(void *arr, int length, int elemSize) {
         #endif
     }
 
+
     void *newArr = (void *) malloc(elemSize * length);
-    for (int i = 0; i < length; i++)
-        memcpy(newArr + i * elemSize, arr + i * elemSize, elemSize);
+
+    memcpy(newArr, arr, elemSize * length);
 
     return newArr;
 
@@ -893,11 +906,13 @@ void *arrCopyC(void *arr, int length, int elemSize, void (*copyFun)(const void *
         #endif
     }
 
-    void *newArr = (void *) malloc(elemSize * length);
-    for (int i = 0; i < length; i++)
-        copyFun(newArr + i * elemSize, arr + i * elemSize);
+    char *oneBytePointer = (char *) arr;
+    char *newArr = (void *) malloc(elemSize * length);
 
-    return newArr;
+    for (int i = 0; i < length; i++)
+        copyFun(newArr + i * elemSize, oneBytePointer + i * elemSize);
+
+    return (void *) newArr;
 
 }
 
@@ -960,9 +975,10 @@ void *arrCopyOfRange(void *arr, int length, int elemSize, int startIndex, int en
     }
 
 
+    char *oneBytePointer = (char *) arr;
     void *newArr = (void *) malloc(elemSize * (endIndex - startIndex + 1) );
-    for (int i = startIndex; i <= endIndex; i++)
-        memcpy(newArr + (i - startIndex) * elemSize, arr + i * elemSize, elemSize);
+
+    memcpy(newArr, oneBytePointer + startIndex * elemSize, elemSize * (endIndex - startIndex + 1) );
 
     return newArr;
 
@@ -1039,11 +1055,13 @@ void *arrCopyOfRangeC(void *arr, int length, int elemSize, int startIndex, int e
     }
 
 
-    void *newArr = (void *) malloc(elemSize * (endIndex - startIndex + 1) );
-    for (int i = startIndex; i <= endIndex; i++)
-        copyFun(newArr + (i - startIndex) * elemSize, arr + i * elemSize);
+    char *oneBytePointer = (char *) arr;
+    char *newArr = (void *) malloc(elemSize * (endIndex - startIndex + 1) );
 
-    return newArr;
+    for (int i = startIndex; i <= endIndex; i++)
+        copyFun(newArr + (i - startIndex) * elemSize, oneBytePointer + i * elemSize);
+
+    return (void *) newArr;
 
 }
 
@@ -1103,8 +1121,9 @@ void fillArr(void *arr, void *fillValue, int length, int elemSize) {
         #endif
     }
 
+    char *oneBytePointer = (char *) arr;
     for (int i = 0; i < length; i++)
-        memcpy(arr + i * elemSize, fillValue, elemSize);
+        memcpy(oneBytePointer + i * elemSize, fillValue, elemSize);
 
 }
 
@@ -1172,8 +1191,10 @@ void fillArrC(void *arr, void *fillValue, int length, int elemSize, void (*copyF
         #endif
     }
 
+    char *oneBytePointer = (char *) arr;
+
     for (int i = 0; i < length; i++)
-        copyFun(arr + i * elemSize, fillValue);
+        copyFun(oneBytePointer + i * elemSize, fillValue);
 
 }
 
@@ -1242,8 +1263,10 @@ void fillArrOfRange(void *arr, void *fillValue, int length, int elemSize, int st
         #endif
     }
 
+    char *oneBytePointer = (char *) arr;
+
     for (int i = startIndex; i <= endIndex; i++)
-        memcpy(arr + i * elemSize, fillValue, elemSize);
+        memcpy(oneBytePointer + i * elemSize, fillValue, elemSize);
 
 }
 
@@ -1322,8 +1345,10 @@ void fillArrOfRangeC(void *arr, void *fillValue, int length, int elemSize, int s
         #endif
     }
 
+    char *oneBytePointer = (char *) arr;
+
     for (int i = startIndex; i <= endIndex; i++)
-        copyFun(arr + i * elemSize, fillValue);
+        copyFun(oneBytePointer + i * elemSize, fillValue);
 
 }
 
@@ -1397,9 +1422,12 @@ int arrCompare(void *fArr, int fLength, void *sArr, int sLength, int elemSize, i
     if (fLength != sLength)
         return 0;
 
+    char *fOneBytePointer = (char *) fArr;
+    char *sOneBytePointer = (char *) sArr;
+
     for (int i = 0; i < fLength; i++) {
 
-        if ( cmp(fArr + i * elemSize, sArr + i * elemSize) != 0 )
+        if ( cmp(fOneBytePointer + i * elemSize, sOneBytePointer + i * elemSize) != 0 )
             return 0;
 
     }
@@ -1486,9 +1514,13 @@ int arrCompareOfRange(void *fArr, int fLength, void *sArr, int sLength, int elem
         #endif
     }
 
+
+    char *fOneBytePointer = (char *) fArr;
+    char *sOneBytePointer = (char *) sArr;
+
     for (int i = startIndex; i <= endIndex; i++) {
 
-        if ( cmp(fArr + i * elemSize, sArr + i * elemSize) != 0 )
+        if ( cmp(fOneBytePointer + i * elemSize, sOneBytePointer + i * elemSize) != 0 )
             return 0;
 
     }
@@ -1568,9 +1600,12 @@ int arrMismatch(void *fArr, int fLength, void *sArr, int sLength, int elemSize, 
     }
 
 
+    char *fOneBytePointer = (char *) fArr;
+    char *sOneBytePointer = (char *) sArr;
+
     for (int i = 0; i < ( fLength < sLength ? fLength : sLength ); i++) {
 
-        if ( cmp(fArr + i * elemSize, sArr + i * elemSize) != 0 )
+        if ( cmp(fOneBytePointer + i * elemSize, sOneBytePointer + i * elemSize) != 0 )
             return i;
 
     }
@@ -1656,9 +1691,12 @@ int arrMismatchOfRange(void *fArr, int fLength, void *sArr, int sLength, int ele
         #endif
     }
 
+    char *fOneBytePointer = (char *) fArr;
+    char *sOneBytePointer = (char *) sArr;
+
     for (int i = startIndex; i <= endIndex; i++) {
 
-        if ( cmp(fArr + i * elemSize, sArr + i * elemSize) != 0 )
+        if ( cmp(fOneBytePointer + i * elemSize, sOneBytePointer + i * elemSize) != 0 )
             return i;
 
     }
@@ -1739,8 +1777,11 @@ int arrAnagramsS(void *fArr, int fLength, void *sArr, int sLength, int elemSize,
     qsort(fArr, fLength, elemSize, cmp);
     qsort(sArr, sLength, elemSize, cmp);
 
+    char *fOneBytePointer = (char *) fArr;
+    char *sOneBytePointer = (char *) sArr;
+
     for (int i = 0; i < fLength; i++) {
-        if ( cmp(fArr + i * elemSize, sArr + i * elemSize) != 0 )
+        if ( cmp(fOneBytePointer + i * elemSize, sOneBytePointer + i * elemSize) != 0 )
             return 0;
 
     }
@@ -1833,11 +1874,15 @@ int arrAnagramsH(void *fArr, int fLength, void *sArr, int sLength, int elemSize,
     if (fLength != sLength)
         return 0;
 
+
+    char *fOneBytePointer = (char *) fArr;
+    char *sOneBytePointer = (char *) sArr;
+
     HashMap *valuesCounterMap = hashMapInitialization(nullFreeFunArrAlg, intFreeFunArrAlg, cmp, hashFun);
     unsigned int oneValue = 1;
 
     for (int i = 0; i < fLength; i++) {
-        void *currentItem = fArr + i * elemSize;
+        char *currentItem = fOneBytePointer + i * elemSize;
         int *currentItemCount = (int *) hashMapGet(valuesCounterMap, currentItem);
 
         if (currentItemCount == NULL)
@@ -1848,7 +1893,7 @@ int arrAnagramsH(void *fArr, int fLength, void *sArr, int sLength, int elemSize,
     }
 
     for (int i = 0; i < sLength; i++) {
-        void *currentItem = sArr + i * elemSize;
+        char *currentItem = sOneBytePointer + i * elemSize;
         int *currentItemCount = (int *) hashMapGet(valuesCounterMap, currentItem);
 
         if (currentItemCount == NULL || *currentItemCount <= 0) {
@@ -1861,6 +1906,7 @@ int arrAnagramsH(void *fArr, int fLength, void *sArr, int sLength, int elemSize,
     }
 
     destroyHashMap(valuesCounterMap);
+
     return 1;
 
 }
@@ -1939,11 +1985,13 @@ int arrRemoveDuplicatesH(void *arr, int length, int elemSize,
         #endif
     }
 
+    char *oneBytePointer = (char *) arr;
+
     HashSet *valuesSet = hashSetInitialization(nullFreeFunArrAlg, cmp, hashFun);
     int index = 0;
 
     while (index < length) {
-        void *currentValue = arr + index * elemSize;
+        char *currentValue = oneBytePointer + index * elemSize;
         int valueExistFlag = hashSetContains(valuesSet, currentValue);
         if (valueExistFlag) {
 
@@ -1953,7 +2001,7 @@ int arrRemoveDuplicatesH(void *arr, int length, int elemSize,
                 freeFun(currentValue);
 
             for (int i = index; i < length; i++) // this loop is to shift the values to delete the duplicated value
-                memcpy(arr + i * elemSize, arr + (i + 1) * elemSize, elemSize);
+                memcpy(oneBytePointer + i * elemSize, oneBytePointer + (i + 1) * elemSize, elemSize);
 
         } else {
             hashSetInsert(valuesSet, currentValue);
@@ -2030,11 +2078,13 @@ int arrRemoveDuplicatesA(void *arr, int length, int elemSize,
         #endif
     }
 
+    char *oneBytePointer = (char *) arr;
+
     Vector *valuesVector = vectorInitialization(length / 2 == 0 ? 1 : length / 2, nullFreeFunArrAlg, cmp);
     int index = 0;
 
     while (index < length) {
-        void *currentValue = arr + index * elemSize;
+        char *currentValue = oneBytePointer + index * elemSize;
         if (vectorContains(valuesVector, currentValue)) {
 
             length--;
@@ -2043,7 +2093,7 @@ int arrRemoveDuplicatesA(void *arr, int length, int elemSize,
                 freeFun(currentValue);
 
             for (int i = index; i < length; i++) // this loop is to shift the values to delete the duplicated value
-                memcpy(arr + i * elemSize, arr + (i + 1) * elemSize, elemSize);
+                memcpy(oneBytePointer + i * elemSize, oneBytePointer + (i + 1) * elemSize, elemSize);
 
         } else {
             vectorAdd(valuesVector, currentValue);
@@ -2138,11 +2188,13 @@ int arrRemoveValues(void *arr, int arrLength, void *values, int valuesArrLength,
     }
 
 
+    char *oneBytePointer = (char *) arr;
+
     for (int i = 0; i < arrLength; i++) {
 
-        if ( arrContains(values, arr + i * elemSize, valuesArrLength, elemSize, cmp) ) {
+        if ( arrContains(values, oneBytePointer + i * elemSize, valuesArrLength, elemSize, cmp) ) {
 
-            arrRemoveAtIndex(arr, i, arrLength, elemSize, freeFun);
+            arrRemoveAtIndex(oneBytePointer, i, arrLength, elemSize, freeFun);
             arrLength--;
             i--;
 
@@ -2224,11 +2276,12 @@ int arrCountValues(void *arr, int arrLength, void *values, int valuesArrLength, 
         #endif
     }
 
+    char *oneBytePointer = (char *) arr;
 
     int counter = 0;
     for (int i = 0; i < arrLength; i++) {
 
-        if ( arrContains(values, arr + i * elemSize, valuesArrLength, elemSize, cmp) )
+        if ( arrContains(values, oneBytePointer + i * elemSize, valuesArrLength, elemSize, cmp) )
             counter++;
 
     }
@@ -2312,15 +2365,17 @@ int isSubArr(void *arr, int arrLength, void *values, int valuesArrLength, int el
     if (valuesArrLength == 0)
         return 1;
 
+    char *oneBytePointer = (char *) arr;
+
     for (int i = 0; i <= arrLength - valuesArrLength; i++) {
 
-        if ( cmp(arr + i * elemSize, values) == 0) {
+        if ( cmp(oneBytePointer + i * elemSize, values) == 0) {
 
             for (int j = 0; j < valuesArrLength; j++) {
 
-                if (j == valuesArrLength - 1 && cmp(arr + (i + j) * elemSize, values + j * elemSize) == 0)
+                if (j == valuesArrLength - 1 && cmp(oneBytePointer + (i + j) * elemSize, values + j * elemSize) == 0)
                     return 1;
-                else if (cmp(arr + (i + j) * elemSize, values + j * elemSize) != 0)
+                else if (cmp(oneBytePointer + (i + j) * elemSize, values + j * elemSize) != 0)
                     break;
 
             }
@@ -2406,15 +2461,17 @@ int arrGetStartIndex(void *arr, int arrLength, void *values, int valuesArrLength
     }
 
 
+    char *oneBytePointer = (char *) arr;
+
     for (int i = 0; i <= arrLength - valuesArrLength; i++) {
 
-        if ( cmp(arr + i * elemSize, values) == 0) {
+        if ( cmp(oneBytePointer + i * elemSize, values) == 0) {
 
             for (int j = 0; j < valuesArrLength; j++) {
 
-                if (j == valuesArrLength - 1 && cmp(arr + (i + j) * elemSize, values + j * elemSize) == 0)
+                if (j == valuesArrLength - 1 && cmp(oneBytePointer + (i + j) * elemSize, values + j * elemSize) == 0)
                     return i;
-                else if (cmp(arr + (i + j) * elemSize, values + j * elemSize) != 0)
+                else if (cmp(oneBytePointer + (i + j) * elemSize, values + j * elemSize) != 0)
                     break;
 
             }
@@ -2488,10 +2545,11 @@ int arrContains(void *arr, void *value, int length, int elemSize, int (*cmp)(con
         #endif
     }
 
+    char *oneBytePointer = (char *) arr;
 
     for (int i = 0; i < length; i++) {
 
-        if ( cmp(value, arr + i * elemSize) == 0 )
+        if ( cmp(value, oneBytePointer + i * elemSize) == 0 )
             return 1;
 
     }
@@ -2556,11 +2614,13 @@ void arrRemoveAtIndex(void *arr, int index, int length, int elemSize, void (*fre
         #endif
     }
 
+    char *oneBytePointer = (char *) arr;
+
     if (freeFun != NULL)
-        freeFun(arr + index * elemSize);
+        freeFun(oneBytePointer + index * elemSize);
 
     for (int i = index; i < length - 1; i++)
-        memcpy(arr + i * elemSize, arr + (i + 1) * elemSize, elemSize);
+        memcpy(oneBytePointer + i * elemSize, oneBytePointer + (i + 1) * elemSize, elemSize);
 
 }
 
@@ -2941,9 +3001,11 @@ int arrIsPalindrome(void *arr, int length, int elemSize, int (*cmp)(const void *
         #endif
     }
 
+    char *oneBytePointer = (char *) arr;
+
     for (int i = 0; i < length / 2; i++) {
 
-        if ( cmp(arr + i * elemSize, arr + (length - 1 - i) * elemSize) != 0)
+        if ( cmp(oneBytePointer + i * elemSize, oneBytePointer + (length - 1 - i) * elemSize) != 0)
             return 0;
 
     }
@@ -3026,9 +3088,12 @@ int arrIsRotation(void *fArr, int fLength, void *sArr, int sLength, int elemSize
     if (fLength != sLength)
         return 0;
 
+    char *fOneBytePointer = (char *) fArr;
+    char *sOneBytePointer = (char *) sArr;
+
     for (int i = 0; i < fLength; i++) {
 
-        if ( cmp(fArr + i * elemSize, sArr) == 0 ) {
+        if ( cmp(fOneBytePointer + i * elemSize, sOneBytePointer) == 0 ) {
 
             int firstArrIndex = i;
             int secondArrIndex = 0;
@@ -3036,7 +3101,7 @@ int arrIsRotation(void *fArr, int fLength, void *sArr, int sLength, int elemSize
 
             while (secondArrIndex != sLength) {
 
-                if ( cmp(fArr + firstArrIndex * elemSize, sArr + secondArrIndex * elemSize) != 0 ) {
+                if ( cmp(fOneBytePointer + firstArrIndex * elemSize, sOneBytePointer + secondArrIndex * elemSize) != 0 ) {
                     isRotationFlag = 0;
                     break;
                 }
@@ -3120,10 +3185,12 @@ void arrUpdateElem(void *arr, void *value, int length, int elemSize, int index, 
         #endif
     }
 
-    if (freeFun != NULL)
-        freeFun(arr + index * elemSize);
+    char *oneBytePointer = (char *) arr;
 
-    memcpy(arr + index * elemSize, value, elemSize);
+    if (freeFun != NULL)
+        freeFun(oneBytePointer + index * elemSize);
+
+    memcpy(oneBytePointer + index * elemSize, value, elemSize);
 
 }
 
@@ -3192,11 +3259,12 @@ void arrAdd(void *arr, void *value, int length, int elemSize, int index) {
         #endif
     }
 
+    char *oneBytePointer = (char *) arr;
 
     for (int i = length + 1; i > index; i--)
-        memcpy(arr + i * elemSize, arr + (i - 1) * elemSize, elemSize);
+        memcpy(oneBytePointer + i * elemSize, oneBytePointer + (i - 1) * elemSize, elemSize);
 
-    memcpy(arr + index * elemSize, value, elemSize);
+    memcpy(oneBytePointer + index * elemSize, value, elemSize);
 
 }
 
@@ -3275,10 +3343,12 @@ void arrAddAll(void *arr, int arrLength, void *values, int valuesArrLength, int 
         #endif
     }
 
+    char *oneBytePointer = (char *) arr;
+
     for (int i = arrLength + valuesArrLength - 1; i > index; i--)
-        memcpy(arr + i * elemSize, arr + (i - valuesArrLength) * elemSize, elemSize);
+        memcpy(oneBytePointer + i * elemSize, oneBytePointer + (i - valuesArrLength) * elemSize, elemSize);
 
     for (int i = 0; i < valuesArrLength; i++)
-        memcpy(arr + (index + i) * elemSize, values + i * elemSize, elemSize);
+        memcpy(oneBytePointer + (index + i) * elemSize, values + i * elemSize, elemSize);
 
 }

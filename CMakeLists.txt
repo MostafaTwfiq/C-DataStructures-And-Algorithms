@@ -197,4 +197,4 @@ add_executable(C_DataStructures
         "Unit Test/ErrorsTestStruct.h"
         )
 
-target_link_libraries(C_DataStructures PRIVATE -lm)
+target_link_libraries(C_DataStructures)
