@@ -3,7 +3,8 @@ project(C_DataStructures C)
 
 set(CMAKE_C_STANDARD 99)
 
-SET(GCC_COVERAGE_LINK_FLAGS    "-lm")
+set( GCC_COVERAGE_LINK_FLAGS "-lm ")
+set( CMAKE_CXX_FLAGS "-lm " )
 
 add_executable(C_DataStructures
 
