@@ -237,14 +237,16 @@ void heapSort(void *arr, int length, int elemSize, int (*cmp)(const void *, cons
     }
 
 
+    char *oneBytePointer = (char *) arr;
+
     // to build a valid heap.
     for (int i = 0; i < length; i++)
-        heapUp(arr, i, elemSize, cmp);
+        heapUp(oneBytePointer, i, elemSize, cmp);
 
     // to sort the heap (delete the tree root and balance the heap the number of times the length of the array).
     while (length-- > 0) {
-        swap(arr, arr + length * elemSize, elemSize);
-        heapDown(arr, length, 0, elemSize, cmp);
+        swap(oneBytePointer, oneBytePointer + length * elemSize, elemSize);
+        heapDown(oneBytePointer, length, 0, elemSize, cmp);
     }
 
 }

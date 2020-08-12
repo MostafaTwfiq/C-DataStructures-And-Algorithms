@@ -2366,16 +2366,17 @@ int isSubArr(void *arr, int arrLength, void *values, int valuesArrLength, int el
         return 1;
 
     char *oneBytePointer = (char *) arr;
+    char *valueArrCharPointer = (char *) values;
 
     for (int i = 0; i <= arrLength - valuesArrLength; i++) {
 
-        if ( cmp(oneBytePointer + i * elemSize, values) == 0) {
+        if ( cmp(oneBytePointer + i * elemSize, valueArrCharPointer) == 0) {
 
             for (int j = 0; j < valuesArrLength; j++) {
 
-                if (j == valuesArrLength - 1 && cmp(oneBytePointer + (i + j) * elemSize, values + j * elemSize) == 0)
+                if (j == valuesArrLength - 1 && cmp(oneBytePointer + (i + j) * elemSize, valueArrCharPointer + j * elemSize) == 0)
                     return 1;
-                else if (cmp(oneBytePointer + (i + j) * elemSize, values + j * elemSize) != 0)
+                else if (cmp(oneBytePointer + (i + j) * elemSize, valueArrCharPointer + j * elemSize) != 0)
                     break;
 
             }
@@ -2462,16 +2463,17 @@ int arrGetStartIndex(void *arr, int arrLength, void *values, int valuesArrLength
 
 
     char *oneBytePointer = (char *) arr;
+    char *valueArrCharPointer = (char *) values;
 
     for (int i = 0; i <= arrLength - valuesArrLength; i++) {
 
-        if ( cmp(oneBytePointer + i * elemSize, values) == 0) {
+        if ( cmp(oneBytePointer + i * elemSize, valueArrCharPointer) == 0) {
 
             for (int j = 0; j < valuesArrLength; j++) {
 
-                if (j == valuesArrLength - 1 && cmp(oneBytePointer + (i + j) * elemSize, values + j * elemSize) == 0)
+                if (j == valuesArrLength - 1 && cmp(oneBytePointer + (i + j) * elemSize, valueArrCharPointer + j * elemSize) == 0)
                     return i;
-                else if (cmp(oneBytePointer + (i + j) * elemSize, values + j * elemSize) != 0)
+                else if (cmp(oneBytePointer + (i + j) * elemSize, valueArrCharPointer + j * elemSize) != 0)
                     break;
 
             }
@@ -3344,11 +3346,12 @@ void arrAddAll(void *arr, int arrLength, void *values, int valuesArrLength, int 
     }
 
     char *oneBytePointer = (char *) arr;
+    char *valueArrCharPointer = (char *) values;
 
     for (int i = arrLength + valuesArrLength - 1; i > index; i--)
         memcpy(oneBytePointer + i * elemSize, oneBytePointer + (i - valuesArrLength) * elemSize, elemSize);
 
     for (int i = 0; i < valuesArrLength; i++)
-        memcpy(oneBytePointer + (index + i) * elemSize, values + i * elemSize, elemSize);
+        memcpy(oneBytePointer + (index + i) * elemSize, valueArrCharPointer + i * elemSize, elemSize);
 
 }
