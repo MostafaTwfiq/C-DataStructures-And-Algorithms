@@ -100,7 +100,7 @@ int jumpSearch(void *arr, void *value, int length, int elemSize, int (*cmp)(cons
         }
 
         partStart = nextPartStart;
-        nextPartStart += partitionSize * elemSize;
+        nextPartStart = (void *) ( (long long) nextPartStart + partitionSize * elemSize );
 
     }
 
