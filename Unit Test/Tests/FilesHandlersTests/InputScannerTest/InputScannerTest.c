@@ -143,7 +143,7 @@ void testScanShort(CuTest *cuTest) {
 
 
 
-CuSuite *createInputScannerTestsSuite() {
+CuSuite *createInputScannerTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -163,7 +163,7 @@ CuSuite *createInputScannerTestsSuite() {
 
 
 
-void inputScannerUnitTest() {
+void inputScannerUnitTest(void) {
 
     ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 

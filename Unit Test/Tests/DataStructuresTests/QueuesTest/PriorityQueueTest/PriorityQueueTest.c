@@ -450,7 +450,7 @@ void generalPriorityQueueTest(CuTest *cuTest) {
 
 
 
-CuSuite *createPriorityQueueTestsSuite() {
+CuSuite *createPriorityQueueTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -474,7 +474,7 @@ CuSuite *createPriorityQueueTestsSuite() {
 
 
 
-void priorityQueueUnitTest() {
+void priorityQueueUnitTest(void) {
 
     ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 

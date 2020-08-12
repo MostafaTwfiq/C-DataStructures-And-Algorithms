@@ -4,7 +4,6 @@
 #include <limits.h>
 
 
-
 int hashSetCalBPrime(int length);
 
 int hashSetGetNextPrime(int num);
@@ -14,10 +13,6 @@ unsigned int hashSetFHashCal(int (*hashFun)(const void *), void *key, unsigned i
 unsigned int hashSetSHashCal(int (*hashFun)(const void *), void *key, unsigned int bPrime);
 
 unsigned int hashSetCalIndex(unsigned int fHash, unsigned int sHash, unsigned int index, unsigned int length);
-
-
-
-
 
 
 /** This function will take the size of the hash set elements type, and the comparing items function as a parameters,
@@ -33,58 +28,58 @@ HashSet *hashSetInitialization(
         void (*freeItem)(void *),
         int (*itemComp)(const void *, const void *),
         int (*hashFun)(const void *)
-        ) {
+) {
 
     if (freeItem == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "hash set data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "hash set data structure");
+         exit(INVALID_ARG);
+#endif
 
     } else if (itemComp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "hash set data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "hash set data structure");
+         exit(INVALID_ARG);
+#endif
 
     } else if (hashFun == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "hash function pointer", "hash set data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "hash function pointer", "hash set data structure");
+        exit(INVALID_ARG);
+#endif
     }
 
     HashSet *hashSet = (HashSet *) malloc(sizeof(HashSet));
     if (hashSet == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
-     		return NULL;
-        #else
-            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "hash set", "hash set data structure");
-     		exit(FAILED_ALLOCATION);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = FAILED_ALLOCATION;
+        return NULL;
+#else
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "hash set", "hash set data structure");
+         exit(FAILED_ALLOCATION);
+#endif
 
     }
 
     hashSet->length = hashSetGetNextPrime(10);
     hashSet->arr = (void **) calloc(sizeof(void *), hashSet->length);
     if (hashSet->arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
-     		return NULL;
-        #else
-            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "hash set array", "hash set data structure");
-     		exit(FAILED_ALLOCATION);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = FAILED_ALLOCATION;
+        return NULL;
+#else
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "hash set array", "hash set data structure");
+         exit(FAILED_ALLOCATION);
+#endif
 
     }
 
@@ -101,13 +96,6 @@ HashSet *hashSetInitialization(
 }
 
 
-
-
-
-
-
-
-
 /** This function will take the hash set address, and the new item address as a parameters,
  * then it will insert the provided item into the hash set.
  *
@@ -120,22 +108,22 @@ HashSet *hashSetInitialization(
 void hashSetInsert(HashSet *hashSet, void *item) {
 
     if (hashSet == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
+         exit(NULL_POINTER);
+#endif
 
     } else if (item == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-     		return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "hash set data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "hash set data structure");
+         exit(INVALID_ARG);
+#endif
 
     }
 
@@ -144,13 +132,13 @@ void hashSetInsert(HashSet *hashSet, void *item) {
         hashSet->bPrime = hashSetCalBPrime(hashSet->length);
         hashSet->arr = (void **) realloc(hashSet->arr, sizeof(void *) * hashSet->length);
         if (hashSet->arr == NULL) {
-            #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		    ERROR_TEST->errorCode = FAILED_REALLOCATION;
-     		    return;
-            #else
-                fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "hash set array", "hash set data structure");
-     		    exit(FAILED_REALLOCATION);
-     	    #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = FAILED_REALLOCATION;
+            return;
+#else
+            fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "hash set array", "hash set data structure");
+             exit(FAILED_REALLOCATION);
+#endif
 
         }
 
@@ -160,8 +148,8 @@ void hashSetInsert(HashSet *hashSet, void *item) {
     }
 
 
-    unsigned int fHash = hashSetFHashCal( hashSet->hashFun, item, hashSet->length),
-    sHash = hashSetSHashCal( hashSet->hashFun, item, hashSet->bPrime);
+    unsigned int fHash = hashSetFHashCal(hashSet->hashFun, item, hashSet->length),
+            sHash = hashSetSHashCal(hashSet->hashFun, item, hashSet->bPrime);
 
     unsigned int pHashIndex = 1;
     unsigned int index = hashSetCalIndex(fHash, sHash, pHashIndex, hashSet->length);
@@ -185,13 +173,6 @@ void hashSetInsert(HashSet *hashSet, void *item) {
 }
 
 
-
-
-
-
-
-
-
 /** This function will take the hash set address, and the item address as a parameters,
  * then it will delete and free the provided item from the hash set.
  *
@@ -204,27 +185,27 @@ void hashSetInsert(HashSet *hashSet, void *item) {
 
 void hashSetDelete(HashSet *hashSet, void *item) {
     if (hashSet == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
+         exit(NULL_POINTER);
+#endif
 
     } else if (item == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "hash set data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "hash set data structure");
+         exit(INVALID_ARG);
+#endif
 
     }
 
-    unsigned int fHash = hashSetFHashCal( hashSet->hashFun, item, hashSet->length),
-    sHash = hashSetSHashCal( hashSet->hashFun, item, hashSet->bPrime);
+    unsigned int fHash = hashSetFHashCal(hashSet->hashFun, item, hashSet->length),
+            sHash = hashSetSHashCal(hashSet->hashFun, item, hashSet->bPrime);
 
     unsigned int pHashIndex = 1;
     unsigned int index = hashSetCalIndex(fHash, sHash, pHashIndex, hashSet->length);
@@ -250,10 +231,6 @@ void hashSetDelete(HashSet *hashSet, void *item) {
 }
 
 
-
-
-
-
 /** This function will take the hash set address, and the item address, as a parameters,
  * then it will delete the provided item from the hash set without freeing it.
  *
@@ -266,27 +243,27 @@ void hashSetDelete(HashSet *hashSet, void *item) {
 
 void *hashSetDeleteWtoFr(HashSet *hashSet, void *item) {
     if (hashSet == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
+         exit(NULL_POINTER);
+#endif
 
     } else if (item == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "hash set data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "hash set data structure");
+         exit(INVALID_ARG);
+#endif
 
     }
 
-    unsigned int fHash = hashSetFHashCal( hashSet->hashFun, item, hashSet->length),
-    sHash = hashSetSHashCal( hashSet->hashFun, item, hashSet->bPrime);
+    unsigned int fHash = hashSetFHashCal(hashSet->hashFun, item, hashSet->length),
+            sHash = hashSetSHashCal(hashSet->hashFun, item, hashSet->bPrime);
 
     unsigned int pHashIndex = 1;
     unsigned int index = hashSetCalIndex(fHash, sHash, pHashIndex, hashSet->length);
@@ -315,12 +292,6 @@ void *hashSetDeleteWtoFr(HashSet *hashSet, void *item) {
 }
 
 
-
-
-
-
-
-
 /** This function will take the hash set address, and the item address, as a parameters,
  * then it will return one (1) if the provided item is in the hash set,
  * other wise it will return zero (0).
@@ -334,27 +305,27 @@ void *hashSetDeleteWtoFr(HashSet *hashSet, void *item) {
 
 int hashSetContains(HashSet *hashSet, void *item) {
     if (hashSet == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
+         exit(NULL_POINTER);
+#endif
 
     } else if (item == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "hash set data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "hash set data structure");
+         exit(INVALID_ARG);
+#endif
 
     }
 
-    unsigned int fHash = hashSetFHashCal( hashSet->hashFun, item, hashSet->length),
-    sHash = hashSetSHashCal( hashSet->hashFun, item, hashSet->bPrime);
+    unsigned int fHash = hashSetFHashCal(hashSet->hashFun, item, hashSet->length),
+            sHash = hashSetSHashCal(hashSet->hashFun, item, hashSet->bPrime);
 
     unsigned int pHashIndex = 1;
     unsigned int index = hashSetCalIndex(fHash, sHash, pHashIndex, hashSet->length);
@@ -377,12 +348,6 @@ int hashSetContains(HashSet *hashSet, void *item) {
 }
 
 
-
-
-
-
-
-
 /** This function will take the hash set address, and the item address, as a parameters,
  * then it will return the item pointer if found, other wise it will return NULL.
  *
@@ -395,27 +360,27 @@ int hashSetContains(HashSet *hashSet, void *item) {
 
 void *hashSetGet(HashSet *hashSet, void *item) {
     if (hashSet == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (item == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-     		return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "hash set data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "hash set data structure");
+        exit(INVALID_ARG);
+#endif
 
     }
 
-    unsigned int fHash = hashSetFHashCal( hashSet->hashFun, item, hashSet->length),
-            sHash = hashSetSHashCal( hashSet->hashFun, item, hashSet->bPrime);
+    unsigned int fHash = hashSetFHashCal(hashSet->hashFun, item, hashSet->length),
+            sHash = hashSetSHashCal(hashSet->hashFun, item, hashSet->bPrime);
 
     unsigned int pHashIndex = 1;
     unsigned int index = hashSetCalIndex(fHash, sHash, pHashIndex, hashSet->length);
@@ -439,10 +404,6 @@ void *hashSetGet(HashSet *hashSet, void *item) {
 }
 
 
-
-
-
-
 /** This function will take the hash set address as a parameter,
  * then it will return a double void pointer array that hash a copy of all items in the hash set.
  *
@@ -452,25 +413,25 @@ void *hashSetGet(HashSet *hashSet, void *item) {
 
 void **hashSetToArray(HashSet *hashSet) {
     if (hashSet == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
+         exit(NULL_POINTER);
+#endif
 
     }
 
     void **array = (void **) malloc(sizeof(void *) * hashSetGetLength(hashSet));
     if (array == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
-     		return NULL;
-        #else
-            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "hash set data structure");
-     		exit(FAILED_ALLOCATION);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = FAILED_ALLOCATION;
+        return NULL;
+#else
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "hash set data structure");
+         exit(FAILED_ALLOCATION);
+#endif
 
     }
 
@@ -485,9 +446,6 @@ void **hashSetToArray(HashSet *hashSet) {
 }
 
 
-
-
-
 /** This function will take the hash set address as a parameter,
  * then it will return the number of items in the hash set.
  *
@@ -498,25 +456,19 @@ void **hashSetToArray(HashSet *hashSet) {
 int hashSetGetLength(HashSet *hashSet) {
 
     if (hashSet == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
+         exit(NULL_POINTER);
+#endif
 
     }
 
     return hashSet->count;
 
 }
-
-
-
-
-
-
 
 
 /** This function will take the hash set address as a parameter,
@@ -530,25 +482,18 @@ int hashSetGetLength(HashSet *hashSet) {
 int hashSetIsEmpty(HashSet *hashSet) {
 
     if (hashSet == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
+         exit(NULL_POINTER);
+#endif
 
     }
 
     return hashSet->count == 0;
 }
-
-
-
-
-
-
-
 
 
 /** This function will take the hash set address as a parameter,
@@ -561,13 +506,13 @@ int hashSetIsEmpty(HashSet *hashSet) {
 void clearHashSet(HashSet *hashSet) {
 
     if (hashSet == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
+         exit(NULL_POINTER);
+#endif
 
     }
 
@@ -584,12 +529,6 @@ void clearHashSet(HashSet *hashSet) {
 }
 
 
-
-
-
-
-
-
 /** This function will take the hash set address as a parameter,
  * then it will destroy and free the hash set and all it's items.
  *
@@ -599,13 +538,13 @@ void clearHashSet(HashSet *hashSet) {
 void destroyHashSet(HashSet *hashSet) {
 
     if (hashSet == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
-     		exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
+         exit(NULL_POINTER);
+#endif
 
     }
 
@@ -615,12 +554,6 @@ void destroyHashSet(HashSet *hashSet) {
     free(hashSet);
 
 }
-
-
-
-
-
-
 
 
 /** This function will take the hash function pointer, the key pointer, and the hash set array length as a parameters,
@@ -639,12 +572,6 @@ unsigned int hashSetFHashCal(int (*hashFun)(const void *), void *key, unsigned i
 }
 
 
-
-
-
-
-
-
 /** This function will take the hash function pointer, the key address, and the biggest prime number,
  * that smaller than the set array length as a parameters, then it will return the second hash of this key.
  *
@@ -661,12 +588,6 @@ unsigned int hashSetSHashCal(int (*hashFun)(const void *), void *key, unsigned i
 }
 
 
-
-
-
-
-
-
 /** This function will take the first hash of the key, the second hash of the key, the index, and the length of the hash set array
  * as a parameters, then it will return the next index that should be available.
  *
@@ -680,15 +601,8 @@ unsigned int hashSetSHashCal(int (*hashFun)(const void *), void *key, unsigned i
  */
 
 unsigned int hashSetCalIndex(unsigned int fHash, unsigned int sHash, unsigned int index, unsigned int length) {
-    return ((fHash + (index * sHash))  % length);
+    return ((fHash + (index * sHash)) % length);
 }
-
-
-
-
-
-
-
 
 
 /** This function will take the length of the hash set array as a parameter,
@@ -711,11 +625,6 @@ int hashSetCalBPrime(int length) {
     return 1;
 
 }
-
-
-
-
-
 
 
 /** This function will take an integer number as a parameter,

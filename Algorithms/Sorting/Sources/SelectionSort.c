@@ -54,19 +54,21 @@ void selectionSort(void *arr, int length, int elemSize, int (*cmp)(const void *,
         #endif
     }
 
-    void *currentElement = NULL;
+
+    char *oneBytePointer = (char *) arr;
+    char *currentElement = NULL;
 
     for (int i = 0; i < length; i++) {
-        currentElement = arr + i * elemSize; // the min or max element depends on if the sorting descending order or not
+        currentElement = oneBytePointer + i * elemSize; // the min or max element depends on if the sorting descending order or not
         for (int j = i; j < length; j++) {
 
-            if ( cmp(currentElement, arr + j * elemSize ) > 0 )
-                currentElement = arr + j * elemSize;
+            if (cmp(currentElement, oneBytePointer + j * elemSize ) > 0 )
+                currentElement = oneBytePointer + j * elemSize;
 
         }
 
-        if (currentElement != arr + i * elemSize)
-            swap(arr + i * elemSize, currentElement, elemSize);
+        if (currentElement != oneBytePointer + i * elemSize)
+            swap(oneBytePointer + i * elemSize, currentElement, elemSize);
 
     }
 

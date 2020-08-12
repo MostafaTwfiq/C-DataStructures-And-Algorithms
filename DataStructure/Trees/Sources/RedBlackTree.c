@@ -970,6 +970,8 @@ RBNode *performRotation(RBNode *node, RotationType rotationType) {
             return node;
     }
 
+    return node;
+
 }
 
 

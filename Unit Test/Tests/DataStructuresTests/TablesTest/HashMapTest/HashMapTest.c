@@ -600,7 +600,7 @@ void testDestroyHashMap(CuTest *cuTest) {
 
 
 
-CuSuite *createHashMapTestsSuite() {
+CuSuite *createHashMapTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -626,7 +626,7 @@ CuSuite *createHashMapTestsSuite() {
 
 
 
-void hashMapUnitTest() {
+void hashMapUnitTest(void) {
 
     ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 

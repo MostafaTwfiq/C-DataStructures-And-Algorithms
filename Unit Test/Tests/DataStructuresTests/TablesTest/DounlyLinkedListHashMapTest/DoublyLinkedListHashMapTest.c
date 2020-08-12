@@ -606,7 +606,7 @@ void testDestroyDLLHashMap(CuTest *cuTest) {
 
 
 
-CuSuite *createDoublyLinkedListHashMapTestsSuite() {
+CuSuite *createDoublyLinkedListHashMapTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -632,7 +632,7 @@ CuSuite *createDoublyLinkedListHashMapTestsSuite() {
 
 
 
-void doublyLinkedListHashMapUnitTest() {
+void doublyLinkedListHashMapUnitTest(void) {
 
     ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 

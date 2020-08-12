@@ -6,7 +6,7 @@
 
 
 
-void mergeSortHelper(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *));
+void mergeSortHelper(char *arr, int length, int elemSize, int (*cmp)(const void *, const void *));
 
 
 
@@ -62,7 +62,7 @@ void mergeSort(void *arr, int length, int elemSize, int (*cmp)(const void *, con
         #endif
     }
 
-    mergeSortHelper(arr, length, elemSize, cmp);
+    mergeSortHelper((char *) arr, length, elemSize, cmp);
 
 }
 
@@ -83,7 +83,7 @@ void mergeSort(void *arr, int length, int elemSize, int (*cmp)(const void *, con
  * @param cmp the comparator function pointer
  */
 
-void mergeSortHelper(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *)) {
+void mergeSortHelper(char *arr, int length, int elemSize, int (*cmp)(const void *, const void *)) {
     if (length <= 0)
         return;
 

@@ -80,7 +80,7 @@ void printString(String *string);
 
 struct Vector *stringSplit(String *string, char *splitCharacters);
 
-void clearString (String *string);
+void clearString(String *string);
 
 void destroyString(void *myString);
 

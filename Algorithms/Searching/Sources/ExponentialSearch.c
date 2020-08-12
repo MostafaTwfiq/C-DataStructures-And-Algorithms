@@ -71,19 +71,21 @@ int exponentialSearch(void *arr, void *value, int length, int elemSize, int (*cm
         #endif
     }
 
-    void *fPointer = arr, *lPointer = arr;
+    char *oneBytePointer = (char *) arr;
+    char *fPointer = oneBytePointer, *lPointer = oneBytePointer;
+
     while ( cmp(value, lPointer) > 0 ) {
         int partitionLength = lPointer - fPointer + 1;
         fPointer = lPointer;
         lPointer += partitionLength * 2 * elemSize;
-        if (lPointer >= arr + length * elemSize) {
-            lPointer = arr + (length - 1) * elemSize;
+        if (lPointer >= oneBytePointer + length * elemSize) {
+            lPointer = oneBytePointer + (length - 1) * elemSize;
             break;
         }
 
     }
 
     int index = binarySearchI(fPointer, value, lPointer - fPointer + 1, elemSize, cmp);
-    return index == -1 ? -1 : index + (fPointer - arr) / elemSize;
+    return index == -1 ? -1 : index + (fPointer - oneBytePointer) / elemSize;
 
 }

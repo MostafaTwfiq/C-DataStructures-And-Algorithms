@@ -608,7 +608,7 @@ void testRBTreePrint(CuTest *cuTest) {
 
 
 
-CuSuite *createRedBlackTreeTestsSuite() {
+CuSuite *createRedBlackTreeTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -636,7 +636,7 @@ CuSuite *createRedBlackTreeTestsSuite() {
 
 
 
-void redBlackTreeUnitTest() {
+void redBlackTreeUnitTest(void) {
 
     ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 

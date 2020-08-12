@@ -566,7 +566,7 @@ void testDestroyBinaryHeap(CuTest *cuTest) {
 
 
 
-CuSuite *createBinaryHeapTestsSuite() {
+CuSuite *createBinaryHeapTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -590,7 +590,7 @@ CuSuite *createBinaryHeapTestsSuite() {
 
 
 
-void binaryHeapUnitTest() {
+void binaryHeapUnitTest(void) {
 
     ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 

@@ -524,7 +524,7 @@ void generalDLStackTest(CuTest *cuTest) {
 
 
 
-CuSuite *createDLinkedListStackTestsSuite() {
+CuSuite *createDLinkedListStackTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -550,7 +550,7 @@ CuSuite *createDLinkedListStackTestsSuite() {
 
 
 
-void doublyLinkedListStackUnitTest() {
+void doublyLinkedListStackUnitTest(void) {
 
     ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 

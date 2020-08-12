@@ -116,8 +116,10 @@ int linearSearch(void *arr, void *value, int length, int elemSize, int (*cmp)(co
         #endif
     }
 
+    char *oneBytePointer = (char *) arr;
+
     for (int i = 0; i < length; i++) {
-        if ( cmp(value, arr + i * elemSize) == 0)
+        if (cmp(value, oneBytePointer + i * elemSize) == 0)
             return i;
 
     }
@@ -198,8 +200,10 @@ int linearSearchGetLast(void *arr, void *value, int length, int elemSize, int (*
         #endif
     }
 
+    char *oneBytePointer = (char *) arr;
+
     for (int i = length - 1; i >= 0; i--) {
-        if ( cmp(value, arr + i * elemSize) == 0)
+        if (cmp(value, oneBytePointer + i * elemSize) == 0)
             return i;
 
     }
@@ -279,10 +283,13 @@ Vector *linearSearchGetAll(void *arr, void *value, int length, int elemSize, int
         #endif
     }
 
+
+    char *oneBytePointer = (char *) arr;
+
     Vector *indicesVector = vectorInitialization(2, intFreeFunLinSearch, intCmpLinSearch);
 
     for (unsigned int i = 0; i < length; i++) {
-        if ( cmp(value, arr + i * elemSize) == 0)
+        if (cmp(value, oneBytePointer + i * elemSize) == 0)
             vectorAdd(indicesVector, generateIntPointerLinSearch(&i));
 
     }

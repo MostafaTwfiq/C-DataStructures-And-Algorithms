@@ -603,7 +603,7 @@ void printFunUDTDGT(void *item) {
     arrayListAdd(printUDTingList, item);
 }
 
-void nullFreeFunUDGT(){}
+void nullFreeFunUDGT(void *item){}
 
 
 void testPrintUndirectedGraph(CuTest *cuTest) {
@@ -957,7 +957,7 @@ void testUndirectedGraphMinimumSpanningGraph(CuTest *cuTest) {
 
 
 
-CuSuite *createUndirectedGraphTestsSuite() {
+CuSuite *createUndirectedGraphTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -988,7 +988,7 @@ CuSuite *createUndirectedGraphTestsSuite() {
 
 
 
-void undirectedGraphUnitTest() {
+void undirectedGraphUnitTest(void) {
 
     ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 

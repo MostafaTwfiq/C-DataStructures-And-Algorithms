@@ -30,13 +30,17 @@ typedef struct HashSet {
     int length;
     int count;
     int bPrime;
+
     void (*freeItem)(void *);
+
     int (*itemComp)(const void *, const void *);
+
     int (*hashFun)(const void *);
 } HashSet;
 
 
-HashSet *hashSetInitialization(void (*freeItem)(void *), int (*itemComp)(const void *, const void *), int (*hashFun)(const void *));
+HashSet *hashSetInitialization(void (*freeItem)(void *), int (*itemComp)(const void *, const void *),
+                               int (*hashFun)(const void *));
 
 void hashSetInsert(HashSet *hashSet, void *item);
 

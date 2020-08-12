@@ -505,7 +505,7 @@ void generalDequeTest(CuTest *cuTest) {
 
 
 
-CuSuite *createDequeTestsSuite() {
+CuSuite *createDequeTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -531,7 +531,7 @@ CuSuite *createDequeTestsSuite() {
 
 
 
-void dequeUnitTest() {
+void dequeUnitTest(void) {
 
     ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 

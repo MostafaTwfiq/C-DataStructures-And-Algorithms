@@ -6,7 +6,7 @@
 
 
 
-int binarySearchHelper(void *arr, void *value, int fIndex, int lIndex, int elemSize, int (*cmp)(const void *, const void *));
+int binarySearchHelper(char *arr, void *value, int fIndex, int lIndex, int elemSize, int (*cmp)(const void *, const void *));
 
 
 
@@ -78,14 +78,17 @@ int binarySearchI(void *arr, void *value, int length, int elemSize, int (*cmp)(c
         #endif
     }
 
+
+    char *oneBytePointer = (char *) arr;
+
     int fIndex = 0, lIndex = length - 1, middleIndex;
     while (fIndex <= lIndex) {
 
         middleIndex = (fIndex + lIndex) / 2;
 
-        if ( cmp(value, arr + middleIndex * elemSize) == 0 )
+        if (cmp(value, oneBytePointer + middleIndex * elemSize) == 0 )
             return middleIndex;
-        else if ( cmp(value, arr + middleIndex * elemSize) < 0 )
+        else if (cmp(value, oneBytePointer + middleIndex * elemSize) < 0 )
             lIndex = middleIndex - 1;
         else
             fIndex = middleIndex + 1;
@@ -166,7 +169,7 @@ int binarySearchR(void *arr, void *value, int length, int elemSize, int (*cmp)(c
         #endif
     }
 
-    return binarySearchHelper(arr, value, 0, length - 1, elemSize, cmp);
+    return binarySearchHelper((char *) arr, value, 0, length - 1, elemSize, cmp);
 
 }
 
@@ -198,7 +201,7 @@ int binarySearchR(void *arr, void *value, int length, int elemSize, int (*cmp)(c
  * @return it will return the index of the value if found, other wise it will return -1
  */
 
-int binarySearchHelper(void *arr, void *value, int fIndex, int lIndex, int elemSize, int (*cmp)(const void *, const void *)) {
+int binarySearchHelper(char *arr, void *value, int fIndex, int lIndex, int elemSize, int (*cmp)(const void *, const void *)) {
     if (fIndex > lIndex)
         return -1;
 

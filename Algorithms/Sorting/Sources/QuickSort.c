@@ -5,7 +5,7 @@
 
 
 
-void quickSortHelper(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *));
+void quickSortHelper(char *arr, int length, int elemSize, int (*cmp)(const void *, const void *));
 
 
 
@@ -88,11 +88,11 @@ void quickSort(void *arr, int length, int elemSize, int (*cmp)(const void *, con
  * @param cmp the comparator function pointer
  */
 
-void quickSortHelper(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *)) {
+void quickSortHelper(char *arr, int length, int elemSize, int (*cmp)(const void *, const void *)) {
     if (length <= 0)
         return;
 
-    void *boundaryPointer = arr - elemSize;
+    char *boundaryPointer = arr - elemSize;
 
 
     for (int i = 0; i < length; i++) {

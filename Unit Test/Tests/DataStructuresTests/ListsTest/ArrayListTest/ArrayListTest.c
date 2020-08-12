@@ -824,7 +824,7 @@ void generalArrayListTest(CuTest *cuTest) {
 
 
 
-CuSuite *createArrayListTestsSuite() {
+CuSuite *createArrayListTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -859,7 +859,7 @@ CuSuite *createArrayListTestsSuite() {
 
 
 
-void arrayListUnitTest() {
+void arrayListUnitTest(void) {
 
     ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 

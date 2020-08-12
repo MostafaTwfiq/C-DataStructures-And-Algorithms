@@ -523,7 +523,7 @@ void generalStackTest(CuTest *cuTest) {
 
 
 
-CuSuite *createStackTestsSuite() {
+CuSuite *createStackTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -549,7 +549,7 @@ CuSuite *createStackTestsSuite() {
 
 
 
-void stackUnitTest() {
+void stackUnitTest(void) {
 
     ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 

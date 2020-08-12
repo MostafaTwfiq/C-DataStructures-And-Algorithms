@@ -54,7 +54,7 @@ void testMostFrequentArrValueH(CuTest *cuTest) {
     int arr2[] = {3, 3, 3, 3, 1, 1, 1, 1, 3, 1, 1, 1, 1, 4};
     CuAssertIntEquals(cuTest, 1, *(int *) mostFrequentArrValueH(arr2, 14, sizeof(int), compareIntPointers, intHashFun));
 
-    int arr3[] = {};
+    int arr3[] = {0};
     CuAssertPtrEquals(cuTest, NULL,  mostFrequentArrValueH(arr3, 0, sizeof(int), compareIntPointers, intHashFun));
 
 
@@ -84,7 +84,7 @@ void testMostFrequentArrValueA(CuTest *cuTest) {
     int arr2[] = {3, 3, 3, 3, 1, 1, 1, 1, 3, 1, 1, 1, 1, 4};
     CuAssertIntEquals(cuTest, 1, *(int *) mostFrequentArrValueA(arr2, 14, sizeof(int), compareIntPointers));
 
-    int arr3[] = {};
+    int arr3[] = {0};
     CuAssertPtrEquals(cuTest, NULL,  mostFrequentArrValueA(arr3, 0, sizeof(int), compareIntPointers));
 
 }
@@ -902,7 +902,7 @@ void testIsSubArr(CuTest *cuTest) {
     int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     int arr2[] = {4, 5, 6};
     int arr3[] = {2, 3, 4, 5, 8, 7};
-    int arr4[] = {};
+    int arr4[] = {0};
 
     isSubArr(NULL, 0, NULL, 0, 0, NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
@@ -1191,7 +1191,7 @@ void testArrIsPalindrome(CuTest *cuTest) {
 
     int arr[] = {1, 2, 3, 4, 5, 5, 4, 3, 2, 1};
     int arr2[] = {1, 2, 3, 3, 1, 1};
-    int arr3[] = {};
+    int arr3[] = {0};
 
     arrIsPalindrome(NULL, 0, 0, NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
@@ -1341,7 +1341,7 @@ void testArrAddAll(CuTest *cuTest) {
 }
 
 
-CuSuite *createArraysAlgTestsSuite() {
+CuSuite *createArraysAlgTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -1393,7 +1393,7 @@ CuSuite *createArraysAlgTestsSuite() {
 
 
 
-void arraysAlgUnitTest() {
+void arraysAlgUnitTest(void) {
 
     ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 

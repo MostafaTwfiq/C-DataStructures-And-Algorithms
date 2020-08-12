@@ -389,7 +389,7 @@ void testDestroyHashSet(CuTest *cuTest) {
 
 
 
-CuSuite *createHashSetTestsSuite() {
+CuSuite *createHashSetTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -412,7 +412,7 @@ CuSuite *createHashSetTestsSuite() {
 
 
 
-void hashSetUnitTest() {
+void hashSetUnitTest(void) {
 
     ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 

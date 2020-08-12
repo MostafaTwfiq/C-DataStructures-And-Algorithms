@@ -24,12 +24,15 @@ typedef struct DoublyLinkedList {
     struct Node *head;
     struct Node *tail;
     int length;
+
     void (*freeFun)(void *);
+
     int (*comparator)(const void *, const void *);
 } DoublyLinkedList;
 
 
-DoublyLinkedList *doublyLinkedListInitialization(void (*freeFun)(void *), int (*comparator)(const void *, const void *));
+DoublyLinkedList *
+doublyLinkedListInitialization(void (*freeFun)(void *), int (*comparator)(const void *, const void *));
 
 void doublyLinkedListAddFirst(DoublyLinkedList *linkedList, void *item);
 

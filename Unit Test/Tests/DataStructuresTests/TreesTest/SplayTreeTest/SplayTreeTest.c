@@ -561,7 +561,7 @@ void testDestroySplayTree(CuTest *cuTest) {
 
 
 
-CuSuite *createSplayTreeTestsSuite() {
+CuSuite *createSplayTreeTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -588,7 +588,7 @@ CuSuite *createSplayTreeTestsSuite() {
 
 
 
-void splayTreeUnitTest() {
+void splayTreeUnitTest(void) {
 
     ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 

@@ -4,7 +4,6 @@
 #include "limits.h"
 
 
-
 unsigned int hashMapFHashCal(int (*hashFun)(const void *), void *key, unsigned int length);
 
 
@@ -18,11 +17,6 @@ int calBPrime(int length);
 
 
 int getNextPrime(int num);
-
-
-
-
-
 
 
 /** The freeing entry function.
@@ -39,12 +33,6 @@ void freeEntry(void *entry) {
 }
 
 
-
-
-
-
-
-
 /** This function will take the freeing item function address, the freeing key function address, the key comparator function, and the hash function as a parameters,
  * then it will initialize a new hash map,
  * then the function will return the address of the hash map.
@@ -57,72 +45,70 @@ void freeEntry(void *entry) {
  */
 
 HashMap *hashMapInitialization(
-        void (*freeKey)(void *)
-        , void (*freeItem)(void *)
-        , int (*keyComp)(const void *, const void *)
-        , int (*hashFun)(const void *)
-        ) {
+        void (*freeKey)(void *), void (*freeItem)(void *), int (*keyComp)(const void *, const void *),
+        int (*hashFun)(const void *)
+) {
 
     if (freeKey == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "free key function pointer", "hash map data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "free key function pointer", "hash map data structure");
+         exit(INVALID_ARG);
+#endif
 
     } else if (freeItem == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "free item function pointer", "hash map data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "free item function pointer", "hash map data structure");
+         exit(INVALID_ARG);
+#endif
 
     } else if (keyComp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "key comparator function pointer", "hash map data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key comparator function pointer", "hash map data structure");
+         exit(INVALID_ARG);
+#endif
 
     } else if (hashFun == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "hash function pointer", "hash map data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "hash function pointer", "hash map data structure");
+        exit(INVALID_ARG);
+#endif
 
     }
 
     HashMap *map = (HashMap *) malloc(sizeof(HashMap));
     if (map == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
-     		return NULL;
-        #else
-            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "hash map", "hash map data structure");
-     		exit(FAILED_ALLOCATION);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = FAILED_ALLOCATION;
+        return NULL;
+#else
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "hash map", "hash map data structure");
+         exit(FAILED_ALLOCATION);
+#endif
 
     }
 
     map->length = getNextPrime(10); //the length of the map array should always be a prime number.
     map->arr = (Entry **) calloc(sizeof(Entry *), map->length);
     if (map == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
-     		return NULL;
-        #else
-            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "hash map entries array", "hash map data structure");
-     		exit(FAILED_ALLOCATION);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = FAILED_ALLOCATION;
+        return NULL;
+#else
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "hash map entries array", "hash map data structure");
+         exit(FAILED_ALLOCATION);
+#endif
 
     }
 
@@ -138,9 +124,6 @@ HashMap *hashMapInitialization(
 }
 
 
-
-
-
 /** This function will take the map address, the key address, and the item address as a parameters,
  * then it will insert the item in the map.
  *
@@ -153,31 +136,31 @@ HashMap *hashMapInitialization(
 
 void hashMapInsert(HashMap *map, void *key, void *item) {
     if (map == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
+         exit(NULL_POINTER);
+#endif
 
     } else if (key == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
+         exit(INVALID_ARG);
+#endif
 
     } else if (item == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "hash map data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "hash map data structure");
+         exit(INVALID_ARG);
+#endif
 
     }
 
@@ -185,13 +168,13 @@ void hashMapInsert(HashMap *map, void *key, void *item) {
         map->length = getNextPrime(map->length * 2); //the length of the map array should always be a prime number.
         map->arr = (Entry **) realloc(map->arr, sizeof(Entry *) * map->length);
         if (map->arr == NULL) {
-            #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		    ERROR_TEST->errorCode = FAILED_REALLOCATION;
-     		    return;
-            #else
-                fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "entries array", "hash map data structure");
-     	    	exit(FAILED_REALLOCATION);
-     	    #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = FAILED_REALLOCATION;
+            return;
+#else
+            fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "entries array", "hash map data structure");
+             exit(FAILED_REALLOCATION);
+#endif
 
         }
 
@@ -202,7 +185,7 @@ void hashMapInsert(HashMap *map, void *key, void *item) {
     }
 
     unsigned int fHash = hashMapFHashCal(map->hashFun, key, map->length),
-    sHash = hashMapSHashCal(map->hashFun, key, map->bPrime);
+            sHash = hashMapSHashCal(map->hashFun, key, map->bPrime);
 
     unsigned int pHashIndex = 1;
     unsigned int index = calIndex(fHash, sHash, pHashIndex, map->length);
@@ -224,13 +207,13 @@ void hashMapInsert(HashMap *map, void *key, void *item) {
 
     Entry *newEntry = (Entry *) malloc(sizeof(Entry));
     if (newEntry == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
-     		return;
-        #else
-            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new entry", "hash map data structure");
-     		exit(FAILED_ALLOCATION);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = FAILED_ALLOCATION;
+        return;
+#else
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new entry", "hash map data structure");
+         exit(FAILED_ALLOCATION);
+#endif
 
     }
 
@@ -242,10 +225,6 @@ void hashMapInsert(HashMap *map, void *key, void *item) {
     map->count++;
 
 }
-
-
-
-
 
 
 /** This function will take the map address, and the key address as a parameters,
@@ -261,27 +240,27 @@ void hashMapInsert(HashMap *map, void *key, void *item) {
 
 int hashMapContains(HashMap *map, void *key) {
     if (map == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
+         exit(NULL_POINTER);
+#endif
 
     } else if (key == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
+         exit(INVALID_ARG);
+#endif
 
     }
 
     unsigned int fHash = hashMapFHashCal(map->hashFun, key, map->length),
-    sHash = hashMapSHashCal(map->hashFun, key, map->bPrime);
+            sHash = hashMapSHashCal(map->hashFun, key, map->bPrime);
 
     unsigned int pHashIndex = 1;
     unsigned int index = calIndex(fHash, sHash, pHashIndex, map->length);
@@ -305,9 +284,6 @@ int hashMapContains(HashMap *map, void *key) {
 }
 
 
-
-
-
 /** This function will take the map address, and the key address as a parameter,
  * then it will return the item address if the key existed,
  * other wise it will return NULL.
@@ -321,27 +297,27 @@ int hashMapContains(HashMap *map, void *key) {
 
 void *hashMapGet(HashMap *map, void *key) {
     if (map == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
+         exit(NULL_POINTER);
+#endif
 
     } else if (key == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
+         exit(INVALID_ARG);
+#endif
 
     }
 
     unsigned int fHash = hashMapFHashCal(map->hashFun, key, map->length),
-    sHash = hashMapSHashCal(map->hashFun, key, map->bPrime);
+            sHash = hashMapSHashCal(map->hashFun, key, map->bPrime);
 
     unsigned int pHashIndex = 1;
     unsigned int index = calIndex(fHash, sHash, pHashIndex, map->length);
@@ -365,10 +341,6 @@ void *hashMapGet(HashMap *map, void *key) {
 }
 
 
-
-
-
-
 /** This function will take the map address, and the key address as a parameter,
  * then it will return the key address if the key existed,
  * other wise it will return NULL.
@@ -382,27 +354,27 @@ void *hashMapGet(HashMap *map, void *key) {
 
 void *hashMapGetKey(HashMap *map, void *key) {
     if (map == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
+         exit(NULL_POINTER);
+#endif
 
     } else if (key == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
+         exit(INVALID_ARG);
+#endif
 
     }
 
     unsigned int fHash = hashMapFHashCal(map->hashFun, key, map->length),
-    sHash = hashMapSHashCal(map->hashFun, key, map->bPrime);
+            sHash = hashMapSHashCal(map->hashFun, key, map->bPrime);
 
     unsigned int pHashIndex = 1;
     unsigned int index = calIndex(fHash, sHash, pHashIndex, map->length);
@@ -426,9 +398,6 @@ void *hashMapGetKey(HashMap *map, void *key) {
 }
 
 
-
-
-
 /** This function will take the map address, and the key address as a parameters,
  * then it will delete and free the key and the item that linked to the key.
  *
@@ -440,27 +409,27 @@ void *hashMapGetKey(HashMap *map, void *key) {
 
 void hashMapDelete(HashMap *map, void *key) {
     if (map == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
+         exit(NULL_POINTER);
+#endif
 
     } else if (key == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
+         exit(INVALID_ARG);
+#endif
 
     }
 
     unsigned int fHash = hashMapFHashCal(map->hashFun, key, map->length),
-    sHash = hashMapSHashCal(map->hashFun, key, map->bPrime);
+            sHash = hashMapSHashCal(map->hashFun, key, map->bPrime);
 
     unsigned int pHashIndex = 1;
     unsigned int index = calIndex(fHash, sHash, pHashIndex, map->length);
@@ -486,14 +455,6 @@ void hashMapDelete(HashMap *map, void *key) {
 }
 
 
-
-
-
-
-
-
-
-
 /** This function will take the map address, and the key address as a parameters,
  * then it will delete and free the key without freeing the item that linked to that key.
  *
@@ -506,27 +467,27 @@ void hashMapDelete(HashMap *map, void *key) {
 
 void *hashMapDeleteWtoFr(HashMap *map, void *key) {
     if (map == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
+         exit(NULL_POINTER);
+#endif
 
     } else if (key == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return NULL;
-        #else
-     		fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
+        exit(INVALID_ARG);
+#endif
 
     }
 
     unsigned int fHash = hashMapFHashCal(map->hashFun, key, map->length),
-    sHash = hashMapSHashCal(map->hashFun, key, map->bPrime);
+            sHash = hashMapSHashCal(map->hashFun, key, map->bPrime);
 
     unsigned int pHashIndex = 1;
     unsigned int index = calIndex(fHash, sHash, pHashIndex, map->length);
@@ -556,9 +517,6 @@ void *hashMapDeleteWtoFr(HashMap *map, void *key) {
 }
 
 
-
-
-
 /** This function will take the map address, and the key address as a parameters,
  * then it will delete the entry without freeing the key and the item that linked to that key.
  *
@@ -571,27 +529,27 @@ void *hashMapDeleteWtoFr(HashMap *map, void *key) {
 
 Entry *hashMapDeleteWtoFrAll(HashMap *map, void *key) {
     if (map == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-     		fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (key == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "key pointer", "hash map data structure");
+         exit(INVALID_ARG);
+#endif
 
     }
 
     unsigned int fHash = hashMapFHashCal(map->hashFun, key, map->length),
-    sHash = hashMapSHashCal(map->hashFun, key, map->bPrime);
+            sHash = hashMapSHashCal(map->hashFun, key, map->bPrime);
 
     unsigned int pHashIndex = 1;
     unsigned int index = calIndex(fHash, sHash, pHashIndex, map->length);
@@ -619,10 +577,6 @@ Entry *hashMapDeleteWtoFrAll(HashMap *map, void *key) {
 }
 
 
-
-
-
-
 /** This function will take the map address as a parameter,
  * then it will return double void pointer that has a copy of all the items in the map.
  *
@@ -632,25 +586,25 @@ Entry *hashMapDeleteWtoFrAll(HashMap *map, void *key) {
 
 void **hashMapToArray(HashMap *map) {
     if (map == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
+         exit(NULL_POINTER);
+#endif
 
     }
 
     void **arr = (void **) malloc(sizeof(void *) * map->count);
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
-     		return NULL;
-        #else
-            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "hash map data structure");
-     		exit(FAILED_ALLOCATION);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = FAILED_ALLOCATION;
+        return NULL;
+#else
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "hash map data structure");
+         exit(FAILED_ALLOCATION);
+#endif
 
     }
 
@@ -666,7 +620,6 @@ void **hashMapToArray(HashMap *map) {
 }
 
 
-
 /** This function will take the map address as a parameter,
  * then it will return an entry array that contains a copy of all the items and it's key in the map.
  *
@@ -678,25 +631,25 @@ void **hashMapToArray(HashMap *map) {
 
 Entry **hashMapToEntryArray(HashMap *map) {
     if (map == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
+         exit(NULL_POINTER);
+#endif
 
     }
 
     Entry **arr = (Entry **) malloc(sizeof(Entry *) * map->count);
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
-     		return NULL;
-        #else
-            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to entries array", "hash map data structure");
-     		exit(FAILED_ALLOCATION);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = FAILED_ALLOCATION;
+        return NULL;
+#else
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to entries array", "hash map data structure");
+         exit(FAILED_ALLOCATION);
+#endif
 
     }
 
@@ -711,8 +664,6 @@ Entry **hashMapToEntryArray(HashMap *map) {
 }
 
 
-
-
 /** This function will take the map address as a parameter,
  * then it will return the number of items in the map.
  *
@@ -722,22 +673,19 @@ Entry **hashMapToEntryArray(HashMap *map) {
 
 int hashMapGetLength(HashMap *map) {
     if (map == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
+         exit(NULL_POINTER);
+#endif
 
     }
 
     return map->count;
 
 }
-
-
-
 
 
 /** This function will take the map address as a parameter,
@@ -750,22 +698,19 @@ int hashMapGetLength(HashMap *map) {
 
 int hashMapIsEmpty(HashMap *map) {
     if (map == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return -1;
-        #else
-     		fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
+        exit(NULL_POINTER);
+#endif
 
     }
 
     return map->count == 0;
 
 }
-
-
-
 
 
 /** This function will take the map address as a parameter,
@@ -777,13 +722,13 @@ int hashMapIsEmpty(HashMap *map) {
 void clearHashMap(HashMap *map) {
 
     if (map == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
+         exit(NULL_POINTER);
+#endif
 
     }
 
@@ -800,9 +745,6 @@ void clearHashMap(HashMap *map) {
 }
 
 
-
-
-
 /** This function will take the map address as a parameter,
  * then it will destroy and free the map and all it's entries.
  *
@@ -812,13 +754,13 @@ void clearHashMap(HashMap *map) {
 void destroyHashMap(HashMap *map) {
 
     if (map == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
-     		exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "hash map", "hash map data structure");
+         exit(NULL_POINTER);
+#endif
 
     }
 
@@ -827,7 +769,6 @@ void destroyHashMap(HashMap *map) {
     free(map);
 
 }
-
 
 
 /** This function will take the hash function pointer, the key pointer, and the hash map array length as a parameters,
@@ -846,12 +787,6 @@ unsigned int hashMapFHashCal(int (*hashFun)(const void *), void *key, unsigned i
 }
 
 
-
-
-
-
-
-
 /** This function will take the hash function pointer, the key address, and the biggest prime number,
  * that smaller than the set array length as a parameters, then it will return the second hash of this key.
  *
@@ -868,9 +803,6 @@ unsigned int hashMapSHashCal(int (*hashFun)(const void *), void *key, unsigned i
 }
 
 
-
-
-
 /** This function will take the first hash of the key, the second hash of the key, the index, and the length of the map array
  * as a parameters, then it will return the next index that should be available.
  *
@@ -884,10 +816,8 @@ unsigned int hashMapSHashCal(int (*hashFun)(const void *), void *key, unsigned i
  */
 
 unsigned int calIndex(unsigned int fHash, unsigned int sHash, unsigned int index, unsigned int length) {
-    return ((fHash + (index * sHash))  % length);
+    return ((fHash + (index * sHash)) % length);
 }
-
-
 
 
 /** This function will take the length of the map array as a parameter,
@@ -911,8 +841,6 @@ int calBPrime(int length) {
     return 1;
 
 }
-
-
 
 
 /** This function will take an integer number as a parameter,

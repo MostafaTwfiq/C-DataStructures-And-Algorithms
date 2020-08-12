@@ -115,7 +115,7 @@ int getSecondChildIndex(int parentIndex) {
  * @param cmp the comparator function, that will be called to compare the elements
  */
 
-void heapUp(void *arr, int index, int elemSize, int (*cmp)(const void *, const void *)) {
+void heapUp(char *arr, int index, int elemSize, int (*cmp)(const void *, const void *)) {
     if (index <= 0)
         return;
 
@@ -144,7 +144,7 @@ void heapUp(void *arr, int index, int elemSize, int (*cmp)(const void *, const v
  * @param cmp the the comparator function, that will be called to compare the elements
  */
 
-void heapDown(void *arr, int length, int index, int elemSize, int (*cmp)(const void *, const void *)) {
+void heapDown(char *arr, int length, int index, int elemSize, int (*cmp)(const void *, const void *)) {
     int firstChildIndex = getFirstChildIndex(index);
     int secondChildIndex = getSecondChildIndex(index);
 
@@ -237,14 +237,16 @@ void heapSort(void *arr, int length, int elemSize, int (*cmp)(const void *, cons
     }
 
 
+    char *oneBytePointer = (char *) arr;
+
     // to build a valid heap.
     for (int i = 0; i < length; i++)
-        heapUp(arr, i, elemSize, cmp);
+        heapUp(oneBytePointer, i, elemSize, cmp);
 
     // to sort the heap (delete the tree root and balance the heap the number of times the length of the array).
     while (length-- > 0) {
-        swap(arr, arr + length * elemSize, elemSize);
-        heapDown(arr, length, 0, elemSize, cmp);
+        swap(oneBytePointer, oneBytePointer + length * elemSize, elemSize);
+        heapDown(oneBytePointer, length, 0, elemSize, cmp);
     }
 
 }

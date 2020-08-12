@@ -639,7 +639,7 @@ void testDestroyBinaryTree(CuTest *cuTest) {
 
 
 
-CuSuite *createBinaryTreeTestsSuite() {
+CuSuite *createBinaryTreeTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -668,7 +668,7 @@ CuSuite *createBinaryTreeTestsSuite() {
 
 
 
-void binaryTreeUnitTest() {
+void binaryTreeUnitTest(void) {
 
     ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 

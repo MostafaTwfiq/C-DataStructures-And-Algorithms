@@ -837,7 +837,7 @@ void generalDoublyLinkedListTest(CuTest *cuTest) {
 
 
 
-CuSuite *createDoublyLinkedListTestsSuite() {
+CuSuite *createDoublyLinkedListTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -874,7 +874,7 @@ CuSuite *createDoublyLinkedListTestsSuite() {
 
 
 
-void doublyLinkedListUnitTest() {
+void doublyLinkedListUnitTest(void) {
 
     ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 

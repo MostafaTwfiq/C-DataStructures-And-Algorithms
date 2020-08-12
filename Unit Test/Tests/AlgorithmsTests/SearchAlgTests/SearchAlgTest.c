@@ -238,7 +238,7 @@ void testExponentialSearch(CuTest *cuTest) {
 
 
 
-CuSuite *createSearchAlgTestsSuite() {
+CuSuite *createSearchAlgTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -254,7 +254,7 @@ CuSuite *createSearchAlgTestsSuite() {
 
 
 
-void searchAlgUnitTest() {
+void searchAlgUnitTest(void) {
 
     ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 

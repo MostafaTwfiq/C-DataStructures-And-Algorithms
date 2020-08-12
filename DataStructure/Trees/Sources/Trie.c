@@ -735,10 +735,11 @@ int nodeHasChildren(TrieNode *node) {
 TrieNode *createNode(char value, int EOW) {
     TrieNode *node = (TrieNode *) malloc(sizeof(TrieNode));
     if (node == NULL) {
-        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new node", "trie data structure");
         #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
      		ERROR_TEST->errorCode = FAILED_ALLOCATION;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new node", "trie data structure");
      		exit(FAILED_ALLOCATION);
      	#endif
 
@@ -746,10 +747,11 @@ TrieNode *createNode(char value, int EOW) {
 
     node->characters = (TrieNode **) calloc(sizeof(void *), 26);
     if (node->characters == NULL) {
-        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new node characters array", "trie data structure");
         #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
      		ERROR_TEST->errorCode = FAILED_ALLOCATION;
-     	#else
+     		return NULL;
+        #else
+            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new node characters array", "trie data structure");
      		exit(FAILED_ALLOCATION);
      	#endif
 
@@ -757,6 +759,9 @@ TrieNode *createNode(char value, int EOW) {
 
     node->value = value;
     node->EOW = EOW;
+
+    return node;
+
 }
 
 

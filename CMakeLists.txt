@@ -3,8 +3,7 @@ project(C_DataStructures C)
 
 set(CMAKE_C_STANDARD 99)
 
-set( GCC_COVERAGE_LINK_FLAGS "-lm ")
-set( CMAKE_CXX_FLAGS "-lm " )
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -lm")
 
 add_executable(C_DataStructures
 
@@ -14,9 +13,9 @@ add_executable(C_DataStructures
         "Unit Test/CuTest/CuTestTest.c"
         "Unit Test/CuTest/CuTest.h"
 
-        #"Unit Test/Tests/Tests.c"
+        "Unit Test/Tests/Tests.c"
 
-        main.c
+        #main.c
 
         DataStructure/Stacks/Sources/Stack.c
         DataStructure/Stacks/Headers/Stack.h
@@ -119,7 +118,7 @@ add_executable(C_DataStructures
         Algorithms/ArraysAlg/Headers/CharArrayAlg.h
         Algorithms/IntegersAlg/Sources/IntegerAlg.c
         Algorithms/IntegersAlg/Headers/IntegerAlg.h
-        Algorithms/Sorting/Sources/HeapSort.c 
+        Algorithms/Sorting/Sources/HeapSort.c
         Algorithms/Sorting/Headers/HeapSort.h
         FilesHandler/Sources/TxtFileLoader.c
         FilesHandler/Headers/TxtFileLoader.h
@@ -197,3 +196,7 @@ add_executable(C_DataStructures
         "Unit Test/Tests/DataStructuresTests/TreesTest/SplayTreeTest/SplayTreeTest.h"
         "Unit Test/ErrorsTestStruct.h"
         )
+
+if (NOT WIN32)
+    target_link_libraries(C_DataStructures PRIVATE m)
+endif()

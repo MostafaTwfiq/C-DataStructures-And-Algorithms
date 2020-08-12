@@ -449,7 +449,7 @@ void generalLinkedListQueueTest(CuTest *cuTest) {
 
 
 
-CuSuite *createLinkedListQueueTestsSuite() {
+CuSuite *createLinkedListQueueTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -473,7 +473,7 @@ CuSuite *createLinkedListQueueTestsSuite() {
 
 
 
-void linkedListQueueUnitTest() {
+void linkedListQueueUnitTest(void) {
 
     ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 

@@ -23,12 +23,14 @@ typedef struct LinkedList {
     struct Node *head;
     struct Node *tail;
     int length;
+
     void (*freeFun)(void *);
+
     int (*comparator)(const void *, const void *);
 } LinkedList;
 
 
-LinkedList *linkedListInitialization(void (*freeFun)(void *),  int (*comparator)(const void *, const void *));
+LinkedList *linkedListInitialization(void (*freeFun)(void *), int (*comparator)(const void *, const void *));
 
 void linkedListAddFirst(LinkedList *linkedList, void *item);
 
