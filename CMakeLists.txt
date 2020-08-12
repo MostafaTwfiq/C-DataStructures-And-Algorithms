@@ -199,4 +199,4 @@ add_executable(C_DataStructures
 
 if (NOT WIN32)
     target_link_libraries(C_DataStructures PRIVATE m)
-end if()
+endif()
