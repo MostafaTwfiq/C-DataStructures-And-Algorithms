@@ -745,7 +745,7 @@ void testDestroyAVLTree(CuTest *cuTest) {
 
 
 
-CuSuite *createAVLTreeTestsSuite() {
+CuSuite *createAVLTreeTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -774,7 +774,7 @@ CuSuite *createAVLTreeTestsSuite() {
 
 
 
-void avlTreeUnitTest() {
+void avlTreeUnitTest(void) {
 
     ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 

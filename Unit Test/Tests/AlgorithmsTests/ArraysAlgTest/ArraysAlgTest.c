@@ -1341,7 +1341,7 @@ void testArrAddAll(CuTest *cuTest) {
 }
 
 
-CuSuite *createArraysAlgTestsSuite() {
+CuSuite *createArraysAlgTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -1393,7 +1393,7 @@ CuSuite *createArraysAlgTestsSuite() {
 
 
 
-void arraysAlgUnitTest() {
+void arraysAlgUnitTest(void) {
 
     ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 

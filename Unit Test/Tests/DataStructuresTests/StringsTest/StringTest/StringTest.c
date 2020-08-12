@@ -795,7 +795,7 @@ void tesDestroyString(CuTest *cuTest) {
 
 
 
-CuSuite *createStringTestsSuite() {
+CuSuite *createStringTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -838,7 +838,7 @@ CuSuite *createStringTestsSuite() {
 
 
 
-void stringUnitTest() {
+void stringUnitTest(void) {
 
     ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 

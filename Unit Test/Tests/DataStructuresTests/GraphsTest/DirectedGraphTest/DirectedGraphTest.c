@@ -525,7 +525,7 @@ void printFunDGT(void *item) {
     arrayListAdd(printingDTList, item);
 }
 
-void nullFreeFunDGT(){}
+void nullFreeFunDGT(void *item){}
 
 
 void testDirectedGraphPrint(CuTest *cuTest) {
@@ -807,7 +807,7 @@ void testDirectedGraphHasACycle(CuTest *cuTest) {
 
 
 
-CuSuite *createDirectedGraphTestsSuite() {
+CuSuite *createDirectedGraphTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -837,7 +837,7 @@ CuSuite *createDirectedGraphTestsSuite() {
 
 
 
-void directedGraphUnitTest() {
+void directedGraphUnitTest(void) {
 
     ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 

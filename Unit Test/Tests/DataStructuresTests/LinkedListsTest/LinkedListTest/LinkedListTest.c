@@ -832,7 +832,7 @@ void generalLinkedListTest(CuTest *cuTest) {
 
 
 
-CuSuite *createLinkedListTestsSuite() {
+CuSuite *createLinkedListTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -869,7 +869,7 @@ CuSuite *createLinkedListTestsSuite() {
 
 
 
-void linkedListUnitTest() {
+void linkedListUnitTest(void) {
 
     ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 

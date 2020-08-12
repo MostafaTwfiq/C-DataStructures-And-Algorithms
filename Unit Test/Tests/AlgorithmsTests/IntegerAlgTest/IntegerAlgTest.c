@@ -287,7 +287,7 @@ void testIntArrSum(CuTest *cuTest) {
 
 
 
-CuSuite *createIntegerAlgTestsSuite() {
+CuSuite *createIntegerAlgTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -311,7 +311,7 @@ CuSuite *createIntegerAlgTestsSuite() {
 
 
 
-void integerAlgUnitTest() {
+void integerAlgUnitTest(void) {
 
     ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 

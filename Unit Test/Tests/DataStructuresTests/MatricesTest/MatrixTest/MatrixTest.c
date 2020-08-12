@@ -965,7 +965,7 @@ void generalMatrixTest(CuTest *cuTest) {
 
 
 
-CuSuite *createMatrixTestsSuite() {
+CuSuite *createMatrixTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -1002,7 +1002,7 @@ CuSuite *createMatrixTestsSuite() {
 
 
 
-void matrixUnitTest() {
+void matrixUnitTest(void) {
 
     ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 

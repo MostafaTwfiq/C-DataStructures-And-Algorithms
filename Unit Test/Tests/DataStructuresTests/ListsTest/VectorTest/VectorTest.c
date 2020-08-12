@@ -829,7 +829,7 @@ void generalVectorTest(CuTest *cuTest) {
 
 
 
-CuSuite *createVectorTestsSuite() {
+CuSuite *createVectorTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -864,7 +864,7 @@ CuSuite *createVectorTestsSuite() {
 
 
 
-void vectorUnitTest() {
+void vectorUnitTest(void) {
 
     ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 

@@ -448,7 +448,7 @@ void generalQueueTest(CuTest *cuTest) {
 
 
 
-CuSuite *createQueueTestsSuite() {
+CuSuite *createQueueTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -472,7 +472,7 @@ CuSuite *createQueueTestsSuite() {
 
 
 
-void queueUnitTest() {
+void queueUnitTest(void) {
 
     ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 

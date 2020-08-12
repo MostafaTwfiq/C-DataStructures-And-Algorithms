@@ -240,7 +240,7 @@ void testCountingSort(CuTest *cuTest) {
 
 
 
-CuSuite *createSortAlgTestsSuite() {
+CuSuite *createSortAlgTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -258,7 +258,7 @@ CuSuite *createSortAlgTestsSuite() {
 
 
 
-void sortAlgUnitTest() {
+void sortAlgUnitTest(void) {
 
     ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 

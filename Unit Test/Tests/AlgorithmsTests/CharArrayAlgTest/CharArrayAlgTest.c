@@ -638,7 +638,7 @@ void testCharArrSplitS(CuTest *cuTest) {
 
 
 
-CuSuite *createCharArrayAlgTestsSuite() {
+CuSuite *createCharArrayAlgTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -672,7 +672,7 @@ CuSuite *createCharArrayAlgTestsSuite() {
 
 
 
-void charArrayAlgUnitTest() {
+void charArrayAlgUnitTest(void) {
 
     ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 

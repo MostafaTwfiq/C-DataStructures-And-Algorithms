@@ -508,7 +508,7 @@ void generalDLLDequeTest(CuTest *cuTest) {
 
 
 
-CuSuite *createDoublyLinkedListDequeTestsSuite() {
+CuSuite *createDoublyLinkedListDequeTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -534,7 +534,7 @@ CuSuite *createDoublyLinkedListDequeTestsSuite() {
 
 
 
-void doublyLinkedListDequeUnitTest() {
+void doublyLinkedListDequeUnitTest(void) {
 
     ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 

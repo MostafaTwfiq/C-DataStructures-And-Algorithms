@@ -432,7 +432,7 @@ void testDestroyTrie(CuTest *cuTest) {
 
 
 
-CuSuite *createTrieTestsSuite() {
+CuSuite *createTrieTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -452,7 +452,7 @@ CuSuite *createTrieTestsSuite() {
 
 
 
-void trieUnitTest() {
+void trieUnitTest(void) {
 
     ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 

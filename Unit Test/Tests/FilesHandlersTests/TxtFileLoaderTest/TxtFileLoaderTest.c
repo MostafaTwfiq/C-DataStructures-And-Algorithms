@@ -882,7 +882,7 @@ void testDestroyTxtFileLoader(CuTest *cuTest) {
 
 
 
-CuSuite *createTxtFileLoaderTestsSuite() {
+CuSuite *createTxtFileLoaderTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
 
@@ -920,7 +920,7 @@ CuSuite *createTxtFileLoaderTestsSuite() {
 
 
 
-void txtFileLoaderAlgUnitTest() {
+void txtFileLoaderAlgUnitTest(void) {
 
     ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
 
