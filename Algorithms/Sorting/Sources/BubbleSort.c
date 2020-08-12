@@ -53,6 +53,7 @@ void bubbleSort(void *arr, int length, int elemSize, int (*cmp)(const void *, co
     }
 
     short swapFlag = 0;
+    char *oneBytePointer = (char *) arr;
 
     for (int i = length - 1; i > 0; i--) {
 
@@ -60,8 +61,8 @@ void bubbleSort(void *arr, int length, int elemSize, int (*cmp)(const void *, co
 
         for (int j = 0; j < i; j++) {
 
-            if (cmp( arr + j * elemSize, arr + (j + 1) * elemSize ) > 0) {
-                swap(arr + j * elemSize, arr + (j + 1) * elemSize, elemSize);
+            if (cmp(oneBytePointer + j * elemSize, oneBytePointer + (j + 1) * elemSize ) > 0) {
+                swap(oneBytePointer + j * elemSize, oneBytePointer + (j + 1) * elemSize, elemSize);
                 swapFlag = 1;
             }
 

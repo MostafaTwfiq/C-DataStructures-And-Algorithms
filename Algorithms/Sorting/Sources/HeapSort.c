@@ -115,7 +115,7 @@ int getSecondChildIndex(int parentIndex) {
  * @param cmp the comparator function, that will be called to compare the elements
  */
 
-void heapUp(void *arr, int index, int elemSize, int (*cmp)(const void *, const void *)) {
+void heapUp(char *arr, int index, int elemSize, int (*cmp)(const void *, const void *)) {
     if (index <= 0)
         return;
 
@@ -144,7 +144,7 @@ void heapUp(void *arr, int index, int elemSize, int (*cmp)(const void *, const v
  * @param cmp the the comparator function, that will be called to compare the elements
  */
 
-void heapDown(void *arr, int length, int index, int elemSize, int (*cmp)(const void *, const void *)) {
+void heapDown(char *arr, int length, int index, int elemSize, int (*cmp)(const void *, const void *)) {
     int firstChildIndex = getFirstChildIndex(index);
     int secondChildIndex = getSecondChildIndex(index);
 

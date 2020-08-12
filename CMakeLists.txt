@@ -196,4 +196,5 @@ add_executable(C_DataStructures
         "Unit Test/Tests/DataStructuresTests/TreesTest/SplayTreeTest/SplayTreeTest.h"
         "Unit Test/ErrorsTestStruct.h"
         )
-target_link_libraries(C_DataStructures PRIVATE m)
+
+target_link_libraries(C_DataStructures PRIVATE -lm)

@@ -54,13 +54,16 @@ void insertionSort(void *arr, int length, int elemSize, int (*cmp)(const void *,
         #endif
     }
 
+    char *oneBytePointer = (char *) arr;
+
     for (int i = 0; i < length; i++) {
-        void *currentElement = (void *) malloc(elemSize);
-        memcpy(currentElement, arr + i * elemSize, elemSize);
+
+        char *currentElement = (char *) malloc(elemSize);
+        memcpy(currentElement, oneBytePointer + i * elemSize, elemSize);
         int rightIndex = 0;
         for (int j = 0; j <= i; j++) {
 
-            if ( cmp(currentElement, arr + j * elemSize) <= 0) {
+            if (cmp(currentElement, oneBytePointer + j * elemSize) <= 0) {
                 rightIndex = j;
                 break;
             }
@@ -68,9 +71,9 @@ void insertionSort(void *arr, int length, int elemSize, int (*cmp)(const void *,
         }
 
         for (int j = i; j > rightIndex; j--)
-            memcpy(arr + j * elemSize, arr + (j - 1) * elemSize, elemSize);
+            memcpy(oneBytePointer + j * elemSize, oneBytePointer + (j - 1) * elemSize, elemSize);
 
-        memcpy(arr + rightIndex * elemSize, currentElement, elemSize);
+        memcpy(oneBytePointer + rightIndex * elemSize, currentElement, elemSize);
 
         free(currentElement);
 
