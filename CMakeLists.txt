@@ -37,6 +37,9 @@ add_executable(C_DataStructures
         DataStructure/Lists/Sources/Vector.c
         DataStructure/Lists/Headers/Vector.h
 
+        DataStructure/Lists/Sources/Set.c
+        DataStructure/Lists/Headers/Set.h
+
         DataStructure/Stacks/Sources/DLinkedListStack.c
         DataStructure/Stacks/Headers/DLinkedListStack.h
 
@@ -69,11 +72,17 @@ add_executable(C_DataStructures
         DataStructure/Queues/Sources/PriorityQueue.c
         DataStructure/Queues/Headers/PriorityQueue.h
 
+        DataStructure/Queues/Sources/HPriorityQueue.c
+        DataStructure/Queues/Headers/HPriorityQueue.h
+
         DataStructure/Tables/Sources/LinkedListHashMap.c
         DataStructure/Tables/Headers/LinkedListHashMap.h
 
         DataStructure/Trees/Sources/RedBlackTree.c
         DataStructure/Trees/Headers/RedBlackTree.h
+
+        DataStructure/Trees/Sources/BinaryHeap.c
+        DataStructure/Trees/Headers/BinaryHeap.h
 
         DataStructure/Tables/Sources/HashSet.c
         DataStructure/Tables/Headers/HashSet.h
@@ -83,13 +92,27 @@ add_executable(C_DataStructures
 
         DataStructure/Deque/Sources/Deque.c
         DataStructure/Deque/Headers/Deque.h
+
         DataStructure/Graphs/Sources/UndirectedGraph.c
         DataStructure/Graphs/Headers/UndirectedGraph.h
+
         DataStructure/Deque/Sources/DLinkedListDeque.c
         DataStructure/Deque/Headers/DLinkedListDeque.h
 
+
+        DataStructure/Matrices/Sources/Matrix.c
+        DataStructure/Matrices/Headers/Matrix.h
+
+        DataStructure/Pairs/Sources/Pair.c
+        DataStructure/Pairs/Headers/Pair.h
+
+        FilesHandler/Sources/TxtFileLoader.c
+        FilesHandler/Headers/TxtFileLoader.h
+
+        FilesHandler/Sources/InputScanner.c
+        FilesHandler/Headers/InputScanner.h
+
         Algorithms/Sorting/Headers/Sorting.h
-        Algorithms/Searching/Headers/Searching.h
         Algorithms/Sorting/Sources/BubbleSort.c
         Algorithms/Sorting/Headers/BubbleSort.h
         Algorithms/Sorting/Sources/SwapFunction.c
@@ -104,6 +127,10 @@ add_executable(C_DataStructures
         Algorithms/Sorting/Headers/QuickSort.h
         Algorithms/Sorting/Sources/CountingSort.c
         Algorithms/Sorting/Headers/CountingSort.h
+        Algorithms/Sorting/Sources/HeapSort.c
+        Algorithms/Sorting/Headers/HeapSort.h
+
+        Algorithms/Searching/Headers/Searching.h
         Algorithms/Searching/Sources/LinearSearch.c
         Algorithms/Searching/Headers/LinearSearch.h
         Algorithms/Searching/Sources/BinarySearch.c
@@ -114,24 +141,15 @@ add_executable(C_DataStructures
         Algorithms/Searching/Headers/JumpSearch.h
         Algorithms/Searching/Sources/ExponentialSearch.c
         Algorithms/Searching/Headers/ExponentialSearch.h
+
         Algorithms/ArraysAlg/Sources/ArraysAlg.c
         Algorithms/ArraysAlg/Headers/ArraysAlg.h
+
         Algorithms/ArraysAlg/Sources/CharArrayAlg.c
         Algorithms/ArraysAlg/Headers/CharArrayAlg.h
+
         Algorithms/IntegersAlg/Sources/IntegerAlg.c
         Algorithms/IntegersAlg/Headers/IntegerAlg.h
-        Algorithms/Sorting/Sources/HeapSort.c
-        Algorithms/Sorting/Headers/HeapSort.h
-        FilesHandler/Sources/TxtFileLoader.c
-        FilesHandler/Headers/TxtFileLoader.h
-        FilesHandler/Sources/InputScanner.c
-        FilesHandler/Headers/InputScanner.h
-        DataStructure/Matrices/Sources/Matrix.c
-        DataStructure/Matrices/Headers/Matrix.h
-        DataStructure/Trees/Sources/BinaryHeap.c
-        DataStructure/Trees/Headers/BinaryHeap.h
-        DataStructure/Pairs/Sources/Pair.c
-        DataStructure/Pairs/Headers/Pair.h
 
         "Unit Test/Tests/DataStructuresTests/ListsTest/VectorTest/VectorTest.c"
         "Unit Test/Tests/DataStructuresTests/ListsTest/VectorTest/VectorTest.c"
@@ -200,7 +218,11 @@ add_executable(C_DataStructures
         "Unit Test/Tests/DataStructuresTests/TreesTest/SplayTreeTest/SplayTreeTest.h"
         "Unit Test/Tests/DataStructuresTests/PairsTest/PairTest/PairTest.c"
         "Unit Test/Tests/DataStructuresTests/PairsTest/PairTest/PairTest.h"
-        DataStructure/Queues/Sources/HPriorityQueue.c DataStructure/Queues/Headers/HPriorityQueue.h "Unit Test/Tests/DataStructuresTests/QueuesTest/HeapPriorityQueueTest/HeapPriorityQueueTest.c" "Unit Test/Tests/DataStructuresTests/QueuesTest/HeapPriorityQueueTest/HeapPriorityQueueTest.h" DataStructure/Lists/Sources/Set.c DataStructure/Lists/Headers/Set.h)
+        "Unit Test/Tests/DataStructuresTests/QueuesTest/HeapPriorityQueueTest/HeapPriorityQueueTest.c"
+        "Unit Test/Tests/DataStructuresTests/QueuesTest/HeapPriorityQueueTest/HeapPriorityQueueTest.h"
+        "Unit Test/Tests/DataStructuresTests/ListsTest/SetTest/SetTest.c"
+        "Unit Test/Tests/DataStructuresTests/ListsTest/SetTest/SetTest.h"
+        )
 
 if (NOT WIN32)
     target_link_libraries(C_DataStructures PRIVATE m)

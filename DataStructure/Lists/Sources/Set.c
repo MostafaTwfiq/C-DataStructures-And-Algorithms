@@ -4,9 +4,6 @@
 #include "../../../Unit Test/CuTest/CuTest.h"
 
 
-
-
-
 /** This function will allocate a new set then it will return its pointer.
  *
  * @param initialLength the initial length of the set
@@ -64,8 +61,6 @@ Set *setInitialization(int initialLength, void (*freeFn)(void *), int (*cmp)(con
 }
 
 
-
-
 /** This function will add the passed item in the end of the set,
  * if the item doesn't exist in the set, other wise the function will free the passed item.
  *
@@ -97,7 +92,7 @@ void setAdd(Set *set, void *item) {
 
     int itemIndex = vectorGetIndex(set->vector, item);
 
-    if (itemIndex == -1) {
+    if (itemIndex != -1) {
         set->vector->freeItem(item);
         return;
     }
@@ -106,9 +101,6 @@ void setAdd(Set *set, void *item) {
 
 
 }
-
-
-
 
 
 /** This function will add the passed item in the passed index,
@@ -152,7 +144,7 @@ void setAddAtIndex(Set *set, void *item, int index) {
 
     int itemIndex = vectorGetIndex(set->vector, item);
 
-    if (itemIndex == -1) {
+    if (itemIndex != -1) {
         set->vector->freeItem(item);
         return;
     }
@@ -160,9 +152,6 @@ void setAddAtIndex(Set *set, void *item, int index) {
     vectorAddAtIndex(set->vector, item, index);
 
 }
-
-
-
 
 
 /** This function will return the index of the passed item if found,
@@ -200,8 +189,6 @@ int setGetIndex(Set *set, void *item) {
 }
 
 
-
-
 /** This function will return the item pointer in the passed index.
  *
  * @param set the set pointer
@@ -234,8 +221,6 @@ void *setGet(Set *set, int index) {
     return vectorGet(set->vector, index);
 
 }
-
-
 
 
 /** This function will check if the passed item exist in the set or not,
@@ -274,8 +259,6 @@ int setContains(Set *set, void *item) {
 }
 
 
-
-
 /** This function will delete and free the item in the passed index.
  *
  * @param set the set pointer
@@ -307,8 +290,6 @@ void setDelete(Set *set, int index) {
     vectorRemoveAtIndex(set->vector, index);
 
 }
-
-
 
 
 /** This function will delete the item in the passed index from the set without freeing it,
@@ -346,8 +327,6 @@ void *setDeleteWtoFr(Set *set, int index) {
 }
 
 
-
-
 /** This function will return the number of items in the set.
  *
  * @param set the set pointer
@@ -369,8 +348,6 @@ int setGetLength(Set *set) {
 
     return vectorGetLength(set->vector);
 }
-
-
 
 
 /** This function will check if the set is empty or not,
@@ -398,8 +375,6 @@ int setIsEmpty(Set *set) {
 }
 
 
-
-
 /** This function will return a double void pointer,
  * that contains the set items.
  *
@@ -425,8 +400,6 @@ void **setToArray(Set *set) {
 }
 
 
-
-
 /** This function will clear and free the set items,
  * without freeing the set itself.
  *
@@ -449,8 +422,6 @@ void clearSet(Set *set) {
     clearVector(set->vector);
 
 }
-
-
 
 
 /** This function will destroy and free the set with all it's items.

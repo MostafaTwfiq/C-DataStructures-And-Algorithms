@@ -6,7 +6,7 @@
 # Author: Asim Jalis
 # Date: 01/08/2003
 
-if test $# -eq 0 ; then FILES=*.c ; else FILES=$* ; fi
+if test $# -eq 0; then FILES=*.c; else FILES=$*; fi
 
 echo '
 
@@ -18,10 +18,10 @@ echo '
 
 '
 
-cat $FILES | grep '^void Test' | 
-    sed -e 's/(.*$//' \
-        -e 's/$/(CuTest*);/' \
-        -e 's/^/extern /'
+cat $FILES | grep '^void Test' |
+  sed -e 's/(.*$//' \
+-e 's/$/(CuTest*);/' \
+-e 's/^/extern /'
 
 echo \
 '
@@ -32,11 +32,11 @@ void RunAllTests(void)
     CuSuite* suite = CuSuiteNew();
 
 '
-cat $FILES | grep '^void Test' | 
-    sed -e 's/^void //' \
-        -e 's/(.*$//' \
-        -e 's/^/    SUITE_ADD_TEST(suite, /' \
-        -e 's/$/);/'
+cat $FILES | grep '^void Test' |
+  sed -e 's/^void //' \
+-e 's/(.*$//' \
+-e 's/^/    SUITE_ADD_TEST(suite, /' \
+-e 's/$/);/'
 
 echo \
 '

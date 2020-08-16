@@ -1,5 +1,6 @@
 #include "DataStructuresTests/ListsTest/VectorTest/VectorTest.h"
 #include "DataStructuresTests/ListsTest/ArrayListTest/ArrayListTest.h"
+#include "DataStructuresTests/ListsTest/SetTest/SetTest.h"
 #include "DataStructuresTests/LinkedListsTest/LinkedListTest/LinkedListTest.h"
 #include "DataStructuresTests/LinkedListsTest/DoublyLinkedListTest/DoublyLinkedListTest.h"
 #include "DataStructuresTests/StacksTest/StackTest/StackTest.h"
@@ -39,6 +40,7 @@ int main(void) {
     // Data structure tests:
     vectorUnitTest();
     arrayListUnitTest();
+    setUnitTest();
     linkedListUnitTest();
     doublyLinkedListUnitTest();
     stackUnitTest();

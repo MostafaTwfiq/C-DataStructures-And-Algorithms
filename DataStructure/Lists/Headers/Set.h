@@ -2,6 +2,9 @@
 #define C_DATASTRUCTURES_SET_H
 
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /** @struct Set
 *  @brief This structure implements a basic generic Set.
@@ -14,6 +17,7 @@ typedef struct Set {
     struct Vector *vector;
 
 } Set;
+
 
 Set *setInitialization(int initialLength, void (*freeFn)(void *), int (*cmp)(const void *, const void *));
 
@@ -40,5 +44,9 @@ void **setToArray(Set *set);
 void clearSet(Set *set);
 
 void destroySet(Set *set);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //C_DATASTRUCTURES_SET_H

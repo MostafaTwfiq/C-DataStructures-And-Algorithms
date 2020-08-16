@@ -2,6 +2,10 @@
 #define C_DATASTRUCTURES_HPRIORITYQUEUE_H
 
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /** @struct HPriorityQueue
 *  @brief This structure implements a basic generic priority queue using binary heap.
 *  @var HPriorityQueue::heap
@@ -34,5 +38,9 @@ void **hpQueueToArray(HPriorityQueue *queue);
 void clearHPQueue(HPriorityQueue *queue);
 
 void destroyHPQueue(HPriorityQueue *queue);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //C_DATASTRUCTURES_HPRIORITYQUEUE_H
