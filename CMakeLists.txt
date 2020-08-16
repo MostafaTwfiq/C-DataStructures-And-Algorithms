@@ -195,7 +195,7 @@ add_executable(C_DataStructures
         "Unit Test/Tests/DataStructuresTests/TreesTest/AVLTreeTest/AVLTreeTest.c"
         "Unit Test/Tests/DataStructuresTests/TreesTest/AVLTreeTest/AVLTreeTest.h"
         "Unit Test/Tests/DataStructuresTests/TreesTest/SplayTreeTest/SplayTreeTest.c"
-        "Unit Test/Tests/DataStructuresTests/TreesTest/SplayTreeTest/SplayTreeTest.h")
+        "Unit Test/Tests/DataStructuresTests/TreesTest/SplayTreeTest/SplayTreeTest.h" DataStructure/Pairs/Pair.c DataStructure/Pairs/Pair.h)
 
 if (NOT WIN32)
     target_link_libraries(C_DataStructures PRIVATE m)
