@@ -11,15 +11,25 @@
 /** This function will scan the input as string,
  * then it will return the char array of the string.
  *
+ * @param dir the file pointer that the function will scan the input from it
  * @return it will return the char array of the input
  */
 
-String *scanStrS() {
+String *scanStrS(FILE *dir) {
 
-    fseek(stdin, 0, SEEK_END);
+    if (dir == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "file pointer", "input scanner");
+        exit(INVALID_ARG);
+#endif
+
+    }
 
     String *string = stringInitialization(10);
-    stringScanInput(string);
+    stringScanInput(string, dir);
 
     return string;
 
@@ -32,15 +42,25 @@ String *scanStrS() {
 /** This function will scan the input as string,
  * then it will return the string pointer of the input.
  *
+ * @param dir the file pointer that the function will scan the input from it
  * @return it will return the string pointer of the input
  */
 
-char *scanStrC() {
+char *scanStrC(FILE *dir) {
 
-    fseek(stdin, 0, SEEK_END);
+    if (dir == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "file pointer", "input scanner");
+        exit(INVALID_ARG);
+#endif
+
+    }
 
     String *string = stringInitialization(10);
-    stringScanInput(string);
+    stringScanInput(string, dir);
 
     char *charArr = stringToCharArray(string);
 
@@ -55,14 +75,24 @@ char *scanStrC() {
 /** This function will scan the input as character,
  * then it will return the character value.
  *
+ * @param dir the file pointer that the function will scan the input from it
  * @return it will return the scanned character
  */
 
-char scanChar() {
+char scanChar(FILE *dir) {
 
-    fseek(stdin, 0, SEEK_END);
+    if (dir == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return '\0';
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "file pointer", "input scanner");
+        exit(INVALID_ARG);
+#endif
 
-    return fgetc(stdin);
+    }
+
+    return fgetc(dir);
 
 }
 
@@ -73,16 +103,25 @@ char scanChar() {
 /** This function will scan the input as integer,
  * then it will return the integer of the input.
  *
+ * @param dir the file pointer that the function will scan the input from it
  * @return it will return the integer of the input
  */
 
-int scanInt() {
+int scanInt(FILE *dir) {
 
+    if (dir == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "file pointer", "input scanner");
+        exit(INVALID_ARG);
+#endif
 
-    fseek(stdin, 0, SEEK_END);
+    }
 
     String *string = stringInitialization(10);
-    stringScanInput(string);
+    stringScanInput(string, dir);
 
     if (!isInteger(string->string)) {
         #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
@@ -109,15 +148,25 @@ int scanInt() {
 /** This function will scan the input as double,
  * then it will return the double of the input.
  *
+ * @param dir the file pointer that the function will scan the input from it
  * @return it will return the double of the input
  */
 
-double scanDouble() {
+double scanDouble(FILE *dir) {
 
-    fseek(stdin, 0, SEEK_END);
+    if (dir == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "file pointer", "input scanner");
+        exit(INVALID_ARG);
+#endif
+
+    }
 
     String *string = stringInitialization(10);
-    stringScanInput(string);
+    stringScanInput(string, dir);
 
     if (!isFloatingPointNum(string->string)) {
         #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
@@ -143,15 +192,25 @@ double scanDouble() {
 /** This function will scan the input as float,
  * then it will return the float of the input.
  *
+ * @param dir the file pointer that the function will scan the input from it
  * @return it will return the float of the input
  */
 
-float scanFloat() {
+float scanFloat(FILE *dir) {
 
-    fseek(stdin, 0, SEEK_END);
+    if (dir == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "file pointer", "input scanner");
+        exit(INVALID_ARG);
+#endif
+
+    }
 
     String *string = stringInitialization(10);
-    stringScanInput(string);
+    stringScanInput(string, dir);
 
     if (!isFloatingPointNum(string->string)) {
         #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
@@ -177,15 +236,25 @@ float scanFloat() {
 /** This function will scan the input as long,
  * then it will return the long of the input.
  *
+ * @param dir the file pointer that the function will scan the input from it
  * @return it will return the long of the input
  */
 
-long scanLong() {
+long scanLong(FILE *dir) {
 
-    fseek(stdin, 0, SEEK_END);
+    if (dir == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "file pointer", "input scanner");
+        exit(INVALID_ARG);
+#endif
+
+    }
 
     String *string = stringInitialization(10);
-    stringScanInput(string);
+    stringScanInput(string, dir);
 
     if (!isInteger(string->string)) {
         #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
@@ -211,15 +280,25 @@ long scanLong() {
 /** This function will scan the input as long long,
  * then it will return the long long of the input.
  *
+ * @param dir the file pointer that the function will scan the input from it
  * @return it will return the long long of the input
  */
 
-long long scanLongLong() {
+long long scanLongLong(FILE *dir) {
 
-    fseek(stdin, 0, SEEK_END);
+    if (dir == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "file pointer", "input scanner");
+        exit(INVALID_ARG);
+#endif
+
+    }
 
     String *string = stringInitialization(10);
-    stringScanInput(string);
+    stringScanInput(string, dir);
 
     if (!isInteger(string->string)) {
         #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
@@ -246,15 +325,25 @@ long long scanLongLong() {
 /** This function will scan the input as short,
  * then it will return the short of the input.
  *
+ * @param dir the file pointer that the function will scan the input from it
  * @return it will return the short of the input
  */
 
-short scanShort() {
+short scanShort(FILE *dir) {
 
-    fseek(stdin, 0, SEEK_END);
+    if (dir == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "file pointer", "input scanner");
+        exit(INVALID_ARG);
+#endif
+
+    }
 
     String *string = stringInitialization(10);
-    stringScanInput(string);
+    stringScanInput(string, dir);
 
     if (!isInteger(string->string)) {
         #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H

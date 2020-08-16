@@ -1,6 +1,8 @@
 #ifndef C_DATASTRUCTURES_TRIE_H
 #define C_DATASTRUCTURES_TRIE_H
 
+#include <stdio.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -51,7 +53,7 @@ struct ArrayList *trieAutoCompletion(Trie *trie, char *word, int numOfSuggestion
 
 struct ArrayList *trieSuggestion(Trie *trie, char *word, int numOfSuggestion);
 
-void triePrintAllWords(Trie *trie);
+void triePrintAllWords(Trie *trie, FILE *dir);
 
 void clearTrie(Trie *trie);
 

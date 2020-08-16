@@ -1,24 +1,25 @@
 #ifndef C_DATASTRUCTURES_INPUTSCANNER_H
 #define C_DATASTRUCTURES_INPUTSCANNER_H
 
+#include <stdio.h>
 
-struct String *scanStrS();
+struct String *scanStrS(FILE *dir);
 
-char *scanStrC();
+char *scanStrC(FILE *dir);
 
-char scanChar();
+char scanChar(FILE *dir);
 
-int scanInt();
+int scanInt(FILE *dir);
 
-double scanDouble();
+double scanDouble(FILE *dir);
 
-float scanFloat();
+float scanFloat(FILE *dir);
 
-long scanLong();
+long scanLong(FILE *dir);
 
-long long scanLongLong();
+long long scanLongLong(FILE *dir);
 
-short scanShort();
+short scanShort(FILE *dir);
 
 
 #endif //C_DATASTRUCTURES_INPUTSCANNER_H

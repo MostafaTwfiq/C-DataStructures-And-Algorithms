@@ -1112,12 +1112,13 @@ void stringCustomTrim(String *string, char *specialCharacters) {
 
 
 /** This function will take the string address as a parameter,
- * then it will read the input from the stdin file and put it in the string.
+ * then it will read the input from the passed file and put it in the string.
  *
  * @param string the string address
+ * @param dir the file pointer the the function will scan the input from it
  */
 
-void stringScanInput(String *string) {
+void stringScanInput(String *string, FILE *dir) {
     if (string == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
         ERROR_TEST->errorCode = NULL_POINTER;
@@ -1127,20 +1128,32 @@ void stringScanInput(String *string) {
          exit(NULL_POINTER);
 #endif
 
+    } else if (dir == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "file pointer", "string data structure");
+        exit(INVALID_ARG);
+#endif
+
     }
 
     char c;
 
     while (1) {
-        c = fgetc(stdin);
+        c = fgetc(dir);
 
-        if (c == '\n')
+        if (c == '\n' || c == EOF)
             break;
 
         stringAppendChar(string, c);
     }
 
-    fseek(stdin, 0, SEEK_END);
+    if (string->string[string->count - 1] == '\r')
+        stringRemove(string, string->count - 1);
+
+    fseek(dir, 0, SEEK_END);
 
 }
 
@@ -1149,9 +1162,10 @@ void stringScanInput(String *string) {
  * then it will print the string in the stdout file.
  *
  * @param string the string address
+ * @param dir the file pointer that the function will print the string in it
  */
 
-void printString(String *string) {
+void printString(String *string, FILE *dir) {
 
     if (string == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
@@ -1162,9 +1176,18 @@ void printString(String *string) {
          exit(NULL_POINTER);
 #endif
 
+    } else if (dir == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "file pointer", "string data structure");
+        exit(INVALID_ARG);
+#endif
+
     }
 
-    fprintf(stdout, "%s", string->string);
+    fprintf(dir, "%s", string->string);
 
 }
 

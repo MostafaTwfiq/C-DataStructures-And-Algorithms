@@ -343,29 +343,37 @@ void testTriePrintAllWords(CuTest *cuTest) {
 
     Trie *trie = trieInitialization();
 
-    triePrintAllWords(NULL);
+    triePrintAllWords(NULL, NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
+
+    triePrintAllWords(trie, NULL);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     trieAddWord(trie, "word");
     trieAddWord(trie, "world");
     trieAddWord(trie, "worm");
 
-    fprintf(stdout, "<<<<<<\n");
-    triePrintAllWords(trie);
-    fprintf(stdout, ">>>>>>\n");
-    fprintf(stdout, "Please enter the word (yes) if the printed words (order doesn't matter) between the (<<<<<<>>>>>>) are\nword\nworld\nworm\n:- ");
-    char input[5];
-
-    char *tempChar = fgets(input, 5, stdin);
-    if (tempChar == NULL) {
-        fprintf(stderr, "Can't scan the input");
+    FILE *dir = fopen("triePrintWordsTestTextFile.txt", "w+");
+    if (dir == NULL) {
+        fprintf(stderr, "Can't open the scan file in input scanner unit test.");
         exit(SOMETHING_WENT_WRONG);
     }
 
-    if (input[strlen(input) - 1] == '\n')
-        input[strlen(input) - 1] = '\0';
+    triePrintAllWords(trie, dir);
 
-    CuAssertIntEquals(cuTest, 0, strcmp("yes", input));
+    fseek(dir, 0, SEEK_SET);
+    char input[20];
+    int index = 0;
+    char c;
+
+    while ( (c = fgetc(dir)) != EOF )
+        input[index++] = c;
+
+    input[index] = '\0';
+
+    CuAssertIntEquals(cuTest, 0, strcmp("word\nworld\nworm\n", input));
+
+    fclose(dir);
 
     destroyTrie(trie);
 

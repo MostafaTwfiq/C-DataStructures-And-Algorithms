@@ -1,6 +1,8 @@
 #ifndef C_DATASTRUCTURES_STRING_H
 #define C_DATASTRUCTURES_STRING_H
 
+#include <stdio.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -74,9 +76,9 @@ void stringTrim(String *myString);
 
 void stringCustomTrim(String *string, char *specialCharacters);
 
-void stringScanInput(String *string);
+void stringScanInput(String *string, FILE *dir);
 
-void printString(String *string);
+void printString(String *string, FILE *dir);
 
 struct Vector *stringSplit(String *string, char *splitCharacters);
 

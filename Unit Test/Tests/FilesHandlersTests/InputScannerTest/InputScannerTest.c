@@ -9,11 +9,23 @@
 
 void testScanStrS(CuTest *cuTest) {
 
-    fprintf(stdout, "\nPlease enter (my input) to confirm the stringScannerS:- ");
-    String *input = scanStrS();
-    CuAssertStrEquals(cuTest, "my input", input->string);
+    scanStrS(NULL);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
-    fprintf(stdout, "\n");
+    FILE *dir = fopen("inputScannerTestTextFile.txt", "w+");
+    if (dir == NULL) {
+        fprintf(stderr, "Can't open the scan file in input scanner unit test.");
+        exit(SOMETHING_WENT_WRONG);
+    }
+
+    fprintf(dir, "my input");
+    fseek(dir, 0, SEEK_SET);
+
+    String *input = scanStrS(dir);
+
+    fclose(dir);
+
+    CuAssertStrEquals(cuTest, "my input", input->string);
 
     destroyString(input);
 
@@ -22,11 +34,23 @@ void testScanStrS(CuTest *cuTest) {
 
 void testScanStrC(CuTest *cuTest) {
 
-    fprintf(stdout, "\nPlease enter (my input) to confirm the stringScannerC:- ");
-    char *input = scanStrC();
-    CuAssertStrEquals(cuTest, "my input", input);
+    scanStrC(NULL);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
-    fprintf(stdout, "\n");
+    FILE *dir = fopen("inputScannerTestTextFile.txt", "w+");
+    if (dir == NULL) {
+        fprintf(stderr, "Can't open the scan file in input scanner unit test.");
+        exit(SOMETHING_WENT_WRONG);
+    }
+
+    fprintf(dir, "my input");
+    fseek(dir, 0, SEEK_SET);
+
+    char *input = scanStrC(dir);
+
+    fclose(dir);
+
+    CuAssertStrEquals(cuTest, "my input", input);
 
     free(input);
 
@@ -36,10 +60,21 @@ void testScanStrC(CuTest *cuTest) {
 
 void testScanChar(CuTest *cuTest) {
 
-    fprintf(stdout, "\nPlease enter the character (d) to confirm the charScanner:- ");
-    CuAssertIntEquals(cuTest, (int) 'd', (int) scanChar());
+    scanChar(NULL);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
-    fprintf(stdout, "\n");
+    FILE *dir = fopen("inputScannerTestTextFile.txt", "w+");
+    if (dir == NULL) {
+        fprintf(stderr, "Can't open the scan file in input scanner unit test.");
+        exit(SOMETHING_WENT_WRONG);
+    }
+
+    fprintf(dir, "d");
+    fseek(dir, 0, SEEK_SET);
+
+    CuAssertIntEquals(cuTest, (int) 'd', (int) scanChar(dir));
+
+    fclose(dir);
 
 }
 
@@ -47,16 +82,34 @@ void testScanChar(CuTest *cuTest) {
 
 void testScanInt(CuTest *cuTest) {
 
-    ERROR_TEST->errorCode = 0;
-    fprintf(stdout, "\nPlease enter non valid integer to confirm the integerScanner error catching:- ");
-    scanInt();
+    scanInt(NULL);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
+
+    FILE *dir = fopen("inputScannerTestTextFile.txt", "w+");
+    if (dir == NULL) {
+        fprintf(stderr, "Can't open the scan file in input scanner unit test.");
+        exit(SOMETHING_WENT_WRONG);
+    }
+
+    fprintf(dir, "122not a number33");
+    fseek(dir, 0, SEEK_SET);
+
+    scanInt(dir);
     CuAssertIntEquals(cuTest, SOMETHING_WENT_WRONG, ERROR_TEST->errorCode);
 
 
-    fprintf(stdout, "\nPlease enter the integer (123) to confirm the integerScanner:- ");
-    CuAssertIntEquals(cuTest, 123, scanInt());
+    fclose(dir);
+    dir = fopen("inputScannerTestTextFile.txt", "w+");
+    if (dir == NULL) {
+        fprintf(stderr, "Can't open the scan file in input scanner unit test.");
+        exit(SOMETHING_WENT_WRONG);
+    }
+    fprintf(dir, "123");
+    fseek(dir, 0, SEEK_SET);
 
-    fprintf(stdout, "\n");
+    CuAssertIntEquals(cuTest, 123, scanInt(dir));
+
+    fclose(dir);
 
 }
 
@@ -65,15 +118,34 @@ void testScanInt(CuTest *cuTest) {
 
 void testScanDouble(CuTest *cuTest) {
 
-    ERROR_TEST->errorCode = 0;
-    fprintf(stdout, "\nPlease enter non valid double to confirm the doubleScanner error catching:- ");
-    scanDouble();
+    scanDouble(NULL);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
+
+    FILE *dir = fopen("inputScannerTestTextFile.txt", "w+");
+    if (dir == NULL) {
+        fprintf(stderr, "Can't open the scan file in input scanner unit test.");
+        exit(SOMETHING_WENT_WRONG);
+    }
+
+    fprintf(dir, "123.123not a number");
+    fseek(dir, 0, SEEK_SET);
+
+    scanDouble(dir);
     CuAssertIntEquals(cuTest, SOMETHING_WENT_WRONG, ERROR_TEST->errorCode);
 
-    fprintf(stdout, "\nPlease enter the double (123.123) to confirm the doubleScanner:- ");
-    CuAssertIntEquals(cuTest, 1, scanDouble() == 123.123);
 
-    fprintf(stdout, "\n");
+    fclose(dir);
+    dir = fopen("inputScannerTestTextFile.txt", "w+");
+    if (dir == NULL) {
+        fprintf(stderr, "Can't open the scan file in input scanner unit test.");
+        exit(SOMETHING_WENT_WRONG);
+    }
+    fprintf(dir, "123.123");
+    fseek(dir, 0, SEEK_SET);
+
+    CuAssertIntEquals(cuTest, 1, scanDouble(dir) == 123.123);
+
+    fclose(dir);
 
 }
 
@@ -81,16 +153,35 @@ void testScanDouble(CuTest *cuTest) {
 
 void testScanFloat(CuTest *cuTest) {
 
-    ERROR_TEST->errorCode = 0;
-    fprintf(stdout, "\nPlease enter non valid float to confirm the floatScanner error catching:- ");
-    scanFloat();
+    scanFloat(NULL);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
+
+    FILE *dir = fopen("inputScannerTestTextFile.txt", "w+");
+    if (dir == NULL) {
+        fprintf(stderr, "Can't open the scan file in input scanner unit test.");
+        exit(SOMETHING_WENT_WRONG);
+    }
+
+    fprintf(dir, "123..5");
+    fseek(dir, 0, SEEK_SET);
+
+    scanFloat(dir);
+
     CuAssertIntEquals(cuTest, SOMETHING_WENT_WRONG, ERROR_TEST->errorCode);
 
-    fprintf(stdout, "\nPlease enter the float (123.5) to confirm the floatScanner:- ");
 
-    CuAssertIntEquals(cuTest, 1, scanFloat() == 123.5);
+    fclose(dir);
+    dir = fopen("inputScannerTestTextFile.txt", "w+");
+    if (dir == NULL) {
+        fprintf(stderr, "Can't open the scan file in input scanner unit test.");
+        exit(SOMETHING_WENT_WRONG);
+    }
+    fprintf(dir, "123.5");
+    fseek(dir, 0, SEEK_SET);
 
-    fprintf(stdout, "\n");
+    CuAssertIntEquals(cuTest, 1, scanFloat(dir) == 123.5);
+
+    fclose(dir);
 
 }
 
@@ -98,30 +189,69 @@ void testScanFloat(CuTest *cuTest) {
 
 void testScanLong(CuTest *cuTest) {
 
-    ERROR_TEST->errorCode = 0;
-    fprintf(stdout, "\nPlease enter non valid long to confirm the longScanner error catching:- ");
-    scanLong();
+    scanLong(NULL);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
+
+    FILE *dir = fopen("inputScannerTestTextFile.txt", "w+");
+    if (dir == NULL) {
+        fprintf(stderr, "Can't open the scan file in input scanner unit test.");
+        exit(SOMETHING_WENT_WRONG);
+    }
+
+    fprintf(dir, "123n");
+    fseek(dir, 0, SEEK_SET);
+
+    scanLong(dir);
+
     CuAssertIntEquals(cuTest, SOMETHING_WENT_WRONG, ERROR_TEST->errorCode);
 
-    fprintf(stdout, "\nPlease enter the long (123) to confirm the longScanner:- ");
-    CuAssertIntEquals(cuTest, 123, scanLong());
 
-    fprintf(stdout, "\n");
+    fclose(dir);
+    dir = fopen("inputScannerTestTextFile.txt", "w+");
+    if (dir == NULL) {
+        fprintf(stderr, "Can't open the scan file in input scanner unit test.");
+        exit(SOMETHING_WENT_WRONG);
+    }
+    fprintf(dir, "123");
+    fseek(dir, 0, SEEK_SET);
+
+    CuAssertIntEquals(cuTest, 123, scanLong(dir));
+
+    fclose(dir);
 
 }
 
 
 void testScanLongLong(CuTest *cuTest) {
 
-    ERROR_TEST->errorCode = 0;
-    fprintf(stdout, "\nPlease enter non valid long long to confirm the longLongScanner error catching:- ");
-    scanLongLong();
+    scanLongLong(NULL);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
+
+    FILE *dir = fopen("inputScannerTestTextFile.txt", "w+");
+    if (dir == NULL) {
+        fprintf(stderr, "Can't open the scan file in input scanner unit test.");
+        exit(SOMETHING_WENT_WRONG);
+    }
+
+    fprintf(dir, "123n");
+    fseek(dir, 0, SEEK_SET);
+
+    scanLongLong(dir);
     CuAssertIntEquals(cuTest, SOMETHING_WENT_WRONG, ERROR_TEST->errorCode);
 
-    fprintf(stdout, "\nPlease enter the long (123) to confirm the longLongScanner:- ");
-    CuAssertIntEquals(cuTest, 123, scanLongLong());
 
-    fprintf(stdout, "\n");
+    fclose(dir);
+    dir = fopen("inputScannerTestTextFile.txt", "w+");
+    if (dir == NULL) {
+        fprintf(stderr, "Can't open the scan file in input scanner unit test.");
+        exit(SOMETHING_WENT_WRONG);
+    }
+    fprintf(dir, "123");
+    fseek(dir, 0, SEEK_SET);
+
+    CuAssertIntEquals(cuTest, 123, scanLongLong(dir));
+
+    fclose(dir);
 
 }
 
@@ -129,15 +259,34 @@ void testScanLongLong(CuTest *cuTest) {
 
 void testScanShort(CuTest *cuTest) {
 
-    ERROR_TEST->errorCode = 0;
-    fprintf(stdout, "\nPlease enter non valid short to confirm the shortScanner error catching:- ");
-    scanShort();
+    scanShort(NULL);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
+
+    FILE *dir = fopen("inputScannerTestTextFile.txt", "w+");
+    if (dir == NULL) {
+        fprintf(stderr, "Can't open the scan file in input scanner unit test.");
+        exit(SOMETHING_WENT_WRONG);
+    }
+
+    fprintf(dir, "n123");
+    fseek(dir, 0, SEEK_SET);
+
+    scanShort(dir);
     CuAssertIntEquals(cuTest, SOMETHING_WENT_WRONG, ERROR_TEST->errorCode);
 
-    fprintf(stdout, "\nPlease enter the long (123) to confirm the shortScanner:- ");
-    CuAssertIntEquals(cuTest, 123, scanShort());
 
-    fprintf(stdout, "\n");
+    fclose(dir);
+    dir = fopen("inputScannerTestTextFile.txt", "w+");
+    if (dir == NULL) {
+        fprintf(stderr, "Can't open the scan file in input scanner unit test.");
+        exit(SOMETHING_WENT_WRONG);
+    }
+    fprintf(dir, "123");
+    fseek(dir, 0, SEEK_SET);
+
+    CuAssertIntEquals(cuTest, 123, scanShort(dir));
+
+    fclose(dir);
 
 }
 

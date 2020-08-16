@@ -50,7 +50,7 @@ void trieAutoCompletionR(TrieNode *root, char *currentChar, int numOfSuggestion,
 
 void trieSuggestionR(TrieNode *root, char *word, String *string, ArrayList *wordsList, int numOfSuggestion);
 
-void triePrintAllWordsR(TrieNode *root, String *string);
+void triePrintAllWordsR(TrieNode *root, String *string, FILE *dir);
 
 int *generateIndices(char c);
 
@@ -529,9 +529,10 @@ void trieSuggestionR(TrieNode *root, char *word, String *string, ArrayList *word
  * then it will print all the words in the trie.
  *
  * @param trie the trie address
+ * @param dir the file pointer that the words will be printed in it
  */
 
-void triePrintAllWords(Trie *trie) {
+void triePrintAllWords(Trie *trie, FILE *dir) {
 
     if (trie == NULL) {
         #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
@@ -542,6 +543,15 @@ void triePrintAllWords(Trie *trie) {
      		exit(NULL_POINTER);
      	#endif
 
+    } else if (dir == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE , "file pointer", "trie data structure");
+        exit(INVALID_ARG);
+#endif
+
     }
 
     String *string = stringInitialization(10);
@@ -549,7 +559,7 @@ void triePrintAllWords(Trie *trie) {
     for (int i = 0; i < 26; i++) {
 
         if (trie->root->characters[i] != NULL)
-            triePrintAllWordsR(trie->root->characters[i], string);
+            triePrintAllWordsR(trie->root->characters[i], string, dir);
 
     }
 
@@ -569,19 +579,20 @@ void triePrintAllWords(Trie *trie) {
  *
  * @param root the node address
  * @param string an initialized String address
+ * @param dir the file pointer that the words will be  printed in it
  */
 
-void triePrintAllWordsR(TrieNode *root, String *string) {
+void triePrintAllWordsR(TrieNode *root, String *string, FILE *dir) {
     stringAppendChar(string, root->value);
 
     if (root->EOW) {
-        printString(string);
-        printf("\n");
+        printString(string, dir);
+        fprintf(dir, "\n");
     }
 
     for (int i = 0; i < 26; i++) {
         if (root->characters[i] != NULL)
-            triePrintAllWordsR(root->characters[i], string);
+            triePrintAllWordsR(root->characters[i], string, dir);
 
     }
 

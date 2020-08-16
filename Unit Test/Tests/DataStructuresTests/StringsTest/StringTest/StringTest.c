@@ -691,15 +691,29 @@ void testStringScanInput(CuTest *cuTest) {
 
     String *string = stringInitialization(1);
 
-    stringScanInput( NULL);
+    stringScanInput(NULL, NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
-    fprintf(stdout, "Please enter the sentence (my input) to test the scanInput in string data structure: ");
-    stringScanInput(string);
+    stringScanInput(string, NULL);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
+
+    FILE *dir = fopen("stringInputScannerTestTextFile.txt", "w+");
+    if (dir == NULL) {
+        fprintf(stderr, "Can't open the scan file in string unit test.");
+        exit(SOMETHING_WENT_WRONG);
+    }
+
+    fprintf(dir, "my input");
+    fseek(dir, 0, SEEK_SET);
+
+    stringScanInput(string, dir);
+
+    fclose(dir);
 
     CuAssertStrEquals(cuTest, "my input", string->string);
 
     destroyString(string);
+
 }
 
 
@@ -708,19 +722,29 @@ void testPrintString(CuTest *cuTest) {
 
     String *string = stringInitialization(1);
 
-    printString(NULL);
+    printString(NULL, NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
+    stringScanInput(string, NULL);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
+
+    FILE *dir = fopen("stringPrintTestTextFile.txt", "w+");
+    if (dir == NULL) {
+        fprintf(stderr, "Can't open the scan file in string unit test.");
+        exit(SOMETHING_WENT_WRONG);
+    }
+
     stringChangeStringC(string, "i love programming");
-    fprintf(stdout, "<<<<<<\n");
-    printString(string);
-    fprintf(stdout, "\n>>>>>>\n");
-    fprintf(stdout, "Please enter the word (yes) if the printed sentence is (i love programming) to test the printString in string data structure: ");
+    printString(string, dir);
 
     clearString(string);
-    stringScanInput(string);
 
-    CuAssertStrEquals(cuTest, "yes", string->string);
+    fseek(dir, 0, SEEK_SET);
+    stringScanInput(string, dir);
+
+    CuAssertStrEquals(cuTest, "i love programming", string->string);
+
+    fclose(dir);
 
     destroyString(string);
 
