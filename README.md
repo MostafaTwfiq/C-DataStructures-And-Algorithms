@@ -7,7 +7,7 @@
 
 **General overview:**
 
-![library C files](https://img.shields.io/badge/library%20files-163-%23607d8b.svg)  ![total_code](https://img.shields.io/badge/total%20code-29858-%232196f3.svg)  ![total_comments](https://img.shields.io/badge/total%20comments-6355-%232496f3.svg)
+![library C files](https://img.shields.io/badge/library%20files-163-%23607d8b.svg)  ![total_code](https://img.shields.io/badge/total%20code-29859-%232196f3.svg)  ![total_comments](https://img.shields.io/badge/total%20comments-6355-%232496f3.svg)
  ![implemented data structures](https://img.shields.io/badge/implemented%20data%20structures-+25-%232496f3.svg) ![implemented algorithms](https://img.shields.io/badge/implemented%20algorithms-+100-%232496f3.svg)
 
 ## Implemented Data Structures
