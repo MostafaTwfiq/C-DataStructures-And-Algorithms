@@ -11,6 +11,7 @@
 #include "DataStructuresTests/DequesTest/DequeTest/DequeTest.h"
 #include "DataStructuresTests/DequesTest/DoublyLinkedListDequeTest/DoublyLinkedListDequeTest.h"
 #include "DataStructuresTests/MatricesTest/MatrixTest/MatrixTest.h"
+#include "DataStructuresTests/PairsTest/PairTest/PairTest.h"
 #include "DataStructuresTests/StringsTest/StringTest/StringTest.h"
 #include "DataStructuresTests/TablesTest/HashMapTest/HashMapTest.h"
 #include "DataStructuresTests/TablesTest/DounlyLinkedListHashMapTest/DoublyLinkedListHashMapTest.h"
@@ -79,6 +80,8 @@ int main(void) {
     // FilesHandler Handlers tests:
     txtFileLoaderAlgUnitTest();
     inputScannerUnitTest();
+
+    pairUnitTest();
 
     return 0;
 

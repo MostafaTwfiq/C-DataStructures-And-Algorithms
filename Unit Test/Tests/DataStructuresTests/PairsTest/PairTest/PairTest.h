@@ -1,0 +1,6 @@
+#ifndef C_DATASTRUCTURES_PAIRTEST_H
+#define C_DATASTRUCTURES_PAIRTEST_H
+
+void pairUnitTest(void);
+
+#endif //C_DATASTRUCTURES_PAIRTEST_H

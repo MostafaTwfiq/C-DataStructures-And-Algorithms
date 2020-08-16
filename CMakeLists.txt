@@ -8,9 +8,9 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -lm")
 
 add_executable(C_DataStructures
 
-        main.c
+        #main.c
 
-        #"Unit Test/Tests/Tests.c"
+        "Unit Test/Tests/Tests.c"
 
         "Unit Test/CuTest"
         "Unit Test/CuTest/CuTest.c"
@@ -130,6 +130,8 @@ add_executable(C_DataStructures
         DataStructure/Matrices/Headers/Matrix.h
         DataStructure/Trees/Sources/BinaryHeap.c
         DataStructure/Trees/Headers/BinaryHeap.h
+        DataStructure/Pairs/Sources/Pair.c
+        DataStructure/Pairs/Headers/Pair.h
 
         "Unit Test/Tests/DataStructuresTests/ListsTest/VectorTest/VectorTest.c"
         "Unit Test/Tests/DataStructuresTests/ListsTest/VectorTest/VectorTest.c"
@@ -195,7 +197,10 @@ add_executable(C_DataStructures
         "Unit Test/Tests/DataStructuresTests/TreesTest/AVLTreeTest/AVLTreeTest.c"
         "Unit Test/Tests/DataStructuresTests/TreesTest/AVLTreeTest/AVLTreeTest.h"
         "Unit Test/Tests/DataStructuresTests/TreesTest/SplayTreeTest/SplayTreeTest.c"
-        "Unit Test/Tests/DataStructuresTests/TreesTest/SplayTreeTest/SplayTreeTest.h" DataStructure/Pairs/Pair.c DataStructure/Pairs/Pair.h)
+        "Unit Test/Tests/DataStructuresTests/TreesTest/SplayTreeTest/SplayTreeTest.h"
+        "Unit Test/Tests/DataStructuresTests/PairsTest/PairTest/PairTest.c"
+        "Unit Test/Tests/DataStructuresTests/PairsTest/PairTest/PairTest.h"
+        )
 
 if (NOT WIN32)
     target_link_libraries(C_DataStructures PRIVATE m)

@@ -1,6 +1,6 @@
-#include "Pair.h"
-#include "../../System/Utils.h"
-#include "../../Unit Test/CuTest/CuTest.h"
+#include "../Headers/Pair.h"
+#include "../../../System/Utils.h"
+#include "../../../Unit Test/CuTest/CuTest.h"
 
 
 

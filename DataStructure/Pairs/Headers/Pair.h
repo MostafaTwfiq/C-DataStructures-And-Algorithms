@@ -2,7 +2,9 @@
 #define C_DATASTRUCTURES_PAIR_H
 
 
-
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /** @struct Pair
 *  @brief This structure implements a basic generic Pair.
@@ -44,5 +46,9 @@ void pairSetSElemWtoFr(Pair *pair, void *newElem);
 void pairSwapElements(Pair *pair);
 
 void destroyPair(Pair *pair);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //C_DATASTRUCTURES_PAIR_H
