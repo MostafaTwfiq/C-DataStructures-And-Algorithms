@@ -6,6 +6,16 @@
 
 
 
+
+/** This function will allocate a new pair then it will return it's pointer.
+ *
+ * @param fElem the first element pointer
+ * @param sElem the second element pointer
+ * @param fFreeFn the first element free function pointer, that will be called to free the first element
+ * @param sFreeFn the second element free function pointer, that will be called to free the second element
+ * @return it will return the new allocated pair pointer
+ */
+
 Pair *pairInitialization(void *fElem, void *sElem, void (*fFreeFn)(void *), void (*sFreeFn)(void *)) {
 
     if (fElem == NULL) {
@@ -60,6 +70,15 @@ Pair *pairInitialization(void *fElem, void *sElem, void (*fFreeFn)(void *), void
 
 
 
+
+
+
+/** This function will return the first element in the pair.
+ *
+ * @param pair the pair pointer
+ * @return it will return the first element in the pair
+ */
+
 void *pairGetFElem(Pair *pair) {
 
     if (pair == NULL) {
@@ -77,6 +96,15 @@ void *pairGetFElem(Pair *pair) {
 }
 
 
+
+
+
+/** This function will return the second element in the pair.
+ *
+ * @param pair the pair pointer
+ * @return it will return the second element in the pair
+ */
+
 void *pairGetSElem(Pair *pair) {
 
     if (pair == NULL) {
@@ -93,6 +121,17 @@ void *pairGetSElem(Pair *pair) {
 
 }
 
+
+
+
+
+/** This function will set the first element in the pair.
+ *
+ * Note: this function will free the old element
+ *
+ * @param pair the pair pointer
+ * @param newElem the new element pointer
+ */
 
 void pairSetFElem(Pair *pair, void *newElem) {
 
@@ -120,6 +159,17 @@ void pairSetFElem(Pair *pair, void *newElem) {
 
 }
 
+
+
+
+
+/** This function will set the second element in the pair.
+ *
+ * Note: this function will free the old element
+ *
+ * @param pair the pair pointer
+ * @param newElem the new element pointer
+ */
 
 void pairSetSElem(Pair *pair, void *newElem) {
 
@@ -149,6 +199,85 @@ void pairSetSElem(Pair *pair, void *newElem) {
 
 
 
+
+
+
+/** This function will set the first element in the pair,
+ * without freeing the old element.
+ *
+ * @param pair the pair pointer
+ * @param newElem the new element pointer
+ */
+
+void pairSetFElemWtoFr(Pair *pair, void *newElem) {
+
+    if (pair == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "pair", "pair data structure");
+        exit(NULL_POINTER);
+#endif
+    } else if (newElem == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new element", "pair data structure");
+        exit(INVALID_ARG);
+#endif
+    }
+
+    pair->fElem = newElem;
+
+}
+
+
+
+
+
+/** This function will set the second element in the pair,
+ * without freeing the old element.
+ *
+ * @param pair the pair pointer
+ * @param newElem the new element pointer
+ */
+
+void pairSetSElemWtoFr(Pair *pair, void *newElem) {
+
+    if (pair == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "pair", "pair data structure");
+        exit(NULL_POINTER);
+#endif
+    } else if (newElem == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new element", "pair data structure");
+        exit(INVALID_ARG);
+#endif
+    }
+
+    pair->sElem = newElem;
+
+}
+
+
+
+
+
+
+/** This function will swap the pair elements.
+ *
+ * @param pair the pair pointer
+ */
+
 void pairSwapElements(Pair *pair) {
 
     if (pair == NULL) {
@@ -172,6 +301,13 @@ void pairSwapElements(Pair *pair) {
 }
 
 
+
+
+/** This function will destroy and free the pair and its elements.
+ *
+ * @param pair the pair pointer
+ */
+
 void destroyPair(Pair *pair) {
 
     if (pair == NULL) {
@@ -188,6 +324,5 @@ void destroyPair(Pair *pair) {
     pair->sFreeFn(pair->sElem);
 
     free(pair);
-
 
 }
