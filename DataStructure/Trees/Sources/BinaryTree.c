@@ -841,7 +841,7 @@ void clearBinaryTreeR(BinaryTree *tree, BinaryTreeNode *root) {
  * @param tree the tree pointer
  */
 
-void destroyBinaryTree(BinaryTree *tree) {
+void destroyBinaryTree(void *tree) {
 
     if (tree == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H

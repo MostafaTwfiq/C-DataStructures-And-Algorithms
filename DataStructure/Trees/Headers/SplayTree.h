@@ -65,7 +65,7 @@ void **splayTreeToArray(SplayTree *tree);
 
 void clearSplayTree(SplayTree *tree);
 
-void destroySplayTree(SplayTree *tree);
+void destroySplayTree(void *tree);
 
 
 #ifdef __cplusplus

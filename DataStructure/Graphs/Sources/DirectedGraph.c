@@ -578,7 +578,7 @@ void clearDirGraph(DirectedGraph *graph) {
  * @param graph the graph address
  */
 
-void destroyDirGraph(DirectedGraph *graph) {
+void destroyDirGraph(void *graph) {
 
     if (graph == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
@@ -591,7 +591,7 @@ void destroyDirGraph(DirectedGraph *graph) {
 
     }
 
-    destroyHashMap(graph->nodes);
+    destroyHashMap( ((DirectedGraph *)graph)->nodes );
     free(graph);
 
 }
@@ -869,7 +869,7 @@ void dirGraphBreadthFirstTraversal(DirectedGraph *graph, void *startVal, void (*
     }
 
     destroyHashSet(visitedNodes);
-    queueDestroy(nodesQueue);
+    destroyQueue(nodesQueue);
 
 }
 

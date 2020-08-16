@@ -76,7 +76,7 @@ void printDoublyLinkedList(DoublyLinkedList *linkedList, void (*printFun)(const 
 
 void doublyLinkedListClear(DoublyLinkedList *linkedList);
 
-void destroyDoublyLinkedList(DoublyLinkedList *linkedList);
+void destroyDoublyLinkedList(void *linkedList);
 
 #ifdef __cplusplus
 }

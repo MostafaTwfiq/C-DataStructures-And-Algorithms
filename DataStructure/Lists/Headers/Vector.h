@@ -68,7 +68,7 @@ void printVector(Vector *list, void (*printFun)(const void *));
 
 void clearVector(Vector *list);
 
-void destroyVector(Vector *list);
+void destroyVector(void *list);
 
 #ifdef __cplusplus
 }

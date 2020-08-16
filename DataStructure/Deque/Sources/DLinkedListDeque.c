@@ -347,7 +347,7 @@ void clearDLDeque(DLDeque *deque) {
  * @param deque the deque pointer
  */
 
-void destroyDLDeque(DLDeque *deque) {
+void destroyDLDeque(void *deque) {
 
     if (deque == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
@@ -360,7 +360,7 @@ void destroyDLDeque(DLDeque *deque) {
 
     }
 
-    destroyDoublyLinkedList(deque->linkedList);
+    destroyDoublyLinkedList( ((DLDeque *) deque)->linkedList );
     free(deque);
 
 }

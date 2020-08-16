@@ -73,7 +73,7 @@ void **binaryTreeToArray(BinaryTree *tree);
 
 void clearBinaryTree(BinaryTree *tree);
 
-void destroyBinaryTree(BinaryTree *tree);
+void destroyBinaryTree(void *tree);
 
 
 #ifdef __cplusplus

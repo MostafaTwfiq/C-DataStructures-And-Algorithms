@@ -49,6 +49,6 @@ void **binaryHeapToArray(BinaryHeap *heap);
 
 void clearBinaryHeap(BinaryHeap *heap);
 
-void destroyBinaryHeap(BinaryHeap *heap);
+void destroyBinaryHeap(void *heap);
 
 #endif //C_DATASTRUCTURES_BINARYHEAP_H

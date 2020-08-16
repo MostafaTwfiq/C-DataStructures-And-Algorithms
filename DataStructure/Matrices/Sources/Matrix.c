@@ -991,7 +991,7 @@ void clearMatrix(Matrix *matrix) {
  * @param matrix the matrix pointer
  */
 
-void destroyMatrix(Matrix *matrix) {
+void destroyMatrix(void *matrix) {
 
     if (matrix == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
@@ -1006,10 +1006,10 @@ void destroyMatrix(Matrix *matrix) {
 
     clearMatrix(matrix);
 
-    for (int i = 0; i < matrix->rowsNum; i++)
-        free(matrix->rows[i]);
+    for (int i = 0; i < ((Matrix *) matrix)->rowsNum; i++)
+        free( ((Matrix *) matrix)->rows[i] );
 
-    free(matrix->rows);
+    free( ((Matrix *) matrix)->rows );
     free(matrix);
 
 }

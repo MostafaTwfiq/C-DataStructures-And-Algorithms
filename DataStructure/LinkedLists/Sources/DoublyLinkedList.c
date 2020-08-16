@@ -1037,7 +1037,7 @@ void doublyLinkedListClear(DoublyLinkedList *linkedList) {
  * @param linkedList the linked list address
  */
 
-void destroyDoublyLinkedList(DoublyLinkedList *linkedList) {
+void destroyDoublyLinkedList(void *linkedList) {
 
     if (linkedList == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H

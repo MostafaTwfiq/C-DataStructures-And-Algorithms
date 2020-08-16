@@ -35,9 +35,9 @@ void queueEnqueue(Queue *arrayQueue, void *data);
 
 void *queueDequeue(Queue *arrayQueue);
 
-void queueDestroy(Queue *arrayQueue);
+void destroyQueue(void *arrayQueue);
 
-void queueClear(Queue *arrayQueue);
+void clearQueue(Queue *arrayQueue);
 
 int queueIsEmpty(Queue *arrayQueue);
 

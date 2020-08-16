@@ -60,7 +60,7 @@ int hashSetIsEmpty(HashSet *hashSet);
 
 void clearHashSet(HashSet *hashSet);
 
-void destroyHashSet(HashSet *hashSet);
+void destroyHashSet(void *hashSet);
 
 #ifdef __cplusplus
 }

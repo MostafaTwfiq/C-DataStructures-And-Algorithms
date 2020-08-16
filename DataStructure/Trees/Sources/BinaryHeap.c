@@ -568,7 +568,7 @@ void clearBinaryHeap(BinaryHeap *heap) {
  * @param heap the heap pointer
  */
 
-void destroyBinaryHeap(BinaryHeap *heap) {
+void destroyBinaryHeap(void *heap) {
 
     if (heap == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
@@ -582,7 +582,7 @@ void destroyBinaryHeap(BinaryHeap *heap) {
 
     clearBinaryHeap(heap);
 
-    free(heap->arr);
+    free(  ((BinaryHeap *) heap)->arr );
     free(heap);
 
 }

@@ -98,7 +98,7 @@ void **matrixToArray(Matrix *matrix);
 
 void clearMatrix(Matrix *matrix);
 
-void destroyMatrix(Matrix *matrix);
+void destroyMatrix(void *matrix);
 
 #ifdef __cplusplus
 }

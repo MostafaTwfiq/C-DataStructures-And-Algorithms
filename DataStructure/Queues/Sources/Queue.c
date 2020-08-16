@@ -150,7 +150,7 @@ void *queueDequeue(Queue *arrayQueue) {
  * @param arrayQueue Pointer to the Queue on the heap.
  */
 
-void queueDestroy(Queue *arrayQueue) {
+void destroyQueue(void *arrayQueue) {
 
     if (arrayQueue == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
@@ -163,9 +163,9 @@ void queueDestroy(Queue *arrayQueue) {
 
     }
 
-    queueClear(arrayQueue);
+    clearQueue(arrayQueue);
 
-    free(arrayQueue->memory);
+    free( ((Queue *) arrayQueue)->memory );
     free(arrayQueue);
 
 }
@@ -176,7 +176,7 @@ void queueDestroy(Queue *arrayQueue) {
  * @param arrayQueue Pointer to the Queue on the heap.
  */
 
-void queueClear(Queue *arrayQueue) {
+void clearQueue(Queue *arrayQueue) {
     if (arrayQueue == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
         ERROR_TEST->errorCode = NULL_POINTER;

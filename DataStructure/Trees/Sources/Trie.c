@@ -592,7 +592,7 @@ void clearTrie(Trie *trie) {
  * @param trie the trie address
  */
 
-void destroyTrie(Trie *trie) {
+void destroyTrie(void *trie) {
 
     if (trie == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
@@ -605,7 +605,8 @@ void destroyTrie(Trie *trie) {
 
     }
 
-    trie->root = destroyTrieNodes(trie->root);
+    Trie *trieToFree = (Trie *) trie;
+    trieToFree->root = destroyTrieNodes(trieToFree->root);
     free(trie);
 }
 

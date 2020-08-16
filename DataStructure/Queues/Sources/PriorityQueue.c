@@ -379,7 +379,7 @@ void clearPQueue(PriorityQueue *queue) {
  * @param queue the queue address
  */
 
-void destroyPQueue(PriorityQueue *queue) {
+void destroyPQueue(void *queue) {
 
     if (queue == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
@@ -393,7 +393,7 @@ void destroyPQueue(PriorityQueue *queue) {
     }
 
     clearPQueue(queue);
-    free(queue->arr);
+    free( ((PriorityQueue *) queue)->arr );
     free(queue);
 
 }

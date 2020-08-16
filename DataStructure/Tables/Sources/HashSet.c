@@ -535,7 +535,7 @@ void clearHashSet(HashSet *hashSet) {
  * @param hashSet the hash set address
  */
 
-void destroyHashSet(HashSet *hashSet) {
+void destroyHashSet(void *hashSet) {
 
     if (hashSet == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
@@ -550,7 +550,7 @@ void destroyHashSet(HashSet *hashSet) {
 
     clearHashSet(hashSet);
 
-    free(hashSet->arr);
+    free( ((HashSet *) hashSet)->arr );
     free(hashSet);
 
 }

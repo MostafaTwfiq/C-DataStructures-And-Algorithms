@@ -39,7 +39,7 @@ int dlStackContains(DLinkedListStack *fStack, void *item, int (*cmp)(const void 
 
 void clearDLStack(DLinkedListStack *stack);
 
-void destroyDLStack(DLinkedListStack *stack);
+void destroyDLStack(void *stack);
 
 #ifdef __cplusplus
 }

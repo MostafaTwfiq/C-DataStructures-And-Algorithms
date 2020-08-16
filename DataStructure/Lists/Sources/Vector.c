@@ -827,7 +827,7 @@ void clearVector(Vector *list) {
  * @param list the vector address
  */
 
-void destroyVector(Vector *list) {
+void destroyVector(void *list) {
 
     if (list == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
@@ -841,7 +841,7 @@ void destroyVector(Vector *list) {
     }
 
     clearVector(list);
-    free(list->arr);
+    free( ((Vector *) list)->arr );
     free(list);
 
 }

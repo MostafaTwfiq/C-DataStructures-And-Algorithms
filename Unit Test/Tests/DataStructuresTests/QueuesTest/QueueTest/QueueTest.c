@@ -65,7 +65,7 @@ void testValidQueueInitialization(CuTest *cuTest) {
     Queue *queue = queueInitialization(free);
     CuAssertPtrNotNull(cuTest, queue);
 
-    queueDestroy(queue);
+    destroyQueue(queue);
 
 }
 
@@ -89,7 +89,7 @@ void testQueueEnqueue(CuTest *cuTest) {
     for (int i = 0; i < queueGetLength(queue); i++)
         CuAssertIntEquals(cuTest, i + 1, *(int *) queue->memory[i]);
 
-    queueDestroy(queue);
+    destroyQueue(queue);
 
 }
 
@@ -116,7 +116,7 @@ void testQueueEnqueueAll(CuTest *cuTest) {
 
 
     free(arr);
-    queueDestroy(queue);
+    destroyQueue(queue);
 
 }
 
@@ -146,7 +146,7 @@ void testQueueDequeue(CuTest *cuTest) {
         free(currentItem);
     }
 
-    queueDestroy(queue);
+    destroyQueue(queue);
 
 }
 
@@ -175,7 +175,7 @@ void testQueuePeek(CuTest *cuTest) {
     }
 
 
-    queueDestroy(queue);
+    destroyQueue(queue);
 
 }
 
@@ -209,7 +209,7 @@ void testQueueGetLength(CuTest *cuTest) {
     free(queueDequeue(queue));
     CuAssertIntEquals(cuTest, 2, queueGetLength(queue));
 
-    queueDestroy(queue);
+    destroyQueue(queue);
 
 }
 
@@ -231,7 +231,7 @@ void testQueueIsEmpty(CuTest *cuTest) {
     free(queueDequeue(queue));
     CuAssertIntEquals(cuTest, 1, queueIsEmpty(queue));
 
-    queueDestroy(queue);
+    destroyQueue(queue);
 
 }
 
@@ -256,7 +256,7 @@ void testQueueToArray(CuTest *cuTest) {
 
 
     free(arr);
-    queueDestroy(queue);
+    destroyQueue(queue);
 
 }
 
@@ -265,7 +265,7 @@ void testClearQueue(CuTest *cuTest) {
 
     Queue *queue = queueInitialization(free);
 
-    queueClear(NULL);
+    clearQueue(NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
 
@@ -278,11 +278,11 @@ void testClearQueue(CuTest *cuTest) {
 
     CuAssertIntEquals(cuTest, 4, queueGetLength(queue));
 
-    queueClear(queue);
+    clearQueue(queue);
 
     CuAssertIntEquals(cuTest, 0, queueGetLength(queue));
 
-    queueDestroy(queue);
+    destroyQueue(queue);
 
 }
 
@@ -291,7 +291,7 @@ void testDestroyQueue(CuTest *cuTest) {
 
     Queue *queue = queueInitialization(free);
 
-    queueDestroy(NULL);
+    destroyQueue(NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     queueEnqueue(queue, generateIntPointerQT(1));
@@ -299,7 +299,7 @@ void testDestroyQueue(CuTest *cuTest) {
     queueEnqueue(queue, generateIntPointerQT(3));
     queueEnqueue(queue, generateIntPointerQT(4));
 
-    queueDestroy(queue);
+    destroyQueue(queue);
 
 }
 
@@ -394,7 +394,7 @@ void generalQueueTest(CuTest *cuTest) {
 
     free(structArr);
     free(queueArr);
-    queueDestroy(queue);
+    destroyQueue(queue);
 
 }
 

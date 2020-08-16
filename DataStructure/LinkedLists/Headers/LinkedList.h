@@ -74,7 +74,7 @@ void printLinkedList(LinkedList *linkedList, void (*printFun)(const void *));
 
 void linkedListClear(LinkedList *linkedList);
 
-void destroyLinkedList(LinkedList *linkedList);
+void destroyLinkedList(void *linkedList);
 
 #ifdef __cplusplus
 }

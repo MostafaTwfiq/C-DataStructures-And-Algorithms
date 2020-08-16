@@ -1233,7 +1233,7 @@ void txtLoaderChangeFile(TxtFileLoader *txtFileLoader, char *newFileDir) {
  * @param txtFileLoader the text file loader pointer
  */
 
-void destroyTxtFileLoader(TxtFileLoader *txtFileLoader) {
+void destroyTxtFileLoader(void *txtFileLoader) {
 
     if (txtFileLoader == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
@@ -1245,7 +1245,7 @@ void destroyTxtFileLoader(TxtFileLoader *txtFileLoader) {
 #endif
     }
 
-    free(txtFileLoader->dir);
+    free( ((TxtFileLoader *) txtFileLoader)->dir );
     free(txtFileLoader);
 
 }

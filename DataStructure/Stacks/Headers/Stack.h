@@ -48,7 +48,7 @@ int stackEquals(Stack *stack, Stack *stack1, int (*cmp)(const void *, const void
 
 void clearStack(Stack *stack);
 
-void destroyStack(Stack *stack);
+void destroyStack(void *stack);
 
 #ifdef __cplusplus
 }

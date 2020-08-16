@@ -337,7 +337,7 @@ void clearSQueue(SQueue *queue) {
  * @param queue the queue address
  */
 
-void destroySQueue(SQueue *queue) {
+void destroySQueue(void *queue) {
 
     if (queue == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H

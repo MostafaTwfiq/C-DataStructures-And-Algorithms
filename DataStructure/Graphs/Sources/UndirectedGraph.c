@@ -837,7 +837,7 @@ void clearUDGraph(UndirectedGraph *graph) {
  * @param graph the graph pointer
  */
 
-void destroyUDGraph(UndirectedGraph *graph) {
+void destroyUDGraph(void *graph) {
 
     if (graph == NULL) {
 
@@ -851,7 +851,7 @@ void destroyUDGraph(UndirectedGraph *graph) {
 
     }
 
-    destroyHashMap(graph->nodes);
+    destroyHashMap( ((UndirectedGraph *)graph)->nodes );
     free(graph);
 
 }
@@ -1038,7 +1038,7 @@ void UDGraphBreadthFirstTraversal(UndirectedGraph *graph, void *startVal, void (
     }
 
 
-    queueDestroy(nodesQueue);
+    destroyQueue(nodesQueue);
     destroyHashSet(visitedNodes);
 
 }

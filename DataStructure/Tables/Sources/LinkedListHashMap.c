@@ -710,7 +710,7 @@ void clearLLHashMap(LinkedListHashMap *map) {
  * @param map the hash map address
  */
 
-void destroyLLHashMap(LinkedListHashMap *map) {
+void destroyLLHashMap(void *map) {
     if (map == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
         ERROR_TEST->errorCode = NULL_POINTER;
@@ -724,7 +724,7 @@ void destroyLLHashMap(LinkedListHashMap *map) {
 
     clearLLHashMap(map);
 
-    free(map->arr);
+    free( ((LinkedListHashMap *) map)->arr );
     free(map);
 
 }

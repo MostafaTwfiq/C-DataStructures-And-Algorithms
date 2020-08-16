@@ -212,7 +212,7 @@ void freeRBNode(RBNode *node, void (*freeItem)(void *)) {
  * @param node Exact Reference to root node to start freeing at.
 **/
 
-void destroyRBTree(RBTree *tree) {
+void destroyRBTree(void *tree) {
     clearRBTree(tree);
 
     free(tree);

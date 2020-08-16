@@ -48,7 +48,7 @@ int dirGraphIsEmpty(DirectedGraph *graph);
 
 void clearDirGraph(DirectedGraph *graph);
 
-void destroyDirGraph(DirectedGraph *graph);
+void destroyDirGraph(void *graph);
 
 void dirGraphPrint(DirectedGraph *graph, void (*printVal)(void *));
 

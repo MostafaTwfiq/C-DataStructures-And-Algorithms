@@ -70,7 +70,7 @@ void printArrayList(ArrayList *list, void (*printFun)(const void *));
 
 void clearArrayList(ArrayList *list);
 
-void destroyArrayList(ArrayList *list);
+void destroyArrayList(void *list);
 
 #ifdef __cplusplus
 }

@@ -54,7 +54,7 @@ int dequeIsEmpty(Deque *deque);
 
 void clearDeque(Deque *deque);
 
-void destroyDeque(Deque *deque);
+void destroyDeque(void *deque);
 
 #ifdef __cplusplus
 }

@@ -61,6 +61,6 @@ void txtLoaderClearFile(TxtFileLoader *txtFileLoader);
 
 void txtLoaderChangeFile(TxtFileLoader *txtFileLoader, char *newFileDir);
 
-void destroyTxtFileLoader(TxtFileLoader *txtFileLoader);
+void destroyTxtFileLoader(void *txtFileLoader);
 
 #endif //C_DATASTRUCTURES_TXTFILELOADER_H

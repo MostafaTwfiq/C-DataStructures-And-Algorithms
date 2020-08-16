@@ -448,7 +448,7 @@ void clearDeque(Deque *deque) {
  * @param deque the deque pointer
  */
 
-void destroyDeque(Deque *deque) {
+void destroyDeque(void *deque) {
 
     if (deque == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
@@ -462,6 +462,6 @@ void destroyDeque(Deque *deque) {
     }
 
     clearDeque(deque);
-    free(deque->arr);
+    free( ((Deque *) deque)->arr );
     free(deque);
 }

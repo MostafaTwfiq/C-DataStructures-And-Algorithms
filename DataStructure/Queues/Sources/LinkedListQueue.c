@@ -289,7 +289,7 @@ void clearLLQueue(LinkedListQueue *queue) {
  * @param queue the queue address
  */
 
-void destroyLLQueue(LinkedListQueue *queue) {
+void destroyLLQueue(void *queue) {
 
     if (queue == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
@@ -302,7 +302,7 @@ void destroyLLQueue(LinkedListQueue *queue) {
 
     }
 
-    destroyLinkedList(queue->linkedList);
+    destroyLinkedList( ((LinkedListQueue *)queue)->linkedList);
     free(queue);
 
 }

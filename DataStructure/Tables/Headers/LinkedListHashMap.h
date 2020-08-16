@@ -90,7 +90,7 @@ int lLHashMapIsEmpty(LinkedListHashMap *map);
 
 void clearLLHashMap(LinkedListHashMap *map);
 
-void destroyLLHashMap(LinkedListHashMap *map);
+void destroyLLHashMap(void *map);
 
 #ifdef __cplusplus
 }

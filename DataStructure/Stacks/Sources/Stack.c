@@ -424,7 +424,7 @@ void clearStack(Stack *stack) {
  * @param stack Reference pointer to a Stack.
  **/
 
-void destroyStack(Stack *stack) {
+void destroyStack(void *stack) {
 
     if (stack == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
@@ -439,7 +439,7 @@ void destroyStack(Stack *stack) {
 
     clearStack(stack);
 
-    free(stack->memory);
+    free( ((Stack *) stack)->memory );
     free(stack);
 
 }

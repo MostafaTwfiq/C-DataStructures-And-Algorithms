@@ -37,7 +37,7 @@ void **sQueueToArray(SQueue *queue);
 
 void clearSQueue(SQueue *queue);
 
-void destroySQueue(SQueue *queue);
+void destroySQueue(void *queue);
 
 #ifdef __cplusplus
 }

@@ -41,7 +41,7 @@ int dLDequeIsEmpty(DLDeque *deque);
 
 void clearDLDeque(DLDeque *deque);
 
-void destroyDLDeque(DLDeque *deque);
+void destroyDLDeque(void *deque);
 
 #ifdef __cplusplus
 }

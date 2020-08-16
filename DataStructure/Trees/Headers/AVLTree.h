@@ -78,7 +78,7 @@ void avlTreeBreadthFirstTraversal(AVLTree *tree, void (*printFun)(void *));
 
 void clearAVLTree(AVLTree *tree);
 
-void destroyAVLTree(AVLTree *tree);
+void destroyAVLTree(void *tree);
 
 
 #ifdef __cplusplus

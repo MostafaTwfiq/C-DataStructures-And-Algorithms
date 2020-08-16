@@ -839,7 +839,7 @@ void clearSplayTreeR(SplayTree *tree, SplayNode *root) {
  * @param tree the tree pointer
  */
 
-void destroySplayTree(SplayTree *tree) {
+void destroySplayTree(void *tree) {
 
     if (tree == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H

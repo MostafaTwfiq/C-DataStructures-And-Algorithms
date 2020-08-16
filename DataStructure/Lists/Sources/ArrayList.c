@@ -827,7 +827,7 @@ void clearArrayList(ArrayList *list) {
  * @param list the array list address
  */
 
-void destroyArrayList(ArrayList *list) {
+void destroyArrayList(void *list) {
 
     if (list == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
@@ -841,7 +841,7 @@ void destroyArrayList(ArrayList *list) {
     }
 
     clearArrayList(list);
-    free(list->arr);
+    free( ((ArrayList *) list)->arr );
     free(list);
 
 }

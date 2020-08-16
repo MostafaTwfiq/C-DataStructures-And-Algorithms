@@ -751,7 +751,7 @@ void clearHashMap(HashMap *map) {
  * @param map the hash map address
  */
 
-void destroyHashMap(HashMap *map) {
+void destroyHashMap(void *map) {
 
     if (map == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
@@ -765,7 +765,7 @@ void destroyHashMap(HashMap *map) {
     }
 
     clearHashMap(map);
-    free(map->arr);
+    free( ((HashMap *)map)->arr );
     free(map);
 
 }

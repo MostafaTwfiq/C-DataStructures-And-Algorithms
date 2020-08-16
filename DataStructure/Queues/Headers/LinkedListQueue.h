@@ -35,7 +35,7 @@ void **lLQueueToArray(LinkedListQueue *queue);
 
 void clearLLQueue(LinkedListQueue *queue);
 
-void destroyLLQueue(LinkedListQueue *queue);
+void destroyLLQueue(void *queue);
 
 #ifdef __cplusplus
 }

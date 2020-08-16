@@ -52,7 +52,7 @@ void **pQueueToArray(PriorityQueue *queue);
 
 void clearPQueue(PriorityQueue *queue);
 
-void destroyPQueue(PriorityQueue *queue);
+void destroyPQueue(void *queue);
 
 #ifdef __cplusplus
 }

@@ -1086,7 +1086,7 @@ void clearAVLTreeR(AVLTreeNode *root, void (*freeFun)(void *)) {
  * @param tree the tree pointer
  */
 
-void destroyAVLTree(AVLTree *tree) {
+void destroyAVLTree(void *tree) {
 
     if (tree == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H

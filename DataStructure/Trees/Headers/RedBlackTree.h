@@ -83,7 +83,7 @@ void rBPostOrderTraversal(RBTree *tree, void (*printFun)(const void *, COLOR));
 
 void clearRBTree(RBTree *tree);
 
-void destroyRBTree(RBTree *tree);
+void destroyRBTree(void *tree);
 
 void rBInsertAll(RBTree *rbTree, void **array, int length);
 

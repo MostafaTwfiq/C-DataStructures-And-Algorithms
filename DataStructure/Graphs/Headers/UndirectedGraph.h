@@ -53,7 +53,7 @@ int udGraphIsEmpty(UndirectedGraph *graph);
 
 void clearUDGraph(UndirectedGraph *graph);
 
-void destroyUDGraph(UndirectedGraph *graph);
+void destroyUDGraph(void *graph);
 
 int udGraphGetShortestDistance(UndirectedGraph *graph, void *startVal, void *endVal);
 

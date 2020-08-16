@@ -400,7 +400,7 @@ void clearDLStack(DLinkedListStack *stack) {
  * @param stack the stack address
  */
 
-void destroyDLStack(DLinkedListStack *stack) {
+void destroyDLStack(void *stack) {
     if (stack == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
         ERROR_TEST->errorCode = NULL_POINTER;
@@ -412,7 +412,7 @@ void destroyDLStack(DLinkedListStack *stack) {
 
     }
 
-    destroyDoublyLinkedList(stack->linkedList);
+    destroyDoublyLinkedList( ((DLinkedListStack *) stack)->linkedList );
     free(stack);
 
 }

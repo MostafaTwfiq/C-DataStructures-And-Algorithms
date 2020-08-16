@@ -1035,7 +1035,7 @@ void linkedListClear(LinkedList *linkedList) {
  * @param linkedList the linked list pointer
  */
 
-void destroyLinkedList(LinkedList *linkedList) {
+void destroyLinkedList(void *linkedList) {
 
     if (linkedList == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H

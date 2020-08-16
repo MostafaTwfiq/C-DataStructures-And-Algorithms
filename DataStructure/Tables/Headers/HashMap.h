@@ -91,7 +91,7 @@ int hashMapIsEmpty(HashMap *map);
 
 void clearHashMap(HashMap *map);
 
-void destroyHashMap(HashMap *map);
+void destroyHashMap(void *map);
 
 #ifdef __cplusplus
 }

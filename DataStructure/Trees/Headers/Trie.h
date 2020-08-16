@@ -57,7 +57,7 @@ void triePrintAllWords(Trie *trie, FILE *dir);
 
 void clearTrie(Trie *trie);
 
-void destroyTrie(Trie *trie);
+void destroyTrie(void *trie);
 
 #ifdef __cplusplus
 }
