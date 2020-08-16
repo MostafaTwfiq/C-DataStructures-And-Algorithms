@@ -18,7 +18,7 @@ arrayListInitialization(int initialLength, void (*freeFun)(void *), int (*compar
     if (freeFun == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
         ERROR_TEST->errorCode = INVALID_ARG;
-       return NULL;
+        return NULL;
 #else
         fprintf(stderr, INVALID_ARG_MESSAGE, "free function", "array list data structure");
         exit(INVALID_ARG);
@@ -841,7 +841,7 @@ void destroyArrayList(void *list) {
     }
 
     clearArrayList(list);
-    free( ((ArrayList *) list)->arr );
+    free(((ArrayList *) list)->arr);
     free(list);
 
 }

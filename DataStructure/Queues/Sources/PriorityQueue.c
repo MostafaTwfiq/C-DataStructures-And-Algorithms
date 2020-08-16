@@ -117,7 +117,7 @@ void pQueueEnqueue(PriorityQueue *queue, void *item) {
         if (!memcpy(tempArr, queue->arr + queue->fPointer, sizeof(void *) * (queue->count - queue->fPointer))) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
             ERROR_TEST->errorCode = FAILED_COPY;
-           return;
+            return;
 #else
             fprintf(stderr, FAILED_COPY_MESSAGE, "new queue array", "priority queue data structure");
             exit(FAILED_COPY);
@@ -392,7 +392,7 @@ void destroyPQueue(void *queue) {
     }
 
     clearPQueue(queue);
-    free( ((PriorityQueue *) queue)->arr );
+    free(((PriorityQueue *) queue)->arr);
     free(queue);
 
 }

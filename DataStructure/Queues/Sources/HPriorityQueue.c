@@ -4,8 +4,6 @@
 #include "../../Trees/Headers/BinaryHeap.h"
 
 
-
-
 /** This function will return the first child index,
  * of the passed parent index.
  *
@@ -50,7 +48,6 @@ void hpQueueSwap(void **arr, int fIndex, int sIndex) {
 }
 
 
-
 /** This function will heap down the value in the passed index until it be in the right place.
  *
  * @param arr the array pointer
@@ -89,7 +86,6 @@ void hpQueueHeapDown(void **arr, int currentIndex, int length, int (*cmp)(const 
     }
 
 }
-
 
 
 /** This function will allocate a new heap priority queue then it will return its pointer.
@@ -132,9 +128,6 @@ HPriorityQueue *hPriorityQueueInitialization(void (*freeFn)(void *), int (*cmp)(
 }
 
 
-
-
-
 /** This function will insert the passed item in the queue.
  *
  * @param queue the queue pointer
@@ -167,8 +160,6 @@ void hpQueueEnqueue(HPriorityQueue *queue, void *item) {
 }
 
 
-
-
 /** This function will insert all the passed array items in the queue.
  *
  * @param queue the queue pointer
@@ -199,8 +190,6 @@ void hpQueueEnqueueAll(HPriorityQueue *queue, void *items, int length) {
     binaryHeapInsertAll(queue->heap, items, length);
 
 }
-
-
 
 
 /** This function will remove the first item from the queue,
@@ -237,8 +226,6 @@ void *hpQueueDequeue(HPriorityQueue *queue) {
 }
 
 
-
-
 /** This function will return the first item in the queue without removing it from the queue.
  *
  * @param queue the queue pointer
@@ -272,8 +259,6 @@ void *hpQueuePeek(HPriorityQueue *queue) {
 }
 
 
-
-
 /** This function will return the number of items in the queue.
  *
  * @param queue the queue pointer
@@ -296,8 +281,6 @@ int hpQueueGetLength(HPriorityQueue *queue) {
     return binaryHeapGetSize(queue->heap);
 
 }
-
-
 
 
 /** This function will check if the queue is empty or not,
@@ -326,8 +309,6 @@ int hpQueueIsEmpty(HPriorityQueue *queue) {
 }
 
 
-
-
 /** This function will return a double void array that contains the queue items.
  *
  * Note: the array will be sorted.
@@ -349,7 +330,7 @@ void **hpQueueToArray(HPriorityQueue *queue) {
 
     }
 
-    void **arr =  binaryHeapToArray(queue->heap);
+    void **arr = binaryHeapToArray(queue->heap);
 
     int length = hpQueueGetLength(queue);
 
@@ -364,8 +345,6 @@ void **hpQueueToArray(HPriorityQueue *queue) {
     return arr;
 
 }
-
-
 
 
 /** This function will clear the queue and free all it's items,
@@ -390,8 +369,6 @@ void clearHPQueue(HPriorityQueue *queue) {
     clearBinaryHeap(queue->heap);
 
 }
-
-
 
 
 /** This function will destroy and free the queue and it's items.

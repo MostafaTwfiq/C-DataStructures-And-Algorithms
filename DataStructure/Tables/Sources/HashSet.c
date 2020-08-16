@@ -550,7 +550,7 @@ void destroyHashSet(void *hashSet) {
 
     clearHashSet(hashSet);
 
-    free( ((HashSet *) hashSet)->arr );
+    free(((HashSet *) hashSet)->arr);
     free(hashSet);
 
 }

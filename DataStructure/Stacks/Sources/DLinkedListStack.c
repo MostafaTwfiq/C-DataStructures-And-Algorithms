@@ -412,7 +412,7 @@ void destroyDLStack(void *stack) {
 
     }
 
-    destroyDoublyLinkedList( ((DLinkedListStack *) stack)->linkedList );
+    destroyDoublyLinkedList(((DLinkedListStack *) stack)->linkedList);
     free(stack);
 
 }

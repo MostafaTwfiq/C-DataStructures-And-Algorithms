@@ -591,7 +591,7 @@ void destroyDirGraph(void *graph) {
 
     }
 
-    destroyHashMap( ((DirectedGraph *)graph)->nodes );
+    destroyHashMap(((DirectedGraph *) graph)->nodes);
     free(graph);
 
 }

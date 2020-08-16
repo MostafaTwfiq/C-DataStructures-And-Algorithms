@@ -91,7 +91,7 @@ void queueEnqueue(Queue *arrayQueue, void *data) {
         if (tempArr == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
             ERROR_TEST->errorCode = FAILED_ALLOCATION;
-           return;
+            return;
 #else
             fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "items memory", "queue data structure");
             exit(FAILED_ALLOCATION);
@@ -165,7 +165,7 @@ void destroyQueue(void *arrayQueue) {
 
     clearQueue(arrayQueue);
 
-    free( ((Queue *) arrayQueue)->memory );
+    free(((Queue *) arrayQueue)->memory);
     free(arrayQueue);
 
 }

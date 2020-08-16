@@ -2,7 +2,7 @@
 #define C_DATASTRUCTURES_HEAPPRIORITYQUEUETEST_H
 
 
-void heapHPriorityQueueUnitTest(void);
+void heapPriorityQueueUnitTest(void);
 
 
 #endif //C_DATASTRUCTURES_HEAPPRIORITYQUEUETEST_H

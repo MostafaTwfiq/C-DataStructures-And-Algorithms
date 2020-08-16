@@ -1007,9 +1007,9 @@ void destroyMatrix(void *matrix) {
     clearMatrix(matrix);
 
     for (int i = 0; i < ((Matrix *) matrix)->rowsNum; i++)
-        free( ((Matrix *) matrix)->rows[i] );
+        free(((Matrix *) matrix)->rows[i]);
 
-    free( ((Matrix *) matrix)->rows );
+    free(((Matrix *) matrix)->rows);
     free(matrix);
 
 }

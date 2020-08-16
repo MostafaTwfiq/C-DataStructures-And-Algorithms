@@ -66,7 +66,7 @@ void stackPush(Stack *stack, void *data) {
     if (stack == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
         ERROR_TEST->errorCode = NULL_POINTER;
-       return;
+        return;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "stack data structure");
         exit(NULL_POINTER);
@@ -162,7 +162,7 @@ void **stackToArray(Stack *stack) {
     if (arr == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
         ERROR_TEST->errorCode = FAILED_ALLOCATION;
-         return NULL;
+        return NULL;
 #else
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "stack data structure");
         exit(FAILED_ALLOCATION);
@@ -439,7 +439,7 @@ void destroyStack(void *stack) {
 
     clearStack(stack);
 
-    free( ((Stack *) stack)->memory );
+    free(((Stack *) stack)->memory);
     free(stack);
 
 }

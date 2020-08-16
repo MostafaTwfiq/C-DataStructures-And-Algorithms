@@ -765,7 +765,7 @@ void destroyHashMap(void *map) {
     }
 
     clearHashMap(map);
-    free( ((HashMap *)map)->arr );
+    free(((HashMap *) map)->arr);
     free(map);
 
 }

@@ -429,7 +429,7 @@ CuSuite *createHeapHPriorityQueueTestsSuite(void) {
 }
 
 
-void heapHPriorityQueueUnitTest(void) {
+void heapPriorityQueueUnitTest(void) {
 
     ERROR_TEST = (ErrorTestStruct *) malloc(sizeof(ErrorTestStruct));
 

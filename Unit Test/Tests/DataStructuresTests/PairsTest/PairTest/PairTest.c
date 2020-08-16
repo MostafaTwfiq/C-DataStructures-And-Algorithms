@@ -52,8 +52,6 @@ char *generateCharPointerPT(char *ch) {
 }
 
 
-
-
 void testInvalidPairInitialization(CuTest *cuTest) {
 
     int fElem, sElem;
@@ -71,7 +69,6 @@ void testInvalidPairInitialization(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 }
-
 
 
 void testValidPairInitialization(CuTest *cuTest) {
@@ -99,7 +96,6 @@ void testPairGetFElem(CuTest *cuTest) {
 }
 
 
-
 void testPairGetSElem(CuTest *cuTest) {
 
     Pair *pair = pairInitialization(generateCharPointerPT("one"), generateIntPointerPT(1), free, free);
@@ -112,8 +108,6 @@ void testPairGetSElem(CuTest *cuTest) {
     destroyPair(pair);
 
 }
-
-
 
 
 void testPairSetFElem(CuTest *cuTest) {
@@ -134,7 +128,6 @@ void testPairSetFElem(CuTest *cuTest) {
 }
 
 
-
 void testPairSetSElem(CuTest *cuTest) {
 
     Pair *pair = pairInitialization(generateCharPointerPT("one"), generateIntPointerPT(1), free, free);
@@ -153,7 +146,6 @@ void testPairSetSElem(CuTest *cuTest) {
     destroyPair(pair);
 
 }
-
 
 
 void testPairSetFElemWtoFr(CuTest *cuTest) {
@@ -180,7 +172,6 @@ void testPairSetFElemWtoFr(CuTest *cuTest) {
 }
 
 
-
 void testPairSetSElemWtoFr(CuTest *cuTest) {
 
     Pair *pair = pairInitialization(generateCharPointerPT("one"), generateIntPointerPT(1), free, free);
@@ -205,7 +196,6 @@ void testPairSetSElemWtoFr(CuTest *cuTest) {
 }
 
 
-
 void testPairSwapElements(CuTest *cuTest) {
 
     Pair *pair = pairInitialization(generateCharPointerPT("one"), generateIntPointerPT(1), free, free);
@@ -226,8 +216,6 @@ void testPairSwapElements(CuTest *cuTest) {
 }
 
 
-
-
 void testDestroyPair(CuTest *cuTest) {
 
     Pair *pair = pairInitialization(generateCharPointerPT("one"), generateIntPointerPT(1), free, free);
@@ -238,7 +226,6 @@ void testDestroyPair(CuTest *cuTest) {
     destroyPair(pair);
 
 }
-
 
 
 CuSuite *createPairTestsSuite(void) {

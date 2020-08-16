@@ -79,7 +79,7 @@ void vectorAdd(Vector *list, void *item) {
     if (list == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
         ERROR_TEST->errorCode = NULL_POINTER;
-       return;
+        return;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
         exit(NULL_POINTER);
@@ -88,7 +88,7 @@ void vectorAdd(Vector *list, void *item) {
     } else if (item == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
         ERROR_TEST->errorCode = INVALID_ARG;
-       return;
+        return;
 #else
         fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "vector data structure");
         exit(INVALID_ARG);
@@ -103,7 +103,7 @@ void vectorAdd(Vector *list, void *item) {
         if (list->arr == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
             ERROR_TEST->errorCode = FAILED_REALLOCATION;
-           return;
+            return;
 #else
             fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "items memory", "vector data structure");
             exit(FAILED_REALLOCATION);
@@ -462,7 +462,7 @@ int vectorGetIndex(Vector *list, void *item) {
     } else if (list->comparator == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
         ERROR_TEST->errorCode = NULL_POINTER;
-       return -1;
+        return -1;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "comparator function", "vector data structure");
         exit(NULL_POINTER);
@@ -841,7 +841,7 @@ void destroyVector(void *list) {
     }
 
     clearVector(list);
-    free( ((Vector *) list)->arr );
+    free(((Vector *) list)->arr);
     free(list);
 
 }

@@ -302,7 +302,7 @@ void destroyLLQueue(void *queue) {
 
     }
 
-    destroyLinkedList( ((LinkedListQueue *)queue)->linkedList);
+    destroyLinkedList(((LinkedListQueue *) queue)->linkedList);
     free(queue);
 
 }

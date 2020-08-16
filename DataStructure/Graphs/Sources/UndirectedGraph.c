@@ -851,7 +851,7 @@ void destroyUDGraph(void *graph) {
 
     }
 
-    destroyHashMap( ((UndirectedGraph *)graph)->nodes );
+    destroyHashMap(((UndirectedGraph *) graph)->nodes);
     free(graph);
 
 }

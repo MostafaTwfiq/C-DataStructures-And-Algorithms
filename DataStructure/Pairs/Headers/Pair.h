@@ -24,6 +24,7 @@ typedef struct Pair {
     void *sElem;
 
     void (*fFreeFn)(void *);
+
     void (*sFreeFn)(void *);
 
 } Pair;

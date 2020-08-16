@@ -12,7 +12,7 @@ typedef struct HPriorityQueue {
 
     struct BinaryHeap *heap;
 
-}HPriorityQueue;
+} HPriorityQueue;
 
 
 HPriorityQueue *hPriorityQueueInitialization(void (*freeFn)(void *), int (*cmp)(const void *, const void *));

@@ -462,6 +462,6 @@ void destroyDeque(void *deque) {
     }
 
     clearDeque(deque);
-    free( ((Deque *) deque)->arr );
+    free(((Deque *) deque)->arr);
     free(deque);
 }

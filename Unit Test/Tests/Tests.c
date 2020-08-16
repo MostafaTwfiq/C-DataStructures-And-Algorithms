@@ -47,9 +47,11 @@ int main(void) {
     stackQueueUnitTest();
     linkedListQueueUnitTest();
     priorityQueueUnitTest();
+    heapPriorityQueueUnitTest();
     dequeUnitTest();
     doublyLinkedListDequeUnitTest();
     matrixUnitTest();
+    pairUnitTest();
     stringUnitTest();
     hashMapUnitTest();
     doublyLinkedListHashMapUnitTest();
@@ -81,10 +83,6 @@ int main(void) {
     // FilesHandler Handlers tests:
     txtFileLoaderAlgUnitTest();
     inputScannerUnitTest();
-
-    pairUnitTest();
-
-    heapHPriorityQueueUnitTest();
 
     return 0;
 

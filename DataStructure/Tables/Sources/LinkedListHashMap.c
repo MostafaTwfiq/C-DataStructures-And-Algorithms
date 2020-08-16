@@ -724,7 +724,7 @@ void destroyLLHashMap(void *map) {
 
     clearLLHashMap(map);
 
-    free( ((LinkedListHashMap *) map)->arr );
+    free(((LinkedListHashMap *) map)->arr);
     free(map);
 
 }

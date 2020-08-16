@@ -360,7 +360,7 @@ void destroyDLDeque(void *deque) {
 
     }
 
-    destroyDoublyLinkedList( ((DLDeque *) deque)->linkedList );
+    destroyDoublyLinkedList(((DLDeque *) deque)->linkedList);
     free(deque);
 
 }

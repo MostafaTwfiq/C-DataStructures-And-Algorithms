@@ -3,10 +3,6 @@
 #include "../../../Unit Test/CuTest/CuTest.h"
 
 
-
-
-
-
 /** This function will allocate a new pair then it will return it's pointer.
  *
  * @param fElem the first element pointer
@@ -68,11 +64,6 @@ Pair *pairInitialization(void *fElem, void *sElem, void (*fFreeFn)(void *), void
 }
 
 
-
-
-
-
-
 /** This function will return the first element in the pair.
  *
  * @param pair the pair pointer
@@ -96,9 +87,6 @@ void *pairGetFElem(Pair *pair) {
 }
 
 
-
-
-
 /** This function will return the second element in the pair.
  *
  * @param pair the pair pointer
@@ -120,9 +108,6 @@ void *pairGetSElem(Pair *pair) {
     return pair->sElem;
 
 }
-
-
-
 
 
 /** This function will set the first element in the pair.
@@ -160,9 +145,6 @@ void pairSetFElem(Pair *pair, void *newElem) {
 }
 
 
-
-
-
 /** This function will set the second element in the pair.
  *
  * Note: this function will free the old element
@@ -198,10 +180,6 @@ void pairSetSElem(Pair *pair, void *newElem) {
 }
 
 
-
-
-
-
 /** This function will set the first element in the pair,
  * without freeing the old element.
  *
@@ -232,9 +210,6 @@ void pairSetFElemWtoFr(Pair *pair, void *newElem) {
     pair->fElem = newElem;
 
 }
-
-
-
 
 
 /** This function will set the second element in the pair,
@@ -269,10 +244,6 @@ void pairSetSElemWtoFr(Pair *pair, void *newElem) {
 }
 
 
-
-
-
-
 /** This function will swap the pair elements.
  *
  * @param pair the pair pointer
@@ -299,8 +270,6 @@ void pairSwapElements(Pair *pair) {
     pair->sFreeFn = tempFreeFn;
 
 }
-
-
 
 
 /** This function will destroy and free the pair and its elements.
