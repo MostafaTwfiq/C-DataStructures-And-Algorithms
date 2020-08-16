@@ -16,7 +16,29 @@
 
 HPriorityQueue *hPriorityQueueInitialization(void (*freeFn)(void *), int (*cmp)(const void *, const void *)) {
 
+    if (freeFn == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "heap priority queue data structure");
+        exit(INVALID_ARG);
+#endif
+    } else if (cmp == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "heap priority queue data structure");
+        exit(INVALID_ARG);
+#endif
+    }
+
     HPriorityQueue *queue = (HPriorityQueue *) malloc(sizeof(HPriorityQueue));
+    if (queue == NULL) {
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "queue", "heap priority queue data structure");
+        exit(FAILED_ALLOCATION);
+    }
 
     queue->heap = binaryHeapInitialization(freeFn, cmp);
 
@@ -37,9 +59,22 @@ HPriorityQueue *hPriorityQueueInitialization(void (*freeFn)(void *), int (*cmp)(
 void hpQueueEnqueue(HPriorityQueue *queue, void *item) {
 
     if (queue == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "heap priority queue data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (item == NULL) {
-
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "heap priority queue data structure");
+        exit(INVALID_ARG);
+#endif
     }
 
     binaryHeapInsert(queue->heap, item);
@@ -58,9 +93,22 @@ void hpQueueEnqueue(HPriorityQueue *queue, void *item) {
 void hpQueueEnqueueAll(HPriorityQueue *queue, void *items, int length) {
 
     if (queue == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "heap priority queue data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (items == NULL) {
-
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "items array pointer", "heap priority queue data structure");
+        exit(INVALID_ARG);
+#endif
     }
 
     binaryHeapInsertAll(queue->heap, items, length);
@@ -80,8 +128,22 @@ void hpQueueEnqueueAll(HPriorityQueue *queue, void *items, int length) {
 void *hpQueueDequeue(HPriorityQueue *queue) {
 
     if (queue == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "heap priority queue data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (hpQueueIsEmpty(queue)) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
+        return NULL;
+#else
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "heap priority queue data structure");
+        exit(EMPTY_DATA_STRUCTURE);
+#endif
 
     }
 
@@ -101,8 +163,22 @@ void *hpQueueDequeue(HPriorityQueue *queue) {
 void *hpQueuePeek(HPriorityQueue *queue) {
 
     if (queue == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "heap priority queue data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (hpQueueIsEmpty(queue)) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
+        return NULL;
+#else
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "heap priority queue data structure");
+        exit(EMPTY_DATA_STRUCTURE);
+#endif
 
     }
 
@@ -120,7 +196,20 @@ void *hpQueuePeek(HPriorityQueue *queue) {
  */
 
 int hpQueueGetLength(HPriorityQueue *queue) {
+
+    if (queue == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "heap priority queue data structure");
+        exit(NULL_POINTER);
+#endif
+
+    }
+
     return binaryHeapGetSize(queue->heap);
+
 }
 
 
@@ -135,7 +224,20 @@ int hpQueueGetLength(HPriorityQueue *queue) {
  */
 
 int hpQueueIsEmpty(HPriorityQueue *queue) {
+
+    if (queue == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "heap priority queue data structure");
+        exit(NULL_POINTER);
+#endif
+
+    }
+
     return binaryHeapIsEmpty(queue->heap);
+
 }
 
 
@@ -150,6 +252,18 @@ int hpQueueIsEmpty(HPriorityQueue *queue) {
  */
 
 void **hpQueueToArray(HPriorityQueue *queue) {
+
+    if (queue == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "heap priority queue data structure");
+        exit(NULL_POINTER);
+#endif
+
+    }
+
     void **arr =  binaryHeapToArray(queue->heap);
 
     int length = hpQueueGetLength(queue);
@@ -174,6 +288,17 @@ void **hpQueueToArray(HPriorityQueue *queue) {
 
 void clearHPQueue(HPriorityQueue *queue) {
 
+    if (queue == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "heap priority queue data structure");
+        exit(NULL_POINTER);
+#endif
+
+    }
+
     clearBinaryHeap(queue->heap);
 
 }
@@ -187,6 +312,17 @@ void clearHPQueue(HPriorityQueue *queue) {
  */
 
 void destroyHPQueue(HPriorityQueue *queue) {
+
+    if (queue == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "heap priority queue data structure");
+        exit(NULL_POINTER);
+#endif
+
+    }
 
     destroyBinaryHeap(queue->heap);
 
