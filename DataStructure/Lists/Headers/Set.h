@@ -1,6 +1,14 @@
 #ifndef C_DATASTRUCTURES_SET_H
 #define C_DATASTRUCTURES_SET_H
 
+
+
+/** @struct Set
+*  @brief This structure implements a basic generic Set.
+*  @var Pair::vector
+*  Member 'vector' is a pointer to the set vector (array).
+*/
+
 typedef struct Set {
 
     struct Vector *vector;
