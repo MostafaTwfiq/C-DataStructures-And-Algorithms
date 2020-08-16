@@ -28,7 +28,7 @@ vectorInitialization(int initialLength, void (*freeFun)(void *), int (*comparato
         ERROR_TEST->errorCode = INVALID_ARG;
         return NULL;
 #else
-        fprintf(stderr, INVALID_ARG_MESSAGE, "initial length", "vector list data structure");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "initial length", "vector data structure");
         exit(INVALID_ARG);
 #endif
 

@@ -17,9 +17,44 @@
 
 Set *setInitialization(int initialLength, void (*freeFn)(void *), int (*cmp)(const void *, const void *)) {
 
+    if (freeFn == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "free function", "set data structure");
+        exit(INVALID_ARG);
+#endif
+
+    } else if (cmp == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparison function", "set data structure");
+        exit(INVALID_ARG);
+#endif
+
+    } else if (initialLength <= 0) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "initial length", "set data structure");
+        exit(INVALID_ARG);
+#endif
+
+    }
+
     Set *set = (Set *) malloc(sizeof(Set));
     if (set == NULL) {
-
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = FAILED_ALLOCATION;
+        return NULL;
+#else
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "set", "set data structure");
+        exit(FAILED_ALLOCATION);
+#endif
     }
 
     set->vector = vectorInitialization(initialLength, freeFn, cmp);
@@ -39,6 +74,26 @@ Set *setInitialization(int initialLength, void (*freeFn)(void *), int (*cmp)(con
  */
 
 void setAdd(Set *set, void *item) {
+
+    if (set == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "set", "set data structure");
+        exit(NULL_POINTER);
+#endif
+
+    } else if (item == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "set data structure");
+        exit(INVALID_ARG);
+#endif
+
+    }
 
     int itemIndex = vectorGetIndex(set->vector, item);
 
@@ -66,6 +121,35 @@ void setAdd(Set *set, void *item) {
 
 void setAddAtIndex(Set *set, void *item, int index) {
 
+    if (set == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "set", "set data structure");
+        exit(NULL_POINTER);
+#endif
+
+    } else if (item == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "set data structure");
+        exit(INVALID_ARG);
+#endif
+
+    } else if (index < 0 || index >= setGetLength(set)) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = OUT_OF_RANGE;
+        return;
+#else
+        fprintf(stderr, OUT_OF_RANGE_MESSAGE, "set data structure");
+        exit(OUT_OF_RANGE);
+#endif
+
+    }
+
     int itemIndex = vectorGetIndex(set->vector, item);
 
     if (itemIndex == -1) {
@@ -91,6 +175,26 @@ void setAddAtIndex(Set *set, void *item, int index) {
 
 int setGetIndex(Set *set, void *item) {
 
+    if (set == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "set", "set data structure");
+        exit(NULL_POINTER);
+#endif
+
+    } else if (item == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "set data structure");
+        exit(INVALID_ARG);
+#endif
+
+    }
+
     return vectorGetIndex(set->vector, item);
 
 }
@@ -107,7 +211,27 @@ int setGetIndex(Set *set, void *item) {
 
 void *setGet(Set *set, int index) {
 
-    return vectorGet(set, index);
+    if (set == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "set", "set data structure");
+        exit(NULL_POINTER);
+#endif
+
+    } else if (index < 0 || index >= setGetLength(set)) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = OUT_OF_RANGE;
+        return NULL;
+#else
+        fprintf(stderr, OUT_OF_RANGE_MESSAGE, "set data structure");
+        exit(OUT_OF_RANGE);
+#endif
+
+    }
+
+    return vectorGet(set->vector, index);
 
 }
 
@@ -125,6 +249,26 @@ void *setGet(Set *set, int index) {
 
 int setContains(Set *set, void *item) {
 
+    if (set == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "set", "set data structure");
+        exit(NULL_POINTER);
+#endif
+
+    } else if (item == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "set data structure");
+        exit(INVALID_ARG);
+#endif
+
+    }
+
     return vectorContains(set->vector, item);
 
 }
@@ -139,6 +283,26 @@ int setContains(Set *set, void *item) {
  */
 
 void setDelete(Set *set, int index) {
+
+    if (set == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "set", "set data structure");
+        exit(NULL_POINTER);
+#endif
+
+    } else if (index < 0 || index >= setGetLength(set)) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = OUT_OF_RANGE;
+        return;
+#else
+        fprintf(stderr, OUT_OF_RANGE_MESSAGE, "set data structure");
+        exit(OUT_OF_RANGE);
+#endif
+
+    }
 
     vectorRemoveAtIndex(set->vector, index);
 
@@ -157,6 +321,26 @@ void setDelete(Set *set, int index) {
 
 void *setDeleteWtoFr(Set *set, int index) {
 
+    if (set == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "set", "set data structure");
+        exit(NULL_POINTER);
+#endif
+
+    } else if (index < 0 || index >= setGetLength(set)) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = OUT_OF_RANGE;
+        return NULL;
+#else
+        fprintf(stderr, OUT_OF_RANGE_MESSAGE, "set data structure");
+        exit(OUT_OF_RANGE);
+#endif
+
+    }
+
     return vectorRemoveAtIndexWtFr(set->vector, index);
 
 }
@@ -171,6 +355,18 @@ void *setDeleteWtoFr(Set *set, int index) {
  */
 
 int setGetLength(Set *set) {
+
+    if (set == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "set", "set data structure");
+        exit(NULL_POINTER);
+#endif
+
+    }
+
     return vectorGetLength(set->vector);
 }
 
@@ -186,6 +382,18 @@ int setGetLength(Set *set) {
  */
 
 int setIsEmpty(Set *set) {
+
+    if (set == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "set", "set data structure");
+        exit(NULL_POINTER);
+#endif
+
+    }
+
     return vectorIsEmpty(set->vector);
 }
 
@@ -201,6 +409,16 @@ int setIsEmpty(Set *set) {
 
 void **setToArray(Set *set) {
 
+    if (set == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "set", "set data structure");
+        exit(NULL_POINTER);
+#endif
+
+    }
 
     return vectorToArray(set->vector);
 
@@ -217,6 +435,17 @@ void **setToArray(Set *set) {
 
 void clearSet(Set *set) {
 
+    if (set == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "set", "set data structure");
+        exit(NULL_POINTER);
+#endif
+
+    }
+
     clearVector(set->vector);
 
 }
@@ -230,6 +459,17 @@ void clearSet(Set *set) {
  */
 
 void destroySet(Set *set) {
+
+    if (set == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "set", "set data structure");
+        exit(NULL_POINTER);
+#endif
+
+    }
 
     destroyVector(set->vector);
 
