@@ -9,9 +9,9 @@ extern "C" {
 /** @struct PriorityQueue
 *  @brief This structure implements a basic generic priority queue.
 *  @var PriorityQueue:: arr
- * @var PriorityQueue::length
-*  Member 'length' holds the current max allocated size for the Queue.
 *  Member 'arr' is a pointer to the the Queue's memory (array).
+*  @var PriorityQueue::length
+*  Member 'length' holds the current max allocated size for the Queue.
 *  @var PriorityQueue::count
 *  Member 'count' holds the index to the last Queue Element.
 *  @var PriorityQueue::fPointer

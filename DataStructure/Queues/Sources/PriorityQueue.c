@@ -114,7 +114,6 @@ void pQueueEnqueue(PriorityQueue *queue, void *item) {
 
         }
 
-        //TODO: the memory it could be wrong
         if (!memcpy(tempArr, queue->arr + queue->fPointer, sizeof(void *) * (queue->count - queue->fPointer))) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
             ERROR_TEST->errorCode = FAILED_COPY;

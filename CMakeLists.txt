@@ -200,7 +200,7 @@ add_executable(C_DataStructures
         "Unit Test/Tests/DataStructuresTests/TreesTest/SplayTreeTest/SplayTreeTest.h"
         "Unit Test/Tests/DataStructuresTests/PairsTest/PairTest/PairTest.c"
         "Unit Test/Tests/DataStructuresTests/PairsTest/PairTest/PairTest.h"
-        )
+        DataStructure/Queues/HPriorityQueue.c DataStructure/Queues/HPriorityQueue.h)
 
 if (NOT WIN32)
     target_link_libraries(C_DataStructures PRIVATE m)
