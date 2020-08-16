@@ -42,11 +42,11 @@ void arrayListAddAll(ArrayList *list, void **array, int arrayLength);
 
 void arrayListRemove(ArrayList *list);
 
-void arrayListRemoveWtFr(ArrayList *list);
+void *arrayListRemoveWtFr(ArrayList *list);
 
 void arrayListRemoveAtIndex(ArrayList *list, int index);
 
-void arrayListRemoveAtIndexWtFr(ArrayList *list, int index);
+void *arrayListRemoveAtIndexWtFr(ArrayList *list, int index);
 
 int arrayListContains(ArrayList *list, void *item);
 

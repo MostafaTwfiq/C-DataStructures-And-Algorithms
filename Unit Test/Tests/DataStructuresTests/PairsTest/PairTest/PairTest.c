@@ -160,9 +160,9 @@ void testPairSetFElemWtoFr(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
-    char *tempFElem = pair->fElem;
+    char *tempFElem;
 
-    pairSetFElemWtoFr(pair, generateCharPointerPT("number one"));
+    tempFElem = pairSetFElemWtoFr(pair, generateCharPointerPT("number one"));
     CuAssertStrEquals(cuTest, "number one", pair->fElem);
     CuAssertStrEquals(cuTest, "one", tempFElem);
 
@@ -184,9 +184,9 @@ void testPairSetSElemWtoFr(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
-    int *tempSElem = (int *) pair->sElem;
+    int *tempSElem;
 
-    pairSetSElemWtoFr(pair, generateIntPointerPT(2));
+    tempSElem = pairSetSElemWtoFr(pair, generateIntPointerPT(2));
     CuAssertIntEquals(cuTest, 2, *(int *) pair->sElem);
     CuAssertIntEquals(cuTest, 1, *tempSElem);
 

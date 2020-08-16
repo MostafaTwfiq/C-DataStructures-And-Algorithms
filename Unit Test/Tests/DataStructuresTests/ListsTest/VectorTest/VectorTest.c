@@ -182,10 +182,10 @@ void testVectorRemoveWtoFr(CuTest *cuTest) {
     vectorRemoveWtFr(NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
-    int *currentItem = generateIntPointerVT(10);
-    vectorAdd(vector, currentItem);
+    int *currentItem;
+    vectorAdd(vector, generateIntPointerVT(10));
 
-    vectorRemoveWtFr(vector);
+    currentItem = vectorRemoveWtFr(vector);
 
     CuAssertIntEquals(cuTest, 0, vector->count);
     CuAssertIntEquals(cuTest, 10, *currentItem);
@@ -247,8 +247,8 @@ void testVectorRemoveAtIndexWtoFr(CuTest *cuTest) {
 
     vectorAddAll(vector, (void **) arr, 5);
 
-    vectorRemoveAtIndexWtFr(vector, 4);
-    vectorRemoveAtIndexWtFr(vector, 0);
+    int *tempPointer1 = vectorRemoveAtIndexWtFr(vector, 4);
+    int *tempPointer2 = vectorRemoveAtIndexWtFr(vector, 0);
 
     CuAssertIntEquals(cuTest, 3, vector->count);
 
@@ -256,11 +256,11 @@ void testVectorRemoveAtIndexWtoFr(CuTest *cuTest) {
         CuAssertIntEquals(cuTest, (i + 2) * 10, *(int *) vector->arr[i]);
 
 
-    CuAssertIntEquals(cuTest, 10, *arr[0]);
-    CuAssertIntEquals(cuTest, 50, *arr[4]);
+    CuAssertIntEquals(cuTest, 10, *tempPointer2);
+    CuAssertIntEquals(cuTest, 50, *tempPointer1);
 
-    free(arr[0]);
-    free(arr[4]);
+    free(tempPointer1);
+    free(tempPointer2);
     free(arr);
     destroyVector(vector);
 

@@ -183,10 +183,10 @@ void testArrayListRemoveWtoFr(CuTest *cuTest) {
     arrayListRemoveWtFr(NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
-    int *currentItem = generateIntPointerALT(10);
-    arrayListAdd(arrayList, currentItem);
+    int *currentItem;
+    arrayListAdd(arrayList, generateIntPointerALT(10));
 
-    arrayListRemoveWtFr(arrayList);
+    currentItem = arrayListRemoveWtFr(arrayList);
 
     CuAssertIntEquals(cuTest, 0, arrayList->count);
     CuAssertIntEquals(cuTest, 10, *currentItem);
@@ -248,8 +248,8 @@ void testArrayListRemoveAtIndexWtoFr(CuTest *cuTest) {
 
     arrayListAddAll(arrayList, (void **) arr, 5);
 
-    arrayListRemoveAtIndexWtFr(arrayList, 4);
-    arrayListRemoveAtIndexWtFr(arrayList, 0);
+    int *tempPointer1 = arrayListRemoveAtIndexWtFr(arrayList, 4);
+    int *tempPointer2 = arrayListRemoveAtIndexWtFr(arrayList, 0);
 
     CuAssertIntEquals(cuTest, 3, arrayList->count);
 
@@ -257,11 +257,11 @@ void testArrayListRemoveAtIndexWtoFr(CuTest *cuTest) {
         CuAssertIntEquals(cuTest, (i + 2) * 10, *(int *) arrayList->arr[i]);
 
 
-    CuAssertIntEquals(cuTest, 10, *arr[0]);
-    CuAssertIntEquals(cuTest, 50, *arr[4]);
+    CuAssertIntEquals(cuTest, 10, *tempPointer2);
+    CuAssertIntEquals(cuTest, 50, *tempPointer1);
 
-    free(arr[0]);
-    free(arr[4]);
+    free(tempPointer1);
+    free(tempPointer2);
     free(arr);
     destroyArrayList(arrayList);
 

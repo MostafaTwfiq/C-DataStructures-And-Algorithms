@@ -40,11 +40,11 @@ void vectorAddAll(Vector *list, void **array, int arrayLength);
 
 void vectorRemove(Vector *list);
 
-void vectorRemoveWtFr(Vector *list);
+void *vectorRemoveWtFr(Vector *list);
 
 void vectorRemoveAtIndex(Vector *list, int index);
 
-void vectorRemoveAtIndexWtFr(Vector *list, int index);
+void *vectorRemoveAtIndexWtFr(Vector *list, int index);
 
 int vectorContains(Vector *list, void *item);
 

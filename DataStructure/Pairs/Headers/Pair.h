@@ -40,9 +40,9 @@ void pairSetFElem(Pair *pair, void *newElem);
 
 void pairSetSElem(Pair *pair, void *newElem);
 
-void pairSetFElemWtoFr(Pair *pair, void *newElem);
+void *pairSetFElemWtoFr(Pair *pair, void *newElem);
 
-void pairSetSElemWtoFr(Pair *pair, void *newElem);
+void *pairSetSElemWtoFr(Pair *pair, void *newElem);
 
 void pairSwapElements(Pair *pair);
 

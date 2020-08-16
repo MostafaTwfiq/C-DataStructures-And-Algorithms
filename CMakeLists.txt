@@ -200,7 +200,7 @@ add_executable(C_DataStructures
         "Unit Test/Tests/DataStructuresTests/TreesTest/SplayTreeTest/SplayTreeTest.h"
         "Unit Test/Tests/DataStructuresTests/PairsTest/PairTest/PairTest.c"
         "Unit Test/Tests/DataStructuresTests/PairsTest/PairTest/PairTest.h"
-        DataStructure/Queues/Sources/HPriorityQueue.c DataStructure/Queues/Headers/HPriorityQueue.h "Unit Test/Tests/DataStructuresTests/QueuesTest/HeapPriorityQueueTest/HeapPriorityQueueTest.c" "Unit Test/Tests/DataStructuresTests/QueuesTest/HeapPriorityQueueTest/HeapPriorityQueueTest.h")
+        DataStructure/Queues/Sources/HPriorityQueue.c DataStructure/Queues/Headers/HPriorityQueue.h "Unit Test/Tests/DataStructuresTests/QueuesTest/HeapPriorityQueueTest/HeapPriorityQueueTest.c" "Unit Test/Tests/DataStructuresTests/QueuesTest/HeapPriorityQueueTest/HeapPriorityQueueTest.h" DataStructure/Lists/Sources/Set.c DataStructure/Lists/Headers/Set.h)
 
 if (NOT WIN32)
     target_link_libraries(C_DataStructures PRIVATE m)

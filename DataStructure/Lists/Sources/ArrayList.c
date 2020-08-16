@@ -261,13 +261,14 @@ void arrayListRemove(ArrayList *list) {
  * Note: if the array list is empty then the program will be terminated.
  *
  * @param list the array list address
+ * @return it will return the deleted item pointer
  */
 
-void arrayListRemoveWtFr(ArrayList *list) {
+void *arrayListRemoveWtFr(ArrayList *list) {
     if (list == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
         ERROR_TEST->errorCode = NULL_POINTER;
-        return;
+        return NULL;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
         exit(NULL_POINTER);
@@ -276,7 +277,7 @@ void arrayListRemoveWtFr(ArrayList *list) {
     } else if (arrayListIsEmpty(list)) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
         ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
-        return;
+        return NULL;
 #else
         fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "array list data structure");
         exit(EMPTY_DATA_STRUCTURE);
@@ -285,7 +286,7 @@ void arrayListRemoveWtFr(ArrayList *list) {
     }
 
 
-    list->count--;
+    return list->arr[--list->count];
 
 }
 
@@ -337,13 +338,14 @@ void arrayListRemoveAtIndex(ArrayList *list, int index) {
  *
  * @param list the array list address
  * @param index the index of the item that will be deleted
+ * @return it will return the deleted item pointer
  */
 
-void arrayListRemoveAtIndexWtFr(ArrayList *list, int index) {
+void *arrayListRemoveAtIndexWtFr(ArrayList *list, int index) {
     if (list == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
         ERROR_TEST->errorCode = NULL_POINTER;
-        return;
+        return NULL;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "array list", "array list data structure");
         exit(NULL_POINTER);
@@ -352,7 +354,7 @@ void arrayListRemoveAtIndexWtFr(ArrayList *list, int index) {
     } else if (index < 0 || index >= arrayListGetLength(list)) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
         ERROR_TEST->errorCode = OUT_OF_RANGE;
-        return;
+        return NULL;
 #else
         fprintf(stderr, OUT_OF_RANGE_MESSAGE, "array list data structure");
         exit(OUT_OF_RANGE);
@@ -360,11 +362,16 @@ void arrayListRemoveAtIndexWtFr(ArrayList *list, int index) {
 
     }
 
+
+    void *itemToReturn = list->arr[index];
+
     list->count--;
 
     for (int i = index; i < list->count; i++) //this loop will shift the items to the left to delete the index.
         list->arr[i] = list->arr[i + 1];
 
+
+    return itemToReturn;
 
 }
 

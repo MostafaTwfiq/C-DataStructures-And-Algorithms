@@ -185,14 +185,15 @@ void pairSetSElem(Pair *pair, void *newElem) {
  *
  * @param pair the pair pointer
  * @param newElem the new element pointer
+ * @return it will return the deleted element pointer
  */
 
-void pairSetFElemWtoFr(Pair *pair, void *newElem) {
+void *pairSetFElemWtoFr(Pair *pair, void *newElem) {
 
     if (pair == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
         ERROR_TEST->errorCode = NULL_POINTER;
-        return;
+        return NULL;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "pair", "pair data structure");
         exit(NULL_POINTER);
@@ -200,14 +201,18 @@ void pairSetFElemWtoFr(Pair *pair, void *newElem) {
     } else if (newElem == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
         ERROR_TEST->errorCode = INVALID_ARG;
-        return;
+        return NULL;
 #else
         fprintf(stderr, INVALID_ARG_MESSAGE, "new element", "pair data structure");
         exit(INVALID_ARG);
 #endif
     }
 
+    void *itemToReturn = pair->fElem;
+
     pair->fElem = newElem;
+
+    return itemToReturn;
 
 }
 
@@ -217,14 +222,15 @@ void pairSetFElemWtoFr(Pair *pair, void *newElem) {
  *
  * @param pair the pair pointer
  * @param newElem the new element pointer
+ * @return it will return the deleted element pointer
  */
 
-void pairSetSElemWtoFr(Pair *pair, void *newElem) {
+void *pairSetSElemWtoFr(Pair *pair, void *newElem) {
 
     if (pair == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
         ERROR_TEST->errorCode = NULL_POINTER;
-        return;
+        return NULL;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "pair", "pair data structure");
         exit(NULL_POINTER);
@@ -232,14 +238,18 @@ void pairSetSElemWtoFr(Pair *pair, void *newElem) {
     } else if (newElem == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
         ERROR_TEST->errorCode = INVALID_ARG;
-        return;
+        return NULL;
 #else
         fprintf(stderr, INVALID_ARG_MESSAGE, "new element", "pair data structure");
         exit(INVALID_ARG);
 #endif
     }
 
+    void *itemToReturn = pair->sElem;
+
     pair->sElem = newElem;
+
+    return itemToReturn;
 
 }
 

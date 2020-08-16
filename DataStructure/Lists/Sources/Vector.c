@@ -262,13 +262,14 @@ void vectorRemove(Vector *list) {
  * Note: if the vector is empty then the program will be terminated.
  *
  * @param list the vector address
+ * @return it will return the deleted item pointer
  */
 
-void vectorRemoveWtFr(Vector *list) {
+void *vectorRemoveWtFr(Vector *list) {
     if (list == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
         ERROR_TEST->errorCode = NULL_POINTER;
-        return;
+        return NULL;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
         exit(NULL_POINTER);
@@ -277,7 +278,7 @@ void vectorRemoveWtFr(Vector *list) {
     } else if (vectorIsEmpty(list)) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
         ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
-        return;
+        return NULL;
 #else
         fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "vector data structure");
         exit(EMPTY_DATA_STRUCTURE);
@@ -285,8 +286,7 @@ void vectorRemoveWtFr(Vector *list) {
 
     }
 
-
-    list->count--;
+    return list->arr[--list->count];
 
 }
 
@@ -338,13 +338,14 @@ void vectorRemoveAtIndex(Vector *list, int index) {
  *
  * @param list the vector address
  * @param index the index of the item that will be deleted
+ * @return it will return the deleted item pointer
  */
 
-void vectorRemoveAtIndexWtFr(Vector *list, int index) {
+void *vectorRemoveAtIndexWtFr(Vector *list, int index) {
     if (list == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
         ERROR_TEST->errorCode = NULL_POINTER;
-        return;
+        return NULL;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "vector", "vector data structure");
         exit(NULL_POINTER);
@@ -353,7 +354,7 @@ void vectorRemoveAtIndexWtFr(Vector *list, int index) {
     } else if (index < 0 || index >= vectorGetLength(list)) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
         ERROR_TEST->errorCode = OUT_OF_RANGE;
-        return;
+        return NULL;
 #else
         fprintf(stderr, OUT_OF_RANGE_MESSAGE, "vector data structure");
         exit(OUT_OF_RANGE);
@@ -361,11 +362,13 @@ void vectorRemoveAtIndexWtFr(Vector *list, int index) {
 
     }
 
+    void *itemToReturn = list->arr[index];
     list->count--;
 
     for (int i = index; i < list->count; i++) //this loop will shift the items to the left to delete the index.
         list->arr[i] = list->arr[i + 1];
 
+    return itemToReturn;
 
 }
 
