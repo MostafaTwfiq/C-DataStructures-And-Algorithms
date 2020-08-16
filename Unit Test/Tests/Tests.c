@@ -8,6 +8,7 @@
 #include "DataStructuresTests/QueuesTest/StackQueueTest/StackQueueTest.h"
 #include "DataStructuresTests/QueuesTest/LinkedListQueueTest/LinkedListQueueTest.h"
 #include "DataStructuresTests/QueuesTest/PriorityQueueTest/PriorityQueueTest.h"
+#include "DataStructuresTests/QueuesTest/HeapPriorityQueueTest/HeapPriorityQueueTest.h"
 #include "DataStructuresTests/DequesTest/DequeTest/DequeTest.h"
 #include "DataStructuresTests/DequesTest/DoublyLinkedListDequeTest/DoublyLinkedListDequeTest.h"
 #include "DataStructuresTests/MatricesTest/MatrixTest/MatrixTest.h"
@@ -82,6 +83,8 @@ int main(void) {
     inputScannerUnitTest();
 
     pairUnitTest();
+
+    heapHPriorityQueueUnitTest();
 
     return 0;
 

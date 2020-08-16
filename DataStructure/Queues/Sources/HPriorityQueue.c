@@ -1,9 +1,94 @@
-#include "HPriorityQueue.h"
-#include "../../System/Utils.h"
-#include "../../Unit Test/CuTest/CuTest.h"
-#include "../Trees/Headers/BinaryHeap.h"
-#include "../Trees/Sources/BinaryHeap.c"
+#include "../Headers/HPriorityQueue.h"
+#include "../../../System/Utils.h"
+#include "../../../Unit Test/CuTest/CuTest.h"
+#include "../../Trees/Headers/BinaryHeap.h"
 
+
+
+
+/** This function will return the first child index,
+ * of the passed parent index.
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param parentIndex the parent index
+ * @return it will return the first child index of the passed parent index
+ */
+
+int hpQueueGetFChildIndex(int parentIndex) {
+    return parentIndex * 2 + 1;
+}
+
+
+/** This function will return the second child index,
+ * of the passed parent index.
+ *
+ * Note: this function should only be called from the inside.
+ *
+ * @param parentIndex the parent index
+ * @return it will return the second child index of the passed parent index
+ */
+
+int hpQueueGetSChildIndex(int parentIndex) {
+    return parentIndex * 2 + 2;
+}
+
+
+/** This function will swap the passed two indices.
+ *
+ * @param arr the array pointer
+ * @param fIndex the first index
+ * @param sIndex the second index
+ */
+
+void hpQueueSwap(void **arr, int fIndex, int sIndex) {
+
+    void *tempItem = arr[sIndex];
+    arr[sIndex] = arr[fIndex];
+    arr[fIndex] = tempItem;
+
+}
+
+
+
+/** This function will heap down the value in the passed index until it be in the right place.
+ *
+ * @param arr the array pointer
+ * @param currentIndex the current index
+ * @param length the length of the array
+ * @param cmp the comparator function pointer
+ */
+
+void hpQueueHeapDown(void **arr, int currentIndex, int length, int (*cmp)(const void *, const void *)) {
+
+    if (currentIndex >= length)
+        return;
+
+    int fChildIndex = hpQueueGetFChildIndex(currentIndex);
+    int sChildIndex = hpQueueGetSChildIndex(currentIndex);
+
+    fChildIndex = fChildIndex >= length ? currentIndex : fChildIndex;
+    sChildIndex = sChildIndex >= length ? currentIndex : sChildIndex;
+
+    if (cmp(arr[currentIndex], arr[fChildIndex]) < 0 && cmp(arr[currentIndex], arr[sChildIndex]) < 0) {
+
+        int biggestChildIndex = cmp(arr[fChildIndex], arr[sChildIndex]) < 0 ? sChildIndex : fChildIndex;
+        hpQueueSwap(arr, currentIndex, biggestChildIndex);
+        hpQueueHeapDown(arr, biggestChildIndex, length, cmp);
+
+    } else if (cmp(arr[currentIndex], arr[fChildIndex]) < 0) {
+
+        hpQueueSwap(arr, currentIndex, fChildIndex);
+        hpQueueHeapDown(arr, fChildIndex, length, cmp);
+
+    } else if (cmp(arr[currentIndex], arr[sChildIndex]) < 0) {
+
+        hpQueueSwap(arr, currentIndex, sChildIndex);
+        hpQueueHeapDown(arr, sChildIndex, length, cmp);
+
+    }
+
+}
 
 
 
@@ -269,9 +354,12 @@ void **hpQueueToArray(HPriorityQueue *queue) {
     int length = hpQueueGetLength(queue);
 
     while (length-- > 0) {
-        binaryHeapSwap(arr, 0, length);
-        binaryHeapDown(arr, 0, length, queue->heap->cmp);
+        hpQueueSwap(arr, 0, length);
+        hpQueueHeapDown(arr, 0, length, queue->heap->cmp);
     }
+
+    for (int i = 0; i < hpQueueGetLength(queue) / 2; i++)
+        hpQueueSwap(arr, i, hpQueueGetLength(queue) - 1 - i);
 
     return arr;
 

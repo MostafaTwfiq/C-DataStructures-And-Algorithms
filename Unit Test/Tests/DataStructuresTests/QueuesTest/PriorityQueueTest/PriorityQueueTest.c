@@ -429,7 +429,7 @@ void priorityQueueUnitTest(void) {
     ERROR_TEST = (ErrorTestStruct *) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
-    CuStringAppend(output, "**Priority pQueue Test**\n");
+    CuStringAppend(output, "**Priority Queue Test**\n");
 
     CuSuite *suite = createPriorityQueueTestsSuite();
 
