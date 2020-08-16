@@ -22,8 +22,6 @@ int *generateIntPointerSQT(int integer) {
 }
 
 
-
-
 /** This function will compare to integers pointers,
  * then it will return zero if they are equal, negative number if the second integer is bigger,
  * and positive number if the first integer is bigger.
@@ -33,11 +31,8 @@ int *generateIntPointerSQT(int integer) {
  */
 
 int compareIntPointersSQT(const void *a, const void *b) {
-    return *(int *)a - *(int *)b;
+    return *(int *) a - *(int *) b;
 }
-
-
-
 
 
 /** This function will take a char array
@@ -49,14 +44,13 @@ int compareIntPointersSQT(const void *a, const void *b) {
 
 char *generateCharPointerSQT(char *ch) {
 
-    char *newCh = (char *) malloc( sizeof(char) * (strlen(ch) + 1) );
+    char *newCh = (char *) malloc(sizeof(char) * (strlen(ch) + 1));
 
     strcpy(newCh, ch);
 
     return newCh;
 
 }
-
 
 
 void testInvalidStackQueueInitialization(CuTest *cuTest) {
@@ -68,7 +62,6 @@ void testInvalidStackQueueInitialization(CuTest *cuTest) {
 }
 
 
-
 void testValidStackQueueInitialization(CuTest *cuTest) {
 
     SQueue *sQueue = stackQueueInitialization(free);
@@ -77,8 +70,6 @@ void testValidStackQueueInitialization(CuTest *cuTest) {
     destroySQueue(sQueue);
 
 }
-
-
 
 
 void testStackQueueEnqueue(CuTest *cuTest) {
@@ -106,9 +97,6 @@ void testStackQueueEnqueue(CuTest *cuTest) {
     destroySQueue(sQueue);
 
 }
-
-
-
 
 
 void testStackQueueEnqueueAll(CuTest *cuTest) {
@@ -141,9 +129,6 @@ void testStackQueueEnqueueAll(CuTest *cuTest) {
 }
 
 
-
-
-
 void testStackQueueDequeue(CuTest *cuTest) {
 
     SQueue *sQueue = stackQueueInitialization(free);
@@ -169,10 +154,6 @@ void testStackQueueDequeue(CuTest *cuTest) {
     destroySQueue(sQueue);
 
 }
-
-
-
-
 
 
 void testStackQueuePeek(CuTest *cuTest) {
@@ -201,9 +182,6 @@ void testStackQueuePeek(CuTest *cuTest) {
     destroySQueue(sQueue);
 
 }
-
-
-
 
 
 void testStackQueueGetLength(CuTest *cuTest) {
@@ -240,8 +218,6 @@ void testStackQueueGetLength(CuTest *cuTest) {
 }
 
 
-
-
 void testStackQueueIsEmpty(CuTest *cuTest) {
 
     SQueue *sQueue = stackQueueInitialization(free);
@@ -262,9 +238,6 @@ void testStackQueueIsEmpty(CuTest *cuTest) {
     destroySQueue(sQueue);
 
 }
-
-
-
 
 
 void testStackQueueToArray(CuTest *cuTest) {
@@ -290,10 +263,6 @@ void testStackQueueToArray(CuTest *cuTest) {
     destroySQueue(sQueue);
 
 }
-
-
-
-
 
 
 void testClearStackQueue(CuTest *cuTest) {
@@ -322,10 +291,6 @@ void testClearStackQueue(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testDestroyStackQueue(CuTest *cuTest) {
 
     SQueue *sQueue = stackQueueInitialization(free);
@@ -343,15 +308,12 @@ void testDestroyStackQueue(CuTest *cuTest) {
 }
 
 
-
-
 typedef struct SQueueTestStruct {
 
     int iData;
     char *cData;
 
 } SQueueTestStruct;
-
 
 
 void freeStackQueueTestStruct(void *item) {
@@ -373,11 +335,10 @@ int sQueueTestStructComp(const void *item1, const void *item2) {
 }
 
 
-
 SQueueTestStruct *generateStackQueueTestStruct(int value, char *str) {
 
     SQueueTestStruct *q = (SQueueTestStruct *) malloc(sizeof(SQueueTestStruct));
-    q->cData = (char *) malloc(sizeof(char ) * (strlen(str) + 1) );
+    q->cData = (char *) malloc(sizeof(char) * (strlen(str) + 1));
     strcpy(q->cData, str);
 
     q->iData = value;
@@ -387,12 +348,11 @@ SQueueTestStruct *generateStackQueueTestStruct(int value, char *str) {
 }
 
 
-
-
 void generalsQueueTest(CuTest *cuTest) {
 
     SQueue *sQueue = stackQueueInitialization(freeStackQueueTestStruct);
-    char numbersStr[14][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"};
+    char numbersStr[14][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven",
+                               "twelve", "thirteen", "fourteen"};
 
 
     CuAssertIntEquals(cuTest, 0, sQueueGetLength(sQueue));
@@ -444,13 +404,6 @@ void generalsQueueTest(CuTest *cuTest) {
 }
 
 
-
-
-
-
-
-
-
 CuSuite *createStackQueueTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
@@ -474,10 +427,9 @@ CuSuite *createStackQueueTestsSuite(void) {
 }
 
 
-
 void stackQueueUnitTest(void) {
 
-    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
+    ERROR_TEST = (ErrorTestStruct *) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Stack Queue Test**\n");

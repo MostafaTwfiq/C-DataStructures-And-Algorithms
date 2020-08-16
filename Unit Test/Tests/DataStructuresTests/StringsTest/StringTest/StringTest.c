@@ -5,7 +5,6 @@
 #include "../../../../../DataStructure/Lists/Headers/Vector.h"
 
 
-
 void testInvalidStringInitialization(CuTest *cuTest) {
 
     String *string = stringInitialization(0);
@@ -22,8 +21,6 @@ void testValidStringInitialization(CuTest *cuTest) {
     destroyString(string);
 
 }
-
-
 
 
 void testStringAppendChar(CuTest *cuTest) {
@@ -57,8 +54,6 @@ void testStringAppendChar(CuTest *cuTest) {
 }
 
 
-
-
 void testStringAddChar(CuTest *cuTest) {
 
     String *string = stringInitialization(1);
@@ -80,10 +75,6 @@ void testStringAddChar(CuTest *cuTest) {
     destroyString(string);
 
 }
-
-
-
-
 
 
 void testStringUpdateChar(CuTest *cuTest) {
@@ -114,7 +105,6 @@ void testStringUpdateChar(CuTest *cuTest) {
 }
 
 
-
 void testStringRemove(CuTest *cuTest) {
 
     String *string = stringInitialization(1);
@@ -143,7 +133,6 @@ void testStringRemove(CuTest *cuTest) {
 }
 
 
-
 void testStringAppendC(CuTest *cuTest) {
 
     String *string = stringInitialization(1);
@@ -162,7 +151,6 @@ void testStringAppendC(CuTest *cuTest) {
     destroyString(string);
 
 }
-
 
 
 void testStringAppendS(CuTest *cuTest) {
@@ -189,9 +177,6 @@ void testStringAppendS(CuTest *cuTest) {
 }
 
 
-
-
-
 void testStringChangeStringC(CuTest *cuTest) {
 
     String *string = stringInitialization(1);
@@ -210,7 +195,6 @@ void testStringChangeStringC(CuTest *cuTest) {
     destroyString(string);
 
 }
-
 
 
 void testStringChangeStringS(CuTest *cuTest) {
@@ -237,9 +221,6 @@ void testStringChangeStringS(CuTest *cuTest) {
 }
 
 
-
-
-
 void testStringGetIndex(CuTest *cuTest) {
 
     String *string = stringInitialization(1);
@@ -262,8 +243,6 @@ void testStringGetIndex(CuTest *cuTest) {
 }
 
 
-
-
 void testStringGet(CuTest *cuTest) {
 
     String *string = stringInitialization(1);
@@ -284,8 +263,6 @@ void testStringGet(CuTest *cuTest) {
     destroyString(string);
 
 }
-
-
 
 
 void testStringSubStringC(CuTest *cuTest) {
@@ -312,7 +289,6 @@ void testStringSubStringC(CuTest *cuTest) {
     destroyString(string);
 
 }
-
 
 
 void testStringSubStringS(CuTest *cuTest) {
@@ -351,10 +327,6 @@ void testStringSubStringS(CuTest *cuTest) {
     destroyString(string);
 
 }
-
-
-
-
 
 
 void testStringToCharArr(CuTest *cuTest) {
@@ -399,7 +371,6 @@ void testStringToCustomCharArr(CuTest *cuTest) {
 }
 
 
-
 void testStringEqualsC(CuTest *cuTest) {
 
     String *string = stringInitialization(1);
@@ -422,7 +393,6 @@ void testStringEqualsC(CuTest *cuTest) {
     destroyString(string);
 
 }
-
 
 
 void testStringEqualsS(CuTest *cuTest) {
@@ -458,8 +428,6 @@ void testStringEqualsS(CuTest *cuTest) {
 }
 
 
-
-
 void testStringCompareC(CuTest *cuTest) {
 
     String *string = stringInitialization(1);
@@ -483,7 +451,6 @@ void testStringCompareC(CuTest *cuTest) {
     destroyString(string);
 
 }
-
 
 
 void testStringCompareS(CuTest *cuTest) {
@@ -522,7 +489,6 @@ void testStringCompareS(CuTest *cuTest) {
 }
 
 
-
 void testStringGetLength(CuTest *cuTest) {
 
     String *string = stringInitialization(1);
@@ -540,7 +506,7 @@ void testStringGetLength(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, 15, stringGetLength(string));
 
     stringRemove(string, 0);
-        CuAssertIntEquals(cuTest, 14, stringGetLength(string));
+    CuAssertIntEquals(cuTest, 14, stringGetLength(string));
 
     stringChangeStringC(string, "123");
     CuAssertIntEquals(cuTest, 3, stringGetLength(string));
@@ -549,9 +515,6 @@ void testStringGetLength(CuTest *cuTest) {
     destroyString(string);
 
 }
-
-
-
 
 
 void testStringCustomTrimStart(CuTest *cuTest) {
@@ -580,8 +543,6 @@ void testStringCustomTrimStart(CuTest *cuTest) {
 }
 
 
-
-
 void testStringCustomTrimEnd(CuTest *cuTest) {
 
     String *string = stringInitialization(1);
@@ -608,9 +569,6 @@ void testStringCustomTrimEnd(CuTest *cuTest) {
 }
 
 
-
-
-
 void testStringTrimStart(CuTest *cuTest) {
 
     String *string = stringInitialization(1);
@@ -626,7 +584,6 @@ void testStringTrimStart(CuTest *cuTest) {
     destroyString(string);
 
 }
-
 
 
 void testStringTrimEnd(CuTest *cuTest) {
@@ -646,8 +603,6 @@ void testStringTrimEnd(CuTest *cuTest) {
 }
 
 
-
-
 void testStringTrim(CuTest *cuTest) {
 
     String *string = stringInitialization(1);
@@ -663,8 +618,6 @@ void testStringTrim(CuTest *cuTest) {
     destroyString(string);
 
 }
-
-
 
 
 void testStringCustomTrim(CuTest *cuTest) {
@@ -717,7 +670,6 @@ void testStringScanInput(CuTest *cuTest) {
 }
 
 
-
 void testPrintString(CuTest *cuTest) {
 
     String *string = stringInitialization(1);
@@ -751,8 +703,6 @@ void testPrintString(CuTest *cuTest) {
 }
 
 
-
-
 void testStringSplit(CuTest *cuTest) {
 
     String *string = stringInitialization(1);
@@ -770,16 +720,13 @@ void testStringSplit(CuTest *cuTest) {
     Vector *wordsVector = stringSplit(string, "\n\t @");
 
     for (int i = 0; i < vectorGetLength(wordsVector); i++)
-        CuAssertStrEquals(cuTest, numberArr[i], ((String *)vectorGet(wordsVector, i))->string);
+        CuAssertStrEquals(cuTest, numberArr[i], ((String *) vectorGet(wordsVector, i))->string);
 
 
     destroyVector(wordsVector);
     destroyString(string);
 
 }
-
-
-
 
 
 void testClearString(CuTest *cuTest) {
@@ -803,7 +750,6 @@ void testClearString(CuTest *cuTest) {
 }
 
 
-
 void tesDestroyString(CuTest *cuTest) {
 
     String *string = stringInitialization(1);
@@ -816,7 +762,6 @@ void tesDestroyString(CuTest *cuTest) {
     destroyString(string);
 
 }
-
 
 
 CuSuite *createStringTestsSuite(void) {
@@ -861,10 +806,9 @@ CuSuite *createStringTestsSuite(void) {
 }
 
 
-
 void stringUnitTest(void) {
 
-    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
+    ERROR_TEST = (ErrorTestStruct *) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**String Test**\n");

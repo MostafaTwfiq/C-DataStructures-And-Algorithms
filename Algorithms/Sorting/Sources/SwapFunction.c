@@ -3,10 +3,6 @@
 #include <string.h>
 
 
-
-
-
-
 /** This function will take two pointers then it will swap between the two pointers.
  *
  * Note: the function will use memory copy to swap the items.

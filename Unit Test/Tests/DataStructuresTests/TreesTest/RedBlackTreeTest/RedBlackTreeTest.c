@@ -4,7 +4,6 @@
 #include "../../../../../DataStructure/Trees/Headers/RedBlackTree.h"
 
 
-
 /** This function will take an integer,
  * then it will allocate a new integer and copy the passed integer value into the new pointer,
  * and finally return the new integer pointer.
@@ -22,8 +21,6 @@ int *generateIntPointerRBTT(int integer) {
 }
 
 
-
-
 /** This function will compare to integers pointers,
  * then it will return zero if they are equal, negative number if the second integer is bigger,
  * and positive number if the first integer is bigger.
@@ -34,11 +31,8 @@ int *generateIntPointerRBTT(int integer) {
  */
 
 int compareIntPointersRBTT(const void *a, const void *b) {
-    return *(int *)a - *(int *)b;
+    return *(int *) a - *(int *) b;
 }
-
-
-
 
 
 void testInvalidRBTreeInitialization(CuTest *cuTest) {
@@ -52,7 +46,6 @@ void testInvalidRBTreeInitialization(CuTest *cuTest) {
 }
 
 
-
 void testValidRBTreeInitialization(CuTest *cuTest) {
 
     RBTree *tree = redBlackTreeInitialization(free, compareIntPointersRBTT);
@@ -64,8 +57,6 @@ void testValidRBTreeInitialization(CuTest *cuTest) {
 }
 
 
-
-
 int checkIfValidRBTree(RBNode *parent, RBNode *root, int blackCount) {
 
     if (root == NULL)
@@ -74,13 +65,12 @@ int checkIfValidRBTree(RBNode *parent, RBNode *root, int blackCount) {
     int leftBlackCount = checkIfValidRBTree(root, root->left, root->color == BLACK ? blackCount + 1 : blackCount);
     int rightBlackCount = checkIfValidRBTree(root, root->right, root->color == BLACK ? blackCount + 1 : blackCount);
 
-    if      (
+    if (
             (parent != NULL && parent->color == RED && root->color == RED)
             || leftBlackCount != rightBlackCount
             || leftBlackCount == -1
             || rightBlackCount == -1
-            )
-    {
+            ) {
 
         return -1;
 
@@ -90,8 +80,6 @@ int checkIfValidRBTree(RBNode *parent, RBNode *root, int blackCount) {
     return leftBlackCount;
 
 }
-
-
 
 
 int checkIfValidBinaryTreeRBTT(RBNode *root, RBNode *parent) {
@@ -104,16 +92,17 @@ int checkIfValidBinaryTreeRBTT(RBNode *root, RBNode *parent) {
         if (parent->right == root) {
 
             return
-            compareIntPointersRBTT(parent->key, root->key) < 0 || compareIntPointersRBTT(parent->key, root->key) == 0
-            ? checkIfValidBinaryTreeRBTT(root->left, root) && checkIfValidBinaryTreeRBTT(root->right, root)
-            : 0;
+                    compareIntPointersRBTT(parent->key, root->key) < 0 ||
+                    compareIntPointersRBTT(parent->key, root->key) == 0
+                    ? checkIfValidBinaryTreeRBTT(root->left, root) && checkIfValidBinaryTreeRBTT(root->right, root)
+                    : 0;
 
         } else {
 
             return
-            compareIntPointersRBTT(parent->key, root->key) > 0
-            ? checkIfValidBinaryTreeRBTT(root->left, root) && checkIfValidBinaryTreeRBTT(root->right, root)
-            : 0;
+                    compareIntPointersRBTT(parent->key, root->key) > 0
+                    ? checkIfValidBinaryTreeRBTT(root->left, root) && checkIfValidBinaryTreeRBTT(root->right, root)
+                    : 0;
 
         }
 
@@ -150,7 +139,6 @@ void testRBTreeInsert(CuTest *cuTest) {
     destroyRBTree(tree);
 
 }
-
 
 
 void testRBTreeInsert2(CuTest *cuTest) {
@@ -190,7 +178,6 @@ void testRBTreeInsert2(CuTest *cuTest) {
     }
 
 
-
     destroyRBTree(tree);
 
 }
@@ -227,7 +214,6 @@ void testRBTreeInsertAll(CuTest *cuTest) {
 }
 
 
-
 void testRBTreeContains(CuTest *cuTest) {
 
     RBTree *tree = redBlackTreeInitialization(free, compareIntPointersRBTT);
@@ -256,8 +242,6 @@ void testRBTreeContains(CuTest *cuTest) {
 }
 
 
-
-
 void testRBTreeDelete(CuTest *cuTest) {
 
     RBTree *tree = redBlackTreeInitialization(free, compareIntPointersRBTT);
@@ -284,7 +268,6 @@ void testRBTreeDelete(CuTest *cuTest) {
     destroyRBTree(tree);
 
 }
-
 
 
 void testRBTreeDeleteWtoFr(CuTest *cuTest) {
@@ -322,8 +305,6 @@ void testRBTreeDeleteWtoFr(CuTest *cuTest) {
 }
 
 
-
-
 void testRBTreeGet(CuTest *cuTest) {
 
     RBTree *tree = redBlackTreeInitialization(free, compareIntPointersRBTT);
@@ -348,10 +329,6 @@ void testRBTreeGet(CuTest *cuTest) {
     destroyRBTree(tree);
 
 }
-
-
-
-
 
 
 void testRBTreeToArray(CuTest *cuTest) {
@@ -380,10 +357,6 @@ void testRBTreeToArray(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testRBTreeGetSize(CuTest *cuTest) {
 
     RBTree *tree = redBlackTreeInitialization(free, compareIntPointersRBTT);
@@ -404,9 +377,6 @@ void testRBTreeGetSize(CuTest *cuTest) {
     destroyRBTree(tree);
 
 }
-
-
-
 
 
 void testClearRBTree(CuTest *cuTest) {
@@ -436,9 +406,6 @@ void testClearRBTree(CuTest *cuTest) {
 }
 
 
-
-
-
 void testDestroyRBTree(CuTest *cuTest) {
 
     RBTree *tree = redBlackTreeInitialization(free, compareIntPointersRBTT);
@@ -457,17 +424,11 @@ void testDestroyRBTree(CuTest *cuTest) {
 }
 
 
-
-
-
-
 int *RBTreeTestTraversalArr;
 
 void printFunRBTT(const void *item, COLOR color) {
     *RBTreeTestTraversalArr++ = *(int *) item;
 }
-
-
 
 
 void testRBTreePreOrderTraversal(CuTest *cuTest) {
@@ -501,11 +462,6 @@ void testRBTreePreOrderTraversal(CuTest *cuTest) {
 }
 
 
-
-
-
-
-
 void testRBTreeInOrderTraversal(CuTest *cuTest) {
 
     RBTree *tree = redBlackTreeInitialization(free, compareIntPointersRBTT);
@@ -521,7 +477,7 @@ void testRBTreeInOrderTraversal(CuTest *cuTest) {
     for (int i = 0; i < 13; i++)
         rBTreeInsert(tree, generateIntPointerRBTT(valuesArr[i]));
 
-    int traversalArr[] =  {1, 2, 4, 7, 8, 9, 10, 15, 20, 21, 22, 25, 100};
+    int traversalArr[] = {1, 2, 4, 7, 8, 9, 10, 15, 20, 21, 22, 25, 100};
 
     RBTreeTestTraversalArr = (int *) malloc(sizeof(int) * 13);
     int *tempPointer = RBTreeTestTraversalArr;
@@ -535,9 +491,6 @@ void testRBTreeInOrderTraversal(CuTest *cuTest) {
     destroyRBTree(tree);
 
 }
-
-
-
 
 
 void testRBTreePostOrderTraversal(CuTest *cuTest) {
@@ -555,7 +508,7 @@ void testRBTreePostOrderTraversal(CuTest *cuTest) {
     for (int i = 0; i < 13; i++)
         rBTreeInsert(tree, generateIntPointerRBTT(valuesArr[i]));
 
-    int traversalArr[] =  {2, 1, 7, 4, 9, 8, 15, 21, 100, 25, 22, 20, 10};
+    int traversalArr[] = {2, 1, 7, 4, 9, 8, 15, 21, 100, 25, 22, 20, 10};
 
     RBTreeTestTraversalArr = (int *) malloc(sizeof(int) * 13);
     int *tempPointer = RBTreeTestTraversalArr;
@@ -569,10 +522,6 @@ void testRBTreePostOrderTraversal(CuTest *cuTest) {
     destroyRBTree(tree);
 
 }
-
-
-
-
 
 
 void testRBTreePrint(CuTest *cuTest) {
@@ -590,7 +539,7 @@ void testRBTreePrint(CuTest *cuTest) {
     for (int i = 0; i < 13; i++)
         rBTreeInsert(tree, generateIntPointerRBTT(valuesArr[i]));
 
-    int traversalArr[] =  {100, 25, 22, 21, 20, 15, 10, 9, 8, 7, 4, 2, 1};
+    int traversalArr[] = {100, 25, 22, 21, 20, 15, 10, 9, 8, 7, 4, 2, 1};
 
     RBTreeTestTraversalArr = (int *) malloc(sizeof(int) * 13);
     int *tempPointer = RBTreeTestTraversalArr;
@@ -604,8 +553,6 @@ void testRBTreePrint(CuTest *cuTest) {
     destroyRBTree(tree);
 
 }
-
-
 
 
 CuSuite *createRedBlackTreeTestsSuite(void) {
@@ -635,10 +582,9 @@ CuSuite *createRedBlackTreeTestsSuite(void) {
 }
 
 
-
 void redBlackTreeUnitTest(void) {
 
-    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
+    ERROR_TEST = (ErrorTestStruct *) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Red Black Tree Test**\n");

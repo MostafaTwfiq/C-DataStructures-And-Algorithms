@@ -174,7 +174,7 @@ dkms.conf
 *.app
 
 
-main.c
+testsMain.c
 
 cloc-1.86.exe
 

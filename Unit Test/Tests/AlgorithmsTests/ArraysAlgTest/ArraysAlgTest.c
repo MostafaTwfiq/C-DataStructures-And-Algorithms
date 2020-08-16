@@ -6,8 +6,6 @@
 #include "../../../../DataStructure/Lists/Headers/Vector.h"
 
 
-
-
 void testArrayReverse(CuTest *cuTest) {
 
     int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -27,7 +25,6 @@ void testArrayReverse(CuTest *cuTest) {
 
 
 }
-
 
 
 void testMostFrequentArrValueH(CuTest *cuTest) {
@@ -55,12 +52,10 @@ void testMostFrequentArrValueH(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, 1, *(int *) mostFrequentArrValueH(arr2, 14, sizeof(int), compareIntPointers, intHashFun));
 
     int arr3[] = {0};
-    CuAssertPtrEquals(cuTest, NULL,  mostFrequentArrValueH(arr3, 0, sizeof(int), compareIntPointers, intHashFun));
+    CuAssertPtrEquals(cuTest, NULL, mostFrequentArrValueH(arr3, 0, sizeof(int), compareIntPointers, intHashFun));
 
 
 }
-
-
 
 
 void testMostFrequentArrValueA(CuTest *cuTest) {
@@ -85,15 +80,13 @@ void testMostFrequentArrValueA(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, 1, *(int *) mostFrequentArrValueA(arr2, 14, sizeof(int), compareIntPointers));
 
     int arr3[] = {0};
-    CuAssertPtrEquals(cuTest, NULL,  mostFrequentArrValueA(arr3, 0, sizeof(int), compareIntPointers));
+    CuAssertPtrEquals(cuTest, NULL, mostFrequentArrValueA(arr3, 0, sizeof(int), compareIntPointers));
 
 }
 
 
-
-
-
 int *printingArr;
+
 void printItemFunArrAlgT(void *item) {
     *printingArr++ = *(int *) item;
 }
@@ -128,9 +121,6 @@ void testPrintArr(CuTest *cuTest) {
 }
 
 
-
-
-
 void testArrResize(CuTest *cuTest) {
 
     int *arr = (int *) malloc(sizeof(int) * 10);
@@ -156,8 +146,6 @@ void testArrResize(CuTest *cuTest) {
     free(arr);
 
 }
-
-
 
 
 void testArrResizeAndCopy(CuTest *cuTest) {
@@ -190,7 +178,6 @@ void testArrResizeAndCopy(CuTest *cuTest) {
     free(newArr);
 
 }
-
 
 
 void testArrResizeOfRangeAndCpy(CuTest *cuTest) {
@@ -228,11 +215,9 @@ void testArrResizeOfRangeAndCpy(CuTest *cuTest) {
 }
 
 
-
 void intCopyFunArrAlgT(const void *s1, const void *s2) {
     memcpy((void *) s1, (void *) s2, sizeof(int));
 }
-
 
 
 void testArrResizeAndCpyC(CuTest *cuTest) {
@@ -270,8 +255,6 @@ void testArrResizeAndCpyC(CuTest *cuTest) {
 }
 
 
-
-
 void testArrResizeOfRangeAndCpyC(CuTest *cuTest) {
 
     int *arr = (int *) malloc(sizeof(int) * 10);
@@ -281,7 +264,7 @@ void testArrResizeOfRangeAndCpyC(CuTest *cuTest) {
     arrResizeOfRangeAndCpyC(NULL, 0, 0, 0, 0, 0, NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
-    arrResizeOfRangeAndCpyC(arr, -1, 0, 0, 0, 0,  NULL);
+    arrResizeOfRangeAndCpyC(arr, -1, 0, 0, 0, 0, NULL);
     CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrResizeOfRangeAndCpyC(arr, 0, 0, 0, 0, 0, intCopyFunArrAlgT);
@@ -310,8 +293,6 @@ void testArrResizeOfRangeAndCpyC(CuTest *cuTest) {
 }
 
 
-
-
 void testArrCopy(CuTest *cuTest) {
 
     int *arr = (int *) malloc(sizeof(int) * 10);
@@ -338,15 +319,13 @@ void testArrCopy(CuTest *cuTest) {
 }
 
 
-
-
 void testArrCopyC(CuTest *cuTest) {
 
     int *arr = (int *) malloc(sizeof(int) * 10);
     for (int i = 0; i < 10; i++)
         arr[i] = i + 1;
 
-    arrCopyC(NULL, 0, 0 ,NULL);
+    arrCopyC(NULL, 0, 0, NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     arrCopyC(arr, 0, 0, NULL);
@@ -367,10 +346,6 @@ void testArrCopyC(CuTest *cuTest) {
     free(newArr);
 
 }
-
-
-
-
 
 
 void testArrCopyOfRange(CuTest *cuTest) {
@@ -400,9 +375,6 @@ void testArrCopyOfRange(CuTest *cuTest) {
     free(newArr);
 
 }
-
-
-
 
 
 void testArrCopyOfRangeC(CuTest *cuTest) {
@@ -437,7 +409,6 @@ void testArrCopyOfRangeC(CuTest *cuTest) {
 }
 
 
-
 void testFillArr(CuTest *cuTest) {
 
     int *arr = (int *) malloc(sizeof(int) * 10);
@@ -467,10 +438,6 @@ void testFillArr(CuTest *cuTest) {
     free(arr);
 
 }
-
-
-
-
 
 
 void testFillArrC(CuTest *cuTest) {
@@ -507,9 +474,6 @@ void testFillArrC(CuTest *cuTest) {
 }
 
 
-
-
-
 void testFillArrOfRange(CuTest *cuTest) {
 
     int *arr = (int *) malloc(sizeof(int) * 10);
@@ -544,8 +508,6 @@ void testFillArrOfRange(CuTest *cuTest) {
     free(arr);
 
 }
-
-
 
 
 void testFillArrOfRangeC(CuTest *cuTest) {
@@ -587,8 +549,6 @@ void testFillArrOfRangeC(CuTest *cuTest) {
 }
 
 
-
-
 void testArrCompare(CuTest *cuTest) {
 
     int arr1[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -616,7 +576,6 @@ void testArrCompare(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, 1, arrCompare(arr1, 0, arr2, 0, sizeof(int), compareIntPointers));
 
 }
-
 
 
 void testArrCompareOfRange(CuTest *cuTest) {
@@ -650,9 +609,6 @@ void testArrCompareOfRange(CuTest *cuTest) {
 }
 
 
-
-
-
 void testArrMismatch(CuTest *cuTest) {
 
     int arr1[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -680,9 +636,6 @@ void testArrMismatch(CuTest *cuTest) {
 }
 
 
-
-
-
 void testArrAnagramsS(CuTest *cuTest) {
 
     int arr1[] = {1, 2, 3, 4, 5, 6, 3, 2, 7, 8, 9, 10};
@@ -708,9 +661,6 @@ void testArrAnagramsS(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, 1, arrAnagramsS(arr1, 12, arr2, 12, sizeof(int), compareIntPointers));
 
 }
-
-
-
 
 
 void testArrAnagramsH(CuTest *cuTest) {
@@ -741,9 +691,6 @@ void testArrAnagramsH(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, 1, arrAnagramsH(arr1, 12, arr2, 12, sizeof(int), compareIntPointers, intHashFun));
 
 }
-
-
-
 
 
 void testArrMismatchOfRange(CuTest *cuTest) {
@@ -777,9 +724,6 @@ void testArrMismatchOfRange(CuTest *cuTest) {
 }
 
 
-
-
-
 void testArrRemoveDuplicatesA(CuTest *cuTest) {
 
     int arr[] = {1, 2, 3, 1, 4, 2, 2, 3, 5, 6};
@@ -802,9 +746,6 @@ void testArrRemoveDuplicatesA(CuTest *cuTest) {
 
 
 }
-
-
-
 
 
 void testArrRemoveDuplicatesH(CuTest *cuTest) {
@@ -832,9 +773,6 @@ void testArrRemoveDuplicatesH(CuTest *cuTest) {
 
 
 }
-
-
-
 
 
 void testArrRemoveValues(CuTest *cuTest) {
@@ -865,9 +803,6 @@ void testArrRemoveValues(CuTest *cuTest) {
 }
 
 
-
-
-
 void testArrCountValues(CuTest *cuTest) {
 
     int arr[] = {1, 2, 7, 4, 5, 6, 7, 8, 9, 10};
@@ -894,9 +829,6 @@ void testArrCountValues(CuTest *cuTest) {
 }
 
 
-
-
-
 void testIsSubArr(CuTest *cuTest) {
 
     int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -921,14 +853,11 @@ void testIsSubArr(CuTest *cuTest) {
 
     CuAssertIntEquals(cuTest, 1, isSubArr(arr, 10, arr2, 3, sizeof(int), compareIntPointers));
     CuAssertIntEquals(cuTest, 1, isSubArr(arr, 10, arr, 10, sizeof(int), compareIntPointers));
-    CuAssertIntEquals(cuTest, 0, isSubArr(arr, 10, arr3,  6, sizeof(int), compareIntPointers));
-    CuAssertIntEquals(cuTest, 1, isSubArr(arr, 10, arr4,  0, sizeof(int), compareIntPointers));
+    CuAssertIntEquals(cuTest, 0, isSubArr(arr, 10, arr3, 6, sizeof(int), compareIntPointers));
+    CuAssertIntEquals(cuTest, 1, isSubArr(arr, 10, arr4, 0, sizeof(int), compareIntPointers));
 
 
 }
-
-
-
 
 
 void testArrGetStartIndex(CuTest *cuTest) {
@@ -961,9 +890,6 @@ void testArrGetStartIndex(CuTest *cuTest) {
 }
 
 
-
-
-
 void testArrContains(CuTest *cuTest) {
 
     int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -992,8 +918,6 @@ void testArrContains(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, 0, arrContains(arr, &tempValue, 10, sizeof(int), compareIntPointers));
 
 }
-
-
 
 
 void testArrRemoveAtIndex(CuTest *cuTest) {
@@ -1025,9 +949,6 @@ void testArrRemoveAtIndex(CuTest *cuTest) {
 }
 
 
-
-
-
 void testArrSort(CuTest *cuTest) {
 
     int arr[] = {10, 4, 5, 3, 2, 1, 6, 7, 8, 9};
@@ -1049,9 +970,6 @@ void testArrSort(CuTest *cuTest) {
         CuAssertIntEquals(cuTest, i + 1, arr[i]);
 
 }
-
-
-
 
 
 void testArrGetFirst(CuTest *cuTest) {
@@ -1084,8 +1002,6 @@ void testArrGetFirst(CuTest *cuTest) {
 }
 
 
-
-
 void testArrGetLast(CuTest *cuTest) {
 
     int arr[] = {1, 2, 3, 4, 5, 5, 4, 3, 2, 1};
@@ -1114,9 +1030,6 @@ void testArrGetLast(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, -1, arrGetLast(arr, &tempValue, 10, sizeof(int), compareIntPointers));
 
 }
-
-
-
 
 
 void testArrGetAll(CuTest *cuTest) {
@@ -1153,8 +1066,6 @@ void testArrGetAll(CuTest *cuTest) {
 }
 
 
-
-
 void testArrBinarySearch(CuTest *cuTest) {
 
     int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -1184,9 +1095,6 @@ void testArrBinarySearch(CuTest *cuTest) {
 }
 
 
-
-
-
 void testArrIsPalindrome(CuTest *cuTest) {
 
     int arr[] = {1, 2, 3, 4, 5, 5, 4, 3, 2, 1};
@@ -1211,8 +1119,6 @@ void testArrIsPalindrome(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, 1, arrIsPalindrome(arr3, 0, sizeof(int), compareIntPointers));
 
 }
-
-
 
 
 void testArrIsRotation(CuTest *cuTest) {
@@ -1247,8 +1153,6 @@ void testArrIsRotation(CuTest *cuTest) {
 }
 
 
-
-
 void testArrUpdateElem(CuTest *cuTest) {
 
     int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 8, 10};
@@ -1277,9 +1181,6 @@ void testArrUpdateElem(CuTest *cuTest) {
 }
 
 
-
-
-
 void testArrAdd(CuTest *cuTest) {
 
     int arr[] = {1, 2, 3, 4, 5, 7, 8, 9, 10, 0};
@@ -1301,16 +1202,12 @@ void testArrAdd(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 
-
     tempValue = 6;
     arrAdd(arr, &tempValue, 10, sizeof(int), 5);
     for (int i = 0; i < 10; i++)
         CuAssertIntEquals(cuTest, i + 1, arr[i]);
 
 }
-
-
-
 
 
 void testArrAddAll(CuTest *cuTest) {
@@ -1392,10 +1289,9 @@ CuSuite *createArraysAlgTestsSuite(void) {
 }
 
 
-
 void arraysAlgUnitTest(void) {
 
-    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
+    ERROR_TEST = (ErrorTestStruct *) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Arrays Algorithms Test**\n");

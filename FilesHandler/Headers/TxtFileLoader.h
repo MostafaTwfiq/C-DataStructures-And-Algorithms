@@ -5,13 +5,10 @@
 #include <stdio.h>
 
 
-
 typedef struct TxtFileLoader {
     char *dir;
     FILE *fileP;
 } TxtFileLoader;
-
-
 
 
 TxtFileLoader *txtFileLoaderInitialization(char *fileDir);

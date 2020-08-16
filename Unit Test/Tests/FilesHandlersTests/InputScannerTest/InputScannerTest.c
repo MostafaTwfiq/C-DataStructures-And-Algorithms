@@ -5,8 +5,6 @@
 #include "../../../../DataStructure/Strings/Headers/String.h"
 
 
-
-
 void testScanStrS(CuTest *cuTest) {
 
     scanStrS(NULL);
@@ -57,7 +55,6 @@ void testScanStrC(CuTest *cuTest) {
 }
 
 
-
 void testScanChar(CuTest *cuTest) {
 
     scanChar(NULL);
@@ -77,7 +74,6 @@ void testScanChar(CuTest *cuTest) {
     fclose(dir);
 
 }
-
 
 
 void testScanInt(CuTest *cuTest) {
@@ -114,8 +110,6 @@ void testScanInt(CuTest *cuTest) {
 }
 
 
-
-
 void testScanDouble(CuTest *cuTest) {
 
     scanDouble(NULL);
@@ -148,7 +142,6 @@ void testScanDouble(CuTest *cuTest) {
     fclose(dir);
 
 }
-
 
 
 void testScanFloat(CuTest *cuTest) {
@@ -184,7 +177,6 @@ void testScanFloat(CuTest *cuTest) {
     fclose(dir);
 
 }
-
 
 
 void testScanLong(CuTest *cuTest) {
@@ -256,7 +248,6 @@ void testScanLongLong(CuTest *cuTest) {
 }
 
 
-
 void testScanShort(CuTest *cuTest) {
 
     scanShort(NULL);
@@ -291,7 +282,6 @@ void testScanShort(CuTest *cuTest) {
 }
 
 
-
 CuSuite *createInputScannerTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
@@ -311,10 +301,9 @@ CuSuite *createInputScannerTestsSuite(void) {
 }
 
 
-
 void inputScannerUnitTest(void) {
 
-    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
+    ERROR_TEST = (ErrorTestStruct *) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Input Scanner Test**\n");

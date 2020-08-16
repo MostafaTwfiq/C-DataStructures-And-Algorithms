@@ -21,10 +21,11 @@ extern "C" {
 typedef struct Entry {
     void *key;
     void *item;
+
     void (*freeItemFun)(void *);
+
     void (*freeKeyFun)(void *);
 } Entry;
-
 
 
 /** @struct HashMap
@@ -52,13 +53,19 @@ typedef struct HashMap {
     int length;
     int count;
     int bPrime;
+
     void (*freeItemFun)(void *);
+
     void (*freeKeyFun)(void *);
+
     int (*keyComp)(const void *, const void *);
+
     int (*hashFun)(const void *);
 } HashMap;
 
-HashMap *hashMapInitialization(void (*freeKey)(void *), void (*freeItem)(void *), int (*keyComp)(const void *, const void *), int (*hashFun)(const void *));
+HashMap *
+hashMapInitialization(void (*freeKey)(void *), void (*freeItem)(void *), int (*keyComp)(const void *, const void *),
+                      int (*hashFun)(const void *));
 
 void hashMapInsert(HashMap *map, void *key, void *item);
 

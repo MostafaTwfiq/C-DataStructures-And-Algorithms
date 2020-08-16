@@ -4,12 +4,6 @@
 #include <math.h>
 
 
-
-
-
-
-
-
 /** This function will take an array and value,
  * then it will search for the value using the jump search algorithm.
  *
@@ -32,45 +26,45 @@
 int jumpSearch(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "jump search");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "jump search");
+        exit(NULL_POINTER);
+#endif
     } else if (value == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "jump search");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "jump search");
+        exit(INVALID_ARG);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "jump search");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "jump search");
+        exit(INVALID_ARG);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "jump search");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "jump search");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "jump search");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "jump search");
+        exit(INVALID_ARG);
+#endif
     }
 
 
@@ -83,15 +77,14 @@ int jumpSearch(void *arr, void *value, int length, int elemSize, int (*cmp)(cons
         if (nextPartStart > oneBytePointer + length * elemSize)
             nextPartStart = oneBytePointer + length * elemSize;
 
-        if (cmp(value, nextPartStart - elemSize) <= 0 ) {
+        if (cmp(value, nextPartStart - elemSize) <= 0) {
 
-            for             (   char *currentPointer = partStart;
-                                currentPointer < nextPartStart;
-                                currentPointer += elemSize
-                    )
-            {
+            for (char *currentPointer = partStart;
+                 currentPointer < nextPartStart;
+                 currentPointer += elemSize
+                    ) {
 
-                if ( cmp(value, currentPointer) == 0 )
+                if (cmp(value, currentPointer) == 0)
                     return (currentPointer - oneBytePointer) / elemSize;
 
             }

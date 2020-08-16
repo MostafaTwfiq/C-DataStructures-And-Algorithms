@@ -24,7 +24,9 @@ typedef struct ArrayList {
     void **arr;
     int length;
     int count;
+
     void (*freeItem)(void *);
+
     int (*comparator)(const void *, const void *);
 } ArrayList;
 
@@ -58,7 +60,7 @@ void **arrayListToArray(ArrayList *list);
 
 void **arrayListToSubArray(ArrayList *list, int start, int end);
 
-void arrayListSort(ArrayList *list, int (*sortComp)(const void*, const void*));
+void arrayListSort(ArrayList *list, int (*sortComp)(const void *, const void *));
 
 int arrayListGetLength(ArrayList *list);
 

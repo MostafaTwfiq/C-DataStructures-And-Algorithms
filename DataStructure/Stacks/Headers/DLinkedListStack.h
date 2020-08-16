@@ -6,7 +6,6 @@ extern "C" {
 #endif
 
 
-
 /** @struct DLinkedListStack
 *  @brief This structure implements a basic generic DLinkedListStack.
 *  @var DLinkedListStack:: linkedList

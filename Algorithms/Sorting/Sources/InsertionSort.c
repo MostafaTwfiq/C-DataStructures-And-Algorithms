@@ -3,9 +3,6 @@
 #include "../../../Unit Test/CuTest/CuTest.h"
 
 
-
-
-
 /** This function will take an array then it sort it with the insertion sort algorithm.
  *
  * Time Complexity: best: O(n) , worst: O (n ^ 2).
@@ -21,37 +18,37 @@
 void insertionSort(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "insertion sort");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "insertion sort");
+        exit(NULL_POINTER);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "insertion sort");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "insertion sort");
+        exit(INVALID_ARG);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "insertion sort");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "insertion sort");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "insertion sort");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "insertion sort");
+        exit(INVALID_ARG);
+#endif
     }
 
     char *oneBytePointer = (char *) arr;
@@ -78,7 +75,6 @@ void insertionSort(void *arr, int length, int elemSize, int (*cmp)(const void *,
         free(currentElement);
 
     }
-
 
 
 }

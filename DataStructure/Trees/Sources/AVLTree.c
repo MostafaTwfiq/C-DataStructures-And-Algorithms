@@ -5,9 +5,7 @@
 
 typedef enum AVLTreeRotationType {
     LEFT, RIGHT, LEFT_RIGHT, RIGHT_LEFT
-}AVLTreeRotationType;
-
-
+} AVLTreeRotationType;
 
 
 AVLTreeNode *avlTreeInsertR(AVLTree *tree, AVLTreeNode *root, void *item);
@@ -27,8 +25,6 @@ void avlTreePostOrderTraversalR(AVLTreeNode *root, void (*printFun)(void *));
 void clearAVLTreeR(AVLTreeNode *root, void (*freeFun)(void *));
 
 void avlTreeBreadthFirstTraversalR(AVLTreeNode *root, int currentLevel, int targetLevel, void (*printFun)(void *));
-
-
 
 
 /** This function will create a new avl tree node,
@@ -57,11 +53,6 @@ AVLTreeNode *createAVLTreeNode(void *item) {
 }
 
 
-
-
-
-
-
 /** This function will destroy and free the node with it's item.
  *
  * Note: this function should only be called from the inside.
@@ -80,11 +71,6 @@ void destroyAVLTreeNode(AVLTreeNode *node, void (*freeFun)(void *)) {
 }
 
 
-
-
-
-
-
 /** This function will destroy and free the node without freeing it's item.
  *
  * Note: this function should only be called from the inside.
@@ -100,10 +86,6 @@ void destroyAVLTreeNodeWtoFr(AVLTreeNode *node) {
 }
 
 
-
-
-
-
 /** This function returns the passed node height,
  * and if the node was NULL, the function will return minus one (-1).
  *
@@ -116,8 +98,6 @@ void destroyAVLTreeNodeWtoFr(AVLTreeNode *node) {
 int avlTreeGetNodeHeight(AVLTreeNode *node) {
     return node == NULL ? -1 : node->height;
 }
-
-
 
 
 /** This function takes two integers,
@@ -135,13 +115,6 @@ int avlTreeGetMaxInt(int a, int b) {
 }
 
 
-
-
-
-
-
-
-
 /** This function calculate the passed node height,
  * and then store it in the node height variable.
  *
@@ -153,15 +126,6 @@ int avlTreeGetMaxInt(int a, int b) {
 void avlTreeCalculateNodeHeight(AVLTreeNode *node) {
     node->height = avlTreeGetMaxInt(avlTreeGetNodeHeight(node->left), avlTreeGetNodeHeight(node->right)) + 1;
 }
-
-
-
-
-
-
-
-
-
 
 
 /** This function checks if the passed node require rotation or not,
@@ -178,11 +142,6 @@ int avlTreeIsRequiredRotation(AVLTreeNode *node) {
     value = value < 0 ? value * -1 : value;
     return value >= 2;
 }
-
-
-
-
-
 
 
 /** This function return the rotate type that the node needs to balance the tree.
@@ -210,10 +169,6 @@ AVLTreeRotationType avlTreeGetRotationType(AVLTreeNode *node) {
 }
 
 
-
-
-
-
 /** This function will apply a left rotation on the passed node,
  * then it will return the new root (parent) node.
  *
@@ -237,11 +192,6 @@ AVLTreeNode *avlTreeLeftRotation(AVLTreeNode *node) {
 }
 
 
-
-
-
-
-
 /** This function will apply a right rotation on the passed node,
  * then it will return the new root (parent) node.
  *
@@ -263,13 +213,6 @@ AVLTreeNode *avlTreeRightRotation(AVLTreeNode *node) {
     return newParent;
 
 }
-
-
-
-
-
-
-
 
 
 /** This function will check for the passed rotation type,
@@ -313,10 +256,6 @@ AVLTreeNode *avlTreePerformRotation(AVLTreeNode *node, AVLTreeRotationType rotat
 }
 
 
-
-
-
-
 /** This function will return the right successor of the passed node.
  *
  * Note: this function should only be called from the inside.
@@ -337,11 +276,6 @@ AVLTreeNode *avlTreeGetRightSuccessor(AVLTreeNode *node) {
 }
 
 
-
-
-
-
-
 /** This function will initialize a new avl tree and setup  it's fields,
  * then return it's pointer.
  *
@@ -353,21 +287,21 @@ AVLTreeNode *avlTreeGetRightSuccessor(AVLTreeNode *node) {
 AVLTree *avlTreeInitialization(void (*freeFun)(void *), int (*cmp)(const void *, const void *)) {
 
     if (freeFun == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-     		return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "avl tree data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+         return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "avl tree data structure");
+        exit(INVALID_ARG);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-     		return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "compare function pointer", "avl tree data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+         return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "compare function pointer", "avl tree data structure");
+        exit(INVALID_ARG);
+#endif
     }
 
     AVLTree *tree = (AVLTree *) malloc(sizeof(AVLTree));
@@ -387,10 +321,6 @@ AVLTree *avlTreeInitialization(void (*freeFun)(void *), int (*cmp)(const void *,
 }
 
 
-
-
-
-
 /** This function will insert the passed item in the tree.
  *
  * @param tree the tree pointer
@@ -400,30 +330,25 @@ AVLTree *avlTreeInitialization(void (*freeFun)(void *), int (*cmp)(const void *,
 void avlTreeInsert(AVLTree *tree, void *item) {
 
     if (tree == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
+        exit(NULL_POINTER);
+#endif
     } else if (item == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-     		return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "avl tree data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+         return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "avl tree data structure");
+        exit(INVALID_ARG);
+#endif
     }
 
     tree->root = avlTreeInsertR(tree, tree->root, item);
 }
-
-
-
-
-
 
 
 /** This function will recursively insert the passed item in the tree.
@@ -443,7 +368,7 @@ AVLTreeNode *avlTreeInsertR(AVLTree *tree, AVLTreeNode *root, void *item) {
         return createAVLTreeNode(item);
     }
 
-    if ( tree->cmp(item, root->key) > 0 || tree->cmp(item, root->key) == 0 )
+    if (tree->cmp(item, root->key) > 0 || tree->cmp(item, root->key) == 0)
         root->right = avlTreeInsertR(tree, root->right, item);
     else
         root->left = avlTreeInsertR(tree, root->left, item);
@@ -459,10 +384,6 @@ AVLTreeNode *avlTreeInsertR(AVLTree *tree, AVLTreeNode *root, void *item) {
 }
 
 
-
-
-
-
 /** This function will take an items array,
  * then it will insert all the items in the tree.
  *
@@ -474,32 +395,27 @@ AVLTreeNode *avlTreeInsertR(AVLTree *tree, AVLTreeNode *root, void *item) {
 void avlInsertAll(AVLTree *tree, void **items, int length) {
 
     if (tree == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
+        exit(NULL_POINTER);
+#endif
     } else if (items == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-     		return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "items array pointer", "avl tree data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+         return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "items array pointer", "avl tree data structure");
+        exit(INVALID_ARG);
+#endif
     }
 
     for (int i = 0; i < length; i++)
         avlTreeInsert(tree, items[i]);
 
 }
-
-
-
-
-
 
 
 /** This function will search for the passed item then it will destroy and remove the item node from the tree
@@ -512,38 +428,34 @@ void avlInsertAll(AVLTree *tree, void **items, int length) {
 void avlTreeDelete(AVLTree *tree, void *item) {
 
     if (tree == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
+        exit(NULL_POINTER);
+#endif
     } else if (item == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-     		return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "avl tree data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+         return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "avl tree data structure");
+        exit(INVALID_ARG);
+#endif
     } else if (avlTreeIsEmpty(tree)) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
-            return;
-        #else
-            fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "avl tree data structure");
-            exit(EMPTY_DATA_STRUCTURE);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
+        return;
+#else
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "avl tree data structure");
+        exit(EMPTY_DATA_STRUCTURE);
+#endif
     }
 
     tree->root = avlTreeDeleteR(tree, tree->root, item);
 
 }
-
-
-
-
 
 
 /** This function will recursively search for the passed node item, then it will remove the node from the tree
@@ -562,7 +474,7 @@ AVLTreeNode *avlTreeDeleteR(AVLTree *tree, AVLTreeNode *root, void *item) {
     if (root == NULL)
         return NULL;
 
-    if ( tree->cmp(item, root->key) == 0 ) {
+    if (tree->cmp(item, root->key) == 0) {
 
         if (root->right == NULL && root->left == NULL) {
             destroyAVLTreeNode(root, tree->freeFn);
@@ -581,9 +493,7 @@ AVLTreeNode *avlTreeDeleteR(AVLTree *tree, AVLTreeNode *root, void *item) {
             tree->count--;
         }
 
-    }
-
-    else if ( tree->cmp(item, root->key) > 0 )
+    } else if (tree->cmp(item, root->key) > 0)
         root->right = avlTreeDeleteR(tree, root->right, item);
     else
         root->left = avlTreeDeleteR(tree, root->left, item);
@@ -599,10 +509,6 @@ AVLTreeNode *avlTreeDeleteR(AVLTree *tree, AVLTreeNode *root, void *item) {
 }
 
 
-
-
-
-
 /** This function will search for the passed item in the tree,
  * and if it found it the function will remove the node and free it without freeing the node item and then return the item pointer,
  * other wise it will return NULL.
@@ -615,29 +521,29 @@ AVLTreeNode *avlTreeDeleteR(AVLTree *tree, AVLTreeNode *root, void *item) {
 void *avlTreeDeleteWtoFr(AVLTree *tree, void *item) {
 
     if (tree == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
+        exit(NULL_POINTER);
+#endif
     } else if (item == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-     		return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "avl tree data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+         return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "avl tree data structure");
+        exit(INVALID_ARG);
+#endif
     } else if (avlTreeIsEmpty(tree)) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
-            return NULL;
-        #else
-            fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "avl tree data structure");
-            exit(EMPTY_DATA_STRUCTURE);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
+        return NULL;
+#else
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "avl tree data structure");
+        exit(EMPTY_DATA_STRUCTURE);
+#endif
     }
 
     void **deletedItemHolder = (void **) malloc(sizeof(void *));
@@ -651,11 +557,6 @@ void *avlTreeDeleteWtoFr(AVLTree *tree, void *item) {
     return deletedItem;
 
 }
-
-
-
-
-
 
 
 /** This function will recursively search for the passed item,
@@ -676,7 +577,7 @@ AVLTreeNode *avlTreeDeleteWtoFrR(AVLTree *tree, AVLTreeNode *root, void *item, v
     if (root == NULL)
         return NULL;
 
-    if ( tree->cmp(item, root->key) == 0 ) {
+    if (tree->cmp(item, root->key) == 0) {
 
         *deletedItemHolder = root->key;
 
@@ -697,9 +598,7 @@ AVLTreeNode *avlTreeDeleteWtoFrR(AVLTree *tree, AVLTreeNode *root, void *item, v
             tree->count--;
         }
 
-    }
-
-    else if ( tree->cmp(item, root->key) > 0 )
+    } else if (tree->cmp(item, root->key) > 0)
         root->right = avlTreeDeleteWtoFrR(tree, root->right, item, deletedItemHolder);
     else
         root->left = avlTreeDeleteWtoFrR(tree, root->left, item, deletedItemHolder);
@@ -715,11 +614,6 @@ AVLTreeNode *avlTreeDeleteWtoFrR(AVLTree *tree, AVLTreeNode *root, void *item, v
 }
 
 
-
-
-
-
-
 /** This function will check if the passed item exists in the tree or not,
  * and if it was the function will return one (1), other wise it will return zero (0).
  *
@@ -731,30 +625,30 @@ AVLTreeNode *avlTreeDeleteWtoFrR(AVLTree *tree, AVLTreeNode *root, void *item, v
 int avlTreeContains(AVLTree *tree, void *item) {
 
     if (tree == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
+        exit(NULL_POINTER);
+#endif
     } else if (item == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-     		return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "avl tree data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+         return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "avl tree data structure");
+        exit(INVALID_ARG);
+#endif
     }
 
     AVLTreeNode *currentNode = tree->root;
 
     while (currentNode != NULL) {
 
-        if ( tree->cmp(item, currentNode->key) == 0)
+        if (tree->cmp(item, currentNode->key) == 0)
             break;
-        else if ( tree->cmp(item, currentNode->key) < 0 )
+        else if (tree->cmp(item, currentNode->key) < 0)
             currentNode = currentNode->left;
         else
             currentNode = currentNode->right;
@@ -764,11 +658,6 @@ int avlTreeContains(AVLTree *tree, void *item) {
     return currentNode != NULL ? 1 : 0;
 
 }
-
-
-
-
-
 
 
 /** This function will check if the passed item is in the tree or not,
@@ -783,30 +672,30 @@ int avlTreeContains(AVLTree *tree, void *item) {
 void *avlTreeGet(AVLTree *tree, void *item) {
 
     if (tree == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
+        exit(NULL_POINTER);
+#endif
     } else if (item == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-     		return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "avl tree data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+         return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "avl tree data structure");
+        exit(INVALID_ARG);
+#endif
     }
 
     AVLTreeNode *currentNode = tree->root;
 
     while (currentNode != NULL) {
 
-        if ( tree->cmp(item, currentNode->key) == 0)
+        if (tree->cmp(item, currentNode->key) == 0)
             break;
-        else if ( tree->cmp(item, currentNode->key) < 0 )
+        else if (tree->cmp(item, currentNode->key) < 0)
             currentNode = currentNode->left;
         else
             currentNode = currentNode->right;
@@ -818,10 +707,6 @@ void *avlTreeGet(AVLTree *tree, void *item) {
 }
 
 
-
-
-
-
 /** This function will return the current number of nodes in the tree.
  *
  * @param tree the tree pointer
@@ -831,22 +716,18 @@ void *avlTreeGet(AVLTree *tree, void *item) {
 int avlTreeGetSize(AVLTree *tree) {
 
     if (tree == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
+        exit(NULL_POINTER);
+#endif
     }
 
     return tree->count;
 
 }
-
-
-
-
 
 
 /** This function will check if the tree is empty or not,
@@ -859,23 +740,18 @@ int avlTreeGetSize(AVLTree *tree) {
 int avlTreeIsEmpty(AVLTree *tree) {
 
     if (tree == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
+        exit(NULL_POINTER);
+#endif
     }
 
     return tree->count == 0;
 
 }
-
-
-
-
-
 
 
 /** This function will return a double void pointer array,
@@ -888,13 +764,13 @@ int avlTreeIsEmpty(AVLTree *tree) {
 void **avlTreeToArray(AVLTree *tree) {
 
     if (tree == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
+        exit(NULL_POINTER);
+#endif
     }
 
     void **arr = (void **) malloc(sizeof(void *) * tree->count);
@@ -911,10 +787,6 @@ void **avlTreeToArray(AVLTree *tree) {
     return arr;
 
 }
-
-
-
-
 
 
 /** This function will recursively fill the passed array,
@@ -939,12 +811,6 @@ void avlTreeToArrayR(void **arr, AVLTreeNode *root, int *index) {
 }
 
 
-
-
-
-
-
-
 /** This function will pre order traverse the tree.
  *
  * Note: you can do any thing else the printing.
@@ -956,34 +822,26 @@ void avlTreeToArrayR(void **arr, AVLTreeNode *root, int *index) {
 void avlTreePreOrderTraversal(AVLTree *tree, void (*printFun)(void *)) {
 
     if (tree == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
+        exit(NULL_POINTER);
+#endif
     } else if (printFun == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-     		return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "printing function pointer", "avl tree data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+         return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "printing function pointer", "avl tree data structure");
+        exit(INVALID_ARG);
+#endif
     }
 
     avlTreePreOrderTraversalR(tree->root, printFun);
 
 }
-
-
-
-
-
-
-
-
 
 
 /** This function will pre order traverse the tree recursively.
@@ -1007,14 +865,6 @@ void avlTreePreOrderTraversalR(AVLTreeNode *root, void (*printFun)(void *)) {
 }
 
 
-
-
-
-
-
-
-
-
 /** This function will in order traverse the tree.
  *
  * Note: you can do any thing else the printing.
@@ -1026,35 +876,26 @@ void avlTreePreOrderTraversalR(AVLTreeNode *root, void (*printFun)(void *)) {
 void avlTreeInOrderTraversal(AVLTree *tree, void (*printFun)(void *)) {
 
     if (tree == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
+        exit(NULL_POINTER);
+#endif
     } else if (printFun == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-     		return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "printing function pointer", "avl tree data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+         return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "printing function pointer", "avl tree data structure");
+        exit(INVALID_ARG);
+#endif
     }
 
     avlTreeInOrderTraversalR(tree->root, printFun);
 
 }
-
-
-
-
-
-
-
-
-
 
 
 /** This function will in order traverse the tree recursively.
@@ -1078,16 +919,6 @@ void avlTreeInOrderTraversalR(AVLTreeNode *root, void (*printFun)(void *)) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
 /** This function will post order traverse the tree.
  *
  * Note: you can do any thing else the printing.
@@ -1099,35 +930,26 @@ void avlTreeInOrderTraversalR(AVLTreeNode *root, void (*printFun)(void *)) {
 void avlTreePostOrderTraversal(AVLTree *tree, void (*printFun)(void *)) {
 
     if (tree == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
+        exit(NULL_POINTER);
+#endif
     } else if (printFun == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-     		return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "printing function pointer", "avl tree data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+         return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "printing function pointer", "avl tree data structure");
+        exit(INVALID_ARG);
+#endif
     }
 
     avlTreePostOrderTraversalR(tree->root, printFun);
 
 }
-
-
-
-
-
-
-
-
-
 
 
 /** This function will post order traverse the tree recursively.
@@ -1151,10 +973,6 @@ void avlTreePostOrderTraversalR(AVLTreeNode *root, void (*printFun)(void *)) {
 }
 
 
-
-
-
-
 /** This function will breadth first traverse the tree.
  *
  * Note: you can do any thing else the printing.
@@ -1166,34 +984,30 @@ void avlTreePostOrderTraversalR(AVLTreeNode *root, void (*printFun)(void *)) {
 void avlTreeBreadthFirstTraversal(AVLTree *tree, void (*printFun)(void *)) {
 
     if (tree == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
+        exit(NULL_POINTER);
+#endif
     } else if (printFun == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "printing function pointer", "avl tree data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "printing function pointer", "avl tree data structure");
+        exit(INVALID_ARG);
+#endif
     }
 
     if (tree->root == NULL)
         return;
 
     for (int i = 0; i < tree->root->height + 1; i++)
-        avlTreeBreadthFirstTraversalR(tree->root, 0,i, printFun);
+        avlTreeBreadthFirstTraversalR(tree->root, 0, i, printFun);
 
 }
-
-
-
-
 
 
 /** This function will breadth first traverse the tree recursively.
@@ -1222,9 +1036,6 @@ void avlTreeBreadthFirstTraversalR(AVLTreeNode *root, int currentLevel, int targ
 }
 
 
-
-
-
 /** This function will destroy and clear the tree nodes, without destroying the tree itself.
  *
  * @param tree the tree pointer
@@ -1233,13 +1044,13 @@ void avlTreeBreadthFirstTraversalR(AVLTreeNode *root, int currentLevel, int targ
 void clearAVLTree(AVLTree *tree) {
 
     if (tree == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
+        exit(NULL_POINTER);
+#endif
     }
 
     clearAVLTreeR(tree->root, tree->freeFn);
@@ -1249,12 +1060,6 @@ void clearAVLTree(AVLTree *tree) {
     tree->count = 0;
 
 }
-
-
-
-
-
-
 
 
 /** This function will recursively destroy and free the tree nodes.
@@ -1276,10 +1081,6 @@ void clearAVLTreeR(AVLTreeNode *root, void (*freeFun)(void *)) {
 }
 
 
-
-
-
-
 /** This function will destroy and free the tree with all it's nodes.
  *
  * @param tree the tree pointer
@@ -1288,13 +1089,13 @@ void clearAVLTreeR(AVLTreeNode *root, void (*freeFun)(void *)) {
 void destroyAVLTree(AVLTree *tree) {
 
     if (tree == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "avl tree data structure");
+        exit(NULL_POINTER);
+#endif
     }
 
     clearAVLTree(tree);

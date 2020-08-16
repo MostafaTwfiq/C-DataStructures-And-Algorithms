@@ -20,8 +20,6 @@ int *generateIntPointerST(int integer) {
 }
 
 
-
-
 /** This function will compare to integers pointers,
  * then it will return zero if they are equal, negative number if the second integer is bigger,
  * and positive number if the first integer is bigger.
@@ -31,11 +29,8 @@ int *generateIntPointerST(int integer) {
  */
 
 int compareIntPointersST(const void *a, const void *b) {
-    return *(int *)a - *(int *)b;
+    return *(int *) a - *(int *) b;
 }
-
-
-
 
 
 /** This function will take a char array
@@ -47,15 +42,13 @@ int compareIntPointersST(const void *a, const void *b) {
 
 char *generateCharPointerST(char *ch) {
 
-    char *newCh = (char *) malloc( sizeof(char) * (strlen(ch) + 1) );
+    char *newCh = (char *) malloc(sizeof(char) * (strlen(ch) + 1));
 
     strcpy(newCh, ch);
 
     return newCh;
 
 }
-
-
 
 
 void testInvalidStackInitialization(CuTest *cuTest) {
@@ -75,8 +68,6 @@ void testValidStackInitialization(CuTest *cuTest) {
     destroyStack(stack);
 
 }
-
-
 
 
 void testStackPush(CuTest *cuTest) {
@@ -103,8 +94,6 @@ void testStackPush(CuTest *cuTest) {
 }
 
 
-
-
 void testStackAddAll(CuTest *cuTest) {
 
     Stack *stack = stackInitialization(free);
@@ -115,7 +104,7 @@ void testStackAddAll(CuTest *cuTest) {
     stackAddAll(stack, NULL, 0);
     CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
-    int **arr = (int **) malloc(sizeof(int * ) * 5);
+    int **arr = (int **) malloc(sizeof(int *) * 5);
     for (int i = 0; i < 5; i++)
         arr[i] = generateIntPointerST(i + 1);
 
@@ -129,8 +118,6 @@ void testStackAddAll(CuTest *cuTest) {
     destroyStack(stack);
 
 }
-
-
 
 
 void testStackPop(CuTest *cuTest) {
@@ -160,9 +147,6 @@ void testStackPop(CuTest *cuTest) {
     destroyStack(stack);
 
 }
-
-
-
 
 
 void testStackPeek(CuTest *cuTest) {
@@ -195,9 +179,6 @@ void testStackPeek(CuTest *cuTest) {
 }
 
 
-
-
-
 void testStackIsEmpty(CuTest *cuTest) {
 
     Stack *stack = stackInitialization(free);
@@ -224,10 +205,6 @@ void testStackIsEmpty(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testStackToArray(CuTest *cuTest) {
 
     Stack *stack = stackInitialization(free);
@@ -250,9 +227,6 @@ void testStackToArray(CuTest *cuTest) {
     destroyStack(stack);
 
 }
-
-
-
 
 
 void testStackGetLength(CuTest *cuTest) {
@@ -282,9 +256,6 @@ void testStackGetLength(CuTest *cuTest) {
     destroyStack(stack);
 
 }
-
-
-
 
 
 void testStackContains(CuTest *cuTest) {
@@ -321,8 +292,6 @@ void testStackContains(CuTest *cuTest) {
     destroyStack(stack);
 
 }
-
-
 
 
 void testStackEquals(CuTest *cuTest) {
@@ -367,9 +336,6 @@ void testStackEquals(CuTest *cuTest) {
 }
 
 
-
-
-
 void testClearStack(CuTest *cuTest) {
 
     Stack *stack = stackInitialization(free);
@@ -402,10 +368,6 @@ void testClearStack(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testDestroyStack(CuTest *cuTest) {
 
     Stack *stack = stackInitialization(free);
@@ -423,17 +385,12 @@ void testDestroyStack(CuTest *cuTest) {
 }
 
 
-
-
-
-
 typedef struct StackTestStruct {
 
     int iData;
     char *cData;
 
 } StackTestStruct;
-
 
 
 void freeStackTestStruct(void *item) {
@@ -455,11 +412,10 @@ int stackTestStructComp(const void *item1, const void *item2) {
 }
 
 
-
 StackTestStruct *generateStackTestStruct(int value, char *str) {
 
     StackTestStruct *s = (StackTestStruct *) malloc(sizeof(StackTestStruct));
-    s->cData = (char *) malloc(sizeof(char ) * (strlen(str) + 1) );
+    s->cData = (char *) malloc(sizeof(char) * (strlen(str) + 1));
     strcpy(s->cData, str);
 
     s->iData = value;
@@ -469,12 +425,11 @@ StackTestStruct *generateStackTestStruct(int value, char *str) {
 }
 
 
-
-
 void generalStackTest(CuTest *cuTest) {
 
     Stack *stack = stackInitialization(freeStackTestStruct);
-    char numbersStr[14][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"};
+    char numbersStr[14][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven",
+                               "twelve", "thirteen", "fourteen"};
 
 
     CuAssertIntEquals(cuTest, 0, stackGetLength(stack));
@@ -521,8 +476,6 @@ void generalStackTest(CuTest *cuTest) {
 }
 
 
-
-
 CuSuite *createStackTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
@@ -548,10 +501,9 @@ CuSuite *createStackTestsSuite(void) {
 }
 
 
-
 void stackUnitTest(void) {
 
-    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
+    ERROR_TEST = (ErrorTestStruct *) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Stack Test**\n");

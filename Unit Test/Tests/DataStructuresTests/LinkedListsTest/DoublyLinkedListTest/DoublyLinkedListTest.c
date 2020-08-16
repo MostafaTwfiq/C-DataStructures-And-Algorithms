@@ -22,8 +22,6 @@ int *generateIntPointerDLLT(int integer) {
 }
 
 
-
-
 /** This function will compare to integers pointers,
  * then it will return zero if they are equal, negative number if the second integer is bigger,
  * and positive number if the first integer is bigger.
@@ -34,11 +32,8 @@ int *generateIntPointerDLLT(int integer) {
  */
 
 int compareIntPointersDLLT(const void *a, const void *b) {
-    return *(int *)a - *(int *)b;
+    return *(int *) a - *(int *) b;
 }
-
-
-
 
 
 /** This function will take a char array
@@ -51,14 +46,13 @@ int compareIntPointersDLLT(const void *a, const void *b) {
 
 char *generateCharPointerDLLT(char *ch) {
 
-    char *newCh = (char *) malloc( sizeof(char) * (strlen(ch) + 1) );
+    char *newCh = (char *) malloc(sizeof(char) * (strlen(ch) + 1));
 
     strcpy(newCh, ch);
 
     return newCh;
 
 }
-
 
 
 /** This function will take a linked list then it will insert,
@@ -80,7 +74,6 @@ void doublyLinkedListAddFrom1To10Values(DoublyLinkedList *list) {
     free(arr);
 
 }
-
 
 
 void testInvalidDoublyLinkedListInitialization(CuTest *cuTest) {
@@ -115,12 +108,11 @@ void testDoublyLinkedListAddFirst(CuTest *cuTest) {
     doublyLinkedListAddFirst(list, generateIntPointerDLLT(30));
 
     for (int i = list->length - 1; i >= 0; i--)
-        CuAssertIntEquals(cuTest, (i + 1) * 10, *(int *)doublyLinkedListGet(list, list->length - 1 - i));
+        CuAssertIntEquals(cuTest, (i + 1) * 10, *(int *) doublyLinkedListGet(list, list->length - 1 - i));
 
     destroyDoublyLinkedList(list);
 
 }
-
 
 
 void testDoublyLinkedListAddLast(CuTest *cuTest) {
@@ -137,13 +129,11 @@ void testDoublyLinkedListAddLast(CuTest *cuTest) {
     doublyLinkedListAddLast(list, generateIntPointerDLLT(30));
 
     for (int i = 0; i < list->length; i++)
-        CuAssertIntEquals(cuTest, (i + 1) * 10, *(int *)doublyLinkedListGet(list, i));
+        CuAssertIntEquals(cuTest, (i + 1) * 10, *(int *) doublyLinkedListGet(list, i));
 
     destroyDoublyLinkedList(list);
 
 }
-
-
 
 
 void testDoublyLinkedListAddAtIndex(CuTest *cuTest) {
@@ -167,13 +157,11 @@ void testDoublyLinkedListAddAtIndex(CuTest *cuTest) {
     doublyLinkedListAddAtIndex(list, 3, generateIntPointerDLLT(40));
 
     for (int i = 0; i < list->length; i++)
-        CuAssertIntEquals(cuTest, (i + 1) * 10, *(int *)doublyLinkedListGet(list, i));
+        CuAssertIntEquals(cuTest, (i + 1) * 10, *(int *) doublyLinkedListGet(list, i));
 
     destroyDoublyLinkedList(list);
 
 }
-
-
 
 
 void testDoublyLinkedListAddAll(CuTest *cuTest) {
@@ -194,14 +182,12 @@ void testDoublyLinkedListAddAll(CuTest *cuTest) {
     doublyLinkedListAddAll(list, (void **) arr, 10);
 
     for (int i = 0; i < list->length; i++)
-        CuAssertIntEquals(cuTest, (i + 1), *(int *)doublyLinkedListGet(list, i));
+        CuAssertIntEquals(cuTest, (i + 1), *(int *) doublyLinkedListGet(list, i));
 
     free(arr);
     destroyDoublyLinkedList(list);
 
 }
-
-
 
 
 void testDoublyLinkedListDeleteFirst(CuTest *cuTest) {
@@ -223,12 +209,11 @@ void testDoublyLinkedListDeleteFirst(CuTest *cuTest) {
 
 
     for (int i = 0; i < list->length; i++)
-        CuAssertIntEquals(cuTest, (i + 4), *(int *)doublyLinkedListGet(list, i));
+        CuAssertIntEquals(cuTest, (i + 4), *(int *) doublyLinkedListGet(list, i));
 
     destroyDoublyLinkedList(list);
 
 }
-
 
 
 void testDoublyLinkedListDeleteFirstWtoFr(CuTest *cuTest) {
@@ -259,13 +244,11 @@ void testDoublyLinkedListDeleteFirstWtoFr(CuTest *cuTest) {
 
 
     for (int i = 0; i < list->length; i++)
-        CuAssertIntEquals(cuTest, (i + 4), *(int *)doublyLinkedListGet(list, i));
+        CuAssertIntEquals(cuTest, (i + 4), *(int *) doublyLinkedListGet(list, i));
 
     destroyDoublyLinkedList(list);
 
 }
-
-
 
 
 void testDoublyLinkedListDeleteLast(CuTest *cuTest) {
@@ -286,13 +269,11 @@ void testDoublyLinkedListDeleteLast(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, 7, list->length);
 
     for (int i = 0; i < list->length; i++)
-        CuAssertIntEquals(cuTest, (i + 1), *(int *)doublyLinkedListGet(list, i));
+        CuAssertIntEquals(cuTest, (i + 1), *(int *) doublyLinkedListGet(list, i));
 
     destroyDoublyLinkedList(list);
 
 }
-
-
 
 
 void testDoublyLinkedListDeleteLastWtoFr(CuTest *cuTest) {
@@ -323,13 +304,11 @@ void testDoublyLinkedListDeleteLastWtoFr(CuTest *cuTest) {
 
 
     for (int i = 0; i < list->length; i++)
-        CuAssertIntEquals(cuTest, (i + 1), *(int *)doublyLinkedListGet(list, i));
+        CuAssertIntEquals(cuTest, (i + 1), *(int *) doublyLinkedListGet(list, i));
 
     destroyDoublyLinkedList(list);
 
 }
-
-
 
 
 void testDoublyLinkedListDeleteAtIndex(CuTest *cuTest) {
@@ -354,13 +333,11 @@ void testDoublyLinkedListDeleteAtIndex(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, 7, list->length);
 
     for (int i = 0; i < list->length; i++)
-        CuAssertIntEquals(cuTest, (i + 4), *(int *)doublyLinkedListGet(list, i));
+        CuAssertIntEquals(cuTest, (i + 4), *(int *) doublyLinkedListGet(list, i));
 
     destroyDoublyLinkedList(list);
 
 }
-
-
 
 
 void testDoublyLinkedListDeleteAtIndexWtoFr(CuTest *cuTest) {
@@ -383,7 +360,7 @@ void testDoublyLinkedListDeleteAtIndexWtoFr(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, 3, *currentItem);
     free(currentItem);
 
-    currentItem = (int *) doublyLinkedListDeleteAtIndexWtoFr(list,1);
+    currentItem = (int *) doublyLinkedListDeleteAtIndexWtoFr(list, 1);
     CuAssertIntEquals(cuTest, 2, *currentItem);
     free(currentItem);
 
@@ -395,14 +372,11 @@ void testDoublyLinkedListDeleteAtIndexWtoFr(CuTest *cuTest) {
 
 
     for (int i = 0; i < list->length; i++)
-        CuAssertIntEquals(cuTest, (i + 4), *(int *)doublyLinkedListGet(list, i));
+        CuAssertIntEquals(cuTest, (i + 4), *(int *) doublyLinkedListGet(list, i));
 
     destroyDoublyLinkedList(list);
 
 }
-
-
-
 
 
 void testDoublyLinkedListContains(CuTest *cuTest) {
@@ -432,8 +406,6 @@ void testDoublyLinkedListContains(CuTest *cuTest) {
 }
 
 
-
-
 void testDoublyLinkedListGetIndex(CuTest *cuTest) {
     DoublyLinkedList *list = doublyLinkedListInitialization(free, compareIntPointersDLLT);
 
@@ -459,9 +431,6 @@ void testDoublyLinkedListGetIndex(CuTest *cuTest) {
     destroyDoublyLinkedList(list);
 
 }
-
-
-
 
 
 void testDoublyLinkedListGetItem(CuTest *cuTest) {
@@ -491,10 +460,6 @@ void testDoublyLinkedListGetItem(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testDoublyLinkedListGetFirst(CuTest *cuTest) {
     DoublyLinkedList *list = doublyLinkedListInitialization(free, compareIntPointersDLLT);
 
@@ -514,8 +479,6 @@ void testDoublyLinkedListGetFirst(CuTest *cuTest) {
 }
 
 
-
-
 void testDoublyLinkedListGetLast(CuTest *cuTest) {
     DoublyLinkedList *list = doublyLinkedListInitialization(free, compareIntPointersDLLT);
 
@@ -533,9 +496,6 @@ void testDoublyLinkedListGetLast(CuTest *cuTest) {
     destroyDoublyLinkedList(list);
 
 }
-
-
-
 
 
 void testDoublyLinkedListGet(CuTest *cuTest) {
@@ -562,8 +522,6 @@ void testDoublyLinkedListGet(CuTest *cuTest) {
 }
 
 
-
-
 void testDoublyLinkedListGetLength(CuTest *cuTest) {
     DoublyLinkedList *list = doublyLinkedListInitialization(free, compareIntPointersDLLT);
 
@@ -583,11 +541,6 @@ void testDoublyLinkedListGetLength(CuTest *cuTest) {
     destroyDoublyLinkedList(list);
 
 }
-
-
-
-
-
 
 
 void testDoublyLinkedListToArray(CuTest *cuTest) {
@@ -610,14 +563,10 @@ void testDoublyLinkedListToArray(CuTest *cuTest) {
 }
 
 
-
-
-
-
-
 DoublyLinkedList *printingDoublyLinkedList;
+
 void printDoublyLinkedListFunLLT(const void *item) {
-    doublyLinkedListAddLast(printingDoublyLinkedList, generateIntPointerDLLT(*(int *)item));
+    doublyLinkedListAddLast(printingDoublyLinkedList, generateIntPointerDLLT(*(int *) item));
 }
 
 void testPrintDoublyLinkedList(CuTest *cuTest) {
@@ -644,8 +593,6 @@ void testPrintDoublyLinkedList(CuTest *cuTest) {
 }
 
 
-
-
 void testDoublyLinkedListIsEmpty(CuTest *cuTest) {
     DoublyLinkedList *list = doublyLinkedListInitialization(free, compareIntPointersDLLT);
 
@@ -661,10 +608,6 @@ void testDoublyLinkedListIsEmpty(CuTest *cuTest) {
     destroyDoublyLinkedList(list);
 
 }
-
-
-
-
 
 
 void testClearDoublyLinkedList(CuTest *cuTest) {
@@ -688,10 +631,6 @@ void testClearDoublyLinkedList(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testDestroyDoublyLinkedList(CuTest *cuTest) {
     DoublyLinkedList *list = doublyLinkedListInitialization(free, compareIntPointersDLLT);
 
@@ -701,10 +640,6 @@ void testDestroyDoublyLinkedList(CuTest *cuTest) {
     destroyDoublyLinkedList(list);
 
 }
-
-
-
-
 
 
 typedef struct DoublyLinkedListTestStruct {
@@ -746,58 +681,58 @@ void generalDoublyLinkedListTest(CuTest *cuTest) {
 
     item = (DoublyLinkedListTestStruct *) malloc(sizeof(DoublyLinkedListTestStruct));
     item->iData = 2;
-    item->cData = (char *) malloc(sizeof(char) * (strlen("two") + 1) );
+    item->cData = (char *) malloc(sizeof(char) * (strlen("two") + 1));
     strcpy(item->cData, "two");
     doublyLinkedListAddFirst(list, item);
 
 
     item = (DoublyLinkedListTestStruct *) malloc(sizeof(DoublyLinkedListTestStruct));
     item->iData = 1;
-    item->cData = (char *) malloc(sizeof(char) * (strlen("one") + 1) );
+    item->cData = (char *) malloc(sizeof(char) * (strlen("one") + 1));
     strcpy(item->cData, "one");
     doublyLinkedListAddFirst(list, item);
 
 
-
     item = (DoublyLinkedListTestStruct *) malloc(sizeof(DoublyLinkedListTestStruct));
     item->iData = 3;
-    item->cData = (char *) malloc(sizeof(char) * (strlen("three") + 1) );
+    item->cData = (char *) malloc(sizeof(char) * (strlen("three") + 1));
     strcpy(item->cData, "three");
     doublyLinkedListAddLast(list, item);
 
 
     item = (DoublyLinkedListTestStruct *) malloc(sizeof(DoublyLinkedListTestStruct));
     item->iData = 4;
-    item->cData = (char *) malloc(sizeof(char) * (strlen("four") + 1) );
+    item->cData = (char *) malloc(sizeof(char) * (strlen("four") + 1));
     strcpy(item->cData, "four");
     doublyLinkedListAddLast(list, item);
 
 
     item = (DoublyLinkedListTestStruct *) malloc(sizeof(DoublyLinkedListTestStruct));
     item->iData = 5;
-    item->cData = (char *) malloc(sizeof(char) * (strlen("five") + 1) );
+    item->cData = (char *) malloc(sizeof(char) * (strlen("five") + 1));
     strcpy(item->cData, "five");
     doublyLinkedListAddLast(list, item);
 
     CuAssertIntEquals(cuTest, 5, doublyLinkedListGetLength(list));
 
-    DoublyLinkedListTestStruct **structArr = (DoublyLinkedListTestStruct **) malloc(sizeof(DoublyLinkedListTestStruct *) * 3);
+    DoublyLinkedListTestStruct **structArr = (DoublyLinkedListTestStruct **) malloc(
+            sizeof(DoublyLinkedListTestStruct *) * 3);
 
     item = (DoublyLinkedListTestStruct *) malloc(sizeof(DoublyLinkedListTestStruct));
     item->iData = 6;
-    item->cData = (char *) malloc(sizeof(char) * (strlen("six") + 1) );
+    item->cData = (char *) malloc(sizeof(char) * (strlen("six") + 1));
     strcpy(item->cData, "six");
     structArr[0] = item;
 
     item = (DoublyLinkedListTestStruct *) malloc(sizeof(DoublyLinkedListTestStruct));
     item->iData = 7;
-    item->cData = (char *) malloc(sizeof(char) * (strlen("seven") + 1) );
+    item->cData = (char *) malloc(sizeof(char) * (strlen("seven") + 1));
     strcpy(item->cData, "seven");
     structArr[1] = item;
 
     item = (DoublyLinkedListTestStruct *) malloc(sizeof(DoublyLinkedListTestStruct));
     item->iData = 8;
-    item->cData = (char *) malloc(sizeof(char) * (strlen("eight") + 1) );
+    item->cData = (char *) malloc(sizeof(char) * (strlen("eight") + 1));
     strcpy(item->cData, "eight");
     structArr[2] = item;
 
@@ -818,8 +753,9 @@ void generalDoublyLinkedListTest(CuTest *cuTest) {
     doublyLinkedListDeleteFirst(list);
     doublyLinkedListDeleteLast(list);
 
-    for (int i  = 0, counter = 0; i < doublyLinkedListGetLength(list); counter++) {
-        DoublyLinkedListTestStruct *currentItem = (DoublyLinkedListTestStruct *) doublyLinkedListDeleteAtIndexWtoFr(list, i);
+    for (int i = 0, counter = 0; i < doublyLinkedListGetLength(list); counter++) {
+        DoublyLinkedListTestStruct *currentItem = (DoublyLinkedListTestStruct *) doublyLinkedListDeleteAtIndexWtoFr(
+                list, i);
         CuAssertIntEquals(cuTest, counter + 2, currentItem->iData);
         CuAssertStrEquals(cuTest, numbersStr[counter + 1], currentItem->cData);
         freeDoublyLinkedListStruct(currentItem);
@@ -831,10 +767,6 @@ void generalDoublyLinkedListTest(CuTest *cuTest) {
     destroyDoublyLinkedList(list);
 
 }
-
-
-
-
 
 
 CuSuite *createDoublyLinkedListTestsSuite(void) {
@@ -873,10 +805,9 @@ CuSuite *createDoublyLinkedListTestsSuite(void) {
 }
 
 
-
 void doublyLinkedListUnitTest(void) {
 
-    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
+    ERROR_TEST = (ErrorTestStruct *) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Doubly Linked List Test**\n");

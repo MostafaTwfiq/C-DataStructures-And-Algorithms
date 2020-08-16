@@ -6,13 +6,9 @@
 #include "../../../Unit Test/CuTest/CuTest.h"
 
 
-
 int charArrAlgStrcmp(const void *c1, const void *c2) {
     return strcmp(c1, c2);
 }
-
-
-
 
 
 /** This function will take two chars arrays,
@@ -33,40 +29,40 @@ int charArrAlgStrcmp(const void *c1, const void *c2) {
 int isSubString(const char *fString, int fLength, const char *sString, int sLength) {
 
     if (fString == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "first passed char array", "sub string algorithm");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "first passed char array", "sub string algorithm");
+        exit(NULL_POINTER);
+#endif
 
     } else if (sString == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "second passed char array", "sub string algorithm");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "second passed char array", "sub string algorithm");
+        exit(NULL_POINTER);
+#endif
 
     } else if (fLength < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "first passed char array length", "sub string algorithm");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "first passed char array length", "sub string algorithm");
+        exit(INVALID_ARG);
+#endif
 
     } else if (sLength < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "second passed char array length", "sub string algorithm");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "second passed char array length", "sub string algorithm");
+        exit(INVALID_ARG);
+#endif
     }
 
     if (sLength == 0)
@@ -92,10 +88,6 @@ int isSubString(const char *fString, int fLength, const char *sString, int sLeng
 }
 
 
-
-
-
-
 /** This function will take a char array,
  * then it will reverse the char array words.
  *
@@ -108,16 +100,15 @@ void charArrayReverseWords(char *charArr) {
 
     if (charArr == NULL) {
 
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "char array", "char array reverse words");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "char array", "char array reverse words");
+        exit(NULL_POINTER);
+#endif
 
     }
-
 
 
     Vector *wordsVector = vectorInitialization(5, destroyString, NULL);
@@ -161,11 +152,6 @@ void charArrayReverseWords(char *charArr) {
 }
 
 
-
-
-
-
-
 /** This function will take an char array,
  * then it will removes characters specified in the second array of characters parameter,
  * from the beginning of a first array of characters parameter.
@@ -179,22 +165,22 @@ void charArrayReverseWords(char *charArr) {
 void charArrTrimStartC(char *charArr, char *specialCharacters) {
 
     if (charArr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "char array", "char array custom trim start");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "char array", "char array custom trim start");
+        exit(NULL_POINTER);
+#endif
 
     } else if (specialCharacters == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "special character array", "char array custom trim start");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "special character array", "char array custom trim start");
+        exit(INVALID_ARG);
+#endif
     }
 
     while (*charArr != '\0') {
@@ -215,11 +201,6 @@ void charArrTrimStartC(char *charArr, char *specialCharacters) {
 }
 
 
-
-
-
-
-
 /** This function will take an char array,
  * then it will remove ' ', '\t' and '\n' characters,
  * from the beginning of the array of characters.
@@ -231,24 +212,18 @@ void charArrTrimStartC(char *charArr, char *specialCharacters) {
 void charArrTrimStart(char *charArr) {
 
     if (charArr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "char array", "char array trim start");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "char array", "char array trim start");
+        exit(NULL_POINTER);
+#endif
 
     }
 
     charArrTrimStartC(charArr, " \n\t");
 }
-
-
-
-
-
-
 
 
 /** This function will take an char array,
@@ -264,22 +239,22 @@ void charArrTrimStart(char *charArr) {
 void charArrTrimEndC(char *charArr, char *specialCharacters) {
 
     if (charArr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "char array", "char array custom trim end");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "char array", "char array custom trim end");
+        exit(NULL_POINTER);
+#endif
 
     } else if (specialCharacters == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "special character array", "char array custom trim end");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "special character array", "char array custom trim end");
+        exit(INVALID_ARG);
+#endif
     }
 
     char *startPointer = charArr;
@@ -287,13 +262,10 @@ void charArrTrimEndC(char *charArr, char *specialCharacters) {
     while (*charArr != '\0')
         charArr++;
 
-    while ( startPointer - sizeof(char) != --charArr && charArrContainsChar(specialCharacters, *charArr) )
+    while (startPointer - sizeof(char) != --charArr && charArrContainsChar(specialCharacters, *charArr))
         *charArr = '\0';
 
 }
-
-
-
 
 
 /** This function will take an char array,
@@ -307,22 +279,18 @@ void charArrTrimEndC(char *charArr, char *specialCharacters) {
 void charArrTrimEnd(char *charArr) {
 
     if (charArr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "char array", "char array trim end");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "char array", "char array trim end");
+        exit(NULL_POINTER);
+#endif
 
     }
 
     charArrTrimEndC(charArr, " \n\t");
 }
-
-
-
-
 
 
 /** This function will take an char array,
@@ -336,13 +304,13 @@ void charArrTrimEnd(char *charArr) {
 void charArrTrim(char *charArr) {
 
     if (charArr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "char array", "char array trim");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "char array", "char array trim");
+        exit(NULL_POINTER);
+#endif
 
     }
 
@@ -350,11 +318,6 @@ void charArrTrim(char *charArr) {
     charArrTrimEndC(charArr, " \n\t");
 
 }
-
-
-
-
-
 
 
 /** This function will take an char array,
@@ -370,35 +333,28 @@ void charArrTrim(char *charArr) {
 void charArrTrimC(char *charArr, char *specialCharacters) {
 
     if (charArr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "char array", "char array custom trim");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "char array", "char array custom trim");
+        exit(NULL_POINTER);
+#endif
 
     } else if (specialCharacters == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "special character array", "char array custom trim");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "special character array", "char array custom trim");
+        exit(INVALID_ARG);
+#endif
     }
 
     charArrTrimStartC(charArr, specialCharacters);
     charArrTrimEndC(charArr, specialCharacters);
 
 }
-
-
-
-
-
-
-
 
 
 /** This function will return one (1) if the passed characters is a part of the passed character array,
@@ -412,13 +368,13 @@ void charArrTrimC(char *charArr, char *specialCharacters) {
 int charArrContainsChar(char *charArr, char c) {
 
     if (charArr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "char array", "char array contains char");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "char array", "char array contains char");
+        exit(NULL_POINTER);
+#endif
 
     }
 
@@ -433,13 +389,6 @@ int charArrContainsChar(char *charArr, char c) {
 }
 
 
-
-
-
-
-
-
-
 /** This function will take an array of characters,
  * and a special characters array, then it will remove every special character from the first passed char array.
  *
@@ -452,22 +401,22 @@ int charArrContainsChar(char *charArr, char c) {
 void charArrRemoveCharacters(char *charArr, char *specialCharactersToRemove) {
 
     if (charArr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "char array", "char array remove character");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "char array", "char array remove character");
+        exit(NULL_POINTER);
+#endif
 
     } else if (specialCharactersToRemove == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "special character to remove array", "char array remove character");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "special character to remove array", "char array remove character");
+        exit(INVALID_ARG);
+#endif
     }
 
     while (*charArr != '\0') {
@@ -487,13 +436,6 @@ void charArrRemoveCharacters(char *charArr, char *specialCharactersToRemove) {
 }
 
 
-
-
-
-
-
-
-
 /** This function will take a char array,
  * then it will check if the array is an integer number,
  * and if it was the function will return one (1), other wise it will return zero (0).
@@ -505,13 +447,13 @@ void charArrRemoveCharacters(char *charArr, char *specialCharactersToRemove) {
 int isInteger(char *string) {
 
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed char array", "isInteger function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed char array", "isInteger function");
+        exit(NULL_POINTER);
+#endif
     }
 
 
@@ -522,12 +464,10 @@ int isInteger(char *string) {
     char *tempPointer = string;
 
     while (*tempPointer != '\0') {
-        if ( tempPointer == string && ( *tempPointer == '-' || *tempPointer == '+' ) ) {
+        if (tempPointer == string && (*tempPointer == '-' || *tempPointer == '+')) {
             tempPointer++;
             continue;
-        }
-
-        else if ( !(*tempPointer >= '0' && *tempPointer <= '9') )
+        } else if (!(*tempPointer >= '0' && *tempPointer <= '9'))
             return 0;
 
         tempPointer++;
@@ -537,12 +477,6 @@ int isInteger(char *string) {
     return 1;
 
 }
-
-
-
-
-
-
 
 
 /** This function will check if the passed char array is a floating point number,
@@ -555,13 +489,13 @@ int isInteger(char *string) {
 int isFloatingPointNum(char *string) {
 
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed char array", "isFloatingPointNum function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed char array", "isFloatingPointNum function");
+        exit(NULL_POINTER);
+#endif
     }
 
 
@@ -575,21 +509,17 @@ int isFloatingPointNum(char *string) {
 
     while (*tempPointer != '\0') {
 
-        if ( tempPointer == string && ( *tempPointer == '-' || *tempPointer == '+' ) ) {
+        if (tempPointer == string && (*tempPointer == '-' || *tempPointer == '+')) {
             tempPointer++;
             continue;
-        }
-
-        else if (*tempPointer == '.') {
+        } else if (*tempPointer == '.') {
 
             if (dotFlag == 0)
                 dotFlag = 1;
             else
                 return 0;
 
-        }
-
-        else if ( !(*tempPointer >= '0' && *tempPointer <= '9') )
+        } else if (!(*tempPointer >= '0' && *tempPointer <= '9'))
             return 0;
 
         tempPointer++;
@@ -599,10 +529,6 @@ int isFloatingPointNum(char *string) {
     return 1;
 
 }
-
-
-
-
 
 
 /** This function will take an char array pointer,
@@ -615,13 +541,13 @@ int isFloatingPointNum(char *string) {
 int charArrSumASCII(char *ch) {
 
     if (ch == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "char array", "char array sum ASCII");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "char array", "char array sum ASCII");
+        exit(NULL_POINTER);
+#endif
     }
 
     int ASCIISum = 0;
@@ -631,9 +557,6 @@ int charArrSumASCII(char *ch) {
     return ASCIISum;
 
 }
-
-
-
 
 
 /** This function will take an char array pointer,
@@ -646,13 +569,8 @@ int charArrSumASCII(char *ch) {
  */
 
 int charArrHashFun(const void *ch) {
-    return charArrSumASCII((char *)ch);
+    return charArrSumASCII((char *) ch);
 }
-
-
-
-
-
 
 
 /** This function will take a char array
@@ -667,24 +585,24 @@ int charArrHashFun(const void *ch) {
 char *generateCharPointerP(char *ch, int length) {
 
     if (ch == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "char array", "generate char pointer function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "char array", "generate char pointer function");
+        exit(NULL_POINTER);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "char array length", "generate char pointer function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "char array length", "generate char pointer function");
+        exit(INVALID_ARG);
+#endif
     }
 
-    char *newCh = (char *) malloc( sizeof(char) * (length + 1) );
+    char *newCh = (char *) malloc(sizeof(char) * (length + 1));
     if (newCh == NULL) {
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new char pointer", "generate char pointer function");
         exit(FAILED_ALLOCATION);
@@ -697,12 +615,6 @@ char *generateCharPointerP(char *ch, int length) {
 }
 
 
-
-
-
-
-
-
 /** this function will allocate a new char array pointer,
  * the assign it's value with the passed char.
  *
@@ -712,15 +624,15 @@ char *generateCharPointerP(char *ch, int length) {
 
 char *generateCharPointerC(char c) {
 
-    char *newCh = (char *) malloc( sizeof(char) * 2 );
+    char *newCh = (char *) malloc(sizeof(char) * 2);
     if (newCh == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return NULL;
-        #else
-            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new char pointer", "generate char pointer function");
-            exit(FAILED_ALLOCATION);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new char pointer", "generate char pointer function");
+        exit(FAILED_ALLOCATION);
+#endif
     }
 
     *newCh = c;
@@ -731,12 +643,6 @@ char *generateCharPointerC(char c) {
 }
 
 
-
-
-
-
-
-
 /** This function will take a character,
  * then it will return one (1) if the character is an alphabet, other wise it will return zero (0).
  * @param c the char value
@@ -744,16 +650,8 @@ char *generateCharPointerC(char c) {
  */
 
 int isAlphabetC(char c) {
-    return (c >= 'a' && c <= 'z') || ( c >= 'A' && c <= 'Z');
+    return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
 }
-
-
-
-
-
-
-
-
 
 
 /** This function will take a character pointer,
@@ -766,21 +664,19 @@ int isAlphabetC(char c) {
 int isAlphabetP(const char *c) {
 
     if (c == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "character", "is alphabet function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "character", "is alphabet function");
+        exit(NULL_POINTER);
+#endif
     }
 
 
-    return (*c >= 'a' && *c <= 'z') || ( *c >= 'A' && *c <= 'Z');
+    return (*c >= 'a' && *c <= 'z') || (*c >= 'A' && *c <= 'Z');
 
 }
-
-
 
 
 /**  This function will take two characters pointers,
@@ -799,12 +695,6 @@ int charComparatorP(const void *c1, const void *c2) {
 }
 
 
-
-
-
-
-
-
 /** This function will take two characters,
  * then it will compare the two characters.
  *
@@ -821,13 +711,6 @@ int charComparator(char c1, char c2) {
 }
 
 
-
-
-
-
-
-
-
 /** This function will take a char array,
  * then it will split it by the passed split characters array.
  *
@@ -841,21 +724,21 @@ int charComparator(char c1, char c2) {
 Vector *charArrSplitS(char *string, char *splitCharacters) {
 
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "char array", "char array split function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "char array", "char array split function");
+        exit(NULL_POINTER);
+#endif
     } else if (splitCharacters == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "split characters array", "char array split function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "split characters array", "char array split function");
+        exit(INVALID_ARG);
+#endif
     }
 
 
@@ -866,7 +749,7 @@ Vector *charArrSplitS(char *string, char *splitCharacters) {
 
         if (charArrContainsChar(splitCharacters, *string)) {
 
-            if ( stringGetLength(vectorGet(wordsVector, vectorGetLength(wordsVector) - 1)) != 0 )
+            if (stringGetLength(vectorGet(wordsVector, vectorGetLength(wordsVector) - 1)) != 0)
                 vectorAdd(wordsVector, stringInitialization(5));
 
         } else
@@ -883,11 +766,6 @@ Vector *charArrSplitS(char *string, char *splitCharacters) {
 }
 
 
-
-
-
-
-
 /** This function will take a char array,
  * then it will split it by the passed split characters array.
  *
@@ -901,21 +779,21 @@ Vector *charArrSplitS(char *string, char *splitCharacters) {
 Vector *charArrSplitC(char *string, char *splitCharacters) {
 
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "char array", "char array split function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "char array", "char array split function");
+        exit(NULL_POINTER);
+#endif
     } else if (splitCharacters == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "split characters array", "char array split function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "split characters array", "char array split function");
+        exit(INVALID_ARG);
+#endif
     }
 
 
@@ -926,7 +804,7 @@ Vector *charArrSplitC(char *string, char *splitCharacters) {
 
         if (charArrContainsChar(splitCharacters, *string)) {
 
-            if ( stringGetLength(currentWord) != 0 ) {
+            if (stringGetLength(currentWord) != 0) {
                 vectorAdd(wordsVector, stringToCharArray(currentWord));
                 clearString(currentWord);
             }
@@ -938,7 +816,7 @@ Vector *charArrSplitC(char *string, char *splitCharacters) {
 
     }
 
-    if ( stringGetLength(currentWord) != 0 )
+    if (stringGetLength(currentWord) != 0)
         vectorAdd(wordsVector, stringToCharArray(currentWord));
 
     destroyString(currentWord);
@@ -946,11 +824,6 @@ Vector *charArrSplitC(char *string, char *splitCharacters) {
     return wordsVector;
 
 }
-
-
-
-
-
 
 
 /** This function will take a char array,
@@ -963,13 +836,13 @@ Vector *charArrSplitC(char *string, char *splitCharacters) {
 char mostRepeatedCharacter(char *string) {
 
     if (string == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return '\0';
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "char array", "most repeated character function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return '\0';
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "char array", "most repeated character function");
+        exit(NULL_POINTER);
+#endif
     }
 
     if (*string == '\0')

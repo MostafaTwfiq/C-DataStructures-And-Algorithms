@@ -4,15 +4,9 @@
 #include "../../../../../DataStructure/Tables/Headers/HashMap.h"
 
 
-
-
-
-
-
 int hashMapTestStrcmp(const void *c1, const void *c2) {
     return strcmp(c1, c2);
 }
-
 
 
 /** This function will take an integer,
@@ -31,8 +25,6 @@ int *generateIntPointerHMT(int integer) {
 }
 
 
-
-
 /** This function will compare to integers pointers,
  * then it will return zero if they are equal, negative number if the second integer is bigger,
  * and positive number if the first integer is bigger.
@@ -42,10 +34,8 @@ int *generateIntPointerHMT(int integer) {
  */
 
 int compareIntPointersHMT(const void *a, const void *b) {
-    return *(int *)a - *(int *)b;
+    return *(int *) a - *(int *) b;
 }
-
-
 
 
 /** This function will take an integer pointer,
@@ -62,8 +52,6 @@ int intHashFunHMT(const void *integer) {
 }
 
 
-
-
 /** This function will take a char array
  * then it will allocate a new one and copy the original char array into the new one,
  * and finally return the new allocated char array.
@@ -73,14 +61,13 @@ int intHashFunHMT(const void *integer) {
 
 char *generateCharPointerHMT(char *ch) {
 
-    char *newCh = (char *) malloc( sizeof(char) * (strlen(ch) + 1) );
+    char *newCh = (char *) malloc(sizeof(char) * (strlen(ch) + 1));
 
     strcpy(newCh, ch);
 
     return newCh;
 
 }
-
 
 
 /** This function will take an char array pointer,
@@ -102,9 +89,6 @@ int charArrHashFunHMT(const void *ch) {
     return sumASCII;
 
 }
-
-
-
 
 
 void testInvalidHashMapInitialization(CuTest *cuTest) {
@@ -135,13 +119,12 @@ void testValidHashMapInitialization(CuTest *cuTest) {
 }
 
 
-
-
 void testHashMapInsert(CuTest *cuTest) {
 
     HashMap *hashMap = hashMapInitialization(free, free, compareIntPointersHMT, intHashFunHMT);
 
-    char numbersArr[13][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen"};
+    char numbersArr[13][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven",
+                               "twelve", "thirteen"};
 
     hashMapInsert(NULL, NULL, NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
@@ -175,8 +158,6 @@ void testHashMapInsert(CuTest *cuTest) {
 }
 
 
-
-
 void testHashMapContains(CuTest *cuTest) {
 
     HashMap *hashMap = hashMapInitialization(free, free, compareIntPointersHMT, intHashFunHMT);
@@ -206,8 +187,6 @@ void testHashMapContains(CuTest *cuTest) {
     destroyHashMap(hashMap);
 
 }
-
-
 
 
 void testHashMapGet(CuTest *cuTest) {
@@ -241,8 +220,6 @@ void testHashMapGet(CuTest *cuTest) {
 }
 
 
-
-
 void testHashMapGetKey(CuTest *cuTest) {
 
     HashMap *hashMap = hashMapInitialization(free, free, compareIntPointersHMT, intHashFunHMT);
@@ -272,8 +249,6 @@ void testHashMapGetKey(CuTest *cuTest) {
     destroyHashMap(hashMap);
 
 }
-
-
 
 
 void testHashMapDelete(CuTest *cuTest) {
@@ -314,8 +289,6 @@ void testHashMapDelete(CuTest *cuTest) {
     destroyHashMap(hashMap);
 
 }
-
-
 
 
 void testHashMapDeleteWtoFr(CuTest *cuTest) {
@@ -360,8 +333,6 @@ void testHashMapDeleteWtoFr(CuTest *cuTest) {
     destroyHashMap(hashMap);
 
 }
-
-
 
 
 void testHashMapDeleteWtoFrAll(CuTest *cuTest) {
@@ -415,13 +386,12 @@ void testHashMapDeleteWtoFrAll(CuTest *cuTest) {
 }
 
 
-
-
 void testHashMapToArray(CuTest *cuTest) {
 
     HashMap *hashMap = hashMapInitialization(free, free, hashMapTestStrcmp, charArrHashFunHMT);
 
-    char numbersArr[13][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen"};
+    char numbersArr[13][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven",
+                               "twelve", "thirteen"};
 
     hashMapToArray(NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
@@ -445,13 +415,12 @@ void testHashMapToArray(CuTest *cuTest) {
 }
 
 
-
-
 void testHashMapToEntryArray(CuTest *cuTest) {
 
     HashMap *hashMap = hashMapInitialization(free, free, hashMapTestStrcmp, charArrHashFunHMT);
 
-    char numbersArr[13][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen"};
+    char numbersArr[13][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven",
+                               "twelve", "thirteen"};
 
     hashMapToEntryArray(NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
@@ -477,15 +446,12 @@ void testHashMapToEntryArray(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testHashMapGetLength(CuTest *cuTest) {
 
     HashMap *hashMap = hashMapInitialization(free, free, compareIntPointersHMT, intHashFunHMT);
 
-    char numbersArr[13][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen"};
+    char numbersArr[13][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven",
+                               "twelve", "thirteen"};
 
     hashMapGetLength(NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
@@ -494,21 +460,21 @@ void testHashMapGetLength(CuTest *cuTest) {
 
     for (int i = 0; i < 13; i++) {
         hashMapInsert(hashMap, generateIntPointerHMT(i + 1), generateCharPointerHMT(numbersArr[i]));
-        CuAssertIntEquals(cuTest , i + 1, hashMapGetLength(hashMap));
+        CuAssertIntEquals(cuTest, i + 1, hashMapGetLength(hashMap));
     }
 
 
     int tempValue = 1;
     hashMapDelete(hashMap, &tempValue);
-    CuAssertIntEquals(cuTest , 12, hashMapGetLength(hashMap));
+    CuAssertIntEquals(cuTest, 12, hashMapGetLength(hashMap));
 
     tempValue = 2;
     hashMapDelete(hashMap, &tempValue);
-    CuAssertIntEquals(cuTest , 11, hashMapGetLength(hashMap));
+    CuAssertIntEquals(cuTest, 11, hashMapGetLength(hashMap));
 
     tempValue = 1;
     hashMapDelete(hashMap, &tempValue);
-    CuAssertIntEquals(cuTest , 11, hashMapGetLength(hashMap));
+    CuAssertIntEquals(cuTest, 11, hashMapGetLength(hashMap));
 
 
     destroyHashMap(hashMap);
@@ -516,14 +482,12 @@ void testHashMapGetLength(CuTest *cuTest) {
 }
 
 
-
-
-
 void testHashMapIsEmpty(CuTest *cuTest) {
 
     HashMap *hashMap = hashMapInitialization(free, free, compareIntPointersHMT, intHashFunHMT);
 
-    char numbersArr[13][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen"};
+    char numbersArr[13][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven",
+                               "twelve", "thirteen"};
 
     hashMapIsEmpty(NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
@@ -532,15 +496,15 @@ void testHashMapIsEmpty(CuTest *cuTest) {
 
     for (int i = 0; i < 13; i++) {
         hashMapInsert(hashMap, generateIntPointerHMT(i + 1), generateCharPointerHMT(numbersArr[i]));
-        CuAssertIntEquals(cuTest , 0, hashMapIsEmpty(hashMap));
+        CuAssertIntEquals(cuTest, 0, hashMapIsEmpty(hashMap));
     }
 
     for (int i = 1; i <= 13; i++) {
-        CuAssertIntEquals(cuTest , 0, hashMapIsEmpty(hashMap));
+        CuAssertIntEquals(cuTest, 0, hashMapIsEmpty(hashMap));
         hashMapDelete(hashMap, &i);
     }
 
-    CuAssertIntEquals(cuTest , 1, hashMapIsEmpty(hashMap));
+    CuAssertIntEquals(cuTest, 1, hashMapIsEmpty(hashMap));
 
 
     destroyHashMap(hashMap);
@@ -548,12 +512,12 @@ void testHashMapIsEmpty(CuTest *cuTest) {
 }
 
 
-
 void testClearHashMap(CuTest *cuTest) {
 
     HashMap *hashMap = hashMapInitialization(free, free, compareIntPointersHMT, intHashFunHMT);
 
-    char numbersArr[13][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen"};
+    char numbersArr[13][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven",
+                               "twelve", "thirteen"};
 
     clearHashMap(NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
@@ -562,42 +526,38 @@ void testClearHashMap(CuTest *cuTest) {
 
     for (int i = 0; i < 13; i++) {
         hashMapInsert(hashMap, generateIntPointerHMT(i + 1), generateCharPointerHMT(numbersArr[i]));
-        CuAssertIntEquals(cuTest , 0, hashMapIsEmpty(hashMap));
+        CuAssertIntEquals(cuTest, 0, hashMapIsEmpty(hashMap));
     }
 
     clearHashMap(hashMap);
 
-    CuAssertIntEquals(cuTest , 1, hashMapIsEmpty(hashMap));
+    CuAssertIntEquals(cuTest, 1, hashMapIsEmpty(hashMap));
 
 
     destroyHashMap(hashMap);
 
 }
-
-
 
 
 void testDestroyHashMap(CuTest *cuTest) {
 
     HashMap *hashMap = hashMapInitialization(free, free, compareIntPointersHMT, intHashFunHMT);
 
-    char numbersArr[13][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen"};
+    char numbersArr[13][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven",
+                               "twelve", "thirteen"};
 
     destroyHashMap(NULL);
     CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
 
     for (int i = 0; i < 13; i++) {
         hashMapInsert(hashMap, generateIntPointerHMT(i + 1), generateCharPointerHMT(numbersArr[i]));
-        CuAssertIntEquals(cuTest , 0, hashMapIsEmpty(hashMap));
+        CuAssertIntEquals(cuTest, 0, hashMapIsEmpty(hashMap));
     }
 
 
     destroyHashMap(hashMap);
 
 }
-
-
-
 
 
 CuSuite *createHashMapTestsSuite(void) {
@@ -625,10 +585,9 @@ CuSuite *createHashMapTestsSuite(void) {
 }
 
 
-
 void hashMapUnitTest(void) {
 
-    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
+    ERROR_TEST = (ErrorTestStruct *) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Hashmap Test**\n");

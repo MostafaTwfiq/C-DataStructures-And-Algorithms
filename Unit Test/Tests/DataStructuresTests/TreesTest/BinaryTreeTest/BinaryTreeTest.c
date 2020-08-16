@@ -4,12 +4,6 @@
 #include "../../../../../DataStructure/Trees/Headers/BinaryTree.h"
 
 
-
-
-
-
-
-
 /** This function will take an integer,
  * then it will allocate a new integer and copy the passed integer value into the new pointer,
  * and finally return the new integer pointer.
@@ -27,8 +21,6 @@ int *generateIntPointerBTT(int integer) {
 }
 
 
-
-
 /** This function will compare to integers pointers,
  * then it will return zero if they are equal, negative number if the second integer is bigger,
  * and positive number if the first integer is bigger.
@@ -39,11 +31,8 @@ int *generateIntPointerBTT(int integer) {
  */
 
 int compareIntPointersBTT(const void *a, const void *b) {
-    return *(int *)a - *(int *)b;
+    return *(int *) a - *(int *) b;
 }
-
-
-
 
 
 int checkIfValidBinaryTreeBTT(BinaryTreeNode *root, BinaryTreeNode *parent) {
@@ -56,7 +45,8 @@ int checkIfValidBinaryTreeBTT(BinaryTreeNode *root, BinaryTreeNode *parent) {
         if (parent->right == root) {
 
             return
-                    compareIntPointersBTT(parent->key, root->key) < 0 || compareIntPointersBTT(parent->key, root->key) == 0
+                    compareIntPointersBTT(parent->key, root->key) < 0 ||
+                    compareIntPointersBTT(parent->key, root->key) == 0
                     ? checkIfValidBinaryTreeBTT(root->left, root) && checkIfValidBinaryTreeBTT(root->right, root)
                     : 0;
 
@@ -77,10 +67,6 @@ int checkIfValidBinaryTreeBTT(BinaryTreeNode *root, BinaryTreeNode *parent) {
 }
 
 
-
-
-
-
 void testInvalidBinaryTreeInitialization(CuTest *cuTest) {
 
     binaryTreeInitialization(NULL, NULL);
@@ -90,9 +76,6 @@ void testInvalidBinaryTreeInitialization(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
 }
-
-
-
 
 
 void testValidBinaryTreeInitialization(CuTest *cuTest) {
@@ -105,7 +88,6 @@ void testValidBinaryTreeInitialization(CuTest *cuTest) {
     destroyBinaryTree(tree);
 
 }
-
 
 
 void testBinaryTreeInsert(CuTest *cuTest) {
@@ -129,9 +111,6 @@ void testBinaryTreeInsert(CuTest *cuTest) {
     destroyBinaryTree(tree);
 
 }
-
-
-
 
 
 void testBinaryTreeInsert2(CuTest *cuTest) {
@@ -168,11 +147,6 @@ void testBinaryTreeInsert2(CuTest *cuTest) {
 }
 
 
-
-
-
-
-
 void testBinaryTreeInsert3(CuTest *cuTest) {
 
     BinaryTree *tree = binaryTreeInitialization(free, compareIntPointersBTT);
@@ -196,9 +170,6 @@ void testBinaryTreeInsert3(CuTest *cuTest) {
     destroyBinaryTree(tree);
 
 }
-
-
-
 
 
 void testBinaryTreeInsertAll(CuTest *cuTest) {
@@ -227,10 +198,6 @@ void testBinaryTreeInsertAll(CuTest *cuTest) {
     destroyBinaryTree(tree);
 
 }
-
-
-
-
 
 
 void testBinaryTreeDelete(CuTest *cuTest) {
@@ -262,9 +229,6 @@ void testBinaryTreeDelete(CuTest *cuTest) {
     destroyBinaryTree(tree);
 
 }
-
-
-
 
 
 void testBinaryTreeDeleteWtoFr(CuTest *cuTest) {
@@ -307,8 +271,6 @@ void testBinaryTreeDeleteWtoFr(CuTest *cuTest) {
 }
 
 
-
-
 void testBinaryTreeContains(CuTest *cuTest) {
 
     BinaryTree *tree = binaryTreeInitialization(free, compareIntPointersBTT);
@@ -336,9 +298,6 @@ void testBinaryTreeContains(CuTest *cuTest) {
     destroyBinaryTree(tree);
 
 }
-
-
-
 
 
 void testBinaryTreeGet(CuTest *cuTest) {
@@ -376,7 +335,6 @@ void testBinaryTreeGet(CuTest *cuTest) {
 }
 
 
-
 int **printingArrAVLTT;
 
 void printFunAVLTT(void *item) {
@@ -384,7 +342,6 @@ void printFunAVLTT(void *item) {
     *printingArrAVLTT++ = item;
 
 }
-
 
 
 void testBinaryTreePreOrderTraversal(CuTest *cuTest) {
@@ -411,15 +368,12 @@ void testBinaryTreePreOrderTraversal(CuTest *cuTest) {
     binaryTreePreOrderTraversal(tree, printFunAVLTT);
 
     for (int i = 0; i < 10; i++)
-        CuAssertIntEquals(cuTest, preOrderArr[i],  *tempPointer[i]);
+        CuAssertIntEquals(cuTest, preOrderArr[i], *tempPointer[i]);
 
     free(tempPointer);
     destroyBinaryTree(tree);
 
 }
-
-
-
 
 
 void testBinaryTreeInOrderTraversal(CuTest *cuTest) {
@@ -454,10 +408,6 @@ void testBinaryTreeInOrderTraversal(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testBinaryTreePostOrderTraversal(CuTest *cuTest) {
 
     BinaryTree *tree = binaryTreeInitialization(free, compareIntPointersBTT);
@@ -488,9 +438,6 @@ void testBinaryTreePostOrderTraversal(CuTest *cuTest) {
     destroyBinaryTree(tree);
 
 }
-
-
-
 
 
 void testBinaryTreeGetSize(CuTest *cuTest) {
@@ -526,9 +473,6 @@ void testBinaryTreeGetSize(CuTest *cuTest) {
 }
 
 
-
-
-
 void testBinaryTreeIsEmpty(CuTest *cuTest) {
 
     BinaryTree *tree = binaryTreeInitialization(free, compareIntPointersBTT);
@@ -556,9 +500,6 @@ void testBinaryTreeIsEmpty(CuTest *cuTest) {
     destroyBinaryTree(tree);
 
 }
-
-
-
 
 
 void testBinaryTreeToArray(CuTest *cuTest) {
@@ -589,10 +530,6 @@ void testBinaryTreeToArray(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testClearBinaryTree(CuTest *cuTest) {
 
     BinaryTree *tree = binaryTreeInitialization(free, compareIntPointersBTT);
@@ -620,8 +557,6 @@ void testClearBinaryTree(CuTest *cuTest) {
 }
 
 
-
-
 void testDestroyBinaryTree(CuTest *cuTest) {
 
     BinaryTree *tree = binaryTreeInitialization(free, compareIntPointersBTT);
@@ -636,7 +571,6 @@ void testDestroyBinaryTree(CuTest *cuTest) {
     destroyBinaryTree(tree);
 
 }
-
 
 
 CuSuite *createBinaryTreeTestsSuite(void) {
@@ -667,10 +601,9 @@ CuSuite *createBinaryTreeTestsSuite(void) {
 }
 
 
-
 void binaryTreeUnitTest(void) {
 
-    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
+    ERROR_TEST = (ErrorTestStruct *) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Binary Tree Test**\n");

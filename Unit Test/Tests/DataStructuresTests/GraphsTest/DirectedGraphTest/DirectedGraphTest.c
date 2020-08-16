@@ -7,8 +7,6 @@
 #include "../../../../../DataStructure/Lists/Headers/ArrayList.h"
 
 
-
-
 int directedGraphTestStrcmp(const void *c1, const void *c2) {
     return strcmp(c1, c2);
 }
@@ -23,14 +21,13 @@ int directedGraphTestStrcmp(const void *c1, const void *c2) {
 
 char *generateCharPointerDGT(char *ch) {
 
-    char *newCh = (char *) malloc( sizeof(char) * (strlen(ch) + 1) );
+    char *newCh = (char *) malloc(sizeof(char) * (strlen(ch) + 1));
 
     strcpy(newCh, ch);
 
     return newCh;
 
 }
-
 
 
 /** This function will take an char array pointer,
@@ -54,8 +51,6 @@ int charArrHashFunDGT(const void *ch) {
 }
 
 
-
-
 void testInvalidDirectedGraphInitialization(CuTest *cuTest) {
 
     directedGraphInitialization(NULL, NULL, NULL);
@@ -70,7 +65,6 @@ void testInvalidDirectedGraphInitialization(CuTest *cuTest) {
 }
 
 
-
 void testValidDirectedGraphInitialization(CuTest *cuTest) {
 
     DirectedGraph *directedGraph = directedGraphInitialization(free, directedGraphTestStrcmp, charArrHashFunDGT);
@@ -80,7 +74,6 @@ void testValidDirectedGraphInitialization(CuTest *cuTest) {
     destroyDirGraph(directedGraph);
 
 }
-
 
 
 void testDirectedGraphAddNode(CuTest *cuTest) {
@@ -103,7 +96,7 @@ void testDirectedGraphAddNode(CuTest *cuTest) {
     for (int i = 0; i < directedGraph->nodes->length; i++) {
 
         if (directedGraph->nodes->arr[i] != NULL)
-            arr[*(char *)directedGraph->nodes->arr[i]->key - 'A']++;
+            arr[*(char *) directedGraph->nodes->arr[i]->key - 'A']++;
 
     }
 
@@ -113,8 +106,6 @@ void testDirectedGraphAddNode(CuTest *cuTest) {
     destroyDirGraph(directedGraph);
 
 }
-
-
 
 
 void testDirectedGraphRemoveNode(CuTest *cuTest) {
@@ -140,7 +131,7 @@ void testDirectedGraphRemoveNode(CuTest *cuTest) {
     for (int i = 0; i < directedGraph->nodes->length; i++) {
 
         if (directedGraph->nodes->arr[i] != NULL)
-            arr[*(char *)directedGraph->nodes->arr[i]->key - 'A']++;
+            arr[*(char *) directedGraph->nodes->arr[i]->key - 'A']++;
 
     }
 
@@ -153,8 +144,6 @@ void testDirectedGraphRemoveNode(CuTest *cuTest) {
     destroyDirGraph(directedGraph);
 
 }
-
-
 
 
 void testDirectedGraphRemoveNodeWtoFr(CuTest *cuTest) {
@@ -187,7 +176,7 @@ void testDirectedGraphRemoveNodeWtoFr(CuTest *cuTest) {
     for (int i = 0; i < directedGraph->nodes->length; i++) {
 
         if (directedGraph->nodes->arr[i] != NULL)
-            arr[*(char *)directedGraph->nodes->arr[i]->key - 'A']++;
+            arr[*(char *) directedGraph->nodes->arr[i]->key - 'A']++;
 
     }
 
@@ -200,9 +189,6 @@ void testDirectedGraphRemoveNodeWtoFr(CuTest *cuTest) {
     destroyDirGraph(directedGraph);
 
 }
-
-
-
 
 
 void testDirectedGraphAddEdge(CuTest *cuTest) {
@@ -245,9 +231,6 @@ void testDirectedGraphAddEdge(CuTest *cuTest) {
     destroyDirGraph(directedGraph);
 
 }
-
-
-
 
 
 void testDirectedGraphRemoveEdge(CuTest *cuTest) {
@@ -298,9 +281,6 @@ void testDirectedGraphRemoveEdge(CuTest *cuTest) {
 }
 
 
-
-
-
 void testDirectedGraphContainsNode(CuTest *cuTest) {
 
     DirectedGraph *directedGraph = directedGraphInitialization(free, directedGraphTestStrcmp, charArrHashFunDGT);
@@ -336,8 +316,6 @@ void testDirectedGraphContainsNode(CuTest *cuTest) {
     destroyDirGraph(directedGraph);
 
 }
-
-
 
 
 void testDirectedGraphContainsEdge(CuTest *cuTest) {
@@ -385,10 +363,6 @@ void testDirectedGraphContainsEdge(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testDirectedGraphGetSize(CuTest *cuTest) {
 
     DirectedGraph *directedGraph = directedGraphInitialization(free, directedGraphTestStrcmp, charArrHashFunDGT);
@@ -427,10 +401,6 @@ void testDirectedGraphGetSize(CuTest *cuTest) {
     destroyDirGraph(directedGraph);
 
 }
-
-
-
-
 
 
 void testDirectedGraphIsEmpty(CuTest *cuTest) {
@@ -473,9 +443,6 @@ void testDirectedGraphIsEmpty(CuTest *cuTest) {
 }
 
 
-
-
-
 void testClearDirectedGraph(CuTest *cuTest) {
 
     DirectedGraph *directedGraph = directedGraphInitialization(free, directedGraphTestStrcmp, charArrHashFunDGT);
@@ -500,8 +467,6 @@ void testClearDirectedGraph(CuTest *cuTest) {
 }
 
 
-
-
 void testDestroyDirectedGraph(CuTest *cuTest) {
 
     DirectedGraph *directedGraph = directedGraphInitialization(free, directedGraphTestStrcmp, charArrHashFunDGT);
@@ -519,13 +484,13 @@ void testDestroyDirectedGraph(CuTest *cuTest) {
 }
 
 
-
 ArrayList *printingDTList;
+
 void printFunDGT(void *item) {
     arrayListAdd(printingDTList, item);
 }
 
-void nullFreeFunDGT(void *item){}
+void nullFreeFunDGT(void *item) {}
 
 
 void testDirectedGraphPrint(CuTest *cuTest) {
@@ -564,7 +529,6 @@ void testDirectedGraphPrint(CuTest *cuTest) {
     destroyDirGraph(directedGraph);
 
 }
-
 
 
 void testDirectedGraphDepthFirstTraversal(CuTest *cuTest) {
@@ -612,8 +576,6 @@ void testDirectedGraphDepthFirstTraversal(CuTest *cuTest) {
 }
 
 
-
-
 void testDirectedGraphBreadthFirstTraversal(CuTest *cuTest) {
 
     DirectedGraph *directedGraph = directedGraphInitialization(free, directedGraphTestStrcmp, charArrHashFunDGT);
@@ -659,10 +621,6 @@ void testDirectedGraphBreadthFirstTraversal(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testDirectedGraphTopologicalSort(CuTest *cuTest) {
 
     DirectedGraph *directedGraph = directedGraphInitialization(free, directedGraphTestStrcmp, charArrHashFunDGT);
@@ -703,8 +661,6 @@ void testDirectedGraphTopologicalSort(CuTest *cuTest) {
     destroyDirGraph(directedGraph);
 
 }
-
-
 
 
 void testDirectedGraphNodeIsPartOfCycle(CuTest *cuTest) {
@@ -756,10 +712,6 @@ void testDirectedGraphNodeIsPartOfCycle(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testDirectedGraphHasACycle(CuTest *cuTest) {
 
     DirectedGraph *directedGraph = directedGraphInitialization(free, directedGraphTestStrcmp, charArrHashFunDGT);
@@ -804,9 +756,6 @@ void testDirectedGraphHasACycle(CuTest *cuTest) {
 }
 
 
-
-
-
 CuSuite *createDirectedGraphTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
@@ -836,10 +785,9 @@ CuSuite *createDirectedGraphTestsSuite(void) {
 }
 
 
-
 void directedGraphUnitTest(void) {
 
-    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
+    ERROR_TEST = (ErrorTestStruct *) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Directed Graph Test**\n");

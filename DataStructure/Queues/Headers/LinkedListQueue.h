@@ -6,7 +6,6 @@ extern "C" {
 #endif
 
 
-
 /** @struct LinkedListQueue
 *  @brief This structure implements a basic generic Queue using linked list.
 *  @var LinkedListQueue:: linkedList

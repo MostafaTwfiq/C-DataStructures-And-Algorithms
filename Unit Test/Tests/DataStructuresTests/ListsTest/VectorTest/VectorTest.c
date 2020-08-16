@@ -5,14 +5,9 @@
 #include "../../../../../System/Utils.h"
 
 
-
-
-
-
 int vectorTestStrcmp(const void *c1, const void *c2) {
     return strcmp(c1, c2);
 }
-
 
 
 /** This function will take an integer,
@@ -31,8 +26,6 @@ int *generateIntPointerVT(int integer) {
 }
 
 
-
-
 /** This function will compare to integers pointers,
  * then it will return zero if they are equal, negative number if the second integer is bigger,
  * and positive number if the first integer is bigger.
@@ -42,11 +35,8 @@ int *generateIntPointerVT(int integer) {
  */
 
 int compareIntPointersVT(const void *a, const void *b) {
-    return *(int *)a - *(int *)b;
+    return *(int *) a - *(int *) b;
 }
-
-
-
 
 
 /** This function will take a char array
@@ -58,7 +48,7 @@ int compareIntPointersVT(const void *a, const void *b) {
 
 char *generateCharPointerVT(char *ch) {
 
-    char *newCh = (char *) malloc( sizeof(char) * (strlen(ch) + 1) );
+    char *newCh = (char *) malloc(sizeof(char) * (strlen(ch) + 1));
 
     strcpy(newCh, ch);
 
@@ -67,10 +57,8 @@ char *generateCharPointerVT(char *ch) {
 }
 
 
-
-
 void testVectorInvalidInitialization(CuTest *cuTest) {
-    Vector * vector = vectorInitialization(-1, free, NULL);
+    Vector *vector = vectorInitialization(-1, free, NULL);
     CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     vector = vectorInitialization(1, NULL, NULL);
@@ -78,7 +66,7 @@ void testVectorInvalidInitialization(CuTest *cuTest) {
 
 }
 
-void testVectorProperInitialization(CuTest *cuTest){
+void testVectorProperInitialization(CuTest *cuTest) {
     Vector *vector = vectorInitialization(1, free, compareIntPointersVT);
     CuAssertPtrNotNull(cuTest, vector);
     destroyVector(vector);
@@ -171,7 +159,6 @@ void testVectorAddAll(CuTest *cuTest) {
 }
 
 
-
 void testVectorRemove(CuTest *cuTest) {
     Vector *vector = vectorInitialization(1, free, compareIntPointersVT);
 
@@ -187,7 +174,6 @@ void testVectorRemove(CuTest *cuTest) {
     destroyVector(vector);
 
 }
-
 
 
 void testVectorRemoveWtoFr(CuTest *cuTest) {
@@ -208,7 +194,6 @@ void testVectorRemoveWtoFr(CuTest *cuTest) {
     destroyVector(vector);
 
 }
-
 
 
 void testVectorRemoveAtIndex(CuTest *cuTest) {
@@ -241,7 +226,6 @@ void testVectorRemoveAtIndex(CuTest *cuTest) {
     destroyVector(vector);
 
 }
-
 
 
 void testVectorRemoveAtIndexWtoFr(CuTest *cuTest) {
@@ -283,8 +267,6 @@ void testVectorRemoveAtIndexWtoFr(CuTest *cuTest) {
 }
 
 
-
-
 void testVectorExpansion(CuTest *cuTest) {
     Vector *vector = vectorInitialization(1, free, compareIntPointersVT);
 
@@ -311,8 +293,6 @@ void testVectorExpansion(CuTest *cuTest) {
     destroyVector(vector);
 
 }
-
-
 
 
 void testVectorContains(CuTest *cuTest) {
@@ -350,10 +330,6 @@ void testVectorContains(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testVectorGetIndex(CuTest *cuTest) {
     Vector *vector = vectorInitialization(1, free, compareIntPointersVT);
 
@@ -389,10 +365,6 @@ void testVectorGetIndex(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testVectorGetLastIndex(CuTest *cuTest) {
     Vector *vector = vectorInitialization(1, free, compareIntPointersVT);
 
@@ -417,7 +389,7 @@ void testVectorGetLastIndex(CuTest *cuTest) {
     vectorAddAll(vector, (void **) arr, 6);
 
     int tempValue;
-    for (int i = 0; i < 6; i +=2 ) {
+    for (int i = 0; i < 6; i += 2) {
         tempValue = (i + 1) * 10;
         CuAssertIntEquals(cuTest, i + 1, vectorGetLastIndex(vector, &tempValue));
     }
@@ -430,10 +402,6 @@ void testVectorGetLastIndex(CuTest *cuTest) {
     destroyVector(vector);
 
 }
-
-
-
-
 
 
 void testVectorGet(CuTest *cuTest) {
@@ -465,9 +433,6 @@ void testVectorGet(CuTest *cuTest) {
 }
 
 
-
-
-
 void testVectorToArray(CuTest *cuTest) {
     Vector *vector = vectorInitialization(1, free, compareIntPointersVT);
 
@@ -494,8 +459,6 @@ void testVectorToArray(CuTest *cuTest) {
     destroyVector(vector);
 
 }
-
-
 
 
 void testVectorToSubArray(CuTest *cuTest) {
@@ -532,11 +495,8 @@ void testVectorToSubArray(CuTest *cuTest) {
 }
 
 
-
-
-
 int sortTestComparatorFunVT(const void *i1, const void *i2) {
-    return **(int **)i1 - **(int **)i2;
+    return **(int **) i1 - **(int **) i2;
 }
 
 
@@ -566,9 +526,6 @@ void testVectorSort(CuTest *cuTest) {
     destroyVector(vector);
 
 }
-
-
-
 
 
 Vector *printingVector;
@@ -615,7 +572,6 @@ void testVectorPrintFun(CuTest *cuTest) {
 }
 
 
-
 void testVectorGetLength(CuTest *cuTest) {
     Vector *vector = vectorInitialization(1, free, compareIntPointersVT);
 
@@ -643,7 +599,6 @@ void testVectorGetLength(CuTest *cuTest) {
     destroyVector(vector);
 
 }
-
 
 
 void testVectorIsEmpty(CuTest *cuTest) {
@@ -675,8 +630,6 @@ void testVectorIsEmpty(CuTest *cuTest) {
 }
 
 
-
-
 void testClearVector(CuTest *cuTest) {
     Vector *vector = vectorInitialization(1, free, compareIntPointersVT);
 
@@ -699,10 +652,6 @@ void testClearVector(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testDestroyVector(CuTest *cuTest) {
     Vector *vector = vectorInitialization(1, free, compareIntPointersVT);
 
@@ -715,11 +664,6 @@ void testDestroyVector(CuTest *cuTest) {
     destroyVector(vector);
 
 }
-
-
-
-
-
 
 
 typedef struct VectorTestStruct {
@@ -753,67 +697,67 @@ void generalVectorTest(CuTest *cuTest) {
     char numbersStr[10][6] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"};
     VectorTestStruct *item;
 
-    CuAssertIntEquals(cuTest, 1 , vectorIsEmpty(vector));
+    CuAssertIntEquals(cuTest, 1, vectorIsEmpty(vector));
 
     item = (VectorTestStruct *) malloc(sizeof(VectorTestStruct));
     item->iData = 1;
-    item->cData = (char *) malloc(sizeof(char) * (strlen("one") + 1) );
+    item->cData = (char *) malloc(sizeof(char) * (strlen("one") + 1));
     strcpy(item->cData, "one");
     vectorAdd(vector, item);
 
     item = (VectorTestStruct *) malloc(sizeof(VectorTestStruct));
     item->iData = 3;
-    item->cData = (char *) malloc(sizeof(char) * (strlen("three") + 1) );
+    item->cData = (char *) malloc(sizeof(char) * (strlen("three") + 1));
     strcpy(item->cData, "three");
     vectorAdd(vector, item);
 
     item = (VectorTestStruct *) malloc(sizeof(VectorTestStruct));
     item->iData = 2;
-    item->cData = (char *) malloc(sizeof(char) * (strlen("two") + 1) );
+    item->cData = (char *) malloc(sizeof(char) * (strlen("two") + 1));
     strcpy(item->cData, "two");
     vectorAddAtIndex(vector, item, 1);
 
-    CuAssertIntEquals(cuTest, 3 , vectorGetLength(vector));
+    CuAssertIntEquals(cuTest, 3, vectorGetLength(vector));
 
     VectorTestStruct **itemsArr = (VectorTestStruct **) malloc(sizeof(VectorTestStruct *) * 3);
 
     item = (VectorTestStruct *) malloc(sizeof(VectorTestStruct));
     item->iData = 4;
-    item->cData = (char *) malloc(sizeof(char) * (strlen("four") + 1) );
+    item->cData = (char *) malloc(sizeof(char) * (strlen("four") + 1));
     strcpy(item->cData, "four");
     itemsArr[0] = item;
 
     item = (VectorTestStruct *) malloc(sizeof(VectorTestStruct));
     item->iData = 5;
-    item->cData = (char *) malloc(sizeof(char) * (strlen("five") + 1) );
+    item->cData = (char *) malloc(sizeof(char) * (strlen("five") + 1));
     strcpy(item->cData, "five");
     itemsArr[1] = item;
 
     item = (VectorTestStruct *) malloc(sizeof(VectorTestStruct));
     item->iData = 6;
-    item->cData = (char *) malloc(sizeof(char) * (strlen("six") + 1) );
+    item->cData = (char *) malloc(sizeof(char) * (strlen("six") + 1));
     strcpy(item->cData, "six");
     itemsArr[2] = item;
 
     vectorAddAll(vector, (void **) itemsArr, 3);
 
-    CuAssertIntEquals(cuTest, 6 , vectorGetLength(vector));
+    CuAssertIntEquals(cuTest, 6, vectorGetLength(vector));
 
     for (int i = 0; i < vectorGetLength(vector); i++) {
         item = (VectorTestStruct *) vectorGet(vector, i);
-        CuAssertIntEquals(cuTest, i + 1 , item->iData);
+        CuAssertIntEquals(cuTest, i + 1, item->iData);
         CuAssertStrEquals(cuTest, numbersStr[i], item->cData);
-        CuAssertIntEquals(cuTest, i , vectorGetIndex(vector, item));
-        CuAssertIntEquals(cuTest, i , vectorGetLastIndex(vector, item));
+        CuAssertIntEquals(cuTest, i, vectorGetIndex(vector, item));
+        CuAssertIntEquals(cuTest, i, vectorGetLastIndex(vector, item));
     }
 
-    CuAssertIntEquals(cuTest, 0 , vectorIsEmpty(vector));
+    CuAssertIntEquals(cuTest, 0, vectorIsEmpty(vector));
 
     for (int i = 0; i < vectorGetLength(vector);) {
         item = (VectorTestStruct *) vectorGet(vector, i);
-        CuAssertIntEquals(cuTest, 1 , vectorContains(vector, item));
+        CuAssertIntEquals(cuTest, 1, vectorContains(vector, item));
         vectorRemoveAtIndexWtFr(vector, i);
-        CuAssertIntEquals(cuTest, 0 , vectorContains(vector, item));
+        CuAssertIntEquals(cuTest, 0, vectorContains(vector, item));
 
         freeVectorTestStruct(item);
     }
@@ -824,9 +768,6 @@ void generalVectorTest(CuTest *cuTest) {
     destroyVector(vector);
 
 }
-
-
-
 
 
 CuSuite *createVectorTestsSuite(void) {
@@ -863,10 +804,9 @@ CuSuite *createVectorTestsSuite(void) {
 }
 
 
-
 void vectorUnitTest(void) {
 
-    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
+    ERROR_TEST = (ErrorTestStruct *) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Vector Test**\n");

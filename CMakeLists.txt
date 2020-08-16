@@ -5,16 +5,19 @@ set(CMAKE_C_STANDARD 99)
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -lm")
 
+
 add_executable(C_DataStructures
+
+        main.c
+
+        #"Unit Test/Tests/Tests.c"
 
         "Unit Test/CuTest"
         "Unit Test/CuTest/CuTest.c"
+        "Unit Test/CuTest/CuTest.h"
         #"Unit Test/CuTest/AllTests.c"
         #"Unit Test/CuTest/CuTestTest.c"
-        #"Unit Test/CuTest/CuTest.h"
-
-        "Unit Test/Tests/Tests.c"
-        #main.c
+        #"Unit Test/ErrorsTestStruct.h"
 
         DataStructure/Stacks/Sources/Stack.c
         DataStructure/Stacks/Headers/Stack.h
@@ -192,9 +195,7 @@ add_executable(C_DataStructures
         "Unit Test/Tests/DataStructuresTests/TreesTest/AVLTreeTest/AVLTreeTest.c"
         "Unit Test/Tests/DataStructuresTests/TreesTest/AVLTreeTest/AVLTreeTest.h"
         "Unit Test/Tests/DataStructuresTests/TreesTest/SplayTreeTest/SplayTreeTest.c"
-        "Unit Test/Tests/DataStructuresTests/TreesTest/SplayTreeTest/SplayTreeTest.h"
-        "Unit Test/ErrorsTestStruct.h"
-        )
+        "Unit Test/Tests/DataStructuresTests/TreesTest/SplayTreeTest/SplayTreeTest.h")
 
 if (NOT WIN32)
     target_link_libraries(C_DataStructures PRIVATE m)

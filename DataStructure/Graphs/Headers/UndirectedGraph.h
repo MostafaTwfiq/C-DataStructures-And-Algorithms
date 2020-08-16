@@ -6,7 +6,6 @@ extern "C" {
 #endif
 
 
-
 /** @struct UndirectedGraph
 *  @brief This structure implements a basic generic undirected graph.
 *  @var UndirectedGraph::nodes
@@ -19,17 +18,16 @@ extern "C" {
 
 typedef struct UndirectedGraph {
     struct HashMap *nodes;
+
     void (*freeFun)(void *);
-    int (*compFun)(const void *, const void*);
+
+    int (*compFun)(const void *, const void *);
 
 } UndirectedGraph;
 
 
-
-
-
-
-UndirectedGraph *undirectedGraphInitialization(void (*freeFun)(void *), int (*compFun)(const void*, const void*), int (*hashFun)(const void *));
+UndirectedGraph *undirectedGraphInitialization(void (*freeFun)(void *), int (*compFun)(const void *, const void *),
+                                               int (*hashFun)(const void *));
 
 void udGraphAddNode(UndirectedGraph *graph, void *value);
 

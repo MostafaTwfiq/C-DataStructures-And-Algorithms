@@ -4,10 +4,6 @@
 #include "../../../Unit Test/CuTest/CuTest.h"
 
 
-
-
-
-
 /** This function takes an integer pointer,
  * and then freeing it.
  *
@@ -21,7 +17,6 @@ void intFreeFunCountSort(void *n) {
 }
 
 
-
 /** This function will take two integers pointers,
  * then it will compare them.
  *
@@ -32,12 +27,9 @@ void intFreeFunCountSort(void *n) {
  * @return it will return the result of the comparison, zero if they are equal, minus integer if the second bigger, and positive integer if the first bigger
  */
 
-int intCmpCountSort(const void *n1, const void * n2) {
-    return *(int *)n1 - *(int *)n2;
+int intCmpCountSort(const void *n1, const void *n2) {
+    return *(int *) n1 - *(int *) n2;
 }
-
-
-
 
 
 /** This function takes an integer number pointer,
@@ -66,11 +58,8 @@ unsigned int *generateIntPointerCountSort(unsigned int *num) {
  */
 
 int intHashFunCountSort(const void *item) {
-    return *(int *)item;
+    return *(int *) item;
 }
-
-
-
 
 
 /** This function will sort an unsigned int array, using the counting sort algorithm.
@@ -91,33 +80,33 @@ int intHashFunCountSort(const void *item) {
 void countingSortA(unsigned int *arr, int length, unsigned int rangeStart, unsigned int rangeEnd) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "counting sort");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "counting sort");
+        exit(NULL_POINTER);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "counting sort");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "counting sort");
+        exit(INVALID_ARG);
+#endif
     } else if (rangeEnd < rangeStart) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "start and end range", "counting sort");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "start and end range", "counting sort");
+        exit(INVALID_ARG);
+#endif
     }
 
     unsigned int countingArrLength = rangeEnd - rangeStart + 1;
-    unsigned int *countingArr = (unsigned int *) calloc(sizeof(unsigned int ), countingArrLength);
+    unsigned int *countingArr = (unsigned int *) calloc(sizeof(unsigned int), countingArrLength);
     for (int i = 0; i < length; i++)
         countingArr[arr[i] - rangeStart]++;
 
@@ -133,12 +122,6 @@ void countingSortA(unsigned int *arr, int length, unsigned int rangeStart, unsig
 
 
 }
-
-
-
-
-
-
 
 
 /** This function will sort an unsigned int array, using the counting sort algorithm.
@@ -159,32 +142,33 @@ void countingSortA(unsigned int *arr, int length, unsigned int rangeStart, unsig
 void countingSortH(unsigned int *arr, int length, unsigned int rangeStart, unsigned int rangeEnd) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "counting sort");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "counting sort");
+        exit(NULL_POINTER);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "counting sort");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "counting sort");
+        exit(INVALID_ARG);
+#endif
     } else if (rangeEnd < rangeStart) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "start and end range", "counting sort");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "start and end range", "counting sort");
+        exit(INVALID_ARG);
+#endif
     }
 
-    HashMap *countingMap = hashMapInitialization(intFreeFunCountSort, intFreeFunCountSort, intCmpCountSort, intHashFunCountSort);
+    HashMap *countingMap = hashMapInitialization(intFreeFunCountSort, intFreeFunCountSort, intCmpCountSort,
+                                                 intHashFunCountSort);
 
     for (int i = 0; i < length; i++) {
         unsigned int *newNumPointer = generateIntPointerCountSort(arr + i);

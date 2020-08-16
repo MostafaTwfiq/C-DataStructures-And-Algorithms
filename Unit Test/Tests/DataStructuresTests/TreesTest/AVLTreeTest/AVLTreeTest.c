@@ -4,9 +4,6 @@
 #include "../../../../../DataStructure/Trees/Headers/AVLTree.h"
 
 
-
-
-
 /** This function will take an integer,
  * then it will allocate a new integer and copy the passed integer value into the new pointer,
  * and finally return the new integer pointer.
@@ -24,8 +21,6 @@ int *generateIntPointerAVLTT(int integer) {
 }
 
 
-
-
 /** This function will compare to integers pointers,
  * then it will return zero if they are equal, negative number if the second integer is bigger,
  * and positive number if the first integer is bigger.
@@ -36,10 +31,8 @@ int *generateIntPointerAVLTT(int integer) {
  */
 
 int compareIntPointersAVLTT(const void *a, const void *b) {
-    return *(int *)a - *(int *)b;
+    return *(int *) a - *(int *) b;
 }
-
-
 
 
 /** This function returns the passed node height,
@@ -54,8 +47,6 @@ int compareIntPointersAVLTT(const void *a, const void *b) {
 int avlTreeGetNodeHeightAVLTT(AVLTreeNode *node) {
     return node == NULL ? -1 : node->height;
 }
-
-
 
 
 /** This function takes two integers,
@@ -73,7 +64,6 @@ int avlTreeGetMaxIntAVLTT(int a, int b) {
 }
 
 
-
 int avlTreeCalculateNodeHeightAVLTT(AVLTreeNode *node) {
     return avlTreeGetMaxIntAVLTT(avlTreeGetNodeHeightAVLTT(node->left), avlTreeGetNodeHeightAVLTT(node->right)) + 1;
 }
@@ -84,9 +74,6 @@ int avlTreeIsRequiredRotationAVLTT(AVLTreeNode *node) {
     value = value < 0 ? value * -1 : value;
     return value >= 2;
 }
-
-
-
 
 
 int checkIfValidAVLTreeAVLTT(AVLTreeNode *root, AVLTreeNode *parent) {
@@ -100,7 +87,8 @@ int checkIfValidAVLTreeAVLTT(AVLTreeNode *root, AVLTreeNode *parent) {
 
             return
                     !avlTreeIsRequiredRotationAVLTT(root)
-                    && (compareIntPointersAVLTT(parent->key, root->key) < 0 || compareIntPointersAVLTT(parent->key, root->key) == 0)
+                    && (compareIntPointersAVLTT(parent->key, root->key) < 0 ||
+                        compareIntPointersAVLTT(parent->key, root->key) == 0)
 
                     ? checkIfValidAVLTreeAVLTT(root->left, root) && checkIfValidAVLTreeAVLTT(root->right, root)
 
@@ -121,15 +109,11 @@ int checkIfValidAVLTreeAVLTT(AVLTreeNode *root, AVLTreeNode *parent) {
     }
 
     return !avlTreeIsRequiredRotationAVLTT(root)
-    && checkIfValidAVLTreeAVLTT(root->left, root)
-    && checkIfValidAVLTreeAVLTT(root->right, root);
+           && checkIfValidAVLTreeAVLTT(root->left, root)
+           && checkIfValidAVLTreeAVLTT(root->right, root);
 
 
 }
-
-
-
-
 
 
 void testInvalidAVLTreeInitialization(CuTest *cuTest) {
@@ -143,9 +127,6 @@ void testInvalidAVLTreeInitialization(CuTest *cuTest) {
 }
 
 
-
-
-
 void testValidAVLTreeInitialization(CuTest *cuTest) {
 
     AVLTree *tree = avlTreeInitialization(free, compareIntPointersAVLTT);
@@ -156,12 +137,6 @@ void testValidAVLTreeInitialization(CuTest *cuTest) {
     destroyAVLTree(tree);
 
 }
-
-
-
-
-
-
 
 
 void testAVLTreeInsert(CuTest *cuTest) {
@@ -181,15 +156,11 @@ void testAVLTreeInsert(CuTest *cuTest) {
         avlTreeInsert(tree, generateIntPointerAVLTT(values[i]));
 
 
-
     CuAssertIntEquals(cuTest, 1, checkIfValidAVLTreeAVLTT(tree->root, NULL));
 
     destroyAVLTree(tree);
 
 }
-
-
-
 
 
 void testAVLTreeInsert2(CuTest *cuTest) {
@@ -226,9 +197,6 @@ void testAVLTreeInsert2(CuTest *cuTest) {
 }
 
 
-
-
-
 void testAVLTreeInsert3(CuTest *cuTest) {
 
     AVLTree *tree = avlTreeInitialization(free, compareIntPointersAVLTT);
@@ -252,8 +220,6 @@ void testAVLTreeInsert3(CuTest *cuTest) {
     destroyAVLTree(tree);
 
 }
-
-
 
 
 void testAVLTreeInsertAll(CuTest *cuTest) {
@@ -282,10 +248,6 @@ void testAVLTreeInsertAll(CuTest *cuTest) {
     destroyAVLTree(tree);
 
 }
-
-
-
-
 
 
 void testAVLTreeDelete(CuTest *cuTest) {
@@ -320,9 +282,6 @@ void testAVLTreeDelete(CuTest *cuTest) {
     destroyAVLTree(tree);
 
 }
-
-
-
 
 
 void testAVLTreeDeleteWtoFr(CuTest *cuTest) {
@@ -365,8 +324,6 @@ void testAVLTreeDeleteWtoFr(CuTest *cuTest) {
 }
 
 
-
-
 void testAVLTreeContains(CuTest *cuTest) {
 
     AVLTree *tree = avlTreeInitialization(free, compareIntPointersAVLTT);
@@ -394,9 +351,6 @@ void testAVLTreeContains(CuTest *cuTest) {
     destroyAVLTree(tree);
 
 }
-
-
-
 
 
 void testAVLTreeGet(CuTest *cuTest) {
@@ -434,13 +388,6 @@ void testAVLTreeGet(CuTest *cuTest) {
 }
 
 
-
-
-
-
-
-
-
 int **printingArrBTT;
 
 void printFunBTT(void *item) {
@@ -448,7 +395,6 @@ void printFunBTT(void *item) {
     *printingArrBTT++ = item;
 
 }
-
 
 
 void testAVLTreePreOrderTraversal(CuTest *cuTest) {
@@ -475,15 +421,12 @@ void testAVLTreePreOrderTraversal(CuTest *cuTest) {
     avlTreePreOrderTraversal(tree, printFunBTT);
 
     for (int i = 0; i < 11; i++)
-        CuAssertIntEquals(cuTest, preOrderArr[i],  *tempPointer[i]);
+        CuAssertIntEquals(cuTest, preOrderArr[i], *tempPointer[i]);
 
     free(tempPointer);
     destroyAVLTree(tree);
 
 }
-
-
-
 
 
 void testAVLTreeInOrderTraversal(CuTest *cuTest) {
@@ -518,10 +461,6 @@ void testAVLTreeInOrderTraversal(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testAVLTreePostOrderTraversal(CuTest *cuTest) {
 
     AVLTree *tree = avlTreeInitialization(free, compareIntPointersAVLTT);
@@ -554,10 +493,6 @@ void testAVLTreePostOrderTraversal(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testAVLTreeBreadthFirstTraversal(CuTest *cuTest) {
 
     AVLTree *tree = avlTreeInitialization(free, compareIntPointersAVLTT);
@@ -588,11 +523,6 @@ void testAVLTreeBreadthFirstTraversal(CuTest *cuTest) {
     destroyAVLTree(tree);
 
 }
-
-
-
-
-
 
 
 void testAVLTreeGetSize(CuTest *cuTest) {
@@ -628,9 +558,6 @@ void testAVLTreeGetSize(CuTest *cuTest) {
 }
 
 
-
-
-
 void testAVLTreeIsEmpty(CuTest *cuTest) {
 
     AVLTree *tree = avlTreeInitialization(free, compareIntPointersAVLTT);
@@ -658,9 +585,6 @@ void testAVLTreeIsEmpty(CuTest *cuTest) {
     destroyAVLTree(tree);
 
 }
-
-
-
 
 
 void testAVLTreeToArray(CuTest *cuTest) {
@@ -691,10 +615,6 @@ void testAVLTreeToArray(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testClearAVLTree(CuTest *cuTest) {
 
     AVLTree *tree = avlTreeInitialization(free, compareIntPointersAVLTT);
@@ -722,8 +642,6 @@ void testClearAVLTree(CuTest *cuTest) {
 }
 
 
-
-
 void testDestroyAVLTree(CuTest *cuTest) {
 
     AVLTree *tree = avlTreeInitialization(free, compareIntPointersAVLTT);
@@ -738,11 +656,6 @@ void testDestroyAVLTree(CuTest *cuTest) {
     destroyAVLTree(tree);
 
 }
-
-
-
-
-
 
 
 CuSuite *createAVLTreeTestsSuite(void) {
@@ -773,10 +686,9 @@ CuSuite *createAVLTreeTestsSuite(void) {
 }
 
 
-
 void avlTreeUnitTest(void) {
 
-    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
+    ERROR_TEST = (ErrorTestStruct *) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**AVL Tree Test**\n");

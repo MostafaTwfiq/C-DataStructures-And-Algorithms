@@ -4,10 +4,6 @@
 #include "../../../Unit Test/CuTest/CuTest.h"
 
 
-
-
-
-
 /** This function will take an array and value,
  * then it will search for the value using the exponential search algorithm.
  *
@@ -30,51 +26,51 @@
 int exponentialSearch(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "exponential search");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "exponential search");
+        exit(NULL_POINTER);
+#endif
     } else if (value == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "exponential search");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "exponential search");
+        exit(INVALID_ARG);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "exponential search");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "exponential search");
+        exit(INVALID_ARG);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "exponential search");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "exponential search");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "exponential search");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "exponential search");
+        exit(INVALID_ARG);
+#endif
     }
 
     char *oneBytePointer = (char *) arr;
     char *fPointer = oneBytePointer, *lPointer = oneBytePointer;
 
-    while ( cmp(value, lPointer) > 0 ) {
+    while (cmp(value, lPointer) > 0) {
         int partitionLength = lPointer - fPointer + 1;
         fPointer = lPointer;
         lPointer += partitionLength * 2 * elemSize;

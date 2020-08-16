@@ -36,7 +36,7 @@ HashSet *hashSetInitialization(
         return NULL;
 #else
         fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "hash set data structure");
-         exit(INVALID_ARG);
+        exit(INVALID_ARG);
 #endif
 
     } else if (itemComp == NULL) {
@@ -45,7 +45,7 @@ HashSet *hashSetInitialization(
         return NULL;
 #else
         fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "hash set data structure");
-         exit(INVALID_ARG);
+        exit(INVALID_ARG);
 #endif
 
     } else if (hashFun == NULL) {
@@ -65,7 +65,7 @@ HashSet *hashSetInitialization(
         return NULL;
 #else
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "hash set", "hash set data structure");
-         exit(FAILED_ALLOCATION);
+        exit(FAILED_ALLOCATION);
 #endif
 
     }
@@ -78,7 +78,7 @@ HashSet *hashSetInitialization(
         return NULL;
 #else
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "hash set array", "hash set data structure");
-         exit(FAILED_ALLOCATION);
+        exit(FAILED_ALLOCATION);
 #endif
 
     }
@@ -113,7 +113,7 @@ void hashSetInsert(HashSet *hashSet, void *item) {
         return;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     } else if (item == NULL) {
@@ -122,7 +122,7 @@ void hashSetInsert(HashSet *hashSet, void *item) {
         return;
 #else
         fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "hash set data structure");
-         exit(INVALID_ARG);
+        exit(INVALID_ARG);
 #endif
 
     }
@@ -137,7 +137,7 @@ void hashSetInsert(HashSet *hashSet, void *item) {
             return;
 #else
             fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "hash set array", "hash set data structure");
-             exit(FAILED_REALLOCATION);
+            exit(FAILED_REALLOCATION);
 #endif
 
         }
@@ -190,7 +190,7 @@ void hashSetDelete(HashSet *hashSet, void *item) {
         return;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     } else if (item == NULL) {
@@ -199,7 +199,7 @@ void hashSetDelete(HashSet *hashSet, void *item) {
         return;
 #else
         fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "hash set data structure");
-         exit(INVALID_ARG);
+        exit(INVALID_ARG);
 #endif
 
     }
@@ -248,7 +248,7 @@ void *hashSetDeleteWtoFr(HashSet *hashSet, void *item) {
         return NULL;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     } else if (item == NULL) {
@@ -257,7 +257,7 @@ void *hashSetDeleteWtoFr(HashSet *hashSet, void *item) {
         return NULL;
 #else
         fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "hash set data structure");
-         exit(INVALID_ARG);
+        exit(INVALID_ARG);
 #endif
 
     }
@@ -310,7 +310,7 @@ int hashSetContains(HashSet *hashSet, void *item) {
         return -1;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     } else if (item == NULL) {
@@ -319,7 +319,7 @@ int hashSetContains(HashSet *hashSet, void *item) {
         return -1;
 #else
         fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "hash set data structure");
-         exit(INVALID_ARG);
+        exit(INVALID_ARG);
 #endif
 
     }
@@ -418,7 +418,7 @@ void **hashSetToArray(HashSet *hashSet) {
         return NULL;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     }
@@ -430,7 +430,7 @@ void **hashSetToArray(HashSet *hashSet) {
         return NULL;
 #else
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "hash set data structure");
-         exit(FAILED_ALLOCATION);
+        exit(FAILED_ALLOCATION);
 #endif
 
     }
@@ -461,7 +461,7 @@ int hashSetGetLength(HashSet *hashSet) {
         return -1;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     }
@@ -487,7 +487,7 @@ int hashSetIsEmpty(HashSet *hashSet) {
         return -1;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     }
@@ -511,7 +511,7 @@ void clearHashSet(HashSet *hashSet) {
         return;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     }
@@ -543,7 +543,7 @@ void destroyHashSet(HashSet *hashSet) {
         return;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "hash set", "hash set data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     }

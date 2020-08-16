@@ -4,8 +4,6 @@
 #include "../../../Unit Test/CuTest/CuTest.h"
 
 
-
-
 /** This function will take the size of the items type as a parameter,
  * then it will initialize a new linked list queue, and return it's address.
  *
@@ -14,33 +12,31 @@
 
 LinkedListQueue *linkedListQueueInitialization(void (*freeFun)(void *)) {
     if (freeFun == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "linked list queue data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "linked list queue data structure");
+        exit(INVALID_ARG);
+#endif
 
     }
 
     LinkedListQueue *queue = (LinkedListQueue *) malloc(sizeof(LinkedListQueue));
     if (queue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = FAILED_ALLOCATION;
-            return NULL;
-        #else
-            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "queue", "linked list queue data structure");
-     		exit(FAILED_ALLOCATION);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = FAILED_ALLOCATION;
+        return NULL;
+#else
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "queue", "linked list queue data structure");
+        exit(FAILED_ALLOCATION);
+#endif
     }
 
     queue->linkedList = linkedListInitialization(freeFun, NULL);
 
     return queue;
 }
-
-
 
 
 /** This function will take the queue address, and the item address as a parameter,
@@ -53,30 +49,28 @@ LinkedListQueue *linkedListQueueInitialization(void (*freeFun)(void *)) {
 void lLQueueEnqueue(LinkedListQueue *queue, void *item) {
 
     if (queue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "linked list queue data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "linked list queue data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (item == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "linked list queue data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "linked list queue data structure");
+        exit(INVALID_ARG);
+#endif
 
     }
 
     linkedListAddLast(queue->linkedList, item);
 
 }
-
-
 
 
 /** This function will take the queue address, the array address, and the array length as a parameter,
@@ -89,22 +83,22 @@ void lLQueueEnqueue(LinkedListQueue *queue, void *item) {
 
 void lLQueueEnqueueAll(LinkedListQueue *queue, void **arr, int arrLength) {
     if (queue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-     		fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "linked list queue data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "linked list queue data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "items array pointer", "linked list queue data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "items array pointer", "linked list queue data structure");
+        exit(INVALID_ARG);
+#endif
 
     }
 
@@ -112,9 +106,6 @@ void lLQueueEnqueueAll(LinkedListQueue *queue, void **arr, int arrLength) {
         linkedListAddLast(queue->linkedList, arr[i]);
 
 }
-
-
-
 
 
 /** This  function will take the queue address as a parameter,
@@ -130,22 +121,22 @@ void lLQueueEnqueueAll(LinkedListQueue *queue, void **arr, int arrLength) {
 void *lLQueueDequeue(LinkedListQueue *queue) {
 
     if (queue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-     		fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "linked list queue data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "linked list queue data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (lLQueueIsEmpty(queue)) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
-     		return NULL;
-        #else
-            fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "linked list queue data structure");
-     		exit(EMPTY_DATA_STRUCTURE);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
+        return NULL;
+#else
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "linked list queue data structure");
+        exit(EMPTY_DATA_STRUCTURE);
+#endif
 
     }
 
@@ -155,9 +146,6 @@ void *lLQueueDequeue(LinkedListQueue *queue) {
     return item;
 
 }
-
-
-
 
 
 /** This function will take the queue address as a parameter,
@@ -172,22 +160,22 @@ void *lLQueueDequeue(LinkedListQueue *queue) {
 void *lLQueuePeek(LinkedListQueue *queue) {
 
     if (queue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "linked list queue data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "linked list queue data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (lLQueueIsEmpty(queue)) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
-     		return NULL;
-        #else
-     		fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "linked list queue data structure");
-     		exit(EMPTY_DATA_STRUCTURE);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
+        return NULL;
+#else
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "linked list queue data structure");
+        exit(EMPTY_DATA_STRUCTURE);
+#endif
 
     }
 
@@ -196,10 +184,6 @@ void *lLQueuePeek(LinkedListQueue *queue) {
     return item;
 
 }
-
-
-
-
 
 
 /** This function will take the queue address as a parameter,
@@ -211,22 +195,19 @@ void *lLQueuePeek(LinkedListQueue *queue) {
 
 int lLQueueGetLength(LinkedListQueue *queue) {
     if (queue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "linked list queue data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "linked list queue data structure");
+        exit(NULL_POINTER);
+#endif
 
     }
 
     return linkedListGetLength(queue->linkedList);
 
 }
-
-
-
 
 
 /** This function will take the queue address as a parameter,
@@ -239,23 +220,19 @@ int lLQueueGetLength(LinkedListQueue *queue) {
 int lLQueueIsEmpty(LinkedListQueue *queue) {
 
     if (queue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "linked list queue data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "linked list queue data structure");
+        exit(NULL_POINTER);
+#endif
 
     }
 
     return linkedListIsEmpty(queue->linkedList);
 
 }
-
-
-
-
 
 
 /** This function will take the queue address as a parameter,
@@ -268,22 +245,19 @@ int lLQueueIsEmpty(LinkedListQueue *queue) {
 void **lLQueueToArray(LinkedListQueue *queue) {
 
     if (queue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "linked list queue data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "linked list queue data structure");
+        exit(NULL_POINTER);
+#endif
 
     }
 
     return linkedListToArray(queue->linkedList);
 
 }
-
-
-
 
 
 /** This function will take the queue address as a parameter,
@@ -295,20 +269,18 @@ void **lLQueueToArray(LinkedListQueue *queue) {
 void clearLLQueue(LinkedListQueue *queue) {
 
     if (queue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-     		fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "linked list queue data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "linked list queue data structure");
+        exit(NULL_POINTER);
+#endif
 
     }
 
     linkedListClear(queue->linkedList);
 }
-
-
 
 
 /** This function will take the queue address as a parameter,
@@ -320,13 +292,13 @@ void clearLLQueue(LinkedListQueue *queue) {
 void destroyLLQueue(LinkedListQueue *queue) {
 
     if (queue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-     		fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "linked list queue data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "linked list queue data structure");
+        exit(NULL_POINTER);
+#endif
 
     }
 

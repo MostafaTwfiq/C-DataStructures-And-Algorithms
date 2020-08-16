@@ -3,13 +3,8 @@
 #include "../../../Unit Test/CuTest/CuTest.h"
 
 
-
-
-
-int binarySearchHelper(char *arr, void *value, int fIndex, int lIndex, int elemSize, int (*cmp)(const void *, const void *));
-
-
-
+int binarySearchHelper(char *arr, void *value, int fIndex, int lIndex, int elemSize,
+                       int (*cmp)(const void *, const void *));
 
 
 /** This function will take an array and value,
@@ -37,45 +32,45 @@ int binarySearchI(void *arr, void *value, int length, int elemSize, int (*cmp)(c
 
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return - 1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "binary search");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return - 1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "binary search");
+        exit(NULL_POINTER);
+#endif
     } else if (value == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "binary search");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "binary search");
+        exit(INVALID_ARG);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "binary search");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "binary search");
+        exit(INVALID_ARG);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "binary search");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "binary search");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "binary search");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "binary search");
+        exit(INVALID_ARG);
+#endif
     }
 
 
@@ -86,9 +81,9 @@ int binarySearchI(void *arr, void *value, int length, int elemSize, int (*cmp)(c
 
         middleIndex = (fIndex + lIndex) / 2;
 
-        if (cmp(value, oneBytePointer + middleIndex * elemSize) == 0 )
+        if (cmp(value, oneBytePointer + middleIndex * elemSize) == 0)
             return middleIndex;
-        else if (cmp(value, oneBytePointer + middleIndex * elemSize) < 0 )
+        else if (cmp(value, oneBytePointer + middleIndex * elemSize) < 0)
             lIndex = middleIndex - 1;
         else
             fIndex = middleIndex + 1;
@@ -98,10 +93,6 @@ int binarySearchI(void *arr, void *value, int length, int elemSize, int (*cmp)(c
     return -1;
 
 }
-
-
-
-
 
 
 /** This function will take an array and value,
@@ -128,56 +119,50 @@ int binarySearchI(void *arr, void *value, int length, int elemSize, int (*cmp)(c
 int binarySearchR(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "binary search");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "binary search");
+        exit(NULL_POINTER);
+#endif
     } else if (value == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "binary search");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "binary search");
+        exit(INVALID_ARG);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "binary search");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "binary search");
+        exit(INVALID_ARG);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "binary search");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "binary search");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "binary search");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "binary search");
+        exit(INVALID_ARG);
+#endif
     }
 
     return binarySearchHelper((char *) arr, value, 0, length - 1, elemSize, cmp);
 
 }
-
-
-
-
-
-
 
 
 /** This function will take an array and value,
@@ -201,15 +186,16 @@ int binarySearchR(void *arr, void *value, int length, int elemSize, int (*cmp)(c
  * @return it will return the index of the value if found, other wise it will return -1
  */
 
-int binarySearchHelper(char *arr, void *value, int fIndex, int lIndex, int elemSize, int (*cmp)(const void *, const void *)) {
+int binarySearchHelper(char *arr, void *value, int fIndex, int lIndex, int elemSize,
+                       int (*cmp)(const void *, const void *)) {
     if (fIndex > lIndex)
         return -1;
 
     int middleIndex = (fIndex + lIndex) / 2;
 
-    if ( cmp(value, arr + middleIndex * elemSize) == 0 )
+    if (cmp(value, arr + middleIndex * elemSize) == 0)
         return middleIndex;
-    else if ( cmp(value, arr + middleIndex * elemSize) < 0 )
+    else if (cmp(value, arr + middleIndex * elemSize) < 0)
         return binarySearchHelper(arr, value, fIndex, middleIndex - 1, elemSize, cmp);
     else
         return binarySearchHelper(arr, value, middleIndex + 1, lIndex, elemSize, cmp);

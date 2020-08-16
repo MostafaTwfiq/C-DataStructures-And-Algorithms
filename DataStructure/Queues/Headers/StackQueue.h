@@ -6,7 +6,6 @@ extern "C" {
 #endif
 
 
-
 /** @struct SQueue
 *  @brief This structure implements a basic generic Queue using two stacks.
 *  @var SQueue:: fStack

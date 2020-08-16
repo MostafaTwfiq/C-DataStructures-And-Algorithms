@@ -22,8 +22,6 @@ int *generateIntPointerDLST(int integer) {
 }
 
 
-
-
 /** This function will compare to integers pointers,
  * then it will return zero if they are equal, negative number if the second integer is bigger,
  * and positive number if the first integer is bigger.
@@ -33,11 +31,8 @@ int *generateIntPointerDLST(int integer) {
  */
 
 int compareIntPointersDLST(const void *a, const void *b) {
-    return *(int *)a - *(int *)b;
+    return *(int *) a - *(int *) b;
 }
-
-
-
 
 
 /** This function will take a char array
@@ -49,15 +44,13 @@ int compareIntPointersDLST(const void *a, const void *b) {
 
 char *generateCharPointerDLST(char *ch) {
 
-    char *newCh = (char *) malloc( sizeof(char) * (strlen(ch) + 1) );
+    char *newCh = (char *) malloc(sizeof(char) * (strlen(ch) + 1));
 
     strcpy(newCh, ch);
 
     return newCh;
 
 }
-
-
 
 
 void testInvalidDLStackInitialization(CuTest *cuTest) {
@@ -76,8 +69,6 @@ void testValidDLStackInitialization(CuTest *cuTest) {
     destroyDLStack(dlStack);
 
 }
-
-
 
 
 void testDLStackPush(CuTest *cuTest) {
@@ -104,8 +95,6 @@ void testDLStackPush(CuTest *cuTest) {
 }
 
 
-
-
 void testDLStackAddAll(CuTest *cuTest) {
 
     DLinkedListStack *dlStack = dlStackInitialization(free);
@@ -116,7 +105,7 @@ void testDLStackAddAll(CuTest *cuTest) {
     dlStackAddAll(dlStack, NULL, 0);
     CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
-    int **arr = (int **) malloc(sizeof(int * ) * 5);
+    int **arr = (int **) malloc(sizeof(int *) * 5);
     for (int i = 0; i < 5; i++)
         arr[i] = generateIntPointerDLST(i + 1);
 
@@ -130,8 +119,6 @@ void testDLStackAddAll(CuTest *cuTest) {
     destroyDLStack(dlStack);
 
 }
-
-
 
 
 void testDLStackPop(CuTest *cuTest) {
@@ -161,9 +148,6 @@ void testDLStackPop(CuTest *cuTest) {
     destroyDLStack(dlStack);
 
 }
-
-
-
 
 
 void testDLStackPeek(CuTest *cuTest) {
@@ -196,9 +180,6 @@ void testDLStackPeek(CuTest *cuTest) {
 }
 
 
-
-
-
 void testDLStackIsEmpty(CuTest *cuTest) {
 
     DLinkedListStack *dlStack = dlStackInitialization(free);
@@ -225,10 +206,6 @@ void testDLStackIsEmpty(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testDLStackToArray(CuTest *cuTest) {
 
     DLinkedListStack *dlStack = dlStackInitialization(free);
@@ -251,9 +228,6 @@ void testDLStackToArray(CuTest *cuTest) {
     destroyDLStack(dlStack);
 
 }
-
-
-
 
 
 void testDLStackGetLength(CuTest *cuTest) {
@@ -283,9 +257,6 @@ void testDLStackGetLength(CuTest *cuTest) {
     destroyDLStack(dlStack);
 
 }
-
-
-
 
 
 void testDLStackContains(CuTest *cuTest) {
@@ -322,8 +293,6 @@ void testDLStackContains(CuTest *cuTest) {
     destroyDLStack(dlStack);
 
 }
-
-
 
 
 void testDLStackEquals(CuTest *cuTest) {
@@ -368,9 +337,6 @@ void testDLStackEquals(CuTest *cuTest) {
 }
 
 
-
-
-
 void testClearDLStack(CuTest *cuTest) {
 
     DLinkedListStack *dlStack = dlStackInitialization(free);
@@ -403,10 +369,6 @@ void testClearDLStack(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testDestroyDLStack(CuTest *cuTest) {
 
     DLinkedListStack *dlStack = dlStackInitialization(free);
@@ -424,17 +386,12 @@ void testDestroyDLStack(CuTest *cuTest) {
 }
 
 
-
-
-
-
 typedef struct DLStackTestStruct {
 
     int iData;
     char *cData;
 
 } DLStackTestStruct;
-
 
 
 void freeDLStackTestStruct(void *item) {
@@ -456,11 +413,10 @@ int dlStackTestStructComp(const void *item1, const void *item2) {
 }
 
 
-
 DLStackTestStruct *generateDLStackTestStruct(int value, char *str) {
 
     DLStackTestStruct *s = (DLStackTestStruct *) malloc(sizeof(DLStackTestStruct));
-    s->cData = (char *) malloc(sizeof(char ) * (strlen(str) + 1) );
+    s->cData = (char *) malloc(sizeof(char) * (strlen(str) + 1));
     strcpy(s->cData, str);
 
     s->iData = value;
@@ -468,8 +424,6 @@ DLStackTestStruct *generateDLStackTestStruct(int value, char *str) {
     return s;
 
 }
-
-
 
 
 void generalDLStackTest(CuTest *cuTest) {
@@ -522,8 +476,6 @@ void generalDLStackTest(CuTest *cuTest) {
 }
 
 
-
-
 CuSuite *createDLinkedListStackTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
@@ -549,10 +501,9 @@ CuSuite *createDLinkedListStackTestsSuite(void) {
 }
 
 
-
 void doublyLinkedListStackUnitTest(void) {
 
-    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
+    ERROR_TEST = (ErrorTestStruct *) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Doubly Linked List stack Test**\n");

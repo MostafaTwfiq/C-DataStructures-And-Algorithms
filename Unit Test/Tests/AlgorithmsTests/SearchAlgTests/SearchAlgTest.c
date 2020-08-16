@@ -5,7 +5,6 @@
 #include "../../../../DataStructure/Lists/Headers/Vector.h"
 
 
-
 int intCompareFunSeAT1(const void *a, const void *b) {
     return *(int *) a - *(int *) b;
 }
@@ -88,9 +87,6 @@ void testLinearSearch(CuTest *cuTest) {
 }
 
 
-
-
-
 void testBinarySearch(CuTest *cuTest) {
 
     int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -132,9 +128,6 @@ void testBinarySearch(CuTest *cuTest) {
         CuAssertIntEquals(cuTest, i - 1, binarySearchR(arr, &i, 10, sizeof(int), intCompareFunSeAT1));
 
 }
-
-
-
 
 
 void testTernarySearch(CuTest *cuTest) {
@@ -180,9 +173,6 @@ void testTernarySearch(CuTest *cuTest) {
 }
 
 
-
-
-
 void testJumpSearch(CuTest *cuTest) {
 
     int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -206,9 +196,6 @@ void testJumpSearch(CuTest *cuTest) {
         CuAssertIntEquals(cuTest, i - 1, jumpSearch(arr, &i, 10, sizeof(int), intCompareFunSeAT1));
 
 }
-
-
-
 
 
 void testExponentialSearch(CuTest *cuTest) {
@@ -236,8 +223,6 @@ void testExponentialSearch(CuTest *cuTest) {
 }
 
 
-
-
 CuSuite *createSearchAlgTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
@@ -253,10 +238,9 @@ CuSuite *createSearchAlgTestsSuite(void) {
 }
 
 
-
 void searchAlgUnitTest(void) {
 
-    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
+    ERROR_TEST = (ErrorTestStruct *) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Searching Algorithms Test**\n");

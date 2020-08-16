@@ -20,8 +20,6 @@ int *generateIntPointerHST(int integer) {
 }
 
 
-
-
 /** This function will compare to integers pointers,
  * then it will return zero if they are equal, negative number if the second integer is bigger,
  * and positive number if the first integer is bigger.
@@ -31,10 +29,8 @@ int *generateIntPointerHST(int integer) {
  */
 
 int compareIntPointersHST(const void *a, const void *b) {
-    return *(int *)a - *(int *)b;
+    return *(int *) a - *(int *) b;
 }
-
-
 
 
 /** This function will take an integer pointer,
@@ -49,9 +45,6 @@ int compareIntPointersHST(const void *a, const void *b) {
 int intHashFunHST(const void *integer) {
     return *(int *) integer;
 }
-
-
-
 
 
 void testInvalidHashSetInitialization(CuTest *cuTest) {
@@ -76,7 +69,6 @@ void testValidHashSetInitialization(CuTest *cuTest) {
     destroyHashSet(hashSet);
 
 }
-
 
 
 void testHashSetInsert(CuTest *cuTest) {
@@ -108,9 +100,6 @@ void testHashSetInsert(CuTest *cuTest) {
     destroyHashSet(hashSet);
 
 }
-
-
-
 
 
 void testHashSetDelete(CuTest *cuTest) {
@@ -145,8 +134,6 @@ void testHashSetDelete(CuTest *cuTest) {
     destroyHashSet(hashSet);
 
 }
-
-
 
 
 void testHashSetDeleteWtoFr(CuTest *cuTest) {
@@ -191,8 +178,6 @@ void testHashSetDeleteWtoFr(CuTest *cuTest) {
 }
 
 
-
-
 void testHashSetContains(CuTest *cuTest) {
 
     HashSet *hashSet = hashSetInitialization(free, compareIntPointersHST, intHashFunHST);
@@ -218,9 +203,6 @@ void testHashSetContains(CuTest *cuTest) {
     destroyHashSet(hashSet);
 
 }
-
-
-
 
 
 void testHashSetGet(CuTest *cuTest) {
@@ -250,10 +232,6 @@ void testHashSetGet(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testHashSetToArray(CuTest *cuTest) {
 
     HashSet *hashSet = hashSetInitialization(free, compareIntPointersHST, intHashFunHST);
@@ -278,7 +256,6 @@ void testHashSetToArray(CuTest *cuTest) {
     destroyHashSet(hashSet);
 
 }
-
 
 
 void testHashSetGetLength(CuTest *cuTest) {
@@ -309,8 +286,6 @@ void testHashSetGetLength(CuTest *cuTest) {
 }
 
 
-
-
 void testHashSetIsEmpty(CuTest *cuTest) {
 
     HashSet *hashSet = hashSetInitialization(free, compareIntPointersHST, intHashFunHST);
@@ -335,8 +310,6 @@ void testHashSetIsEmpty(CuTest *cuTest) {
     destroyHashSet(hashSet);
 
 }
-
-
 
 
 void testClearHashSet(CuTest *cuTest) {
@@ -368,9 +341,6 @@ void testClearHashSet(CuTest *cuTest) {
 }
 
 
-
-
-
 void testDestroyHashSet(CuTest *cuTest) {
 
     HashSet *hashSet = hashSetInitialization(free, compareIntPointersHST, intHashFunHST);
@@ -385,8 +355,6 @@ void testDestroyHashSet(CuTest *cuTest) {
     destroyHashSet(hashSet);
 
 }
-
-
 
 
 CuSuite *createHashSetTestsSuite(void) {
@@ -411,10 +379,9 @@ CuSuite *createHashSetTestsSuite(void) {
 }
 
 
-
 void hashSetUnitTest(void) {
 
-    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
+    ERROR_TEST = (ErrorTestStruct *) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Hashset Test**\n");

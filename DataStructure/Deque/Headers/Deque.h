@@ -7,7 +7,6 @@ extern "C" {
 #endif
 
 
-
 /** @struct Deque
 *  @brief This structure implements a basic generic Deque.
 *  @var Deque::arr
@@ -28,6 +27,7 @@ typedef struct Deque {
     int length;
     int rear;
     int front;
+
     void (*freeFun)(void *);
 } Deque;
 
@@ -48,7 +48,7 @@ void *dequePeekRear(Deque *deque);
 
 void **dequeToArray(Deque *deque);
 
-int dequeGetLength(Deque  *deque);
+int dequeGetLength(Deque *deque);
 
 int dequeIsEmpty(Deque *deque);
 

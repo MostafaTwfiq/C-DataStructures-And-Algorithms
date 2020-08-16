@@ -26,10 +26,6 @@ typedef struct AVLTreeNode {
 } AVLTreeNode;
 
 
-
-
-
-
 /** @struct AVLTree
  *  @brief This structure implements a basic generic AVL Tree.
  *  @var AVLTree::root
@@ -45,11 +41,11 @@ typedef struct AVLTreeNode {
 typedef struct AVLTree {
     AVLTreeNode *root;
     int count;
+
     void (*freeFn)(void *);
+
     int (*cmp)(const void *, const void *);
 } AVLTree;
-
-
 
 
 AVLTree *avlTreeInitialization(void (*freeFun)(void *), int (*cmp)(const void *, const void *));
@@ -83,7 +79,6 @@ void avlTreeBreadthFirstTraversal(AVLTree *tree, void (*printFun)(void *));
 void clearAVLTree(AVLTree *tree);
 
 void destroyAVLTree(AVLTree *tree);
-
 
 
 #ifdef __cplusplus

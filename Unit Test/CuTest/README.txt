@@ -164,7 +164,7 @@ you want to avoid messing with multiple builds. Remove the main()
 in AllTests.c. Note that it just calls RunAllTests(). Instead
 we'll call this directly from the main program.
 
-Now in the main() of the actual program check to see if the
+Now in the testsMain() of the actual program check to see if the
 command line option "--test" was passed. If it was then I call
 RunAllTests() from AllTests.c. Otherwise run the real program.
 

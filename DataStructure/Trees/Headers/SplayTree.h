@@ -6,8 +6,6 @@ extern "C" {
 #endif
 
 
-
-
 /** @struct SplayNode
  *  @brief This structure describes n Splay Tree Node.
  *  @var SplayNode::key
@@ -24,9 +22,6 @@ typedef struct SplayNode {
 } SplayNode;
 
 
-
-
-
 /** @struct SplayTree
  *  @brief This structure implements a basic generic Splay Tree.
  *  @var SplayTree::root
@@ -41,11 +36,11 @@ typedef struct SplayNode {
 typedef struct SplayTree {
     SplayNode *root;
     int count;
+
     void (*freeFn)(void *);
+
     int (*cmp)(const void *, const void *);
 } SplayTree;
-
-
 
 
 SplayTree *splayTreeInitialization(void (*freeFn)(void *), int (*cmp)(const void *, const void *));
@@ -71,7 +66,6 @@ void **splayTreeToArray(SplayTree *tree);
 void clearSplayTree(SplayTree *tree);
 
 void destroySplayTree(SplayTree *tree);
-
 
 
 #ifdef __cplusplus

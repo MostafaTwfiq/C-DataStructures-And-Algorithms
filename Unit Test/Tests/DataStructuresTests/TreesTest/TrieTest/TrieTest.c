@@ -5,8 +5,6 @@
 #include "../../../../../DataStructure/Lists/Headers/ArrayList.h"
 
 
-
-
 int hasNoChildrenTrT(TrieNode *node) {
 
     for (int i = 0; i < 26; i++) {
@@ -47,7 +45,6 @@ int checkOnlyWordCharactersExistInTheArrTrT(const int *arr, char *word) {
 }
 
 
-
 void testValidTrieInitialization(CuTest *cuTest) {
 
     Trie *trie = trieInitialization();
@@ -71,7 +68,7 @@ void testTrieAddWord(CuTest *cuTest) {
 
     trieAddWord(trie, "word");
 
-    int indicesArr[] = {'w' - 'a', 'o' - 'a', 'r'-'a', 'd'-'a'};
+    int indicesArr[] = {'w' - 'a', 'o' - 'a', 'r' - 'a', 'd' - 'a'};
     int charactersCounterArr[26] = {0};
 
     TrieNode *tempNode = trie->root;
@@ -87,10 +84,9 @@ void testTrieAddWord(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, 1, checkOnlyWordCharactersExistInTheArrTrT(charactersCounterArr, "word"));
 
 
-
     trieAddWord(trie, "worm");
 
-    int indicesArr2[] = {'w' - 'a', 'o' - 'a', 'r'-'a', 'm'-'a'};
+    int indicesArr2[] = {'w' - 'a', 'o' - 'a', 'r' - 'a', 'm' - 'a'};
     int charactersCounterArr2[26] = {0};
 
     tempNode = trie->root;
@@ -109,9 +105,6 @@ void testTrieAddWord(CuTest *cuTest) {
     destroyTrie(trie);
 
 }
-
-
-
 
 
 void testTrieContains(CuTest *cuTest) {
@@ -151,8 +144,6 @@ void testTrieContains(CuTest *cuTest) {
     destroyTrie(trie);
 
 }
-
-
 
 
 void testTrieRemoveWord(CuTest *cuTest) {
@@ -205,9 +196,6 @@ void testTrieRemoveWord(CuTest *cuTest) {
 }
 
 
-
-
-
 void testTrieAutoCompletion(CuTest *cuTest) {
 
     Trie *trie = trieInitialization();
@@ -233,7 +221,6 @@ void testTrieAutoCompletion(CuTest *cuTest) {
     trieAddWord(trie, "sole");
     trieAddWord(trie, "cool");
     trieAddWord(trie, "card");
-
 
 
     ArrayList *suggestionsList = trieAutoCompletion(trie, "ca", 10);
@@ -270,11 +257,6 @@ void testTrieAutoCompletion(CuTest *cuTest) {
 }
 
 
-
-
-
-
-
 void testTrieSuggestion(CuTest *cuTest) {
 
     Trie *trie = trieInitialization();
@@ -302,14 +284,12 @@ void testTrieSuggestion(CuTest *cuTest) {
     trieAddWord(trie, "card");
 
 
-
     ArrayList *suggestionsList = trieSuggestion(trie, "cat", 3);
     CuAssertIntEquals(cuTest, 3, arrayListGetLength(suggestionsList));
     CuAssertStrEquals(cuTest, "cat", (char *) arrayListGet(suggestionsList, 0));
     CuAssertStrEquals(cuTest, "card", (char *) arrayListGet(suggestionsList, 1));
     CuAssertStrEquals(cuTest, "cart", (char *) arrayListGet(suggestionsList, 2));
     destroyArrayList(suggestionsList);
-
 
 
     suggestionsList = trieSuggestion(trie, "work", 4);
@@ -319,7 +299,6 @@ void testTrieSuggestion(CuTest *cuTest) {
     CuAssertStrEquals(cuTest, "word", (char *) arrayListGet(suggestionsList, 2));
     CuAssertStrEquals(cuTest, "worst", (char *) arrayListGet(suggestionsList, 3));
     destroyArrayList(suggestionsList);
-
 
 
     suggestionsList = trieSuggestion(trie, "", 20);
@@ -334,9 +313,6 @@ void testTrieSuggestion(CuTest *cuTest) {
 
 
 }
-
-
-
 
 
 void testTriePrintAllWords(CuTest *cuTest) {
@@ -366,7 +342,7 @@ void testTriePrintAllWords(CuTest *cuTest) {
     int index = 0;
     char c;
 
-    while ( (c = fgetc(dir)) != EOF )
+    while ((c = fgetc(dir)) != EOF)
         input[index++] = c;
 
     input[index] = '\0';
@@ -378,10 +354,6 @@ void testTriePrintAllWords(CuTest *cuTest) {
     destroyTrie(trie);
 
 }
-
-
-
-
 
 
 void testClearTrie(CuTest *cuTest) {
@@ -410,13 +382,9 @@ void testClearTrie(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, 0, trieContains(trie, "cart"));
 
 
-
     destroyTrie(trie);
 
 }
-
-
-
 
 
 void testDestroyTrie(CuTest *cuTest) {
@@ -439,7 +407,6 @@ void testDestroyTrie(CuTest *cuTest) {
 }
 
 
-
 CuSuite *createTrieTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
@@ -459,10 +426,9 @@ CuSuite *createTrieTestsSuite(void) {
 }
 
 
-
 void trieUnitTest(void) {
 
-    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
+    ERROR_TEST = (ErrorTestStruct *) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Trie Test**\n");

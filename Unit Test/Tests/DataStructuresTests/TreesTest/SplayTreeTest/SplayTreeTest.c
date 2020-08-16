@@ -4,9 +4,6 @@
 #include "../../../../../DataStructure/Trees/Headers/SplayTree.h"
 
 
-
-
-
 /** This function will take an integer,
  * then it will allocate a new integer and copy the passed integer value into the new pointer,
  * and finally return the new integer pointer.
@@ -24,8 +21,6 @@ int *generateIntPointerSTT(int integer) {
 }
 
 
-
-
 /** This function will compare to integers pointers,
  * then it will return zero if they are equal, negative number if the second integer is bigger,
  * and positive number if the first integer is bigger.
@@ -36,11 +31,8 @@ int *generateIntPointerSTT(int integer) {
  */
 
 int compareIntPointersSTT(const void *a, const void *b) {
-    return *(int *)a - *(int *)b;
+    return *(int *) a - *(int *) b;
 }
-
-
-
 
 
 int checkIfValidSplayTreeSTT(SplayNode *root, SplayNode *parent) {
@@ -87,12 +79,6 @@ int checkIfValidSplayTreeSTT(SplayNode *root, SplayNode *parent) {
 }
 
 
-
-
-
-
-
-
 void testInvalidSplayTreeInitialization(CuTest *cutest) {
 
     splayTreeInitialization(NULL, NULL);
@@ -105,7 +91,6 @@ void testInvalidSplayTreeInitialization(CuTest *cutest) {
 }
 
 
-
 void testValidSplayTreeInitialization(CuTest *cutest) {
 
     SplayTree *tree = splayTreeInitialization(free, compareIntPointersSTT);
@@ -113,11 +98,6 @@ void testValidSplayTreeInitialization(CuTest *cutest) {
     CuAssertPtrNotNull(cutest, tree);
 
 }
-
-
-
-
-
 
 
 void testSplayTreeInsert(CuTest *cuTest) {
@@ -143,9 +123,6 @@ void testSplayTreeInsert(CuTest *cuTest) {
     destroySplayTree(tree);
 
 }
-
-
-
 
 
 void testSplayTreeInsert2(CuTest *cuTest) {
@@ -189,11 +166,6 @@ void testSplayTreeInsert2(CuTest *cuTest) {
 }
 
 
-
-
-
-
-
 void testSplayTreeInsert3(CuTest *cuTest) {
 
     SplayTree *tree = splayTreeInitialization(free, compareIntPointersSTT);
@@ -205,7 +177,6 @@ void testSplayTreeInsert3(CuTest *cuTest) {
         splayTreeInsert(tree, generateIntPointerSTT(values[i]));
         CuAssertIntEquals(cuTest, values[i], *(int *) tree->root->key);
     }
-
 
 
     for (int i = 0; i < 11; i++) {
@@ -221,9 +192,6 @@ void testSplayTreeInsert3(CuTest *cuTest) {
     destroySplayTree(tree);
 
 }
-
-
-
 
 
 void testSplayTreeInsertAll(CuTest *cuTest) {
@@ -252,10 +220,6 @@ void testSplayTreeInsertAll(CuTest *cuTest) {
     destroySplayTree(tree);
 
 }
-
-
-
-
 
 
 void testSplayTreeDelete(CuTest *cuTest) {
@@ -287,9 +251,6 @@ void testSplayTreeDelete(CuTest *cuTest) {
     destroySplayTree(tree);
 
 }
-
-
-
 
 
 void testSplayTreeDeleteWtoFr(CuTest *cuTest) {
@@ -332,10 +293,6 @@ void testSplayTreeDeleteWtoFr(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testSplayTreeContains(CuTest *cuTest) {
 
     SplayTree *tree = splayTreeInitialization(free, compareIntPointersSTT);
@@ -365,9 +322,6 @@ void testSplayTreeContains(CuTest *cuTest) {
     destroySplayTree(tree);
 
 }
-
-
-
 
 
 void testSplayTreeGet(CuTest *cuTest) {
@@ -406,13 +360,6 @@ void testSplayTreeGet(CuTest *cuTest) {
 }
 
 
-
-
-
-
-
-
-
 void testSplayTreeGetSize(CuTest *cuTest) {
 
     SplayTree *tree = splayTreeInitialization(free, compareIntPointersSTT);
@@ -446,9 +393,6 @@ void testSplayTreeGetSize(CuTest *cuTest) {
 }
 
 
-
-
-
 void testSplayTreeIsEmpty(CuTest *cuTest) {
 
     SplayTree *tree = splayTreeInitialization(free, compareIntPointersSTT);
@@ -476,9 +420,6 @@ void testSplayTreeIsEmpty(CuTest *cuTest) {
     destroySplayTree(tree);
 
 }
-
-
-
 
 
 void testSplayTreeToArray(CuTest *cuTest) {
@@ -509,10 +450,6 @@ void testSplayTreeToArray(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testClearSplayTree(CuTest *cuTest) {
 
     SplayTree *tree = splayTreeInitialization(free, compareIntPointersSTT);
@@ -540,8 +477,6 @@ void testClearSplayTree(CuTest *cuTest) {
 }
 
 
-
-
 void testDestroySplayTree(CuTest *cuTest) {
 
     SplayTree *tree = splayTreeInitialization(free, compareIntPointersSTT);
@@ -556,9 +491,6 @@ void testDestroySplayTree(CuTest *cuTest) {
     destroySplayTree(tree);
 
 }
-
-
-
 
 
 CuSuite *createSplayTreeTestsSuite(void) {
@@ -586,11 +518,9 @@ CuSuite *createSplayTreeTestsSuite(void) {
 }
 
 
-
-
 void splayTreeUnitTest(void) {
 
-    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
+    ERROR_TEST = (ErrorTestStruct *) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Splay Tree Test**\n");

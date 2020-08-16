@@ -21,8 +21,6 @@ int *generateIntPointerQT(int integer) {
 }
 
 
-
-
 /** This function will compare to integers pointers,
  * then it will return zero if they are equal, negative number if the second integer is bigger,
  * and positive number if the first integer is bigger.
@@ -32,11 +30,8 @@ int *generateIntPointerQT(int integer) {
  */
 
 int compareIntPointersQT(const void *a, const void *b) {
-    return *(int *)a - *(int *)b;
+    return *(int *) a - *(int *) b;
 }
-
-
-
 
 
 /** This function will take a char array
@@ -48,14 +43,13 @@ int compareIntPointersQT(const void *a, const void *b) {
 
 char *generateCharPointerQT(char *ch) {
 
-    char *newCh = (char *) malloc( sizeof(char) * (strlen(ch) + 1) );
+    char *newCh = (char *) malloc(sizeof(char) * (strlen(ch) + 1));
 
     strcpy(newCh, ch);
 
     return newCh;
 
 }
-
 
 
 void testInvalidQueueInitialization(CuTest *cuTest) {
@@ -66,7 +60,6 @@ void testInvalidQueueInitialization(CuTest *cuTest) {
 }
 
 
-
 void testValidQueueInitialization(CuTest *cuTest) {
 
     Queue *queue = queueInitialization(free);
@@ -75,8 +68,6 @@ void testValidQueueInitialization(CuTest *cuTest) {
     queueDestroy(queue);
 
 }
-
-
 
 
 void testQueueEnqueue(CuTest *cuTest) {
@@ -101,9 +92,6 @@ void testQueueEnqueue(CuTest *cuTest) {
     queueDestroy(queue);
 
 }
-
-
-
 
 
 void testQueueEnqueueAll(CuTest *cuTest) {
@@ -131,9 +119,6 @@ void testQueueEnqueueAll(CuTest *cuTest) {
     queueDestroy(queue);
 
 }
-
-
-
 
 
 void testQueueDequeue(CuTest *cuTest) {
@@ -166,10 +151,6 @@ void testQueueDequeue(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testQueuePeek(CuTest *cuTest) {
 
     Queue *queue = queueInitialization(free);
@@ -197,9 +178,6 @@ void testQueuePeek(CuTest *cuTest) {
     queueDestroy(queue);
 
 }
-
-
-
 
 
 void testQueueGetLength(CuTest *cuTest) {
@@ -236,8 +214,6 @@ void testQueueGetLength(CuTest *cuTest) {
 }
 
 
-
-
 void testQueueIsEmpty(CuTest *cuTest) {
 
     Queue *queue = queueInitialization(free);
@@ -258,9 +234,6 @@ void testQueueIsEmpty(CuTest *cuTest) {
     queueDestroy(queue);
 
 }
-
-
-
 
 
 void testQueueToArray(CuTest *cuTest) {
@@ -286,10 +259,6 @@ void testQueueToArray(CuTest *cuTest) {
     queueDestroy(queue);
 
 }
-
-
-
-
 
 
 void testClearQueue(CuTest *cuTest) {
@@ -318,10 +287,6 @@ void testClearQueue(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testDestroyQueue(CuTest *cuTest) {
 
     Queue *queue = queueInitialization(free);
@@ -339,17 +304,12 @@ void testDestroyQueue(CuTest *cuTest) {
 }
 
 
-
-
-
-
 typedef struct QueueTestStruct {
 
     int iData;
     char *cData;
 
 } QueueTestStruct;
-
 
 
 void freeQueueTestStruct(void *item) {
@@ -371,11 +331,10 @@ int queueTestStructComp(const void *item1, const void *item2) {
 }
 
 
-
 QueueTestStruct *generateQueueTestStruct(int value, char *str) {
 
     QueueTestStruct *q = (QueueTestStruct *) malloc(sizeof(QueueTestStruct));
-    q->cData = (char *) malloc(sizeof(char ) * (strlen(str) + 1) );
+    q->cData = (char *) malloc(sizeof(char) * (strlen(str) + 1));
     strcpy(q->cData, str);
 
     q->iData = value;
@@ -385,12 +344,11 @@ QueueTestStruct *generateQueueTestStruct(int value, char *str) {
 }
 
 
-
-
 void generalQueueTest(CuTest *cuTest) {
 
     Queue *queue = queueInitialization(freeQueueTestStruct);
-    char numbersStr[14][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"};
+    char numbersStr[14][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven",
+                               "twelve", "thirteen", "fourteen"};
 
 
     CuAssertIntEquals(cuTest, 0, queueGetLength(queue));
@@ -441,13 +399,6 @@ void generalQueueTest(CuTest *cuTest) {
 }
 
 
-
-
-
-
-
-
-
 CuSuite *createQueueTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
@@ -471,10 +422,9 @@ CuSuite *createQueueTestsSuite(void) {
 }
 
 
-
 void queueUnitTest(void) {
 
-    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
+    ERROR_TEST = (ErrorTestStruct *) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Queue Test**\n");

@@ -7,7 +7,6 @@
 #include "../../../../../DataStructure/LinkedLists/Headers/DoublyLinkedList.h"
 
 
-
 /** This function will take an integer,
  * then it will allocate a new integer and copy the passed integer value into the new pointer,
  * and finally return the new integer pointer.
@@ -24,8 +23,6 @@ int *generateIntPointerDLLDT(int integer) {
 }
 
 
-
-
 /** This function will compare to integers pointers,
  * then it will return zero if they are equal, negative number if the second integer is bigger,
  * and positive number if the first integer is bigger.
@@ -35,11 +32,8 @@ int *generateIntPointerDLLDT(int integer) {
  */
 
 int compareIntPointersDLLDT(const void *a, const void *b) {
-    return *(int *)a - *(int *)b;
+    return *(int *) a - *(int *) b;
 }
-
-
-
 
 
 /** This function will take a char array
@@ -51,18 +45,13 @@ int compareIntPointersDLLDT(const void *a, const void *b) {
 
 char *generateCharPointerDLLDT(char *ch) {
 
-    char *newCh = (char *) malloc( sizeof(char) * (strlen(ch) + 1) );
+    char *newCh = (char *) malloc(sizeof(char) * (strlen(ch) + 1));
 
     strcpy(newCh, ch);
 
     return newCh;
 
 }
-
-
-
-
-
 
 
 void testInvalidDLLDequeInitialization(CuTest *cuTest) {
@@ -74,7 +63,6 @@ void testInvalidDLLDequeInitialization(CuTest *cuTest) {
 }
 
 
-
 void testValidDLLDequeInitialization(CuTest *cuTest) {
 
     DLDeque *dLDeque = dlDequeInitialization(free);
@@ -84,8 +72,6 @@ void testValidDLLDequeInitialization(CuTest *cuTest) {
     destroyDLDeque(dLDeque);
 
 }
-
-
 
 
 void testDLLDequeInsertFront(CuTest *cuTest) {
@@ -112,9 +98,6 @@ void testDLLDequeInsertFront(CuTest *cuTest) {
 }
 
 
-
-
-
 void testDLLDequeInsertRear(CuTest *cuTest) {
 
     DLDeque *dLDeque = dlDequeInitialization(free);
@@ -137,9 +120,6 @@ void testDLLDequeInsertRear(CuTest *cuTest) {
     destroyDLDeque(dLDeque);
 
 }
-
-
-
 
 
 void testDLLDequeGetFront(CuTest *cuTest) {
@@ -168,9 +148,6 @@ void testDLLDequeGetFront(CuTest *cuTest) {
 }
 
 
-
-
-
 void testDLLDequeGetRear(CuTest *cuTest) {
 
     DLDeque *dLDeque = dlDequeInitialization(free);
@@ -195,11 +172,6 @@ void testDLLDequeGetRear(CuTest *cuTest) {
     destroyDLDeque(dLDeque);
 
 }
-
-
-
-
-
 
 
 void testDLLDequePeekFront(CuTest *cuTest) {
@@ -227,10 +199,6 @@ void testDLLDequePeekFront(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testDLLDequePeekRear(CuTest *cuTest) {
 
     DLDeque *dLDeque = dlDequeInitialization(free);
@@ -256,10 +224,6 @@ void testDLLDequePeekRear(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testDLLDequeToArray(CuTest *cuTest) {
 
     DLDeque *dLDeque = dlDequeInitialization(free);
@@ -282,10 +246,6 @@ void testDLLDequeToArray(CuTest *cuTest) {
     destroyDLDeque(dLDeque);
 
 }
-
-
-
-
 
 
 void testDLLDequeGetLength(CuTest *cuTest) {
@@ -314,11 +274,6 @@ void testDLLDequeGetLength(CuTest *cuTest) {
 }
 
 
-
-
-
-
-
 void testDLLDequeIsEmpty(CuTest *cuTest) {
 
     DLDeque *dLDeque = dlDequeInitialization(free);
@@ -345,10 +300,6 @@ void testDLLDequeIsEmpty(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testClearDLLDeque(CuTest *cuTest) {
 
     DLDeque *dLDeque = dlDequeInitialization(free);
@@ -373,8 +324,6 @@ void testClearDLLDeque(CuTest *cuTest) {
 }
 
 
-
-
 void testDestroyDLLDeque(CuTest *cuTest) {
 
     DLDeque *dLDeque = dlDequeInitialization(free);
@@ -393,19 +342,12 @@ void testDestroyDLLDeque(CuTest *cuTest) {
 }
 
 
-
-
-
-
-
-
 typedef struct DLLDequeTestStruct {
 
     int iData;
     char *cData;
 
 } DLLDequeTestStruct;
-
 
 
 void freeDLLDequeTestStruct(void *item) {
@@ -427,11 +369,10 @@ int dLLDequeTestStructComp(const void *item1, const void *item2) {
 }
 
 
-
 DLLDequeTestStruct *generateDLLDequeTestStruct(int value, char *str) {
 
     DLLDequeTestStruct *d = (DLLDequeTestStruct *) malloc(sizeof(DLLDequeTestStruct));
-    d->cData = (char *) malloc(sizeof(char ) * (strlen(str) + 1) );
+    d->cData = (char *) malloc(sizeof(char) * (strlen(str) + 1));
     strcpy(d->cData, str);
 
     d->iData = value;
@@ -441,12 +382,11 @@ DLLDequeTestStruct *generateDLLDequeTestStruct(int value, char *str) {
 }
 
 
-
-
 void generalDLLDequeTest(CuTest *cuTest) {
 
     DLDeque *dLDeque = dlDequeInitialization(freeDLLDequeTestStruct);
-    char numbersStr[14][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"};
+    char numbersStr[14][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven",
+                               "twelve", "thirteen", "fourteen"};
 
 
     CuAssertIntEquals(cuTest, 0, dLDequeGetLength(dLDeque));
@@ -502,12 +442,6 @@ void generalDLLDequeTest(CuTest *cuTest) {
 }
 
 
-
-
-
-
-
-
 CuSuite *createDoublyLinkedListDequeTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
@@ -533,10 +467,9 @@ CuSuite *createDoublyLinkedListDequeTestsSuite(void) {
 }
 
 
-
 void doublyLinkedListDequeUnitTest(void) {
 
-    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
+    ERROR_TEST = (ErrorTestStruct *) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Doubly Linked List dLDeque Test**\n");

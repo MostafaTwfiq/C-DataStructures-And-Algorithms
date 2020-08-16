@@ -4,9 +4,6 @@
 #include "../../../../../DataStructure/Trees/Headers/BinaryHeap.h"
 
 
-
-
-
 /** This function will take an integer,
  * then it will allocate a new integer and copy the passed integer value into the new pointer,
  * and finally return the new integer pointer.
@@ -24,8 +21,6 @@ int *generateIntPointerBHT(int integer) {
 }
 
 
-
-
 /** This function will compare to integers pointers,
  * then it will return zero if they are equal, negative number if the second integer is bigger,
  * and positive number if the first integer is bigger.
@@ -36,9 +31,8 @@ int *generateIntPointerBHT(int integer) {
  */
 
 int compareIntPointersBHT1(const void *a, const void *b) {
-    return *(int *)a - *(int *)b;
+    return *(int *) a - *(int *) b;
 }
-
 
 
 /** This function will compare to integers pointers,
@@ -51,11 +45,8 @@ int compareIntPointersBHT1(const void *a, const void *b) {
  */
 
 int compareIntPointersBHT2(const void *a, const void *b) {
-    return *(int *)b - *(int *)a;
+    return *(int *) b - *(int *) a;
 }
-
-
-
 
 
 int isValidBinaryHeap(void **arr, int currentIndex, int length, int (*cmp)(const void *, const void *)) {
@@ -67,9 +58,8 @@ int isValidBinaryHeap(void **arr, int currentIndex, int length, int (*cmp)(const
     int fChildIndex = currentIndex * 2 + 1;
     int sChildIndex = currentIndex * 2 + 2;
 
-    if ( (fChildIndex < length && cmp(arr[currentIndex], arr[fChildIndex]) < 0)
-    ||  (sChildIndex < length && cmp(arr[currentIndex], arr[sChildIndex]) < 0) )
-    {
+    if ((fChildIndex < length && cmp(arr[currentIndex], arr[fChildIndex]) < 0)
+        || (sChildIndex < length && cmp(arr[currentIndex], arr[sChildIndex]) < 0)) {
 
         return 0;
 
@@ -92,7 +82,6 @@ void testInvalidBinaryHeapInitialization(CuTest *cuTest) {
 }
 
 
-
 void testValidBinaryHeapInitialization(CuTest *cuTest) {
 
     BinaryHeap *heap = binaryHeapInitialization(free, compareIntPointersBHT1);
@@ -102,9 +91,6 @@ void testValidBinaryHeapInitialization(CuTest *cuTest) {
     destroyBinaryHeap(heap);
 
 }
-
-
-
 
 
 void testBinaryHeapInsert(CuTest *cuTest) {
@@ -145,9 +131,6 @@ void testBinaryHeapInsert(CuTest *cuTest) {
 }
 
 
-
-
-
 void testBinaryHeapInsertAll(CuTest *cuTest) {
 
     BinaryHeap *maxHeap = binaryHeapInitialization(free, compareIntPointersBHT1);
@@ -174,7 +157,6 @@ void testBinaryHeapInsertAll(CuTest *cuTest) {
     }
 
 
-
     binaryHeapInsertAll(maxHeap, (void **) maxHeapValuesArr, 10);
     binaryHeapInsertAll(minHeap, (void **) minHeapValuesArr, 10);
 
@@ -194,9 +176,6 @@ void testBinaryHeapInsertAll(CuTest *cuTest) {
     destroyBinaryHeap(minHeap);
 
 }
-
-
-
 
 
 void testBinaryHeapDeleteRoot(CuTest *cuTest) {
@@ -231,10 +210,6 @@ void testBinaryHeapDeleteRoot(CuTest *cuTest) {
     destroyBinaryHeap(minHeap);
 
 }
-
-
-
-
 
 
 void testBinaryHeapDeleteRootWtoFr(CuTest *cuTest) {
@@ -278,9 +253,6 @@ void testBinaryHeapDeleteRootWtoFr(CuTest *cuTest) {
 }
 
 
-
-
-
 void testBinaryHeapContains(CuTest *cuTest) {
 
     BinaryHeap *maxHeap = binaryHeapInitialization(free, compareIntPointersBHT1);
@@ -295,7 +267,7 @@ void testBinaryHeapContains(CuTest *cuTest) {
 
 
     int values[] = {20, 15, 10, 12, 11, 20, 5, 4, 3, 2};
-    int nonExistingValues[] = {100, 50, 30 , 1, 6, 7, 8, 9, 13, 14, 16, 17, 18, 19};
+    int nonExistingValues[] = {100, 50, 30, 1, 6, 7, 8, 9, 13, 14, 16, 17, 18, 19};
 
     for (int i = 0; i < 10; i++) {
         binaryHeapInsert(maxHeap, generateIntPointerBHT(values[i]));
@@ -320,8 +292,6 @@ void testBinaryHeapContains(CuTest *cuTest) {
 }
 
 
-
-
 void testBinaryHeapGet(CuTest *cuTest) {
 
     BinaryHeap *maxHeap = binaryHeapInitialization(free, compareIntPointersBHT1);
@@ -336,7 +306,7 @@ void testBinaryHeapGet(CuTest *cuTest) {
 
 
     int values[] = {20, 15, 10, 12, 11, 20, 5, 4, 3, 2};
-    int nonExistingValues[] = {100, 50, 30 , 1, 6, 7, 8, 9, 13, 14, 16, 17, 18, 19};
+    int nonExistingValues[] = {100, 50, 30, 1, 6, 7, 8, 9, 13, 14, 16, 17, 18, 19};
 
     for (int i = 0; i < 10; i++) {
         binaryHeapInsert(maxHeap, generateIntPointerBHT(values[i]));
@@ -359,8 +329,6 @@ void testBinaryHeapGet(CuTest *cuTest) {
     destroyBinaryHeap(minHeap);
 
 }
-
-
 
 
 void testBinaryHeapGetSize(CuTest *cuTest) {
@@ -408,9 +376,6 @@ void testBinaryHeapGetSize(CuTest *cuTest) {
 }
 
 
-
-
-
 void testBinaryHeapIsEmpty(CuTest *cuTest) {
 
     BinaryHeap *maxHeap = binaryHeapInitialization(free, compareIntPointersBHT1);
@@ -456,11 +421,6 @@ void testBinaryHeapIsEmpty(CuTest *cuTest) {
 }
 
 
-
-
-
-
-
 void testBinaryHeapToArray(CuTest *cuTest) {
 
     BinaryHeap *maxHeap = binaryHeapInitialization(free, compareIntPointersBHT1);
@@ -495,9 +455,6 @@ void testBinaryHeapToArray(CuTest *cuTest) {
     destroyBinaryHeap(minHeap);
 
 }
-
-
-
 
 
 void testClearBinaryHeap(CuTest *cuTest) {
@@ -537,10 +494,6 @@ void testClearBinaryHeap(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testDestroyBinaryHeap(CuTest *cuTest) {
 
     BinaryHeap *maxHeap = binaryHeapInitialization(free, compareIntPointersBHT1);
@@ -562,8 +515,6 @@ void testDestroyBinaryHeap(CuTest *cuTest) {
     destroyBinaryHeap(minHeap);
 
 }
-
-
 
 
 CuSuite *createBinaryHeapTestsSuite(void) {
@@ -589,10 +540,9 @@ CuSuite *createBinaryHeapTestsSuite(void) {
 }
 
 
-
 void binaryHeapUnitTest(void) {
 
-    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
+    ERROR_TEST = (ErrorTestStruct *) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Binary Heap Test**\n");

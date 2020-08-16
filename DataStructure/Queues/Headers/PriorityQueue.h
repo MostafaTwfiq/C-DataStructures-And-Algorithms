@@ -6,7 +6,6 @@ extern "C" {
 #endif
 
 
-
 /** @struct PriorityQueue
 *  @brief This structure implements a basic generic priority queue.
 *  @var PriorityQueue:: arr
@@ -28,7 +27,9 @@ typedef struct PriorityQueue {
     int length;
     int count;
     int fPointer;
+
     void (*freeItem)(void *);
+
     int (*comp)(const void *, const void *);
 
 } PriorityQueue;

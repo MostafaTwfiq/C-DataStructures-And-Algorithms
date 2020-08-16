@@ -4,8 +4,6 @@
 #include "../../../../Algorithms/IntegersAlg/Headers/IntegerAlg.h"
 
 
-
-
 void testIntegerNumOfDigits(CuTest *cuTest) {
 
     CuAssertIntEquals(cuTest, 1, integerNumOfDigits(0));
@@ -17,8 +15,6 @@ void testIntegerNumOfDigits(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, 1, integerNumOfDigits(2));
 
 }
-
-
 
 
 void testIntegerToCharArray(CuTest *cuTest) {
@@ -49,8 +45,6 @@ void testIntegerToCharArray(CuTest *cuTest) {
 }
 
 
-
-
 void testMaxInt(CuTest *cuTest) {
 
     CuAssertIntEquals(cuTest, 2, maxInt(0, 2));
@@ -77,8 +71,6 @@ void testMinInt(CuTest *cuTest) {
 }
 
 
-
-
 void testCompareInt(CuTest *cuTest) {
 
     CuAssertIntEquals(cuTest, 0, compareInt(0, 0));
@@ -91,8 +83,6 @@ void testCompareInt(CuTest *cuTest) {
 }
 
 
-
-
 void testCompareIntR(CuTest *cuTest) {
 
     CuAssertIntEquals(cuTest, 0, compareIntR(0, 0));
@@ -103,7 +93,6 @@ void testCompareIntR(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, -1, compareIntR(-100, -200) > 0 ? 1 : -1);
 
 }
-
 
 
 void testCompareIntPointers(CuTest *cuTest) {
@@ -131,9 +120,6 @@ void testCompareIntPointers(CuTest *cuTest) {
 }
 
 
-
-
-
 void testCompareIntPointerR(CuTest *cuTest) {
 
     int fValue, sValue;
@@ -157,7 +143,6 @@ void testCompareIntPointerR(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, -1, compareIntPointerR(&fValue, &sValue) > 0 ? 1 : -1);
 
 }
-
 
 
 void testGenerateIntPointerP(CuTest *cuTest) {
@@ -193,8 +178,6 @@ void testGenerateIntPointerP(CuTest *cuTest) {
 }
 
 
-
-
 void testGenerateIntPointerI(CuTest *cuTest) {
 
     int value;
@@ -228,8 +211,6 @@ void testGenerateIntPointerI(CuTest *cuTest) {
 }
 
 
-
-
 void testIntHashFun(CuTest *cuTest) {
 
     int value;
@@ -255,8 +236,6 @@ void testIntHashFun(CuTest *cuTest) {
 }
 
 
-
-
 void testIntSum(CuTest *cuTest) {
 
     CuAssertIntEquals(cuTest, 20, intSum(10, 10));
@@ -267,8 +246,6 @@ void testIntSum(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, -111, intSum(-211, 100));
 
 }
-
-
 
 
 void testIntArrSum(CuTest *cuTest) {
@@ -284,7 +261,6 @@ void testIntArrSum(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, 55, intArrSum(arr, 10));
 
 }
-
 
 
 CuSuite *createIntegerAlgTestsSuite(void) {
@@ -310,10 +286,9 @@ CuSuite *createIntegerAlgTestsSuite(void) {
 }
 
 
-
 void integerAlgUnitTest(void) {
 
-    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
+    ERROR_TEST = (ErrorTestStruct *) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Integer Algorithms Test**\n");

@@ -23,7 +23,7 @@ LinkedList *linkedListInitialization(void (*freeFun)(void *), int (*comparator)(
         return NULL;
 #else
         fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "linked list data structure");
-         exit(INVALID_ARG);
+        exit(INVALID_ARG);
 #endif
 
     }
@@ -35,7 +35,7 @@ LinkedList *linkedListInitialization(void (*freeFun)(void *), int (*comparator)(
         return NULL;
 #else
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "linked list", "linked list data structure");
-         exit(FAILED_ALLOCATION);
+        exit(FAILED_ALLOCATION);
 #endif
 
     }
@@ -72,7 +72,7 @@ void linkedListAddFirst(LinkedList *linkedList, void *item) {
         return;
 #else
         fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "linked list data structure");
-         exit(INVALID_ARG);
+        exit(INVALID_ARG);
 #endif
 
     }
@@ -116,7 +116,7 @@ void linkedListAddLast(LinkedList *linkedList, void *item) {
         return;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "linked list pointer", "linked list data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     } else if (item == NULL) {
@@ -125,7 +125,7 @@ void linkedListAddLast(LinkedList *linkedList, void *item) {
         return;
 #else
         fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "linked list data structure");
-         exit(INVALID_ARG);
+        exit(INVALID_ARG);
 #endif
 
     }
@@ -137,7 +137,7 @@ void linkedListAddLast(LinkedList *linkedList, void *item) {
         return;
 #else
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new node", "linked list data structure");
-         exit(FAILED_ALLOCATION);
+        exit(FAILED_ALLOCATION);
 #endif
 
     }
@@ -171,7 +171,7 @@ void linkedListAddAtIndex(LinkedList *linkedList, int index, void *item) {
         return;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "linked list pointer", "linked list data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     } else if (item == NULL) {
@@ -189,7 +189,7 @@ void linkedListAddAtIndex(LinkedList *linkedList, int index, void *item) {
         return;
 #else
         fprintf(stderr, OUT_OF_RANGE_MESSAGE, "linked list data structure");
-         exit(OUT_OF_RANGE);
+        exit(OUT_OF_RANGE);
 #endif
 
     }
@@ -201,7 +201,7 @@ void linkedListAddAtIndex(LinkedList *linkedList, int index, void *item) {
         return;
 #else
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new node", "linked list data structure");
-         exit(FAILED_ALLOCATION);
+        exit(FAILED_ALLOCATION);
 #endif
 
     }
@@ -253,7 +253,7 @@ void linkedListAddAll(LinkedList *linkedList, void **items, int itemsLength) {
         return;
 #else
         fprintf(stderr, INVALID_ARG_MESSAGE, "items array pointer", "linked list data structure");
-         exit(INVALID_ARG);
+        exit(INVALID_ARG);
 #endif
 
     }
@@ -278,7 +278,7 @@ void linkedListDeleteFirst(LinkedList *linkedList) {
         return;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "linked list pointer", "linked list data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     } else if (linkedListIsEmpty(linkedList)) {
@@ -321,7 +321,7 @@ void *linkedListDeleteFirstWtoFr(LinkedList *linkedList) {
         return NULL;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "linked list pointer", "linked list data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     } else if (linkedListIsEmpty(linkedList)) {
@@ -330,7 +330,7 @@ void *linkedListDeleteFirstWtoFr(LinkedList *linkedList) {
         return NULL;
 #else
         fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "linked list data structure");
-         exit(EMPTY_DATA_STRUCTURE);
+        exit(EMPTY_DATA_STRUCTURE);
 #endif
 
     }
@@ -477,7 +477,7 @@ void linkedListDeleteAtIndex(LinkedList *linkedList, int index) {
         return;
 #else
         fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "linked list data structure");
-         exit(EMPTY_DATA_STRUCTURE);
+        exit(EMPTY_DATA_STRUCTURE);
 #endif
 
     } else if (index < 0 || index >= linkedListGetLength(linkedList)) {
@@ -650,7 +650,7 @@ int linkedListGetIndex(LinkedList *linkedList, void *item) {
         return -1;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "linked list pointer", "linked list data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     } else if (item == NULL) {
@@ -659,7 +659,7 @@ int linkedListGetIndex(LinkedList *linkedList, void *item) {
         return -1;
 #else
         fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "linked list data structure");
-         exit(INVALID_ARG);
+        exit(INVALID_ARG);
 #endif
 
     } else if (linkedList->comparator == NULL) {
@@ -702,7 +702,7 @@ void *linkedListGetFirst(LinkedList *linkedList) {
         return NULL;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "linked list pointer", "linked list data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     } else if (linkedListIsEmpty(linkedList)) {
@@ -738,7 +738,7 @@ void *linkedListGetLast(LinkedList *linkedList) {
         return NULL;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "linked list pointer", "linked list data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     } else if (linkedListIsEmpty(linkedList)) {
@@ -775,7 +775,7 @@ void *linkedListGetItem(LinkedList *linkedList, void *item) {
         return NULL;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "linked list pointer", "linked list data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     } else if (item == NULL) {
@@ -945,7 +945,7 @@ int linkedListIsEmpty(LinkedList *linkedList) {
         return -1;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "linked list pointer", "linked list data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     }
@@ -1006,7 +1006,7 @@ void linkedListClear(LinkedList *linkedList) {
         return;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "linked list pointer", "linked list data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     }

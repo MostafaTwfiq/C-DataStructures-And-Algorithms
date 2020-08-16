@@ -13,25 +13,25 @@
 
 DLinkedListStack *dlStackInitialization(void (*freeFun)(void *)) {
     if (freeFun == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "doubly linked list stack data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "doubly linked list stack data structure");
+        exit(INVALID_ARG);
+#endif
 
     }
 
     DLinkedListStack *stack = (DLinkedListStack *) malloc(sizeof(DLinkedListStack));
     if (stack == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
-     		return NULL;
-        #else
-            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "stack", "doubly linked list stack data structure");
-     		exit(FAILED_ALLOCATION);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = FAILED_ALLOCATION;
+        return NULL;
+#else
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "stack", "doubly linked list stack data structure");
+        exit(FAILED_ALLOCATION);
+#endif
 
     }
 
@@ -40,9 +40,6 @@ DLinkedListStack *dlStackInitialization(void (*freeFun)(void *)) {
     return stack;
 
 }
-
-
-
 
 
 /** This function will take the stack address, and the item address as a parameters,
@@ -54,31 +51,28 @@ DLinkedListStack *dlStackInitialization(void (*freeFun)(void *)) {
 
 void dlStackPush(DLinkedListStack *stack, void *item) {
     if (stack == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (item == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "doubly linked list stack data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "doubly linked list stack data structure");
+        exit(INVALID_ARG);
+#endif
 
     }
 
     doublyLinkedListAddLast(stack->linkedList, item);
 
 }
-
-
-
 
 
 /** This function will take the stack address, the array address, and the array length as a parameters,
@@ -91,33 +85,30 @@ void dlStackPush(DLinkedListStack *stack, void *item) {
 
 void dlStackAddAll(DLinkedListStack *stack, void **arr, int arrLength) {
     if (stack == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return;
-        #else
-     		fprintf(stderr, INVALID_ARG_MESSAGE, "item array pointer", "doubly linked list stack data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item array pointer", "doubly linked list stack data structure");
+        exit(INVALID_ARG);
+#endif
 
     }
 
 
     for (int i = 0; i < arrLength; i++)
-        dlStackPush(stack,arr[i]);
+        dlStackPush(stack, arr[i]);
 
 }
-
-
-
 
 
 /** This function will take the stack address as a parameter,
@@ -133,22 +124,22 @@ void dlStackAddAll(DLinkedListStack *stack, void **arr, int arrLength) {
 void *dlStackPop(DLinkedListStack *stack) {
 
     if (stack == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-     		fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (dlStackIsEmpty(stack)) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
-     		return NULL;
-        #else
-            fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "doubly linked list stack data structure");
-     		exit(EMPTY_DATA_STRUCTURE);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
+        return NULL;
+#else
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "doubly linked list stack data structure");
+        exit(EMPTY_DATA_STRUCTURE);
+#endif
 
     }
 
@@ -157,10 +148,6 @@ void *dlStackPop(DLinkedListStack *stack) {
 
     return item;
 }
-
-
-
-
 
 
 /** This function will take the stack address as a parameter,
@@ -173,23 +160,19 @@ void *dlStackPop(DLinkedListStack *stack) {
 void **dlStackToArray(DLinkedListStack *stack) {
 
     if (stack == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-     		fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
+        exit(NULL_POINTER);
+#endif
 
     }
 
     return doublyLinkedListToArray(stack->linkedList);
 
 }
-
-
-
-
 
 
 /** This function will take the stack address as a parameter,
@@ -205,22 +188,22 @@ void **dlStackToArray(DLinkedListStack *stack) {
 void *dlStackPeek(DLinkedListStack *stack) {
 
     if (stack == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (dlStackIsEmpty(stack)) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
-     		return NULL;
-        #else
-     		fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "doubly linked list stack data structure");
-     		exit(EMPTY_DATA_STRUCTURE);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
+        return NULL;
+#else
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "doubly linked list stack data structure");
+        exit(EMPTY_DATA_STRUCTURE);
+#endif
 
     }
 
@@ -228,9 +211,6 @@ void *dlStackPeek(DLinkedListStack *stack) {
 
     return item;
 }
-
-
-
 
 
 /** This function will take the stack address as a parameter,
@@ -243,23 +223,18 @@ void *dlStackPeek(DLinkedListStack *stack) {
 int dlStackGetLength(DLinkedListStack *stack) {
 
     if (stack == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return -1;
-        #else
-     		fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
+        exit(NULL_POINTER);
+#endif
 
     }
 
     return stack->linkedList->length;
 }
-
-
-
-
-
 
 
 /** This function will take the stack address as a parameter,
@@ -273,22 +248,19 @@ int dlStackGetLength(DLinkedListStack *stack) {
 int dlStackIsEmpty(DLinkedListStack *stack) {
 
     if (stack == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
+        exit(NULL_POINTER);
+#endif
 
     }
 
     return doublyLinkedListIsEmpty(stack->linkedList);
 
 }
-
-
-
 
 
 /** This function will take two doubly linked list stack,
@@ -304,31 +276,31 @@ int dlStackIsEmpty(DLinkedListStack *stack) {
 int dlStackEquals(DLinkedListStack *fStack, DLinkedListStack *sStack, int (*cmp)(const void *, const void *)) {
 
     if (fStack == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "first stack pointer", "doubly linked list stack data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "first stack pointer", "doubly linked list stack data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (sStack == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "second stack pointer", "doubly linked list stack data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "second stack pointer", "doubly linked list stack data structure");
+        exit(INVALID_ARG);
+#endif
 
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "doubly linked list stack data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "doubly linked list stack data structure");
+        exit(INVALID_ARG);
+#endif
     }
 
     if (doublyLinkedListGetLength(fStack->linkedList) != doublyLinkedListGetLength(sStack->linkedList))
@@ -336,7 +308,7 @@ int dlStackEquals(DLinkedListStack *fStack, DLinkedListStack *sStack, int (*cmp)
 
     for (int i = 0; i < doublyLinkedListGetLength(fStack->linkedList); i++) {
 
-        if ( cmp(doublyLinkedListGet(fStack->linkedList, i), doublyLinkedListGet(sStack->linkedList, i)) != 0 )
+        if (cmp(doublyLinkedListGet(fStack->linkedList, i), doublyLinkedListGet(sStack->linkedList, i)) != 0)
             return 0;
 
     }
@@ -344,11 +316,6 @@ int dlStackEquals(DLinkedListStack *fStack, DLinkedListStack *sStack, int (*cmp)
     return 1;
 
 }
-
-
-
-
-
 
 
 /** This function will take a stack and an item,
@@ -364,36 +331,36 @@ int dlStackEquals(DLinkedListStack *fStack, DLinkedListStack *sStack, int (*cmp)
 int dlStackContains(DLinkedListStack *fStack, void *item, int (*cmp)(const void *, const void *)) {
 
     if (fStack == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "first stack pointer", "doubly linked list stack data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "first stack pointer", "doubly linked list stack data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (item == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "doubly linked list stack data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "doubly linked list stack data structure");
+        exit(INVALID_ARG);
+#endif
 
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "doubly linked list stack data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "doubly linked list stack data structure");
+        exit(INVALID_ARG);
+#endif
     }
 
     for (int i = 0; i < doublyLinkedListGetLength(fStack->linkedList); i++) {
 
-        if ( cmp(item, doublyLinkedListGet(fStack->linkedList, i)) == 0 )
+        if (cmp(item, doublyLinkedListGet(fStack->linkedList, i)) == 0)
             return 1;
 
     }
@@ -401,8 +368,6 @@ int dlStackContains(DLinkedListStack *fStack, void *item, int (*cmp)(const void 
     return 0;
 
 }
-
-
 
 
 /** This function will take the stack address as a parameter,
@@ -414,23 +379,19 @@ int dlStackContains(DLinkedListStack *fStack, void *item, int (*cmp)(const void 
 void clearDLStack(DLinkedListStack *stack) {
 
     if (stack == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-     		fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
+        exit(NULL_POINTER);
+#endif
 
     }
 
     doublyLinkedListClear(stack->linkedList);
 
 }
-
-
-
-
 
 
 /** This function will take the stack address as a parameter,
@@ -441,13 +402,13 @@ void clearDLStack(DLinkedListStack *stack) {
 
 void destroyDLStack(DLinkedListStack *stack) {
     if (stack == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-     		fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "stack", "doubly linked list stack data structure");
+        exit(NULL_POINTER);
+#endif
 
     }
 

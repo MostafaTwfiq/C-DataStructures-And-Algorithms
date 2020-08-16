@@ -18,7 +18,7 @@ String *stringInitialization(int initialLength) {
         return NULL;
 #else
         fprintf(stderr, INVALID_ARG_MESSAGE, "initial length", "string data structure");
-         exit(INVALID_ARG);
+        exit(INVALID_ARG);
 #endif
 
     }
@@ -30,7 +30,7 @@ String *stringInitialization(int initialLength) {
         return NULL;
 #else
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "string", "string data structure");
-         exit(FAILED_ALLOCATION);
+        exit(FAILED_ALLOCATION);
 #endif
 
     }
@@ -42,7 +42,7 @@ String *stringInitialization(int initialLength) {
         return NULL;
 #else
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "string array", "string data structure");
-         exit(FAILED_ALLOCATION);
+        exit(FAILED_ALLOCATION);
 #endif
 
     }
@@ -69,7 +69,7 @@ void stringAppendChar(String *string, char c) {
         return;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     }
@@ -83,7 +83,7 @@ void stringAppendChar(String *string, char c) {
             return;
 #else
             fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "string array", "string data structure");
-             exit(FAILED_REALLOCATION);
+            exit(FAILED_REALLOCATION);
 #endif
 
         }
@@ -113,7 +113,7 @@ void stringAddChar(String *string, int index, char c) {
         return;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     } else if (string->count <= index || index < 0) {
@@ -122,7 +122,7 @@ void stringAddChar(String *string, int index, char c) {
         return;
 #else
         fprintf(stderr, OUT_OF_RANGE_MESSAGE, "string data structure");
-         exit(OUT_OF_RANGE);
+        exit(OUT_OF_RANGE);
 #endif
 
     }
@@ -138,7 +138,7 @@ void stringAddChar(String *string, int index, char c) {
             return;
 #else
             fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "string char array", "string data structure");
-             exit(FAILED_REALLOCATION);
+            exit(FAILED_REALLOCATION);
 #endif
 
         }
@@ -172,7 +172,7 @@ void stringUpdateChar(String *string, int index, char c) {
         return;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     } else if (string->count <= index || index < 0) {
@@ -181,7 +181,7 @@ void stringUpdateChar(String *string, int index, char c) {
         return;
 #else
         fprintf(stderr, OUT_OF_RANGE_MESSAGE, "string data structure");
-         exit(OUT_OF_RANGE);
+        exit(OUT_OF_RANGE);
 #endif
 
     }
@@ -207,7 +207,7 @@ void stringRemove(String *string, int index) {
         return;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     } else if (string->count <= index || index < 0) {
@@ -216,7 +216,7 @@ void stringRemove(String *string, int index) {
         return;
 #else
         fprintf(stderr, OUT_OF_RANGE_MESSAGE, "string data structure");
-         exit(OUT_OF_RANGE);
+        exit(OUT_OF_RANGE);
 #endif
 
     }
@@ -243,7 +243,7 @@ void stringAppendC(String *string, char *charArr) {
         return;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     } else if (charArr == NULL) {
@@ -252,7 +252,7 @@ void stringAppendC(String *string, char *charArr) {
         return;
 #else
         fprintf(stderr, INVALID_ARG_MESSAGE, "char array pointer", "string data structure");
-         exit(INVALID_ARG);
+        exit(INVALID_ARG);
 #endif
 
     }
@@ -317,7 +317,7 @@ void stringChangeStringC(String *string, char *newCharArr) {
         return;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     } else if (newCharArr == NULL) {
@@ -326,7 +326,7 @@ void stringChangeStringC(String *string, char *newCharArr) {
         return;
 #else
         fprintf(stderr, INVALID_ARG_MESSAGE, "new char array pointer", "string data structure");
-         exit(INVALID_ARG);
+        exit(INVALID_ARG);
 #endif
 
     }
@@ -354,7 +354,7 @@ void stringChangeStringS(String *string, String *newString) {
         return;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     } else if (newString == NULL) {
@@ -363,7 +363,7 @@ void stringChangeStringS(String *string, String *newString) {
         return;
 #else
         fprintf(stderr, INVALID_ARG_MESSAGE, "new string pointer", "string data structure");
-         exit(INVALID_ARG);
+        exit(INVALID_ARG);
 #endif
 
     }
@@ -427,7 +427,7 @@ char stringGet(String *string, int index) {
         return '\0';
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     } else if (string->count <= index || index < 0) {
@@ -436,7 +436,7 @@ char stringGet(String *string, int index) {
         return '\0';
 #else
         fprintf(stderr, OUT_OF_RANGE_MESSAGE, "string data structure");
-         exit(OUT_OF_RANGE);
+        exit(OUT_OF_RANGE);
 #endif
 
     }
@@ -462,7 +462,7 @@ int stringSubStringC(String *string, char *charArr) {
         return -1;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     } else if (charArr == NULL) {
@@ -471,7 +471,7 @@ int stringSubStringC(String *string, char *charArr) {
         return -1;
 #else
         fprintf(stderr, INVALID_ARG_MESSAGE, "char array pointer", "string data structure");
-         exit(INVALID_ARG);
+        exit(INVALID_ARG);
 #endif
 
     }
@@ -579,7 +579,7 @@ char *stringToCharArray(String *string) {
         return NULL;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     }
@@ -591,7 +591,7 @@ char *stringToCharArray(String *string) {
         return NULL;
 #else
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array of characters", "string data structure");
-         exit(FAILED_ALLOCATION);
+        exit(FAILED_ALLOCATION);
 #endif
 
     }
@@ -619,7 +619,7 @@ char *stringToCustomCharArray(String *string, int startIndex, int endIndex) {
         return NULL;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     }
@@ -633,7 +633,7 @@ char *stringToCustomCharArray(String *string, int startIndex, int endIndex) {
         return NULL;
 #else
         fprintf(stderr, OUT_OF_RANGE_MESSAGE, "string data structure");
-         exit(OUT_OF_RANGE);
+        exit(OUT_OF_RANGE);
 #endif
 
     }
@@ -646,7 +646,7 @@ char *stringToCustomCharArray(String *string, int startIndex, int endIndex) {
         return NULL;
 #else
         fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "string to custom char array", "string data structure");
-         exit(FAILED_ALLOCATION);
+        exit(FAILED_ALLOCATION);
 #endif
 
     }
@@ -674,7 +674,7 @@ int stringGetLength(String *string) {
         return -1;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     }
@@ -699,7 +699,7 @@ int stringEqualsC(String *string, char *charArr) {
         return -1;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     } else if (charArr == NULL) {
@@ -708,7 +708,7 @@ int stringEqualsC(String *string, char *charArr) {
         return -1;
 #else
         fprintf(stderr, INVALID_ARG_MESSAGE, "char array pointer", "string data structure");
-         exit(INVALID_ARG);
+        exit(INVALID_ARG);
 #endif
 
     }
@@ -747,7 +747,7 @@ int stringEqualsS(String *string, String *sString) {
         return -1;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     } else if (sString == NULL) {
@@ -756,7 +756,7 @@ int stringEqualsS(String *string, String *sString) {
         return -1;
 #else
         fprintf(stderr, INVALID_ARG_MESSAGE, "second string pointer", "string data structure");
-         exit(INVALID_ARG);
+        exit(INVALID_ARG);
 #endif
 
     }
@@ -1125,7 +1125,7 @@ void stringScanInput(String *string, FILE *dir) {
         return;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     } else if (dir == NULL) {
@@ -1173,7 +1173,7 @@ void printString(String *string, FILE *dir) {
         return;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     } else if (dir == NULL) {
@@ -1284,7 +1284,7 @@ void destroyString(void *myString) {
         return;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "string", "string data structure");
-         exit(NULL_POINTER);
+        exit(NULL_POINTER);
 #endif
 
     }

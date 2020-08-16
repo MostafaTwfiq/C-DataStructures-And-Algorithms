@@ -5,7 +5,6 @@
 #include "../../../../../DataStructure/Matrices/Headers/Matrix.h"
 
 
-
 /** This function will take an integer,
  * then it will allocate a new integer and copy the passed integer value into the new pointer,
  * and finally return the new integer pointer.
@@ -22,8 +21,6 @@ int *generateIntPointerMT(int integer) {
 }
 
 
-
-
 /** This function will compare to integers pointers,
  * then it will return zero if they are equal, negative number if the second integer is bigger,
  * and positive number if the first integer is bigger.
@@ -33,11 +30,8 @@ int *generateIntPointerMT(int integer) {
  */
 
 int compareIntPointersMT(const void *a, const void *b) {
-    return *(int *)a - *(int *)b;
+    return *(int *) a - *(int *) b;
 }
-
-
-
 
 
 /** This function will take a char array
@@ -49,16 +43,13 @@ int compareIntPointersMT(const void *a, const void *b) {
 
 char *generateCharPointerMT(char *ch) {
 
-    char *newCh = (char *) malloc( sizeof(char) * (strlen(ch) + 1) );
+    char *newCh = (char *) malloc(sizeof(char) * (strlen(ch) + 1));
 
     strcpy(newCh, ch);
 
     return newCh;
 
 }
-
-
-
 
 
 void testInvalidMatrixInitialization(CuTest *cuTest) {
@@ -87,12 +78,13 @@ void testValidMatrixInitialization(CuTest *cuTest) {
 }
 
 
-
 void testMatrixInsert(CuTest *cuTest) {
 
     Matrix *matrix = matrixInitialization(2, 2, free, compareIntPointersMT);
 
-    int indicesArr[3][3] = {{0,0, 10}, {1, 0, 11}, {1, 1, 12}};
+    int indicesArr[3][3] = {{0, 0, 10},
+                            {1, 0, 11},
+                            {1, 1, 12}};
 
     matrixInsert(matrix, generateIntPointerMT(10), 0, 0);
     matrixInsert(matrix, generateIntPointerMT(11), 1, 0);
@@ -105,8 +97,7 @@ void testMatrixInsert(CuTest *cuTest) {
             if (indicesArr[indicesArrIndex][0] == i && indicesArr[indicesArrIndex][1] == j) {
                 CuAssertPtrNotNull(cuTest, matrix->rows[i][j]);
                 CuAssertIntEquals(cuTest, indicesArr[indicesArrIndex++][2], *(int *) matrix->rows[i][j]);
-            }
-            else
+            } else
                 CuAssertPtrEquals(cuTest, NULL, matrix->rows[i][j]);
 
         }
@@ -116,7 +107,6 @@ void testMatrixInsert(CuTest *cuTest) {
     destroyMatrix(matrix);
 
 }
-
 
 
 void testMatrixRemove(CuTest *cuTest) {
@@ -129,7 +119,9 @@ void testMatrixRemove(CuTest *cuTest) {
     matrixRemove(matrix, 4, 2);
     CuAssertIntEquals(cuTest, OUT_OF_RANGE, ERROR_TEST->errorCode);
 
-    int indicesArr[3][3] = {{0,0, 10}, {1, 0, 11}, {1, 1, 12}};
+    int indicesArr[3][3] = {{0, 0, 10},
+                            {1, 0, 11},
+                            {1, 1, 12}};
 
     matrixInsert(matrix, generateIntPointerMT(10), 0, 0);
     matrixInsert(matrix, generateIntPointerMT(13), 0, 1);
@@ -145,8 +137,7 @@ void testMatrixRemove(CuTest *cuTest) {
             if (indicesArr[indicesArrIndex][0] == i && indicesArr[indicesArrIndex][1] == j) {
                 CuAssertPtrNotNull(cuTest, matrix->rows[i][j]);
                 CuAssertIntEquals(cuTest, indicesArr[indicesArrIndex++][2], *(int *) matrix->rows[i][j]);
-            }
-            else
+            } else
                 CuAssertPtrEquals(cuTest, NULL, matrix->rows[i][j]);
 
         }
@@ -156,8 +147,6 @@ void testMatrixRemove(CuTest *cuTest) {
     destroyMatrix(matrix);
 
 }
-
-
 
 
 void testMatrixRemoveWtoFr(CuTest *cuTest) {
@@ -170,11 +159,13 @@ void testMatrixRemoveWtoFr(CuTest *cuTest) {
     matrixRemoveWtoFr(matrix, 3, 1);
     CuAssertIntEquals(cuTest, OUT_OF_RANGE, ERROR_TEST->errorCode);
 
-    int indicesArr[3][3] = {{0,0, 10}, {1, 0, 11}, {1, 1, 12}};
+    int indicesArr[3][3] = {{0, 0, 10},
+                            {1, 0, 11},
+                            {1, 1, 12}};
 
     int *tempItem = generateIntPointerMT(13);
     matrixInsert(matrix, generateIntPointerMT(10), 0, 0);
-    matrixInsert(matrix, tempItem,  0, 1);
+    matrixInsert(matrix, tempItem, 0, 1);
     matrixInsert(matrix, generateIntPointerMT(11), 1, 0);
     matrixInsert(matrix, generateIntPointerMT(12), 1, 1);
 
@@ -188,8 +179,7 @@ void testMatrixRemoveWtoFr(CuTest *cuTest) {
             if (indicesArr[indicesArrIndex][0] == i && indicesArr[indicesArrIndex][1] == j) {
                 CuAssertPtrNotNull(cuTest, matrix->rows[i][j]);
                 CuAssertIntEquals(cuTest, indicesArr[indicesArrIndex++][2], *(int *) matrix->rows[i][j]);
-            }
-            else
+            } else
                 CuAssertPtrEquals(cuTest, NULL, matrix->rows[i][j]);
 
         }
@@ -203,16 +193,13 @@ void testMatrixRemoveWtoFr(CuTest *cuTest) {
 }
 
 
-
-
-
-
-
 void testMatrixGet(CuTest *cuTest) {
 
     Matrix *matrix = matrixInitialization(2, 2, free, compareIntPointersMT);
 
-    int indicesArr[3][3] = {{0,0, 10}, {1, 0, 11}, {1, 1, 12}};
+    int indicesArr[3][3] = {{0, 0, 10},
+                            {1, 0, 11},
+                            {1, 1, 12}};
 
     matrixInsert(matrix, generateIntPointerMT(10), 0, 0);
     matrixInsert(matrix, generateIntPointerMT(11), 1, 0);
@@ -226,36 +213,36 @@ void testMatrixGet(CuTest *cuTest) {
 }
 
 
-
-
-
 void testMatrixContains(CuTest *cuTest) {
 
     Matrix *matrix = matrixInitialization(2, 2, free, compareIntPointersMT);
 
-    int indicesArr[3][3] = {{0,0, 10}, {1, 0, 11}, {1, 1, 12}};
+    int indicesArr[3][3] = {{0, 0, 10},
+                            {1, 0, 11},
+                            {1, 1, 12}};
 
     matrixInsert(matrix, generateIntPointerMT(10), 0, 0);
     matrixInsert(matrix, generateIntPointerMT(11), 1, 0);
     matrixInsert(matrix, generateIntPointerMT(12), 1, 1);
 
     for (int i = 0; i < 3; i++)
-        CuAssertIntEquals(cuTest, 1,  matrixContains(matrix, &indicesArr[i][2]));
+        CuAssertIntEquals(cuTest, 1, matrixContains(matrix, &indicesArr[i][2]));
 
     int tempValue = 13;
-    CuAssertIntEquals(cuTest, 0,  matrixContains(matrix, &tempValue));
+    CuAssertIntEquals(cuTest, 0, matrixContains(matrix, &tempValue));
 
     destroyMatrix(matrix);
 
 }
 
 
-
 void testMatrixGetIndex(CuTest *cuTest) {
 
     Matrix *matrix = matrixInitialization(2, 2, free, compareIntPointersMT);
 
-    int indicesArr[3][3] = {{0,0, 10}, {1, 0, 11}, {1, 1, 12}};
+    int indicesArr[3][3] = {{0, 0, 10},
+                            {1, 0, 11},
+                            {1, 1, 12}};
 
     matrixInsert(matrix, generateIntPointerMT(10), 0, 0);
     matrixInsert(matrix, generateIntPointerMT(11), 1, 0);
@@ -271,21 +258,20 @@ void testMatrixGetIndex(CuTest *cuTest) {
     }
 
     int tempValue = 13;
-    CuAssertPtrEquals(cuTest, NULL,  matrixGetIndex(matrix, &tempValue));
+    CuAssertPtrEquals(cuTest, NULL, matrixGetIndex(matrix, &tempValue));
 
     destroyMatrix(matrix);
 
 }
 
 
-
-
-
 void testMatrixAddRow(CuTest *cuTest) {
 
     Matrix *matrix = matrixInitialization(2, 2, free, compareIntPointersMT);
 
-    int indicesArr[3][3] = {{0,0, 10}, {1, 0, 11}, {2, 0, 12}};
+    int indicesArr[3][3] = {{0, 0, 10},
+                            {1, 0, 11},
+                            {2, 0, 12}};
 
     matrixInsert(matrix, generateIntPointerMT(10), 0, 0);
     matrixInsert(matrix, generateIntPointerMT(11), 1, 0);
@@ -304,8 +290,7 @@ void testMatrixAddRow(CuTest *cuTest) {
             if (indicesArr[indicesArrIndex][0] == i && indicesArr[indicesArrIndex][1] == j) {
                 CuAssertPtrNotNull(cuTest, matrix->rows[i][j]);
                 CuAssertIntEquals(cuTest, indicesArr[indicesArrIndex++][2], *(int *) matrix->rows[i][j]);
-            }
-            else
+            } else
                 CuAssertPtrEquals(cuTest, NULL, matrix->rows[i][j]);
 
         }
@@ -317,12 +302,13 @@ void testMatrixAddRow(CuTest *cuTest) {
 }
 
 
-
 void testMatrixAddRowAtIndex(CuTest *cuTest) {
 
     Matrix *matrix = matrixInitialization(2, 2, free, compareIntPointersMT);
 
-    int indicesArr[3][3] = {{0, 0, 10}, {2, 0, 11}, {2, 1, 12}};
+    int indicesArr[3][3] = {{0, 0, 10},
+                            {2, 0, 11},
+                            {2, 1, 12}};
 
     matrixInsert(matrix, generateIntPointerMT(10), 0, 0);
     matrixInsert(matrix, generateIntPointerMT(11), 1, 0);
@@ -342,8 +328,7 @@ void testMatrixAddRowAtIndex(CuTest *cuTest) {
             if (indicesArr[indicesArrIndex][0] == i && indicesArr[indicesArrIndex][1] == j) {
                 CuAssertPtrNotNull(cuTest, matrix->rows[i][j]);
                 CuAssertIntEquals(cuTest, indicesArr[indicesArrIndex++][2], *(int *) matrix->rows[i][j]);
-            }
-            else
+            } else
                 CuAssertPtrEquals(cuTest, NULL, matrix->rows[i][j]);
 
         }
@@ -355,15 +340,13 @@ void testMatrixAddRowAtIndex(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testMatrixAddColumn(CuTest *cuTest) {
 
     Matrix *matrix = matrixInitialization(2, 2, free, compareIntPointersMT);
 
-    int indicesArr[3][3] = {{0,0, 10}, {1, 0, 11}, {1, 2, 12}};
+    int indicesArr[3][3] = {{0, 0, 10},
+                            {1, 0, 11},
+                            {1, 2, 12}};
 
     matrixInsert(matrix, generateIntPointerMT(10), 0, 0);
     matrixInsert(matrix, generateIntPointerMT(11), 1, 0);
@@ -373,7 +356,7 @@ void testMatrixAddColumn(CuTest *cuTest) {
         CuAssertPtrEquals(cuTest, NULL, matrix->rows[i][matrix->colNum - 1]);
 
 
-        matrixInsert(matrix, generateIntPointerMT(12), 1, 2);
+    matrixInsert(matrix, generateIntPointerMT(12), 1, 2);
 
     for (int i = 0, indicesArrIndex = 0; i < matrix->rowsNum; i++) {
 
@@ -382,8 +365,7 @@ void testMatrixAddColumn(CuTest *cuTest) {
             if (indicesArr[indicesArrIndex][0] == i && indicesArr[indicesArrIndex][1] == j) {
                 CuAssertPtrNotNull(cuTest, matrix->rows[i][j]);
                 CuAssertIntEquals(cuTest, indicesArr[indicesArrIndex++][2], *(int *) matrix->rows[i][j]);
-            }
-            else
+            } else
                 CuAssertPtrEquals(cuTest, NULL, matrix->rows[i][j]);
 
         }
@@ -395,14 +377,13 @@ void testMatrixAddColumn(CuTest *cuTest) {
 }
 
 
-
-
-
 void testMatrixAddColumnAtIndex(CuTest *cuTest) {
 
     Matrix *matrix = matrixInitialization(2, 2, free, compareIntPointersMT);
 
-    int indicesArr[3][3] = {{0,1, 10}, {1, 1, 11}, {1, 2, 12}};
+    int indicesArr[3][3] = {{0, 1, 10},
+                            {1, 1, 11},
+                            {1, 2, 12}};
 
     matrixInsert(matrix, generateIntPointerMT(10), 0, 0);
     matrixInsert(matrix, generateIntPointerMT(11), 1, 0);
@@ -421,8 +402,7 @@ void testMatrixAddColumnAtIndex(CuTest *cuTest) {
             if (indicesArr[indicesArrIndex][0] == i && indicesArr[indicesArrIndex][1] == j) {
                 CuAssertPtrNotNull(cuTest, matrix->rows[i][j]);
                 CuAssertIntEquals(cuTest, indicesArr[indicesArrIndex++][2], *(int *) matrix->rows[i][j]);
-            }
-            else
+            } else
                 CuAssertPtrEquals(cuTest, NULL, matrix->rows[i][j]);
 
         }
@@ -434,15 +414,12 @@ void testMatrixAddColumnAtIndex(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testMatrixRemoveRow(CuTest *cuTest) {
 
     Matrix *matrix = matrixInitialization(2, 2, free, compareIntPointersMT);
 
-    int indicesArr[3][3] = {{0,0, 10}, {0, 1, 11}};
+    int indicesArr[3][3] = {{0, 0, 10},
+                            {0, 1, 11}};
 
     matrixInsert(matrix, generateIntPointerMT(10), 0, 0);
     matrixInsert(matrix, generateIntPointerMT(11), 0, 1);
@@ -458,8 +435,7 @@ void testMatrixRemoveRow(CuTest *cuTest) {
             if (indicesArr[indicesArrIndex][0] == i && indicesArr[indicesArrIndex][1] == j) {
                 CuAssertPtrNotNull(cuTest, matrix->rows[i][j]);
                 CuAssertIntEquals(cuTest, indicesArr[indicesArrIndex++][2], *(int *) matrix->rows[i][j]);
-            }
-            else
+            } else
                 CuAssertPtrEquals(cuTest, NULL, matrix->rows[i][j]);
 
         }
@@ -471,14 +447,12 @@ void testMatrixRemoveRow(CuTest *cuTest) {
 }
 
 
-
-
-
 void testMatrixRemoveRowWoFr(CuTest *cuTest) {
 
     Matrix *matrix = matrixInitialization(2, 2, free, compareIntPointersMT);
 
-    int indicesArr[3][3] = {{0,0, 10}, {0, 1, 11}};
+    int indicesArr[3][3] = {{0, 0, 10},
+                            {0, 1, 11}};
 
     matrixInsert(matrix, generateIntPointerMT(10), 0, 0);
     matrixInsert(matrix, generateIntPointerMT(11), 0, 1);
@@ -497,8 +471,7 @@ void testMatrixRemoveRowWoFr(CuTest *cuTest) {
             if (indicesArr[indicesArrIndex][0] == i && indicesArr[indicesArrIndex][1] == j) {
                 CuAssertPtrNotNull(cuTest, matrix->rows[i][j]);
                 CuAssertIntEquals(cuTest, indicesArr[indicesArrIndex++][2], *(int *) matrix->rows[i][j]);
-            }
-            else
+            } else
                 CuAssertPtrEquals(cuTest, NULL, matrix->rows[i][j]);
 
         }
@@ -516,15 +489,12 @@ void testMatrixRemoveRowWoFr(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testMatrixRemoveColumn(CuTest *cuTest) {
 
     Matrix *matrix = matrixInitialization(2, 2, free, compareIntPointersMT);
 
-    int indicesArr[3][3] = {{0,0, 10}, {1, 0, 12}};
+    int indicesArr[3][3] = {{0, 0, 10},
+                            {1, 0, 12}};
 
     matrixInsert(matrix, generateIntPointerMT(10), 0, 0);
     matrixInsert(matrix, generateIntPointerMT(11), 0, 1);
@@ -540,8 +510,7 @@ void testMatrixRemoveColumn(CuTest *cuTest) {
             if (indicesArr[indicesArrIndex][0] == i && indicesArr[indicesArrIndex][1] == j) {
                 CuAssertPtrNotNull(cuTest, matrix->rows[i][j]);
                 CuAssertIntEquals(cuTest, indicesArr[indicesArrIndex++][2], *(int *) matrix->rows[i][j]);
-            }
-            else
+            } else
                 CuAssertPtrEquals(cuTest, NULL, matrix->rows[i][j]);
 
         }
@@ -553,14 +522,12 @@ void testMatrixRemoveColumn(CuTest *cuTest) {
 }
 
 
-
-
-
 void testMatrixRemoveColumnWoFr(CuTest *cuTest) {
 
     Matrix *matrix = matrixInitialization(2, 2, free, compareIntPointersMT);
 
-    int indicesArr[3][3] = {{0,0, 10}, {1, 0, 11}};
+    int indicesArr[3][3] = {{0, 0, 10},
+                            {1, 0, 11}};
 
     matrixInsert(matrix, generateIntPointerMT(10), 0, 0);
     matrixInsert(matrix, generateIntPointerMT(11), 1, 0);
@@ -579,8 +546,7 @@ void testMatrixRemoveColumnWoFr(CuTest *cuTest) {
             if (indicesArr[indicesArrIndex][0] == i && indicesArr[indicesArrIndex][1] == j) {
                 CuAssertPtrNotNull(cuTest, matrix->rows[i][j]);
                 CuAssertIntEquals(cuTest, indicesArr[indicesArrIndex++][2], *(int *) matrix->rows[i][j]);
-            }
-            else
+            } else
                 CuAssertPtrEquals(cuTest, NULL, matrix->rows[i][j]);
 
         }
@@ -596,8 +562,6 @@ void testMatrixRemoveColumnWoFr(CuTest *cuTest) {
     destroyMatrix(matrix);
 
 }
-
-
 
 
 int **printingArr;
@@ -621,7 +585,7 @@ void testPrintMatrix(CuTest *cuTest) {
     printingArr = tempPointer;
 
     for (int i = 0; i < matrix->count; i++)
-        CuAssertIntEquals( cuTest, i + 10, **(tempPointer++) );
+        CuAssertIntEquals(cuTest, i + 10, **(tempPointer++));
 
     free(printingArr);
     destroyMatrix(matrix);
@@ -656,9 +620,6 @@ void testMatrixGetNumberOfRows(CuTest *cuTest) {
 }
 
 
-
-
-
 void testMatrixGetNumberOfColumns(CuTest *cuTest) {
 
     Matrix *matrix = matrixInitialization(5, 6, free, compareIntPointersMT);
@@ -683,8 +644,6 @@ void testMatrixGetNumberOfColumns(CuTest *cuTest) {
     destroyMatrix(matrix);
 
 }
-
-
 
 
 void testMatrixGetSize(CuTest *cuTest) {
@@ -719,9 +678,6 @@ void testMatrixGetSize(CuTest *cuTest) {
 }
 
 
-
-
-
 void testMatrixIsEmpty(CuTest *cuTest) {
 
     Matrix *matrix = matrixInitialization(2, 2, free, compareIntPointersMT);
@@ -748,8 +704,6 @@ void testMatrixIsEmpty(CuTest *cuTest) {
 }
 
 
-
-
 void testMatrixToArray(CuTest *cuTest) {
 
     Matrix *matrix = matrixInitialization(2, 2, free, compareIntPointersMT);
@@ -768,9 +722,6 @@ void testMatrixToArray(CuTest *cuTest) {
     destroyMatrix(matrix);
 
 }
-
-
-
 
 
 void testClearMatrix(CuTest *cuTest) {
@@ -805,9 +756,6 @@ void testClearMatrix(CuTest *cuTest) {
 }
 
 
-
-
-
 void testDestroyMatrix(CuTest *cuTest) {
 
     Matrix *matrix = matrixInitialization(2, 2, free, compareIntPointersMT);
@@ -825,14 +773,12 @@ void testDestroyMatrix(CuTest *cuTest) {
 }
 
 
-
 typedef struct MatrixTestStruct {
 
     int iData;
     char *cData;
 
 } MatrixTestStruct;
-
 
 
 void freeMatrixTestStruct(void *item) {
@@ -854,11 +800,10 @@ int matrixTestStructComp(const void *item1, const void *item2) {
 }
 
 
-
 MatrixTestStruct *generateMatrixTestStruct(int value, char *str) {
 
     MatrixTestStruct *m = (MatrixTestStruct *) malloc(sizeof(MatrixTestStruct));
-    m->cData = (char *) malloc(sizeof(char ) * (strlen(str) + 1) );
+    m->cData = (char *) malloc(sizeof(char) * (strlen(str) + 1));
     strcpy(m->cData, str);
 
     m->iData = value;
@@ -868,12 +813,12 @@ MatrixTestStruct *generateMatrixTestStruct(int value, char *str) {
 }
 
 
-
 void generalMatrixTest(CuTest *cuTest) {
 
     Matrix *matrix = matrixInitialization(2, 2, freeMatrixTestStruct, compareIntPointersMT);
 
-    char numbersStr[14][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"};
+    char numbersStr[14][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven",
+                               "twelve", "thirteen", "fourteen"};
 
     CuAssertIntEquals(cuTest, 2, matrixGetNumberOfRows(matrix));
     CuAssertIntEquals(cuTest, 2, matrixGetNumberOfCols(matrix));
@@ -900,14 +845,15 @@ void generalMatrixTest(CuTest *cuTest) {
         int colNum = matrixGetNumberOfCols(matrix);
         for (int j = 0; j < colNum; j++) {
             CuAssertIntEquals(cuTest, i * colNum + j + 1, ((MatrixTestStruct *) matrixGet(matrix, i, j))->iData);
-            CuAssertStrEquals(cuTest, numbersStr[i * colNum + j], ((MatrixTestStruct *) matrixGet(matrix, i, j))->cData);
+            CuAssertStrEquals(cuTest, numbersStr[i * colNum + j],
+                              ((MatrixTestStruct *) matrixGet(matrix, i, j))->cData);
         }
 
 
     }
 
 
-    MatrixTestStruct *tempMatrixStruct ;
+    MatrixTestStruct *tempMatrixStruct;
 
     tempMatrixStruct = generateMatrixTestStruct(5, "five");
     CuAssertIntEquals(cuTest, 0, matrixContains(matrix, tempMatrixStruct));
@@ -939,7 +885,8 @@ void generalMatrixTest(CuTest *cuTest) {
         int colNum = matrixGetNumberOfCols(matrix);
         for (int j = 0; j < colNum; j++) {
             CuAssertIntEquals(cuTest, i * colNum + j + 1, ((MatrixTestStruct *) matrixGet(matrix, i, j))->iData);
-            CuAssertStrEquals(cuTest, numbersStr[i * colNum + j], ((MatrixTestStruct *) matrixGet(matrix, i, j))->cData);
+            CuAssertStrEquals(cuTest, numbersStr[i * colNum + j],
+                              ((MatrixTestStruct *) matrixGet(matrix, i, j))->cData);
         }
 
 
@@ -960,9 +907,6 @@ void generalMatrixTest(CuTest *cuTest) {
     destroyMatrix(matrix);
 
 }
-
-
-
 
 
 CuSuite *createMatrixTestsSuite(void) {
@@ -1001,10 +945,9 @@ CuSuite *createMatrixTestsSuite(void) {
 }
 
 
-
 void matrixUnitTest(void) {
 
-    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
+    ERROR_TEST = (ErrorTestStruct *) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Matrix Test**\n");

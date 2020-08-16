@@ -3,19 +3,9 @@
 #include "../../../Unit Test/CuTest/CuTest.h"
 
 
-
-
-
-
 int binaryHeapContainsR(void **arr, int currentIndex, int length, void *item, int (*cmp)(const void *, const void *));
 
 void *binaryHeapGetR(void **arr, int currentIndex, int length, void *item, int (*cmp)(const void *, const void *));
-
-
-
-
-
-
 
 
 /** This function will return the parent index of the passed child index.
@@ -33,13 +23,6 @@ int binaryHeapGetParentIndex(int childIndex) {
 }
 
 
-
-
-
-
-
-
-
 /** This function will return the first child index,
  * of the passed parent index.
  *
@@ -54,13 +37,6 @@ int binaryHeapGetFChildIndex(int parentIndex) {
 }
 
 
-
-
-
-
-
-
-
 /** This function will return the second child index,
  * of the passed parent index.
  *
@@ -73,13 +49,6 @@ int binaryHeapGetFChildIndex(int parentIndex) {
 int binaryHeapGetSChildIndex(int parentIndex) {
     return parentIndex * 2 + 2;
 }
-
-
-
-
-
-
-
 
 
 /** This function will swap the passed two indices.
@@ -98,14 +67,6 @@ void binaryHeapSwap(void **arr, int fIndex, int sIndex) {
 }
 
 
-
-
-
-
-
-
-
-
 /** This function will heap up the value in the passed index until it be in the right place.
  *
  * @param arr the array pointer
@@ -119,20 +80,12 @@ void binaryHeapUp(void **arr, int currentIndex, int (*cmp)(const void *, const v
         return;
 
     int parentIndex = binaryHeapGetParentIndex(currentIndex);
-    if ( cmp(arr[currentIndex], arr[parentIndex]) > 0 ) {
+    if (cmp(arr[currentIndex], arr[parentIndex]) > 0) {
         binaryHeapSwap(arr, currentIndex, parentIndex);
         binaryHeapUp(arr, parentIndex, cmp);
     }
 
 }
-
-
-
-
-
-
-
-
 
 
 /** This function will heap down the value in the passed index until it be in the right place.
@@ -154,18 +107,18 @@ void binaryHeapDown(void **arr, int currentIndex, int length, int (*cmp)(const v
     fChildIndex = fChildIndex >= length ? currentIndex : fChildIndex;
     sChildIndex = sChildIndex >= length ? currentIndex : sChildIndex;
 
-    if ( cmp(arr[currentIndex], arr[fChildIndex]) < 0 && cmp(arr[currentIndex], arr[sChildIndex]) < 0 ) {
+    if (cmp(arr[currentIndex], arr[fChildIndex]) < 0 && cmp(arr[currentIndex], arr[sChildIndex]) < 0) {
 
         int biggestChildIndex = cmp(arr[fChildIndex], arr[sChildIndex]) < 0 ? sChildIndex : fChildIndex;
         binaryHeapSwap(arr, currentIndex, biggestChildIndex);
         binaryHeapDown(arr, biggestChildIndex, length, cmp);
 
-    } else if ( cmp(arr[currentIndex], arr[fChildIndex]) < 0 ) {
+    } else if (cmp(arr[currentIndex], arr[fChildIndex]) < 0) {
 
         binaryHeapSwap(arr, currentIndex, fChildIndex);
         binaryHeapDown(arr, fChildIndex, length, cmp);
 
-    } else if ( cmp(arr[currentIndex], arr[sChildIndex]) < 0 ) {
+    } else if (cmp(arr[currentIndex], arr[sChildIndex]) < 0) {
 
         binaryHeapSwap(arr, currentIndex, sChildIndex);
         binaryHeapDown(arr, sChildIndex, length, cmp);
@@ -173,14 +126,6 @@ void binaryHeapDown(void **arr, int currentIndex, int length, int (*cmp)(const v
     }
 
 }
-
-
-
-
-
-
-
-
 
 
 /** This function will initialize a new heap then it will return it's pointer.
@@ -193,21 +138,21 @@ void binaryHeapDown(void **arr, int currentIndex, int length, int (*cmp)(const v
 BinaryHeap *binaryHeapInitialization(void (*freeFun)(void *), int (*cmp)(const void *, const void *)) {
 
     if (freeFun == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-     		return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "binary heap data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+         return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "binary heap data structure");
+        exit(INVALID_ARG);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-     		return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "binary heap data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+         return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "binary heap data structure");
+        exit(INVALID_ARG);
+#endif
     }
 
 
@@ -220,28 +165,19 @@ BinaryHeap *binaryHeapInitialization(void (*freeFun)(void *), int (*cmp)(const v
     heap->arr = (void **) malloc(sizeof(void *) * heap->length);
 
     if (heap->arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = FAILED_ALLOCATION;
-     		return NULL;
-        #else
-            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "heap", "binary heap data structure");
-            exit(FAILED_ALLOCATION);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = FAILED_ALLOCATION;
+         return NULL;
+#else
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "heap", "binary heap data structure");
+        exit(FAILED_ALLOCATION);
+#endif
     }
 
 
     return heap;
 
 }
-
-
-
-
-
-
-
-
-
 
 
 /** This function will insert the passed item in the heap.
@@ -253,21 +189,21 @@ BinaryHeap *binaryHeapInitialization(void (*freeFun)(void *), int (*cmp)(const v
 void binaryHeapInsert(BinaryHeap *heap, void *item) {
 
     if (heap == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "heap", "binary heap data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "heap", "binary heap data structure");
+        exit(NULL_POINTER);
+#endif
     } else if (item == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-     		return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "binary heap data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+         return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "binary heap data structure");
+        exit(INVALID_ARG);
+#endif
     }
 
     if (heap->count == heap->length) {
@@ -287,15 +223,6 @@ void binaryHeapInsert(BinaryHeap *heap, void *item) {
 }
 
 
-
-
-
-
-
-
-
-
-
 /** This function will insert all the passed array items in the heap.
  *
  * @param heap the heap pointer
@@ -306,36 +233,27 @@ void binaryHeapInsert(BinaryHeap *heap, void *item) {
 void binaryHeapInsertAll(BinaryHeap *heap, void **items, int length) {
 
     if (heap == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "heap", "binary heap data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "heap", "binary heap data structure");
+        exit(NULL_POINTER);
+#endif
     } else if (items == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-     		return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "items array pointer", "binary heap data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+         return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "items array pointer", "binary heap data structure");
+        exit(INVALID_ARG);
+#endif
     }
 
     for (int i = 0; i < length; i++)
         binaryHeapInsert(heap, items[i]);
 
 }
-
-
-
-
-
-
-
-
-
 
 
 /** This function will delete and free the heap root.
@@ -346,21 +264,21 @@ void binaryHeapInsertAll(BinaryHeap *heap, void **items, int length) {
 void binaryHeapDeleteRoot(BinaryHeap *heap) {
 
     if (heap == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "heap", "binary heap data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "heap", "binary heap data structure");
+        exit(NULL_POINTER);
+#endif
     } else if (binaryHeapIsEmpty(heap)) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
-     		return;
-        #else
-            fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "binary heap data structure");
-            exit(EMPTY_DATA_STRUCTURE);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
+         return;
+#else
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "binary heap data structure");
+        exit(EMPTY_DATA_STRUCTURE);
+#endif
     }
 
     heap->freeFun(heap->arr[0]);
@@ -371,14 +289,6 @@ void binaryHeapDeleteRoot(BinaryHeap *heap) {
 }
 
 
-
-
-
-
-
-
-
-
 /** This function will delete the heap root without freeing it.
  *
  * @param heap the heap pointer
@@ -387,21 +297,21 @@ void binaryHeapDeleteRoot(BinaryHeap *heap) {
 void *binaryHeapDeleteRootWtoFr(BinaryHeap *heap) {
 
     if (heap == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "heap", "binary heap data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "heap", "binary heap data structure");
+        exit(NULL_POINTER);
+#endif
     } else if (binaryHeapIsEmpty(heap)) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
-     		return NULL;
-        #else
-            fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "binary heap data structure");
-            exit(EMPTY_DATA_STRUCTURE);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
+         return NULL;
+#else
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "binary heap data structure");
+        exit(EMPTY_DATA_STRUCTURE);
+#endif
     }
 
     void *itemToReturn = heap->arr[0];
@@ -412,17 +322,6 @@ void *binaryHeapDeleteRootWtoFr(BinaryHeap *heap) {
     return itemToReturn;
 
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 /** This function will check if the passed item is in the heap or not,
@@ -437,36 +336,26 @@ void *binaryHeapDeleteRootWtoFr(BinaryHeap *heap) {
 int binaryHeapContains(BinaryHeap *heap, void *item) {
 
     if (heap == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "heap", "binary heap data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "heap", "binary heap data structure");
+        exit(NULL_POINTER);
+#endif
     } else if (item == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-     		return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "binary heap data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+         return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "binary heap data structure");
+        exit(INVALID_ARG);
+#endif
     }
 
-   return binaryHeapContainsR(heap->arr, 0, heap->count, item, heap->cmp);
+    return binaryHeapContainsR(heap->arr, 0, heap->count, item, heap->cmp);
 
 }
-
-
-
-
-
-
-
-
-
-
 
 
 /** This function will recursively check if the passed item is in the heap or not,
@@ -488,26 +377,17 @@ int binaryHeapContainsR(void **arr, int currentIndex, int length, void *item, in
         return 0;
 
 
-    if ( cmp(item, arr[currentIndex]) == 0 )
+    if (cmp(item, arr[currentIndex]) == 0)
         return 1;
-    else if ( cmp(item, arr[currentIndex]) > 0 )
+    else if (cmp(item, arr[currentIndex]) > 0)
         return 0;
 
 
     return
-    binaryHeapContainsR(arr, binaryHeapGetFChildIndex(currentIndex), length, item, cmp)
-    || binaryHeapContainsR(arr, binaryHeapGetSChildIndex(currentIndex), length, item, cmp);
+            binaryHeapContainsR(arr, binaryHeapGetFChildIndex(currentIndex), length, item, cmp)
+            || binaryHeapContainsR(arr, binaryHeapGetSChildIndex(currentIndex), length, item, cmp);
 
 }
-
-
-
-
-
-
-
-
-
 
 
 /** This function will check if the passed item is in the heap or not,
@@ -522,36 +402,26 @@ int binaryHeapContainsR(void **arr, int currentIndex, int length, void *item, in
 void *binaryHeapGet(BinaryHeap *heap, void *item) {
 
     if (heap == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "heap", "binary heap data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "heap", "binary heap data structure");
+        exit(NULL_POINTER);
+#endif
     } else if (item == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-     		return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "binary heap data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+         return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "binary heap data structure");
+        exit(INVALID_ARG);
+#endif
     }
 
     return binaryHeapGetR(heap->arr, 0, heap->count, item, heap->cmp);
 
 }
-
-
-
-
-
-
-
-
-
-
 
 
 /** This function will recursively check if the passed item is in the heap or not,
@@ -574,9 +444,9 @@ void *binaryHeapGetR(void **arr, int currentIndex, int length, void *item, int (
         return NULL;
 
 
-    if ( cmp(item, arr[currentIndex]) == 0 )
+    if (cmp(item, arr[currentIndex]) == 0)
         return arr[currentIndex];
-    else if ( cmp(item, arr[currentIndex]) > 0 )
+    else if (cmp(item, arr[currentIndex]) > 0)
         return NULL;
 
 
@@ -588,14 +458,6 @@ void *binaryHeapGetR(void **arr, int currentIndex, int length, void *item, int (
 }
 
 
-
-
-
-
-
-
-
-
 /** This function will return the number of items in the heap.
  *
  * @param heap the heap pointer
@@ -605,26 +467,18 @@ void *binaryHeapGetR(void **arr, int currentIndex, int length, void *item, int (
 int binaryHeapGetSize(BinaryHeap *heap) {
 
     if (heap == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "heap", "binary heap data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "heap", "binary heap data structure");
+        exit(NULL_POINTER);
+#endif
     }
 
     return heap->count;
 
 }
-
-
-
-
-
-
-
-
 
 
 /** This function will check if the heap is empty or not,
@@ -638,28 +492,18 @@ int binaryHeapGetSize(BinaryHeap *heap) {
 int binaryHeapIsEmpty(BinaryHeap *heap) {
 
     if (heap == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "heap", "binary heap data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "heap", "binary heap data structure");
+        exit(NULL_POINTER);
+#endif
     }
 
     return heap->count == 0;
 
 }
-
-
-
-
-
-
-
-
-
-
 
 
 /** This function will return a double void array,
@@ -674,13 +518,13 @@ int binaryHeapIsEmpty(BinaryHeap *heap) {
 void **binaryHeapToArray(BinaryHeap *heap) {
 
     if (heap == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "heap", "binary heap data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "heap", "binary heap data structure");
+        exit(NULL_POINTER);
+#endif
     }
 
 
@@ -693,14 +537,6 @@ void **binaryHeapToArray(BinaryHeap *heap) {
 }
 
 
-
-
-
-
-
-
-
-
 /** This function will clear and free all the heap items, without destroying the heap itself.
  *
  * @param heap the heap pointer
@@ -709,13 +545,13 @@ void **binaryHeapToArray(BinaryHeap *heap) {
 void clearBinaryHeap(BinaryHeap *heap) {
 
     if (heap == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "heap", "binary heap data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "heap", "binary heap data structure");
+        exit(NULL_POINTER);
+#endif
     }
 
     for (int i = 0; i < heap->count; i++)
@@ -727,15 +563,6 @@ void clearBinaryHeap(BinaryHeap *heap) {
 }
 
 
-
-
-
-
-
-
-
-
-
 /** This function will destroy and free the heap with all it's items.
  *
  * @param heap the heap pointer
@@ -744,13 +571,13 @@ void clearBinaryHeap(BinaryHeap *heap) {
 void destroyBinaryHeap(BinaryHeap *heap) {
 
     if (heap == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "heap", "binary heap data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "heap", "binary heap data structure");
+        exit(NULL_POINTER);
+#endif
     }
 
     clearBinaryHeap(heap);

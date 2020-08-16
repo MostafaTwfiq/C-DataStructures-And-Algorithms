@@ -6,7 +6,6 @@ extern "C" {
 #endif
 
 
-
 /** @struct Vector
 *  @brief This structure implements a basic generic vector.
 *  @var Vector::arr
@@ -25,7 +24,9 @@ typedef struct Vector {
     void **arr;
     int length;
     int count;
+
     void (*freeItem)(void *);
+
     int (*comparator)(const void *, const void *);
 } Vector;
 
@@ -57,7 +58,7 @@ void **vectorToArray(Vector *list);
 
 void **vectorToSubArray(Vector *list, int start, int end);
 
-void vectorSort(Vector *list, int (*sortComp)(const void*, const void*));
+void vectorSort(Vector *list, int (*sortComp)(const void *, const void *));
 
 int vectorGetLength(Vector *list);
 

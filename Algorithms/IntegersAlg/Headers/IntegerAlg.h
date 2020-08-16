@@ -28,5 +28,4 @@ int intSum(int a, int b);
 int intArrSum(const int *arr, int length);
 
 
-
 #endif //C_DATASTRUCTURES_INTEGERALG_H

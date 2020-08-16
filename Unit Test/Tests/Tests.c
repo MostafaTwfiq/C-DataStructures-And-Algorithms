@@ -30,8 +30,6 @@
 #include "AlgorithmsTests/ArraysAlgTest/ArraysAlgTest.h"
 #include "FilesHandlersTests/TxtFileLoaderTest/TxtFileLoaderTest.h"
 #include "AlgorithmsTests/CharArrayAlgTest/CharArrayAlgTest.h"
-#include "../ErrorsTestStruct.h"
-
 
 
 int main(void) {

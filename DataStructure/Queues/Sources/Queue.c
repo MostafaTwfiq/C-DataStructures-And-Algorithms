@@ -3,57 +3,50 @@
 #include "../../../Unit Test/CuTest/CuTest.h"
 
 
-
-
-
-
-
-
-
 /** Function Initializes Queue on Heap using malloc and returns pointer to it.
  *
  * @param size Size of the data to be stored by the Queue.
  * @return Return Pointer ot Queue on the Heap.
  */
 
-Queue* queueInitialization(void (*freeFun)(void *)) {
+Queue *queueInitialization(void (*freeFun)(void *)) {
 
     if (freeFun == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return NULL;
-        #else
-     		fprintf(stderr, INVALID_ARG_MESSAGE, "free function", "queue data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "free function", "queue data structure");
+        exit(INVALID_ARG);
+#endif
 
     }
 
-    Queue* queue =(Queue *) malloc(sizeof ( *queue ));
+    Queue *queue = (Queue *) malloc(sizeof(*queue));
 
     if (queue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
-     		return NULL;
-        #else
-     		fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "data structure", "queue data structure");
-     		exit(FAILED_ALLOCATION);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = FAILED_ALLOCATION;
+        return NULL;
+#else
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "data structure", "queue data structure");
+        exit(FAILED_ALLOCATION);
+#endif
 
     }
 
-    queue->freeItem =  freeFun;
+    queue->freeItem = freeFun;
     queue->allocated = 10;
     queue->memory = (void **) malloc(sizeof(void *) * queue->allocated);
 
     if (queue->memory == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
-     		return NULL;
-        #else
-            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "items memory", "queue data structure");
-     		exit(FAILED_ALLOCATION);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = FAILED_ALLOCATION;
+        return NULL;
+#else
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "items memory", "queue data structure");
+        exit(FAILED_ALLOCATION);
+#endif
 
     }
 
@@ -64,55 +57,50 @@ Queue* queueInitialization(void (*freeFun)(void *)) {
 }
 
 
-
-
-
-
-
 /** Function that takes a pointer to previously externally allocated object and enqueues it.
  *
  * @param arrayQueue Pointer to the Queue on the heap.
  * @param data Pointer to the data to be stored on the heap.
  */
 
-void queueEnqueue(Queue* arrayQueue, void *data) {
+void queueEnqueue(Queue *arrayQueue, void *data) {
 
     if (arrayQueue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "queue data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "queue data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (data == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return;
-        #else
-     		fprintf(stderr, INVALID_ARG_MESSAGE, "data pointer", "queue data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "data pointer", "queue data structure");
+        exit(INVALID_ARG);
+#endif
 
     }
 
-    if(arrayQueue->allocated ==  arrayQueue->rear) {
+    if (arrayQueue->allocated == arrayQueue->rear) {
         arrayQueue->allocated *= 2;
         void **tempArr = (void **) malloc(sizeof(void *) * arrayQueue->allocated);
         if (tempArr == NULL) {
-            #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		    ERROR_TEST->errorCode = FAILED_ALLOCATION;
-                return;
-            #else
-                fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "items memory", "queue data structure");
-     		    exit(FAILED_ALLOCATION);
-        	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = FAILED_ALLOCATION;
+           return;
+#else
+            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "items memory", "queue data structure");
+            exit(FAILED_ALLOCATION);
+#endif
 
         }
 
         memcpy(tempArr, arrayQueue->memory + arrayQueue->front,
-                sizeof(void *) * (arrayQueue->rear - arrayQueue->front) );
+               sizeof(void *) * (arrayQueue->rear - arrayQueue->front));
 
         free(arrayQueue->memory);
         arrayQueue->memory = tempArr;
@@ -125,36 +113,30 @@ void queueEnqueue(Queue* arrayQueue, void *data) {
 }
 
 
-
-
-
-
-
-
 /** Function that returns a pointer to previously allocated objected and dequeue it from a queue.
  *
  * @param arrayQueue Pointer to the Queue on the heap.
  * @return Pointer to the previously queued data on the heap.
  */
 
-void* queueDequeue(Queue* arrayQueue) {
+void *queueDequeue(Queue *arrayQueue) {
     if (arrayQueue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "queue data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "queue data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (queueIsEmpty(arrayQueue)) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
-     		return NULL;
-        #else
-            fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "queue data structure");
-     		exit(EMPTY_DATA_STRUCTURE);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
+        return NULL;
+#else
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "queue data structure");
+        exit(EMPTY_DATA_STRUCTURE);
+#endif
 
     }
 
@@ -163,28 +145,21 @@ void* queueDequeue(Queue* arrayQueue) {
 }
 
 
-
-
-
-
-
-
-
 /** Destroys the Queue and its allocated objects.
  *
  * @param arrayQueue Pointer to the Queue on the heap.
  */
 
-void queueDestroy(Queue* arrayQueue) {
+void queueDestroy(Queue *arrayQueue) {
 
     if (arrayQueue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "queue data structure");
-     		exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "queue data structure");
+        exit(NULL_POINTER);
+#endif
 
     }
 
@@ -196,27 +171,20 @@ void queueDestroy(Queue* arrayQueue) {
 }
 
 
-
-
-
-
-
-
-
 /** Clear the elements stored on the Queue.
  *
  * @param arrayQueue Pointer to the Queue on the heap.
  */
 
-void queueClear(Queue* arrayQueue) {
+void queueClear(Queue *arrayQueue) {
     if (arrayQueue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-     		fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "queue data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "queue data structure");
+        exit(NULL_POINTER);
+#endif
 
     }
 
@@ -229,42 +197,27 @@ void queueClear(Queue* arrayQueue) {
 }
 
 
-
-
-
-
-
-
-
-
 /** Returns whether queue is empty or not.
  *
  * @param arrayQueue Pointer to the Queue on the heap.
  * @return returns short integer 1 if Empty else 0.
  */
 
-int queueIsEmpty(Queue * arrayQueue) {
+int queueIsEmpty(Queue *arrayQueue) {
     if (arrayQueue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "queue data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "queue data structure");
+        exit(NULL_POINTER);
+#endif
 
     }
 
-    return (short ) (arrayQueue->rear == arrayQueue->front);
+    return (short) (arrayQueue->rear == arrayQueue->front);
 
 }
-
-
-
-
-
-
-
 
 
 /** Returns the number of elements currently stored in the Queue.
@@ -273,28 +226,21 @@ int queueIsEmpty(Queue * arrayQueue) {
  * @return integer length of array.
  */
 
-int queueGetLength(Queue * arrayQueue){
+int queueGetLength(Queue *arrayQueue) {
     if (arrayQueue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "queue data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "queue data structure");
+        exit(NULL_POINTER);
+#endif
 
     }
 
     return arrayQueue->rear - arrayQueue->front;
 
 }
-
-
-
-
-
-
-
 
 
 /** This function will take an array of items pointers, then it will enqueue all the array items.
@@ -304,39 +250,32 @@ int queueGetLength(Queue * arrayQueue){
  * @param arrLength Number of elements of the Externally Defined Array.
  */
 
-void queueEnqueueAll(Queue * arrayQueue, void **arr, int arrLength) {
+void queueEnqueueAll(Queue *arrayQueue, void **arr, int arrLength) {
 
     if (arrayQueue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-     		fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "queue data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "queue data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return;
-        #else
-     		fprintf(stderr, INVALID_ARG_MESSAGE, "items array", "queue data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "items array", "queue data structure");
+        exit(INVALID_ARG);
+#endif
 
     }
 
-    for(int i = 0; i < arrLength; i++ )
+    for (int i = 0; i < arrLength; i++)
         queueEnqueue(arrayQueue, arr[i]);
 
 }
-
-
-
-
-
-
-
 
 
 /** Returns the first item that was enqueued at the queue.
@@ -345,35 +284,29 @@ void queueEnqueueAll(Queue * arrayQueue, void **arr, int arrLength) {
 * @return Pointer the first enqueued Object
 */
 
-void *queuePeek(Queue * arrayQueue) {
+void *queuePeek(Queue *arrayQueue) {
     if (arrayQueue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "queue data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "queue data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (queueIsEmpty(arrayQueue)) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
-            return NULL;
-        #else
-            fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "queue data structure");
-     		exit(EMPTY_DATA_STRUCTURE);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
+        return NULL;
+#else
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "queue data structure");
+        exit(EMPTY_DATA_STRUCTURE);
+#endif
     }
 
     return arrayQueue->memory[arrayQueue->front];
 
 }
-
-
-
-
-
-
 
 
 /** Converts a queue to an Array.
@@ -382,27 +315,27 @@ void *queuePeek(Queue * arrayQueue) {
  * @return Pointer to an allocated array on the heap.
  */
 
-void **queueToArray(Queue * arrayQueue){
+void **queueToArray(Queue *arrayQueue) {
     if (arrayQueue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "queue data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "queue data structure");
+        exit(NULL_POINTER);
+#endif
 
     }
 
     void **array = (void **) malloc(sizeof(void *) * queueGetLength(arrayQueue));
     if (array == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
-     		return NULL;
-        #else
-     		fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "queue data structure");
-     		exit(FAILED_ALLOCATION);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = FAILED_ALLOCATION;
+        return NULL;
+#else
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "queue data structure");
+        exit(FAILED_ALLOCATION);
+#endif
 
     }
 

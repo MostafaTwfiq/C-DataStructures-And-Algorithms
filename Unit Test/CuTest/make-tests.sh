@@ -48,7 +48,7 @@ echo \
     CuSuiteDelete(suite);
 }
 
-int main(void)
+int testsMain(void)
 {
     RunAllTests();
 }

@@ -4,11 +4,6 @@
 #include "../../../Unit Test/CuTest/CuTest.h"
 
 
-
-
-
-
-
 /** This function will take an integer pointer,
  * then it will free it.
  *
@@ -22,11 +17,6 @@ void intFreeFunLinSearch(void *n) {
 }
 
 
-
-
-
-
-
 /** This function takes two integers pointers,
  * then it will compare then and return the result.
  *
@@ -36,8 +26,8 @@ void intFreeFunLinSearch(void *n) {
  * @param n2 the second integer pointer
  * @return it will return the result of the comparison, zero if they are equal, minus integer if the second bigger, and positive integer if the first bigger
  */
-int intCmpLinSearch(const void *n1, const void * n2) {
-    return *(int *)n1 - *(int *)n2;
+int intCmpLinSearch(const void *n1, const void *n2) {
+    return *(int *) n1 - *(int *) n2;
 }
 
 
@@ -47,12 +37,6 @@ unsigned int *generateIntPointerLinSearch(unsigned int *num) {
 
     return newInt;
 }
-
-
-
-
-
-
 
 
 /** This function will take an array and value,
@@ -75,45 +59,45 @@ unsigned int *generateIntPointerLinSearch(unsigned int *num) {
 int linearSearch(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "linear search");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "linear search");
+        exit(NULL_POINTER);
+#endif
     } else if (value == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "linear search");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "linear search");
+        exit(INVALID_ARG);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "linear search");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "linear search");
+        exit(INVALID_ARG);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "linear search");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "linear search");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "linear search");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "linear search");
+        exit(INVALID_ARG);
+#endif
     }
 
     char *oneBytePointer = (char *) arr;
@@ -127,15 +111,6 @@ int linearSearch(void *arr, void *value, int length, int elemSize, int (*cmp)(co
     return -1;
 
 }
-
-
-
-
-
-
-
-
-
 
 
 /** This function will take an array and value,
@@ -158,46 +133,46 @@ int linearSearch(void *arr, void *value, int length, int elemSize, int (*cmp)(co
 int linearSearchGetLast(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "linear search");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "linear search");
+        exit(NULL_POINTER);
+#endif
 
     } else if (value == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "linear search");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "linear search");
+        exit(INVALID_ARG);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "linear search");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "linear search");
+        exit(INVALID_ARG);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "linear search");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "linear search");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "linear search");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "linear search");
+        exit(INVALID_ARG);
+#endif
     }
 
     char *oneBytePointer = (char *) arr;
@@ -211,15 +186,6 @@ int linearSearchGetLast(void *arr, void *value, int length, int elemSize, int (*
     return -1;
 
 }
-
-
-
-
-
-
-
-
-
 
 
 /** This function will take an array and value,
@@ -242,45 +208,45 @@ int linearSearchGetLast(void *arr, void *value, int length, int elemSize, int (*
 Vector *linearSearchGetAll(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "linear search");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "linear search");
+        exit(NULL_POINTER);
+#endif
     } else if (value == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "linear search");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "linear search");
+        exit(INVALID_ARG);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "linear search");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "linear search");
+        exit(INVALID_ARG);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "linear search");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "linear search");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "linear search");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "linear search");
+        exit(INVALID_ARG);
+#endif
     }
 
 

@@ -6,7 +6,6 @@ extern "C" {
 #endif
 
 
-
 /** @struct Stack
  *  @brief This structure implements a basic generic stack.
  *  @var Stack:: memory
@@ -23,12 +22,13 @@ typedef struct Stack {
     void **memory;
     int allocated;
     int top;
+
     void (*freeItem)(void *);
-}Stack;
+} Stack;
 
 Stack *stackInitialization(void (*freeItem)(void *item));
 
-void stackPush(Stack* stack, void * data);
+void stackPush(Stack *stack, void *data);
 
 void stackAddAll(Stack *stack, void **array, int arrLength);
 
@@ -42,9 +42,9 @@ void **stackToArray(Stack *stack);
 
 int stackGetLength(Stack *stack);
 
-int stackContains(Stack *stack, void *item, int (*cmp)(const void *, const void*));
+int stackContains(Stack *stack, void *item, int (*cmp)(const void *, const void *));
 
-int stackEquals(Stack * stack, Stack * stack1, int (*cmp)(const void *, const void*));
+int stackEquals(Stack *stack, Stack *stack1, int (*cmp)(const void *, const void *));
 
 void clearStack(Stack *stack);
 

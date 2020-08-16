@@ -20,17 +20,18 @@ extern "C" {
  *  Member 'freeFn' holds pointer to the function responsible for freeing the elements stored in the queue.
  */
 
-typedef struct Queue{
-    void ** memory;
+typedef struct Queue {
+    void **memory;
     int allocated;
     int front;
     int rear;
+
     void (*freeItem)(void *);
 } Queue;
 
 Queue *queueInitialization(void (*freeFun)(void *));
 
-void queueEnqueue(Queue* arrayQueue, void *data);
+void queueEnqueue(Queue *arrayQueue, void *data);
 
 void *queueDequeue(Queue *arrayQueue);
 
@@ -42,7 +43,7 @@ int queueIsEmpty(Queue *arrayQueue);
 
 int queueGetLength(Queue *arrayQueue);
 
-void queueEnqueueAll(Queue * arrayQueue, void **arr, int arrLength);
+void queueEnqueueAll(Queue *arrayQueue, void **arr, int arrLength);
 
 void *queuePeek(Queue *arrayQueue);
 

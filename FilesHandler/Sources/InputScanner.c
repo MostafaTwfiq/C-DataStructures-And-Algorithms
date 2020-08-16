@@ -5,9 +5,6 @@
 #include "../../Unit Test/CuTest/CuTest.h"
 
 
-
-
-
 /** This function will scan the input as string,
  * then it will return the char array of the string.
  *
@@ -34,9 +31,6 @@ String *scanStrS(FILE *dir) {
     return string;
 
 }
-
-
-
 
 
 /** This function will scan the input as string,
@@ -70,8 +64,6 @@ char *scanStrC(FILE *dir) {
 }
 
 
-
-
 /** This function will scan the input as character,
  * then it will return the character value.
  *
@@ -95,9 +87,6 @@ char scanChar(FILE *dir) {
     return fgetc(dir);
 
 }
-
-
-
 
 
 /** This function will scan the input as integer,
@@ -124,13 +113,13 @@ int scanInt(FILE *dir) {
     stringScanInput(string, dir);
 
     if (!isInteger(string->string)) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = SOMETHING_WENT_WRONG;
-            return -1;
-        #else
-            fprintf(stderr, SOMETHING_WENT_WRONG_MESSAGE, "load the int", "scan int function");
-            exit(SOMETHING_WENT_WRONG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = SOMETHING_WENT_WRONG;
+        return -1;
+#else
+        fprintf(stderr, SOMETHING_WENT_WRONG_MESSAGE, "load the int", "scan int function");
+        exit(SOMETHING_WENT_WRONG);
+#endif
     }
 
     int integer = atoi(string->string);
@@ -139,10 +128,6 @@ int scanInt(FILE *dir) {
     return integer;
 
 }
-
-
-
-
 
 
 /** This function will scan the input as double,
@@ -169,13 +154,13 @@ double scanDouble(FILE *dir) {
     stringScanInput(string, dir);
 
     if (!isFloatingPointNum(string->string)) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = SOMETHING_WENT_WRONG;
-            return -1;
-        #else
-            fprintf(stderr, SOMETHING_WENT_WRONG_MESSAGE, "load the double", "scan double function");
-            exit(SOMETHING_WENT_WRONG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = SOMETHING_WENT_WRONG;
+        return -1;
+#else
+        fprintf(stderr, SOMETHING_WENT_WRONG_MESSAGE, "load the double", "scan double function");
+        exit(SOMETHING_WENT_WRONG);
+#endif
     }
 
     double dl = atof(string->string);
@@ -184,9 +169,6 @@ double scanDouble(FILE *dir) {
     return dl;
 
 }
-
-
-
 
 
 /** This function will scan the input as float,
@@ -213,13 +195,13 @@ float scanFloat(FILE *dir) {
     stringScanInput(string, dir);
 
     if (!isFloatingPointNum(string->string)) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = SOMETHING_WENT_WRONG;
-            return -1;
-        #else
-            fprintf(stderr, SOMETHING_WENT_WRONG_MESSAGE, "load the float", "scan float function");
-            exit(SOMETHING_WENT_WRONG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = SOMETHING_WENT_WRONG;
+        return -1;
+#else
+        fprintf(stderr, SOMETHING_WENT_WRONG_MESSAGE, "load the float", "scan float function");
+        exit(SOMETHING_WENT_WRONG);
+#endif
     }
 
     float fl = (float) atof(string->string);
@@ -228,9 +210,6 @@ float scanFloat(FILE *dir) {
     return fl;
 
 }
-
-
-
 
 
 /** This function will scan the input as long,
@@ -257,24 +236,21 @@ long scanLong(FILE *dir) {
     stringScanInput(string, dir);
 
     if (!isInteger(string->string)) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = SOMETHING_WENT_WRONG;
-            return -1;
-        #else
-            fprintf(stderr, SOMETHING_WENT_WRONG_MESSAGE, "load the long", "scan long function");
-            exit(SOMETHING_WENT_WRONG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = SOMETHING_WENT_WRONG;
+        return -1;
+#else
+        fprintf(stderr, SOMETHING_WENT_WRONG_MESSAGE, "load the long", "scan long function");
+        exit(SOMETHING_WENT_WRONG);
+#endif
     }
 
-    long l = (long ) atol(string->string);
+    long l = (long) atol(string->string);
     destroyString(string);
 
     return l;
 
 }
-
-
-
 
 
 /** This function will scan the input as long long,
@@ -301,13 +277,13 @@ long long scanLongLong(FILE *dir) {
     stringScanInput(string, dir);
 
     if (!isInteger(string->string)) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = SOMETHING_WENT_WRONG;
-            return -1;
-        #else
-            fprintf(stderr, SOMETHING_WENT_WRONG_MESSAGE, "load the long long", "scan long long function");
-            exit(SOMETHING_WENT_WRONG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = SOMETHING_WENT_WRONG;
+        return -1;
+#else
+        fprintf(stderr, SOMETHING_WENT_WRONG_MESSAGE, "load the long long", "scan long long function");
+        exit(SOMETHING_WENT_WRONG);
+#endif
     }
 
     long long ll = (long long) atoll(string->string);
@@ -316,10 +292,6 @@ long long scanLongLong(FILE *dir) {
     return ll;
 
 }
-
-
-
-
 
 
 /** This function will scan the input as short,
@@ -346,13 +318,13 @@ short scanShort(FILE *dir) {
     stringScanInput(string, dir);
 
     if (!isInteger(string->string)) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = SOMETHING_WENT_WRONG;
-            return -1;
-        #else
-            fprintf(stderr, SOMETHING_WENT_WRONG_MESSAGE, "load the short", "scan short function");
-            exit(SOMETHING_WENT_WRONG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = SOMETHING_WENT_WRONG;
+        return -1;
+#else
+        fprintf(stderr, SOMETHING_WENT_WRONG_MESSAGE, "load the short", "scan short function");
+        exit(SOMETHING_WENT_WRONG);
+#endif
     }
 
     short sh = (short) atoi(string->string);

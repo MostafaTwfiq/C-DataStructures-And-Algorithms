@@ -3,11 +3,6 @@
 #include "../../../Unit Test/CuTest/CuTest.h"
 
 
-
-
-
-
-
 BinaryTreeNode *binaryTreeInsertR(BinaryTree *tree, BinaryTreeNode *root, void *item);
 
 BinaryTreeNode *binaryTreeDeleteR(BinaryTree *tree, BinaryTreeNode *root, void *item);
@@ -23,10 +18,6 @@ void binaryTreePostOrderTraversalR(BinaryTreeNode *root, void (*printFun)(void *
 void clearBinaryTreeR(BinaryTree *tree, BinaryTreeNode *root);
 
 void binaryTreeToArrayR(BinaryTreeNode *root, void **arr, int *index);
-
-
-
-
 
 
 /** This function will create a new node and return it's pointer.
@@ -47,19 +38,11 @@ BinaryTreeNode *createBinaryTreeNode(void *item) {
 
     newNode->key = item;
     newNode->right = NULL;
-    newNode->left= NULL;
+    newNode->left = NULL;
 
     return newNode;
 
 }
-
-
-
-
-
-
-
-
 
 
 /** This function will destroy and free the passed node with it's item.
@@ -80,14 +63,6 @@ void destroyBinaryTreeNode(BinaryTreeNode *node, void (*freeFun)(void *)) {
 }
 
 
-
-
-
-
-
-
-
-
 /** This function will destroy and free the passed node without freeing it's item.
  *
  * Note: this function should only be called from the inside.
@@ -102,13 +77,6 @@ void destroyBinaryTreeNodeWtoFr(BinaryTreeNode *node) {
     free(node);
 
 }
-
-
-
-
-
-
-
 
 
 /** This function will take a node then it will return the right successor node.
@@ -131,14 +99,6 @@ BinaryTreeNode *getRightSuccessorBT(BinaryTreeNode *node) {
 }
 
 
-
-
-
-
-
-
-
-
 /** This function will initialize a new binary tree,
  * then it will return the allocated tree pointer.
  *
@@ -150,21 +110,21 @@ BinaryTreeNode *getRightSuccessorBT(BinaryTreeNode *node) {
 BinaryTree *binaryTreeInitialization(void (*freeFun)(void *), int (*cmp)(const void *, const void *)) {
 
     if (freeFun == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-     		return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "binary tree data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+         return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "binary tree data structure");
+        exit(INVALID_ARG);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-     		return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "compare function pointer", "binary tree data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+         return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "compare function pointer", "binary tree data structure");
+        exit(INVALID_ARG);
+#endif
     }
 
     BinaryTree *tree = (BinaryTree *) malloc(sizeof(BinaryTree));
@@ -183,14 +143,6 @@ BinaryTree *binaryTreeInitialization(void (*freeFun)(void *), int (*cmp)(const v
 }
 
 
-
-
-
-
-
-
-
-
 /** This function will insert the passed new item into the tree.
  *
  * @param tree the tree pointer
@@ -200,33 +152,26 @@ BinaryTree *binaryTreeInitialization(void (*freeFun)(void *), int (*cmp)(const v
 void binaryTreeInsert(BinaryTree *tree, void *item) {
 
     if (tree == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "binary tree data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "binary tree data structure");
+        exit(NULL_POINTER);
+#endif
     } else if (item == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-     		return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "binary tree data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+         return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "binary tree data structure");
+        exit(INVALID_ARG);
+#endif
     }
 
     tree->root = binaryTreeInsertR(tree, tree->root, item);
 
 }
-
-
-
-
-
-
-
 
 
 /** This function will insert the tree new item recursively.
@@ -244,24 +189,14 @@ BinaryTreeNode *binaryTreeInsertR(BinaryTree *tree, BinaryTreeNode *root, void *
     if (root == NULL) {
         tree->count++;
         root = createBinaryTreeNode(item);
-    }
-
-    else if ( tree->cmp(item, root->key) > 0 || tree->cmp(item, root->key) == 0)
+    } else if (tree->cmp(item, root->key) > 0 || tree->cmp(item, root->key) == 0)
         root->right = binaryTreeInsertR(tree, root->right, item);
-    else if ( tree->cmp(item, root->key) < 0 )
+    else if (tree->cmp(item, root->key) < 0)
         root->left = binaryTreeInsertR(tree, root->left, item);
 
     return root;
 
 }
-
-
-
-
-
-
-
-
 
 
 /** This function will take an items array,
@@ -275,36 +210,27 @@ BinaryTreeNode *binaryTreeInsertR(BinaryTree *tree, BinaryTreeNode *root, void *
 void binaryTreeInsertAll(BinaryTree *tree, void **items, int length) {
 
     if (tree == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "binary tree data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "binary tree data structure");
+        exit(NULL_POINTER);
+#endif
     } else if (items == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-     		return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "items array pointer", "binary tree data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+         return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "items array pointer", "binary tree data structure");
+        exit(INVALID_ARG);
+#endif
     }
 
     for (int i = 0; i < length; i++)
         binaryTreeInsert(tree, items[i]);
 
 }
-
-
-
-
-
-
-
-
-
 
 
 /** This function will delete and free the passed item from the tree if found,
@@ -317,42 +243,34 @@ void binaryTreeInsertAll(BinaryTree *tree, void **items, int length) {
 void binaryTreeDelete(BinaryTree *tree, void *item) {
 
     if (tree == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "binary tree data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "binary tree data structure");
+        exit(NULL_POINTER);
+#endif
     } else if (item == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-     		return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "binary tree data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+         return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "binary tree data structure");
+        exit(INVALID_ARG);
+#endif
     } else if (binaryTreeIsEmpty(tree)) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
-            return;
-        #else
-            fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "binary tree data structure");
-            exit(EMPTY_DATA_STRUCTURE);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
+        return;
+#else
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "binary tree data structure");
+        exit(EMPTY_DATA_STRUCTURE);
+#endif
     }
 
     tree->root = binaryTreeDeleteR(tree, tree->root, item);
 
 }
-
-
-
-
-
-
-
-
 
 
 /** This function will delete the passed item recursively from the tree.
@@ -370,7 +288,7 @@ BinaryTreeNode *binaryTreeDeleteR(BinaryTree *tree, BinaryTreeNode *root, void *
     if (root == NULL)
         return NULL;
 
-    if ( tree->cmp(item, root->key) == 0 ) {
+    if (tree->cmp(item, root->key) == 0) {
 
         if (root->right == NULL && root->left == NULL) {
             destroyBinaryTreeNode(root, tree->freeFn);
@@ -390,9 +308,7 @@ BinaryTreeNode *binaryTreeDeleteR(BinaryTree *tree, BinaryTreeNode *root, void *
 
         tree->count--;
 
-    }
-
-    else if ( tree->cmp(item, root->key) > 0 )
+    } else if (tree->cmp(item, root->key) > 0)
         root->right = binaryTreeDeleteR(tree, root->right, item);
     else
         root->left = binaryTreeDeleteR(tree, root->left, item);
@@ -400,15 +316,6 @@ BinaryTreeNode *binaryTreeDeleteR(BinaryTree *tree, BinaryTreeNode *root, void *
     return root;
 
 }
-
-
-
-
-
-
-
-
-
 
 
 /** This function will delete the passed item from the tree without freeing it,
@@ -422,43 +329,34 @@ BinaryTreeNode *binaryTreeDeleteR(BinaryTree *tree, BinaryTreeNode *root, void *
 void *binaryTreeDeleteWtoFr(BinaryTree *tree, void *item) {
 
     if (tree == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "binary tree data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "binary tree data structure");
+        exit(NULL_POINTER);
+#endif
     } else if (item == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-     		return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "binary tree data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+         return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "binary tree data structure");
+        exit(INVALID_ARG);
+#endif
     } else if (binaryTreeIsEmpty(tree)) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
-            return NULL;
-        #else
-            fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "binary tree data structure");
-            exit(EMPTY_DATA_STRUCTURE);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
+        return NULL;
+#else
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "binary tree data structure");
+        exit(EMPTY_DATA_STRUCTURE);
+#endif
     }
 
     return binaryTreeDeleteWtoFrR(tree, NULL, tree->root, item);
 
 }
-
-
-
-
-
-
-
-
-
 
 
 /** This function will delete the passed item from the tree recursively without freeing it,
@@ -477,7 +375,7 @@ void *binaryTreeDeleteWtoFrR(BinaryTree *tree, BinaryTreeNode *parent, BinaryTre
     if (root == NULL)
         return NULL;
 
-    if ( tree->cmp(item, root->key) == 0 ) {
+    if (tree->cmp(item, root->key) == 0) {
 
         void *itemToReturn = root->key;
 
@@ -524,24 +422,12 @@ void *binaryTreeDeleteWtoFrR(BinaryTree *tree, BinaryTreeNode *parent, BinaryTre
 
         return itemToReturn;
 
-    }
-
-    else if ( tree->cmp(item, root->key) > 0 )
+    } else if (tree->cmp(item, root->key) > 0)
         return binaryTreeDeleteWtoFrR(tree, root, root->right, item);
     else
         return binaryTreeDeleteWtoFrR(tree, root, root->left, item);
 
 }
-
-
-
-
-
-
-
-
-
-
 
 
 /** This function will check if the passed item is in the tree or not,
@@ -555,21 +441,21 @@ void *binaryTreeDeleteWtoFrR(BinaryTree *tree, BinaryTreeNode *parent, BinaryTre
 int binaryTreeContains(BinaryTree *tree, void *item) {
 
     if (tree == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "binary tree data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "binary tree data structure");
+        exit(NULL_POINTER);
+#endif
     } else if (item == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-     		return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "binary tree data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+         return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "binary tree data structure");
+        exit(INVALID_ARG);
+#endif
     }
 
 
@@ -577,28 +463,18 @@ int binaryTreeContains(BinaryTree *tree, void *item) {
 
     while (currentNode != NULL) {
 
-        if ( tree->cmp(item, currentNode->key) == 0 )
+        if (tree->cmp(item, currentNode->key) == 0)
             break;
-        else if ( tree->cmp(item, currentNode->key) > 0 )
+        else if (tree->cmp(item, currentNode->key) > 0)
             currentNode = currentNode->right;
         else
             currentNode = currentNode->left;
 
     }
 
-    return currentNode == NULL ? 0 : 1 ;
+    return currentNode == NULL ? 0 : 1;
 
 }
-
-
-
-
-
-
-
-
-
-
 
 
 /** This function will check for the passed item in the tree,
@@ -612,48 +488,39 @@ int binaryTreeContains(BinaryTree *tree, void *item) {
 void *binaryTreeGet(BinaryTree *tree, void *item) {
 
     if (tree == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "binary tree data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "binary tree data structure");
+        exit(NULL_POINTER);
+#endif
     } else if (item == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-     		return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "binary tree data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+         return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "binary tree data structure");
+        exit(INVALID_ARG);
+#endif
     }
 
     BinaryTreeNode *currentNode = tree->root;
 
     while (currentNode != NULL) {
 
-        if ( tree->cmp(item, currentNode->key) == 0 )
+        if (tree->cmp(item, currentNode->key) == 0)
             break;
-        else if ( tree->cmp(item, currentNode->key) > 0 )
+        else if (tree->cmp(item, currentNode->key) > 0)
             currentNode = currentNode->right;
         else
             currentNode = currentNode->left;
 
     }
 
-    return currentNode == NULL ? NULL : currentNode->key ;
+    return currentNode == NULL ? NULL : currentNode->key;
 
 }
-
-
-
-
-
-
-
-
-
 
 
 /** This function will pre order traverse the tree.
@@ -667,34 +534,26 @@ void *binaryTreeGet(BinaryTree *tree, void *item) {
 void binaryTreePreOrderTraversal(BinaryTree *tree, void (*printFun)(void *)) {
 
     if (tree == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "binary tree data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "binary tree data structure");
+        exit(NULL_POINTER);
+#endif
     } else if (printFun == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-     		return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "printing function pointer", "binary tree data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+         return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "printing function pointer", "binary tree data structure");
+        exit(INVALID_ARG);
+#endif
     }
 
     binaryTreePreOrderTraversalR(tree->root, printFun);
 
 }
-
-
-
-
-
-
-
-
 
 
 /** This function will pre order traverse the tree recursively.
@@ -718,14 +577,6 @@ void binaryTreePreOrderTraversalR(BinaryTreeNode *root, void (*printFun)(void *)
 }
 
 
-
-
-
-
-
-
-
-
 /** This function will in order traverse the tree.
  *
  * Note: you can do any thing else the printing.
@@ -737,35 +588,26 @@ void binaryTreePreOrderTraversalR(BinaryTreeNode *root, void (*printFun)(void *)
 void binaryTreeInOrderTraversal(BinaryTree *tree, void (*printFun)(void *)) {
 
     if (tree == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "binary tree data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "binary tree data structure");
+        exit(NULL_POINTER);
+#endif
     } else if (printFun == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-     		return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "printing function pointer", "binary tree data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+         return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "printing function pointer", "binary tree data structure");
+        exit(INVALID_ARG);
+#endif
     }
 
     binaryTreeInOrderTraversalR(tree->root, printFun);
 
 }
-
-
-
-
-
-
-
-
-
 
 
 /** This function will in order traverse the tree recursively.
@@ -789,16 +631,6 @@ void binaryTreeInOrderTraversalR(BinaryTreeNode *root, void (*printFun)(void *))
 }
 
 
-
-
-
-
-
-
-
-
-
-
 /** This function will post order traverse the tree.
  *
  * Note: you can do any thing else the printing.
@@ -810,35 +642,26 @@ void binaryTreeInOrderTraversalR(BinaryTreeNode *root, void (*printFun)(void *))
 void binaryTreePostOrderTraversal(BinaryTree *tree, void (*printFun)(void *)) {
 
     if (tree == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "binary tree data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "binary tree data structure");
+        exit(NULL_POINTER);
+#endif
     } else if (printFun == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-     		return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "printing function pointer", "binary tree data structure");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+         return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "printing function pointer", "binary tree data structure");
+        exit(INVALID_ARG);
+#endif
     }
 
     binaryTreePostOrderTraversalR(tree->root, printFun);
 
 }
-
-
-
-
-
-
-
-
-
 
 
 /** This function will post order traverse the tree recursively.
@@ -862,14 +685,6 @@ void binaryTreePostOrderTraversalR(BinaryTreeNode *root, void (*printFun)(void *
 }
 
 
-
-
-
-
-
-
-
-
 /** This function will return the number of nodes in the tree.
  *
  * @param tree the tree pointer
@@ -879,28 +694,18 @@ void binaryTreePostOrderTraversalR(BinaryTreeNode *root, void (*printFun)(void *
 int binaryTreeGetSize(BinaryTree *tree) {
 
     if (tree == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "binary tree data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "binary tree data structure");
+        exit(NULL_POINTER);
+#endif
     }
 
     return tree->count;
 
 }
-
-
-
-
-
-
-
-
-
-
 
 
 /** This function will check if the tree is empty or not,
@@ -913,27 +718,18 @@ int binaryTreeGetSize(BinaryTree *tree) {
 int binaryTreeIsEmpty(BinaryTree *tree) {
 
     if (tree == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "binary tree data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "binary tree data structure");
+        exit(NULL_POINTER);
+#endif
     }
 
     return tree->count == 0;
 
 }
-
-
-
-
-
-
-
-
-
 
 
 /** This function will return a double void pointer array,
@@ -946,13 +742,13 @@ int binaryTreeIsEmpty(BinaryTree *tree) {
 void **binaryTreeToArray(BinaryTree *tree) {
 
     if (tree == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "binary tree data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "binary tree data structure");
+        exit(NULL_POINTER);
+#endif
     }
 
     void *arr = (void **) malloc(sizeof(void *) * tree->count);
@@ -971,14 +767,6 @@ void **binaryTreeToArray(BinaryTree *tree) {
     return arr;
 
 }
-
-
-
-
-
-
-
-
 
 
 /** This function will recursively fill the passed array,
@@ -1003,14 +791,6 @@ void binaryTreeToArrayR(BinaryTreeNode *root, void **arr, int *index) {
 }
 
 
-
-
-
-
-
-
-
-
 /** This function will destroy and clear the tree nodes, without destroying the tree itself.
  *
  * @param tree the tree pointer
@@ -1019,13 +799,13 @@ void binaryTreeToArrayR(BinaryTreeNode *root, void **arr, int *index) {
 void clearBinaryTree(BinaryTree *tree) {
 
     if (tree == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "binary tree data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "binary tree data structure");
+        exit(NULL_POINTER);
+#endif
     }
 
     clearBinaryTreeR(tree, tree->root);
@@ -1035,13 +815,6 @@ void clearBinaryTree(BinaryTree *tree) {
     tree->count = 0;
 
 }
-
-
-
-
-
-
-
 
 
 /** This function will recursively destroy and free the tree nodes.
@@ -1063,14 +836,6 @@ void clearBinaryTreeR(BinaryTree *tree, BinaryTreeNode *root) {
 }
 
 
-
-
-
-
-
-
-
-
 /** This function will destroy and free the tree with all it's nodes.
  *
  * @param tree the tree pointer
@@ -1079,13 +844,13 @@ void clearBinaryTreeR(BinaryTree *tree, BinaryTreeNode *root) {
 void destroyBinaryTree(BinaryTree *tree) {
 
     if (tree == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "binary tree data structure");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+         return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "tree", "binary tree data structure");
+        exit(NULL_POINTER);
+#endif
     }
 
     clearBinaryTree(tree);

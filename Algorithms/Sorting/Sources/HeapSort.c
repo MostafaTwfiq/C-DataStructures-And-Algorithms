@@ -71,10 +71,6 @@ int getParentIndex(int childIndex) {
 }
 
 
-
-
-
-
 /** This function will take a parent index,
  * then it will return the first child index.
  *
@@ -87,9 +83,6 @@ int getFirstChildIndex(int parentIndex) {
 }
 
 
-
-
-
 /** This function will take a parent index,
  * then it will return the second child index.
  *
@@ -100,10 +93,6 @@ int getFirstChildIndex(int parentIndex) {
 int getSecondChildIndex(int parentIndex) {
     return parentIndex * 2 + 2;
 }
-
-
-
-
 
 
 /** This function will swap up the element with the given index,
@@ -121,17 +110,12 @@ void heapUp(char *arr, int index, int elemSize, int (*cmp)(const void *, const v
 
     int parentIndex = getParentIndex(index);
 
-    if ( cmp(arr + index * elemSize, arr + parentIndex * elemSize) > 0 ) {
+    if (cmp(arr + index * elemSize, arr + parentIndex * elemSize) > 0) {
         swap(arr + index * elemSize, arr + parentIndex * elemSize, elemSize);
         heapUp(arr, parentIndex, elemSize, cmp);
     }
 
 }
-
-
-
-
-
 
 
 /** This function will swap down the element with the given index,
@@ -150,31 +134,31 @@ void heapDown(char *arr, int length, int index, int elemSize, int (*cmp)(const v
 
 
     // if the current element in smaller than his children.
-    if ( firstChildIndex < length
-    && secondChildIndex < length
-    && cmp(arr + index * elemSize, arr + firstChildIndex * elemSize) < 0
-    && cmp(arr + index * elemSize, arr + secondChildIndex * elemSize) < 0) {
+    if (firstChildIndex < length
+        && secondChildIndex < length
+        && cmp(arr + index * elemSize, arr + firstChildIndex * elemSize) < 0
+        && cmp(arr + index * elemSize, arr + secondChildIndex * elemSize) < 0) {
 
         // the biggest child index.
         int biggestChildIndex = cmp(arr + firstChildIndex * elemSize, arr + secondChildIndex * elemSize) > 0
-                ? firstChildIndex
-                : secondChildIndex;
+                                ? firstChildIndex
+                                : secondChildIndex;
 
         swap(arr + index * elemSize, arr + biggestChildIndex * elemSize, elemSize);
         heapDown(arr, length, biggestChildIndex, elemSize, cmp);
 
     }
 
-    // if the current element is only less that his first child.
-    else if ( firstChildIndex < length && cmp(arr + index * elemSize, arr + firstChildIndex * elemSize) < 0 ) {
+        // if the current element is only less that his first child.
+    else if (firstChildIndex < length && cmp(arr + index * elemSize, arr + firstChildIndex * elemSize) < 0) {
 
         swap(arr + index * elemSize, arr + firstChildIndex * elemSize, elemSize);
         heapDown(arr, length, firstChildIndex, elemSize, cmp);
 
     }
 
-    // if the current element is only less that his second child.
-    else if ( secondChildIndex < length && cmp(arr + index * elemSize, arr + secondChildIndex * elemSize) < 0 ) {
+        // if the current element is only less that his second child.
+    else if (secondChildIndex < length && cmp(arr + index * elemSize, arr + secondChildIndex * elemSize) < 0) {
 
         swap(arr + index * elemSize, arr + secondChildIndex * elemSize, elemSize);
         heapDown(arr, length, secondChildIndex, elemSize, cmp);
@@ -182,10 +166,7 @@ void heapDown(char *arr, int length, int index, int elemSize, int (*cmp)(const v
     }
 
 
-
 }
-
-
 
 
 /** This function will take an array then it sort it with the heap sort algorithm.
@@ -203,37 +184,37 @@ void heapDown(char *arr, int length, int index, int elemSize, int (*cmp)(const v
 void heapSort(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "heap sort");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "heap sort");
+        exit(NULL_POINTER);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "heap sort");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "heap sort");
+        exit(INVALID_ARG);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "heap sort");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "heap sort");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "heap sort");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "heap sort");
+        exit(INVALID_ARG);
+#endif
     }
 
 

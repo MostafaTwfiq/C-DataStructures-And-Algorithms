@@ -4,10 +4,7 @@
 #include "../../../Unit Test/CuTest/CuTest.h"
 
 
-
 void transferItemsToSecondStack(Stack *fStack, Stack *sStack);
-
-
 
 
 /** This function will take the size of the type that will be stored in the queue as a parameter,
@@ -20,25 +17,25 @@ void transferItemsToSecondStack(Stack *fStack, Stack *sStack);
 
 SQueue *stackQueueInitialization(void (*freeItem)(void *)) {
     if (freeItem == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return NULL;
-        #else
-     		fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "stack queue data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "free function pointer", "stack queue data structure");
+        exit(INVALID_ARG);
+#endif
 
     }
 
     SQueue *queue = (SQueue *) malloc(sizeof(SQueue));
     if (queue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
-     		return NULL;
-        #else
-            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "queue", "stack queue data structure");
-     		exit(FAILED_ALLOCATION);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = FAILED_ALLOCATION;
+        return NULL;
+#else
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "queue", "stack queue data structure");
+        exit(FAILED_ALLOCATION);
+#endif
 
     }
 
@@ -50,8 +47,6 @@ SQueue *stackQueueInitialization(void (*freeItem)(void *)) {
 }
 
 
-
-
 /** This function will take the queue address, and the item address as a parameters,
  * then it will push the item into the queue.
  *
@@ -60,32 +55,29 @@ SQueue *stackQueueInitialization(void (*freeItem)(void *)) {
  */
 
 void sQueueEnqueue(SQueue *queue, void *item) {
-    if(queue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-     		fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
-     		exit(NULL_POINTER);
-     	#endif
+    if (queue == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (item == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "stack queue data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "stack queue data structure");
+        exit(INVALID_ARG);
+#endif
 
     }
 
     stackPush(queue->fStack, item);
 
 }
-
-
-
 
 
 /** This function will take the queue address, the items array pointer, and the length of the array as a parameters,
@@ -97,23 +89,23 @@ void sQueueEnqueue(SQueue *queue, void *item) {
  */
 
 void sQueueAddAll(SQueue *queue, void **items, int itemsLength) {
-    if(queue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
-     		exit(NULL_POINTER);
-     	#endif
+    if (queue == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (items == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "items array pointer", "stack queue data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "items array pointer", "stack queue data structure");
+        exit(INVALID_ARG);
+#endif
 
     }
 
@@ -121,9 +113,6 @@ void sQueueAddAll(SQueue *queue, void **items, int itemsLength) {
         stackPush(queue->fStack, items[i]);
 
 }
-
-
-
 
 
 /** This function will take the queue address as a parameter,
@@ -134,23 +123,23 @@ void sQueueAddAll(SQueue *queue, void **items, int itemsLength) {
  */
 
 void *sQueueDequeue(SQueue *queue) {
-    if(queue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-            fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
-     		exit(NULL_POINTER);
-     	#endif
+    if (queue == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (sQueueIsEmpty(queue)) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
-     		return NULL;
-        #else
-     		fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "stack queue data structure");
-     		exit(EMPTY_DATA_STRUCTURE);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
+        return NULL;
+#else
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "stack queue data structure");
+        exit(EMPTY_DATA_STRUCTURE);
+#endif
 
     }
 
@@ -160,8 +149,6 @@ void *sQueueDequeue(SQueue *queue) {
     return stackPop(queue->sStack);
 
 }
-
-
 
 
 /** This function will two stack addresses as a parameters,
@@ -180,9 +167,6 @@ void transferItemsToSecondStack(Stack *fStack, Stack *sStack) {
 }
 
 
-
-
-
 /** This function will take the queue address as a parameter,
  * then it will return the top of the queue with out removing the item from the queue.
  *
@@ -191,23 +175,23 @@ void transferItemsToSecondStack(Stack *fStack, Stack *sStack) {
  */
 
 void *sQueuePeek(SQueue *queue) {
-    if(queue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-            fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
-     		exit(NULL_POINTER);
-     	#endif
+    if (queue == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (sQueueIsEmpty(queue)) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
-     		return NULL;
-        #else
-            fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "stack queue data structure");
-     		exit(EMPTY_DATA_STRUCTURE);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = EMPTY_DATA_STRUCTURE;
+        return NULL;
+#else
+        fprintf(stderr, EMPTY_DATA_STRUCTURE_MESSAGE, "stack queue data structure");
+        exit(EMPTY_DATA_STRUCTURE);
+#endif
 
     }
 
@@ -219,8 +203,6 @@ void *sQueuePeek(SQueue *queue) {
 }
 
 
-
-
 /** This function will take the queue address as a parameter,
  * then it will return the number of items in the queue.
  *
@@ -230,23 +212,20 @@ void *sQueuePeek(SQueue *queue) {
 
 int sQueueGetLength(SQueue *queue) {
 
-    if(queue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return -1;
-        #else
-     		fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
-     		exit(NULL_POINTER);
-     	#endif
+    if (queue == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
+        exit(NULL_POINTER);
+#endif
 
     }
 
     return stackGetLength(queue->fStack) + stackGetLength(queue->sStack);
 
 }
-
-
-
 
 
 /** This function will take the queue address as a parameter,
@@ -259,23 +238,20 @@ int sQueueGetLength(SQueue *queue) {
 
 int sQueueIsEmpty(SQueue *queue) {
 
-    if(queue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return -1;
-        #else
-            fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
-     		exit(NULL_POINTER);
-     	#endif
+    if (queue == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
+        exit(NULL_POINTER);
+#endif
 
     }
 
     return sQueueGetLength(queue) == 0;
 
 }
-
-
-
 
 
 /** This function will take the queue address as a parameter,
@@ -288,27 +264,27 @@ int sQueueIsEmpty(SQueue *queue) {
 
 void **sQueueToArray(SQueue *queue) {
 
-    if(queue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-            fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
-     		exit(NULL_POINTER);
-     	#endif
+    if (queue == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
+        exit(NULL_POINTER);
+#endif
 
     }
 
     int length = sQueueGetLength(queue);
     void **arr = (void **) malloc(sizeof(void *) * length);
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
-     		return NULL;
-        #else
-            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "stack queue data structure");
-     		exit(FAILED_ALLOCATION);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = FAILED_ALLOCATION;
+        return NULL;
+#else
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "to array", "stack queue data structure");
+        exit(FAILED_ALLOCATION);
+#endif
 
     }
 
@@ -329,8 +305,6 @@ void **sQueueToArray(SQueue *queue) {
 }
 
 
-
-
 /** This function will take the address of the queue as a parameter,
  * then it will destroy and remove all the items from the queue,
  * without destroying the queue.
@@ -340,14 +314,14 @@ void **sQueueToArray(SQueue *queue) {
 
 void clearSQueue(SQueue *queue) {
 
-    if(queue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-     		fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
-     		exit(NULL_POINTER);
-     	#endif
+    if (queue == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
+        exit(NULL_POINTER);
+#endif
 
     }
 
@@ -355,9 +329,6 @@ void clearSQueue(SQueue *queue) {
     clearStack(queue->sStack);
 
 }
-
-
-
 
 
 /** This function will take the queue address as a parameter,
@@ -368,14 +339,14 @@ void clearSQueue(SQueue *queue) {
 
 void destroySQueue(SQueue *queue) {
 
-    if(queue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr , NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
-     		exit(NULL_POINTER);
-        #endif
+    if (queue == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "queue", "stack queue data structure");
+        exit(NULL_POINTER);
+#endif
 
     }
 

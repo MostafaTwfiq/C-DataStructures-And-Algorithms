@@ -5,8 +5,6 @@
 #include "../../../../../System/Utils.h"
 
 
-
-
 int arrayListTestStrcmp(const void *c1, const void *c2) {
     return strcmp(c1, c2);
 }
@@ -28,8 +26,6 @@ int *generateIntPointerALT(int integer) {
 }
 
 
-
-
 /** This function will compare to integers pointers,
  * then it will return zero if they are equal, negative number if the second integer is bigger,
  * and positive number if the first integer is bigger.
@@ -39,11 +35,8 @@ int *generateIntPointerALT(int integer) {
  */
 
 int compareIntPointersALT(const void *a, const void *b) {
-    return *(int *)a - *(int *)b;
+    return *(int *) a - *(int *) b;
 }
-
-
-
 
 
 /** This function will take a char array
@@ -55,7 +48,7 @@ int compareIntPointersALT(const void *a, const void *b) {
 
 char *generateCharPointerALT(char *ch) {
 
-    char *newCh = (char *) malloc( sizeof(char) * (strlen(ch) + 1) );
+    char *newCh = (char *) malloc(sizeof(char) * (strlen(ch) + 1));
 
     strcpy(newCh, ch);
 
@@ -64,10 +57,8 @@ char *generateCharPointerALT(char *ch) {
 }
 
 
-
-
 void testArrayListInvalidInitialization(CuTest *cuTest) {
-    ArrayList * arrayList = arrayListInitialization(-1, free, NULL);
+    ArrayList *arrayList = arrayListInitialization(-1, free, NULL);
     CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
 
     arrayList = arrayListInitialization(1, NULL, NULL);
@@ -75,7 +66,7 @@ void testArrayListInvalidInitialization(CuTest *cuTest) {
 
 }
 
-void testArrayListProperInitialization(CuTest *cuTest){
+void testArrayListProperInitialization(CuTest *cuTest) {
     ArrayList *arrayList = arrayListInitialization(1, free, compareIntPointersALT);
     CuAssertPtrNotNull(cuTest, arrayList);
 
@@ -169,7 +160,6 @@ void testArrayListAddAll(CuTest *cuTest) {
 }
 
 
-
 void testArrayListRemove(CuTest *cuTest) {
     ArrayList *arrayList = arrayListInitialization(1, free, compareIntPointersALT);
 
@@ -185,7 +175,6 @@ void testArrayListRemove(CuTest *cuTest) {
     destroyArrayList(arrayList);
 
 }
-
 
 
 void testArrayListRemoveWtoFr(CuTest *cuTest) {
@@ -206,7 +195,6 @@ void testArrayListRemoveWtoFr(CuTest *cuTest) {
     destroyArrayList(arrayList);
 
 }
-
 
 
 void testArrayListRemoveAtIndex(CuTest *cuTest) {
@@ -239,7 +227,6 @@ void testArrayListRemoveAtIndex(CuTest *cuTest) {
     destroyArrayList(arrayList);
 
 }
-
 
 
 void testArrayListRemoveAtIndexWtoFr(CuTest *cuTest) {
@@ -281,8 +268,6 @@ void testArrayListRemoveAtIndexWtoFr(CuTest *cuTest) {
 }
 
 
-
-
 void testArrayListExpansion(CuTest *cuTest) {
     ArrayList *arrayList = arrayListInitialization(1, free, compareIntPointersALT);
 
@@ -309,8 +294,6 @@ void testArrayListExpansion(CuTest *cuTest) {
     destroyArrayList(arrayList);
 
 }
-
-
 
 
 void testArrayListContains(CuTest *cuTest) {
@@ -348,10 +331,6 @@ void testArrayListContains(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testArrayListGetIndex(CuTest *cuTest) {
     ArrayList *arrayList = arrayListInitialization(1, free, compareIntPointersALT);
 
@@ -387,10 +366,6 @@ void testArrayListGetIndex(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testArrayListGetLastIndex(CuTest *cuTest) {
     ArrayList *arrayList = arrayListInitialization(1, free, compareIntPointersALT);
 
@@ -415,7 +390,7 @@ void testArrayListGetLastIndex(CuTest *cuTest) {
     arrayListAddAll(arrayList, (void **) arr, 6);
 
     int tempValue;
-    for (int i = 0; i < 6; i +=2 ) {
+    for (int i = 0; i < 6; i += 2) {
         tempValue = (i + 1) * 10;
         CuAssertIntEquals(cuTest, i + 1, arrayListGetLastIndex(arrayList, &tempValue));
     }
@@ -428,10 +403,6 @@ void testArrayListGetLastIndex(CuTest *cuTest) {
     destroyArrayList(arrayList);
 
 }
-
-
-
-
 
 
 void testArrayListGet(CuTest *cuTest) {
@@ -463,9 +434,6 @@ void testArrayListGet(CuTest *cuTest) {
 }
 
 
-
-
-
 void testArrayListToArray(CuTest *cuTest) {
     ArrayList *arrayList = arrayListInitialization(1, free, compareIntPointersALT);
 
@@ -492,8 +460,6 @@ void testArrayListToArray(CuTest *cuTest) {
     destroyArrayList(arrayList);
 
 }
-
-
 
 
 void testArrayListToSubArray(CuTest *cuTest) {
@@ -530,11 +496,8 @@ void testArrayListToSubArray(CuTest *cuTest) {
 }
 
 
-
-
-
 int sortTestComparatorFunALT(const void *i1, const void *i2) {
-    return **(int **)i1 - **(int **)i2;
+    return **(int **) i1 - **(int **) i2;
 }
 
 
@@ -564,9 +527,6 @@ void testArrayListSort(CuTest *cuTest) {
     destroyArrayList(arrayList);
 
 }
-
-
-
 
 
 ArrayList *printingArrayList;
@@ -613,7 +573,6 @@ void testArrayListPrintFun(CuTest *cuTest) {
 }
 
 
-
 void testArrayListGetLength(CuTest *cuTest) {
     ArrayList *arrayList = arrayListInitialization(1, free, compareIntPointersALT);
 
@@ -641,7 +600,6 @@ void testArrayListGetLength(CuTest *cuTest) {
     destroyArrayList(arrayList);
 
 }
-
 
 
 void testArrayListIsEmpty(CuTest *cuTest) {
@@ -673,8 +631,6 @@ void testArrayListIsEmpty(CuTest *cuTest) {
 }
 
 
-
-
 void testClearArrayList(CuTest *cuTest) {
     ArrayList *arrayList = arrayListInitialization(1, free, compareIntPointersALT);
 
@@ -697,10 +653,6 @@ void testClearArrayList(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testDestroyArrayList(CuTest *cuTest) {
     ArrayList *arrayList = arrayListInitialization(1, free, compareIntPointersALT);
 
@@ -713,8 +665,6 @@ void testDestroyArrayList(CuTest *cuTest) {
     destroyArrayList(arrayList);
 
 }
-
-
 
 
 typedef struct ArrayListTestStruct {
@@ -748,67 +698,67 @@ void generalArrayListTest(CuTest *cuTest) {
     char numbersStr[10][6] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"};
     ArrayListTestStruct *item;
 
-    CuAssertIntEquals(cuTest, 1 , arrayListIsEmpty(arrayList));
+    CuAssertIntEquals(cuTest, 1, arrayListIsEmpty(arrayList));
 
     item = (ArrayListTestStruct *) malloc(sizeof(ArrayListTestStruct));
     item->iData = 1;
-    item->cData = (char *) malloc(sizeof(char) * (strlen("one") + 1) );
+    item->cData = (char *) malloc(sizeof(char) * (strlen("one") + 1));
     strcpy(item->cData, "one");
     arrayListAdd(arrayList, item);
 
     item = (ArrayListTestStruct *) malloc(sizeof(ArrayListTestStruct));
     item->iData = 3;
-    item->cData = (char *) malloc(sizeof(char) * (strlen("three") + 1) );
+    item->cData = (char *) malloc(sizeof(char) * (strlen("three") + 1));
     strcpy(item->cData, "three");
     arrayListAdd(arrayList, item);
 
     item = (ArrayListTestStruct *) malloc(sizeof(ArrayListTestStruct));
     item->iData = 2;
-    item->cData = (char *) malloc(sizeof(char) * (strlen("two") + 1) );
+    item->cData = (char *) malloc(sizeof(char) * (strlen("two") + 1));
     strcpy(item->cData, "two");
     arrayListAddAtIndex(arrayList, item, 1);
 
-    CuAssertIntEquals(cuTest, 3 , arrayListGetLength(arrayList));
+    CuAssertIntEquals(cuTest, 3, arrayListGetLength(arrayList));
 
     ArrayListTestStruct **itemsArr = (ArrayListTestStruct **) malloc(sizeof(ArrayListTestStruct *) * 3);
 
     item = (ArrayListTestStruct *) malloc(sizeof(ArrayListTestStruct));
     item->iData = 4;
-    item->cData = (char *) malloc(sizeof(char) * (strlen("four") + 1) );
+    item->cData = (char *) malloc(sizeof(char) * (strlen("four") + 1));
     strcpy(item->cData, "four");
     itemsArr[0] = item;
 
     item = (ArrayListTestStruct *) malloc(sizeof(ArrayListTestStruct));
     item->iData = 5;
-    item->cData = (char *) malloc(sizeof(char) * (strlen("five") + 1) );
+    item->cData = (char *) malloc(sizeof(char) * (strlen("five") + 1));
     strcpy(item->cData, "five");
     itemsArr[1] = item;
 
     item = (ArrayListTestStruct *) malloc(sizeof(ArrayListTestStruct));
     item->iData = 6;
-    item->cData = (char *) malloc(sizeof(char) * (strlen("six") + 1) );
+    item->cData = (char *) malloc(sizeof(char) * (strlen("six") + 1));
     strcpy(item->cData, "six");
     itemsArr[2] = item;
 
     arrayListAddAll(arrayList, (void **) itemsArr, 3);
 
-    CuAssertIntEquals(cuTest, 6 , arrayListGetLength(arrayList));
+    CuAssertIntEquals(cuTest, 6, arrayListGetLength(arrayList));
 
     for (int i = 0; i < arrayListGetLength(arrayList); i++) {
         item = (ArrayListTestStruct *) arrayListGet(arrayList, i);
-        CuAssertIntEquals(cuTest, i + 1 , item->iData);
+        CuAssertIntEquals(cuTest, i + 1, item->iData);
         CuAssertStrEquals(cuTest, numbersStr[i], item->cData);
-        CuAssertIntEquals(cuTest, i , arrayListGetIndex(arrayList, item));
-        CuAssertIntEquals(cuTest, i , arrayListGetLastIndex(arrayList, item));
+        CuAssertIntEquals(cuTest, i, arrayListGetIndex(arrayList, item));
+        CuAssertIntEquals(cuTest, i, arrayListGetLastIndex(arrayList, item));
     }
 
-    CuAssertIntEquals(cuTest, 0 , arrayListIsEmpty(arrayList));
+    CuAssertIntEquals(cuTest, 0, arrayListIsEmpty(arrayList));
 
     for (int i = 0; i < arrayListGetLength(arrayList);) {
         item = (ArrayListTestStruct *) arrayListGet(arrayList, i);
-        CuAssertIntEquals(cuTest, 1 , arrayListContains(arrayList, item));
+        CuAssertIntEquals(cuTest, 1, arrayListContains(arrayList, item));
         arrayListRemoveAtIndexWtFr(arrayList, i);
-        CuAssertIntEquals(cuTest, 0 , arrayListContains(arrayList, item));
+        CuAssertIntEquals(cuTest, 0, arrayListContains(arrayList, item));
 
         freeArrayListTestStruct(item);
     }
@@ -819,9 +769,6 @@ void generalArrayListTest(CuTest *cuTest) {
     destroyArrayList(arrayList);
 
 }
-
-
-
 
 
 CuSuite *createArrayListTestsSuite(void) {
@@ -858,10 +805,9 @@ CuSuite *createArrayListTestsSuite(void) {
 }
 
 
-
 void arrayListUnitTest(void) {
 
-    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
+    ERROR_TEST = (ErrorTestStruct *) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Array List Test**\n");

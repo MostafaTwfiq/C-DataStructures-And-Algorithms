@@ -6,7 +6,6 @@
 #include <math.h>
 
 
-
 /** @struct Node
 *  @brief This structure implements a basic trie node.
 *  @var Trie::characters
@@ -38,7 +37,7 @@ void freeFun(void *item);
 
 char toLowerCase(char c);
 
-TrieNode * createNode(char value, int EOW);
+TrieNode *createNode(char value, int EOW);
 
 void freeNode(TrieNode *node);
 
@@ -59,9 +58,6 @@ TrieNode *destroyTrieNodes(TrieNode *root);
 int wordsComparator(const void *word1, const void *word2);
 
 
-
-
-
 /** This function will initialize a new trie in the memory, and initialize it's fields then,
  * the function will return it's address.
  *
@@ -71,13 +67,13 @@ int wordsComparator(const void *word1, const void *word2);
 Trie *trieInitialization() {
     Trie *trie = (Trie *) malloc(sizeof(Trie));
     if (trie == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
-     		return NULL;
-        #else
-            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "trie", "trie data structure");
-     		exit(FAILED_ALLOCATION);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = FAILED_ALLOCATION;
+        return NULL;
+#else
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "trie", "trie data structure");
+        exit(FAILED_ALLOCATION);
+#endif
 
     }
 
@@ -86,11 +82,6 @@ Trie *trieInitialization() {
     return trie;
 
 }
-
-
-
-
-
 
 
 /** This function will take the trie address, and the word  address as a parameters,
@@ -103,22 +94,22 @@ Trie *trieInitialization() {
 void trieAddWord(Trie *trie, char *word) {
 
     if (trie == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE , "trie", "trie data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "trie", "trie data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (word == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "word", "trie data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "word", "trie data structure");
+        exit(INVALID_ARG);
+#endif
 
     }
 
@@ -149,9 +140,6 @@ void trieAddWord(Trie *trie, char *word) {
 }
 
 
-
-
-
 /** This function will take the trie address, and the word address as a parameter,
  * then it  will return one (1) if the word is in the trie,
  * other wise it will return zero (0).
@@ -164,22 +152,22 @@ void trieAddWord(Trie *trie, char *word) {
 int trieContains(Trie *trie, char *word) {
 
     if (trie == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE , "trie", "trie data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "trie", "trie data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (word == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "word", "trie data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "word", "trie data structure");
+        exit(INVALID_ARG);
+#endif
 
     }
 
@@ -206,10 +194,6 @@ int trieContains(Trie *trie, char *word) {
 }
 
 
-
-
-
-
 /** This function will take the trie address, and the word address as a parameters,
  * then it will remove the given word from the trie.
  *
@@ -220,22 +204,22 @@ int trieContains(Trie *trie, char *word) {
 void trieRemoveWord(Trie *trie, char *word) {
 
     if (trie == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE , "trie", "trie data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "trie", "trie data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (word == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "word", "trie data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "word", "trie data structure");
+        exit(INVALID_ARG);
+#endif
 
     }
 
@@ -249,9 +233,6 @@ void trieRemoveWord(Trie *trie, char *word) {
     }
 
 }
-
-
-
 
 
 /** This function takes the root node address, and the current char address as a parameters,
@@ -298,10 +279,6 @@ TrieNode *trieRemoveWordR(TrieNode *root, const char *currentChar) {
 }
 
 
-
-
-
-
 /** This function will be useful to initialize the array lists that will be returned to the user,
  * after suggesting the words.
  *
@@ -311,11 +288,8 @@ TrieNode *trieRemoveWordR(TrieNode *root, const char *currentChar) {
  */
 
 int wordsComparator(const void *word1, const void *word2) {
-    return strcmp((char *)word1, (char *)word2);
+    return strcmp((char *) word1, (char *) word2);
 }
-
-
-
 
 
 /** This function will take the trie address, the word address, and the number of suggestion needed as a parameters,
@@ -333,31 +307,31 @@ int wordsComparator(const void *word1, const void *word2) {
 ArrayList *trieAutoCompletion(Trie *trie, char *word, int numOfSuggestion) {
 
     if (trie == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE , "trie", "trie data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "trie", "trie data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (word == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "word", "trie data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "word", "trie data structure");
+        exit(INVALID_ARG);
+#endif
 
     } else if (numOfSuggestion <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "number of suggestions", "trie data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "number of suggestions", "trie data structure");
+        exit(INVALID_ARG);
+#endif
 
     }
 
@@ -368,11 +342,6 @@ ArrayList *trieAutoCompletion(Trie *trie, char *word, int numOfSuggestion) {
     destroyString(string);
     return wordsList;
 }
-
-
-
-
-
 
 
 /** This function will take the the root node, the current char address,
@@ -402,11 +371,13 @@ void trieAutoCompletionR(TrieNode *root, char *currentChar, int numOfSuggestion,
 
     int index = toLowerCase(*currentChar) - 'a';
 
-    if (*currentChar!= '\0' && root->characters[index] != NULL) {
+    if (*currentChar != '\0' && root->characters[index] != NULL) {
         trieAutoCompletionR(root->characters[index], currentChar + 1, numOfSuggestion, string, wordsList);
     } else {
         for (int i = 0; i < 26; i++) {
-            if (root->characters[i] != NULL) { trieAutoCompletionR(root->characters[i], "\0", numOfSuggestion, string, wordsList); }
+            if (root->characters[i] != NULL) {
+                trieAutoCompletionR(root->characters[i], "\0", numOfSuggestion, string, wordsList);
+            }
         }
     }
 
@@ -414,10 +385,6 @@ void trieAutoCompletionR(TrieNode *root, char *currentChar, int numOfSuggestion,
         stringRemove(string, stringGetLength(string) - 1);
 
 }
-
-
-
-
 
 
 /** This function will take the trie address, the word address, the number of needed words to be suggested as a parameters,
@@ -432,31 +399,31 @@ void trieAutoCompletionR(TrieNode *root, char *currentChar, int numOfSuggestion,
 ArrayList *trieSuggestion(Trie *trie, char *word, int numOfSuggestion) {
 
     if (trie == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE , "trie", "trie data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "trie", "trie data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (word == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "word", "trie data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "word", "trie data structure");
+        exit(INVALID_ARG);
+#endif
 
     } else if (numOfSuggestion <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = INVALID_ARG;
-     		return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "number of suggestions", "trie data structure");
-     		exit(INVALID_ARG);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "number of suggestions", "trie data structure");
+        exit(INVALID_ARG);
+#endif
 
     }
 
@@ -472,10 +439,6 @@ ArrayList *trieSuggestion(Trie *trie, char *word, int numOfSuggestion) {
     return wordsList;
 
 }
-
-
-
-
 
 
 /** This function will take the root node address, the words address, string address, array list address,
@@ -510,7 +473,8 @@ void trieSuggestionR(TrieNode *root, char *word, String *string, ArrayList *word
 
     for (int i = 0; i < 26; i++) {
         if (root->characters[indices[i]] != NULL)
-            trieSuggestionR(root->characters[indices[i]], word + (*word == '\0' ? 0 : 1) , string, wordsList, numOfSuggestion);
+            trieSuggestionR(root->characters[indices[i]], word + (*word == '\0' ? 0 : 1), string, wordsList,
+                            numOfSuggestion);
 
     }
 
@@ -519,10 +483,6 @@ void trieSuggestionR(TrieNode *root, char *word, String *string, ArrayList *word
         stringRemove(string, stringGetLength(string) - 1);
 
 }
-
-
-
-
 
 
 /** This function will take the trie address as a parameter,
@@ -535,20 +495,20 @@ void trieSuggestionR(TrieNode *root, char *word, String *string, ArrayList *word
 void triePrintAllWords(Trie *trie, FILE *dir) {
 
     if (trie == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE , "trie", "trie data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "trie", "trie data structure");
+        exit(NULL_POINTER);
+#endif
 
     } else if (dir == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
         ERROR_TEST->errorCode = INVALID_ARG;
         return;
 #else
-        fprintf(stderr, INVALID_ARG_MESSAGE , "file pointer", "trie data structure");
+        fprintf(stderr, INVALID_ARG_MESSAGE, "file pointer", "trie data structure");
         exit(INVALID_ARG);
 #endif
 
@@ -566,10 +526,6 @@ void triePrintAllWords(Trie *trie, FILE *dir) {
     destroyString(string);
 
 }
-
-
-
-
 
 
 /** This function will take the root node address, and a string address as a parameter,
@@ -601,9 +557,6 @@ void triePrintAllWordsR(TrieNode *root, String *string, FILE *dir) {
 }
 
 
-
-
-
 /** This function will take the trie address as a parameter,
  * then it will clear and free all the trie nodes,
  * without destroying the trie.
@@ -614,13 +567,13 @@ void triePrintAllWordsR(TrieNode *root, String *string, FILE *dir) {
 void clearTrie(Trie *trie) {
 
     if (trie == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE , "trie", "trie data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "trie", "trie data structure");
+        exit(NULL_POINTER);
+#endif
 
     }
 
@@ -633,9 +586,6 @@ void clearTrie(Trie *trie) {
 }
 
 
-
-
-
 /** This function will take the trie address as a parameter,
  * then it will destroy and free the trie and all it's nodes.
  *
@@ -645,24 +595,19 @@ void clearTrie(Trie *trie) {
 void destroyTrie(Trie *trie) {
 
     if (trie == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = NULL_POINTER;
-     		return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE , "trie", "trie data structure");
-     		exit(NULL_POINTER);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "trie", "trie data structure");
+        exit(NULL_POINTER);
+#endif
 
     }
 
     trie->root = destroyTrieNodes(trie->root);
     free(trie);
 }
-
-
-
-
-
 
 
 /** This function takes the root node address as a parameter,
@@ -687,7 +632,6 @@ TrieNode *destroyTrieNodes(TrieNode *root) {
 }
 
 
-
 /** This function takes a character as a parameter,
  * then it will return the lower case of the of the character if it's an alphabet.
  *
@@ -704,8 +648,6 @@ char toLowerCase(char c) {
 
     return c;
 }
-
-
 
 
 /** This function will take a node address as a parameter,
@@ -729,10 +671,6 @@ int nodeHasChildren(TrieNode *node) {
 }
 
 
-
-
-
-
 /** This function will take a character, and an end of word boolean as a parameters,
  * then it will return a new node address that has been initialized with the passed values.
  *
@@ -746,25 +684,25 @@ int nodeHasChildren(TrieNode *node) {
 TrieNode *createNode(char value, int EOW) {
     TrieNode *node = (TrieNode *) malloc(sizeof(TrieNode));
     if (node == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
-     		return NULL;
-        #else
-            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new node", "trie data structure");
-     		exit(FAILED_ALLOCATION);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = FAILED_ALLOCATION;
+        return NULL;
+#else
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new node", "trie data structure");
+        exit(FAILED_ALLOCATION);
+#endif
 
     }
 
     node->characters = (TrieNode **) calloc(sizeof(void *), 26);
     if (node->characters == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-     		ERROR_TEST->errorCode = FAILED_ALLOCATION;
-     		return NULL;
-        #else
-            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new node characters array", "trie data structure");
-     		exit(FAILED_ALLOCATION);
-     	#endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = FAILED_ALLOCATION;
+        return NULL;
+#else
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "new node characters array", "trie data structure");
+        exit(FAILED_ALLOCATION);
+#endif
 
     }
 
@@ -774,9 +712,6 @@ TrieNode *createNode(char value, int EOW) {
     return node;
 
 }
-
-
-
 
 
 /** This function will take a node address as a parameter,
@@ -793,17 +728,12 @@ void freeNode(TrieNode *node) {
 }
 
 
-
-
 /** This function is useful for the generateIndices function, to sort the keyHolder array*/
 
 int comparator(const void *p1, const void *p2) {
-    float subVal = ((KeyHolder *)p1)->weight - ((KeyHolder *)p2)->weight;
+    float subVal = ((KeyHolder *) p1)->weight - ((KeyHolder *) p2)->weight;
     return subVal >= 0 ? (int) ceilf(subVal) : (int) floorf(subVal);
 }
-
-
-
 
 
 /** This function will take a character as a parameter,
@@ -822,13 +752,13 @@ int *generateIndices(char c) {
             arr[i] = i;
 
         return arr;
-    } else if ( ! (c >= 'a' && c <= 'z') ) {
+    } else if (!(c >= 'a' && c <= 'z')) {
         return NULL;
     }
 
     char matrix[3][10] = {
-            {'q' , 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'},
-            {'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', '\0'},
+            {'q', 'w', 'e', 'r', 't', 'y', 'u', 'i',  'o',  'p'},
+            {'a', 's', 'd', 'f', 'g', 'h', 'j', 'k',  'l',  '\0'},
             {'z', 'x', 'c', 'v', 'b', 'n', 'm', '\0', '\0', '\0'}
     };
 
@@ -841,7 +771,7 @@ int *generateIndices(char c) {
                 break;
             }
         }
-        if (row && col || (!row && !col && c == 'q') )
+        if (row && col || (!row && !col && c == 'q'))
             break;
 
     }
@@ -854,8 +784,8 @@ int *generateIndices(char c) {
                 continue;
 
             keys[keyIndex].c = matrix[i][j];
-            float pow1 = powf((float ) i - (float ) row, 2);
-            float pow2 = powf((float ) j - (float ) col, 2);
+            float pow1 = powf((float) i - (float) row, 2);
+            float pow2 = powf((float) j - (float) col, 2);
             float root = sqrtf(pow1 + pow2);
             keys[keyIndex++].weight = root;
 
@@ -871,7 +801,6 @@ int *generateIndices(char c) {
     return arr;
 
 }
-
 
 
 /** The free function that will free the words in the array list that will be returned to the user,

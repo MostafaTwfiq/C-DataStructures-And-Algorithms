@@ -1,7 +1,6 @@
 #include "PriorityQueueTest.h"
 
 
-
 #include "../../../../CuTest/CuTest.h"
 #include "../../../../../System/Utils.h"
 #include "../../../../../DataStructure/Queues/Headers/PriorityQueue.h"
@@ -23,8 +22,6 @@ int *generateIntPointerPQT(int integer) {
 }
 
 
-
-
 /** This function will compare to integers pointers,
  * then it will return zero if they are equal, negative number if the second integer is bigger,
  * and positive number if the first integer is bigger.
@@ -34,11 +31,8 @@ int *generateIntPointerPQT(int integer) {
  */
 
 int compareIntPointersPQT(const void *a, const void *b) {
-    return *(int *)a - *(int *)b;
+    return *(int *) a - *(int *) b;
 }
-
-
-
 
 
 /** This function will take a char array
@@ -50,14 +44,13 @@ int compareIntPointersPQT(const void *a, const void *b) {
 
 char *generateCharPointerPQT(char *ch) {
 
-    char *newCh = (char *) malloc( sizeof(char) * (strlen(ch) + 1) );
+    char *newCh = (char *) malloc(sizeof(char) * (strlen(ch) + 1));
 
     strcpy(newCh, ch);
 
     return newCh;
 
 }
-
 
 
 void testInvalidPriorityQueueInitialization(CuTest *cuTest) {
@@ -68,7 +61,6 @@ void testInvalidPriorityQueueInitialization(CuTest *cuTest) {
 }
 
 
-
 void testValidPriorityQueueInitialization(CuTest *cuTest) {
 
     PriorityQueue *pQueue = priorityQueueInitialization(free, compareIntPointersPQT);
@@ -77,8 +69,6 @@ void testValidPriorityQueueInitialization(CuTest *cuTest) {
     destroyPQueue(pQueue);
 
 }
-
-
 
 
 void testPriorityQueueEnqueue(CuTest *cuTest) {
@@ -104,9 +94,6 @@ void testPriorityQueueEnqueue(CuTest *cuTest) {
     destroyPQueue(pQueue);
 
 }
-
-
-
 
 
 void testPriorityQueueEnqueueAll(CuTest *cuTest) {
@@ -139,9 +126,6 @@ void testPriorityQueueEnqueueAll(CuTest *cuTest) {
 }
 
 
-
-
-
 void testPriorityQueueDepQueue(CuTest *cuTest) {
 
     PriorityQueue *pQueue = priorityQueueInitialization(free, compareIntPointersPQT);
@@ -172,10 +156,6 @@ void testPriorityQueueDepQueue(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testPriorityQueuePeek(CuTest *cuTest) {
 
     PriorityQueue *pQueue = priorityQueueInitialization(free, compareIntPointersPQT);
@@ -203,9 +183,6 @@ void testPriorityQueuePeek(CuTest *cuTest) {
     destroyPQueue(pQueue);
 
 }
-
-
-
 
 
 void testPriorityQueueGetLength(CuTest *cuTest) {
@@ -242,8 +219,6 @@ void testPriorityQueueGetLength(CuTest *cuTest) {
 }
 
 
-
-
 void testPriorityQueueIsEmpty(CuTest *cuTest) {
 
     PriorityQueue *pQueue = priorityQueueInitialization(free, compareIntPointersPQT);
@@ -264,9 +239,6 @@ void testPriorityQueueIsEmpty(CuTest *cuTest) {
     destroyPQueue(pQueue);
 
 }
-
-
-
 
 
 void testPriorityQueueToArray(CuTest *cuTest) {
@@ -292,10 +264,6 @@ void testPriorityQueueToArray(CuTest *cuTest) {
     destroyPQueue(pQueue);
 
 }
-
-
-
-
 
 
 void testClearPriorityQueue(CuTest *cuTest) {
@@ -324,10 +292,6 @@ void testClearPriorityQueue(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testDestroyPriorityQueue(CuTest *cuTest) {
 
     PriorityQueue *pQueue = priorityQueueInitialization(free, compareIntPointersPQT);
@@ -345,16 +309,12 @@ void testDestroyPriorityQueue(CuTest *cuTest) {
 }
 
 
-
-
-
 typedef struct PQueueTestStruct {
 
     int iData;
     char *cData;
 
 } PQueueTestStruct;
-
 
 
 void freePriorityQueueTestStruct(void *item) {
@@ -373,11 +333,10 @@ int pQueueTestStructComp(const void *item1, const void *item2) {
 }
 
 
-
 PQueueTestStruct *generatePriorityQueueTestStruct(int value, char *str) {
 
     PQueueTestStruct *q = (PQueueTestStruct *) malloc(sizeof(PQueueTestStruct));
-    q->cData = (char *) malloc(sizeof(char ) * (strlen(str) + 1) );
+    q->cData = (char *) malloc(sizeof(char) * (strlen(str) + 1));
     strcpy(q->cData, str);
 
     q->iData = value;
@@ -387,12 +346,11 @@ PQueueTestStruct *generatePriorityQueueTestStruct(int value, char *str) {
 }
 
 
-
-
 void generalPriorityQueueTest(CuTest *cuTest) {
 
     PriorityQueue *pQueue = priorityQueueInitialization(freePriorityQueueTestStruct, pQueueTestStructComp);
-    char numbersStr[14][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"};
+    char numbersStr[14][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven",
+                               "twelve", "thirteen", "fourteen"};
 
 
     CuAssertIntEquals(cuTest, 0, pQueueGetLength(pQueue));
@@ -443,13 +401,6 @@ void generalPriorityQueueTest(CuTest *cuTest) {
 }
 
 
-
-
-
-
-
-
-
 CuSuite *createPriorityQueueTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
@@ -473,10 +424,9 @@ CuSuite *createPriorityQueueTestsSuite(void) {
 }
 
 
-
 void priorityQueueUnitTest(void) {
 
-    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
+    ERROR_TEST = (ErrorTestStruct *) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Priority pQueue Test**\n");

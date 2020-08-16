@@ -23,7 +23,6 @@ typedef struct BinaryTreeNode {
 } BinaryTreeNode;
 
 
-
 /** @struct BinaryTree
  *  @brief This structure implements a basic generic Binary Tree.
  *  @var BinaryTree:: root
@@ -39,10 +38,11 @@ typedef struct BinaryTreeNode {
 typedef struct BinaryTree {
     BinaryTreeNode *root;
     int count;
+
     int (*cmp)(const void *, const void *);
+
     void (*freeFn)(void *);
 } BinaryTree;
-
 
 
 BinaryTree *binaryTreeInitialization(void (*freeFun)(void *), int (*cmp)(const void *, const void *));
@@ -74,7 +74,6 @@ void **binaryTreeToArray(BinaryTree *tree);
 void clearBinaryTree(BinaryTree *tree);
 
 void destroyBinaryTree(BinaryTree *tree);
-
 
 
 #ifdef __cplusplus

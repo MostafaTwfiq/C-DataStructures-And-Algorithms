@@ -9,10 +9,6 @@
 #include "../../../Unit Test/CuTest/CuTest.h"
 
 
-
-
-
-
 /** This function is an empty function,
  * will be useful to use the hash map without freeing the keys.
  *
@@ -20,8 +16,6 @@
  */
 
 void nullFreeFunArrAlg(void *item) {}
-
-
 
 
 /** This function takes an integer pointer,
@@ -37,7 +31,6 @@ void intFreeFunArrAlg(void *n) {
 }
 
 
-
 /** This function will take two integers pointers,
  * then it will compare them.
  *
@@ -48,12 +41,9 @@ void intFreeFunArrAlg(void *n) {
  * @return it will return the result of the comparison, zero if they are equal, minus integer if the second bigger, and positive integer if the first bigger
  */
 
-int intCmpArrAlg(const void *n1, const void * n2) {
-    return *(int *)n1 - *(int *)n2;
+int intCmpArrAlg(const void *n1, const void *n2) {
+    return *(int *) n1 - *(int *) n2;
 }
-
-
-
 
 
 /** This function takes an integer number pointer,
@@ -74,9 +64,6 @@ unsigned int *generateIntPointerArrAlg(unsigned int *num) {
 }
 
 
-
-
-
 /** This function will take an array then it will reverse the array.
  *
  * Time Complexity: O (n).
@@ -91,29 +78,29 @@ unsigned int *generateIntPointerArrAlg(unsigned int *num) {
 void reverseArray(void *arr, int length, int elemSize) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "reversing array");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "reversing array");
+        exit(NULL_POINTER);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "reversing array");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "reversing array");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "reversing array");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "reversing array");
+        exit(INVALID_ARG);
+#endif
     }
 
 
@@ -124,13 +111,6 @@ void reverseArray(void *arr, int length, int elemSize) {
 
 
 }
-
-
-
-
-
-
-
 
 
 /** This function will take an array then,
@@ -157,48 +137,49 @@ void reverseArray(void *arr, int length, int elemSize) {
  * @return it will return the most frequent value in the array, or it will return NULL if the array are empty
  */
 
-void *mostFrequentArrValueH(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *), int (*hashFun)(const void *)) {
+void *mostFrequentArrValueH(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *),
+                            int (*hashFun)(const void *)) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "most frequent value algorithm");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "most frequent value algorithm");
+        exit(NULL_POINTER);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "most frequent value algorithm");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "most frequent value algorithm");
+        exit(INVALID_ARG);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "most frequent value algorithm");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "most frequent value algorithm");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "most frequent value algorithm");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "most frequent value algorithm");
+        exit(INVALID_ARG);
+#endif
     } else if (hashFun == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "hash function pointer", "most frequent value algorithm");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "hash function pointer", "most frequent value algorithm");
+        exit(INVALID_ARG);
+#endif
     }
 
     char *oneBytePointer = (char *) arr;
@@ -225,9 +206,9 @@ void *mostFrequentArrValueH(void *arr, int length, int elemSize, int (*cmp)(cons
 
     for (int i = 0; i < entriesLength; i++) {
 
-        if (mostFreq < *(int *)mapEntries[i]->item) {
+        if (mostFreq < *(int *) mapEntries[i]->item) {
             mostFreqValue = mapEntries[i]->key;
-            mostFreq = *(int *)mapEntries[i]->item;
+            mostFreq = *(int *) mapEntries[i]->item;
         }
 
         hashMapDelete(countingMap, mapEntries[i]->key);
@@ -240,15 +221,6 @@ void *mostFrequentArrValueH(void *arr, int length, int elemSize, int (*cmp)(cons
     return mostFreqValue;
 
 }
-
-
-
-
-
-
-
-
-
 
 
 /** This function will take an array then,
@@ -274,43 +246,43 @@ void *mostFrequentArrValueH(void *arr, int length, int elemSize, int (*cmp)(cons
 void *mostFrequentArrValueA(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "most frequent value algorithm");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "most frequent value algorithm");
+        exit(NULL_POINTER);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "most frequent value algorithm");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "most frequent value algorithm");
+        exit(INVALID_ARG);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "most frequent value algorithm");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "most frequent value algorithm");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "most frequent value algorithm");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "most frequent value algorithm");
+        exit(INVALID_ARG);
+#endif
     }
 
     char *oneBytePointer = (char *) arr;
 
-    Vector *valuesVector = vectorInitialization( length / 2 == 0  ? 1 : length / 2, nullFreeFunArrAlg, cmp);
-    Vector *counterVector = vectorInitialization( length / 2 == 0  ? 1 : length / 2, intFreeFunArrAlg, intCmpArrAlg);
+    Vector *valuesVector = vectorInitialization(length / 2 == 0 ? 1 : length / 2, nullFreeFunArrAlg, cmp);
+    Vector *counterVector = vectorInitialization(length / 2 == 0 ? 1 : length / 2, intFreeFunArrAlg, intCmpArrAlg);
     unsigned int oneValue = 1;
 
     for (int i = 0; i < length; i++) {
@@ -321,8 +293,7 @@ void *mostFrequentArrValueA(void *arr, int length, int elemSize, int (*cmp)(cons
         if (currentItemIndex == -1) {
             vectorAdd(valuesVector, currentItem);
             vectorAdd(counterVector, generateIntPointerArrAlg(&oneValue));
-        }
-        else {
+        } else {
             int *currentFreq = vectorGet(counterVector, currentItemIndex);
             *currentFreq += 1;
         }
@@ -354,12 +325,6 @@ void *mostFrequentArrValueA(void *arr, int length, int elemSize, int (*cmp)(cons
 }
 
 
-
-
-
-
-
-
 /** This function will take an array then it will print it.
  *
  * The printing will be like this:
@@ -379,44 +344,44 @@ void *mostFrequentArrValueA(void *arr, int length, int elemSize, int (*cmp)(cons
 void printArr(void *arr, int length, int elemSize, void (*printFun)(void *)) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "printing array");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "printing array");
+        exit(NULL_POINTER);
+#endif
     } else if (printFun == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "printing function pointer", "printing array");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "printing function pointer", "printing array");
+        exit(INVALID_ARG);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "printing array");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "printing array");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "printing array");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "printing array");
+        exit(INVALID_ARG);
+#endif
     }
 
 
-    #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-    #else
-        fprintf(stdout, "[");
-    #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+#else
+    fprintf(stdout, "[");
+#endif
 
     char *oneBytePointer = (char *) arr;
 
@@ -424,29 +389,24 @@ void printArr(void *arr, int length, int elemSize, void (*printFun)(void *)) {
 
         printFun(oneBytePointer + i * elemSize);
 
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-        #else
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+#else
 
-            if (i != length - 1)
-                fprintf(stdout, ", ");
+        if (i != length - 1)
+            fprintf(stdout, ", ");
 
-        #endif
+#endif
 
     }
 
 
-    #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-    #else
-        fprintf(stdout, "]");
-    #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+#else
+    fprintf(stdout, "]");
+#endif
 
 
 }
-
-
-
-
-
 
 
 /** This function will take an array and resize it using realloc function,
@@ -463,37 +423,34 @@ void printArr(void *arr, int length, int elemSize, void (*printFun)(void *)) {
 void *arrResize(void *arr, int elemSize, int newLength) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "arr resize function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "arr resize function");
+        exit(NULL_POINTER);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "arr resize function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "arr resize function");
+        exit(INVALID_ARG);
+#endif
     } else if (newLength <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "new Length", "arr resize function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new Length", "arr resize function");
+        exit(INVALID_ARG);
+#endif
     }
 
     return realloc(arr, newLength * elemSize);
 
 }
-
-
-
 
 
 /** This function will take an array with a new length,
@@ -512,37 +469,37 @@ void *arrResize(void *arr, int elemSize, int newLength) {
 void *arrResizeAndCpy(void *arr, int length, int elemSize, int newLength) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array resize and copy function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array resize and copy function");
+        exit(NULL_POINTER);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array resize and copy function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array resize and copy function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array resize and copy function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array resize and copy function");
+        exit(INVALID_ARG);
+#endif
     } else if (newLength < length) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "new length", "array resize and copy function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new length", "array resize and copy function");
+        exit(INVALID_ARG);
+#endif
     }
 
     void *newArr = (void *) malloc(elemSize * newLength);
@@ -551,13 +508,6 @@ void *arrResizeAndCpy(void *arr, int length, int elemSize, int newLength) {
     return newArr;
 
 }
-
-
-
-
-
-
-
 
 
 /** This function will take an array with a new length,
@@ -579,45 +529,45 @@ void *arrResizeAndCpy(void *arr, int length, int elemSize, int newLength) {
 void *arrResizeOfRangeAndCpy(void *arr, int length, int elemSize, int startIndex, int endIndex, int newLength) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array resize of range and copy function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array resize of range and copy function");
+        exit(NULL_POINTER);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array resize of range and copy function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array resize of range and copy function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array resize of range and copy function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array resize of range and copy function");
+        exit(INVALID_ARG);
+#endif
     } else if (startIndex < 0 || startIndex > endIndex || endIndex >= length) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "range of copy", "array resize of range and copy function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "range of copy", "array resize of range and copy function");
+        exit(INVALID_ARG);
+#endif
     } else if (newLength < (endIndex - startIndex + 1)) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "new length", "array resize of range and copy function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new length", "array resize of range and copy function");
+        exit(INVALID_ARG);
+#endif
     }
 
     char *oneBytePointer = (char *) arr;
@@ -628,14 +578,6 @@ void *arrResizeOfRangeAndCpy(void *arr, int length, int elemSize, int startIndex
     return newArr;
 
 }
-
-
-
-
-
-
-
-
 
 
 /** This function will take an array with a new length,
@@ -653,48 +595,49 @@ void *arrResizeOfRangeAndCpy(void *arr, int length, int elemSize, int startIndex
  * @return it will return the new array pointer
  */
 
-void *arrResizeAndCpyC(void *arr, int length, int elemSize, int newLength, void (*copyFun)(const void *, const void *)) {
+void *
+arrResizeAndCpyC(void *arr, int length, int elemSize, int newLength, void (*copyFun)(const void *, const void *)) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "custom array resize and copy function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "custom array resize and copy function");
+        exit(NULL_POINTER);
+#endif
     } else if (copyFun == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "copying function pointer", "custom array resize and copy function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "copying function pointer", "custom array resize and copy function");
+        exit(INVALID_ARG);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "custom array resize and copy function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "custom array resize and copy function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "custom array resize and copy function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "custom array resize and copy function");
+        exit(INVALID_ARG);
+#endif
     } else if (newLength < length) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "new length", "custom array resize and copy function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new length", "custom array resize and copy function");
+        exit(INVALID_ARG);
+#endif
     }
 
     char *oneBytePointer = (char *) arr;
@@ -706,13 +649,6 @@ void *arrResizeAndCpyC(void *arr, int length, int elemSize, int newLength, void 
     return newArr;
 
 }
-
-
-
-
-
-
-
 
 
 /** This function will take an array with a new length,
@@ -732,56 +668,58 @@ void *arrResizeAndCpyC(void *arr, int length, int elemSize, int newLength, void 
  * @return it will return the new array pointer
  */
 
-void *arrResizeOfRangeAndCpyC(void *arr, int length, int elemSize, int startIndex, int endIndex, int newLength, void (*copyFun)(const void *, const void *)) {
+void *arrResizeOfRangeAndCpyC(void *arr, int length, int elemSize, int startIndex, int endIndex, int newLength,
+                              void (*copyFun)(const void *, const void *)) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "custom array resize of range and copy function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "custom array resize of range and copy function");
+        exit(NULL_POINTER);
+#endif
     } else if (copyFun == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "copying function pointer", "custom array resize of range and copy function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "copying function pointer",
+                "custom array resize of range and copy function");
+        exit(INVALID_ARG);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "custom array resize of range and copy function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "custom array resize of range and copy function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "custom array resize of range and copy function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "custom array resize of range and copy function");
+        exit(INVALID_ARG);
+#endif
     } else if (startIndex < 0 || startIndex > endIndex || endIndex >= length) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "range of copy", "custom array resize of range and copy function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "range of copy", "custom array resize of range and copy function");
+        exit(INVALID_ARG);
+#endif
     } else if (newLength < (endIndex - startIndex + 1)) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "new length", "custom array resize of range and copy function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new length", "custom array resize of range and copy function");
+        exit(INVALID_ARG);
+#endif
     }
 
 
@@ -794,9 +732,6 @@ void *arrResizeOfRangeAndCpyC(void *arr, int length, int elemSize, int startInde
     return (void *) newArr;
 
 }
-
-
-
 
 
 /** This function will take an array,
@@ -813,29 +748,29 @@ void *arrResizeOfRangeAndCpyC(void *arr, int length, int elemSize, int startInde
 void *arrCopy(void *arr, int length, int elemSize) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array copy function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array copy function");
+        exit(NULL_POINTER);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array copy function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array copy function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array copy function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array copy function");
+        exit(INVALID_ARG);
+#endif
     }
 
 
@@ -846,15 +781,6 @@ void *arrCopy(void *arr, int length, int elemSize) {
     return newArr;
 
 }
-
-
-
-
-
-
-
-
-
 
 
 /** This function will take an array,
@@ -873,37 +799,37 @@ void *arrCopy(void *arr, int length, int elemSize) {
 void *arrCopyC(void *arr, int length, int elemSize, void (*copyFun)(const void *, const void *)) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array custom copy function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array custom copy function");
+        exit(NULL_POINTER);
+#endif
     } else if (copyFun == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "copying function pointer", "array custom copy function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "copying function pointer", "array custom copy function");
+        exit(INVALID_ARG);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array custom copy function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array custom copy function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array custom copy function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array custom copy function");
+        exit(INVALID_ARG);
+#endif
     }
 
     char *oneBytePointer = (char *) arr;
@@ -915,16 +841,6 @@ void *arrCopyC(void *arr, int length, int elemSize, void (*copyFun)(const void *
     return (void *) newArr;
 
 }
-
-
-
-
-
-
-
-
-
-
 
 
 /** This function will take an array and a range,
@@ -941,58 +857,48 @@ void *arrCopyC(void *arr, int length, int elemSize, void (*copyFun)(const void *
 void *arrCopyOfRange(void *arr, int length, int elemSize, int startIndex, int endIndex) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array copy of range function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array copy of range function");
+        exit(NULL_POINTER);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array copy of range function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array copy of range function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array copy of range function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array copy of range function");
+        exit(INVALID_ARG);
+#endif
     } else if (startIndex < 0 || startIndex > endIndex || endIndex >= length) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "range of copy", "array copy of range function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "range of copy", "array copy of range function");
+        exit(INVALID_ARG);
+#endif
     }
 
 
     char *oneBytePointer = (char *) arr;
-    void *newArr = (void *) malloc(elemSize * (endIndex - startIndex + 1) );
+    void *newArr = (void *) malloc(elemSize * (endIndex - startIndex + 1));
 
-    memcpy(newArr, oneBytePointer + startIndex * elemSize, elemSize * (endIndex - startIndex + 1) );
+    memcpy(newArr, oneBytePointer + startIndex * elemSize, elemSize * (endIndex - startIndex + 1));
 
     return newArr;
 
 }
-
-
-
-
-
-
-
-
-
-
 
 
 /** This function will take an array and a range,
@@ -1010,53 +916,54 @@ void *arrCopyOfRange(void *arr, int length, int elemSize, int startIndex, int en
  * @return it will return the new copied array
  */
 
-void *arrCopyOfRangeC(void *arr, int length, int elemSize, int startIndex, int endIndex, void (*copyFun)(const void *, const void *)) {
+void *arrCopyOfRangeC(void *arr, int length, int elemSize, int startIndex, int endIndex,
+                      void (*copyFun)(const void *, const void *)) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array custom copy of range function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array custom copy of range function");
+        exit(NULL_POINTER);
+#endif
     } else if (copyFun == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "copying function pointer", "array custom copy of range function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "copying function pointer", "array custom copy of range function");
+        exit(INVALID_ARG);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array custom copy of range function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array custom copy of range function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array custom copy of range function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array custom copy of range function");
+        exit(INVALID_ARG);
+#endif
     } else if (startIndex < 0 || startIndex > endIndex || endIndex >= length) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "range of copy", "array custom copy of range function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "range of copy", "array custom copy of range function");
+        exit(INVALID_ARG);
+#endif
     }
 
 
     char *oneBytePointer = (char *) arr;
-    char *newArr = (void *) malloc(elemSize * (endIndex - startIndex + 1) );
+    char *newArr = (void *) malloc(elemSize * (endIndex - startIndex + 1));
 
     for (int i = startIndex; i <= endIndex; i++)
         copyFun(newArr + (i - startIndex) * elemSize, oneBytePointer + i * elemSize);
@@ -1064,14 +971,6 @@ void *arrCopyOfRangeC(void *arr, int length, int elemSize, int startIndex, int e
     return (void *) newArr;
 
 }
-
-
-
-
-
-
-
-
 
 
 /** This function will take an array and a value,
@@ -1088,37 +987,37 @@ void *arrCopyOfRangeC(void *arr, int length, int elemSize, int startIndex, int e
 void fillArr(void *arr, void *fillValue, int length, int elemSize) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "fill array function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "fill array function");
+        exit(NULL_POINTER);
+#endif
     } else if (fillValue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "fill value pointer", "fill array function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "fill value pointer", "fill array function");
+        exit(INVALID_ARG);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "fill array function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "fill array function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "fill array function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "fill array function");
+        exit(INVALID_ARG);
+#endif
     }
 
     char *oneBytePointer = (char *) arr;
@@ -1126,12 +1025,6 @@ void fillArr(void *arr, void *fillValue, int length, int elemSize) {
         memcpy(oneBytePointer + i * elemSize, fillValue, elemSize);
 
 }
-
-
-
-
-
-
 
 
 /** This function will take an array and a value,
@@ -1150,45 +1043,45 @@ void fillArr(void *arr, void *fillValue, int length, int elemSize) {
 void fillArrC(void *arr, void *fillValue, int length, int elemSize, void (*copyFun)(const void *, const void *)) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "fill array custom function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "fill array custom function");
+        exit(NULL_POINTER);
+#endif
     } else if (fillValue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "fill value pointer", "fill array custom function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "fill value pointer", "fill array custom function");
+        exit(INVALID_ARG);
+#endif
     } else if (copyFun == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "copy function pointer", "fill array custom function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "copy function pointer", "fill array custom function");
+        exit(INVALID_ARG);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "fill array custom function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "fill array custom function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "fill array custom function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "fill array custom function");
+        exit(INVALID_ARG);
+#endif
     }
 
     char *oneBytePointer = (char *) arr;
@@ -1197,15 +1090,6 @@ void fillArrC(void *arr, void *fillValue, int length, int elemSize, void (*copyF
         copyFun(oneBytePointer + i * elemSize, fillValue);
 
 }
-
-
-
-
-
-
-
-
-
 
 
 /** This function will fill the passed array with the passed value,
@@ -1222,45 +1106,45 @@ void fillArrC(void *arr, void *fillValue, int length, int elemSize, void (*copyF
 void fillArrOfRange(void *arr, void *fillValue, int length, int elemSize, int startIndex, int endIndex) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "fill array of range function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "fill array of range function");
+        exit(NULL_POINTER);
+#endif
     } else if (fillValue == 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "fill value pointer", "fill array of range function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "fill value pointer", "fill array of range function");
+        exit(INVALID_ARG);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "fill array of range function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "fill array of range function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "fill array of range function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "fill array of range function");
+        exit(INVALID_ARG);
+#endif
     } else if (startIndex < 0 || startIndex > endIndex || endIndex >= length) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "range of copy", "fill array of range function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "range of copy", "fill array of range function");
+        exit(INVALID_ARG);
+#endif
     }
 
     char *oneBytePointer = (char *) arr;
@@ -1269,13 +1153,6 @@ void fillArrOfRange(void *arr, void *fillValue, int length, int elemSize, int st
         memcpy(oneBytePointer + i * elemSize, fillValue, elemSize);
 
 }
-
-
-
-
-
-
-
 
 
 /** This function will fill the passed array with the passed value,
@@ -1293,56 +1170,57 @@ void fillArrOfRange(void *arr, void *fillValue, int length, int elemSize, int st
  * @param copyFun the copy function pointer, that will be called to copy the values in the array
  */
 
-void fillArrOfRangeC(void *arr, void *fillValue, int length, int elemSize, int startIndex, int endIndex, void (*copyFun)(const void *, const void *)) {
+void fillArrOfRangeC(void *arr, void *fillValue, int length, int elemSize, int startIndex, int endIndex,
+                     void (*copyFun)(const void *, const void *)) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "fill array of range custom function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "fill array of range custom function");
+        exit(NULL_POINTER);
+#endif
     } else if (fillValue == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "fill value pointer", "fill array of range custom function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "fill value pointer", "fill array of range custom function");
+        exit(INVALID_ARG);
+#endif
     } else if (copyFun == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "copy function pointer", "fill array of range custom function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "copy function pointer", "fill array of range custom function");
+        exit(INVALID_ARG);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "fill array of range custom function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "fill array of range custom function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "fill array of range custom function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "fill array of range custom function");
+        exit(INVALID_ARG);
+#endif
     } else if (startIndex < 0 || startIndex > endIndex || endIndex >= length) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "range of copy", "fill array of range custom function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "range of copy", "fill array of range custom function");
+        exit(INVALID_ARG);
+#endif
     }
 
     char *oneBytePointer = (char *) arr;
@@ -1351,15 +1229,6 @@ void fillArrOfRangeC(void *arr, void *fillValue, int length, int elemSize, int s
         copyFun(oneBytePointer + i * elemSize, fillValue);
 
 }
-
-
-
-
-
-
-
-
-
 
 
 /** This function will take two arrays,
@@ -1378,45 +1247,45 @@ void fillArrOfRangeC(void *arr, void *fillValue, int length, int elemSize, int s
 int arrCompare(void *fArr, int fLength, void *sArr, int sLength, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (fArr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "first passed array", "array compare function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "first passed array", "array compare function");
+        exit(NULL_POINTER);
+#endif
     } else if (sArr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "second passed array", "array compare function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "second passed array", "array compare function");
+        exit(NULL_POINTER);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array compare function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array compare function");
+        exit(INVALID_ARG);
+#endif
     } else if (fLength < 0 || sLength < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "arrays length", "array compare function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "arrays length", "array compare function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array compare function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array compare function");
+        exit(INVALID_ARG);
+#endif
     }
 
     if (fLength != sLength)
@@ -1427,7 +1296,7 @@ int arrCompare(void *fArr, int fLength, void *sArr, int sLength, int elemSize, i
 
     for (int i = 0; i < fLength; i++) {
 
-        if ( cmp(fOneBytePointer + i * elemSize, sOneBytePointer + i * elemSize) != 0 )
+        if (cmp(fOneBytePointer + i * elemSize, sOneBytePointer + i * elemSize) != 0)
             return 0;
 
     }
@@ -1435,15 +1304,6 @@ int arrCompare(void *fArr, int fLength, void *sArr, int sLength, int elemSize, i
     return 1;
 
 }
-
-
-
-
-
-
-
-
-
 
 
 /** This function will take two array,
@@ -1462,56 +1322,57 @@ int arrCompare(void *fArr, int fLength, void *sArr, int sLength, int elemSize, i
  * @return it will return one if the values between the indices are equal, other wise it will return zero
  */
 
-int arrCompareOfRange(void *fArr, int fLength, void *sArr, int sLength, int elemSize, int startIndex, int endIndex, int (*cmp)(const void *, const void *)) {
+int arrCompareOfRange(void *fArr, int fLength, void *sArr, int sLength, int elemSize, int startIndex, int endIndex,
+                      int (*cmp)(const void *, const void *)) {
 
     if (fArr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "first passed array", "array compare of range function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "first passed array", "array compare of range function");
+        exit(NULL_POINTER);
+#endif
     } else if (sArr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "second passed array", "array compare of range function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "second passed array", "array compare of range function");
+        exit(NULL_POINTER);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array compare of range function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array compare of range function");
+        exit(INVALID_ARG);
+#endif
     } else if (fLength < 0 || sLength < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "arrays length", "array compare of range function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "arrays length", "array compare of range function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array compare of range function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array compare of range function");
+        exit(INVALID_ARG);
+#endif
     } else if (startIndex < 0 || startIndex > endIndex || endIndex >= fLength || endIndex >= sLength) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "range of compare", "array compare of range function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "range of compare", "array compare of range function");
+        exit(INVALID_ARG);
+#endif
     }
 
 
@@ -1520,7 +1381,7 @@ int arrCompareOfRange(void *fArr, int fLength, void *sArr, int sLength, int elem
 
     for (int i = startIndex; i <= endIndex; i++) {
 
-        if ( cmp(fOneBytePointer + i * elemSize, sOneBytePointer + i * elemSize) != 0 )
+        if (cmp(fOneBytePointer + i * elemSize, sOneBytePointer + i * elemSize) != 0)
             return 0;
 
     }
@@ -1528,15 +1389,6 @@ int arrCompareOfRange(void *fArr, int fLength, void *sArr, int sLength, int elem
     return 1;
 
 }
-
-
-
-
-
-
-
-
-
 
 
 /** This function will take two arrays,
@@ -1555,57 +1407,58 @@ int arrCompareOfRange(void *fArr, int fLength, void *sArr, int sLength, int elem
  * @return it will return the index of the first mismatch if found, other wise it will return -1
  */
 
-int arrMismatch(void *fArr, int fLength, void *sArr, int sLength, int elemSize, int (*cmp)(const void *, const void *)) {
+int
+arrMismatch(void *fArr, int fLength, void *sArr, int sLength, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (fArr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "first passed array", "array mismatch function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "first passed array", "array mismatch function");
+        exit(NULL_POINTER);
+#endif
     } else if (sArr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "second passed array", "array mismatch function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "second passed array", "array mismatch function");
+        exit(NULL_POINTER);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array mismatch function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array mismatch function");
+        exit(INVALID_ARG);
+#endif
     } else if (fLength < 0 || sLength < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "arrays length", "array mismatch function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "arrays length", "array mismatch function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array mismatch function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array mismatch function");
+        exit(INVALID_ARG);
+#endif
     }
 
 
     char *fOneBytePointer = (char *) fArr;
     char *sOneBytePointer = (char *) sArr;
 
-    for (int i = 0; i < ( fLength < sLength ? fLength : sLength ); i++) {
+    for (int i = 0; i < (fLength < sLength ? fLength : sLength); i++) {
 
-        if ( cmp(fOneBytePointer + i * elemSize, sOneBytePointer + i * elemSize) != 0 )
+        if (cmp(fOneBytePointer + i * elemSize, sOneBytePointer + i * elemSize) != 0)
             return i;
 
     }
@@ -1613,14 +1466,6 @@ int arrMismatch(void *fArr, int fLength, void *sArr, int sLength, int elemSize, 
     return -1;
 
 }
-
-
-
-
-
-
-
-
 
 
 /** This function will take two arrays,
@@ -1639,56 +1484,57 @@ int arrMismatch(void *fArr, int fLength, void *sArr, int sLength, int elemSize, 
  * @return it will return the index of the first mismatch if found, other wise it will return -1
  */
 
-int arrMismatchOfRange(void *fArr, int fLength, void *sArr, int sLength, int elemSize, int startIndex, int endIndex, int (*cmp)(const void *, const void *)) {
+int arrMismatchOfRange(void *fArr, int fLength, void *sArr, int sLength, int elemSize, int startIndex, int endIndex,
+                       int (*cmp)(const void *, const void *)) {
 
     if (fArr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "first passed array", "array mismatch of range function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "first passed array", "array mismatch of range function");
+        exit(NULL_POINTER);
+#endif
     } else if (sArr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "second passed array", "array mismatch of range function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "second passed array", "array mismatch of range function");
+        exit(NULL_POINTER);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array mismatch of range function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array mismatch of range function");
+        exit(INVALID_ARG);
+#endif
     } else if (fLength < 0 || sLength < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "arrays length", "array mismatch of range function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "arrays length", "array mismatch of range function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array mismatch of range function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array mismatch of range function");
+        exit(INVALID_ARG);
+#endif
     } else if (startIndex < 0 || startIndex > endIndex || endIndex >= fLength || endIndex >= sLength) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "range of compare", "array mismatch of range function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "range of compare", "array mismatch of range function");
+        exit(INVALID_ARG);
+#endif
     }
 
     char *fOneBytePointer = (char *) fArr;
@@ -1696,7 +1542,7 @@ int arrMismatchOfRange(void *fArr, int fLength, void *sArr, int sLength, int ele
 
     for (int i = startIndex; i <= endIndex; i++) {
 
-        if ( cmp(fOneBytePointer + i * elemSize, sOneBytePointer + i * elemSize) != 0 )
+        if (cmp(fOneBytePointer + i * elemSize, sOneBytePointer + i * elemSize) != 0)
             return i;
 
     }
@@ -1704,12 +1550,6 @@ int arrMismatchOfRange(void *fArr, int fLength, void *sArr, int sLength, int ele
     return -1;
 
 }
-
-
-
-
-
-
 
 
 /** This function will take two array,
@@ -1727,48 +1567,49 @@ int arrMismatchOfRange(void *fArr, int fLength, void *sArr, int sLength, int ele
  * @return it will return 1 if the two array has the same values, other wise it will return 0
  */
 
-int arrAnagramsS(void *fArr, int fLength, void *sArr, int sLength, int elemSize, int (*cmp)(const void *, const void *)) {
+int
+arrAnagramsS(void *fArr, int fLength, void *sArr, int sLength, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (fArr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "first passed array", "arrAnagramsS function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "first passed array", "arrAnagramsS function");
+        exit(NULL_POINTER);
+#endif
     } else if (sArr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "second passed array", "arrAnagramsS function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "second passed array", "arrAnagramsS function");
+        exit(NULL_POINTER);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "arrAnagramsS function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "arrAnagramsS function");
+        exit(INVALID_ARG);
+#endif
     } else if (fLength < 0 || sLength < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "arrays length", "arrAnagramsS function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "arrays length", "arrAnagramsS function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "arrAnagramsS function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "arrAnagramsS function");
+        exit(INVALID_ARG);
+#endif
     }
 
     if (fLength != sLength)
@@ -1781,7 +1622,7 @@ int arrAnagramsS(void *fArr, int fLength, void *sArr, int sLength, int elemSize,
     char *sOneBytePointer = (char *) sArr;
 
     for (int i = 0; i < fLength; i++) {
-        if ( cmp(fOneBytePointer + i * elemSize, sOneBytePointer + i * elemSize) != 0 )
+        if (cmp(fOneBytePointer + i * elemSize, sOneBytePointer + i * elemSize) != 0)
             return 0;
 
     }
@@ -1789,13 +1630,6 @@ int arrAnagramsS(void *fArr, int fLength, void *sArr, int sLength, int elemSize,
     return 1;
 
 }
-
-
-
-
-
-
-
 
 
 /** This function will take two array,
@@ -1818,56 +1652,57 @@ int arrAnagramsS(void *fArr, int fLength, void *sArr, int sLength, int elemSize,
  * @return it will return 1 if the two array has the same values, other wise it will return 0
  */
 
-int arrAnagramsH(void *fArr, int fLength, void *sArr, int sLength, int elemSize, int (*cmp)(const void *, const void *), int (*hashFun)(const void *)) {
+int arrAnagramsH(void *fArr, int fLength, void *sArr, int sLength, int elemSize, int (*cmp)(const void *, const void *),
+                 int (*hashFun)(const void *)) {
 
     if (fArr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "first passed array", "arrAnagramsH function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "first passed array", "arrAnagramsH function");
+        exit(NULL_POINTER);
+#endif
     } else if (sArr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "second passed array", "arrAnagramsH function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "second passed array", "arrAnagramsH function");
+        exit(NULL_POINTER);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "arrAnagramsH function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "arrAnagramsH function");
+        exit(INVALID_ARG);
+#endif
     } else if (hashFun == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "hash function pointer", "arrAnagramsH function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "hash function pointer", "arrAnagramsH function");
+        exit(INVALID_ARG);
+#endif
     } else if (fLength < 0 || sLength < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "arrays length", "arrAnagramsH function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "arrays length", "arrAnagramsH function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "arrAnagramsH function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "arrAnagramsH function");
+        exit(INVALID_ARG);
+#endif
     }
 
 
@@ -1899,8 +1734,7 @@ int arrAnagramsH(void *fArr, int fLength, void *sArr, int sLength, int elemSize,
         if (currentItemCount == NULL || *currentItemCount <= 0) {
             destroyHashMap(valuesCounterMap);
             return 0;
-        }
-        else
+        } else
             *currentItemCount -= 1;
 
     }
@@ -1910,12 +1744,6 @@ int arrAnagramsH(void *fArr, int fLength, void *sArr, int sLength, int elemSize,
     return 1;
 
 }
-
-
-
-
-
-
 
 
 /** This function will take an array,
@@ -1944,45 +1772,45 @@ int arrRemoveDuplicatesH(void *arr, int length, int elemSize,
                          void (*freeFun)(void *)) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array remove duplicates function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array remove duplicates function");
+        exit(NULL_POINTER);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array remove duplicates function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array remove duplicates function");
+        exit(INVALID_ARG);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array remove duplicates function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array remove duplicates function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array remove duplicates function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array remove duplicates function");
+        exit(INVALID_ARG);
+#endif
     } else if (hashFun == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "hash function pointer", "array remove duplicates function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "hash function pointer", "array remove duplicates function");
+        exit(INVALID_ARG);
+#endif
     }
 
     char *oneBytePointer = (char *) arr;
@@ -2017,13 +1845,6 @@ int arrRemoveDuplicatesH(void *arr, int length, int elemSize,
 }
 
 
-
-
-
-
-
-
-
 /** This function will take an array,
  * then it will remove all the duplicates values from the array.
  *
@@ -2045,37 +1866,37 @@ int arrRemoveDuplicatesA(void *arr, int length, int elemSize,
                          void (*freeFun)(void *)) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array remove duplicates function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array remove duplicates function");
+        exit(NULL_POINTER);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array remove duplicates function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array remove duplicates function");
+        exit(INVALID_ARG);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array remove duplicates function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array remove duplicates function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array remove duplicates function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array remove duplicates function");
+        exit(INVALID_ARG);
+#endif
     }
 
     char *oneBytePointer = (char *) arr;
@@ -2108,14 +1929,6 @@ int arrRemoveDuplicatesA(void *arr, int length, int elemSize,
 }
 
 
-
-
-
-
-
-
-
-
 /** This function will take an array and a values array,
  * then it will remove any value in the values array from the first array,
  * and finally the function will return the new length of the array.
@@ -2134,57 +1947,57 @@ int arrRemoveDuplicatesA(void *arr, int length, int elemSize,
  */
 
 int arrRemoveValues(void *arr, int arrLength, void *values, int valuesArrLength, int elemSize,
-                         int (*cmp)(const void *, const void *),
-                         void (*freeFun)(void *)) {
+                    int (*cmp)(const void *, const void *),
+                    void (*freeFun)(void *)) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array remove values function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array remove values function");
+        exit(NULL_POINTER);
+#endif
     } else if (values == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed values array", "array remove values function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed values array", "array remove values function");
+        exit(NULL_POINTER);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array remove values function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array remove values function");
+        exit(INVALID_ARG);
+#endif
     } else if (arrLength < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array remove values function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array remove values function");
+        exit(INVALID_ARG);
+#endif
     } else if (valuesArrLength < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "values array length", "array remove values function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "values array length", "array remove values function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array remove values function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array remove values function");
+        exit(INVALID_ARG);
+#endif
     }
 
 
@@ -2192,7 +2005,7 @@ int arrRemoveValues(void *arr, int arrLength, void *values, int valuesArrLength,
 
     for (int i = 0; i < arrLength; i++) {
 
-        if ( arrContains(values, oneBytePointer + i * elemSize, valuesArrLength, elemSize, cmp) ) {
+        if (arrContains(values, oneBytePointer + i * elemSize, valuesArrLength, elemSize, cmp)) {
 
             arrRemoveAtIndex(oneBytePointer, i, arrLength, elemSize, freeFun);
             arrLength--;
@@ -2205,10 +2018,6 @@ int arrRemoveValues(void *arr, int arrLength, void *values, int valuesArrLength,
     return arrLength;
 
 }
-
-
-
-
 
 
 /** This function will take an array and a values array,
@@ -2224,56 +2033,56 @@ int arrRemoveValues(void *arr, int arrLength, void *values, int valuesArrLength,
  */
 
 int arrCountValues(void *arr, int arrLength, void *values, int valuesArrLength, int elemSize,
-                    int (*cmp)(const void *, const void *)) {
+                   int (*cmp)(const void *, const void *)) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array count values function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array count values function");
+        exit(NULL_POINTER);
+#endif
     } else if (values == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed values array", "array count values function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed values array", "array count values function");
+        exit(NULL_POINTER);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array count values function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array count values function");
+        exit(INVALID_ARG);
+#endif
     } else if (arrLength < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array count values function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array count values function");
+        exit(INVALID_ARG);
+#endif
     } else if (valuesArrLength < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "values array length", "array count values function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "values array length", "array count values function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array count values function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array count values function");
+        exit(INVALID_ARG);
+#endif
     }
 
     char *oneBytePointer = (char *) arr;
@@ -2281,7 +2090,7 @@ int arrCountValues(void *arr, int arrLength, void *values, int valuesArrLength, 
     int counter = 0;
     for (int i = 0; i < arrLength; i++) {
 
-        if ( arrContains(values, oneBytePointer + i * elemSize, valuesArrLength, elemSize, cmp) )
+        if (arrContains(values, oneBytePointer + i * elemSize, valuesArrLength, elemSize, cmp))
             counter++;
 
     }
@@ -2289,11 +2098,6 @@ int arrCountValues(void *arr, int arrLength, void *values, int valuesArrLength, 
     return counter;
 
 }
-
-
-
-
-
 
 
 /** This function will check if the passed values array,
@@ -2310,56 +2114,56 @@ int arrCountValues(void *arr, int arrLength, void *values, int valuesArrLength, 
  */
 
 int isSubArr(void *arr, int arrLength, void *values, int valuesArrLength, int elemSize,
-                   int (*cmp)(const void *, const void *)) {
+             int (*cmp)(const void *, const void *)) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "is sub array function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "is sub array function");
+        exit(NULL_POINTER);
+#endif
     } else if (values == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed values array", "is sub array function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed values array", "is sub array function");
+        exit(NULL_POINTER);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "is sub array function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "is sub array function");
+        exit(INVALID_ARG);
+#endif
     } else if (arrLength < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "is sub array function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "is sub array function");
+        exit(INVALID_ARG);
+#endif
     } else if (valuesArrLength < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "values array length", "is sub array function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "values array length", "is sub array function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "is sub array function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "is sub array function");
+        exit(INVALID_ARG);
+#endif
     }
 
     if (valuesArrLength == 0)
@@ -2370,11 +2174,12 @@ int isSubArr(void *arr, int arrLength, void *values, int valuesArrLength, int el
 
     for (int i = 0; i <= arrLength - valuesArrLength; i++) {
 
-        if ( cmp(oneBytePointer + i * elemSize, valueArrCharPointer) == 0) {
+        if (cmp(oneBytePointer + i * elemSize, valueArrCharPointer) == 0) {
 
             for (int j = 0; j < valuesArrLength; j++) {
 
-                if (j == valuesArrLength - 1 && cmp(oneBytePointer + (i + j) * elemSize, valueArrCharPointer + j * elemSize) == 0)
+                if (j == valuesArrLength - 1 &&
+                    cmp(oneBytePointer + (i + j) * elemSize, valueArrCharPointer + j * elemSize) == 0)
                     return 1;
                 else if (cmp(oneBytePointer + (i + j) * elemSize, valueArrCharPointer + j * elemSize) != 0)
                     break;
@@ -2388,11 +2193,6 @@ int isSubArr(void *arr, int arrLength, void *values, int valuesArrLength, int el
     return 0;
 
 }
-
-
-
-
-
 
 
 /** This function will check if the passed values array,
@@ -2409,56 +2209,56 @@ int isSubArr(void *arr, int arrLength, void *values, int valuesArrLength, int el
  */
 
 int arrGetStartIndex(void *arr, int arrLength, void *values, int valuesArrLength, int elemSize,
-         int (*cmp)(const void *, const void *)) {
+                     int (*cmp)(const void *, const void *)) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array get start index function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array get start index function");
+        exit(NULL_POINTER);
+#endif
     } else if (values == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed values array", "array get start index function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed values array", "array get start index function");
+        exit(NULL_POINTER);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array get start index function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array get start index function");
+        exit(INVALID_ARG);
+#endif
     } else if (arrLength < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array get start index function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array get start index function");
+        exit(INVALID_ARG);
+#endif
     } else if (valuesArrLength < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "values array length", "array get start index function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "values array length", "array get start index function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array get start index function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array get start index function");
+        exit(INVALID_ARG);
+#endif
     }
 
 
@@ -2467,11 +2267,12 @@ int arrGetStartIndex(void *arr, int arrLength, void *values, int valuesArrLength
 
     for (int i = 0; i <= arrLength - valuesArrLength; i++) {
 
-        if ( cmp(oneBytePointer + i * elemSize, valueArrCharPointer) == 0) {
+        if (cmp(oneBytePointer + i * elemSize, valueArrCharPointer) == 0) {
 
             for (int j = 0; j < valuesArrLength; j++) {
 
-                if (j == valuesArrLength - 1 && cmp(oneBytePointer + (i + j) * elemSize, valueArrCharPointer + j * elemSize) == 0)
+                if (j == valuesArrLength - 1 &&
+                    cmp(oneBytePointer + (i + j) * elemSize, valueArrCharPointer + j * elemSize) == 0)
                     return i;
                 else if (cmp(oneBytePointer + (i + j) * elemSize, valueArrCharPointer + j * elemSize) != 0)
                     break;
@@ -2485,11 +2286,6 @@ int arrGetStartIndex(void *arr, int arrLength, void *values, int valuesArrLength
     return -1;
 
 }
-
-
-
-
-
 
 
 /** This function will take an array and value,
@@ -2506,52 +2302,52 @@ int arrGetStartIndex(void *arr, int arrLength, void *values, int valuesArrLength
 int arrContains(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array contains function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array contains function");
+        exit(NULL_POINTER);
+#endif
     } else if (value == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed value", "array contains function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed value", "array contains function");
+        exit(NULL_POINTER);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array contains function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array contains function");
+        exit(INVALID_ARG);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array contains function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array contains function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array contains function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array contains function");
+        exit(INVALID_ARG);
+#endif
     }
 
     char *oneBytePointer = (char *) arr;
 
     for (int i = 0; i < length; i++) {
 
-        if ( cmp(value, oneBytePointer + i * elemSize) == 0 )
+        if (cmp(value, oneBytePointer + i * elemSize) == 0)
             return 1;
 
     }
@@ -2559,12 +2355,6 @@ int arrContains(void *arr, void *value, int length, int elemSize, int (*cmp)(con
     return 0;
 
 }
-
-
-
-
-
-
 
 
 /** This function will take an array and index,
@@ -2583,37 +2373,37 @@ int arrContains(void *arr, void *value, int length, int elemSize, int (*cmp)(con
 void arrRemoveAtIndex(void *arr, int index, int length, int elemSize, void (*freeFun)(void *)) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array remove function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array remove function");
+        exit(NULL_POINTER);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array remove function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array remove function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array remove function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array remove function");
+        exit(INVALID_ARG);
+#endif
     } else if (index < 0 || index >= length) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, OUT_OF_RANGE_MESSAGE, "remove at index function array");
-            exit(OUT_OF_RANGE);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, OUT_OF_RANGE_MESSAGE, "remove at index function array");
+        exit(OUT_OF_RANGE);
+#endif
     }
 
     char *oneBytePointer = (char *) arr;
@@ -2625,12 +2415,6 @@ void arrRemoveAtIndex(void *arr, int index, int length, int elemSize, void (*fre
         memcpy(oneBytePointer + i * elemSize, oneBytePointer + (i + 1) * elemSize, elemSize);
 
 }
-
-
-
-
-
-
 
 
 /** This function will take an array,
@@ -2645,48 +2429,42 @@ void arrRemoveAtIndex(void *arr, int index, int length, int elemSize, void (*fre
 void arrSort(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array sort function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array sort function");
+        exit(NULL_POINTER);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array sort function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array sort function");
+        exit(INVALID_ARG);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array sort function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array sort function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array sort function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array sort function");
+        exit(INVALID_ARG);
+#endif
     }
 
     quickSort(arr, length, elemSize, cmp);
 
 }
-
-
-
-
-
-
 
 
 /** This function will take an array and a value,
@@ -2703,54 +2481,50 @@ void arrSort(void *arr, int length, int elemSize, int (*cmp)(const void *, const
 int arrGetFirst(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array get first function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array get first function");
+        exit(NULL_POINTER);
+#endif
     } else if (value == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "array get first function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "array get first function");
+        exit(INVALID_ARG);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array get first function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array get first function");
+        exit(INVALID_ARG);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array get first function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array get first function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array get first function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array get first function");
+        exit(INVALID_ARG);
+#endif
     }
 
     return linearSearch(arr, value, length, elemSize, cmp);
 
 }
-
-
-
-
 
 
 /** This function will take an array and a value,
@@ -2768,57 +2542,50 @@ int arrGetFirst(void *arr, void *value, int length, int elemSize, int (*cmp)(con
 int arrGetLast(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array get last function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array get last function");
+        exit(NULL_POINTER);
+#endif
     } else if (value == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "array get last function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "array get last function");
+        exit(INVALID_ARG);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array get last function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array get last function");
+        exit(INVALID_ARG);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array get last function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array get last function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array get last function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array get last function");
+        exit(INVALID_ARG);
+#endif
     }
 
     return linearSearchGetLast(arr, value, length, elemSize, cmp);
 
 }
-
-
-
-
-
-
-
 
 
 /** This function will take an array and a value,
@@ -2835,59 +2602,50 @@ int arrGetLast(void *arr, void *value, int length, int elemSize, int (*cmp)(cons
 Vector *arrGetAll(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array get all function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array get all function");
+        exit(NULL_POINTER);
+#endif
     } else if (value == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "array get all function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "array get all function");
+        exit(INVALID_ARG);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array get all function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array get all function");
+        exit(INVALID_ARG);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array get all function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array get all function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array get all function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array get all function");
+        exit(INVALID_ARG);
+#endif
     }
 
     return linearSearchGetAll(arr, value, length, elemSize, cmp);
 
 }
-
-
-
-
-
-
-
-
-
 
 
 /** This function will take an array and a value,
@@ -2905,56 +2663,50 @@ Vector *arrGetAll(void *arr, void *value, int length, int elemSize, int (*cmp)(c
 int arrBinarySearch(void *arr, void *value, int length, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array binary search function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array binary search function");
+        exit(NULL_POINTER);
+#endif
     } else if (value == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "array binary search function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "value pointer", "array binary search function");
+        exit(INVALID_ARG);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array binary search function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array binary search function");
+        exit(INVALID_ARG);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array binary search function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array binary search function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array binary search function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array binary search function");
+        exit(INVALID_ARG);
+#endif
     }
 
     return binarySearchI(arr, value, length, elemSize, cmp);
 
 }
-
-
-
-
-
-
 
 
 /** This function will check if the passed array is a palindrome or not,
@@ -2970,44 +2722,44 @@ int arrBinarySearch(void *arr, void *value, int length, int elemSize, int (*cmp)
 int arrIsPalindrome(void *arr, int length, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array is palindrome function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array is palindrome function");
+        exit(NULL_POINTER);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array is palindrome function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array is palindrome function");
+        exit(INVALID_ARG);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array is palindrome function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array is palindrome function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array is palindrome function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array is palindrome function");
+        exit(INVALID_ARG);
+#endif
     }
 
     char *oneBytePointer = (char *) arr;
 
     for (int i = 0; i < length / 2; i++) {
 
-        if ( cmp(oneBytePointer + i * elemSize, oneBytePointer + (length - 1 - i) * elemSize) != 0)
+        if (cmp(oneBytePointer + i * elemSize, oneBytePointer + (length - 1 - i) * elemSize) != 0)
             return 0;
 
     }
@@ -3015,13 +2767,6 @@ int arrIsPalindrome(void *arr, int length, int elemSize, int (*cmp)(const void *
     return 1;
 
 }
-
-
-
-
-
-
-
 
 
 /** This function will take two array,
@@ -3043,48 +2788,49 @@ int arrIsPalindrome(void *arr, int length, int elemSize, int (*cmp)(const void *
  * @return it will return 1 if the first and second array is rotation of each other, otherwise it will return 0
  */
 
-int arrIsRotation(void *fArr, int fLength, void *sArr, int sLength, int elemSize, int (*cmp)(const void *, const void *)) {
+int
+arrIsRotation(void *fArr, int fLength, void *sArr, int sLength, int elemSize, int (*cmp)(const void *, const void *)) {
 
     if (fArr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "first passed array", "array is rotation function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "first passed array", "array is rotation function");
+        exit(NULL_POINTER);
+#endif
     } else if (sArr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "second passed array", "array is rotation function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "second passed array", "array is rotation function");
+        exit(NULL_POINTER);
+#endif
     } else if (cmp == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array is rotation function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "comparator function pointer", "array is rotation function");
+        exit(INVALID_ARG);
+#endif
     } else if (fLength < 0 || sLength < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "arrays length", "array is rotation function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "arrays length", "array is rotation function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return -1;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array is rotation function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return -1;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array is rotation function");
+        exit(INVALID_ARG);
+#endif
     }
 
     if (fLength != sLength)
@@ -3095,7 +2841,7 @@ int arrIsRotation(void *fArr, int fLength, void *sArr, int sLength, int elemSize
 
     for (int i = 0; i < fLength; i++) {
 
-        if ( cmp(fOneBytePointer + i * elemSize, sOneBytePointer) == 0 ) {
+        if (cmp(fOneBytePointer + i * elemSize, sOneBytePointer) == 0) {
 
             int firstArrIndex = i;
             int secondArrIndex = 0;
@@ -3103,7 +2849,7 @@ int arrIsRotation(void *fArr, int fLength, void *sArr, int sLength, int elemSize
 
             while (secondArrIndex != sLength) {
 
-                if ( cmp(fOneBytePointer + firstArrIndex * elemSize, sOneBytePointer + secondArrIndex * elemSize) != 0 ) {
+                if (cmp(fOneBytePointer + firstArrIndex * elemSize, sOneBytePointer + secondArrIndex * elemSize) != 0) {
                     isRotationFlag = 0;
                     break;
                 }
@@ -3125,11 +2871,6 @@ int arrIsRotation(void *fArr, int fLength, void *sArr, int sLength, int elemSize
 }
 
 
-
-
-
-
-
 /** This function will take an array, index and value,
  * then it will free int item in the passed index, then memory copy the passed value in the index.
  *
@@ -3146,45 +2887,45 @@ int arrIsRotation(void *fArr, int fLength, void *sArr, int sLength, int elemSize
 void arrUpdateElem(void *arr, void *value, int length, int elemSize, int index, void (*freeFun)(void *)) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "arr update element function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "arr update element function");
+        exit(NULL_POINTER);
+#endif
     } else if (value == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "passed value", "arr update element function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "passed value", "arr update element function");
+        exit(INVALID_ARG);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "arr update element function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "arr update element function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "arr update element function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "arr update element function");
+        exit(INVALID_ARG);
+#endif
     } else if (index < 0 || index >= length) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, OUT_OF_RANGE_MESSAGE, "array add function");
-            exit(OUT_OF_RANGE);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, OUT_OF_RANGE_MESSAGE, "array add function");
+        exit(OUT_OF_RANGE);
+#endif
     }
 
     char *oneBytePointer = (char *) arr;
@@ -3195,12 +2936,6 @@ void arrUpdateElem(void *arr, void *value, int length, int elemSize, int index, 
     memcpy(oneBytePointer + index * elemSize, value, elemSize);
 
 }
-
-
-
-
-
-
 
 
 /** This function will take an array and a value,
@@ -3220,45 +2955,45 @@ void arrUpdateElem(void *arr, void *value, int length, int elemSize, int index, 
 void arrAdd(void *arr, void *value, int length, int elemSize, int index) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array add function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array add function");
+        exit(NULL_POINTER);
+#endif
     } else if (value == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "passed value", "array add function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "passed value", "array add function");
+        exit(INVALID_ARG);
+#endif
     } else if (length < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array add function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array add function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array add function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array add function");
+        exit(INVALID_ARG);
+#endif
     } else if (index < 0 || index >= length) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, OUT_OF_RANGE_MESSAGE, "array add function");
-            exit(OUT_OF_RANGE);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, OUT_OF_RANGE_MESSAGE, "array add function");
+        exit(OUT_OF_RANGE);
+#endif
     }
 
     char *oneBytePointer = (char *) arr;
@@ -3269,13 +3004,6 @@ void arrAdd(void *arr, void *value, int length, int elemSize, int index) {
     memcpy(oneBytePointer + index * elemSize, value, elemSize);
 
 }
-
-
-
-
-
-
-
 
 
 /** This function will take an array and a values array,
@@ -3296,53 +3024,53 @@ void arrAdd(void *arr, void *value, int length, int elemSize, int index) {
 void arrAddAll(void *arr, int arrLength, void *values, int valuesArrLength, int elemSize, int index) {
 
     if (arr == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array add all function");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "array add all function");
+        exit(NULL_POINTER);
+#endif
     } else if (values == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "passed values array", "array add all function");
-            exit(NULL_POINTER);
-        #endif
-    }  else if (arrLength < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array add all function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "passed values array", "array add all function");
+        exit(NULL_POINTER);
+#endif
+    } else if (arrLength < 0) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "array length", "array add all function");
+        exit(INVALID_ARG);
+#endif
     } else if (valuesArrLength < 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "values array length", "array add all function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "values array length", "array add all function");
+        exit(INVALID_ARG);
+#endif
     } else if (elemSize <= 0) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array add all function");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "element size", "array add all function");
+        exit(INVALID_ARG);
+#endif
     } else if (index < 0 || index >= arrLength) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, OUT_OF_RANGE_MESSAGE, "array add all function");
-            exit(OUT_OF_RANGE);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, OUT_OF_RANGE_MESSAGE, "array add all function");
+        exit(OUT_OF_RANGE);
+#endif
     }
 
     char *oneBytePointer = (char *) arr;

@@ -20,8 +20,6 @@ int *generateIntPointerLLT(int integer) {
 }
 
 
-
-
 /** This function will compare to integers pointers,
  * then it will return zero if they are equal, negative number if the second integer is bigger,
  * and positive number if the first integer is bigger.
@@ -31,11 +29,8 @@ int *generateIntPointerLLT(int integer) {
  */
 
 int compareIntPointersLLT(const void *a, const void *b) {
-    return *(int *)a - *(int *)b;
+    return *(int *) a - *(int *) b;
 }
-
-
-
 
 
 /** This function will take a char array
@@ -47,14 +42,13 @@ int compareIntPointersLLT(const void *a, const void *b) {
 
 char *generateCharPointerLLT(char *ch) {
 
-    char *newCh = (char *) malloc( sizeof(char) * (strlen(ch) + 1) );
+    char *newCh = (char *) malloc(sizeof(char) * (strlen(ch) + 1));
 
     strcpy(newCh, ch);
 
     return newCh;
 
 }
-
 
 
 /** This function will take a linked list then it will insert,
@@ -75,7 +69,6 @@ void linkedListAddFrom1To10Values(LinkedList *list) {
     free(arr);
 
 }
-
 
 
 void testInvalidLinkedListInitialization(CuTest *cuTest) {
@@ -110,12 +103,11 @@ void testLinkedListAddFirst(CuTest *cuTest) {
     linkedListAddFirst(list, generateIntPointerLLT(30));
 
     for (int i = list->length - 1; i >= 0; i--)
-        CuAssertIntEquals(cuTest, (i + 1) * 10, *(int *)linkedListGet(list, list->length - 1 - i));
+        CuAssertIntEquals(cuTest, (i + 1) * 10, *(int *) linkedListGet(list, list->length - 1 - i));
 
     destroyLinkedList(list);
 
 }
-
 
 
 void testLinkedListAddLast(CuTest *cuTest) {
@@ -132,13 +124,11 @@ void testLinkedListAddLast(CuTest *cuTest) {
     linkedListAddLast(list, generateIntPointerLLT(30));
 
     for (int i = 0; i < list->length; i++)
-        CuAssertIntEquals(cuTest, (i + 1) * 10, *(int *)linkedListGet(list, i));
+        CuAssertIntEquals(cuTest, (i + 1) * 10, *(int *) linkedListGet(list, i));
 
     destroyLinkedList(list);
 
 }
-
-
 
 
 void testLinkedListAddAtIndex(CuTest *cuTest) {
@@ -162,13 +152,11 @@ void testLinkedListAddAtIndex(CuTest *cuTest) {
     linkedListAddAtIndex(list, 3, generateIntPointerLLT(40));
 
     for (int i = 0; i < list->length; i++)
-        CuAssertIntEquals(cuTest, (i + 1) * 10, *(int *)linkedListGet(list, i));
+        CuAssertIntEquals(cuTest, (i + 1) * 10, *(int *) linkedListGet(list, i));
 
     destroyLinkedList(list);
 
 }
-
-
 
 
 void testLinkedListAddAll(CuTest *cuTest) {
@@ -189,14 +177,12 @@ void testLinkedListAddAll(CuTest *cuTest) {
     linkedListAddAll(list, (void **) arr, 10);
 
     for (int i = 0; i < list->length; i++)
-        CuAssertIntEquals(cuTest, (i + 1), *(int *)linkedListGet(list, i));
+        CuAssertIntEquals(cuTest, (i + 1), *(int *) linkedListGet(list, i));
 
     free(arr);
     destroyLinkedList(list);
 
 }
-
-
 
 
 void testLinkedListDeleteFirst(CuTest *cuTest) {
@@ -218,12 +204,11 @@ void testLinkedListDeleteFirst(CuTest *cuTest) {
 
 
     for (int i = 0; i < list->length; i++)
-        CuAssertIntEquals(cuTest, (i + 4), *(int *)linkedListGet(list, i));
+        CuAssertIntEquals(cuTest, (i + 4), *(int *) linkedListGet(list, i));
 
     destroyLinkedList(list);
 
 }
-
 
 
 void testLinkedListDeleteFirstWtoFr(CuTest *cuTest) {
@@ -254,13 +239,11 @@ void testLinkedListDeleteFirstWtoFr(CuTest *cuTest) {
 
 
     for (int i = 0; i < list->length; i++)
-        CuAssertIntEquals(cuTest, (i + 4), *(int *)linkedListGet(list, i));
+        CuAssertIntEquals(cuTest, (i + 4), *(int *) linkedListGet(list, i));
 
     destroyLinkedList(list);
 
 }
-
-
 
 
 void testLinkedListDeleteLast(CuTest *cuTest) {
@@ -281,13 +264,11 @@ void testLinkedListDeleteLast(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, 7, list->length);
 
     for (int i = 0; i < list->length; i++)
-        CuAssertIntEquals(cuTest, (i + 1), *(int *)linkedListGet(list, i));
+        CuAssertIntEquals(cuTest, (i + 1), *(int *) linkedListGet(list, i));
 
     destroyLinkedList(list);
 
 }
-
-
 
 
 void testLinkedListDeleteLastWtoFr(CuTest *cuTest) {
@@ -318,13 +299,11 @@ void testLinkedListDeleteLastWtoFr(CuTest *cuTest) {
 
 
     for (int i = 0; i < list->length; i++)
-        CuAssertIntEquals(cuTest, (i + 1), *(int *)linkedListGet(list, i));
+        CuAssertIntEquals(cuTest, (i + 1), *(int *) linkedListGet(list, i));
 
     destroyLinkedList(list);
 
 }
-
-
 
 
 void testLinkedListDeleteAtIndex(CuTest *cuTest) {
@@ -349,13 +328,11 @@ void testLinkedListDeleteAtIndex(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, 7, list->length);
 
     for (int i = 0; i < list->length; i++)
-        CuAssertIntEquals(cuTest, (i + 4), *(int *)linkedListGet(list, i));
+        CuAssertIntEquals(cuTest, (i + 4), *(int *) linkedListGet(list, i));
 
     destroyLinkedList(list);
 
 }
-
-
 
 
 void testLinkedListDeleteAtIndexWtoFr(CuTest *cuTest) {
@@ -378,7 +355,7 @@ void testLinkedListDeleteAtIndexWtoFr(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, 3, *currentItem);
     free(currentItem);
 
-    currentItem = (int *) linkedListDeleteAtIndexWtoFr(list,1);
+    currentItem = (int *) linkedListDeleteAtIndexWtoFr(list, 1);
     CuAssertIntEquals(cuTest, 2, *currentItem);
     free(currentItem);
 
@@ -390,14 +367,11 @@ void testLinkedListDeleteAtIndexWtoFr(CuTest *cuTest) {
 
 
     for (int i = 0; i < list->length; i++)
-        CuAssertIntEquals(cuTest, (i + 4), *(int *)linkedListGet(list, i));
+        CuAssertIntEquals(cuTest, (i + 4), *(int *) linkedListGet(list, i));
 
     destroyLinkedList(list);
 
 }
-
-
-
 
 
 void testLinkedListContains(CuTest *cuTest) {
@@ -427,8 +401,6 @@ void testLinkedListContains(CuTest *cuTest) {
 }
 
 
-
-
 void testLinkedListGetIndex(CuTest *cuTest) {
     LinkedList *list = linkedListInitialization(free, compareIntPointersLLT);
 
@@ -454,9 +426,6 @@ void testLinkedListGetIndex(CuTest *cuTest) {
     destroyLinkedList(list);
 
 }
-
-
-
 
 
 void testLinkedListGetItem(CuTest *cuTest) {
@@ -486,10 +455,6 @@ void testLinkedListGetItem(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testLinkedListGetFirst(CuTest *cuTest) {
     LinkedList *list = linkedListInitialization(free, compareIntPointersLLT);
 
@@ -509,8 +474,6 @@ void testLinkedListGetFirst(CuTest *cuTest) {
 }
 
 
-
-
 void testLinkedListGetLast(CuTest *cuTest) {
     LinkedList *list = linkedListInitialization(free, compareIntPointersLLT);
 
@@ -528,9 +491,6 @@ void testLinkedListGetLast(CuTest *cuTest) {
     destroyLinkedList(list);
 
 }
-
-
-
 
 
 void testLinkedListGet(CuTest *cuTest) {
@@ -557,8 +517,6 @@ void testLinkedListGet(CuTest *cuTest) {
 }
 
 
-
-
 void testLinkedListGetLength(CuTest *cuTest) {
     LinkedList *list = linkedListInitialization(free, compareIntPointersLLT);
 
@@ -578,11 +536,6 @@ void testLinkedListGetLength(CuTest *cuTest) {
     destroyLinkedList(list);
 
 }
-
-
-
-
-
 
 
 void testLinkedListToArray(CuTest *cuTest) {
@@ -605,14 +558,10 @@ void testLinkedListToArray(CuTest *cuTest) {
 }
 
 
-
-
-
-
-
 LinkedList *printingLinkedList;
+
 void printLinkedListFunLLT(const void *item) {
-    linkedListAddLast(printingLinkedList, generateIntPointerLLT(*(int *)item));
+    linkedListAddLast(printingLinkedList, generateIntPointerLLT(*(int *) item));
 }
 
 void testPrintLinkedList(CuTest *cuTest) {
@@ -639,8 +588,6 @@ void testPrintLinkedList(CuTest *cuTest) {
 }
 
 
-
-
 void testLinkedListIsEmpty(CuTest *cuTest) {
     LinkedList *list = linkedListInitialization(free, compareIntPointersLLT);
 
@@ -656,10 +603,6 @@ void testLinkedListIsEmpty(CuTest *cuTest) {
     destroyLinkedList(list);
 
 }
-
-
-
-
 
 
 void testClearLinkedList(CuTest *cuTest) {
@@ -683,10 +626,6 @@ void testClearLinkedList(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testDestroyLinkedList(CuTest *cuTest) {
     LinkedList *list = linkedListInitialization(free, compareIntPointersLLT);
 
@@ -696,10 +635,6 @@ void testDestroyLinkedList(CuTest *cuTest) {
     destroyLinkedList(list);
 
 }
-
-
-
-
 
 
 typedef struct LinkedListTestStruct {
@@ -741,36 +676,35 @@ void generalLinkedListTest(CuTest *cuTest) {
 
     item = (LinkedListTestStruct *) malloc(sizeof(LinkedListTestStruct));
     item->iData = 2;
-    item->cData = (char *) malloc(sizeof(char) * (strlen("two") + 1) );
+    item->cData = (char *) malloc(sizeof(char) * (strlen("two") + 1));
     strcpy(item->cData, "two");
     linkedListAddFirst(list, item);
 
 
     item = (LinkedListTestStruct *) malloc(sizeof(LinkedListTestStruct));
     item->iData = 1;
-    item->cData = (char *) malloc(sizeof(char) * (strlen("one") + 1) );
+    item->cData = (char *) malloc(sizeof(char) * (strlen("one") + 1));
     strcpy(item->cData, "one");
     linkedListAddFirst(list, item);
 
 
-
     item = (LinkedListTestStruct *) malloc(sizeof(LinkedListTestStruct));
     item->iData = 3;
-    item->cData = (char *) malloc(sizeof(char) * (strlen("three") + 1) );
+    item->cData = (char *) malloc(sizeof(char) * (strlen("three") + 1));
     strcpy(item->cData, "three");
     linkedListAddLast(list, item);
 
 
     item = (LinkedListTestStruct *) malloc(sizeof(LinkedListTestStruct));
     item->iData = 4;
-    item->cData = (char *) malloc(sizeof(char) * (strlen("four") + 1) );
+    item->cData = (char *) malloc(sizeof(char) * (strlen("four") + 1));
     strcpy(item->cData, "four");
     linkedListAddLast(list, item);
 
 
     item = (LinkedListTestStruct *) malloc(sizeof(LinkedListTestStruct));
     item->iData = 5;
-    item->cData = (char *) malloc(sizeof(char) * (strlen("five") + 1) );
+    item->cData = (char *) malloc(sizeof(char) * (strlen("five") + 1));
     strcpy(item->cData, "five");
     linkedListAddLast(list, item);
 
@@ -780,19 +714,19 @@ void generalLinkedListTest(CuTest *cuTest) {
 
     item = (LinkedListTestStruct *) malloc(sizeof(LinkedListTestStruct));
     item->iData = 6;
-    item->cData = (char *) malloc(sizeof(char) * (strlen("six") + 1) );
+    item->cData = (char *) malloc(sizeof(char) * (strlen("six") + 1));
     strcpy(item->cData, "six");
     structArr[0] = item;
 
     item = (LinkedListTestStruct *) malloc(sizeof(LinkedListTestStruct));
     item->iData = 7;
-    item->cData = (char *) malloc(sizeof(char) * (strlen("seven") + 1) );
+    item->cData = (char *) malloc(sizeof(char) * (strlen("seven") + 1));
     strcpy(item->cData, "seven");
     structArr[1] = item;
 
     item = (LinkedListTestStruct *) malloc(sizeof(LinkedListTestStruct));
     item->iData = 8;
-    item->cData = (char *) malloc(sizeof(char) * (strlen("eight") + 1) );
+    item->cData = (char *) malloc(sizeof(char) * (strlen("eight") + 1));
     strcpy(item->cData, "eight");
     structArr[2] = item;
 
@@ -813,7 +747,7 @@ void generalLinkedListTest(CuTest *cuTest) {
     linkedListDeleteFirst(list);
     linkedListDeleteLast(list);
 
-    for (int i  = 0, counter = 0; i < linkedListGetLength(list); counter++) {
+    for (int i = 0, counter = 0; i < linkedListGetLength(list); counter++) {
         LinkedListTestStruct *currentItem = (LinkedListTestStruct *) linkedListDeleteAtIndexWtoFr(list, i);
         CuAssertIntEquals(cuTest, counter + 2, currentItem->iData);
         CuAssertStrEquals(cuTest, numbersStr[counter + 1], currentItem->cData);
@@ -826,10 +760,6 @@ void generalLinkedListTest(CuTest *cuTest) {
     destroyLinkedList(list);
 
 }
-
-
-
-
 
 
 CuSuite *createLinkedListTestsSuite(void) {
@@ -868,10 +798,9 @@ CuSuite *createLinkedListTestsSuite(void) {
 }
 
 
-
 void linkedListUnitTest(void) {
 
-    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
+    ERROR_TEST = (ErrorTestStruct *) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Linked List Test**\n");

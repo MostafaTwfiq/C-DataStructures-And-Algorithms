@@ -5,7 +5,6 @@
 #include "../../../../../DataStructure/Deque/Headers/Deque.h"
 
 
-
 /** This function will take an integer,
  * then it will allocate a new integer and copy the passed integer value into the new pointer,
  * and finally return the new integer pointer.
@@ -22,8 +21,6 @@ int *generateIntPointerDT(int integer) {
 }
 
 
-
-
 /** This function will compare to integers pointers,
  * then it will return zero if they are equal, negative number if the second integer is bigger,
  * and positive number if the first integer is bigger.
@@ -33,11 +30,8 @@ int *generateIntPointerDT(int integer) {
  */
 
 int compareIntPointersDT(const void *a, const void *b) {
-    return *(int *)a - *(int *)b;
+    return *(int *) a - *(int *) b;
 }
-
-
-
 
 
 /** This function will take a char array
@@ -49,18 +43,13 @@ int compareIntPointersDT(const void *a, const void *b) {
 
 char *generateCharPointerDT(char *ch) {
 
-    char *newCh = (char *) malloc( sizeof(char) * (strlen(ch) + 1) );
+    char *newCh = (char *) malloc(sizeof(char) * (strlen(ch) + 1));
 
     strcpy(newCh, ch);
 
     return newCh;
 
 }
-
-
-
-
-
 
 
 void testInvalidDequeInitialization(CuTest *cuTest) {
@@ -72,7 +61,6 @@ void testInvalidDequeInitialization(CuTest *cuTest) {
 }
 
 
-
 void testValidDequeInitialization(CuTest *cuTest) {
 
     Deque *deque = dequeInitialization(free);
@@ -81,8 +69,6 @@ void testValidDequeInitialization(CuTest *cuTest) {
 
     destroyDeque(deque);
 }
-
-
 
 
 void testDequeInsertFront(CuTest *cuTest) {
@@ -109,9 +95,6 @@ void testDequeInsertFront(CuTest *cuTest) {
 }
 
 
-
-
-
 void testDequeInsertRear(CuTest *cuTest) {
 
     Deque *deque = dequeInitialization(free);
@@ -134,9 +117,6 @@ void testDequeInsertRear(CuTest *cuTest) {
     destroyDeque(deque);
 
 }
-
-
-
 
 
 void testDequeGetFront(CuTest *cuTest) {
@@ -165,9 +145,6 @@ void testDequeGetFront(CuTest *cuTest) {
 }
 
 
-
-
-
 void testDequeGetRear(CuTest *cuTest) {
 
     Deque *deque = dequeInitialization(free);
@@ -192,11 +169,6 @@ void testDequeGetRear(CuTest *cuTest) {
     destroyDeque(deque);
 
 }
-
-
-
-
-
 
 
 void testDequePeekFront(CuTest *cuTest) {
@@ -224,10 +196,6 @@ void testDequePeekFront(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testDequePeekRear(CuTest *cuTest) {
 
     Deque *deque = dequeInitialization(free);
@@ -253,10 +221,6 @@ void testDequePeekRear(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testDequeToArray(CuTest *cuTest) {
 
     Deque *deque = dequeInitialization(free);
@@ -279,10 +243,6 @@ void testDequeToArray(CuTest *cuTest) {
     destroyDeque(deque);
 
 }
-
-
-
-
 
 
 void testDequeGetLength(CuTest *cuTest) {
@@ -311,11 +271,6 @@ void testDequeGetLength(CuTest *cuTest) {
 }
 
 
-
-
-
-
-
 void testDequeIsEmpty(CuTest *cuTest) {
 
     Deque *deque = dequeInitialization(free);
@@ -342,10 +297,6 @@ void testDequeIsEmpty(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testClearDeque(CuTest *cuTest) {
 
     Deque *deque = dequeInitialization(free);
@@ -370,8 +321,6 @@ void testClearDeque(CuTest *cuTest) {
 }
 
 
-
-
 void testDestroyDeque(CuTest *cuTest) {
 
     Deque *deque = dequeInitialization(free);
@@ -390,19 +339,12 @@ void testDestroyDeque(CuTest *cuTest) {
 }
 
 
-
-
-
-
-
-
 typedef struct DequeTestStruct {
 
     int iData;
     char *cData;
 
 } DequeTestStruct;
-
 
 
 void freeDequeTestStruct(void *item) {
@@ -424,11 +366,10 @@ int dequeTestStructComp(const void *item1, const void *item2) {
 }
 
 
-
 DequeTestStruct *generateDequeTestStruct(int value, char *str) {
 
     DequeTestStruct *d = (DequeTestStruct *) malloc(sizeof(DequeTestStruct));
-    d->cData = (char *) malloc(sizeof(char ) * (strlen(str) + 1) );
+    d->cData = (char *) malloc(sizeof(char) * (strlen(str) + 1));
     strcpy(d->cData, str);
 
     d->iData = value;
@@ -438,12 +379,11 @@ DequeTestStruct *generateDequeTestStruct(int value, char *str) {
 }
 
 
-
-
 void generalDequeTest(CuTest *cuTest) {
 
     Deque *deque = dequeInitialization(freeDequeTestStruct);
-    char numbersStr[14][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"};
+    char numbersStr[14][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven",
+                               "twelve", "thirteen", "fourteen"};
 
 
     CuAssertIntEquals(cuTest, 0, dequeGetLength(deque));
@@ -464,7 +404,7 @@ void generalDequeTest(CuTest *cuTest) {
     dequeInsertFront(deque, generateDequeTestStruct(2, numbersStr[1]));
     dequeInsertFront(deque, generateDequeTestStruct(1, numbersStr[0]));
 
-        CuAssertIntEquals(cuTest, 14, dequeGetLength(deque));
+    CuAssertIntEquals(cuTest, 14, dequeGetLength(deque));
 
     DequeTestStruct **queueArr = (DequeTestStruct **) dequeToArray(deque);
     for (int i = 0; i < dequeGetLength(deque); i++) {
@@ -499,12 +439,6 @@ void generalDequeTest(CuTest *cuTest) {
 }
 
 
-
-
-
-
-
-
 CuSuite *createDequeTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
@@ -530,10 +464,9 @@ CuSuite *createDequeTestsSuite(void) {
 }
 
 
-
 void dequeUnitTest(void) {
 
-    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
+    ERROR_TEST = (ErrorTestStruct *) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Deque Test**\n");

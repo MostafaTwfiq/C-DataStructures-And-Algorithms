@@ -6,13 +6,10 @@ extern "C" {
 #endif
 
 
-
 typedef enum COLOR {
     RED,
     BLACK
 } COLOR;
-
-
 
 
 /** @struct RBNode
@@ -38,7 +35,6 @@ typedef struct RBNode {
 } RBNode;
 
 
-
 /** @struct RBTree
 *  @brief This structure implements a basic generic RED BLACK Tree.
 *  @var RBTree::root
@@ -54,12 +50,14 @@ typedef struct RBNode {
 typedef struct RBTree {
     struct RBNode *root;
     int nodeCount;
+
     void (*freeItem)(void *);
-    int (*cmp)(const void*, const void *);
-}RBTree;
+
+    int (*cmp)(const void *, const void *);
+} RBTree;
 
 
-RBTree *redBlackTreeInitialization(void (*freeItem)(void *), int (*cmp)(const void*, const void *));
+RBTree *redBlackTreeInitialization(void (*freeItem)(void *), int (*cmp)(const void *, const void *));
 
 void rBTreeInsert(RBTree *tree, void *item);
 
@@ -87,7 +85,7 @@ void clearRBTree(RBTree *tree);
 
 void destroyRBTree(RBTree *tree);
 
-void rBInsertAll(RBTree* rbTree, void** array, int length);
+void rBInsertAll(RBTree *rbTree, void **array, int length);
 
 #ifdef __cplusplus
 }

@@ -2,9 +2,9 @@
 #define C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
 
 
-typedef struct ErrorTestStruct{
+typedef struct ErrorTestStruct {
     int errorCode;
-}ErrorTestStruct;
+} ErrorTestStruct;
 
 ErrorTestStruct *ERROR_TEST;;
 

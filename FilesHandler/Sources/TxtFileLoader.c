@@ -5,9 +5,6 @@
 #include "../../Unit Test/CuTest/CuTest.h"
 
 
-
-
-
 /** This function will allocate a new txt file loader then the memory,
  * and setup it's fields, and finally return the initialized txt file loader pointer.
  *
@@ -18,56 +15,51 @@
 TxtFileLoader *txtFileLoaderInitialization(char *fileDir) {
 
     if (fileDir == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "file direction", "text file loader");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "file direction", "text file loader");
+        exit(INVALID_ARG);
+#endif
     }
 
     TxtFileLoader *loader = (TxtFileLoader *) malloc(sizeof(TxtFileLoader));
     if (loader == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = FAILED_ALLOCATION;
-            return NULL;
-        #else
-            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "loader", "text file loader");
-            exit(FAILED_ALLOCATION);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = FAILED_ALLOCATION;
+        return NULL;
+#else
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "loader", "text file loader");
+        exit(FAILED_ALLOCATION);
+#endif
     }
 
-    loader->dir = (char *) malloc(sizeof(char ) * (strlen(fileDir) + 1) );
+    loader->dir = (char *) malloc(sizeof(char) * (strlen(fileDir) + 1));
     if (loader->dir == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = FAILED_ALLOCATION;
-            return NULL;
-        #else
-            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "file direction", "text file loader");
-            exit(FAILED_ALLOCATION);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = FAILED_ALLOCATION;
+        return NULL;
+#else
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "file direction", "text file loader");
+        exit(FAILED_ALLOCATION);
+#endif
     }
 
     loader->dir = strcpy(loader->dir, fileDir);
     if (loader->dir == NULL) {
-            #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-                ERROR_TEST->errorCode = FAILED_COPY;
-                return NULL;
-            #else
-                fprintf(stderr, FAILED_COPY_MESSAGE, "file direction", "text file loader");
-                exit(FAILED_COPY);
-            #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = FAILED_COPY;
+        return NULL;
+#else
+        fprintf(stderr, FAILED_COPY_MESSAGE, "file direction", "text file loader");
+        exit(FAILED_COPY);
+#endif
     }
 
     return loader;
 
 }
-
-
-
-
-
 
 
 /** This function will open the file.
@@ -78,13 +70,13 @@ TxtFileLoader *txtFileLoaderInitialization(char *fileDir) {
 void txtLoaderOpenFile(TxtFileLoader *txtFileLoader, char *openType) {
 
     if (txtFileLoader == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
+        exit(NULL_POINTER);
+#endif
     }
 
     txtFileLoader->fileP = fopen(txtFileLoader->dir, openType);
@@ -94,9 +86,6 @@ void txtLoaderOpenFile(TxtFileLoader *txtFileLoader, char *openType) {
     }
 
 }
-
-
-
 
 
 /** This function will load the file into a string,
@@ -109,13 +98,13 @@ void txtLoaderOpenFile(TxtFileLoader *txtFileLoader, char *openType) {
 String *txtLoaderReadFileS(TxtFileLoader *txtFileLoader) {
 
     if (txtFileLoader == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
+        exit(NULL_POINTER);
+#endif
     }
 
     txtLoaderOpenFile(txtFileLoader, "r");
@@ -134,13 +123,6 @@ String *txtLoaderReadFileS(TxtFileLoader *txtFileLoader) {
 }
 
 
-
-
-
-
-
-
-
 /** This function will load the file into a char array,
  * then it will return the string pointer.
  *
@@ -154,13 +136,13 @@ String *txtLoaderReadFileS(TxtFileLoader *txtFileLoader) {
 char *txtLoaderReadFileC(TxtFileLoader *txtFileLoader) {
 
     if (txtFileLoader == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
+        exit(NULL_POINTER);
+#endif
     }
 
     txtLoaderOpenFile(txtFileLoader, "r");
@@ -181,9 +163,6 @@ char *txtLoaderReadFileC(TxtFileLoader *txtFileLoader) {
 }
 
 
-
-
-
 /** This function will load the file lines into strings,
  * and it will but the lines strings into a vector,
  * and finally return the vector pointer.
@@ -195,13 +174,13 @@ char *txtLoaderReadFileC(TxtFileLoader *txtFileLoader) {
 Vector *txtLoaderReadFileLines(TxtFileLoader *txtFileLoader) {
 
     if (txtFileLoader == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
+        exit(NULL_POINTER);
+#endif
     }
 
     txtLoaderOpenFile(txtFileLoader, "r");
@@ -212,7 +191,7 @@ Vector *txtLoaderReadFileLines(TxtFileLoader *txtFileLoader) {
     char c;
     while ((c = (char) fgetc(txtFileLoader->fileP)) != EOF) {
 
-        if ( c == '\n' ) {
+        if (c == '\n') {
             stringIndex++;
             vectorAdd(linesVector, stringInitialization(10));
             continue;
@@ -229,10 +208,6 @@ Vector *txtLoaderReadFileLines(TxtFileLoader *txtFileLoader) {
     return linesVector;
 
 }
-
-
-
-
 
 
 int charArrContainsTxtFileLoader(char *arr, char c) {
@@ -263,21 +238,21 @@ int charArrContainsTxtFileLoader(char *arr, char c) {
 Vector *txtLoaderReadFileWthDelimiter(TxtFileLoader *txtFileLoader, char *delimiter) {
 
     if (txtFileLoader == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
+        exit(NULL_POINTER);
+#endif
     } else if (delimiter == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return NULL;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "delimiter pointer", "text file loader");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return NULL;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "delimiter pointer", "text file loader");
+        exit(INVALID_ARG);
+#endif
     }
 
     txtLoaderOpenFile(txtFileLoader, "r");
@@ -288,7 +263,7 @@ Vector *txtLoaderReadFileWthDelimiter(TxtFileLoader *txtFileLoader, char *delimi
     char c;
     while ((c = (char) fgetc(txtFileLoader->fileP)) != EOF) {
 
-        if ( charArrContainsTxtFileLoader(delimiter, c) ) {
+        if (charArrContainsTxtFileLoader(delimiter, c)) {
             stringIndex++;
             vectorAdd(linesVector, stringInitialization(10));
             continue;
@@ -307,10 +282,6 @@ Vector *txtLoaderReadFileWthDelimiter(TxtFileLoader *txtFileLoader, char *delimi
 }
 
 
-
-
-
-
 /** This function will count the file lines, then return it.
  *
  * @param txtFileLoader the text file loader pointer
@@ -320,13 +291,13 @@ Vector *txtLoaderReadFileWthDelimiter(TxtFileLoader *txtFileLoader, char *delimi
 int txtLoaderCountLines(TxtFileLoader *txtFileLoader) {
 
     if (txtFileLoader == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return -1;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return -1;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
+        exit(NULL_POINTER);
+#endif
     }
 
     txtLoaderOpenFile(txtFileLoader, "r");
@@ -338,7 +309,7 @@ int txtLoaderCountLines(TxtFileLoader *txtFileLoader) {
 
     while ((c = (char) fgetc(txtFileLoader->fileP)) != EOF) {
 
-        if ( c == '\n' )
+        if (c == '\n')
             counter++;
 
     }
@@ -351,9 +322,6 @@ int txtLoaderCountLines(TxtFileLoader *txtFileLoader) {
     return counter;
 
 }
-
-
-
 
 
 /** This function will read the provided line index form the file,
@@ -369,13 +337,13 @@ int txtLoaderCountLines(TxtFileLoader *txtFileLoader) {
 String *txtLoaderReadLineS(TxtFileLoader *txtFileLoader, int lineIndex) {
 
     if (txtFileLoader == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
+        exit(NULL_POINTER);
+#endif
     }
 
     txtLoaderOpenFile(txtFileLoader, "r");
@@ -383,9 +351,9 @@ String *txtLoaderReadLineS(TxtFileLoader *txtFileLoader, int lineIndex) {
     char c;
     int currentIndex = 0;
 
-    while ( currentIndex != lineIndex && (c = (char) fgetc(txtFileLoader->fileP)) != EOF ) {
+    while (currentIndex != lineIndex && (c = (char) fgetc(txtFileLoader->fileP)) != EOF) {
 
-        if ( c == '\n' )
+        if (c == '\n')
             currentIndex++;
 
     }
@@ -407,10 +375,6 @@ String *txtLoaderReadLineS(TxtFileLoader *txtFileLoader, int lineIndex) {
 }
 
 
-
-
-
-
 /** This function will read the provided line index form the file,
  * then it will return the line as a char array.
  *
@@ -424,13 +388,13 @@ String *txtLoaderReadLineS(TxtFileLoader *txtFileLoader, int lineIndex) {
 char *txtLoaderReadLineC(TxtFileLoader *txtFileLoader, int lineIndex) {
 
     if (txtFileLoader == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return NULL;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return NULL;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
+        exit(NULL_POINTER);
+#endif
     }
 
     txtLoaderOpenFile(txtFileLoader, "r");
@@ -438,9 +402,9 @@ char *txtLoaderReadLineC(TxtFileLoader *txtFileLoader, int lineIndex) {
     char c;
     int currentIndex = 0;
 
-    while ( currentIndex != lineIndex && (c = (char) fgetc(txtFileLoader->fileP)) != EOF ) {
+    while (currentIndex != lineIndex && (c = (char) fgetc(txtFileLoader->fileP)) != EOF) {
 
-        if ( c == '\n' )
+        if (c == '\n')
             currentIndex++;
 
     }
@@ -465,13 +429,6 @@ char *txtLoaderReadLineC(TxtFileLoader *txtFileLoader, int lineIndex) {
 }
 
 
-
-
-
-
-
-
-
 /** This function will take a char array,
  * then it will write the char array to the file.
  *
@@ -484,21 +441,21 @@ char *txtLoaderReadLineC(TxtFileLoader *txtFileLoader, int lineIndex) {
 void txtLoaderWriteC(TxtFileLoader *txtFileLoader, char *data) {
 
     if (txtFileLoader == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
+        exit(NULL_POINTER);
+#endif
     } else if (data == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "data char array", "text file loader");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "data char array", "text file loader");
+        exit(INVALID_ARG);
+#endif
     }
 
 
@@ -509,12 +466,6 @@ void txtLoaderWriteC(TxtFileLoader *txtFileLoader, char *data) {
     fclose(txtFileLoader->fileP);
 
 }
-
-
-
-
-
-
 
 
 /** This function will take a string,
@@ -529,21 +480,21 @@ void txtLoaderWriteC(TxtFileLoader *txtFileLoader, char *data) {
 void txtLoaderWriteS(TxtFileLoader *txtFileLoader, String *data) {
 
     if (txtFileLoader == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
+        exit(NULL_POINTER);
+#endif
     } else if (data == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "data string", "text file loader");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "data string", "text file loader");
+        exit(INVALID_ARG);
+#endif
     }
 
     txtLoaderOpenFile(txtFileLoader, "w");
@@ -553,12 +504,6 @@ void txtLoaderWriteS(TxtFileLoader *txtFileLoader, String *data) {
     fclose(txtFileLoader->fileP);
 
 }
-
-
-
-
-
-
 
 
 /** This function will take a char array,
@@ -571,21 +516,21 @@ void txtLoaderWriteS(TxtFileLoader *txtFileLoader, String *data) {
 void txtLoaderAppendC(TxtFileLoader *txtFileLoader, char *data) {
 
     if (txtFileLoader == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
+        exit(NULL_POINTER);
+#endif
     } else if (data == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "data char array", "text file loader");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "data char array", "text file loader");
+        exit(INVALID_ARG);
+#endif
     }
 
     txtLoaderOpenFile(txtFileLoader, "a");
@@ -595,11 +540,6 @@ void txtLoaderAppendC(TxtFileLoader *txtFileLoader, char *data) {
     fclose(txtFileLoader->fileP);
 
 }
-
-
-
-
-
 
 
 /** This function will take a string,
@@ -612,21 +552,21 @@ void txtLoaderAppendC(TxtFileLoader *txtFileLoader, char *data) {
 void txtLoaderAppendS(TxtFileLoader *txtFileLoader, String *data) {
 
     if (txtFileLoader == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
+        exit(NULL_POINTER);
+#endif
     } else if (data == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "data string", "text file loader");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "data string", "text file loader");
+        exit(INVALID_ARG);
+#endif
     }
 
     txtLoaderOpenFile(txtFileLoader, "a");
@@ -635,11 +575,6 @@ void txtLoaderAppendS(TxtFileLoader *txtFileLoader, String *data) {
     fclose(txtFileLoader->fileP);
 
 }
-
-
-
-
-
 
 
 /** This function will take a vector of char arrays,
@@ -652,21 +587,21 @@ void txtLoaderAppendS(TxtFileLoader *txtFileLoader, String *data) {
 void txtLoaderAppendAllC(TxtFileLoader *txtFileLoader, Vector *newLines) {
 
     if (txtFileLoader == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
+        exit(NULL_POINTER);
+#endif
     } else if (newLines == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "new lines vector", "text file loader");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new lines vector", "text file loader");
+        exit(INVALID_ARG);
+#endif
     }
 
     txtLoaderOpenFile(txtFileLoader, "a");
@@ -679,11 +614,6 @@ void txtLoaderAppendAllC(TxtFileLoader *txtFileLoader, Vector *newLines) {
 }
 
 
-
-
-
-
-
 /** This function will take a vector of strings,
  * then it will append the strings at the end of the file.
  *
@@ -694,37 +624,31 @@ void txtLoaderAppendAllC(TxtFileLoader *txtFileLoader, Vector *newLines) {
 void txtLoaderAppendAllS(TxtFileLoader *txtFileLoader, Vector *newLines) {
 
     if (txtFileLoader == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
+        exit(NULL_POINTER);
+#endif
     } else if (newLines == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "new lines vector", "text file loader");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new lines vector", "text file loader");
+        exit(INVALID_ARG);
+#endif
     }
 
     txtLoaderOpenFile(txtFileLoader, "a");
     for (int i = 0; i < vectorGetLength(newLines); i++)
-        fprintf(txtFileLoader->fileP, "%s\n", ( (String *) vectorGet(newLines, i))->string );
+        fprintf(txtFileLoader->fileP, "%s\n", ((String *) vectorGet(newLines, i))->string);
 
 
     fclose(txtFileLoader->fileP);
 
 }
-
-
-
-
-
-
 
 
 /** This function will take a char array and an index,
@@ -738,33 +662,33 @@ void txtLoaderAppendAllS(TxtFileLoader *txtFileLoader, Vector *newLines) {
 void txtLoaderAppendToLineC(TxtFileLoader *txtFileLoader, char *lineToAppend, int index) {
 
     if (txtFileLoader == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
+        exit(NULL_POINTER);
+#endif
     } else if (lineToAppend == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "new line to append char array", "text file loader");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new line to append char array", "text file loader");
+        exit(INVALID_ARG);
+#endif
     }
 
     Vector *linesVector = txtLoaderReadFileLines(txtFileLoader);
     if (index < 0 || index >= vectorGetLength(linesVector)) {
         destroyVector(linesVector);
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "new line to append index", "text file loader");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new line to append index", "text file loader");
+        exit(INVALID_ARG);
+#endif
     }
 
     stringAppendC(vectorGet(linesVector, index), lineToAppend);
@@ -772,7 +696,7 @@ void txtLoaderAppendToLineC(TxtFileLoader *txtFileLoader, char *lineToAppend, in
     txtLoaderOpenFile(txtFileLoader, "w");
 
     for (int i = 0; i < vectorGetLength(linesVector); i++)
-        fprintf(txtFileLoader->fileP, "%s%c", ( (String *) vectorGet(linesVector, i))->string,
+        fprintf(txtFileLoader->fileP, "%s%c", ((String *) vectorGet(linesVector, i))->string,
                 i != vectorGetLength(linesVector) - 1 ? '\n' : '\0');
 
 
@@ -781,12 +705,6 @@ void txtLoaderAppendToLineC(TxtFileLoader *txtFileLoader, char *lineToAppend, in
     fclose(txtFileLoader->fileP);
 
 }
-
-
-
-
-
-
 
 
 /** This function will take a string and an index,
@@ -800,33 +718,33 @@ void txtLoaderAppendToLineC(TxtFileLoader *txtFileLoader, char *lineToAppend, in
 void txtLoaderAppendToLineS(TxtFileLoader *txtFileLoader, String *stringToAppend, int index) {
 
     if (txtFileLoader == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
+        exit(NULL_POINTER);
+#endif
     } else if (stringToAppend == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "new string to append", "text file loader");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new string to append", "text file loader");
+        exit(INVALID_ARG);
+#endif
     }
 
     Vector *linesVector = txtLoaderReadFileLines(txtFileLoader);
     if (index < 0 || index >= vectorGetLength(linesVector)) {
         destroyVector(linesVector);
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "new string to append index", "text file loader");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new string to append index", "text file loader");
+        exit(INVALID_ARG);
+#endif
     }
 
     stringAppendS(vectorGet(linesVector, index), stringToAppend);
@@ -834,7 +752,7 @@ void txtLoaderAppendToLineS(TxtFileLoader *txtFileLoader, String *stringToAppend
     txtLoaderOpenFile(txtFileLoader, "w");
 
     for (int i = 0; i < vectorGetLength(linesVector); i++)
-        fprintf(txtFileLoader->fileP, "%s%c", ( (String *) vectorGet(linesVector, i))->string,
+        fprintf(txtFileLoader->fileP, "%s%c", ((String *) vectorGet(linesVector, i))->string,
                 i != vectorGetLength(linesVector) - 1 ? '\n' : '\0');
 
 
@@ -843,10 +761,6 @@ void txtLoaderAppendToLineS(TxtFileLoader *txtFileLoader, String *stringToAppend
     fclose(txtFileLoader->fileP);
 
 }
-
-
-
-
 
 
 /** This function will take a char array and index,
@@ -860,33 +774,33 @@ void txtLoaderAppendToLineS(TxtFileLoader *txtFileLoader, String *stringToAppend
 void txtLoaderAddLineC(TxtFileLoader *txtFileLoader, char *line, int index) {
 
     if (txtFileLoader == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
+        exit(NULL_POINTER);
+#endif
     } else if (line == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "new line char array", "text file loader");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new line char array", "text file loader");
+        exit(INVALID_ARG);
+#endif
     }
 
     Vector *linesVector = txtLoaderReadFileLines(txtFileLoader);
     if (index < 0 || index >= vectorGetLength(linesVector)) {
         destroyVector(linesVector);
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "new line index", "text file loader");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new line index", "text file loader");
+        exit(INVALID_ARG);
+#endif
     }
 
     String *newLineString = stringInitialization(10);
@@ -897,7 +811,7 @@ void txtLoaderAddLineC(TxtFileLoader *txtFileLoader, char *line, int index) {
     txtLoaderOpenFile(txtFileLoader, "w");
 
     for (int i = 0; i < vectorGetLength(linesVector); i++)
-        fprintf(txtFileLoader->fileP, "%s\n", ( (String *) vectorGet(linesVector, i))->string);
+        fprintf(txtFileLoader->fileP, "%s\n", ((String *) vectorGet(linesVector, i))->string);
 
 
     destroyVector(linesVector);
@@ -905,10 +819,6 @@ void txtLoaderAddLineC(TxtFileLoader *txtFileLoader, char *line, int index) {
     fclose(txtFileLoader->fileP);
 
 }
-
-
-
-
 
 
 /** This function will take a string and index,
@@ -923,33 +833,33 @@ void txtLoaderAddLineC(TxtFileLoader *txtFileLoader, char *line, int index) {
 void txtLoaderAddLineS(TxtFileLoader *txtFileLoader, String *line, int index) {
 
     if (txtFileLoader == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
+        exit(NULL_POINTER);
+#endif
     } else if (line == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "new string", "text file loader");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new string", "text file loader");
+        exit(INVALID_ARG);
+#endif
     }
 
     Vector *linesVector = txtLoaderReadFileLines(txtFileLoader);
     if (index < 0 || index >= vectorGetLength(linesVector)) {
         destroyVector(linesVector);
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "new line index", "text file loader");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new line index", "text file loader");
+        exit(INVALID_ARG);
+#endif
     }
 
     vectorAddAtIndex(linesVector, line, index);
@@ -957,7 +867,7 @@ void txtLoaderAddLineS(TxtFileLoader *txtFileLoader, String *line, int index) {
     txtLoaderOpenFile(txtFileLoader, "w");
 
     for (int i = 0; i < vectorGetLength(linesVector); i++)
-        fprintf(txtFileLoader->fileP, "%s\n", ( (String *) vectorGet(linesVector, i))->string);
+        fprintf(txtFileLoader->fileP, "%s\n", ((String *) vectorGet(linesVector, i))->string);
 
 
     vectorRemoveAtIndexWtFr(linesVector, index);
@@ -966,12 +876,6 @@ void txtLoaderAddLineS(TxtFileLoader *txtFileLoader, String *line, int index) {
     fclose(txtFileLoader->fileP);
 
 }
-
-
-
-
-
-
 
 
 /** This function will take a vector of char arrays and index,
@@ -985,33 +889,33 @@ void txtLoaderAddLineS(TxtFileLoader *txtFileLoader, String *line, int index) {
 void txtLoaderAddAllC(TxtFileLoader *txtFileLoader, Vector *newLines, int index) {
 
     if (txtFileLoader == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
+        exit(NULL_POINTER);
+#endif
     } else if (newLines == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "new lines vector", "text file loader");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new lines vector", "text file loader");
+        exit(INVALID_ARG);
+#endif
     }
 
     Vector *linesVector = txtLoaderReadFileLines(txtFileLoader);
     if (index < 0 || index >= vectorGetLength(linesVector)) {
         destroyVector(linesVector);
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "new lines index", "text file loader");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new lines index", "text file loader");
+        exit(INVALID_ARG);
+#endif
     }
 
     for (int i = vectorGetLength(newLines) - 1; i >= 0; i--) {
@@ -1039,11 +943,6 @@ void txtLoaderAddAllC(TxtFileLoader *txtFileLoader, Vector *newLines, int index)
 }
 
 
-
-
-
-
-
 /** This function will take a vector of strings and index,
  * then it will insert the passed vector at the provided index.
  *
@@ -1055,33 +954,33 @@ void txtLoaderAddAllC(TxtFileLoader *txtFileLoader, Vector *newLines, int index)
 void txtLoaderAddAllS(TxtFileLoader *txtFileLoader, Vector *newLines, int index) {
 
     if (txtFileLoader == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
+        exit(NULL_POINTER);
+#endif
     } else if (newLines == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "new lines vector", "text file loader");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new lines vector", "text file loader");
+        exit(INVALID_ARG);
+#endif
     }
 
     Vector *linesVector = txtLoaderReadFileLines(txtFileLoader);
     if (index < 0 || index >= vectorGetLength(linesVector)) {
         destroyVector(linesVector);
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "new lines index", "text file loader");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new lines index", "text file loader");
+        exit(INVALID_ARG);
+#endif
     }
 
     for (int i = vectorGetLength(newLines) - 1; i >= 0; i--)
@@ -1108,14 +1007,6 @@ void txtLoaderAddAllS(TxtFileLoader *txtFileLoader, Vector *newLines, int index)
 }
 
 
-
-
-
-
-
-
-
-
 /** This function will take a char array and an index,
  * then it will update the line in the provided index with the passed char array.
  *
@@ -1127,33 +1018,33 @@ void txtLoaderAddAllS(TxtFileLoader *txtFileLoader, Vector *newLines, int index)
 void txtLoaderUpdateLineC(TxtFileLoader *txtFileLoader, char *line, int index) {
 
     if (txtFileLoader == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
+        exit(NULL_POINTER);
+#endif
     } else if (line == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "new line char array", "text file loader");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new line char array", "text file loader");
+        exit(INVALID_ARG);
+#endif
     }
 
     Vector *linesVector = txtLoaderReadFileLines(txtFileLoader);
     if (index < 0 || index >= vectorGetLength(linesVector)) {
         destroyVector(linesVector);
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "new line index", "text file loader");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new line index", "text file loader");
+        exit(INVALID_ARG);
+#endif
     }
 
     stringChangeStringC(vectorGet(linesVector, index), line);
@@ -1161,7 +1052,7 @@ void txtLoaderUpdateLineC(TxtFileLoader *txtFileLoader, char *line, int index) {
     txtLoaderOpenFile(txtFileLoader, "w");
 
     for (int i = 0; i < vectorGetLength(linesVector); i++)
-        fprintf(txtFileLoader->fileP, "%s%c", ( (String *) vectorGet(linesVector, i))->string,
+        fprintf(txtFileLoader->fileP, "%s%c", ((String *) vectorGet(linesVector, i))->string,
                 i != vectorGetLength(linesVector) - 1 ? '\n' : '\0');
 
 
@@ -1170,12 +1061,6 @@ void txtLoaderUpdateLineC(TxtFileLoader *txtFileLoader, char *line, int index) {
     fclose(txtFileLoader->fileP);
 
 }
-
-
-
-
-
-
 
 
 /** This function will take a string and an index,
@@ -1189,33 +1074,33 @@ void txtLoaderUpdateLineC(TxtFileLoader *txtFileLoader, char *line, int index) {
 void txtLoaderUpdateLineS(TxtFileLoader *txtFileLoader, String *line, int index) {
 
     if (txtFileLoader == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
+        exit(NULL_POINTER);
+#endif
     } else if (line == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "new string", "text file loader");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new string", "text file loader");
+        exit(INVALID_ARG);
+#endif
     }
 
     Vector *linesVector = txtLoaderReadFileLines(txtFileLoader);
     if (index < 0 || index >= vectorGetLength(linesVector)) {
         destroyVector(linesVector);
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "new line index", "text file loader");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new line index", "text file loader");
+        exit(INVALID_ARG);
+#endif
     }
 
     stringChangeStringS(vectorGet(linesVector, index), line);
@@ -1223,7 +1108,7 @@ void txtLoaderUpdateLineS(TxtFileLoader *txtFileLoader, String *line, int index)
     txtLoaderOpenFile(txtFileLoader, "w");
 
     for (int i = 0; i < vectorGetLength(linesVector); i++)
-        fprintf(txtFileLoader->fileP, "%s%c", ( (String *) vectorGet(linesVector, i))->string,
+        fprintf(txtFileLoader->fileP, "%s%c", ((String *) vectorGet(linesVector, i))->string,
                 i != vectorGetLength(linesVector) - 1 ? '\n' : '\0');
 
 
@@ -1232,11 +1117,6 @@ void txtLoaderUpdateLineS(TxtFileLoader *txtFileLoader, String *line, int index)
     fclose(txtFileLoader->fileP);
 
 }
-
-
-
-
-
 
 
 /** This function will take an index,
@@ -1249,25 +1129,25 @@ void txtLoaderUpdateLineS(TxtFileLoader *txtFileLoader, String *line, int index)
 void txtLoaderRemoveLine(TxtFileLoader *txtFileLoader, int index) {
 
     if (txtFileLoader == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
+        exit(NULL_POINTER);
+#endif
     }
 
     Vector *linesVector = txtLoaderReadFileLines(txtFileLoader);
     if (index < 0 || index >= vectorGetLength(linesVector)) {
         destroyVector(linesVector);
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = INVALID_ARG;
-            return;
-        #else
-            fprintf(stderr, INVALID_ARG_MESSAGE, "new line index", "text file loader");
-            exit(INVALID_ARG);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+        fprintf(stderr, INVALID_ARG_MESSAGE, "new line index", "text file loader");
+        exit(INVALID_ARG);
+#endif
     }
 
     vectorRemoveAtIndex(linesVector, index);
@@ -1275,7 +1155,7 @@ void txtLoaderRemoveLine(TxtFileLoader *txtFileLoader, int index) {
     txtLoaderOpenFile(txtFileLoader, "w");
 
     for (int i = 0; i < vectorGetLength(linesVector); i++)
-        fprintf(txtFileLoader->fileP, "%s%c", ( (String *) vectorGet(linesVector, i))->string,
+        fprintf(txtFileLoader->fileP, "%s%c", ((String *) vectorGet(linesVector, i))->string,
                 i != vectorGetLength(linesVector) - 1 ? '\n' : '\0');
 
 
@@ -1286,12 +1166,6 @@ void txtLoaderRemoveLine(TxtFileLoader *txtFileLoader, int index) {
 }
 
 
-
-
-
-
-
-
 /** This function will clear the text file.
  *
  * @param txtFileLoader the text file loader pointer
@@ -1300,13 +1174,13 @@ void txtLoaderRemoveLine(TxtFileLoader *txtFileLoader, int index) {
 void txtLoaderClearFile(TxtFileLoader *txtFileLoader) {
 
     if (txtFileLoader == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
+        exit(NULL_POINTER);
+#endif
     }
 
 
@@ -1319,13 +1193,6 @@ void txtLoaderClearFile(TxtFileLoader *txtFileLoader) {
 }
 
 
-
-
-
-
-
-
-
 /** This function will change the file direction of text file loader.
  *
  * @param txtFileLoader the text file loader pointer
@@ -1336,33 +1203,29 @@ void txtLoaderChangeFile(TxtFileLoader *txtFileLoader, char *newFileDir) {
 
     free(txtFileLoader->dir);
 
-    txtFileLoader->dir = (char *) malloc(sizeof(char ) * (strlen(newFileDir) + 1) );
+    txtFileLoader->dir = (char *) malloc(sizeof(char) * (strlen(newFileDir) + 1));
     if (txtFileLoader->dir == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = FAILED_ALLOCATION;
-            return;
-        #else
-            fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "file direction", "text file loader");
-            exit(FAILED_ALLOCATION);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = FAILED_ALLOCATION;
+        return;
+#else
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "file direction", "text file loader");
+        exit(FAILED_ALLOCATION);
+#endif
     }
 
     txtFileLoader->dir = strcpy(txtFileLoader->dir, newFileDir);
     if (txtFileLoader->dir == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = FAILED_COPY;
-            return;
-        #else
-            fprintf(stderr, FAILED_COPY_MESSAGE, "file direction", "text file loader");
-            exit(FAILED_COPY);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = FAILED_COPY;
+        return;
+#else
+        fprintf(stderr, FAILED_COPY_MESSAGE, "file direction", "text file loader");
+        exit(FAILED_COPY);
+#endif
     }
 
 }
-
-
-
-
 
 
 /** This function will destroy and free the passed text file loader.
@@ -1373,13 +1236,13 @@ void txtLoaderChangeFile(TxtFileLoader *txtFileLoader, char *newFileDir) {
 void destroyTxtFileLoader(TxtFileLoader *txtFileLoader) {
 
     if (txtFileLoader == NULL) {
-        #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
-            ERROR_TEST->errorCode = NULL_POINTER;
-            return;
-        #else
-            fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
-            exit(NULL_POINTER);
-        #endif
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+        ERROR_TEST->errorCode = NULL_POINTER;
+        return;
+#else
+        fprintf(stderr, NULL_POINTER_MESSAGE, "loader", "text file loader");
+        exit(NULL_POINTER);
+#endif
     }
 
     free(txtFileLoader->dir);

@@ -20,8 +20,6 @@ int *generateIntPointerLLQT(int integer) {
 }
 
 
-
-
 /** This function will compare to integers pointers,
  * then it will return zero if they are equal, negative number if the second integer is bigger,
  * and positive number if the first integer is bigger.
@@ -31,11 +29,8 @@ int *generateIntPointerLLQT(int integer) {
  */
 
 int compareIntPointersLLQT(const void *a, const void *b) {
-    return *(int *)a - *(int *)b;
+    return *(int *) a - *(int *) b;
 }
-
-
-
 
 
 /** This function will take a char array
@@ -47,14 +42,13 @@ int compareIntPointersLLQT(const void *a, const void *b) {
 
 char *generateCharPointerLLQT(char *ch) {
 
-    char *newCh = (char *) malloc( sizeof(char) * (strlen(ch) + 1) );
+    char *newCh = (char *) malloc(sizeof(char) * (strlen(ch) + 1));
 
     strcpy(newCh, ch);
 
     return newCh;
 
 }
-
 
 
 void testInvalidLinkedListQueueInitialization(CuTest *cuTest) {
@@ -66,7 +60,6 @@ void testInvalidLinkedListQueueInitialization(CuTest *cuTest) {
 }
 
 
-
 void testValidLinkedListQueueInitialization(CuTest *cuTest) {
 
     LinkedListQueue *llQueue = linkedListQueueInitialization(free);
@@ -75,8 +68,6 @@ void testValidLinkedListQueueInitialization(CuTest *cuTest) {
     destroyLLQueue(llQueue);
 
 }
-
-
 
 
 void testLinkedListQueueEnqueue(CuTest *cuTest) {
@@ -104,9 +95,6 @@ void testLinkedListQueueEnqueue(CuTest *cuTest) {
     destroyLLQueue(llQueue);
 
 }
-
-
-
 
 
 void testLinkedListQueueEnqueueAll(CuTest *cuTest) {
@@ -139,9 +127,6 @@ void testLinkedListQueueEnqueueAll(CuTest *cuTest) {
 }
 
 
-
-
-
 void testLinkedListQueueDequeue(CuTest *cuTest) {
 
     LinkedListQueue *llQueue = linkedListQueueInitialization(free);
@@ -167,10 +152,6 @@ void testLinkedListQueueDequeue(CuTest *cuTest) {
     destroyLLQueue(llQueue);
 
 }
-
-
-
-
 
 
 void testLinkedListQueuePeek(CuTest *cuTest) {
@@ -199,9 +180,6 @@ void testLinkedListQueuePeek(CuTest *cuTest) {
     destroyLLQueue(llQueue);
 
 }
-
-
-
 
 
 void testLinkedListQueueGetLength(CuTest *cuTest) {
@@ -238,8 +216,6 @@ void testLinkedListQueueGetLength(CuTest *cuTest) {
 }
 
 
-
-
 void testLinkedListQueueIsEmpty(CuTest *cuTest) {
 
     LinkedListQueue *llQueue = linkedListQueueInitialization(free);
@@ -260,9 +236,6 @@ void testLinkedListQueueIsEmpty(CuTest *cuTest) {
     destroyLLQueue(llQueue);
 
 }
-
-
-
 
 
 void testLinkedListQueueToArray(CuTest *cuTest) {
@@ -288,10 +261,6 @@ void testLinkedListQueueToArray(CuTest *cuTest) {
     destroyLLQueue(llQueue);
 
 }
-
-
-
-
 
 
 void testClearLinkedListQueue(CuTest *cuTest) {
@@ -320,10 +289,6 @@ void testClearLinkedListQueue(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testDestroyLinkedListQueue(CuTest *cuTest) {
 
     LinkedListQueue *llQueue = linkedListQueueInitialization(free);
@@ -341,15 +306,12 @@ void testDestroyLinkedListQueue(CuTest *cuTest) {
 }
 
 
-
-
 typedef struct LLQueueTestStruct {
 
     int iData;
     char *cData;
 
 } LLQueueTestStruct;
-
 
 
 void freeLinkedListQueueTestStruct(void *item) {
@@ -371,11 +333,10 @@ int lLQueueTestStructComp(const void *item1, const void *item2) {
 }
 
 
-
 LLQueueTestStruct *generateLinkedListQueueTestStruct(int value, char *str) {
 
     LLQueueTestStruct *q = (LLQueueTestStruct *) malloc(sizeof(LLQueueTestStruct));
-    q->cData = (char *) malloc(sizeof(char ) * (strlen(str) + 1) );
+    q->cData = (char *) malloc(sizeof(char) * (strlen(str) + 1));
     strcpy(q->cData, str);
 
     q->iData = value;
@@ -385,12 +346,11 @@ LLQueueTestStruct *generateLinkedListQueueTestStruct(int value, char *str) {
 }
 
 
-
-
 void generalLinkedListQueueTest(CuTest *cuTest) {
 
     LinkedListQueue *llQueue = linkedListQueueInitialization(freeLinkedListQueueTestStruct);
-    char numbersStr[14][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"};
+    char numbersStr[14][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven",
+                               "twelve", "thirteen", "fourteen"};
 
 
     CuAssertIntEquals(cuTest, 0, lLQueueGetLength(llQueue));
@@ -442,13 +402,6 @@ void generalLinkedListQueueTest(CuTest *cuTest) {
 }
 
 
-
-
-
-
-
-
-
 CuSuite *createLinkedListQueueTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
@@ -472,10 +425,9 @@ CuSuite *createLinkedListQueueTestsSuite(void) {
 }
 
 
-
 void linkedListQueueUnitTest(void) {
 
-    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
+    ERROR_TEST = (ErrorTestStruct *) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Linked List Queue Test**\n");

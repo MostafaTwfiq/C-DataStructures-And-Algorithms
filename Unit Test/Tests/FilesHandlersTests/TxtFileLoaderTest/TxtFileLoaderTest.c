@@ -6,9 +6,7 @@
 #include "../../../../DataStructure/Lists/Headers/Vector.h"
 
 
-
- char *filePath = "testFile.txt";
-
+char *filePath = "testFile.txt";
 
 
 void createFileToBeTested() {
@@ -23,7 +21,6 @@ void createFileToBeTested() {
     fclose(dir);
 
 }
-
 
 
 void testInvalidTextFileLoaderInitialization(CuTest *cuTest) {
@@ -44,7 +41,6 @@ void testValidTextFileLoaderInitialization(CuTest *cuTest) {
 }
 
 
-
 void testTxtLoaderWriteC(CuTest *cuTest) {
 
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
@@ -62,7 +58,7 @@ void testTxtLoaderWriteC(CuTest *cuTest) {
 
     txtFileLoader->fileP = fopen(txtFileLoader->dir, "r");
     char c;
-    while ( (c = fgetc(txtFileLoader->fileP)) != EOF)
+    while ((c = fgetc(txtFileLoader->fileP)) != EOF)
         stringAppendChar(tempString, c);
 
 
@@ -74,8 +70,6 @@ void testTxtLoaderWriteC(CuTest *cuTest) {
     destroyTxtFileLoader(txtFileLoader);
 
 }
-
-
 
 
 void testTxtLoaderWriteS(CuTest *cuTest) {
@@ -97,7 +91,7 @@ void testTxtLoaderWriteS(CuTest *cuTest) {
 
     txtFileLoader->fileP = fopen(txtFileLoader->dir, "r");
     char c;
-    while ( (c = fgetc(txtFileLoader->fileP)) != EOF)
+    while ((c = fgetc(txtFileLoader->fileP)) != EOF)
         stringAppendChar(tempString, c);
 
 
@@ -110,9 +104,6 @@ void testTxtLoaderWriteS(CuTest *cuTest) {
     destroyTxtFileLoader(txtFileLoader);
 
 }
-
-
-
 
 
 void testTxtLoaderReadFileS(CuTest *cuTest) {
@@ -135,7 +126,6 @@ void testTxtLoaderReadFileS(CuTest *cuTest) {
 }
 
 
-
 void testTxtLoaderReadFileC(CuTest *cuTest) {
 
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
@@ -154,8 +144,6 @@ void testTxtLoaderReadFileC(CuTest *cuTest) {
     destroyTxtFileLoader(txtFileLoader);
 
 }
-
-
 
 
 void testTxtLoaderReadFileLines(CuTest *cuTest) {
@@ -179,8 +167,6 @@ void testTxtLoaderReadFileLines(CuTest *cuTest) {
     destroyTxtFileLoader(txtFileLoader);
 
 }
-
-
 
 
 void testTxtLoaderReadFileWthDelimiter(CuTest *cuTest) {
@@ -211,7 +197,6 @@ void testTxtLoaderReadFileWthDelimiter(CuTest *cuTest) {
 }
 
 
-
 void testTxtLoaderCountLines(CuTest *cuTest) {
 
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
@@ -234,8 +219,6 @@ void testTxtLoaderCountLines(CuTest *cuTest) {
     destroyTxtFileLoader(txtFileLoader);
 
 }
-
-
 
 
 void testTxtLoaderReadLineS(CuTest *cuTest) {
@@ -263,7 +246,6 @@ void testTxtLoaderReadLineS(CuTest *cuTest) {
 }
 
 
-
 void testTxtLoaderReadLineC(CuTest *cuTest) {
 
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
@@ -287,9 +269,6 @@ void testTxtLoaderReadLineC(CuTest *cuTest) {
     destroyTxtFileLoader(txtFileLoader);
 
 }
-
-
-
 
 
 void testTxtLoaderAppendC(CuTest *cuTest) {
@@ -318,8 +297,6 @@ void testTxtLoaderAppendC(CuTest *cuTest) {
     destroyTxtFileLoader(txtFileLoader);
 
 }
-
-
 
 
 void testTxtLoaderAppendS(CuTest *cuTest) {
@@ -357,9 +334,6 @@ void testTxtLoaderAppendS(CuTest *cuTest) {
 }
 
 
-
-
-
 void testTxtLoaderAppendAllC(CuTest *cuTest) {
 
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
@@ -375,15 +349,15 @@ void testTxtLoaderAppendAllC(CuTest *cuTest) {
 
     Vector *newLines = vectorInitialization(2, free, NULL);
 
-    char *newLn = (char *) malloc(sizeof(char) * ( strlen("five") + 1 ) );
+    char *newLn = (char *) malloc(sizeof(char) * (strlen("five") + 1));
     strcpy(newLn, "five");
     vectorAdd(newLines, newLn);
 
-    newLn = (char *) malloc(sizeof(char) * ( strlen("six") + 1 ) );
+    newLn = (char *) malloc(sizeof(char) * (strlen("six") + 1));
     strcpy(newLn, "six");
     vectorAdd(newLines, newLn);
 
-    newLn = (char *) malloc(sizeof(char) * ( strlen("seven") + 1 ) );
+    newLn = (char *) malloc(sizeof(char) * (strlen("seven") + 1));
     strcpy(newLn, "seven");
     vectorAdd(newLines, newLn);
 
@@ -399,8 +373,6 @@ void testTxtLoaderAppendAllC(CuTest *cuTest) {
     destroyTxtFileLoader(txtFileLoader);
 
 }
-
-
 
 
 void testTxtLoaderAppendAllS(CuTest *cuTest) {
@@ -444,7 +416,6 @@ void testTxtLoaderAppendAllS(CuTest *cuTest) {
 }
 
 
-
 void testTxtLoaderAppendToLineC(CuTest *cuTest) {
 
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
@@ -479,7 +450,6 @@ void testTxtLoaderAppendToLineC(CuTest *cuTest) {
     destroyTxtFileLoader(txtFileLoader);
 
 }
-
 
 
 void testTxtLoaderAppendToLineS(CuTest *cuTest) {
@@ -521,9 +491,6 @@ void testTxtLoaderAppendToLineS(CuTest *cuTest) {
 }
 
 
-
-
-
 void testTxtLoaderAddLineC(CuTest *cuTest) {
 
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
@@ -554,9 +521,6 @@ void testTxtLoaderAddLineC(CuTest *cuTest) {
     destroyTxtFileLoader(txtFileLoader);
 
 }
-
-
-
 
 
 void testTxtLoaderAddLineS(CuTest *cuTest) {
@@ -601,10 +565,6 @@ void testTxtLoaderAddLineS(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testTxtLoaderAddAllC(CuTest *cuTest) {
 
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
@@ -627,15 +587,15 @@ void testTxtLoaderAddAllC(CuTest *cuTest) {
 
     Vector *newLines = vectorInitialization(3, free, NULL);
 
-    char *lnC = (char *) malloc(sizeof(char) * ( strlen("two") + 1) );
+    char *lnC = (char *) malloc(sizeof(char) * (strlen("two") + 1));
     strcpy(lnC, "two");
     vectorAdd(newLines, lnC);
 
-    lnC = (char *) malloc(sizeof(char) * ( strlen("three") + 1) );
+    lnC = (char *) malloc(sizeof(char) * (strlen("three") + 1));
     strcpy(lnC, "three");
     vectorAdd(newLines, lnC);
 
-    lnC = (char *) malloc(sizeof(char) * ( strlen("four") + 1) );
+    lnC = (char *) malloc(sizeof(char) * (strlen("four") + 1));
     strcpy(lnC, "four");
     vectorAdd(newLines, lnC);
 
@@ -653,8 +613,6 @@ void testTxtLoaderAddAllC(CuTest *cuTest) {
     destroyTxtFileLoader(txtFileLoader);
 
 }
-
-
 
 
 void testTxtLoaderAddAllS(CuTest *cuTest) {
@@ -707,12 +665,6 @@ void testTxtLoaderAddAllS(CuTest *cuTest) {
 }
 
 
-
-
-
-
-
-
 void testTxtLoaderUpdateLineC(CuTest *cuTest) {
 
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
@@ -744,10 +696,6 @@ void testTxtLoaderUpdateLineC(CuTest *cuTest) {
     destroyTxtFileLoader(txtFileLoader);
 
 }
-
-
-
-
 
 
 void testTxtLoaderUpdateLineS(CuTest *cuTest) {
@@ -789,9 +737,6 @@ void testTxtLoaderUpdateLineS(CuTest *cuTest) {
 }
 
 
-
-
-
 void testTxtLoaderRemoveLine(CuTest *cuTest) {
 
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
@@ -823,8 +768,6 @@ void testTxtLoaderRemoveLine(CuTest *cuTest) {
 }
 
 
-
-
 void testTxtLoaderChangeFile(CuTest *cuTest) {
 
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
@@ -842,7 +785,6 @@ void testTxtLoaderChangeFile(CuTest *cuTest) {
     destroyTxtFileLoader(txtFileLoader);
 
 }
-
 
 
 void testTxtLoaderClearFile(CuTest *cuTest) {
@@ -868,9 +810,6 @@ void testTxtLoaderClearFile(CuTest *cuTest) {
 }
 
 
-
-
-
 void testDestroyTxtFileLoader(CuTest *cuTest) {
 
     TxtFileLoader *txtFileLoader = txtFileLoaderInitialization(filePath);
@@ -878,8 +817,6 @@ void testDestroyTxtFileLoader(CuTest *cuTest) {
     destroyTxtFileLoader(txtFileLoader);
 
 }
-
-
 
 
 CuSuite *createTxtFileLoaderTestsSuite(void) {
@@ -919,10 +856,9 @@ CuSuite *createTxtFileLoaderTestsSuite(void) {
 }
 
 
-
 void txtFileLoaderAlgUnitTest(void) {
 
-    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
+    ERROR_TEST = (ErrorTestStruct *) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Text File Loader Test**\n");

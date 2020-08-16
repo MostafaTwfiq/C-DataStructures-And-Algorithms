@@ -2,10 +2,6 @@
 #define C_DATASTRUCTURES_BINARYHEAP_H
 
 
-
-
-
-
 /** @struct BinaryHeap
  *  @brief This structure implements a basic generic binary heap.
  *  @var BinaryHeap::arr
@@ -24,7 +20,9 @@ typedef struct BinaryHeap {
     void **arr;
     int length;
     int count;
+
     void (*freeFun)(void *);
+
     int (*cmp)(const void *, const void *);
 } BinaryHeap;
 

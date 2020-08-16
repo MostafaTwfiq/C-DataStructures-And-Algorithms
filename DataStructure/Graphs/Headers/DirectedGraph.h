@@ -6,8 +6,6 @@ extern "C" {
 #endif
 
 
-
-
 /** @struct DirectedGraph
 *  @brief This structure implements a basic generic directed graph.
 *  @var DirectedGraph::nodes
@@ -20,13 +18,15 @@ extern "C" {
 
 typedef struct DirectedGraph {
     struct HashMap *nodes;
+
     void (*freeValue)(void *);
+
     int (*valueComp)(const void *, const void *);
 } DirectedGraph;
 
 
-
-DirectedGraph *directedGraphInitialization(void (*freeValue)(void *), int (*valueComp)(const void *, const void *), int (*hashFun)(const void *));
+DirectedGraph *directedGraphInitialization(void (*freeValue)(void *), int (*valueComp)(const void *, const void *),
+                                           int (*hashFun)(const void *));
 
 void dirGraphAddNode(DirectedGraph *graph, void *value);
 

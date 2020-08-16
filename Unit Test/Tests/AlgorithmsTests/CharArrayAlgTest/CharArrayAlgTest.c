@@ -6,10 +6,6 @@
 #include "../../../../DataStructure/Strings/Headers/String.h"
 
 
-
-
-
-
 void testCharArrayAlgIsSubString(CuTest *cuTest) {
 
     isSubString(NULL, 0, NULL, 0);
@@ -35,13 +31,12 @@ void testCharArrayAlgIsSubString(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, 1, isSubString(sentence, sentenceLength, "a nice day", strlen("a nice day")));
     CuAssertIntEquals(cuTest, 1, isSubString(sentence, sentenceLength, sentence, sentenceLength));
     CuAssertIntEquals(cuTest, 1, isSubString(sentence, sentenceLength, "", strlen("")));
-    CuAssertIntEquals(cuTest, 0, isSubString(sentence, sentenceLength, "what a nice day to program.", strlen("what a nice day to program.")));
+    CuAssertIntEquals(cuTest, 0, isSubString(sentence, sentenceLength, "what a nice day to program.",
+                                             strlen("what a nice day to program.")));
     CuAssertIntEquals(cuTest, 0, isSubString(sentence, sentenceLength, "z", strlen("z")));
     CuAssertIntEquals(cuTest, 0, isSubString(sentence, sentenceLength, "what a good day", strlen("what a good day")));
 
 }
-
-
 
 
 void testCharArrayReverseWords(CuTest *cuTest) {
@@ -76,11 +71,6 @@ void testCharArrayReverseWords(CuTest *cuTest) {
 }
 
 
-
-
-
-
-
 void testCharArrTrimStartC(CuTest *cuTest) {
 
     charArrTrimStartC(NULL, NULL);
@@ -112,10 +102,6 @@ void testCharArrTrimStartC(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testCharArrTrimStart(CuTest *cuTest) {
 
     charArrTrimStart(NULL);
@@ -142,10 +128,6 @@ void testCharArrTrimStart(CuTest *cuTest) {
 
 
 }
-
-
-
-
 
 
 void testCharArrTrimEndC(CuTest *cuTest) {
@@ -179,8 +161,6 @@ void testCharArrTrimEndC(CuTest *cuTest) {
 }
 
 
-
-
 void testCharArrTrimEnd(CuTest *cuTest) {
 
     charArrTrimEnd(NULL);
@@ -207,9 +187,6 @@ void testCharArrTrimEnd(CuTest *cuTest) {
 
 
 }
-
-
-
 
 
 void testCharArrTrimC(CuTest *cuTest) {
@@ -243,9 +220,6 @@ void testCharArrTrimC(CuTest *cuTest) {
 }
 
 
-
-
-
 void testCharArrTrim(CuTest *cuTest) {
 
     charArrTrim(NULL);
@@ -273,9 +247,6 @@ void testCharArrTrim(CuTest *cuTest) {
 }
 
 
-
-
-
 void testCharArrContainsChar(CuTest *cuTest) {
 
     charArrContainsChar(NULL, '\0');
@@ -285,7 +256,7 @@ void testCharArrContainsChar(CuTest *cuTest) {
     char sentence[] = "i love programming";
     char *tempPointer = sentence;
     while (*tempPointer != '\0')
-        CuAssertIntEquals(cuTest, 1,  charArrContainsChar(sentence, *tempPointer++));
+        CuAssertIntEquals(cuTest, 1, charArrContainsChar(sentence, *tempPointer++));
 
 
     char sentence2[] = "bcdfhjkxz";
@@ -295,8 +266,6 @@ void testCharArrContainsChar(CuTest *cuTest) {
 
 
 }
-
-
 
 
 void testCharArrRemoveCharacters(CuTest *cuTest) {
@@ -314,8 +283,6 @@ void testCharArrRemoveCharacters(CuTest *cuTest) {
 
 
 }
-
-
 
 
 void testCharArrIsInteger(CuTest *cuTest) {
@@ -339,8 +306,6 @@ void testCharArrIsInteger(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, 0, isInteger(""));
 
 }
-
-
 
 
 void testCharArrayIsFloatingPointNum(CuTest *cuTest) {
@@ -369,8 +334,6 @@ void testCharArrayIsFloatingPointNum(CuTest *cuTest) {
 }
 
 
-
-
 void testCharArrSumASCII(CuTest *cuTest) {
 
     charArrSumASCII(NULL);
@@ -391,8 +354,6 @@ void testCharArrSumASCII(CuTest *cuTest) {
 }
 
 
-
-
 void testCharArrHashFun(CuTest *cuTest) {
 
     charArrHashFun(NULL);
@@ -411,10 +372,6 @@ void testCharArrHashFun(CuTest *cuTest) {
     }
 
 }
-
-
-
-
 
 
 void testGenerateCharPointerP(CuTest *cuTest) {
@@ -438,13 +395,11 @@ void testGenerateCharPointerP(CuTest *cuTest) {
 }
 
 
-
-
 void testGenerateCharPointerC(CuTest *cuTest) {
 
     char sentence[] = "i love programming.";
 
-    int  length = strlen(sentence);
+    int length = strlen(sentence);
     for (int i = 0; i < length; i++) {
         char *generatedChar = generateCharPointerC(sentence[i]);
 
@@ -456,20 +411,15 @@ void testGenerateCharPointerC(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testCharIsAlphabetC(CuTest *cuTest) {
 
     char letters[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     char notLetters[] = "!@#@#$^%$&*(((*))_+\t\n  ""::{}][';/.|";
 
-    int  length = strlen(letters);
+    int length = strlen(letters);
     for (int i = 0; i < length; i++)
         CuAssertIntEquals(cuTest, 1, isAlphabetC(letters[i]));
-
 
 
     int notLetterLength = strlen(notLetters);
@@ -477,7 +427,6 @@ void testCharIsAlphabetC(CuTest *cuTest) {
         CuAssertIntEquals(cuTest, 0, isAlphabetC(notLetters[i]));
 
 }
-
 
 
 void testCharIsAlphabetP(CuTest *cuTest) {
@@ -490,10 +439,9 @@ void testCharIsAlphabetP(CuTest *cuTest) {
 
     char notLetters[] = "!@#@#$^%$&*(((*))_+\t\n  ""::{}][';/.|";
 
-    int  length = strlen(letters);
+    int length = strlen(letters);
     for (int i = 0; i < length; i++)
         CuAssertIntEquals(cuTest, 1, isAlphabetP(letters + i));
-
 
 
     int notLetterLength = strlen(notLetters);
@@ -501,11 +449,6 @@ void testCharIsAlphabetP(CuTest *cuTest) {
         CuAssertIntEquals(cuTest, 0, isAlphabetP(notLetters + i));
 
 }
-
-
-
-
-
 
 
 void testCharComparator(CuTest *cuTest) {
@@ -519,12 +462,10 @@ void testCharComparator(CuTest *cuTest) {
 
     CuAssertIntEquals(cuTest, -1, charComparator('1', '2') < 0 ? -1 : 1);
 
-    CuAssertIntEquals(cuTest,  1, charComparator('4', '3') < 0 ? -1 : 1);
+    CuAssertIntEquals(cuTest, 1, charComparator('4', '3') < 0 ? -1 : 1);
 
 
 }
-
-
 
 
 void testCharComparatorP(CuTest *cuTest) {
@@ -551,10 +492,6 @@ void testCharComparatorP(CuTest *cuTest) {
 }
 
 
-
-
-
-
 void testMostRepeatedCharacter(CuTest *cuTest) {
 
 
@@ -574,10 +511,6 @@ void testMostRepeatedCharacter(CuTest *cuTest) {
 
 
 }
-
-
-
-
 
 
 void testCharArrSplitC(CuTest *cuTest) {
@@ -606,9 +539,6 @@ void testCharArrSplitC(CuTest *cuTest) {
 }
 
 
-
-
-
 void testCharArrSplitS(CuTest *cuTest) {
 
 
@@ -633,9 +563,6 @@ void testCharArrSplitS(CuTest *cuTest) {
     destroyVector(wordsVector);
 
 }
-
-
-
 
 
 CuSuite *createCharArrayAlgTestsSuite(void) {
@@ -671,10 +598,9 @@ CuSuite *createCharArrayAlgTestsSuite(void) {
 }
 
 
-
 void charArrayAlgUnitTest(void) {
 
-    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
+    ERROR_TEST = (ErrorTestStruct *) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Char Array Algorithms Test**\n");

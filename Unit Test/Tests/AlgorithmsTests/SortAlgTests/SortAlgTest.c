@@ -4,8 +4,6 @@
 #include "../../../../Algorithms/Sorting/Headers/Sorting.h"
 
 
-
-
 int intCompareFunSoAT1(const void *a, const void *b) {
     return *(int *) a - *(int *) b;
 }
@@ -43,8 +41,6 @@ void testBubbleSort(CuTest *cuTest) {
 }
 
 
-
-
 void testSelectionSort(CuTest *cuTest) {
 
     int arr[] = {5, 3, 9, 7, 6, 1, 2, 4, 10, 8};
@@ -71,9 +67,6 @@ void testSelectionSort(CuTest *cuTest) {
         CuAssertIntEquals(cuTest, i + 1, arr[9 - i]);
 
 }
-
-
-
 
 
 void testQuickSort(CuTest *cuTest) {
@@ -104,9 +97,6 @@ void testQuickSort(CuTest *cuTest) {
 }
 
 
-
-
-
 void testMergeSort(CuTest *cuTest) {
 
     int arr[] = {5, 3, 9, 7, 6, 1, 2, 4, 10, 8};
@@ -133,8 +123,6 @@ void testMergeSort(CuTest *cuTest) {
         CuAssertIntEquals(cuTest, i + 1, arr[9 - i]);
 
 }
-
-
 
 
 void testInsertionSort(CuTest *cuTest) {
@@ -166,8 +154,6 @@ void testInsertionSort(CuTest *cuTest) {
 }
 
 
-
-
 void testHeapSort(CuTest *cuTest) {
 
     int arr[] = {5, 3, 9, 7, 6, 1, 2, 4, 10, 8};
@@ -194,8 +180,6 @@ void testHeapSort(CuTest *cuTest) {
         CuAssertIntEquals(cuTest, i + 1, arr[9 - i]);
 
 }
-
-
 
 
 void testCountingSort(CuTest *cuTest) {
@@ -237,9 +221,6 @@ void testCountingSort(CuTest *cuTest) {
 }
 
 
-
-
-
 CuSuite *createSortAlgTestsSuite(void) {
 
     CuSuite *suite = CuSuiteNew();
@@ -257,10 +238,9 @@ CuSuite *createSortAlgTestsSuite(void) {
 }
 
 
-
 void sortAlgUnitTest(void) {
 
-    ERROR_TEST =  (ErrorTestStruct*) malloc(sizeof(ErrorTestStruct));
+    ERROR_TEST = (ErrorTestStruct *) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
     CuStringAppend(output, "**Sorting Algorithms Test**\n");
