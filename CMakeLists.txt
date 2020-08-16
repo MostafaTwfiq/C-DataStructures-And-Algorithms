@@ -8,14 +8,13 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -lm")
 add_executable(C_DataStructures
 
         "Unit Test/CuTest"
-        #"Unit Test/CuTest/AllTests.c"
         "Unit Test/CuTest/CuTest.c"
-        "Unit Test/CuTest/CuTestTest.c"
-        "Unit Test/CuTest/CuTest.h"
+        #"Unit Test/CuTest/AllTests.c"
+        #"Unit Test/CuTest/CuTestTest.c"
+        #"Unit Test/CuTest/CuTest.h"
 
-        #"Unit Test/Tests/Tests.c"
-
-        main.c
+        "Unit Test/Tests/Tests.c"
+        #main.c
 
         DataStructure/Stacks/Sources/Stack.c
         DataStructure/Stacks/Headers/Stack.h

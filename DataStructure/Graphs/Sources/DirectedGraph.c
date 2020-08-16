@@ -8,6 +8,17 @@
 #include "../../../Unit Test/CuTest/CuTest.h"
 
 
+#if defined(__BORLANDC__)
+    typedef unsigned char uint8_t;
+    typedef __int64 int64_t;
+    typedef unsigned long uintptr_t;
+#elif defined(_MSC_VER)
+    typedef unsigned char uint8_t;
+    typedef __int64 int64_t;
+#else
+    #include <stdint.h>
+#endif
+
 
 
 /** @struct DirGraphNode
@@ -777,52 +788,50 @@ void dirGraphPrint(DirectedGraph *graph, void (*printVal)(void *)) {
 
 
 
-/** This function will take an longLong pointer as a parameter,
+/** This function will take an uintptr_tPointer pointer as a parameter,
  * then it will free it.
  *
  * This function will be useful in traversal functions.
  *
- * @param longLong the longLong address
+ * @param uintptr_tPointer the uintptr_tPointer address
  */
 
-void freeLongLong(void *longLong) {
-    free(longLong);
+void freeUintptr_t(void *uintptr_tPointer) {
+    free(uintptr_tPointer);
 }
 
 
 
 
-/** This function will take two integers pointer as a parameters,
- * then it will compare the two integers.
+/** This function will take two uintptr_t pointer as a parameters,
+ * then it will compare the two uintptr_t.
  *
  * This function will be useful in traversal functions.
  *
- * @param int1 the first long long address
- * @param s1 the first long long size
- * @param int2 the second long long address
- * @param s2 the second long long size
- * @return it will return zero if the two long longs are equal.
+ * @param uintptr_tPointer1 the first uintptr_t address
+ * @param uintptr_tPointer2 the second uintptr_t address
+ * @return it will return zero if the two uintptr_t are equal.
  */
 
-int compLongLong(const void *int1, const void *int2) {
-    return (int) ( *(long long *)int1 - *(long long *)int2 );
+int compUintptr_t(const void *uintptr_tPointer1, const void *uintptr_tPointer2) {
+    return (int) (*(uintptr_t *)uintptr_tPointer1 - *(uintptr_t *)uintptr_tPointer2 );
 }
 
 
 
 
 
-/** This function will take an long long pointer as a parameter,
- * then it will return the value of the long long.
+/** This function will take an uintptr_t pointer as a parameter,
+ * then it will return the value of the uintptr_t.
  *
  * Note: this function will be useful to use in the hash map and hash set data structures.
  *
- * @param item the long long pointer
- * @return it will return the value of the long long as the unique hash key
+ * @param item the uintptr_t pointer
+ * @return it will return the value of the uintptr_t as the unique hash key
  */
 
-int longLongHashFunDirG(const void *item) {
-    return (int) *(long long *)item;
+int uintptr_tHashFunDirG(const void *item) {
+    return (int) *(uintptr_t *)item;
 }
 
 
@@ -874,12 +883,12 @@ void dirGraphDepthFirstTraversal(DirectedGraph *graph, void *startVal, void (*pr
     if (startNode == NULL)
         return;
 
-    HashSet *visitedNodes = hashSetInitialization(freeLongLong, compLongLong, longLongHashFunDirG);
+    HashSet *visitedNodes = hashSetInitialization(freeUintptr_t, compUintptr_t, uintptr_tHashFunDirG);
     Stack *nodesStack = stackInitialization(freeDGraphNode);
     stackPush(nodesStack, startNode);
 
-    long long *startNodeValAddress = (long long *) malloc(sizeof(long long));
-    *startNodeValAddress = (long long) startNode->value;
+    uintptr_t *startNodeValAddress = (uintptr_t *) malloc(sizeof(uintptr_t));
+    *startNodeValAddress = (uintptr_t) startNode->value;
     hashSetInsert(visitedNodes, startNodeValAddress);
 
     DirGraphNode *currentNode;
@@ -890,8 +899,8 @@ void dirGraphDepthFirstTraversal(DirectedGraph *graph, void *startVal, void (*pr
 
         for (int i = 0; i < arrayListGetLength(currentNode->adjacentNodes); i++) {
             DirGraphNode *adjNode = (DirGraphNode *) arrayListGet(currentNode->adjacentNodes, i);
-            long long *adjNodeValAddress = (long long *) malloc(sizeof(long long));
-            *adjNodeValAddress = (long long) adjNode->value;
+            uintptr_t *adjNodeValAddress = (uintptr_t *) malloc(sizeof(uintptr_t));
+            *adjNodeValAddress = (uintptr_t) adjNode->value;
             if (!hashSetContains(visitedNodes, adjNodeValAddress)) {
                 stackPush(nodesStack, adjNode);
                 hashSetInsert(visitedNodes, adjNodeValAddress);
@@ -959,12 +968,12 @@ void dirGraphBreadthFirstTraversal(DirectedGraph *graph, void *startVal, void (*
     if (startNode == NULL)
         return;
 
-    HashSet *visitedNodes = hashSetInitialization(freeLongLong, compLongLong, longLongHashFunDirG);
+    HashSet *visitedNodes = hashSetInitialization(freeUintptr_t, compUintptr_t, uintptr_tHashFunDirG);
     Queue *nodesQueue = queueInitialization(freeDGraphNode);
     queueEnqueue(nodesQueue, startNode);
 
-    long long *startNodeValAddress = (long long *) malloc(sizeof(long long));
-    *startNodeValAddress = (long long) startNode->value;
+    uintptr_t *startNodeValAddress = (uintptr_t *) malloc(sizeof(uintptr_t));
+    *startNodeValAddress = (uintptr_t) startNode->value;
     hashSetInsert(visitedNodes, startNodeValAddress);
 
     DirGraphNode *currentNode;
@@ -975,8 +984,8 @@ void dirGraphBreadthFirstTraversal(DirectedGraph *graph, void *startVal, void (*
 
         for (int i = 0; i < arrayListGetLength(currentNode->adjacentNodes); i++) {
             DirGraphNode *adjNode = (DirGraphNode *) arrayListGet(currentNode->adjacentNodes, i);
-            long long *adjNodeValAddress = (long long *) malloc(sizeof(long long));
-            *adjNodeValAddress = (long long) adjNode->value;
+            uintptr_t *adjNodeValAddress = (uintptr_t *) malloc(sizeof(uintptr_t));
+            *adjNodeValAddress = (uintptr_t) adjNode->value;
             if (!hashSetContains(visitedNodes, adjNodeValAddress)) {
                 queueEnqueue(nodesQueue, adjNode);
                 hashSetInsert(visitedNodes, adjNodeValAddress);
@@ -1021,7 +1030,7 @@ ArrayList *dirGraphTopologicalSort(DirectedGraph *graph) {
 
     DirGraphNode **hashMapNodes = (DirGraphNode **) hashMapToArray(graph->nodes);
     ArrayList *sortedArrayList = arrayListInitialization(hashMapGetLength(graph->nodes), graph->freeValue, graph->valueComp);
-    HashSet *visitedNodes = hashSetInitialization(freeLongLong, compLongLong, longLongHashFunDirG);
+    HashSet *visitedNodes = hashSetInitialization(freeUintptr_t, compUintptr_t, uintptr_tHashFunDirG);
     Stack *sortStack = stackInitialization(freeDGraphNode);
 
     for (int i = 0; i < hashMapGetLength(graph->nodes); i++)
@@ -1057,8 +1066,8 @@ ArrayList *dirGraphTopologicalSort(DirectedGraph *graph) {
  */
 
 void dirGraphTopologicalSortR(DirGraphNode *node, HashSet *visitedNodes, Stack *sortStack) {
-    long long *nodeValueAddress = (long long *) malloc(sizeof(long long));
-    *nodeValueAddress = (long long) node->value;
+    uintptr_t *nodeValueAddress = (uintptr_t *) malloc(sizeof(uintptr_t));
+    *nodeValueAddress = (uintptr_t) node->value;
 
     if (hashSetContains(visitedNodes, nodeValueAddress)) {
         free(nodeValueAddress);
@@ -1116,7 +1125,7 @@ int dirGraphNodeIsPartOfCycle(DirectedGraph *graph, void *startValue) {
     if (startNode == NULL)
         return 0;
 
-    HashSet *visitedNodes = hashSetInitialization(freeLongLong, compLongLong, longLongHashFunDirG);
+    HashSet *visitedNodes = hashSetInitialization(freeUintptr_t, compUintptr_t, uintptr_tHashFunDirG);
     int cycleFlag = dirGraphNodeIsPartOfCycleR(startNode, visitedNodes);
 
     destroyHashSet(visitedNodes);
@@ -1141,8 +1150,8 @@ int dirGraphNodeIsPartOfCycle(DirectedGraph *graph, void *startValue) {
  */
 
 int dirGraphNodeIsPartOfCycleR(DirGraphNode *node, HashSet *visitedNodes) {
-    long long *nodeValueAddress = (long long *) malloc(sizeof(long long));
-    *nodeValueAddress = (long long) node->value;
+    uintptr_t *nodeValueAddress = (uintptr_t *) malloc(sizeof(uintptr_t));
+    *nodeValueAddress = (uintptr_t) node->value;
 
     if (hashSetContains(visitedNodes, nodeValueAddress)) {
         free(nodeValueAddress);
@@ -1193,10 +1202,10 @@ int dirGraphHasACycle(DirectedGraph *graph) {
 
 
     DirGraphNode **hashMapNodes = (DirGraphNode **) hashMapToArray(graph->nodes);
-    HashSet *visitedNodes = hashSetInitialization(freeLongLong, compLongLong, longLongHashFunDirG);
+    HashSet *visitedNodes = hashSetInitialization(freeUintptr_t, compUintptr_t, uintptr_tHashFunDirG);
 
     for (int i = 0; i < hashMapGetLength(graph->nodes); i++) {
-        long long currentNodeValAddress = (long long) hashMapNodes[i]->value;
+        uintptr_t currentNodeValAddress = (uintptr_t) hashMapNodes[i]->value;
         if (!hashSetContains(visitedNodes, &currentNodeValAddress)
         && dirGraphNodeIsPartOfCycleR(hashMapNodes[i], visitedNodes)) {
             destroyHashSet(visitedNodes);

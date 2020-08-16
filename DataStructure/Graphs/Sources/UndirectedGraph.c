@@ -10,6 +10,18 @@
 
 
 
+#if defined(__BORLANDC__)
+    typedef unsigned char uint8_t;
+    typedef __int64 int64_t;
+    typedef unsigned long uintptr_t;
+#elif defined(_MSC_VER)
+    typedef unsigned char uint8_t;
+    typedef __int64 int64_t;
+#else
+    #include <stdint.h>
+#endif
+
+
 
 
 /** @struct UDGraphNode
@@ -987,16 +999,16 @@ void destroyUDGraph(UndirectedGraph *graph) {
 
 
 
-/** This function will take an longLong pointer as a parameter,
+/** This function will take an uintptr_t pointer as a parameter,
  * then it will free it.
  *
  * This function will be useful in traversal functions.
  *
- * @param longLong the longLong address
+ * @param uintptr_tPointer the uintptr_t address
  */
 
-void UDGFreeLongLong(void *longLong) {
-    free(longLong);
+void UDGFreeUintptr_t(void *uintptr_tPointer) {
+    free(uintptr_tPointer);
 }
 
 
@@ -1008,36 +1020,34 @@ void UDGFreeLongLong(void *longLong) {
 
 
 
-/** This function will take two long long pointer as a parameters,
- * then it will compare the two long long.
+/** This function will take two uintptr_t pointer as a parameters,
+ * then it will compare the two uintptr_t.
  *
  * This function will be useful in traversal functions.
  *
- * @param long1 the first long long address
- * @param s1 the first long long size
- * @param long2 the second long long address
- * @param s2 the second long long size
- * @return it will return zero if the two long longs are equal.
+ * @param uintptr_tPointer1 the first uintptr_t address
+ * @param uintptr_tPointer2 the second uintptr_t address
+ * @return it will return zero if the two uintptr_t are equal.
  */
 
-int UDGCompLongLong(const void *long1, const void *long2) {
-    return (int) ( *(long long *)long1 - *(long long *)long2 );
+int UDGCompUintptr_t(const void *uintptr_tPointer1, const void *uintptr_tPointer2) {
+    return (int) (*(uintptr_t *)uintptr_tPointer1 - *(uintptr_t *)uintptr_tPointer2 );
 }
 
 
 
 
-/** This function will take an long long pointer as a parameter,
- * then it will return the value of the long long.
+/** This function will take an uintptr_t pointer as a parameter,
+ * then it will return the value of the uintptr_t.
  *
  * Note: this function will be useful to use in the hash map and hash set data structures.
  *
- * @param item the long long pointer
- * @return it will return the value of the long long as the unique hash key
+ * @param item the uintptr_t pointer
+ * @return it will return the value of the uintptr_t as the unique hash key
  */
 
-int longLongHashFunUDirG(const void *item) {
-    return (int) *(long long *)item;
+int uintptr_tHashFunUDirG(const void *item) {
+    return (int) *(uintptr_t *) item;
 }
 
 
@@ -1084,11 +1094,11 @@ void UDGraphDepthFirstTraversal(UndirectedGraph *graph, void *startVal, void (*p
 
     UDGraphNode *startNode = hashMapGet(graph->nodes, startVal);
     Stack *nodesStack = stackInitialization(UDGraphNodeFreeFun);
-    HashSet *visitedNodes = hashSetInitialization(UDGFreeLongLong, UDGCompLongLong, longLongHashFunUDirG);
+    HashSet *visitedNodes = hashSetInitialization(UDGFreeUintptr_t, UDGCompUintptr_t, uintptr_tHashFunUDirG);
 
     stackPush(nodesStack, startNode);
-    long long *startNodeValAddress = (long long *) malloc(sizeof(long long));
-    *startNodeValAddress = (long long) startNode->value;
+    uintptr_t *startNodeValAddress = (uintptr_t *) malloc(sizeof(uintptr_t));
+    *startNodeValAddress = (uintptr_t) startNode->value;
     hashSetInsert(visitedNodes, startNodeValAddress);
 
 
@@ -1098,8 +1108,8 @@ void UDGraphDepthFirstTraversal(UndirectedGraph *graph, void *startVal, void (*p
 
         for (int i = 0; i < arrayListGetLength(tempNode->adjacentNodes); i++) {
             UDGraphNode *adjNode = ((UDGraphEdge *) arrayListGet(tempNode->adjacentNodes, i))->node;
-            long long *adjNodeValAddress = (long long *) malloc(sizeof(long long));
-            *adjNodeValAddress = (long long) adjNode->value;
+            uintptr_t *adjNodeValAddress = (uintptr_t *) malloc(sizeof(uintptr_t));
+            *adjNodeValAddress = (uintptr_t) adjNode->value;
             if (!hashSetContains(visitedNodes, adjNodeValAddress)) {
                 stackPush(nodesStack, adjNode);
                 hashSetInsert(visitedNodes, adjNodeValAddress);
@@ -1167,11 +1177,11 @@ void UDGraphBreadthFirstTraversal(UndirectedGraph *graph, void *startVal, void (
 
     UDGraphNode *startNode = hashMapGet(graph->nodes, startVal);
     Queue *nodesQueue = queueInitialization(UDGraphNodeFreeFun);
-    HashSet *visitedNodes = hashSetInitialization(UDGFreeLongLong, UDGCompLongLong, longLongHashFunUDirG);
+    HashSet *visitedNodes = hashSetInitialization(UDGFreeUintptr_t, UDGCompUintptr_t, uintptr_tHashFunUDirG);
 
     queueEnqueue(nodesQueue, startNode);
-    long long *startNodeValAddress = (long long *) malloc(sizeof(long long));
-    *startNodeValAddress = (long long) startNode->value;
+    uintptr_t *startNodeValAddress = (uintptr_t *) malloc(sizeof(uintptr_t));
+    *startNodeValAddress = (uintptr_t) startNode->value;
     hashSetInsert(visitedNodes, startNodeValAddress);
 
 
@@ -1181,8 +1191,8 @@ void UDGraphBreadthFirstTraversal(UndirectedGraph *graph, void *startVal, void (
 
         for (int i = 0; i < arrayListGetLength(tempNode->adjacentNodes); i++) {
             UDGraphNode *adjNode = ((UDGraphEdge *) arrayListGet(tempNode->adjacentNodes, i))->node;
-            long long *adjNodeValAddress = (long long *) malloc(sizeof(long long));
-            *adjNodeValAddress = (long long) adjNode->value;
+            uintptr_t *adjNodeValAddress = (uintptr_t *) malloc(sizeof(uintptr_t));
+            *adjNodeValAddress = (uintptr_t) adjNode->value;
             if (!hashSetContains(visitedNodes, adjNodeValAddress)) {
                 queueEnqueue(nodesQueue, adjNode);
                 hashSetInsert(visitedNodes, adjNodeValAddress);
@@ -1252,18 +1262,18 @@ void distanceHolderFreeFun(void *holder) {
 
 
 
-/** This function allocate a new long long pointer in the memory,
+/** This function allocate a new uintptr_t pointer in the memory,
  * then it puts it's value with the address of the passed node value.
  *
  * Note: this function should only be called from the undirected graph functions.
  *
  * @param node the node pointer
- * @return it will return an long long pointer, holds the node value address
+ * @return it will return an uintptr_t pointer, holds the node value address
  */
 
-long long *generateNodeValAddress(UDGraphNode *node) {
+uintptr_t *generateNodeValAddress(UDGraphNode *node) {
 
-    long long *valAddress = (long long *) malloc(sizeof(long long));
+    uintptr_t *valAddress = (uintptr_t *) malloc(sizeof(uintptr_t));
     if (valAddress == NULL) {
         #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
      		ERROR_TEST->errorCode = FAILED_ALLOCATION;
@@ -1275,7 +1285,7 @@ long long *generateNodeValAddress(UDGraphNode *node) {
 
     }
 
-    *valAddress = (long long) node->value;
+    *valAddress = (uintptr_t) node->value;
 
     return valAddress;
 
@@ -1408,7 +1418,7 @@ int udGraphGetShortestDistance(UndirectedGraph *graph, void *startVal, void *end
 
     HashMap *distancesMap = UDGraphGenerateDistancesMap(startNode);
 
-    long long endValAddress = (long long) endNode->value;
+    uintptr_t endValAddress = (uintptr_t) endNode->value;
     DistanceHolder *holder = hashMapGet(distancesMap, &endValAddress);
     int ans = holder != NULL ? holder->distance : -1;
 
@@ -1476,7 +1486,7 @@ ArrayList *udGraphGetShortestPath(UndirectedGraph *graph, void *startVal, void *
 
     HashMap *distancesMap = UDGraphGenerateDistancesMap(startNode);
 
-    long long endValAddress = (long long) endNode->value;
+    uintptr_t endValAddress = (uintptr_t) endNode->value;
     if (!hashMapContains(distancesMap, &endValAddress)) {
         destroyHashMap(distancesMap);
         return NULL;
@@ -1486,13 +1496,13 @@ ArrayList *udGraphGetShortestPath(UndirectedGraph *graph, void *startVal, void *
     Stack *pathStack = stackInitialization(graph->freeFun);
 
     UDGraphNode *tempNode = endNode;
-    long long currentValAddress = (long long) tempNode->value;
+    uintptr_t currentValAddress = (uintptr_t) tempNode->value;
     DistanceHolder *tempHolder;
 
     do {
         tempHolder = hashMapGet(distancesMap, &currentValAddress);
         tempNode = tempHolder->fromNode;
-        currentValAddress = (long long) tempNode->value;
+        currentValAddress = (uintptr_t) tempNode->value;
         stackPush(pathStack, tempHolder->toNode->value);
     } while (tempHolder->toNode != startNode);
 
@@ -1556,14 +1566,14 @@ HashMap *UDGraphGenerateDistancesMap(UDGraphNode *startNode) {
     PriorityQueue *distanceHolderPQueue = priorityQueueInitialization(distanceHolderFreeFun, distanceHolderComp);
 
     // visitingNodes hash set will represent the nodes that are in the queue.
-    HashSet *visitingNodes = hashSetInitialization(UDGFreeLongLong, UDGCompLongLong, longLongHashFunUDirG);
+    HashSet *visitingNodes = hashSetInitialization(UDGFreeUintptr_t, UDGCompUintptr_t, uintptr_tHashFunUDirG);
 
     // visitedNodes hash set will represent the nodes that are visited (dequeued from the queue).
-    HashSet *visitedNodes = hashSetInitialization(UDGFreeLongLong, UDGCompLongLong, longLongHashFunUDirG);
+    HashSet *visitedNodes = hashSetInitialization(UDGFreeUintptr_t, UDGCompUintptr_t, uintptr_tHashFunUDirG);
 
     // This hash map will hold the shortest distance to all the nodes
-    HashMap *distancesMap = hashMapInitialization(UDGFreeLongLong, distanceHolderFreeFun, UDGCompLongLong,
-                                                  longLongHashFunUDirG);
+    HashMap *distancesMap = hashMapInitialization(UDGFreeUintptr_t, distanceHolderFreeFun, UDGCompUintptr_t,
+                                                  uintptr_tHashFunUDirG);
 
 
     DistanceHolder *startNodeHolder = generateDisHolder(startNode, startNode, 0);
@@ -1578,7 +1588,7 @@ HashMap *UDGraphGenerateDistancesMap(UDGraphNode *startNode) {
 
         for (int i = 0; i < arrayListGetLength(currentNode->adjacentNodes); i++) {
             UDGraphEdge *edge = (UDGraphEdge *) arrayListGet(currentNode->adjacentNodes, i);
-            long long *childNodeValAddress = generateNodeValAddress(edge->node);
+            uintptr_t *childNodeValAddress = generateNodeValAddress(edge->node);
 
             if (!hashSetContains(visitedNodes, childNodeValAddress)) {
                 DistanceHolder *holder = hashMapGet(distancesMap, childNodeValAddress);
@@ -1661,7 +1671,7 @@ int udGraphNodePartOfCycle(UndirectedGraph *graph, void *startVal) {
     if (startVal == NULL)
         return 0;
 
-    HashSet *visitedNodes = hashSetInitialization(UDGFreeLongLong, UDGCompLongLong, longLongHashFunUDirG);
+    HashSet *visitedNodes = hashSetInitialization(UDGFreeUintptr_t, UDGCompUintptr_t, uintptr_tHashFunUDirG);
 
     int cycleFlag = UDGraphNodePartOfCycleR(NULL, startNode, visitedNodes);
 
@@ -1704,11 +1714,11 @@ int udGraphHasCycle(UndirectedGraph *graph) {
     }
 
     UDGraphNode **nodesArray = (UDGraphNode **) hashMapToArray(graph->nodes);
-    HashSet *visitedNodes = hashSetInitialization(UDGFreeLongLong, UDGCompLongLong, longLongHashFunUDirG);
+    HashSet *visitedNodes = hashSetInitialization(UDGFreeUintptr_t, UDGCompUintptr_t, uintptr_tHashFunUDirG);
 
     int cycleFlag = 0;
     for (int i = 0; i < hashMapGetLength(graph->nodes); i++) {
-        long long currentNodeValAddress = (long long) nodesArray[i]->value;
+        uintptr_t currentNodeValAddress = (uintptr_t) nodesArray[i]->value;
         if (!hashSetContains(visitedNodes, &currentNodeValAddress)
         && UDGraphNodePartOfCycleR(NULL, nodesArray[i], visitedNodes)) {
 
@@ -1747,7 +1757,7 @@ int udGraphHasCycle(UndirectedGraph *graph) {
  */
 
 int UDGraphNodePartOfCycleR(UDGraphNode *prevNode, UDGraphNode *currentNode, HashSet *visitedNodes) {
-    long long *currentNodeValAddress = generateNodeValAddress(currentNode);
+    uintptr_t *currentNodeValAddress = generateNodeValAddress(currentNode);
     if (hashSetContains(visitedNodes, currentNodeValAddress)) {
         free(currentNodeValAddress);
         return 1;
