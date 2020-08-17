@@ -235,7 +235,7 @@
    - Get length  
    - Is empty  
    - Clear  
-   - Destroy   
+   - Destroy  
 
 4. **[Linked list](./DataStructure/LinkedLists/Sources/LinkedList.c)**  
   
@@ -281,8 +281,8 @@
    - Destroy  
 
 ### Pairs 
-1. **[Pair](./DataStructure/Pairs/Sources/Pair.c)** 
-
+1. **[Pair](./DataStructure/Pairs/Sources/Pair.c)**  
+  
    - Initialization  
    - Get first and second
    - Set first and second
@@ -318,8 +318,8 @@
   
 4. **[Priority queue](./DataStructure/Queues/Sources/PriorityQueue.c)**
 
-5. **[Priority queue implemnted using binary heap](./DataStructure/Queues/Sources/HPriorityQueue.c)** 
-
+5. **[Priority queue implemnted using binary heap](./DataStructure/Queues/Sources/HPriorityQueue.c)**  
+  
    - Initialization  
    - Enqueue  
    - Dequeue  
