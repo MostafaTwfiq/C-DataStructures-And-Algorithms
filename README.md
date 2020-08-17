@@ -224,7 +224,7 @@
    - Destroy  
   
 3. **[Set](./DataStructure/Lists/Sources/Set.c)**
- 
+
    - Initialization  
    - Insertion  
    - Deletion  
@@ -235,11 +235,11 @@
    - Get length  
    - Is empty  
    - Clear  
-   - Destroy   
+   - Destroy  
+
+4. **[Linked list](./DataStructure/LinkedLists/Sources/LinkedList.c)**  
   
-3. **[Linked list](./DataStructure/LinkedLists/Sources/LinkedList.c)**  
-  
-4. **[Doubly linked list](./DataStructure/LinkedLists/Sources/DoublyLinkedList.c)**  
+5. **[Doubly linked list](./DataStructure/LinkedLists/Sources/DoublyLinkedList.c)**  
   
    - Initialization  
    - Insertion  
@@ -279,17 +279,18 @@
    - Print  
    - Clear  
    - Destroy  
- 
-### Pairs
-1. **[Pair](./DataStructure/Pairs/Sources/Pair.c)**
- 
+
+### Pairs  
+
+1. **[Pair](./DataStructure/Pairs/Sources/Pair.c)**  
+  
    - Initialization  
    - Get first and second
    - Set first and second
    - Set first and second without freeing the old elements
    - Swap elements
    - Destroy  
- 
+
 ### Stacks  
   
 1. **[Stack](./DataStructure/Stacks/Sources/Stack.c)**  
@@ -318,7 +319,7 @@
   
 4. **[Priority queue](./DataStructure/Queues/Sources/PriorityQueue.c)**
 
-5. **[Priority queue implemnted using binary heap](./DataStructure/Queues/Sources/HPriorityQueue.c)**    
+5. **[Priority queue implemnted using binary heap](./DataStructure/Queues/Sources/HPriorityQueue.c)**  
   
    - Initialization  
    - Enqueue  
