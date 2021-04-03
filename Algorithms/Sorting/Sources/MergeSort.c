@@ -9,9 +9,9 @@ void mergeSortHelper(char *arr, int length, int elemSize, int (*cmp)(const void 
 
 /** This function will take an array then it sort it with the merge sort algorithm.
  *
- * Time Complexity: worst: O( n log(n) ) , best: O ( n log(n) ).
+ * Time Complexity: worst: O( n^2 ) , best: O ( n log(n) ).
  *
- * Space Complexity: O ( log(n) ) <<because the recursive calls>>
+ * Space Complexity: O ( 1 ) <<because the recursive calls>>
  *
  * @param arr the array pointer
  * @param length the length of the array
@@ -64,9 +64,9 @@ void mergeSort(void *arr, int length, int elemSize, int (*cmp)(const void *, con
  *
  * Note: this function should only be called from the mergeSort function.
  *
- * Time Complexity: worst: O( n log(n) ) , best: O ( n log(n) ).
+ * Time Complexity: worst: O( n^2 ) , best: O ( n log(n) ).
  *
- * Space Complexity: O ( log(n) ) <<because the recursive calls>>
+ * Space Complexity: O ( 1 ) <<because the recursive calls>>
  *
  * @param arr the array pointer
  * @param length the length of the array

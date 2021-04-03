@@ -494,7 +494,8 @@ void udGraphRemoveEdge(UndirectedGraph *graph, void *fValue, void *sValue) {
     UDGraphEdge *fNewEdge = (UDGraphEdge *) malloc(sizeof(UDGraphEdge));
     UDGraphEdge *sNewEdge = (UDGraphEdge *) malloc(sizeof(UDGraphEdge));
     if (fNewEdge == NULL || sNewEdge == NULL) {
-
+        fprintf(stderr, FAILED_ALLOCATION_MESSAGE, "graph nodes", "undirected graph data structure");
+        exit(FAILED_ALLOCATION);
     }
 
     fNewEdge->node = sNode;

@@ -526,7 +526,7 @@ void matrixAddColAtIndex(Matrix *matrix, int index) {
 
     for (int i = 0; i < matrix->rowsNum; i++) {
         matrix->rows[i] = (void **) realloc(matrix->rows[i], sizeof(void *) * (matrix->colNum + 1));
-        if (matrix == NULL) {
+        if (matrix->rows[i] == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
             ERROR_TEST->errorCode = FAILED_REALLOCATION;
             return;
