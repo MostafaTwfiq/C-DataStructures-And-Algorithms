@@ -7,7 +7,7 @@
   
 **General overview:**  
   
-![library C files](https://img.shields.io/badge/library%20files-175-%23607d8b.svg)  ![total_code](https://img.shields.io/badge/total%20code-31253-%232196f3.svg)  ![total_comments](https://img.shields.io/badge/total%20comments-6657-%232496f3.svg)  
+![library C files](https://img.shields.io/badge/library%20files-175-%23607d8b.svg)  ![total_code](https://img.shields.io/badge/total%20code-31334-%232196f3.svg)  ![total_comments](https://img.shields.io/badge/total%20comments-6681-%232496f3.svg)  
  ![implemented data structures](https://img.shields.io/badge/implemented%20data%20structures-+28-%232496f3.svg) ![implemented algorithms](https://img.shields.io/badge/implemented%20algorithms-+100-%232496f3.svg)  
   
 ## Implemented Data Structures  
@@ -434,7 +434,7 @@
 | [bubble sort](./Algorithms/Sorting/Sources/BubbleSort.c) | O (n ^ 2) | in best case the complexity could be O ( n ) |  
 | [selection sort](./Algorithms/Sorting/Sources/SelectionSort.c) | O (n ^ 2) | |  
 | [insertion sort](./Algorithms/Sorting/Sources/InsertionSort.c) | O (n ^ 2) | in best case the complexity could be O ( n ) |  
-| [merge sort](./Algorithms/Sorting/Sources/MergeSort.c) | O (n log(n)) | |  
+| [merge sort](./Algorithms/Sorting/Sources/MergeSort.c) | O (n log(n)) | there are two implementations first one with space complexity O(n) and worst case time complexity O(nlog(n)), and the another one with space complexity O(1) and worst case time complexity O(n^2) |  
 | [quick sort](./Algorithms/Sorting/Sources/QuickSort.c) | O (n log(n)) | in the worst case the complexity could be O (n ^ 2) |  
 | [heap sort](./Algorithms/Sorting/Sources/HeapSort.c) | O (n log(n)) | |  
 | [counting sort A](./Algorithms/Sorting/Sources/CountingSort.c) | O (n) | this type of sorting works only on unsigned integers, note this function will use an array to count the values so it will allocate an extra memory |  
