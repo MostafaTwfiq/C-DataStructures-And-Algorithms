@@ -5,6 +5,7 @@
 
 
 void mergeSortWSHelper(char *arr, int length, int elemSize, int (*cmp)(const void *, const void *));
+
 void mergeSortHelper(char *arr, int length, int elemSize, int (*cmp)(const void *, const void *));
 
 
@@ -186,7 +187,7 @@ void mergeSortHelper(char *arr, int length, int elemSize, int (*cmp)(const void 
     for (int i = firstHalfLength; i < length; i++) {
 
         while (firstHalfPointer != arr + firstHalfLength * elemSize &&
-        cmp(arr + i * elemSize, firstHalfPointer) > 0) {
+               cmp(arr + i * elemSize, firstHalfPointer) > 0) {
             memcpy(tempArr + counter++ * elemSize, firstHalfPointer, elemSize);
             firstHalfPointer += elemSize;
         }
@@ -201,7 +202,7 @@ void mergeSortHelper(char *arr, int length, int elemSize, int (*cmp)(const void 
     }
 
     for (int i = 0; i < length; i++) {
-        memcpy(arr + i * elemSize , tempArr + i * elemSize, elemSize);
+        memcpy(arr + i * elemSize, tempArr + i * elemSize, elemSize);
     }
 
     free(tempArr);
