@@ -15,9 +15,9 @@ add_executable(C_DataStructures
         "Unit Test/CuTest"
         "Unit Test/CuTest/CuTest.c"
         "Unit Test/CuTest/CuTest.h"
-        #"Unit Test/CuTest/AllTests.c"
-        #"Unit Test/CuTest/CuTestTest.c"
-        #"Unit Test/ErrorsTestStruct.h"
+        "Unit Test/CuTest/AllTests.c"
+        "Unit Test/CuTest/CuTestTest.c"
+        "Unit Test/ErrorsTestStruct.h"
 
         DataStructure/Stacks/Sources/Stack.c
         DataStructure/Stacks/Headers/Stack.h

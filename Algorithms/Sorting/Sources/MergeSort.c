@@ -180,20 +180,24 @@ void mergeSortHelper(char *arr, int length, int elemSize, int (*cmp)(const void 
     mergeSortHelper(arr, firstHalfLength, elemSize, cmp);
     mergeSortHelper(arr + firstHalfLength * elemSize, secondHalfLength, elemSize, cmp);
 
-    char *tempArr = (char *) malloc(length * elemSize);
+    char *tempArr = (char *) malloc(length * elemSize), *firstHalfPointer = arr;
     int counter = 0;
-    short firstHalfCopiedBool = 0;
+
     for (int i = firstHalfLength; i < length; i++) {
 
-        if (!firstHalfCopiedBool  && cmp(arr + i * elemSize, arr) > 0) {
-            for (int j = 0; j < firstHalfLength; j++) {
-                memcpy(tempArr + counter++ * elemSize, arr + j * elemSize, elemSize);
-            }
-            firstHalfCopiedBool = 1;
+        while (firstHalfPointer != arr + firstHalfLength * elemSize &&
+        cmp(arr + i * elemSize, firstHalfPointer) > 0) {
+            memcpy(tempArr + counter++ * elemSize, firstHalfPointer, elemSize);
+            firstHalfPointer += elemSize;
         }
 
         memcpy(tempArr + counter++ * elemSize, arr + i * elemSize, elemSize);
 
+    }
+
+    while (firstHalfPointer != arr + firstHalfLength * elemSize) {
+        memcpy(tempArr + counter++ * elemSize, firstHalfPointer, elemSize);
+        firstHalfPointer += elemSize;
     }
 
     for (int i = 0; i < length; i++) {

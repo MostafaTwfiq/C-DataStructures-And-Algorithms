@@ -122,6 +122,29 @@ void testMergeSort(CuTest *cuTest) {
     for (int i = 9; i >= 0; i--)
         CuAssertIntEquals(cuTest, i + 1, arr[9 - i]);
 
+    int arr2[] = {5, 3, 9, 7, 6, 1, 2, 4, 10, 8};
+
+    mergeSortWS(NULL, 0, 0, NULL);
+    CuAssertIntEquals(cuTest, NULL_POINTER, ERROR_TEST->errorCode);
+
+    mergeSortWS(arr2, -1, 0, NULL);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
+
+    mergeSortWS(arr2, 1, 0, NULL);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
+
+    mergeSortWS(arr2, 1, 1, NULL);
+    CuAssertIntEquals(cuTest, INVALID_ARG, ERROR_TEST->errorCode);
+
+    mergeSortWS(arr2, 10, sizeof(int), intCompareFunSoAT1);
+
+    for (int i = 0; i < 10; i++)
+        CuAssertIntEquals(cuTest, i + 1, arr2[i]);
+
+    mergeSortWS(arr2, 10, sizeof(int), intCompareFunSoAT2);
+    for (int i = 9; i >= 0; i--)
+        CuAssertIntEquals(cuTest, i + 1, arr2[9 - i]);
+
 }
 
 
