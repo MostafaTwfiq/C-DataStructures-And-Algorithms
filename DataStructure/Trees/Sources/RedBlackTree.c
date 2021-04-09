@@ -27,7 +27,7 @@ RBNode *leftRotation(RBNode *grandParent);
 
 RBNode *rightRotation(RBNode *grandParent);
 
-int isRequiredRotation(RBNode *grandParent);
+int isRotationRequired(RBNode *grandParent);
 
 void rBPreOrderTraversalR(RBNode *root, void (*printFun)(const void *item, COLOR color));
 
@@ -283,7 +283,7 @@ RBNode *rBTreeInsertR(RBNode *root, RBNode *parent, void *item, void (*freeFun)(
     }
 
     //Case 2:
-    if (isRequiredRotation(root)) {
+    if (isRotationRequired(root)) {
         RotationType rotationType = getRotationType(root);
         root = performRotation(root, rotationType);
         performRotationRecoloring(root, rotationType);
@@ -782,7 +782,7 @@ int isCaseOne(RBNode *root) {
  * @return 
 **/
 
-int isRequiredRotation(RBNode *grandParent) {
+int isRotationRequired(RBNode *grandParent) {
 
     if (getNodeColor(grandParent->right) != getNodeColor(grandParent->left)) {
         RBNode *redNode = getNodeColor(grandParent->right) == RED ? grandParent->right : grandParent->left;
