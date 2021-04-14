@@ -14,8 +14,10 @@
 // 5, 3, 4, 10, 6
 
 // Step 1: build a valid heap
-// **we don't need to allocate a new array we can use the original array to convert it to a valid heap**
+// **we don't need to allocate a new array, we just can use the original array to convert it to a valid heap**
 
+
+// First method:
 // add 5
 // 5
 
@@ -33,13 +35,17 @@
 // 10, 5, 4, 3, 6
 // 10, 6, 4, 3, 5
 
+// Second method (Optimized):
+// Check every element node with it's children, and swap the parent with it's biggest or smallest child (depends on the type of the heap, min or max).
+// The complexity of this approach should be O(n).
+
 // The heap in 2D:
 //          10
 //       6      4
 //     3   5
 
 
-// Step 2: delete the tree root and balance the heap the number of times the length of the array.
+// Step 2: delete the tree root and balance the heap. Repeat until your tree turns empty.
 
 // 10, 6, 4, 3, 5
 
@@ -52,10 +58,6 @@
 // 4, 3, 5, 6, 10
 
 // 3, 4, 5, 6, 10
-
-
-
-
 
 
 
@@ -129,42 +131,43 @@ void heapUp(char *arr, int index, int elemSize, int (*cmp)(const void *, const v
  */
 
 void heapDown(char *arr, int length, int index, int elemSize, int (*cmp)(const void *, const void *)) {
-    int firstChildIndex = getFirstChildIndex(index);
-    int secondChildIndex = getSecondChildIndex(index);
 
+    int fChildIndex = getFirstChildIndex(index), sChildIndex = getSecondChildIndex(index);
+    int targetChildIndex =
+            fChildIndex >= length && sChildIndex >= length // check if leaf node.
+            ? -1
+            : fChildIndex < length && sChildIndex < length // check if the node has two children.
+              ? cmp(arr + fChildIndex * elemSize, arr + sChildIndex * elemSize) > 0 // check for the proper node index.
+                ? fChildIndex
+                : sChildIndex
+              : fChildIndex >= length //the node has only one child, and we want to return that child index.
+                ? sChildIndex
+                : fChildIndex;
 
-    // if the current element in smaller than his children.
-    if (firstChildIndex < length
-        && secondChildIndex < length
-        && cmp(arr + index * elemSize, arr + firstChildIndex * elemSize) < 0
-        && cmp(arr + index * elemSize, arr + secondChildIndex * elemSize) < 0) {
-
-        // the biggest child index.
-        int biggestChildIndex = cmp(arr + firstChildIndex * elemSize, arr + secondChildIndex * elemSize) > 0
-                                ? firstChildIndex
-                                : secondChildIndex;
-
-        swap(arr + index * elemSize, arr + biggestChildIndex * elemSize, elemSize);
-        heapDown(arr, length, biggestChildIndex, elemSize, cmp);
-
+    if (targetChildIndex != -1 && cmp(arr + targetChildIndex * elemSize, arr + index * elemSize) > 0) {
+        swap(arr + index * elemSize, arr + targetChildIndex * elemSize, elemSize);
+        heapDown(arr, length, targetChildIndex, elemSize, cmp);
     }
 
-        // if the current element is only less that his first child.
-    else if (firstChildIndex < length && cmp(arr + index * elemSize, arr + firstChildIndex * elemSize) < 0) {
+}
 
-        swap(arr + index * elemSize, arr + firstChildIndex * elemSize, elemSize);
-        heapDown(arr, length, firstChildIndex, elemSize, cmp);
 
-    }
+/** This function takes an array, and it will convert the array to a valid heap.
+ *
+ * Note: This function should only be called by the heap sort functions.
+ *
+ * Note: the complexity of this algorithm is O(n).
+ *
+ * @param arr the array pointer
+ * @param length the length of the array (number of elements)
+ * @param elemSize the size of the array elements
+ * @param cmp the compare function, that will compare the array elements
+ */
 
-        // if the current element is only less that his second child.
-    else if (secondChildIndex < length && cmp(arr + index * elemSize, arr + secondChildIndex * elemSize) < 0) {
+void buildHeap(char *arr, int length, int elemSize, int (*cmp)(const void *, const void *)) {
 
-        swap(arr + index * elemSize, arr + secondChildIndex * elemSize, elemSize);
-        heapDown(arr, length, secondChildIndex, elemSize, cmp);
-
-    }
-
+    for (int i = length - 1; i >= 0; i--)
+        heapDown(arr, length, i, elemSize, cmp);
 
 }
 
@@ -221,8 +224,7 @@ void heapSort(void *arr, int length, int elemSize, int (*cmp)(const void *, cons
     char *oneBytePointer = (char *) arr;
 
     // to build a valid heap.
-    for (int i = 0; i < length; i++)
-        heapUp(oneBytePointer, i, elemSize, cmp);
+    buildHeap(oneBytePointer, length, elemSize, cmp);
 
     // to sort the heap (delete the tree root and balance the heap the number of times the length of the array).
     while (length-- > 0) {
