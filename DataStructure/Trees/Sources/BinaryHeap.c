@@ -101,28 +101,22 @@ void binaryHeapDown(void **arr, int currentIndex, int length, int (*cmp)(const v
     if (currentIndex >= length)
         return;
 
-    int fChildIndex = binaryHeapGetFChildIndex(currentIndex);
-    int sChildIndex = binaryHeapGetSChildIndex(currentIndex);
+    int fChildIndex = binaryHeapGetFChildIndex(currentIndex),
+    sChildIndex = binaryHeapGetSChildIndex(currentIndex),
+    targetChildIndex = -1;
 
-    fChildIndex = fChildIndex >= length ? currentIndex : fChildIndex;
-    sChildIndex = sChildIndex >= length ? currentIndex : sChildIndex;
+    if (fChildIndex < length || sChildIndex < length) {
 
-    if (cmp(arr[currentIndex], arr[fChildIndex]) < 0 && cmp(arr[currentIndex], arr[sChildIndex]) < 0) {
+        if (fChildIndex < length && sChildIndex < length)
+            targetChildIndex = cmp(arr[fChildIndex], arr[sChildIndex]) > 0 ? fChildIndex : sChildIndex;
+        else
+            targetChildIndex = fChildIndex >= length ? sChildIndex : fChildIndex;
 
-        int biggestChildIndex = cmp(arr[fChildIndex], arr[sChildIndex]) < 0 ? sChildIndex : fChildIndex;
-        binaryHeapSwap(arr, currentIndex, biggestChildIndex);
-        binaryHeapDown(arr, biggestChildIndex, length, cmp);
+    }
 
-    } else if (cmp(arr[currentIndex], arr[fChildIndex]) < 0) {
-
-        binaryHeapSwap(arr, currentIndex, fChildIndex);
-        binaryHeapDown(arr, fChildIndex, length, cmp);
-
-    } else if (cmp(arr[currentIndex], arr[sChildIndex]) < 0) {
-
-        binaryHeapSwap(arr, currentIndex, sChildIndex);
-        binaryHeapDown(arr, sChildIndex, length, cmp);
-
+    if (targetChildIndex != -1 && cmp(arr[targetChildIndex], arr[currentIndex]) > 0) {
+        binaryHeapSwap(arr, currentIndex, targetChildIndex);
+        binaryHeapDown(arr, targetChildIndex, length, cmp);
     }
 
 }

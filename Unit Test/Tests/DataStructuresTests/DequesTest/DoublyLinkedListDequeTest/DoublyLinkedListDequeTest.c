@@ -472,7 +472,7 @@ void doublyLinkedListDequeUnitTest(void) {
     ERROR_TEST = (ErrorTestStruct *) malloc(sizeof(ErrorTestStruct));
 
     CuString *output = CuStringNew();
-    CuStringAppend(output, "**Doubly Linked List dLDeque Test**\n");
+    CuStringAppend(output, "**Doubly Linked List Deque Test**\n");
 
     CuSuite *suite = createDoublyLinkedListDequeTestsSuite();
 
