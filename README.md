@@ -7,7 +7,7 @@
   
 **General overview:**  
   
-![library C files](https://img.shields.io/badge/library%20files-175-%23607d8b.svg)  ![total lines of code](https://img.shields.io/badge/total%20lines%20of%20code-31334-%232196f3.svg)  ![total lines of comments](https://img.shields.io/badge/total%20lines%20of%20comments-6681-%232496f3.svg)  
+![library C files](https://img.shields.io/badge/library%20files-175-%23607d8b.svg)  ![total lines of code](https://img.shields.io/badge/total%20lines%20of%20code-31346-%232196f3.svg)  ![total lines of comments](https://img.shields.io/badge/total%20lines%20of%20comments-6692-%232496f3.svg)  
  ![implemented data structures](https://img.shields.io/badge/implemented%20data%20structures-+28-%232496f3.svg) ![implemented algorithms](https://img.shields.io/badge/implemented%20algorithms-+100-%232496f3.svg)  
   
 ## Implemented Data Structures  
@@ -497,51 +497,14 @@
 The first four error code numbers are the sum of the "DATA_STRUCTURE" characters,  
 and the rest of the error code is the sum of the error enum.  
 ex: INVALID_ARG is 4987.  
-  
-#### FAILED_ALLOCATION  
-  
-|Error code| Message |  
-|--|--|  
-| -833811484 | `"The %s allocation in %s failed."` |  
-  
-#### FAILED_REALLOCATION  
-  
-|Error code| Message |  
-|--|--|  
-| -833814245 | `"The %s reallocation in %s failed."` |  
-  
-#### FAILED_COPY  
-  
-|Error code| Message |  
-|--|--|  
-| -83385167 | `"Copying %s in %s failed."` |  
-  
-#### INVALID_ARG  
-  
-|Error code| Message |  
-|--|--|  
-| -83384987 | `"The passed arg %s in %s is invalid."` |  
-  
-#### NULL_POINTER  
-  
-|Error code| Message |  
-|--|--|  
-| -83386157 | `"The %s pointer in %s is NULL."` |  
-  
-#### OUT_OF_RANGE  
-  
-|Error code| Message |  
-|--|--|  
-| -83385991 | `"The passed index is out of the %s range."` |  
-  
-#### EMPTY_DATA_STRUCTURE  
-  
-|Error code| Message |  
-|--|--|  
-| -833816740 | `"The passed %s pointer is empty."` |  
-  
-#### SOMETHING_WENT_WRONG  
-  
-|Error code| Message |  
-|--|--|  
-| -833816834 | `"Can't %s in %s."` |
+
+| Error | Error code | Message |  
+|--|--|--|
+| **FAILED_ALLOCATION** | -833811484 | `"The %s allocation in %s failed."` |
+| **FAILED_REALLOCATION** | -833814245 | `"The %s reallocation in %s failed."` |
+| **FAILED_COPY** | -83385167 | `"Copying %s in %s failed."` |
+| **INVALID_ARG** | -83384987 | `"The passed arg %s in %s is invalid."` |
+| **NULL_POINTER** | -83386157 | `"The %s pointer in %s is NULL."` |
+| **OUT_OF_RANGE** | -83385991 | `"The passed index is out of the %s range."` |
+| **EMPTY_DATA_STRUCTURE** | -833816740 | `"The passed %s pointer is empty."` |   
+| **SOMETHING_WENT_WRONG** | -833816834 | `"Can't %s in %s."` |
