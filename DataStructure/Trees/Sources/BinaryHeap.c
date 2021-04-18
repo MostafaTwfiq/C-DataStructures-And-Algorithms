@@ -250,8 +250,35 @@ void binaryHeapInsertAll(BinaryHeap *heap, void **items, int length) {
 #endif
     }
 
-    for (int i = 0; i < length; i++)
-        binaryHeapInsert(heap, items[i]);
+    if (heap->count + length > heap->length) {
+        heap->length = (heap->count + length) * 2;
+
+        heap->arr = realloc(heap->arr, sizeof(void *) * heap->length);
+        if (heap->arr == NULL) {
+            fprintf(stderr, FAILED_REALLOCATION_MESSAGE, "heap array", "binary heap data structure");
+            exit(FAILED_REALLOCATION);
+        }
+
+    }
+
+    for (int i = 0; i < length; i++) {
+
+        if (items[i] == NULL) {
+#ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
+            ERROR_TEST->errorCode = INVALID_ARG;
+        return;
+#else
+            fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "binary heap data structure");
+            exit(INVALID_ARG);
+#endif
+        }
+
+        heap->arr[heap->count++] = items[i];
+
+    }
+
+    for (int i = binaryHeapGetSize(heap) - 1; i >= 0; i--)
+        binaryHeapDown(heap->arr, i, heap->count, heap->cmp);
 
 }
 

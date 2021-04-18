@@ -164,12 +164,6 @@ void testBinaryHeapInsertAll(CuTest *cuTest) {
     CuAssertIntEquals(cuTest, 1, isValidBinaryHeap(maxHeap->arr, 0, maxHeap->count, maxHeap->cmp));
     CuAssertIntEquals(cuTest, 1, isValidBinaryHeap(minHeap->arr, 0, minHeap->count, minHeap->cmp));
 
-    for (int i = 0; i < 10; i++) {
-        CuAssertIntEquals(cuTest, maxHeapValues[i], *(int *) maxHeap->arr[i]);
-        CuAssertIntEquals(cuTest, minHeapValues[i], *(int *) minHeap->arr[i]);
-    }
-
-
     free(maxHeapValuesArr);
     free(minHeapValuesArr);
     destroyBinaryHeap(maxHeap);
