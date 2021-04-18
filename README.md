@@ -480,7 +480,7 @@
   
 2. **[Input Scanner](./FilesHandler/Sources/InputScanner.c)**  
   
-   > The functions will scan the input from the stdin file.  
+   > You should pass stdin file to the function to scan the input.  
    - Scan String  
    - Scan char array  
    - Scan character  
@@ -506,5 +506,5 @@ ex: INVALID_ARG is 4987.
 | **INVALID_ARG** | -83384987 | `"The passed arg %s in %s is invalid."` |
 | **NULL_POINTER** | -83386157 | `"The %s pointer in %s is NULL."` |
 | **OUT_OF_RANGE** | -83385991 | `"The passed index is out of the %s range."` |
-| **EMPTY_DATA_STRUCTURE** | -833816740 | `"The passed %s pointer is empty."` |   
+| **EMPTY_DATA_STRUCTURE** | -833816740 | `"The passed %s pointer is empty."` |
 | **SOMETHING_WENT_WRONG** | -833816834 | `"Can't %s in %s."` |
