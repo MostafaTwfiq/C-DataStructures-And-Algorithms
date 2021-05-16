@@ -102,8 +102,8 @@ void binaryHeapDown(void **arr, int currentIndex, int length, int (*cmp)(const v
         return;
 
     int fChildIndex = binaryHeapGetFChildIndex(currentIndex),
-    sChildIndex = binaryHeapGetSChildIndex(currentIndex),
-    target = currentIndex;
+            sChildIndex = binaryHeapGetSChildIndex(currentIndex),
+            target = currentIndex;
 
     if (fChildIndex < length && cmp(arr[target], arr[fChildIndex]) < 0)
         target = fChildIndex;
