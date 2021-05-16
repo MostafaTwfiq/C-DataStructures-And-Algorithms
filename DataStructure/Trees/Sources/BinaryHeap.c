@@ -103,20 +103,17 @@ void binaryHeapDown(void **arr, int currentIndex, int length, int (*cmp)(const v
 
     int fChildIndex = binaryHeapGetFChildIndex(currentIndex),
     sChildIndex = binaryHeapGetSChildIndex(currentIndex),
-    targetChildIndex = -1;
+    target = currentIndex;
 
-    if (fChildIndex < length || sChildIndex < length) {
+    if (fChildIndex < length && cmp(arr[target], arr[fChildIndex]) < 0)
+        target = fChildIndex;
 
-        if (fChildIndex < length && sChildIndex < length)
-            targetChildIndex = cmp(arr[fChildIndex], arr[sChildIndex]) > 0 ? fChildIndex : sChildIndex;
-        else
-            targetChildIndex = fChildIndex >= length ? sChildIndex : fChildIndex;
+    if (sChildIndex < length && cmp(arr[target], arr[sChildIndex]) < 0)
+        target = sChildIndex;
 
-    }
-
-    if (targetChildIndex != -1 && cmp(arr[targetChildIndex], arr[currentIndex]) > 0) {
-        binaryHeapSwap(arr, currentIndex, targetChildIndex);
-        binaryHeapDown(arr, targetChildIndex, length, cmp);
+    if (target != currentIndex) {
+        binaryHeapSwap(arr, currentIndex, target);
+        binaryHeapDown(arr, target, length, cmp);
     }
 
 }
@@ -260,7 +257,7 @@ void binaryHeapInsertAll(BinaryHeap *heap, void **items, int length) {
         if (items[i] == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
             ERROR_TEST->errorCode = INVALID_ARG;
-        return;
+            return;
 #else
             fprintf(stderr, INVALID_ARG_MESSAGE, "item pointer", "binary heap data structure");
             exit(INVALID_ARG);

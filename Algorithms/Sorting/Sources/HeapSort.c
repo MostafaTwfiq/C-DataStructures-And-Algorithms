@@ -133,20 +133,17 @@ void heapUp(char *arr, int index, int elemSize, int (*cmp)(const void *, const v
 void heapDown(char *arr, int length, int index, int elemSize, int (*cmp)(const void *, const void *)) {
 
     int fChildIndex = getFirstChildIndex(index), sChildIndex = getSecondChildIndex(index);
-    int targetChildIndex =
-            fChildIndex >= length && sChildIndex >= length // check if leaf node.
-            ? -1
-            : fChildIndex < length && sChildIndex < length // check if the node has two children.
-              ? cmp(arr + fChildIndex * elemSize, arr + sChildIndex * elemSize) > 0 // check for the proper node index.
-                ? fChildIndex
-                : sChildIndex
-              : fChildIndex >= length //the node has only one child, and we want to return that child index.
-                ? sChildIndex
-                : fChildIndex;
+    int target = index;
 
-    if (targetChildIndex != -1 && cmp(arr + targetChildIndex * elemSize, arr + index * elemSize) > 0) {
-        swap(arr + index * elemSize, arr + targetChildIndex * elemSize, elemSize);
-        heapDown(arr, length, targetChildIndex, elemSize, cmp);
+    if (fChildIndex < length && cmp(arr + target * elemSize, arr + fChildIndex * elemSize) < 0)
+        target = fChildIndex;
+
+    if (sChildIndex < length && cmp(arr + target * elemSize, arr + sChildIndex * elemSize) < 0)
+        target = sChildIndex;
+
+    if (target != index) {
+        swap(arr + index * elemSize, arr + target * elemSize, elemSize);
+        heapDown(arr, length, target, elemSize, cmp);
     }
 
 }
