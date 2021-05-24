@@ -151,7 +151,7 @@ void hashSetInsert(HashSet *hashSet, void *item) {
     unsigned int fHash = hashSetFHashCal(hashSet->hashFun, item, hashSet->length),
             sHash = hashSetSHashCal(hashSet->hashFun, item, hashSet->bPrime);
 
-    unsigned int pHashIndex = 1;
+    unsigned int pHashIndex = 0;
     unsigned int index = hashSetCalIndex(fHash, sHash, pHashIndex, hashSet->length);
 
     while (hashSet->arr[index] != NULL) {
@@ -207,7 +207,7 @@ void hashSetDelete(HashSet *hashSet, void *item) {
     unsigned int fHash = hashSetFHashCal(hashSet->hashFun, item, hashSet->length),
             sHash = hashSetSHashCal(hashSet->hashFun, item, hashSet->bPrime);
 
-    unsigned int pHashIndex = 1;
+    unsigned int pHashIndex = 0;
     unsigned int index = hashSetCalIndex(fHash, sHash, pHashIndex, hashSet->length);
     unsigned int firstIndex = index;
 
@@ -265,7 +265,7 @@ void *hashSetDeleteWtoFr(HashSet *hashSet, void *item) {
     unsigned int fHash = hashSetFHashCal(hashSet->hashFun, item, hashSet->length),
             sHash = hashSetSHashCal(hashSet->hashFun, item, hashSet->bPrime);
 
-    unsigned int pHashIndex = 1;
+    unsigned int pHashIndex = 0;
     unsigned int index = hashSetCalIndex(fHash, sHash, pHashIndex, hashSet->length);
     unsigned int firstIndex = index;
 
@@ -327,7 +327,7 @@ int hashSetContains(HashSet *hashSet, void *item) {
     unsigned int fHash = hashSetFHashCal(hashSet->hashFun, item, hashSet->length),
             sHash = hashSetSHashCal(hashSet->hashFun, item, hashSet->bPrime);
 
-    unsigned int pHashIndex = 1;
+    unsigned int pHashIndex = 0;
     unsigned int index = hashSetCalIndex(fHash, sHash, pHashIndex, hashSet->length);
     unsigned int firstIndex = index;
 
@@ -382,7 +382,7 @@ void *hashSetGet(HashSet *hashSet, void *item) {
     unsigned int fHash = hashSetFHashCal(hashSet->hashFun, item, hashSet->length),
             sHash = hashSetSHashCal(hashSet->hashFun, item, hashSet->bPrime);
 
-    unsigned int pHashIndex = 1;
+    unsigned int pHashIndex = 0;
     unsigned int index = hashSetCalIndex(fHash, sHash, pHashIndex, hashSet->length);
     unsigned int firstIndex = index;
 

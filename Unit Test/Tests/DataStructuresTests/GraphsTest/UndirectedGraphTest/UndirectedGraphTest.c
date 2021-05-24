@@ -607,14 +607,14 @@ void testPrintUndirectedGraph(CuTest *cuTest) {
     printUDGraph(undirectedGraph, printFunUDTDGT);
 
     CuAssertIntEquals(cuTest, 8, arrayListGetLength(printUDTingList));
-    CuAssertStrEquals(cuTest, "A", arrayListGet(printUDTingList, 0));
-    CuAssertStrEquals(cuTest, "B", arrayListGet(printUDTingList, 1));
-    CuAssertStrEquals(cuTest, "D", arrayListGet(printUDTingList, 2));
-    CuAssertStrEquals(cuTest, "C", arrayListGet(printUDTingList, 3));
-    CuAssertStrEquals(cuTest, "C", arrayListGet(printUDTingList, 4));
-    CuAssertStrEquals(cuTest, "D", arrayListGet(printUDTingList, 5));
-    CuAssertStrEquals(cuTest, "B", arrayListGet(printUDTingList, 6));
-    CuAssertStrEquals(cuTest, "A", arrayListGet(printUDTingList, 7));
+    CuAssertStrEquals(cuTest, "B", arrayListGet(printUDTingList, 0));
+    CuAssertStrEquals(cuTest, "A", arrayListGet(printUDTingList, 1));
+    CuAssertStrEquals(cuTest, "C", arrayListGet(printUDTingList, 2));
+    CuAssertStrEquals(cuTest, "D", arrayListGet(printUDTingList, 3));
+    CuAssertStrEquals(cuTest, "D", arrayListGet(printUDTingList, 4));
+    CuAssertStrEquals(cuTest, "C", arrayListGet(printUDTingList, 5));
+    CuAssertStrEquals(cuTest, "A", arrayListGet(printUDTingList, 6));
+    CuAssertStrEquals(cuTest, "B", arrayListGet(printUDTingList, 7));
 
 
     destroyArrayList(printUDTingList);

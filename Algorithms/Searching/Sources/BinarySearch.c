@@ -34,7 +34,7 @@ int binarySearchI(void *arr, void *value, int length, int elemSize, int (*cmp)(c
     if (arr == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
         ERROR_TEST->errorCode = NULL_POINTER;
-        return - 1;
+        return -1;
 #else
         fprintf(stderr, NULL_POINTER_MESSAGE, "passed array", "binary search");
         exit(NULL_POINTER);

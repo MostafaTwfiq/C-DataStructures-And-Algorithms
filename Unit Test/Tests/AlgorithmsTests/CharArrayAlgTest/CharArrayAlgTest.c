@@ -503,7 +503,7 @@ void testMostRepeatedCharacter(CuTest *cuTest) {
 
     CuAssertIntEquals(cuTest, (int) 'a', (int) mostRepeatedCharacter("a"));
 
-    CuAssertIntEquals(cuTest, (int) 'b', (int) mostRepeatedCharacter("aabb"));
+    CuAssertIntEquals(cuTest, (int) 'a', (int) mostRepeatedCharacter("aabb"));
 
     CuAssertIntEquals(cuTest, (int) 'k', (int) mostRepeatedCharacter("kkkk"));
 

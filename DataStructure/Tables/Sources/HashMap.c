@@ -101,7 +101,7 @@ HashMap *hashMapInitialization(
 
     map->length = getNextPrime(10); //the length of the map array should always be a prime number.
     map->arr = (Entry **) calloc(sizeof(Entry *), map->length);
-    if (map == NULL) {
+    if (map->arr == NULL) {
 #ifdef C_DATASTRUCTURES_ERRORSTESTSTRUCT_H
         ERROR_TEST->errorCode = FAILED_ALLOCATION;
         return NULL;
@@ -187,7 +187,7 @@ void hashMapInsert(HashMap *map, void *key, void *item) {
     unsigned int fHash = hashMapFHashCal(map->hashFun, key, map->length),
             sHash = hashMapSHashCal(map->hashFun, key, map->bPrime);
 
-    unsigned int pHashIndex = 1;
+    unsigned int pHashIndex = 0;
     unsigned int index = calIndex(fHash, sHash, pHashIndex, map->length);
 
     while (map->arr[index] != NULL) {
@@ -262,7 +262,7 @@ int hashMapContains(HashMap *map, void *key) {
     unsigned int fHash = hashMapFHashCal(map->hashFun, key, map->length),
             sHash = hashMapSHashCal(map->hashFun, key, map->bPrime);
 
-    unsigned int pHashIndex = 1;
+    unsigned int pHashIndex = 0;
     unsigned int index = calIndex(fHash, sHash, pHashIndex, map->length);
     unsigned int firstIndex = index;
 
@@ -319,7 +319,7 @@ void *hashMapGet(HashMap *map, void *key) {
     unsigned int fHash = hashMapFHashCal(map->hashFun, key, map->length),
             sHash = hashMapSHashCal(map->hashFun, key, map->bPrime);
 
-    unsigned int pHashIndex = 1;
+    unsigned int pHashIndex = 0;
     unsigned int index = calIndex(fHash, sHash, pHashIndex, map->length);
     unsigned int firstIndex = index;
 
@@ -376,7 +376,7 @@ void *hashMapGetKey(HashMap *map, void *key) {
     unsigned int fHash = hashMapFHashCal(map->hashFun, key, map->length),
             sHash = hashMapSHashCal(map->hashFun, key, map->bPrime);
 
-    unsigned int pHashIndex = 1;
+    unsigned int pHashIndex = 0;
     unsigned int index = calIndex(fHash, sHash, pHashIndex, map->length);
     unsigned int firstIndex = index;
 
@@ -431,7 +431,7 @@ void hashMapDelete(HashMap *map, void *key) {
     unsigned int fHash = hashMapFHashCal(map->hashFun, key, map->length),
             sHash = hashMapSHashCal(map->hashFun, key, map->bPrime);
 
-    unsigned int pHashIndex = 1;
+    unsigned int pHashIndex = 0;
     unsigned int index = calIndex(fHash, sHash, pHashIndex, map->length);
     unsigned int firstIndex = index;
 
@@ -489,7 +489,7 @@ void *hashMapDeleteWtoFr(HashMap *map, void *key) {
     unsigned int fHash = hashMapFHashCal(map->hashFun, key, map->length),
             sHash = hashMapSHashCal(map->hashFun, key, map->bPrime);
 
-    unsigned int pHashIndex = 1;
+    unsigned int pHashIndex = 0;
     unsigned int index = calIndex(fHash, sHash, pHashIndex, map->length);
     unsigned int firstIndex = index;
 
@@ -551,7 +551,7 @@ Entry *hashMapDeleteWtoFrAll(HashMap *map, void *key) {
     unsigned int fHash = hashMapFHashCal(map->hashFun, key, map->length),
             sHash = hashMapSHashCal(map->hashFun, key, map->bPrime);
 
-    unsigned int pHashIndex = 1;
+    unsigned int pHashIndex = 0;
     unsigned int index = calIndex(fHash, sHash, pHashIndex, map->length);
     unsigned int firstIndex = index;
 

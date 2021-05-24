@@ -517,11 +517,11 @@ void testDirectedGraphPrint(CuTest *cuTest) {
     dirGraphPrint(directedGraph, printFunDGT);
 
     CuAssertIntEquals(cuTest, 6, arrayListGetLength(printingDTList));
-    CuAssertStrEquals(cuTest, "A", arrayListGet(printingDTList, 0));
-    CuAssertStrEquals(cuTest, "B", arrayListGet(printingDTList, 1));
+    CuAssertStrEquals(cuTest, "B", arrayListGet(printingDTList, 0));
+    CuAssertStrEquals(cuTest, "C", arrayListGet(printingDTList, 1));
     CuAssertStrEquals(cuTest, "D", arrayListGet(printingDTList, 2));
-    CuAssertStrEquals(cuTest, "C", arrayListGet(printingDTList, 3));
-    CuAssertStrEquals(cuTest, "D", arrayListGet(printingDTList, 4));
+    CuAssertStrEquals(cuTest, "D", arrayListGet(printingDTList, 3));
+    CuAssertStrEquals(cuTest, "A", arrayListGet(printingDTList, 4));
     CuAssertStrEquals(cuTest, "B", arrayListGet(printingDTList, 5));
 
 
